@@ -16,5 +16,4 @@ public class VeranstaltungsTable extends DefaultTableModel {
 	public VeranstaltungsTable() {
 		this.setDataVector(preFill, preFillHeader);
 	}
-
 }
