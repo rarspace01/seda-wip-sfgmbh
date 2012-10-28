@@ -6,8 +6,7 @@
 \subsection{Prozesse mit Dateneingabe}
 %------------
 
-\begin{quote}
-\begin{tabular}{p{1cm}p{12cm}}
+\begin{tabular}{p{1.5cm}p{14.5cm}}
 
 
 	 /F01/	& \textbf{Prozess mit Dateneingabe:} Benutzer-Authentifizierung \\
@@ -16,7 +15,9 @@
 				& \textbf{Eingabevalidierung:} Nutzer müssen eine gültige Nutzerkennung mit dazu passendem Passwort eingeben. Diese werden von der Verwaltung festgelegt. Wünschenswert wäre, dass Studenten sich auch am System anmelden können (siehe /FW61/) und hierzu ihre normale Hochschulkennung und Passwort verwenden könnten. Im Falle von falschen Zugangsdaten erhält der Benutzer eine Meldung, die ihn über den Fehlversuch informiert. Es gibt nur eine Meldung, sodass für ihn nicht ersichtlich ist, ob das Passwort falsch war oder er schon eine ungültige Nutzerkennung eingegeben hat.\\[0.25cm]
 
 \end{tabular}
-\begin{tabular}{p{1cm}p{12cm}}
+
+
+\begin{tabular}{p{1.5cm}p{14.5cm}}
 		
 	 /F10/	& \textbf{Prozess mit Dateneingabe:} Verwaltung von Raumdaten \\
 				& \textbf{Akteur:} Verwaltung \\
@@ -24,7 +25,9 @@
 				& \textbf{Eingabevalidierung:} Es können beliebige Räume erstellt, gelöscht oder bearbeitet werden. Bei der Erstellung darf die Raumnummer (siehe Datenobjekt /D10/) nicht schon im System vorhanden sein (die systeminterne Raum ID ist für Nutzer nicht selbst wählbar, so wie das auch im Folgenden nie der Fall sein wird), anderenfalls wird der Nutzer mit einer Fehlermeldung darauf hingewiesen. Die übrigen Attribute eines Raums (/D10/) werden sofern möglich nach Logik und passender Größe überprüft und bei fehlerhaften Eingaben wird ein Bearbeitungs- oder Erstellvorgang abgebrochen, sowie der Nutzer darauf hingewiesen. So kann eine Kapazität beispielsweise nur eine ganze positive Zahl sein. \\[0.25cm]
 
 \end{tabular}
-\begin{tabular}{p{1cm}p{12cm}}
+
+
+\begin{tabular}{p{1.5cm}p{14.5cm}}
 		
 	 /F20/	& \textbf{Prozess mit Dateneingabe:} Verwalten von Lehrveranstaltungen \\
 				& \textbf{Akteur:} Dozenten \\
@@ -32,7 +35,9 @@
 				& \textbf{Eingabevalidierung:} Es können beliebige Lehrveranstaltungen erstellt, gelöscht oder bearbeitet werden. Doppelerstellungen sind möglich, falls dies in speziellen Fällen von Dozenten benötigt wird (durch die systeminterne ID ist ein fehlerfreier Systembetrieb gewährleistet). Die übrigen Attribute einer Lehrveranstaltung (/D50/) werden sofern möglich nach Logik und passender Größe überprüft und bei fehlerhaften Eingaben wird ein Bearbeitungs- oder Erstellvorgang abgebrochen, sowie der Nutzer darauf hingewiesen.\\[0.25cm]
 
 \end{tabular}
-\begin{tabular}{p{1cm}p{12cm}}
+
+
+\begin{tabular}{p{1.5cm}p{14.5cm}}
 	
 	 /FW21/& \textbf{Prozess mit Dateneingabe:} Verwalten von Live-Ticker Meldungen \\
 				& \textbf{Akteur:} Dozenten und Verwaltung \\
@@ -40,7 +45,9 @@
 				& \textbf{Eingabevalidierung:} Es sollten beliebige Live-Ticker Meldungen erstellt, gelöscht oder bearbeitet werden können. Die übrigen Attribute einer Ticker-Meldung (/DW80/) werden sofern möglich nach Logik und passender Größe überprüft und bei fehlerhaften Eingaben wird ein Bearbeitungs- oder Erstellvorgang abgebrochen, sowie der Nutzer darauf hingewiesen.\\[0.25cm]
 
 \end{tabular}
-\begin{tabular}{p{1cm}p{12cm}}
+
+
+\begin{tabular}{p{1.5cm}p{14.5cm}}
 		
 	 /F30/	& \textbf{Prozess mit Dateneingabe:} Buchen von Räumen \\
 				& \textbf{Akteur:} Dozenten \\
@@ -48,7 +55,9 @@
 				& \textbf{Eingabevalidierung:} Es sind Buchungen für bereits eingetragene Lehrveranstaltungen möglich. Eine Buchung umfasst genau eine Zeiteinheit zu einem Raum an einem Tag. Es sind beliebig viele Buchungen für eine Lehrveranstaltung möglich. Eine Buchung darf sich nicht mit einer bereits von der Verwaltung bestätigten Buchung im gleichen Raum zur gleichen Zeit am gleichen Tag überschneiden, sonst wird der Vorgang abgebrochen und dem Nutzer ein entsprechender Fehler gezeigt. Die übrigen Attribute einer Buchung (/D60/) werden sofern sie vom Dozenten anzugeben sind und möglich sind nach Logik und passender Größe überprüft und bei fehlerhaften Eingaben wird ein Bearbeitungs- oder Erstellvorgang abgebrochen, sowie der Dozent darauf hingewiesen.\\[0.25cm]
 
 \end{tabular}
-\begin{tabular}{p{1cm}p{12cm}}
+
+
+\begin{tabular}{p{1.5cm}p{14.5cm}}
 		
 	 /F40/ & \textbf{Prozess mit Dateneingabe:} Verwaltung von Raumbelegungen inklusive Konfliktlösung \\
 				& \textbf{Akteur:} Verwaltung \\
@@ -56,7 +65,9 @@
 				& \textbf{Eingabevalidierung:} Es ist nur das zuweisen eines Status, wie bei /DW80/ spezifiziert, möglich. Dieser ist vom System vorgegeben so dass Falscheingaben nicht möglich sind. Im Falle einer Ablehnung kann zusätzlich eine Nachricht übermittelt werden, die bezüglich Größe validiert wird. Im Fehlerfall wird der Nutzer darauf hingewiesen und der Vorgang abgebrochen.\\[0.25cm]
 
 \end{tabular}
-\begin{tabular}{p{1cm}p{12cm}}
+
+
+\begin{tabular}{p{1.5cm}p{14.5cm}}
 	
 	 /F50/	& \textbf{Prozess mit Dateneingabe:} Verwaltung von Nutzerdaten \\
 				& \textbf{Akteur:} Verwaltung \\
@@ -64,7 +75,9 @@
 				& \textbf{Eingabevalidierung:} Das Eintragen und Bearbeiten umfasst die in /D30/ spezifizierten Attribute (außer dem letzten Login und dem Salt, welche automatisch vom System generiert werden und wie gehabt der systeminternen ID). E-Mail und Benutzerkennung dürfen nicht schon im System vorhanden sein, anderenfalls erscheint eine entsprechende Fehlermeldung und der Vorgang wird abgebrochen. Das Passwort wird beim Erstellen und Bearbeiten direkt zur Laufzeit zusammen mit einem benutzerspezifischen zufälligen Wert (dem "Salt") in einen SHA512-Hash umgewandelt und nur als solcher persistent gespeichert. Es muss mindestens 8 Zeichen umfassen. Alle Attribute werden sofern möglich nach Logik und passender Größe überprüft und bei fehlerhaften Eingaben wird ein Bearbeitungs- oder Erstellvorgang abgebrochen, sowie der Nutzer darauf hingewiesen.\\[0.25cm]
 
 \end{tabular}
-\begin{tabular}{p{1cm}p{12cm}}
+
+
+\begin{tabular}{p{1.5cm}p{14.5cm}}
 					
 	 /F51/	& \textbf{Prozess mit Dateneingabe:} Verwaltung von Lehrstühlen \\
 				& \textbf{Akteur:} Verwaltung \\
@@ -72,7 +85,9 @@
 				& \textbf{Eingabevalidierung:} Das Eintragen und Bearbeiten umfasst die in /D20/ spezifizierten Attribute. Der Lehrstuhlname darf nicht bereits im System vorhanden sein, anderenfalls erscheint eine entsprechende Fehlermeldung und der Vorgang wird abgebrochen. Alle Attribute werden sofern möglich nach Logik und passender Größe überprüft und bei fehlerhaften Eingaben wird ein Bearbeitungs- oder Erstellvorgang abgebrochen, sowie der Nutzer darauf hingewiesen.\\[0.25cm]
 
 \end{tabular}
-\begin{tabular}{p{1cm}p{12cm}}
+
+
+\begin{tabular}{p{1.5cm}p{14.5cm}}
 
 	 /F60/	& \textbf{Prozess mit Dateneingabe:} Belegung von Lehrveranstaltungen \\
 				& \textbf{Akteur:} Studenten \\
@@ -80,7 +95,9 @@
 				& \textbf{Eingabevalidierung:} Das System bietet nur die Möglichkeit eine öffentliche Veranstaltung als hinzuzufügen oder diese wieder zu entfernen. Eine vom Benutzer erstellte Eingabe und somit eine Validierung ist nicht von Nöten. Wünschenswert wäre die persistente Speicherung dieser Zuordnungen wie sie durch die Funktion /FW61/ möglich wäre und im Datenobjekt /DW70/ spezifiziert ist.\\[0.25cm]
 
 \end{tabular}
-\begin{tabular}{p{1cm}p{12cm}}
+
+
+\begin{tabular}{p{1.5cm}p{14.5cm}}
 					
 	 /FW61/& \textbf{Prozess mit Dateneingabe:} Profil-Verwaltung (inkl. Speichermöglichkeiten von Belegungen) \\
 				& \textbf{Akteur:} Studenten \\
@@ -88,14 +105,14 @@
 				& \textbf{Eingabevalidierung:} Die Profil-Bearbeitung umfasst die Attribute E-Mail, Passwort, Vor- und Nachname des Datenobjekts /D30/ für Studenten. Das Passwort wird dabei wie in /F50/ beschrieben gehasht und muss mindestens 8 Zeichen umfassen. Die E-Mail Adresse darf nicht bereits im System vorhanden sein, anderenfalls erscheint eine entsprechende Fehlermeldung und der Vorgang wird abgebrochen. Alle betreffenden Attribute werden sofern möglich nach Logik und passender Größe überprüft und bei fehlerhaften Eingaben wird ein Bearbeitungs- oder Erstellvorgang abgebrochen, sowie der Nutzer darauf hingewiesen.\\[0.25cm]
 
 \end{tabular}
-\end{quote}
+
 
 %------------
 \subsection{Listen}
 %------------
 
-\begin{quote}
-\begin{tabular}{p{1cm}p{12cm}}
+
+\begin{tabular}{p{1.5cm}p{14.5cm}}
 
 
 	 /F70/	& \textbf{Liste:} Lehrveranstaltungen eines Lehrstuhls \\
@@ -104,7 +121,9 @@
 				& \textbf{Enthaltene Daten:} Name der Veranstaltung, Dozent, Semester, Tag(e), Zeit(en), gebuchter Raum, Freigabestatus, \textsl{wünschenswert eingeschriebene Studenten} \\[0.25cm]
 
 \end{tabular}
-\begin{tabular}{p{1cm}p{12cm}}
+
+
+\begin{tabular}{p{1.5cm}p{14.5cm}}
 		
 	 /F80/	& \textbf{Liste:} Buchungen und Buchungswünsche \\
 				& \textbf{Akteur:} Verwaltung \\
@@ -112,7 +131,9 @@
 				& \textbf{Enthaltene Daten:} Name der Veranstaltung, Dozent, Lehrstuhl, Semester, Tag(e), Zeit(en), gebuchter Raum, Freigabestatus, ggf. Verweis auf überschneidende Buchungen, \textsl{wünschenswert eingeschriebene Studenten} \\[0.25cm]
 
 \end{tabular}
-\begin{tabular}{p{1cm}p{12cm}}
+
+
+\begin{tabular}{p{1.5cm}p{14.5cm}}
 					
 	 /F90/	& \textbf{Liste:} Nutzer \\
 				& \textbf{Akteur:} Verwaltung \\
@@ -120,7 +141,9 @@
 				& \textbf{Enthaltene Daten:} Nutzerkennung, Vorname, Nachname, Nutzerzugehörigkeit (Lehrstuhl, Verwaltung oder ggf. auch Student), Zahl der Lehrveranstaltungen im aktuellen Semester, Datum des letzten Logins \\[0.25cm]
 
 \end{tabular}
-\begin{tabular}{p{1cm}p{12cm}}
+
+
+\begin{tabular}{p{1.5cm}p{14.5cm}}
 	
 	 /F100/& \textbf{Liste:} Lehrveranstaltungen \\
 				& \textbf{Akteur:} Studenten (und andere) \\
@@ -128,7 +151,9 @@
 				& \textbf{Enthaltene Daten:} Name der Veranstaltung, Dozent, Lehrstuhl, Semester, Tag(e), Zeit(en), gebuchter Raum, \textsl{wünschenswert eingeschriebene Studenten} \\[0.25cm]
 
 \end{tabular}
-\begin{tabular}{p{1cm}p{12cm}}
+
+
+\begin{tabular}{p{1.5cm}p{14.5cm}}
 	
 	 /F110/& \textbf{Liste:} Live-Ticker Meldungen \\
 				& \textbf{Akteur:} Studenten (sowie wünschenswerterweise Verwaltung und Dozenten mit Bearbeitungsfunktionen) \\
@@ -137,14 +162,14 @@
 
 				
 \end{tabular}
-\end{quote}
+
 
 %------------
 \subsection{Berichte}
 %------------
 
-\begin{quote}
-\begin{tabular}{p{1cm}p{12cm}}
+
+\begin{tabular}{p{1.5cm}p{14.5cm}}
 
 
 	 /F120/& \textbf{Bericht:} Raumbelegung \\
@@ -152,7 +177,9 @@
 				& \textbf{Beschreibung:} Mitglieder der Verwaltung (und wünschenswerterweise auch andere Nutzer) können sich eine Übersicht zur Belegung eines bestimmten Raumes in einem Semester anzeigen lassen, welche als Ansicht im System aufrufbar und als PDF exportierbar bzw. druckbar ist. \\[0.25cm]
 
 \end{tabular}
-\begin{tabular}{p{1cm}p{12cm}}
+
+
+\begin{tabular}{p{1.5cm}p{14.5cm}}
 	
 	 /F130/& \textbf{Bericht:} Semesterbelegung (Stundenplan) \\
 				& \textbf{Akteur:} Studenten \\
@@ -160,4 +187,3 @@
 
 				
 \end{tabular}
-\end{quote}
