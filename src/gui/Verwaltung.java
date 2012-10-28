@@ -1,34 +1,21 @@
 package gui;
 
-import java.awt.CardLayout;
 import java.awt.Dimension;
-import java.awt.EventQueue;
 import java.awt.Insets;
 import java.awt.Panel;
 import java.awt.SystemColor;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
-import javax.swing.JFrame;
-import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JScrollPane;
-import javax.swing.JTabbedPane;
 import javax.swing.JTable;
 import javax.swing.JTextPane;
-import javax.swing.SwingConstants;
 import javax.swing.UIManager;
-import modules.coregui.controller.AddToStundenplanButton;
-import modules.coregui.controller.DozLoginButton;
-import modules.coregui.controller.StudLoginButton;
-import modules.coregui.controller.VeranstaltungsFilter;
-import modules.coregui.controller.VerwLoginButton;
 import net.miginfocom.swing.MigLayout;
 import javax.swing.JLabel;
 import javax.swing.border.TitledBorder;
-import javax.swing.table.DefaultTableCellRenderer;
-import gui.CoreGUI;
 import javax.swing.JTextField;
 import java.awt.Color;
 
