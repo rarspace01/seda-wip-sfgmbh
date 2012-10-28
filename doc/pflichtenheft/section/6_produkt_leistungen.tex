@@ -1,4 +1,46 @@
-\section{Preamble}
-\label{sec:preamp}
+%-------------------------------
+\section{Leistungen}
+%-------------------------------
 
-We'd like to address the reader of this documentation before going into the details of this documentation that the project itself encountered several challenges which couldn't all be solved in a satisfying way. These lead to a program with a limited functionality and a documentation with some major gaps. For reasons and the progress itself which lead to this situation please refer to chapter 8.
+\begin{quote}
+\begin{tabular}{p{1cm}p{12cm}}
+
+
+	 /L10/	& Alle Daten, die im vorherigen Abschnitt aufgelistet sind, müssen, sofern sie realisiert werden, persistent mittels einer SQL-Datenbank (erreichbar und verwaltet durch einen PostgreSQL-Server) gespeichert werden. \\[0.25cm]
+	 
+\end{tabular}
+\begin{tabular}{p{1cm}p{12cm}}
+						
+	 /L20/	& Bei allen Prozess mit Dateneingabe-Funktionen erhalten Nutzer aussagekräftige Fehlermeldungen, sollte ihr Prozess nicht ordnungsgemäß durchgeführt werden können. \\[0.25cm]
+	 
+\end{tabular}
+\begin{tabular}{p{1cm}p{12cm}}
+						
+	 /L30/	& Die Realisierung erfolgt als Java-Anwendung, so dass ein möglicher Betrieb auf allen gängigen PCs der Universität sichergestellt ist. \\[0.25cm]
+
+\end{tabular}
+\begin{tabular}{p{1cm}p{12cm}}
+						
+	 /L40/	& Die Programmarchitektur richtet sich nach dem MVC-Modell, wobei eine saubere untergliederung zwischen den Schichten gewährleistet wird, sowie ein hohes Maß an Modularität erreicht wird. Dieses erlaubt es auch verhältnismäßig einfach Erweiterungen zu einem späteren Zeitpunkt zu erstellen. \\
+	 &	Die erste Version der Anwendung soll aus folgenden Modulen bestehen: \\
+	 &	\textbf{CoreGUI:} Hier wird die Start-Routine sowie der Startbildschirm der Anwendung realisiert. Die Funktion /F01/ und /F60/ werden von diesem Modul umgesetzt.\\
+	 &	\textbf{Verwaltung:} Hier wird die Anzeige für Verwaltungsmitglieder umgesetzt, die die Funktion /F10/, wünschenswerterweise /FW21/, /F40/, /F50/, /F51/, /F80/, /F90/ und /F120/ realisiert.\\
+	 &	\textbf{Verwaltung:} Hier wird die Anzeige für Verwaltungsmitglieder umgesetzt, die die Funktion /F10/, wünschenswerterweise /FW21/, /F40/, /F50/, /F51/, /F80/, /F90/ und /F120/ realisiert.\\[0.25cm]
+
+\end{tabular}
+\begin{tabular}{p{1cm}p{12cm}}
+					
+	 /L50/	& Es wird eine Nutzerauthentifizierung realisiert, die es gewährleistet, dass nur berechtigte Nutzer Änderungen durchführen. Um Missbrauch ausschließen zu können, sollte allerdings eine Middleware (die großteils die Model- und Controller-Schicht abdeckt) zwischen Datenbank und Client (der haupsächlich die View-Schicht umsetzt) realisiert werden. In diesem Fall sollte die Kommunikation zwischen Client und Middleware durch SSL (mithilfe von javax.net.ssl.* und javax.rmi.ssl.*) abgesichert werden. \\[0.25cm]
+	
+\end{tabular}
+\begin{tabular}{p{1cm}p{12cm}}
+					
+	 /L60/	& Zeitliche Spezifikationen (Abgleich mit Christian) \\[0.25cm]
+	
+\end{tabular}
+\end{quote}
+
+
+%################################
+\end{document}
+%################################
