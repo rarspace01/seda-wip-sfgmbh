@@ -4,9 +4,34 @@
 Im folgenden wird die Umgebung beschrieben, in der die spätere Software eingesetzt werden wird.
 
 \subsection{Software}
-Betriebsystem: Windows 7 (32/64bit)
-Laufzeitsystem: Java JRE 7.0
+
+Die Software beschreibt die die vorzuhaltende Software-Umgebung um eine problemlose Ausführung des Programms sicherzustellen.\\
+
+
+Als Betriebssystem kommt Windows 7 (Professional) (x64 - 64bit) zum Einsatz. Dieses hat die neusten Updates vorzuweisen und eine gängige aktuelle Antiviren Lösung installiert zu haben.\\
+
+
+Als Laufzeitumgebung wird auf die Java Virtual Machine Version 7 von Oracle gesetzt.
+Hierzu ist das entsprechende Java Runtime Environment in Version 7 vorzuhalten. Es muss sichergestellt werden, dass die entsprechenden Klassenpfade, sowie Systempfade gesetzt sind, sodass der prozess java als auch javaw im CLI bekannt ist. Darüber hinaus müssen .jar-Dateien mit der JRE verknüpft sein um einen Start der Anwendung per Doppelklick zu gewährleisten. Entsprechende Einstellungen sind notfalls in der Registry vorzunehmen.\\
+
+
+\begin{lstlisting}
+[HKEY_CLASSES_ROOT\.jar]
+@="jarfile"
+
+[HKEY_CLASSES_ROOT\jarfile]
+@="Executable Jar File"
+
+[HKEY_CLASSES_ROOT\jarfile\shell]
+
+[HKEY_CLASSES_ROOT\jarfile\shell\open]
+
+[HKEY_CLASSES_ROOT\jarfile\shell\open\command]
+@="\"C:\\Program Files\\Java\\jre7\\bin\\javaw.exe\" -jar \"%1\" %*"
+\end{lstlisting}
+
 Datenbank: PostgreSQL 9.2.1
+
 
 Shell: Windows Shell (explorer.exe) Fensterprogramm, kein CLI Programm
 
