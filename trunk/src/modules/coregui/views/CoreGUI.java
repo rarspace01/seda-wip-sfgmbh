@@ -1,17 +1,15 @@
-package gui;
+package modules.coregui.views;
 
 import java.awt.*;
 import javax.swing.*;
 import net.miginfocom.swing.MigLayout;
 import javax.swing.table.*;
-import javax.swing.UIManager.*;
 import javax.swing.border.*;
 import services.*;
 import modules.coregui.controller.*;
 
 public class CoreGUI extends JFrame{
 
-	public static ServiceManager serviceManager;
 	private static final long serialVersionUID = 1L;
 	
 	// GUI components
@@ -22,7 +20,6 @@ public class CoreGUI extends JFrame{
 	private JRadioButton rdbtnRume;
 	private JComboBox<String> comboBoxVeranstaltungFilter;
 	private JLabel lblLehrveranstaltung;
-	private Panel spacerPanel;
 	private JLabel lblLehrstuhl;
 	private JLabel lblDozent;
 	private JComboBox<String> comboBoxLehrstuhlFilter;
@@ -34,43 +31,8 @@ public class CoreGUI extends JFrame{
 	private JPanel tickerJPanel;
 	private JTextPane tickerMsgPos1;
 	private JPanel panel_1;
+	private final ButtonGroup buttonGroup = new ButtonGroup();
 	
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		
-		// Call the Service Manager instance
-		if (serviceManager == null){
-			serviceManager = new ServiceManager();
-		}
-		
-		// Start the GUI
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				
-
-				try {
-				    for (LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
-				        if ("Nimbus".equals(info.getName())) {
-				            UIManager.setLookAndFeel(info.getClassName());
-				            break;
-				        }
-				    }
-				} catch (Exception e) {
-				    // If Nimbus is not available, you can set the GUI to another look and feel.
-				}
-				
-				try {
-					CoreGUI frame = serviceManager.getCoreGUI();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
 	/**
 	 * Create the frame.
@@ -89,17 +51,16 @@ public class CoreGUI extends JFrame{
 		contentPane.add(mainTabbedContainerPane, "name_5247024799318");
 		
 		startScreenPanel = new JPanel();
+		startScreenPanel.setMaximumSize(new Dimension(10, 32767));
 		contentPane.setLayer(startScreenPanel, 1);
 		contentPane.add(startScreenPanel, "name_5256771068822");
 		startScreenPanel.setLayout(new MigLayout("", "[grow][][grow][grow][grow][grow][grow]", "[][][grow]"));
 		
 		rdbtnLehrveranstaltungen = new JRadioButton("Lehrveranstaltungen");
+		buttonGroup.add(rdbtnLehrveranstaltungen);
 		rdbtnLehrveranstaltungen.setMargin(new Insets(0, 0, 0, 0));
+		rdbtnLehrveranstaltungen.setSelected(true);
 		startScreenPanel.add(rdbtnLehrveranstaltungen, "cell 0 0");
-		
-		spacerPanel = new Panel();
-		spacerPanel.setMinimumSize(new Dimension(20, 10));
-		startScreenPanel.add(spacerPanel, "cell 1 0");
 		
 		lblLehrveranstaltung = new JLabel("Lehrveranstaltung:");
 		startScreenPanel.add(lblLehrveranstaltung, "cell 2 0,alignx left,aligny center");
@@ -114,6 +75,7 @@ public class CoreGUI extends JFrame{
 		startScreenPanel.add(lblSemester, "cell 5 0");
 		
 		rdbtnRume = new JRadioButton("R\u00E4ume");
+		buttonGroup.add(rdbtnRume);
 		rdbtnRume.setMargin(new Insets(0, 0, 0, 0));
 		startScreenPanel.add(rdbtnRume, "cell 0 1");
 		
@@ -144,6 +106,7 @@ public class CoreGUI extends JFrame{
 		startScreenPanel.add(comboBoxSemesterFilter, "cell 5 1,growx");
 		
 		tickerJPanel = new JPanel();
+		tickerJPanel.setMinimumSize(new Dimension(140, 10));
 		tickerJPanel.setBorder(null);
 		tickerJPanel.setMaximumSize(new Dimension(140, 32767));
 		startScreenPanel.add(tickerJPanel, "cell 0 2,grow");
@@ -193,7 +156,7 @@ public class CoreGUI extends JFrame{
 		mainTableScrollPane.setViewportView(veranstaltungsTable);
 		veranstaltungsTable.setBackground(SystemColor.activeCaption);
 		veranstaltungsTable.setShowVerticalLines(false);
-		veranstaltungsTable.setModel(serviceManager.getVTableModel());
+		veranstaltungsTable.setModel(Bootstrap.serviceManager.getVTableModel());
 		
 		JPanel buttonPanel = new JPanel();
 		buttonPanel.setMinimumSize(new Dimension(80, 10));

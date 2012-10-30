@@ -1,17 +1,19 @@
 package modules.coregui.controller;
 
-import gui.CoreGUI;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
+import services.Bootstrap;
+
 
 public class AddToStundenplanButton implements ActionListener {
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		CoreGUI.serviceManager.getCoreGUI().mainTabbedContainerPane.setVisible(true);
-		CoreGUI.serviceManager.getCoreGUI().mainTabbedContainerPane.removeAll();
-		CoreGUI.serviceManager.getCoreGUI().mainTabbedContainerPane.addTab("Start", null, CoreGUI.serviceManager.getCoreGUI().startScreenPanel, null);
-		CoreGUI.serviceManager.getCoreGUI().mainTabbedContainerPane.addTab("Stunden Profil", null, CoreGUI.serviceManager.getStundenplan(), null);
-		CoreGUI.serviceManager.getCoreGUI().startScreenPanel.setVisible(false);
+		Bootstrap.serviceManager.getCoreGUI().mainTabbedContainerPane.setVisible(true);
+		Bootstrap.serviceManager.getCoreGUI().mainTabbedContainerPane.removeAll();
+		Bootstrap.serviceManager.getCoreGUI().mainTabbedContainerPane.addTab("Start", null, Bootstrap.serviceManager.getCoreGUI().startScreenPanel, null);
+		Bootstrap.serviceManager.getCoreGUI().mainTabbedContainerPane.addTab("Stunden Profil", null, Bootstrap.serviceManager.getStundenplan(), null);
+		Bootstrap.serviceManager.getCoreGUI().startScreenPanel.setVisible(false);
 	}
 }
