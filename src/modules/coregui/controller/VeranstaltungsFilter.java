@@ -4,7 +4,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import gui.CoreGUI;
+
+import services.Bootstrap;
+
 
 public class VeranstaltungsFilter implements KeyListener, ActionListener {
 	
@@ -27,9 +29,9 @@ public class VeranstaltungsFilter implements KeyListener, ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		if (CoreGUI.serviceManager.getVTableModel().getRowCount() >= 3) {
-			CoreGUI.serviceManager.getVTableModel().removeRow(0);
-			CoreGUI.serviceManager.getVTableModel().removeRow(1);
+		if (Bootstrap.serviceManager.getVTableModel().getRowCount() >= 3) {
+			Bootstrap.serviceManager.getVTableModel().removeRow(0);
+			Bootstrap.serviceManager.getVTableModel().removeRow(1);
 		}
 	}
 	

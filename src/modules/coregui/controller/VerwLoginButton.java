@@ -1,18 +1,20 @@
 package modules.coregui.controller;
 
-import gui.CoreGUI;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
+import services.Bootstrap;
+
 
 public class VerwLoginButton implements ActionListener {
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		CoreGUI.serviceManager.getCoreGUI().mainTabbedContainerPane.setVisible(true);
-		CoreGUI.serviceManager.getCoreGUI().mainTabbedContainerPane.removeAll();
-		CoreGUI.serviceManager.getCoreGUI().mainTabbedContainerPane.addTab("Start", null, CoreGUI.serviceManager.getCoreGUI().startScreenPanel, null);
-		CoreGUI.serviceManager.getCoreGUI().mainTabbedContainerPane.addTab("Verwaltung", null, CoreGUI.serviceManager.getVerwaltung(), null);
-		CoreGUI.serviceManager.getCoreGUI().mainTabbedContainerPane.setSelectedIndex(1);
-		CoreGUI.serviceManager.getCoreGUI().startScreenPanel.setVisible(false);
+		Bootstrap.serviceManager.getCoreGUI().mainTabbedContainerPane.setVisible(true);
+		Bootstrap.serviceManager.getCoreGUI().mainTabbedContainerPane.removeAll();
+		Bootstrap.serviceManager.getCoreGUI().mainTabbedContainerPane.addTab("Start", null, Bootstrap.serviceManager.getCoreGUI().startScreenPanel, null);
+		Bootstrap.serviceManager.getCoreGUI().mainTabbedContainerPane.addTab("Verwaltung", null, Bootstrap.serviceManager.getVerwaltung(), null);
+		Bootstrap.serviceManager.getCoreGUI().mainTabbedContainerPane.setSelectedIndex(1);
+		Bootstrap.serviceManager.getCoreGUI().startScreenPanel.setVisible(false);
 	}
 }
