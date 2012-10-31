@@ -13,7 +13,7 @@ public class DozLoginButton implements ActionListener {
 		Bootstrap.serviceManager.getCoreGUI().mainTabbedContainerPane.setVisible(true);
 		Bootstrap.serviceManager.getCoreGUI().mainTabbedContainerPane.removeAll();
 		Bootstrap.serviceManager.getCoreGUI().mainTabbedContainerPane.addTab("Start", null, Bootstrap.serviceManager.getCoreGUI().startScreenPanel, null);
-		Bootstrap.serviceManager.getCoreGUI().mainTabbedContainerPane.addTab("Lehrstuhlverwaltung", null, Bootstrap.serviceManager.getDozenten(), null);
+		Bootstrap.serviceManager.getCoreGUI().mainTabbedContainerPane.addTab("Dozenten Bereich", null, Bootstrap.serviceManager.getDozenten(), null);
 		Bootstrap.serviceManager.getCoreGUI().mainTabbedContainerPane.setSelectedIndex(1);
 		Bootstrap.serviceManager.getCoreGUI().startScreenPanel.setVisible(false);
 	}

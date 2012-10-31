@@ -5,7 +5,7 @@ import modules.coregui.views.CoreGUI;
 import modules.dozenten.views.*;
 import modules.studentenprofil.views.StudProfil;
 import modules.stundenplan.views.Stundenplan;
-import modules.verwaltung.views.Verwaltung;
+import modules.verwaltung.views.*;
 
 public class ServiceManager {
 	
@@ -43,13 +43,48 @@ public class ServiceManager {
 	/**
 	* Module: Verwaltung
 	*/
-	protected Verwaltung verwaltungGui;
+	protected VerwaltungRaumTab verwaltungGui;
+	protected VerwaltungNutzerTab verwaltungNutzerGui;
+	protected VerwaltungLehrstuhlTab verwaltungLehrstuhlGui;
+	protected VerwaltungRaumMaskeWindow verwaltungRaumWindow;
+	protected VerwaltungNutzerMaskeWindow verwaltungNutzerWindow;
+	protected VerwaltungLehrstuhlMaskeWindow verwaltungLehrstuhlWindow;
 	
-	public Verwaltung getVerwaltung() {
+	public VerwaltungRaumTab getVerwaltung() {
 		if (this.verwaltungGui == null) {
-			this.verwaltungGui = new Verwaltung();
+			this.verwaltungGui = new VerwaltungRaumTab();
 		}
 		return this.verwaltungGui;
+	}
+	public VerwaltungNutzerTab getVerwNutzer() {
+		if (this.verwaltungNutzerGui == null) {
+			this.verwaltungNutzerGui = new VerwaltungNutzerTab();
+		}
+		return this.verwaltungNutzerGui;
+	}
+	public VerwaltungLehrstuhlTab getVerwLehrstuhl() {
+		if (this.verwaltungLehrstuhlGui == null) {
+			this.verwaltungLehrstuhlGui = new VerwaltungLehrstuhlTab();
+		}
+		return this.verwaltungLehrstuhlGui;
+	}
+	public VerwaltungRaumMaskeWindow getVerwRaumMaske() {
+		if (this.verwaltungRaumWindow == null) {
+			this.verwaltungRaumWindow = new VerwaltungRaumMaskeWindow();
+		}
+		return this.verwaltungRaumWindow;
+	}
+	public VerwaltungNutzerMaskeWindow getVerwNutzerMaske() {
+		if (this.verwaltungNutzerWindow == null) {
+			this.verwaltungNutzerWindow = new VerwaltungNutzerMaskeWindow();
+		}
+		return this.verwaltungNutzerWindow;
+	}
+	public VerwaltungLehrstuhlMaskeWindow getVerwLehrstuhlMaske() {
+		if (this.verwaltungLehrstuhlWindow == null) {
+			this.verwaltungLehrstuhlWindow = new VerwaltungLehrstuhlMaskeWindow();
+		}
+		return this.verwaltungLehrstuhlWindow;
 	}
 	
 	/**
