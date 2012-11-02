@@ -25,6 +25,8 @@ public class VerwaltungLehrstuhlTab extends JPanel {
 	private JScrollPane verwaltungTableScrollPane;
 	private JPanel buttonPanel;
 	private JButton btnHinzufugen;
+	private JButton btnAnfragen;
+	private JButton btnLschen;
 
 	/**
 	 * Create the frame.
@@ -66,7 +68,7 @@ public class VerwaltungLehrstuhlTab extends JPanel {
 		leftBottomPanel = new JPanel();
 		leftBottomPanel.setBounds(0, 319, 140, 161);
 		leftPanel.add(leftBottomPanel);
-		leftBottomPanel.setLayout(new MigLayout("", "[]", "[][][]"));
+		leftBottomPanel.setLayout(new MigLayout("", "[]", "[][][][]"));
 		
 		JLabel lblAndereBereiche = new JLabel("Andere Bereiche:");
 		leftBottomPanel.add(lblAndereBereiche, "cell 0 0");
@@ -78,6 +80,10 @@ public class VerwaltungLehrstuhlTab extends JPanel {
 		JButton btnRaumverwaltung = new JButton("R\u00E4ume");
 		btnRaumverwaltung.addActionListener(new RaumverwButton());
 		leftBottomPanel.add(btnRaumverwaltung, "cell 0 2");
+		
+		btnAnfragen = new JButton("Anfragen");
+		btnAnfragen.addActionListener(new AnfrageverwButton());
+		leftBottomPanel.add(btnAnfragen, "cell 0 3");
 		
 		verwaltungTableScrollPane = new JScrollPane();
 		verwaltungTableScrollPane.setMinimumSize(new Dimension(400, 25));
@@ -96,13 +102,17 @@ public class VerwaltungLehrstuhlTab extends JPanel {
 		
 		btnHinzufugen = new JButton("hinzuf\u00FCgen");
 		btnHinzufugen.addActionListener(new LehrstuhlManageButton());
-		btnHinzufugen.setBounds(6, 30, 88, 23);
+		btnHinzufugen.setBounds(6, 11, 88, 23);
 		buttonPanel.add(btnHinzufugen);
 		
 		JButton btnBearbeiten = new JButton("bearbeiten");
 		btnBearbeiten.addActionListener(new LehrstuhlManageButton());
-		btnBearbeiten.setBounds(6, 54, 88, 23);
+		btnBearbeiten.setBounds(6, 45, 88, 23);
 		buttonPanel.add(btnBearbeiten);
+		
+		btnLschen = new JButton("l\u00F6schen");
+		btnLschen.setBounds(6, 79, 88, 23);
+		buttonPanel.add(btnLschen);
 		
 	}
 }

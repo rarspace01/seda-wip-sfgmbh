@@ -46,11 +46,13 @@ public class ServiceManager {
 	protected VerwaltungRaumTab verwaltungGui;
 	protected VerwaltungNutzerTab verwaltungNutzerGui;
 	protected VerwaltungLehrstuhlTab verwaltungLehrstuhlGui;
+	protected VerwaltungAnfrageTab verwaltungAnfrageGui;
 	protected VerwaltungRaumMaskeWindow verwaltungRaumWindow;
 	protected VerwaltungNutzerMaskeWindow verwaltungNutzerWindow;
 	protected VerwaltungLehrstuhlMaskeWindow verwaltungLehrstuhlWindow;
+	protected VerwaltungGegenvorschlagMaskeWindow verwaltungGegenvorschlagWindow;
 	
-	public VerwaltungRaumTab getVerwaltung() {
+	public VerwaltungRaumTab getVerwRaum() {
 		if (this.verwaltungGui == null) {
 			this.verwaltungGui = new VerwaltungRaumTab();
 		}
@@ -61,6 +63,12 @@ public class ServiceManager {
 			this.verwaltungNutzerGui = new VerwaltungNutzerTab();
 		}
 		return this.verwaltungNutzerGui;
+	}
+	public VerwaltungAnfrageTab getVerwAnfrage() {
+		if (this.verwaltungAnfrageGui == null) {
+			this.verwaltungAnfrageGui = new VerwaltungAnfrageTab();
+		}
+		return this.verwaltungAnfrageGui;
 	}
 	public VerwaltungLehrstuhlTab getVerwLehrstuhl() {
 		if (this.verwaltungLehrstuhlGui == null) {
@@ -85,6 +93,12 @@ public class ServiceManager {
 			this.verwaltungLehrstuhlWindow = new VerwaltungLehrstuhlMaskeWindow();
 		}
 		return this.verwaltungLehrstuhlWindow;
+	}
+	public VerwaltungGegenvorschlagMaskeWindow getVerwGegenvorschlagMaske() {
+		if (this.verwaltungGegenvorschlagWindow == null) {
+			this.verwaltungGegenvorschlagWindow = new VerwaltungGegenvorschlagMaskeWindow();
+		}
+		return this.verwaltungGegenvorschlagWindow;
 	}
 	
 	/**

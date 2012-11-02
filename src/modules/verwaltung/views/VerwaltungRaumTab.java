@@ -33,6 +33,8 @@ public class VerwaltungRaumTab extends JPanel {
 	private JScrollPane verwaltungTableScrollPane;
 	private JPanel buttonPanel;
 	private JButton btnHinzufugen;
+	private JButton btnAnfragen;
+	private JButton btnLschen;
 
 	/**
 	 * Create the frame.
@@ -100,7 +102,7 @@ public class VerwaltungRaumTab extends JPanel {
 		leftBottomPanel = new JPanel();
 		leftBottomPanel.setBounds(0, 319, 140, 161);
 		leftPanel.add(leftBottomPanel);
-		leftBottomPanel.setLayout(new MigLayout("", "[]", "[][][]"));
+		leftBottomPanel.setLayout(new MigLayout("", "[]", "[][][][]"));
 		
 		JLabel lblAndereBereiche = new JLabel("Andere Bereiche:");
 		leftBottomPanel.add(lblAndereBereiche, "cell 0 0");
@@ -112,6 +114,10 @@ public class VerwaltungRaumTab extends JPanel {
 		JButton btnLehrstuhlverwaltung = new JButton("Lehrst\u00FChle");
 		btnLehrstuhlverwaltung.addActionListener(new LehrstuhlverwButton());
 		leftBottomPanel.add(btnLehrstuhlverwaltung, "cell 0 2");
+		
+		btnAnfragen = new JButton("Anfragen");
+		btnAnfragen.addActionListener(new AnfrageverwButton());
+		leftBottomPanel.add(btnAnfragen, "cell 0 3");
 		
 		verwaltungTableScrollPane = new JScrollPane();
 		add(verwaltungTableScrollPane, "flowx,cell 2 2 4 1,grow");
@@ -129,13 +135,17 @@ public class VerwaltungRaumTab extends JPanel {
 		
 		btnHinzufugen = new JButton("hinzuf\u00FCgen");
 		btnHinzufugen.addActionListener(new  RaumManageButton());
-		btnHinzufugen.setBounds(6, 30, 88, 23);
+		btnHinzufugen.setBounds(6, 11, 88, 23);
 		buttonPanel.add(btnHinzufugen);
 		
 		JButton btnBearbeiten = new JButton("bearbeiten");
 		btnBearbeiten.addActionListener(new RaumManageButton());
-		btnBearbeiten.setBounds(6, 54, 88, 23);
+		btnBearbeiten.setBounds(6, 45, 88, 23);
 		buttonPanel.add(btnBearbeiten);
+		
+		btnLschen = new JButton("l\u00F6schen");
+		btnLschen.setBounds(6, 79, 88, 23);
+		buttonPanel.add(btnLschen);
 		
 	}
 }

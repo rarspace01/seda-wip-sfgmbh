@@ -13,7 +13,7 @@ public class VerwLoginButton implements ActionListener {
 		Bootstrap.serviceManager.getCoreGUI().mainTabbedContainerPane.setVisible(true);
 		Bootstrap.serviceManager.getCoreGUI().mainTabbedContainerPane.removeAll();
 		Bootstrap.serviceManager.getCoreGUI().mainTabbedContainerPane.addTab("Start", null, Bootstrap.serviceManager.getCoreGUI().startScreenPanel, null);
-		Bootstrap.serviceManager.getCoreGUI().mainTabbedContainerPane.addTab("Verwaltung", null, Bootstrap.serviceManager.getVerwaltung(), null);
+		Bootstrap.serviceManager.getCoreGUI().mainTabbedContainerPane.addTab("Raumanfrage-Management", null, Bootstrap.serviceManager.getVerwAnfrage(), null);
 		Bootstrap.serviceManager.getCoreGUI().mainTabbedContainerPane.setSelectedIndex(1);
 		Bootstrap.serviceManager.getCoreGUI().startScreenPanel.setVisible(false);
 	}
