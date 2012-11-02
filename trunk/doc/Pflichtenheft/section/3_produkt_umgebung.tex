@@ -4,39 +4,30 @@
 Im folgenden wird die Umgebung beschrieben, in der die spätere Software eingesetzt werden wird.
 
 \subsection{Software}
+\label{subsec:software}
 
 Die Software beschreibt die die vorzuhaltende Software-Umgebung um eine problemlose Ausführung des Programms sicherzustellen.\\
 
 
 Als Betriebssystem kommt Windows 7 (Professional) (x64 - 64bit) zum Einsatz. Dieses hat die neusten Updates vorzuweisen und eine gängige aktuelle Antiviren Lösung installiert zu haben.\\
 
-
 Als Laufzeitumgebung wird auf die Java Virtual Machine Version 7 von Oracle gesetzt.
-Hierzu ist das entsprechende Java Runtime Environment in Version 7 vorzuhalten. Es muss sichergestellt werden, dass die entsprechenden Klassenpfade, sowie Systempfade gesetzt sind, sodass der prozess java als auch javaw im CLI bekannt ist. Darüber hinaus müssen .jar-Dateien mit der JRE verknüpft sein um einen Start der Anwendung per Doppelklick zu gewährleisten. Entsprechende Einstellungen sind notfalls in der Registry vorzunehmen.\\
+Hierzu ist das entsprechende Java Runtime Environment in Version 7 vorzuhalten. Es muss sichergestellt werden, dass die entsprechenden Klassenpfade, sowie Systempfade gesetzt sind, sodass der prozess java als auch javaw im CLI bekannt ist. Darüber hinaus müssen .jar-Dateien mit der JRE verknüpft sein um einen Start der Anwendung per Doppelklick zu gewährleisten. Entsprechende Einstellungen sind notfalls in der Registry vorzunehmen [vgl. Kapitel \ref{subsec:jarreg}].\\
 
+Die Datenbank welche in Verbindung mit der Software eingesetzt wird, stellt PostgreSQL in Version 9.2.1 dar.
+Es muss sichergestellt werden, dass die betreffenden PCs welche die neue Univis Software verwenden sollen für die Datenbank freigeschaltet sind (Freigabe der jeweiligen IPs).\\
 
-\begin{lstlisting}
-[HKEY_CLASSES_ROOT\.jar]
-@="jarfile"
+Zusätzlich muss sichergestellt werden, dass entsprechende Netzwerk-Einstellungen (Firewalls, Router) eine ordnungsgemäße Verbindung zwischen Anwendungs-PC und Datenbank erlauben.\\
 
-[HKEY_CLASSES_ROOT\jarfile]
-@="Executable Jar File"
-
-[HKEY_CLASSES_ROOT\jarfile\shell]
-
-[HKEY_CLASSES_ROOT\jarfile\shell\open]
-
-[HKEY_CLASSES_ROOT\jarfile\shell\open\command]
-@="\"C:\\Program Files\\Java\\jre7\\bin\\javaw.exe\" -jar \"%1\" %*"
-\end{lstlisting}
-
-Datenbank: PostgreSQL 9.2.1
-
-
-Shell: Windows Shell (explorer.exe) Fensterprogramm, kein CLI Programm
+Das Programm wird auf die Swing-Komponenten von Java setzten, daher ist es notwendig sicher zus tellen, dass eine entsprechende Shell vorhanden ist.
+Als Oberfläche wird auf die Standard Fensteroberfläche von Windows 7 (shell: explorer.exe) gesetzt. Kiosk-Systeme sind als GUI nicht vorgesehen. \\
 
 
 \subsection{Hardware}
+\label{subsec:hardware}
+
+Als Hardware auf der das 
+
 CPU: Intel x86/x65 Architektur - >1Ghz
 >=1GB DDR2RAM
 HDD: >100MB
