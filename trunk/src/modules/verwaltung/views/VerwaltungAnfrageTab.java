@@ -12,76 +12,76 @@ import modules.verwaltung.controller.*;
 import net.miginfocom.swing.MigLayout;
 import javax.swing.JLabel;
 import javax.swing.border.TitledBorder;
-import javax.swing.JTextField;
 import java.awt.Font;
 
-public class VerwaltungNutzerTab extends JPanel {
+public class VerwaltungAnfrageTab extends JPanel {
 
 	private static final long serialVersionUID = 1L;
-	private JTextField textFieldPlatze;
-	private JTextField textFieldPCPlatze;
 	private JTable raumverwaltungTable;
-	private JLabel lblBenutzerklasse;
+	private JLabel lblDozent;
 	private JLabel lblLehrstuhl;
-	private JLabel lblBenutzerkennung;
-	private JLabel lblEmail;
-	private JComboBox<String> comboBoxBenutzerklasse;
-	private JComboBox<String> comboBoxStockwerk;
+	private JLabel lblStatus;
+	private JLabel lblPcpltze;
+	private JComboBox<String> comboBoxDozent;
+	private JComboBox<String> comboBoxLehrstuhl;
 	private JPanel leftPanel;
 	private JPanel leftTopPanel;
 	private JPanel leftBottomPanel;
 	private JScrollPane verwaltungTableScrollPane;
 	private JPanel buttonPanel;
-	private JButton btnHinzufugen;
-	private JButton btnAnfragen;
-	private JButton btnLschen;
+	private JButton btnFreigeben;
+	private JComboBox<String> comboBoxStatus;
+	private JComboBox<String> comboBoxSemester;
+	private JButton btnRäume;
 
 	/**
 	 * Create the frame.
 	 */
 	@SuppressWarnings({ "unchecked", "rawtypes" })
-	public VerwaltungNutzerTab() {
+	public VerwaltungAnfrageTab() {
 		setMinimumSize(new Dimension(100, 10));
 		setMaximumSize(new Dimension(100, 32767));
 		setLayout(new MigLayout("", "[140px:140px:140px,grow][10px:10px:10px][grow][grow][grow][grow][grow]", "[][][grow]"));
 		
-		JLabel lblNutzerverwaltung = new JLabel("Nutzerverwaltung");
-		lblNutzerverwaltung.setFont(new Font("SansSerif", Font.BOLD, 13));
-		add(lblNutzerverwaltung, "cell 0 0,alignx center");
+		JLabel lblRaumverwaltung = new JLabel("Raumanfragen");
+		lblRaumverwaltung.setFont(new Font("SansSerif", Font.BOLD, 13));
+		add(lblRaumverwaltung, "cell 0 0,alignx center");
 		
-		lblBenutzerklasse = new JLabel("Benutzerklasse:");
-		add(lblBenutzerklasse, "cell 2 0");
+		lblDozent = new JLabel("Dozent:");
+		add(lblDozent, "cell 2 0");
 		
-		lblLehrstuhl = new JLabel("Lehrstuhl (falls Dozent):");
+		lblLehrstuhl = new JLabel("Lehrstuhl:");
 		add(lblLehrstuhl, "cell 3 0");
 		
-		lblBenutzerkennung = new JLabel("Benutzerkennung:");
-		add(lblBenutzerkennung, "cell 4 0");
+		lblStatus = new JLabel("Freigabestatus:");
+		add(lblStatus, "cell 4 0");
 		
-		lblEmail = new JLabel("E-Mail:");
-		add(lblEmail, "cell 5 0");
+		lblPcpltze = new JLabel("Semester:");
+		add(lblPcpltze, "cell 5 0");
 		
-		comboBoxBenutzerklasse = new JComboBox<String>();
-		comboBoxBenutzerklasse.setModel(new DefaultComboBoxModel(new String[] {"<alle>", "Dozenten", "Verwaltung", "Studenten"}));
-		comboBoxBenutzerklasse.setEditable(true);
-		comboBoxBenutzerklasse.setAutoscrolls(true);
-		add(comboBoxBenutzerklasse, "cell 2 1,growx");
+		comboBoxDozent = new JComboBox<String>();
+		comboBoxDozent.setModel(new DefaultComboBoxModel(new String[] {"<alle>"}));
+		comboBoxDozent.setEditable(true);
+		comboBoxDozent.setAutoscrolls(true);
+		add(comboBoxDozent, "cell 2 1,growx");
 		
-		comboBoxStockwerk = new JComboBox<String>();
-		comboBoxStockwerk.setModel(new DefaultComboBoxModel(new String[] {"<alle>"}));
-		comboBoxStockwerk.setEditable(true);
-		comboBoxStockwerk.setAutoscrolls(true);
-		add(comboBoxStockwerk, "cell 3 1,growx");
+		comboBoxLehrstuhl = new JComboBox<String>();
+		comboBoxLehrstuhl.setModel(new DefaultComboBoxModel(new String[] {"<alle>"}));
+		comboBoxLehrstuhl.setEditable(true);
+		comboBoxLehrstuhl.setAutoscrolls(true);
+		add(comboBoxLehrstuhl, "cell 3 1,growx");
 		
-		textFieldPlatze = new JTextField();
-		textFieldPlatze.setText("<alle>");
-		add(textFieldPlatze, "cell 4 1,growx");
-		textFieldPlatze.setColumns(10);
+		comboBoxStatus = new JComboBox<String>();
+		comboBoxStatus.setModel(new DefaultComboBoxModel(new String[] {"<alle>"}));
+		comboBoxStatus.setEditable(true);
+		comboBoxStatus.setAutoscrolls(true);
+		add(comboBoxStatus, "cell 4 1,growx");
 		
-		textFieldPCPlatze = new JTextField();
-		textFieldPCPlatze.setText("<alle>");
-		textFieldPCPlatze.setColumns(10);
-		add(textFieldPCPlatze, "cell 5 1,growx");
+		comboBoxSemester = new JComboBox<String>();
+		comboBoxSemester.setModel(new DefaultComboBoxModel(new String[] {"<alle>"}));
+		comboBoxSemester.setEditable(true);
+		comboBoxSemester.setAutoscrolls(true);
+		add(comboBoxSemester, "cell 5 1,growx");
 		
 		leftPanel = new JPanel();
 		leftPanel.setLayout(null);
@@ -107,17 +107,17 @@ public class VerwaltungNutzerTab extends JPanel {
 		JLabel lblAndereBereiche = new JLabel("Andere Bereiche:");
 		leftBottomPanel.add(lblAndereBereiche, "cell 0 0");
 		
-		JButton btnRaumverwaltung = new JButton("R\u00E4ume");
-		btnRaumverwaltung.addActionListener(new RaumverwButton());
-		leftBottomPanel.add(btnRaumverwaltung, "cell 0 1");
+		JButton btnNutzerverwaltung = new JButton("Nutzer");
+		btnNutzerverwaltung.addActionListener(new NutzerverwButton());
+		leftBottomPanel.add(btnNutzerverwaltung, "cell 0 1");
 		
 		JButton btnLehrstuhlverwaltung = new JButton("Lehrst\u00FChle");
 		btnLehrstuhlverwaltung.addActionListener(new LehrstuhlverwButton());
 		leftBottomPanel.add(btnLehrstuhlverwaltung, "cell 0 2");
 		
-		btnAnfragen = new JButton("Anfragen");
-		btnAnfragen.addActionListener(new AnfrageverwButton());
-		leftBottomPanel.add(btnAnfragen, "cell 0 3");
+		btnRäume = new JButton("R\u00E4ume");
+		btnRäume.addActionListener(new RaumverwButton());
+		leftBottomPanel.add(btnRäume, "cell 0 3");
 		
 		verwaltungTableScrollPane = new JScrollPane();
 		add(verwaltungTableScrollPane, "flowx,cell 2 2 4 1,grow");
@@ -133,19 +133,18 @@ public class VerwaltungNutzerTab extends JPanel {
 		buttonPanel.setMaximumSize(new Dimension(100, 32767));
 		add(buttonPanel, "cell 6 2,grow");
 		
-		btnHinzufugen = new JButton("hinzuf\u00FCgen");
-		btnHinzufugen.addActionListener(new NutzerManageButton());
-		btnHinzufugen.setBounds(6, 11, 88, 23);
-		buttonPanel.add(btnHinzufugen);
+		btnFreigeben = new JButton("freigeben");
+		btnFreigeben.setBounds(6, 11, 88, 23);
+		buttonPanel.add(btnFreigeben);
 		
-		JButton btnBearbeiten = new JButton("bearbeiten");
-		btnBearbeiten.addActionListener(new NutzerManageButton());
-		btnBearbeiten.setBounds(6, 45, 88, 23);
-		buttonPanel.add(btnBearbeiten);
+		JButton btnAblehnen = new JButton("ablehnen");
+		btnAblehnen.setBounds(6, 45, 88, 23);
+		buttonPanel.add(btnAblehnen);
 		
-		btnLschen = new JButton("l\u00F6schen");
-		btnLschen.setBounds(6, 79, 88, 23);
-		buttonPanel.add(btnLschen);
+		JButton btnGegenvorschlag = new JButton("Gegenvorschlag");
+		btnGegenvorschlag.addActionListener(new GegenvorschlagButton());
+		btnGegenvorschlag.setBounds(6, 79, 88, 23);
+		buttonPanel.add(btnGegenvorschlag);
 		
 	}
 }
