@@ -1,4 +1,56 @@
 \section{Entwicklungsumgebung}
 \label{sec:Entwicklungsumgebung}
 
-We'd like to address the reader of this documentation before going into the details of this documentation that the project itself encountered several challenges which couldn't all be solved in a satisfying way. These lead to a program with a limited functionality and a documentation with some major gaps. For reasons and the progress itself which lead to this situation please refer to chapter 8.
+Im folgenden wird die Umgebung beschrieben, in der die spätere Software entwickelt wird.
+
+\subsection{Software}
+\label{subsec:software}
+
+Die Software beschreibt die eingesetzte Software-Umgebung um eine effiziente und effektive Erstellung des Programms sicherzustellen.\\
+
+Als Betriebssystem kommt Windows 7 (Professional | Ultimate) (x64 - 64bit) zum Einsatz. Dieses hat die neusten Updates vorzuweisen und eine gängige aktuelle Antiviren Lösung installiert zu haben.\\
+
+Als Laufzeitumgebung wird auf die Java Virtual Machine Version 7 von Oracle gesetzt. Hier kommt das Software Development Kit (SDK) in entsprechender Version zum Einsatz.
+Zum Testen des Programms ist das entsprechende Java Runtime Environment in Version 7 vorzuhalten. Es muss sichergestellt werden, dass die entsprechenden Klassenpfade, sowie Systempfade gesetzt sind, sodass der Prozess java als auch javaw im CLI bekannt ist. Darüber hinaus müssen .jar-Dateien mit der JRE verknüpft sein um einen Start der Anwendung per Doppelklick zu gewährleisten. Entsprechende Einstellungen sind notfalls in der Registry vorzunehmen [vgl. Kapitel \ref{subsec:jarreg}].
+Als IDE kommt die Eclipse Plattform mit den entsprechenden Java Entwicklungs-Komponenten zum Einsatz. Installierte Addons sind der Window Builder Pro [vgl. \url{http://www.eclipse.org/windowbuilder/download.php}] sowie optional das Subclipse Plugin für das Versionsverwaltungstool Subversion.
+//TODO
+
+Die Datenbank welche in Verbindung mit der Software eingesetzt wird, stellt PostgreSQL in Version 9.2.1 dar.
+Es muss sichergestellt werden, dass die betreffenden PCs welche die neue Univis Software verwenden sollen für die Datenbank freigeschaltet sind (Freigabe der jeweiligen IPs).\\
+
+Zusätzlich muss sichergestellt werden, dass entsprechende Netzwerk-Einstellungen (Firewalls, Router) eine ordnungsgemäße Verbindung zwischen Anwendungs-PC und Datenbank erlauben.\\
+
+Das Programm wird auf die Swing-Komponenten von Java setzten, daher ist es notwendig sicher zus tellen, dass eine entsprechende Shell vorhanden ist.
+Als Oberfläche wird auf die Standard Fensteroberfläche von Windows 7 (shell: explorer.exe) gesetzt. Kiosk-Systeme sind als GUI nicht vorgesehen. \\
+
+
+\subsection{Hardware}
+\label{subsec:hardware}
+
+Die Software soll auf IBM-Kompatiblen Computern der Intel x86 Architektur ausgeführt werden.
+Um sicher zu gehen, dass die Anwendung ausreichend schnell ausgeführt wird, werden nachfolgende Systemvoraussetzungen empfohlen:\\
+
+CPU: 1Ghz\\
+RAM: 1GB\\
+HDD: >100MB\\
+Peripherie: Maus \& Tastatur\\
+
+Zusätzlich muss sichergestellt werden, dass ein entsprechender Netzwerkanschluss für die Verbindung zum Datenbankserver vorhanden ist.
+
+\subsection{Orgware}
+
+Für die Entwicklung der Software wird vorausgesetzt, dass jeweils ein Mitarbeiter der Fachabteilungen zur Beantwortung von fachspezifischen Fragen zur Verfügung steht. Darüber hinaus ist für Arbeiten vor Ort ein entsprechender Platz zu stellen.\\
+
+Benutzerhandbücher werden, sofern benötigt, in elektronischer Form (PDF) ausgeliefert. Sie beschreiben die grundlegenden Funktionen der Software.\\
+
+Der Auftraggeber stellt sicher, dass dem Auftragsnehmer entsprechende Informationen zur Verfügung gestellt werden, um eine ordnungsgemäße Autorisierung und Authentifizierung der Benutzer sicherzustellen.\\
+
+Zusätzlich wird seitens des Auftraggebers eine entsprechende Netzwerkinfrastruktur bereit gestellt,  um eine Verbindung zwischen den Benutzer-PCs und der Datenbank herstellen zu können.
+Die Datenbank (PostgreSQL) muss auf einem entsprechenden Server installiert sein und als Dienst laufen. Es muss sicher gestellt werden, dass entsprechende Router und Firewalls konfiguriert sind und eine Verbindung in beide Richtungen möglich ist, um eine Persistierung der Daten zu ermöglichen. 
+Es wird davon ausgegangen, dass die Hausverwaltung, sowie die Dozenten entsprechende Informationen zu Räumen und Lehrveranstaltungen korrekt und zeitnah in das System einpflegen um eine sinnvolle Nutzung zu ermöglichen.
+
+\subsection{Produkt-Schnittstellen}
+
+Das Produkt beinhaltet lediglich eine Schnittstelle zur Datenbank wie in Kapitel \ref{subsec:software} beschrieben. Über diese findet die Persistierung der Daten, sowie die Abfrage komplexer Anfragen statt.
+Schnittstellen mit der zukünftig geplanten Weboberfläche, sowie Mobilen Anwendung erfolgt nicht über die Software direkt sondern über die gemeinsame Datenbank. Die dort vorliegende Datenstruktur ist allen weiteren Anwendungen bekannt und ermöglicht so eine reibungslose Interaktion zwischen den Systemen.
+Parallele Sitzungen der Software werden ebenfalls über die Datenbank synchron gehalten. D.h. trägt Benutzer1 an Workstation1 eine neue Lehrveranstaltung ein, so ist diese auch in Workstation2 bei Benutzer2 bei entsprechender Einstellung zu sehen. Eine direkte Kommunikation zwischen den einzelnen Instanzen der Software findet nicht statt.
