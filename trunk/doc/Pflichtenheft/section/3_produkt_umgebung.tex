@@ -26,17 +26,30 @@ Als Oberfläche wird auf die Standard Fensteroberfläche von Windows 7 (shell: e
 \subsection{Hardware}
 \label{subsec:hardware}
 
-Als Hardware auf der das 
+Die Software soll auf IBM-Kompatiblen Computern der Intel x86 Architektur ausgeführt werden.
+Um sicher zu gehen, dass die Anwendung ausreichend schnell ausgeführt wird, werden nachfolgende Systemvoraussetzungen empfohlen:\\
 
-CPU: Intel x86/x65 Architektur - >1Ghz
->=1GB DDR2RAM
-HDD: >100MB
-Maus \& Tastatur
-Netwerkanschluss (für DB Anbindung)
+CPU: 1Ghz\\
+RAM: 1GB\\
+HDD: >100MB\\
+Peripherie: Maus \& Tastatur\\
+
+Zusätzlich muss sichergestellt werden, dass ein entsprechender Netzwerkanschluss für die Verbindung zum Datenbankserver vorhanden ist.
 
 \subsection{Orgware}
-Eine entsprechende Netzwerkinfrastruktur muss vorhanden sein um eine Verbindung zur Datenbank herstellen zu können.
-Die Datenbank (Postgresql) muss auf einem entsprechenden Server installiert sein und als Dienst laufen. Es muss sicher gestellt werden, dass entsprechende Router und Firewalls konfiguriert sind und eine Verbindung in beide Richtungen ermöglichen.
-Es wird davon ausgegangen, dass die Hausverwaltung, sowie die Dozenten entsprechende Informationen zur Räumen und Lehrveranstaltungen korrekt und zeitnah in das System einpflegen um eine sinnvolle Nutzung zu ermöglichen.
+
+Für die Entwicklung der Software wird vorausgesetzt, dass jeweils ein Mitarbeiter der Fachabteilungen zur Beantwortung von fachspezifischen Fragen zur Verfügung steht. Darüber hinaus ist für Arbeiten vor Ort ein entsprechender Platz zu stellen.\\
+
+Benutzerhandbücher werden, sofern benötigt, in elektronischer Form (PDF) ausgeliefert. Sie beschreiben die grundlegenden Funktionen der Software.\\
+
+Der Auftraggeber stellt sicher, dass dem Auftragsnehmer entsprechende Informationen zur Verfügung gestellt werden, um eine ordnungsgemäße Autorisierung und Authentifizierung der Benutzer sicherzustellen.\\
+
+Zusätzlich wird seitens des Auftraggebers eine entsprechende Netzwerkinfrastruktur bereit gestellt,  um eine Verbindung zwischen den Benutzer-PCs und der Datenbank herstellen zu können.
+Die Datenbank (PostgreSQL) muss auf einem entsprechenden Server installiert sein und als Dienst laufen. Es muss sicher gestellt werden, dass entsprechende Router und Firewalls konfiguriert sind und eine Verbindung in beide Richtungen möglich ist, um eine Persistierung der Daten zu ermöglichen. 
+Es wird davon ausgegangen, dass die Hausverwaltung, sowie die Dozenten entsprechende Informationen zu Räumen und Lehrveranstaltungen korrekt und zeitnah in das System einpflegen um eine sinnvolle Nutzung zu ermöglichen.
 
 \subsection{Produkt-Schnittstellen}
+
+Das Produkt beinhaltet lediglich eine Schnittstelle zur Datenbank wie in Kapitel \ref{subsec:software} beschrieben. Über diese findet die Persistierung der Daten, sowie die Abfrage komplexer Anfragen statt.
+Schnittstellen mit der zukünftig geplanten Weboberfläche, sowie Mobilen Anwendung erfolgt nicht über die Software direkt sondern über die gemeinsame Datenbank. Die dort vorliegende Datenstruktur ist allen weiteren Anwendungen bekannt und ermöglicht so eine reibungslose Interaktion zwischen den Systemen.
+Parallele Sitzungen der Software werden ebenfalls über die Datenbank synchron gehalten. D.h. trägt Benutzer1 an Workstation1 eine neue Lehrveranstaltung ein, so ist diese auch in Workstation2 bei Benutzer2 bei entsprechender Einstellung zu sehen. Eine direkte Kommunikation zwischen den einzelnen Instanzen der Software findet nicht statt.
