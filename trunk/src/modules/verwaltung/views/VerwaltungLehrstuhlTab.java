@@ -27,6 +27,7 @@ public class VerwaltungLehrstuhlTab extends JPanel {
 	private JButton btnHinzufugen;
 	private JButton btnAnfragen;
 	private JButton btnLschen;
+	private JButton btnLivetickerBeabeiten;
 
 	/**
 	 * Create the frame.
@@ -68,7 +69,7 @@ public class VerwaltungLehrstuhlTab extends JPanel {
 		leftBottomPanel = new JPanel();
 		leftBottomPanel.setBounds(0, 319, 140, 161);
 		leftPanel.add(leftBottomPanel);
-		leftBottomPanel.setLayout(new MigLayout("", "[]", "[][][][]"));
+		leftBottomPanel.setLayout(new MigLayout("", "[]", "[][][][][]"));
 		
 		JLabel lblAndereBereiche = new JLabel("Andere Bereiche:");
 		leftBottomPanel.add(lblAndereBereiche, "cell 0 0");
@@ -84,6 +85,9 @@ public class VerwaltungLehrstuhlTab extends JPanel {
 		btnAnfragen = new JButton("Anfragen");
 		btnAnfragen.addActionListener(new AnfrageverwButton());
 		leftBottomPanel.add(btnAnfragen, "cell 0 3");
+		
+		btnLivetickerBeabeiten = new JButton("LiveTicker beabeiten");
+		leftBottomPanel.add(btnLivetickerBeabeiten, "cell 0 4");
 		
 		verwaltungTableScrollPane = new JScrollPane();
 		verwaltungTableScrollPane.setMinimumSize(new Dimension(400, 25));

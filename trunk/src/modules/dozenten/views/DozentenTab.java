@@ -12,6 +12,8 @@ import modules.dozenten.controller.*;
 import net.miginfocom.swing.MigLayout;
 import javax.swing.JLabel;
 import javax.swing.border.TitledBorder;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class DozentenTab extends JPanel {
 
@@ -32,6 +34,10 @@ public class DozentenTab extends JPanel {
 	private JPanel buttonPanel;
 	private JButton btnHinzufugen;
 	private JButton btnBearbeiten;
+	private JLabel lblNewLabel;
+	private JComboBox<String> comboBox;
+	private JLabel lblStatus;
+	private JButton btnLivetickerBearbeiten;
 
 	/**
 	 * Create the panel.
@@ -42,13 +48,16 @@ public class DozentenTab extends JPanel {
 		setLayout(new MigLayout("", "[grow][][grow][grow][grow][grow][grow]", "[][][grow]"));
 		
 		lblLehrveranstaltung = new JLabel("Lehrveranstaltungen:");
-		add(lblLehrveranstaltung, "cell 2 0");
+		add(lblLehrveranstaltung, "cell 1 0");
 		
 		lblLehrstuhl = new JLabel("Lehrstuhl:");
-		add(lblLehrstuhl, "cell 3 0");
+		add(lblLehrstuhl, "cell 2 0");
 		
 		lblDozent = new JLabel("Dozent:");
-		add(lblDozent, "cell 4 0");
+		add(lblDozent, "cell 3 0");
+		
+		lblStatus = new JLabel("Ver\u00F6ffentlichungsstatus:");
+		add(lblStatus, "cell 4 0");
 		
 		lblSemester = new JLabel("Semester:");
 		add(lblSemester, "cell 5 0");
@@ -57,19 +66,24 @@ public class DozentenTab extends JPanel {
 		comboBoxLehrveranstaltung.setModel(new DefaultComboBoxModel(new String[] {"<alle>"}));
 		comboBoxLehrveranstaltung.setEditable(true);
 		comboBoxLehrveranstaltung.setAutoscrolls(true);
-		add(comboBoxLehrveranstaltung, "cell 2 1,growx");
+		add(comboBoxLehrveranstaltung, "cell 1 1,growx");
 		
 		comboLehrstuhl = new JComboBox<String>();
 		comboLehrstuhl.setModel(new DefaultComboBoxModel(new String[] {"<alle>"}));
 		comboLehrstuhl.setEditable(true);
 		comboLehrstuhl.setAutoscrolls(true);
-		add(comboLehrstuhl, "cell 3 1,growx");
+		add(comboLehrstuhl, "cell 2 1,growx");
 		
 		comboDozent = new JComboBox<String>();
 		comboDozent.setModel(new DefaultComboBoxModel(new String[] {"<alle>"}));
 		comboDozent.setEditable(true);
 		comboDozent.setAutoscrolls(true);
-		add(comboDozent, "cell 4 1,growx");
+		add(comboDozent, "cell 3 1,growx");
+		
+		comboBox = new JComboBox<String>();
+		comboBox.setEditable(true);
+		comboBox.setAutoscrolls(true);
+		add(comboBox, "cell 4 1,growx");
 		
 		comboBoxSemester = new JComboBox<String>();
 		comboBoxSemester.setModel(new DefaultComboBoxModel(new String[] {"<alle>"}));
@@ -87,23 +101,31 @@ public class DozentenTab extends JPanel {
 		topSidePanel = new JPanel();
 		topSidePanel.setLayout(null);
 		topSidePanel.setBorder(new TitledBorder(null, "", TitledBorder.TRAILING, TitledBorder.ABOVE_TOP, null, null));
-		topSidePanel.setBounds(0, 6, 140, 313);
+		topSidePanel.setBounds(0, 6, 130, 313);
 		sidePanel.add(topSidePanel);
+		
+		lblNewLabel = new JLabel("<html>Info:</html>\r\n");
+		lblNewLabel.setBounds(10, 11, 120, 42);
+		topSidePanel.add(lblNewLabel);
 		
 		bottomSidePanel = new JPanel();
 		bottomSidePanel.setBounds(0, 319, 140, 161);
 		sidePanel.add(bottomSidePanel);
-		bottomSidePanel.setLayout(new MigLayout("", "[]", "[][]"));
+		bottomSidePanel.setLayout(new MigLayout("", "[]", "[][][]"));
 		
 		JButton btnStundenplan = new JButton("Stundenplan");
+		btnStundenplan.addActionListener(new StundenplanButton());
 		bottomSidePanel.add(btnStundenplan, "cell 0 0");
 		
 		JButton btnLehrstuhlplan = new JButton("Lehrstuhlplan");
 		btnLehrstuhlplan.addActionListener(new LehrstuhlplanButton());
 		bottomSidePanel.add(btnLehrstuhlplan, "cell 0 1");
 		
+		btnLivetickerBearbeiten = new JButton("LiveTicker bearbeiten");
+		bottomSidePanel.add(btnLivetickerBearbeiten, "cell 0 2");
+		
 		verwaltungTableScrollPane = new JScrollPane();
-		add(verwaltungTableScrollPane, "flowx,cell 2 2 4 1,grow");
+		add(verwaltungTableScrollPane, "flowx,cell 1 2 5 1,grow");
 		
 		raumverwaltungTable = new JTable();
 		raumverwaltungTable.setShowVerticalLines(false);
@@ -124,5 +146,9 @@ public class DozentenTab extends JPanel {
 		btnBearbeiten = new JButton("bearbeiten");
 		btnBearbeiten.setBounds(0, 54, 88, 23);
 		buttonPanel.add(btnBearbeiten);
+		
+		JButton btnVerffentlichen = new JButton("ver\u00F6ffentlichen");
+		btnVerffentlichen.setBounds(0, 95, 100, 23);
+		buttonPanel.add(btnVerffentlichen);
 	}
 }

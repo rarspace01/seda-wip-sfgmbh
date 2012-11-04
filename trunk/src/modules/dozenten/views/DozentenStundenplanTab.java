@@ -13,6 +13,9 @@ import javax.swing.JLayeredPane;
 
 import services.*;
 import javax.swing.table.DefaultTableModel;
+import java.awt.Color;
+import javax.swing.JComboBox;
+import javax.swing.DefaultComboBoxModel;
 
 public class DozentenStundenplanTab extends JPanel {
 	private static final long serialVersionUID = 1L;
@@ -29,7 +32,7 @@ public class DozentenStundenplanTab extends JPanel {
 		setLayout(null);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(20, 51, 564, 301);
+		scrollPane.setBounds(20, 51, 854, 214);
 		add(scrollPane);
 		
 		DozentStundenplanTable = new JTable();
@@ -37,31 +40,35 @@ public class DozentenStundenplanTab extends JPanel {
 		scrollPane.setViewportView(DozentStundenplanTable);
 		
 	
-		DozentStundenplanTable.setBackground(SystemColor.activeCaption);
-		DozentStundenplanTable.setShowVerticalLines(false);
-		DozentStundenplanTable.setModel(Bootstrap.serviceManager.getDozStunenplanTableModel());
+		DozentStundenplanTable.setBackground(Color.WHITE);
+		DozentStundenplanTable.setModel(Bootstrap.serviceManager.getDozStundenplanTableModel());
+		
+		JComboBox comboBox = new JComboBox();
+		comboBox.setModel(new DefaultComboBoxModel(new String[] {"Dozent", "Wolf", "Benker", "Sinz"}));
+		comboBox.setBounds(20, 20, 124, 20);
+		add(comboBox);
 		DozentStundenplanTable.getColumnModel().getColumn(0).setResizable(false);
 		DozentStundenplanTable.getColumnModel().getColumn(0).setPreferredWidth(50);
 		DozentStundenplanTable.getColumnModel().getColumn(0).setMinWidth(50);
-		DozentStundenplanTable.getColumnModel().getColumn(0).setMaxWidth(50);
+		DozentStundenplanTable.getColumnModel().getColumn(0).setMaxWidth(200);
 		DozentStundenplanTable.getColumnModel().getColumn(1).setResizable(false);
-		DozentStundenplanTable.getColumnModel().getColumn(1).setPreferredWidth(25);
-		DozentStundenplanTable.getColumnModel().getColumn(1).setMinWidth(25);
-		DozentStundenplanTable.getColumnModel().getColumn(1).setMaxWidth(25);
+		DozentStundenplanTable.getColumnModel().getColumn(1).setPreferredWidth(50);
+		DozentStundenplanTable.getColumnModel().getColumn(1).setMinWidth(50);
+		DozentStundenplanTable.getColumnModel().getColumn(1).setMaxWidth(200);
 		DozentStundenplanTable.getColumnModel().getColumn(2).setResizable(false);
 		DozentStundenplanTable.getColumnModel().getColumn(2).setMinWidth(75);
-		DozentStundenplanTable.getColumnModel().getColumn(2).setMaxWidth(75);
+		DozentStundenplanTable.getColumnModel().getColumn(2).setMaxWidth(200);
 		DozentStundenplanTable.getColumnModel().getColumn(3).setPreferredWidth(80);
 		DozentStundenplanTable.getColumnModel().getColumn(3).setMinWidth(80);
 		DozentStundenplanTable.getColumnModel().getColumn(3).setMaxWidth(200);
 		DozentStundenplanTable.getColumnModel().getColumn(4).setPreferredWidth(70);
 		DozentStundenplanTable.getColumnModel().getColumn(4).setMinWidth(70);
 		DozentStundenplanTable.getColumnModel().getColumn(4).setMaxWidth(200);
-		
+		DozentStundenplanTable.getColumnModel().getColumn(5).setMinWidth(70);
+		DozentStundenplanTable.getColumnModel().getColumn(5).setMaxWidth(200);
 		
 	
 
 	}
-	
 }
 

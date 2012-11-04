@@ -1,8 +1,8 @@
-package modules.dozenten.model;
+package modules.stundenplan.model;
 
 import javax.swing.table.*;
 
-public class DozentenStundenplanTable extends DefaultTableModel {
+public class StundenplanTable extends DefaultTableModel {
 
 	private static final long serialVersionUID = 1L;
 	private Object[][] preFill = {
@@ -18,7 +18,8 @@ public class DozentenStundenplanTable extends DefaultTableModel {
 	private String[] preFillHeader = {"Uhrzeit", "Montag", "Dienstag", "Mittwoch", "Donnerstag", "Freitag"};
 	
 	
-	public DozentenStundenplanTable() {
+	public StundenplanTable() {
 		this.setDataVector(preFill, preFillHeader);
 	}
 }
+

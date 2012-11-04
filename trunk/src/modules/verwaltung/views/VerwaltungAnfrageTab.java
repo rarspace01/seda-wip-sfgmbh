@@ -33,6 +33,7 @@ public class VerwaltungAnfrageTab extends JPanel {
 	private JComboBox<String> comboBoxStatus;
 	private JComboBox<String> comboBoxSemester;
 	private JButton btnRäume;
+	private JButton btnLivetickerBearbeiten;
 
 	/**
 	 * Create the frame.
@@ -102,7 +103,7 @@ public class VerwaltungAnfrageTab extends JPanel {
 		leftBottomPanel = new JPanel();
 		leftBottomPanel.setBounds(0, 319, 140, 161);
 		leftPanel.add(leftBottomPanel);
-		leftBottomPanel.setLayout(new MigLayout("", "[]", "[][][][]"));
+		leftBottomPanel.setLayout(new MigLayout("", "[]", "[][][][][]"));
 		
 		JLabel lblAndereBereiche = new JLabel("Andere Bereiche:");
 		leftBottomPanel.add(lblAndereBereiche, "cell 0 0");
@@ -118,6 +119,9 @@ public class VerwaltungAnfrageTab extends JPanel {
 		btnRäume = new JButton("R\u00E4ume");
 		btnRäume.addActionListener(new RaumverwButton());
 		leftBottomPanel.add(btnRäume, "cell 0 3");
+		
+		btnLivetickerBearbeiten = new JButton("LiveTicker bearbeiten");
+		leftBottomPanel.add(btnLivetickerBearbeiten, "cell 0 4");
 		
 		verwaltungTableScrollPane = new JScrollPane();
 		add(verwaltungTableScrollPane, "flowx,cell 2 2 4 1,grow");
@@ -141,7 +145,7 @@ public class VerwaltungAnfrageTab extends JPanel {
 		btnAblehnen.setBounds(6, 45, 88, 23);
 		buttonPanel.add(btnAblehnen);
 		
-		JButton btnGegenvorschlag = new JButton("Gegenvorschlag");
+		JButton btnGegenvorschlag = new JButton("Konfliktl\u00F6sung");
 		btnGegenvorschlag.addActionListener(new GegenvorschlagButton());
 		btnGegenvorschlag.setBounds(6, 79, 88, 23);
 		buttonPanel.add(btnGegenvorschlag);

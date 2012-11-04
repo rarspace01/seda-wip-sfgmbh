@@ -13,7 +13,7 @@ public class AddToStundenplanButton implements ActionListener {
 		Bootstrap.serviceManager.getCoreGUI().mainTabbedContainerPane.setVisible(true);
 		Bootstrap.serviceManager.getCoreGUI().mainTabbedContainerPane.removeAll();
 		Bootstrap.serviceManager.getCoreGUI().mainTabbedContainerPane.addTab("Start", null, Bootstrap.serviceManager.getCoreGUI().startScreenPanel, null);
-		Bootstrap.serviceManager.getCoreGUI().mainTabbedContainerPane.addTab("Stunden Profil", null, Bootstrap.serviceManager.getStundenplan(), null);
+		Bootstrap.serviceManager.getCoreGUI().mainTabbedContainerPane.addTab("Stundenplan", null, Bootstrap.serviceManager.getStundenplan(), null);
 		Bootstrap.serviceManager.getCoreGUI().startScreenPanel.setVisible(false);
 	}
 }

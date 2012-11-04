@@ -24,6 +24,7 @@ public class VerwaltungLehrstuhlMaskeWindow extends JFrame {
 	 */
 	@SuppressWarnings({ })
 	public VerwaltungLehrstuhlMaskeWindow() {
+		setTitle("Lehrst\u00FChle hinzuf\u00FCgen");
 		setBounds(100, 100, 266, 294);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
