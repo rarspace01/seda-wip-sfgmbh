@@ -2,6 +2,7 @@ package services;
 
 import modules.coregui.model.*;
 import modules.coregui.views.CoreGUI;
+import modules.dozenten.model.*;
 import modules.dozenten.views.*;
 import modules.studentenprofil.views.StudProfil;
 import modules.stundenplan.views.Stundenplan;
@@ -106,6 +107,7 @@ public class ServiceManager {
 	*/
 	protected DozentenTab dozentenGui;
 	protected DozentenLVMaskeWindow dozLVMaske;
+	protected DozentenStundenplanTable dozTableModel;
 	
 	public DozentenTab getDozenten() {
 		if (this.dozentenGui == null) {
@@ -118,6 +120,12 @@ public class ServiceManager {
 			this.dozLVMaske = new DozentenLVMaskeWindow();
 		}
 		return this.dozLVMaske;
+	}
+	public DozentenStundenplanTable getDozStunenplanTableModel() {
+		if (this.dozTableModel == null) {
+			this.dozTableModel = new DozentenStundenplanTable();
+		}
+		return this.dozTableModel;
 	}
 	
 	/**
