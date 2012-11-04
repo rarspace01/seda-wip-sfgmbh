@@ -24,6 +24,7 @@ public class VerwaltungNutzerMaskeWindow extends JFrame {
 	 */
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public VerwaltungNutzerMaskeWindow() {
+		setTitle("Nutzer hinzuf\u00FCgen");
 		setBounds(100, 100, 266, 294);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));

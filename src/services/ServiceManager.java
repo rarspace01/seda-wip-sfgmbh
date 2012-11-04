@@ -108,6 +108,9 @@ public class ServiceManager {
 	protected DozentenTab dozentenGui;
 	protected DozentenLVMaskeWindow dozLVMaske;
 	protected DozentenStundenplanTable dozTableModel;
+	protected DozentenStundenplanTab dozStundenplanTab;
+	protected DozentenLehrstuhlplanTable dozLerstuhlplanTableModel;
+	protected DozentenLehrstuhlplanTab dozLehrstuhlplanTab;
 	
 	public DozentenTab getDozenten() {
 		if (this.dozentenGui == null) {
@@ -121,13 +124,30 @@ public class ServiceManager {
 		}
 		return this.dozLVMaske;
 	}
-	public DozentenStundenplanTable getDozStunenplanTableModel() {
+	public DozentenStundenplanTable getDozStundenplanTableModel() {
 		if (this.dozTableModel == null) {
 			this.dozTableModel = new DozentenStundenplanTable();
 		}
 		return this.dozTableModel;
 	}
-	
+	public DozentenStundenplanTab getDozStundenplanTab() {
+		if (this.dozStundenplanTab == null) {
+			this.dozStundenplanTab = new DozentenStundenplanTab();
+		}
+		return this.dozStundenplanTab;
+	}
+	public DozentenLehrstuhlplanTab getDozLehrstuhlplanTab() {
+		if (this.dozLehrstuhlplanTab == null) {
+			this.dozLehrstuhlplanTab = new DozentenLehrstuhlplanTab();
+		}
+		return this.dozLehrstuhlplanTab;
+	}
+	public DozentenLehrstuhlplanTable getdozLerstuhlplanTableModel() {
+		if (this.dozLerstuhlplanTableModel == null) {
+			this.dozLerstuhlplanTableModel = new DozentenLehrstuhlplanTable();
+		}
+		return this.dozLerstuhlplanTableModel;
+	}
 	/**
 	* Module: Studentenporfil
 	*/

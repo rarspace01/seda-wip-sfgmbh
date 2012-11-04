@@ -14,6 +14,8 @@ import javax.swing.JLabel;
 import javax.swing.border.TitledBorder;
 import javax.swing.JTextField;
 import java.awt.Font;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class VerwaltungRaumTab extends JPanel {
 
@@ -35,6 +37,8 @@ public class VerwaltungRaumTab extends JPanel {
 	private JButton btnHinzufugen;
 	private JButton btnAnfragen;
 	private JButton btnLschen;
+	private JButton btnRaumplanDrucken;
+	private JButton btnLivetickerBearbeiten;
 
 	/**
 	 * Create the frame.
@@ -49,10 +53,10 @@ public class VerwaltungRaumTab extends JPanel {
 		lblRaumverwaltung.setFont(new Font("SansSerif", Font.BOLD, 13));
 		add(lblRaumverwaltung, "cell 0 0,alignx center");
 		
-		lblGebude = new JLabel("Geb\u00E4ude:");
+		lblGebude = new JLabel("Stockwerke:");
 		add(lblGebude, "cell 2 0");
 		
-		lblStockwerk = new JLabel("Stockwerk:");
+		lblStockwerk = new JLabel("R\u00E4ume:");
 		add(lblStockwerk, "cell 3 0");
 		
 		lblPltze = new JLabel("Pl\u00E4tze:");
@@ -100,9 +104,9 @@ public class VerwaltungRaumTab extends JPanel {
 		leftTopPanel.add(lblInfo);
 		
 		leftBottomPanel = new JPanel();
-		leftBottomPanel.setBounds(0, 319, 140, 161);
+		leftBottomPanel.setBounds(0, 319, 149, 161);
 		leftPanel.add(leftBottomPanel);
-		leftBottomPanel.setLayout(new MigLayout("", "[]", "[][][][]"));
+		leftBottomPanel.setLayout(new MigLayout("", "[]", "[][][][][]"));
 		
 		JLabel lblAndereBereiche = new JLabel("Andere Bereiche:");
 		leftBottomPanel.add(lblAndereBereiche, "cell 0 0");
@@ -118,6 +122,9 @@ public class VerwaltungRaumTab extends JPanel {
 		btnAnfragen = new JButton("Anfragen");
 		btnAnfragen.addActionListener(new AnfrageverwButton());
 		leftBottomPanel.add(btnAnfragen, "cell 0 3");
+		
+		btnLivetickerBearbeiten = new JButton("LiveTicker bearbeiten");
+		leftBottomPanel.add(btnLivetickerBearbeiten, "cell 0 4");
 		
 		verwaltungTableScrollPane = new JScrollPane();
 		add(verwaltungTableScrollPane, "flowx,cell 2 2 4 1,grow");
@@ -146,6 +153,14 @@ public class VerwaltungRaumTab extends JPanel {
 		btnLschen = new JButton("l\u00F6schen");
 		btnLschen.setBounds(6, 79, 88, 23);
 		buttonPanel.add(btnLschen);
+		
+		btnRaumplanDrucken = new JButton("drucken");
+		btnRaumplanDrucken.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		btnRaumplanDrucken.setBounds(6, 124, 94, 23);
+		buttonPanel.add(btnRaumplanDrucken);
 		
 	}
 }

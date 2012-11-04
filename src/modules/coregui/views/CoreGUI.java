@@ -32,6 +32,9 @@ public class CoreGUI extends JFrame{
 	private JTextPane tickerMsgPos1;
 	private JPanel panel_1;
 	private final ButtonGroup buttonGroup = new ButtonGroup();
+	private JPasswordField passwordField;
+	private JTextField txtBenutzername;
+	private JLabel lblPasswort;
 	
 
 	/**
@@ -135,7 +138,7 @@ public class CoreGUI extends JFrame{
 		panel_1 = new JPanel();
 		panel_1.setBounds(0, 319, 140, 161);
 		tickerJPanel.add(panel_1);
-		panel_1.setLayout(new MigLayout("", "[]", "[][][]"));
+		panel_1.setLayout(new MigLayout("", "[grow]", "[][][][][][]"));
 		
 		JButton btnTestLoginAs_1 = new JButton("Test: Login as Ver.");
 		panel_1.add(btnTestLoginAs_1, "cell 0 0");
@@ -147,6 +150,18 @@ public class CoreGUI extends JFrame{
 		
 		JButton btnNewButton = new JButton("Test: Login as Stud");
 		panel_1.add(btnNewButton, "cell 0 2");
+		
+		txtBenutzername = new JTextField();
+		txtBenutzername.setText("Benutzername");
+		panel_1.add(txtBenutzername, "cell 0 3,growx");
+		txtBenutzername.setColumns(10);
+		
+		lblPasswort = new JLabel("Passwort:");
+		panel_1.add(lblPasswort, "cell 0 4");
+		
+		passwordField = new JPasswordField();
+		passwordField.setToolTipText("Passwort");
+		panel_1.add(passwordField, "cell 0 5,growx");
 		btnNewButton.addActionListener(new StudLoginButton());
 		
 		mainTableScrollPane = new JScrollPane();
@@ -168,6 +183,12 @@ public class CoreGUI extends JFrame{
 		btnAddToStundenplan.addActionListener(new AddToStundenplanButton());
 		btnAddToStundenplan.setBounds(10, 30, 41, 23);
 		buttonPanel.add(btnAddToStundenplan);
+		
+		JLabel lblLehrveranstaltungenAuswhlenUnd = new JLabel("<html>Lehrveranstaltungen ausw\u00E4hlen und zur Sammlung zum Stundenplan hinzuf\u00FCgen!</html>");
+		lblLehrveranstaltungenAuswhlenUnd.setToolTipText("");
+		lblLehrveranstaltungenAuswhlenUnd.setVerticalAlignment(SwingConstants.TOP);
+		lblLehrveranstaltungenAuswhlenUnd.setBounds(0, 64, 100, 105);
+		buttonPanel.add(lblLehrveranstaltungenAuswhlenUnd);
 		veranstaltungsTable.getColumnModel().getColumn(0).setResizable(false);
 		veranstaltungsTable.getColumnModel().getColumn(0).setPreferredWidth(50);
 		veranstaltungsTable.getColumnModel().getColumn(0).setMinWidth(50);

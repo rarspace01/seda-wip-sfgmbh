@@ -23,6 +23,7 @@ public class VerwaltungGegenvorschlagMaskeWindow extends JFrame {
 	 */
 	@SuppressWarnings({"rawtypes", "unchecked" })
 	public VerwaltungGegenvorschlagMaskeWindow() {
+		setTitle("Konfliktl\u00F6sung");
 		setBounds(100, 100, 320, 330);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));

@@ -35,6 +35,7 @@ public class VerwaltungNutzerTab extends JPanel {
 	private JButton btnHinzufugen;
 	private JButton btnAnfragen;
 	private JButton btnLschen;
+	private JButton btnLivetickerBearbeiten;
 
 	/**
 	 * Create the frame.
@@ -102,7 +103,7 @@ public class VerwaltungNutzerTab extends JPanel {
 		leftBottomPanel = new JPanel();
 		leftBottomPanel.setBounds(0, 319, 140, 161);
 		leftPanel.add(leftBottomPanel);
-		leftBottomPanel.setLayout(new MigLayout("", "[]", "[][][][]"));
+		leftBottomPanel.setLayout(new MigLayout("", "[]", "[][][][][]"));
 		
 		JLabel lblAndereBereiche = new JLabel("Andere Bereiche:");
 		leftBottomPanel.add(lblAndereBereiche, "cell 0 0");
@@ -118,6 +119,9 @@ public class VerwaltungNutzerTab extends JPanel {
 		btnAnfragen = new JButton("Anfragen");
 		btnAnfragen.addActionListener(new AnfrageverwButton());
 		leftBottomPanel.add(btnAnfragen, "cell 0 3");
+		
+		btnLivetickerBearbeiten = new JButton("LiveTicker bearbeiten");
+		leftBottomPanel.add(btnLivetickerBearbeiten, "cell 0 4");
 		
 		verwaltungTableScrollPane = new JScrollPane();
 		add(verwaltungTableScrollPane, "flowx,cell 2 2 4 1,grow");
