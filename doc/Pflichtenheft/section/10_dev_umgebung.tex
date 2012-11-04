@@ -4,7 +4,7 @@
 Im folgenden wird die Umgebung beschrieben, in der die spätere Software entwickelt wird.
 
 \subsection{Software}
-\label{subsec:software}
+\label{subsec:devsoftware}
 
 Die Software beschreibt die eingesetzte Software-Umgebung um eine effiziente und effektive Erstellung des Programms sicherzustellen.\\
 
@@ -13,19 +13,25 @@ Als Betriebssystem kommt Windows 7 (Professional | Ultimate) (x64 - 64bit) zum E
 Als Laufzeitumgebung wird auf die Java Virtual Machine Version 7 von Oracle gesetzt. Hier kommt das Software Development Kit (SDK) in entsprechender Version zum Einsatz.
 Zum Testen des Programms ist das entsprechende Java Runtime Environment in Version 7 vorzuhalten. Es muss sichergestellt werden, dass die entsprechenden Klassenpfade, sowie Systempfade gesetzt sind, sodass der Prozess java als auch javaw im CLI bekannt ist. Darüber hinaus müssen .jar-Dateien mit der JRE verknüpft sein um einen Start der Anwendung per Doppelklick zu gewährleisten. Entsprechende Einstellungen sind notfalls in der Registry vorzunehmen [vgl. Kapitel \ref{subsec:jarreg}].
 Als IDE kommt die Eclipse Plattform mit den entsprechenden Java Entwicklungs-Komponenten zum Einsatz. Installierte Addons sind der Window Builder Pro [vgl. \url{http://www.eclipse.org/windowbuilder/download.php}] sowie optional das Subclipse Plugin für das Versionsverwaltungstool Subversion.
-//TODO
 
-Die Datenbank welche in Verbindung mit der Software eingesetzt wird, stellt PostgreSQL in Version 9.2.1 dar.
-Es muss sichergestellt werden, dass die betreffenden PCs welche die neue Univis Software verwenden sollen für die Datenbank freigeschaltet sind (Freigabe der jeweiligen IPs).\\
+Für die Versionsverwaltung wird Subversion in der neusten Version (1.7.7) eingesetzt. Auf den einzelnen Entwicklern PCs kommt das Tool Tortoise SVN [\url{http://tortoisesvn.net/downloads.html}]
+Während der Entwicklung wird ein SVN-Server von Google verwendet [\url{http://code.google.com/p/seda-wip-sfgmbh/}]. Die finale Abgabe des Quellcodes erfolgt über das vom Auftraggeber zur Verfügung gestellte-SVN Repository.\footnote{Ein SVN external Attribut wurde in diesem bereits eingerichtet.}\\
 
-Zusätzlich muss sichergestellt werden, dass entsprechende Netzwerk-Einstellungen (Firewalls, Router) eine ordnungsgemäße Verbindung zwischen Anwendungs-PC und Datenbank erlauben.\\
+Für den Dateiaustausch innerhalb des Entwicklungsteams wird auf den Cloud-Dienst Dropbox gesetzt.
+Für die Kommunikation untereinander wird auf Skype gesetzt, da hier bereits entsprechende Konten vorhanden sind. Hangouts von Google+ hätten zusätzliche entsprechende Accounts vorausgesetzt und die Videoübertragungsfunktion wurde primär nicht benötigt.\\
 
-Das Programm wird auf die Swing-Komponenten von Java setzten, daher ist es notwendig sicher zus tellen, dass eine entsprechende Shell vorhanden ist.
+Analog zur Produktumgebung wird die gleiche Datenbank verwendet. welche in Verbindung mit der Software eingesetzt wird, PostgreSQL in Version 9.2.1.
+Es muss sichergestellt werden, dass die betreffenden PCs welche die neue Univis Software verwenden sollen sowie die Entwickler-PCs für die Datenbank freigeschaltet sind (Freigabe der jeweiligen IPs).\\
+
+Zusätzlich muss sichergestellt werden, dass entsprechende Netzwerk-Einstellungen (Firewalls, Router) eine ordnungsgemäße Verbindung zwischen Anwendungs-PC, Entwicklungs-PCs und Datenbank erlauben.\\
+
+Zur Entwicklung der in Kapitel \ref{subsec:software}beschriebenen Oberfläche des Programm wird wie ebreits angedeutet auf Swing gesetzt. Um die GUI schneller zu erstellen und testen wird das Plugin 'Windows Builder Pro' der Eclipse Foundation verwendet.
+Das Programm wird auf die Swing-Komponenten von Java setzten, daher ist es notwendig sicher zustellen, dass eine entsprechende Shell vorhanden ist.
 Als Oberfläche wird auf die Standard Fensteroberfläche von Windows 7 (shell: explorer.exe) gesetzt. Kiosk-Systeme sind als GUI nicht vorgesehen. \\
 
 
 \subsection{Hardware}
-\label{subsec:hardware}
+\label{subsec:devhardware}
 
 Die Software soll auf IBM-Kompatiblen Computern der Intel x86 Architektur ausgeführt werden.
 Um sicher zu gehen, dass die Anwendung ausreichend schnell ausgeführt wird, werden nachfolgende Systemvoraussetzungen empfohlen:\\
@@ -38,6 +44,7 @@ Peripherie: Maus \& Tastatur\\
 Zusätzlich muss sichergestellt werden, dass ein entsprechender Netzwerkanschluss für die Verbindung zum Datenbankserver vorhanden ist.
 
 \subsection{Orgware}
+\label{subsec:devorgware}
 
 Für die Entwicklung der Software wird vorausgesetzt, dass jeweils ein Mitarbeiter der Fachabteilungen zur Beantwortung von fachspezifischen Fragen zur Verfügung steht. Darüber hinaus ist für Arbeiten vor Ort ein entsprechender Platz zu stellen.\\
 
