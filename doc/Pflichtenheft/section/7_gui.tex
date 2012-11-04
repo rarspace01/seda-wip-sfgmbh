@@ -41,6 +41,31 @@ Dieser Abschnitt beschäftigt sich mit der grundlegenden Gestaltung der Benutzer
 \begin{tabular}{p{1.5cm}p{14.5cm}}
  /B70/	& Mitarbeiter der Lehrstühle können personen- oder lehrstuhlbezogene Wochenpläne in ein PDF-Format exportieren in Din-A4 Größe. \\[0.25cm]	 
 \end{tabular}
+
+Hier einige Beispiele zur Ausgabe des Stundenplans für Studenten, Dozenten und Lehrstühle:
+\begin{figure}[H]
+\begin{center}
+\includegraphics[width=170mm]{images/section_7/DozentenLehrstuhlplan.PNG}
+\caption{Lehrstuhlplan}
+\label{img:LehrstuhlplanDoz}
+\end{center}
+\end{figure}
+
+\begin{figure}[H]
+\begin{center}
+\includegraphics[width=170mm]{images/section_7/DozentenStundenplan.PNG}
+\caption{Dozentenstundenplan}
+\label{img:StundenplanDoz}
+\end{center}
+\end{figure}
+
+\begin{figure}[H]
+\begin{center}
+\includegraphics[width=170mm]{images/section_7/HauptseiteAlleStundenplan.PNG}
+\caption{Stundenplananzeige, rollenunabhängig}
+\label{img:stundenplanAlle}
+\end{center}
+\end{figure}
  
 \subsection{Tastaturbelegung}
 
@@ -80,10 +105,75 @@ Alle & F01, F100, F110, F120
 \end{table}
 
 Nachfolgend wird die Dialogstruktur durch den GUI (General User Interface) Prototypen verdeutlicht um die Benutzeroberfläche vorzustellen und zu erläutern.\\
-\begin{figure}
+Im Anschluss an den Programmstart erscheint die Startseite des UniVis 2.0. Hier können unangemeldete Nutzer (vor allem Stundenten) über Dropdown Menüs verschiedene Lehrveranstaltungen suchen und diese anschließend mittels dem "+"-Button die Lehrveranstaltungen zur Stundenplan-Sammlung hinzufügen (/F60/). Schon bei der ersten Verwendung des "+"-Buttons öffnet sich ein neuer Tab, in welchem der Stundenplan gemäß der selektierten und gesammelten Lehrveranstaltungen ausgegeben wird. Anhand der Radiobuttons (Lehrveranstaltungen und Räume) können gleichzeitig Belegungen einzelner Räume selektiert und weiterhin im Stundenplan-Tab visualisiert werden (/F100/, /F130/).
+Im linken Bereich der Benutzeroberfläche befindet sich der LiveTicker (/F110/), auf welchem anstehende Lehrveranstaltungen oder sonstige Informationen ausgegeben werden.
+Im unteren linken Bereich befindet sich der Login-Bereich (/F01/) für Dozenten und die Hausverwaltung (evtl. auch einmal für Studenten, /FW61/) mittels Benutzerkennung/name und Passwort.
+\begin{figure}[H]
 \begin{center}
-\includegraphics{images/section_7/HauptseiteAlle.PNG}
+\includegraphics[width=170mm]{images/section_7/HauptseiteAlle.PNG}
 \caption{GUI Startseite, rollenunabhängig}
 \label{img:hauptseite}
 \end{center}
 \end{figure}
+
+Im Falle einer erfolgreichen Anmeldung als Hausverwaltungsmitglied folgt die Startseite für Hausverwaltungsmitarbeiter. 
+\begin{figure}[H]
+\begin{center}
+\includegraphics[width=170mm]{images/section_7/VerwaltungHauptseite.PNG}
+\caption{Startseite für authentifizierte Benutzer der Hausverwaltung}
+\label{img:hauptseiteVerwaltung}
+\end{center}
+\end{figure}
+Sie haben einen unmittelbaren Überblick über alle Raumanfragen und können diese sogleich bearbeiten (freigeben, ablehnen oder etwaige Konflikte lösen, /F80/, /F40/).
+Im linken Bereich ist Platz für einen personalisierten LiveTicker reserviert. Weiter unten können die Benutzer auf weitere Aktionen zugreifen.
+\begin{figure}[H]
+\begin{center}
+\includegraphics[width=170mm]{images/section_7/VerwaltungRaumanfragen.PNG}
+\caption{Konfliktlösung der Raumanfragen}
+\label{img:KonfliktlösungVerwaltung}
+\end{center}
+\end{figure}
+Werden weitere Aktionen ausgeführt gelangt der Benutzer zu weiteren Listen und kann jeweils Lehrstühle, Nutzer und Räume verwalten (hinzufügen, bearbeiten oder löschen, /F10/, /F50/, /F51/, /F90/, /F100/). Bei der Raumverwaltung kann zusätzlich ein Raumplan erstellt werden (/F120/).
+\begin{figure}[H]
+\begin{center}
+\includegraphics[width=170mm]{images/section_7/VerwaltungLehrstuhlverwaltung.PNG}
+\caption{Verwaltung der Lehrstühle}
+\label{img:LehrstuhlVerw}
+\end{center}
+\end{figure}
+
+\begin{figure}[H]
+\begin{center}
+\includegraphics[width=170mm]{images/section_7/VerwaltungNutzerverwaltung.PNG}
+\caption{Verwaltung der Nutzer}
+\label{img:NutzerVerw}
+\end{center}
+\end{figure}
+
+\begin{figure}[H]
+\begin{center}
+\includegraphics[width=170mm]{images/section_7/VerwaltungRaumverwaltung.PNG}
+\caption{Verwaltung der Räume}
+\label{img:RaumVerw}
+\end{center}
+\end{figure}
+Eine letzte abdingbare Funktion wäre die Bearbeitung des LiveTickers um bspw. Dozenten verwaltungstechnische Nachrichten anzeigen lassen zu können (/FW21/).\\
+
+Die personalisierte Startseite der Dozenten beinhaltet eine weiter Liste um alle Lehrveranstaltungen und besonderes den Status neu erstellter Lehrveranstaltungen anzeigen zu können (/F70/). Über den Veröffentlichungsstatus werden die bestätigten oder abgelehnten Raumanfragen angezeigt. Bei einer erfolgreich durchgeführten Raumanfrage kann der jeweilige Dozent seine Lehrveranstaltung anschließend veröffentlichen. Die mit der Raumanfrage bezogenen Nachrichten der Hausverwaltung werden im LiveTicker (links) angezeigt.
+Außerdem können die Aktionen eigener Stundenplan (/F150/) und Lehrstuhlplan (/F140/) sowie eine LiveTicker Bearbeitung (um bspw. Studenten veranstaltungs- oder lehrstuhlsbezogene Nachrichten anzeigen lassen zu können, /FW21/) gewählt werden.
+\begin{figure}[H]
+\begin{center}
+\includegraphics[width=170mm]{images/section_7/DozentenHauptseite.PNG}
+\caption{Startseite für Dozenten}
+\label{img:StartDoz}
+\end{center}
+\end{figure}
+Um Lehrveranstaltungen zunächst überhaupt hinzuzufügen wird der Button "hinzufügen" gewählt und in einem neuen Fenster können Lehrstuhl und Dozent ausgewählt werden und somit die Bezeichnung der neuen Veranstaltung gesetzt werden (/F20/). Außerdem werden die benötigten Raumanforderungen für die Raumanfrage gewählt und alles zusammen versendet (/F30/). Die neue Veranstaltung wird der Liste hinzugefügt und die Raumanfrage an die Hausverwaltung zur weiteren Bearbeitung übermittelt.
+\begin{figure}[H]
+\begin{center}
+\includegraphics[width=170mm]{images/section_7/DozentenLehrveranstaltungeURaumanfrage.PNG}
+\caption{Verwaltung der Lehrveranstaltungen und Raumanfragen durch die Dozenten}
+\label{img:LehrveranstaltungsVerwDoz}
+\end{center}
+\end{figure}
+
