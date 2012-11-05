@@ -39,7 +39,6 @@
 	 &	\textbf{Raumplan:} Hier wird die Anzeige für Mitglieder der Verwaltung (und ggf. andere) von Räumen und deren Belegung umgesetzt, die die Funktion /F120/ realisiert.\\[0.15cm]
 	 &	\textbf{Studentenprofil (wünschenswert):} Hier wird die Anzeige für Studenten umgesetzt, die die Funktion /FW61/ realisiert.\\[0.15cm]
 	 & Alle Module sind von "CoreGUI" abhängig.\\[0.25cm]
-	 & Die Datenbank wird entsprechend aufgebaut um einen plattformunabhängigen Betrieb zu gewährleisten. Dies ist notwendig für den späteren Einsatz einer Website oder mobilen Lösung.
 
 \end{tabular}
 
@@ -54,6 +53,12 @@
 \begin{tabular}{p{1.5cm}p{14.5cm}}
 					
 	 /L60/	& Jede Interaktion sollte im Mittel zur Durchführung nicht länger als 3 Sekunden brauchen. \\[0.25cm]
+	
+\end{tabular}
+
+\begin{tabular}{p{1.5cm}p{14.5cm}}
+					
+	 /L70/	& Über die Datenbank als externe Komponente, die auf einen Server ausgelagert wird, wird sichergestellt, dass ein gemeinsamer Betrieb mit anderen Client-Programmen, die ebenfalls die Datenbank nutzen, ermöglicht wird. So wird es beispielsweise möglich sein, Anwendungen für mobile Endgeräte oder Webanwendungen zu entwerfen, die sich in Echtzeit die Datenbasis teilen.\\[0.25cm]
 	
 \end{tabular}
 
