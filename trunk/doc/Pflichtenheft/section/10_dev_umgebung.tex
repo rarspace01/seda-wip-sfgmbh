@@ -29,6 +29,9 @@ Zur Entwicklung der in Kapitel \ref{subsec:software}beschriebenen Oberfläche de
 Das Programm wird auf die Swing-Komponenten von Java setzten, daher ist es notwendig sicher zustellen, dass eine entsprechende Shell vorhanden ist.
 Als Oberfläche wird auf die Standard Fensteroberfläche von Windows 7 (shell: explorer.exe) gesetzt. Kiosk-Systeme sind als GUI nicht vorgesehen. \\
 
+//TODO Java Styleguides
+
+//TODO Zukünftige Entwicklungen
 
 \subsection{Hardware}
 \label{subsec:devhardware}
@@ -53,4 +56,5 @@ Darüber hinaus muss sichergestellt werden das ein ständiger Dialog zwischen Au
 
 \subsection{Produkt-Schnittstellen}
 
-Datenbankanbindung
+Für die Entwicklung der in Kapitel \ref{subsec:productinterface} beschriebenen Datenbankanbindung wird der entsprechende JDBC-Treiber für PostgreSQL verwendet[http://jdbc.postgresql.org/download.html].
+Da die Interaktion zwischen den einzelnen Systemen durch die Datenbank stattfindet und keine spezielle Schnittstelle zwischen der geplanten Software und dem angekündigten Webinterface, sowie der mobilen Nutzung besteht, muss keine zusätzliche Schnittstelle implementiert werden.
