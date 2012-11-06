@@ -64,7 +64,14 @@
 \begin{tabular}{p{1.5cm}p{14.5cm}}
 					
 	 /DW80/& \textbf{Datentyp:} Ticker-Nachricht \\
-				& \textbf{Attribute:} Meldungs ID \textsl{(systemintern)}, Meldungstext, Start-Datum, End-Datum, exklusiv für Lehrstuhl ID ('null' wenn für alle), exklusiv für Veranstaltungs ID ('null' wenn für alle), exklusiv für Raum ID ('null' wenn für alle) \\[0.25cm]
+				& \textbf{Attribute:} Meldungs ID \textsl{(systemintern)}, Meldungstext, Start-Datum, End-Datum \\[0.25cm]
+		
+\end{tabular}
+
+\begin{tabular}{p{1.5cm}p{14.5cm}}
+					
+	 /DW90/& \textbf{Datentyp:} Ticker-Zuordnung \\
+				& \textbf{Attribute:} Ticker-Zuordnungs ID \textsl{(systemintern)}, Meldungs ID, Belegungs ID, Veranstaltungs ID, Lehrstuhl ID, Raum ID \\[0.25cm]
 		
 \end{tabular}
 
@@ -77,7 +84,7 @@ In Structured-Entity-Relationship-Modell (SERM) wird der Zusammenhang der oben s
 \label{fig:dbserm}
 \end{figure}
 
-Wie zu sehen ist, existieren Räume, Lehrstühle und Benutzer als eigenständige Einheiten (Entity). Benutzer können einem Lehrstuhl zugeordnet werden, womit sie der Klasse "Dozent" entsprechen. Sie können aber auch der Klasse "Verwaltung" oder "Student" angehören und somit keiner anderen Einheit zugeordnet werden. Lehrveranstaltungen müssen einem Dozent zuzuordnen sein. Eine Raumbelegung ist keine Einheit sondern eine Zuordnung (Relationship) und muss einer Lehrveranstaltung und einem Raum zugeordnet werden können. Die Zuordnung Studentenbelegung muss einem Student und einer Raumbelegung zugeordnet werden können. Ticker-Nachrichten können einem Raum, einer Lehrveranstaltung, einem Lehrstuhl, zwei Einheiten davon oder allen Dreien zugeordnet werden, nichts davon ist aber zwingend. \\
+Wie zu sehen ist, existieren Räume, Lehrstühle, Benutzer und Ticker-Nachrichten als eigenständige Einheiten (Entity). Benutzer können einem Lehrstuhl zugeordnet werden, womit sie der Klasse "Dozent" entsprechen. Sie können aber auch der Klasse "Verwaltung" oder "Student" angehören und somit keiner anderen Einheit zugeordnet werden. Lehrveranstaltungen müssen einem Dozent zuzuordnen sein. Eine Raumbelegung ist keine Einheit sondern eine Zuordnung (Relationship) und muss einer Lehrveranstaltung und einem Raum zugeordnet werden können. Die Zuordnung Studentenbelegung muss einem Student und einer Lehrveranstaltung zugeordnet werden können. Ticker-Nachrichten können einem Raum, einer Lehrveranstaltung, einem Lehrstuhl, einer Raumbelegung mehreren oder allen Einheiten davon zugeordnet werden, nichts davon ist aber zwingend (existiert kein Zuordnungseintrag zu einer Ticker-Nachricht, so ist sie global gültig). \\
 
 
 \end{quote}
