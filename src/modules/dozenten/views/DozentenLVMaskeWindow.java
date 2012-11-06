@@ -23,19 +23,12 @@ public class DozentenLVMaskeWindow extends JFrame {
 	 * Create the frame.
 	 */
 	public DozentenLVMaskeWindow() {
-		setTitle("Lehrveranstaltung hinzuf\u00FCgen und Raumanfrage senden");
-		setBounds(100, 100, 475, 403);
+		setTitle("Lehrveranstaltungen hinzuf\u00FCgen");
+		setBounds(100, 100, 367, 271);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
-		contentPane.setLayout(new MigLayout("", "[][][][grow][][][][][]", "[][][][][][][][][][][][][][][]"));
-		
-		JLabel lblLehrstuhl = new JLabel("Lehrstuhl:");
-		contentPane.add(lblLehrstuhl, "cell 0 0 3 1");
-		
-		JComboBox comboBox = new JComboBox();
-		comboBox.setModel(new DefaultComboBoxModel(new String[] {"SEDA"}));
-		contentPane.add(comboBox, "cell 3 0,growx");
+		contentPane.setLayout(new MigLayout("", "[][][][grow][][][][][]", "[][][][][][][][][][][][][][][][]"));
 		
 		JLabel label_2 = new JLabel("");
 		contentPane.add(label_2, "cell 5 0");
@@ -49,92 +42,49 @@ public class DozentenLVMaskeWindow extends JFrame {
 		JLabel lblNewLabel_2 = new JLabel("");
 		contentPane.add(lblNewLabel_2, "cell 8 0");
 		
-		JLabel lblNewLabel = new JLabel("Dozent:");
-		contentPane.add(lblNewLabel, "cell 1 1 2 1");
-		
-		JComboBox comboBox_1 = new JComboBox();
-		comboBox_1.setModel(new DefaultComboBoxModel(new String[] {"Benker", "Wolf", "Sinz"}));
-		contentPane.add(comboBox_1, "cell 3 1,growx");
-		
-		JLabel lblNewLabel_1 = new JLabel("Bezeichnung:");
-		contentPane.add(lblNewLabel_1, "cell 1 2 2 1");
-		
-		textField = new JTextField();
-		contentPane.add(textField, "cell 3 2,growx");
-		textField.setColumns(10);
-		
-		JLabel lblRaumanfrage = new JLabel("Raumanfrage");
-		contentPane.add(lblRaumanfrage, "cell 1 4 2 1");
-		
-		JLabel lblStockwer = new JLabel("Stockwerk:");
-		contentPane.add(lblStockwer, "cell 1 5");
+		JLabel lblStockwer = new JLabel("Lehrstuhl:");
+		contentPane.add(lblStockwer, "cell 1 2");
 		
 		JComboBox comboBox_2 = new JComboBox();
-		contentPane.add(comboBox_2, "cell 3 5,growx");
+		comboBox_2.setModel(new DefaultComboBoxModel(new String[] {"SEDA", "ISDL", "IIS"}));
+		contentPane.add(comboBox_2, "cell 3 2,growx");
 		
-		JLabel lblGewnschteRaum = new JLabel("gew\u00FCnschte Raum#:");
-		contentPane.add(lblGewnschteRaum, "cell 1 6");
+		JLabel lblGewnschteRaum = new JLabel("Dozent:");
+		contentPane.add(lblGewnschteRaum, "cell 1 3");
 		
 		JComboBox comboBox_3 = new JComboBox();
-		contentPane.add(comboBox_3, "cell 3 6,growx");
+		comboBox_3.setModel(new DefaultComboBoxModel(new String[] {"Wolf", "Benker", "Sinz"}));
+		contentPane.add(comboBox_3, "cell 3 3,growx");
 		
-		JLabel lblPltze = new JLabel("Pl\u00E4tze:");
-		contentPane.add(lblPltze, "cell 1 7");
+		JLabel lblPltze = new JLabel("Bezeichnung:");
+		contentPane.add(lblPltze, "cell 1 4");
 		
-		JComboBox comboBox_4 = new JComboBox();
-		comboBox_4.setModel(new DefaultComboBoxModel(new String[] {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10"}));
-		contentPane.add(comboBox_4, "cell 3 7,growx");
+		textField = new JTextField();
+		contentPane.add(textField, "cell 3 4,growx");
+		textField.setColumns(10);
 		
-		JLabel label_3 = new JLabel("");
-		contentPane.add(label_3, "cell 4 7");
-		
-		JLabel lblPcarbeitspltze = new JLabel("PC-Arbeitspl\u00E4tze:");
-		contentPane.add(lblPcarbeitspltze, "cell 1 8");
-		
-		JComboBox comboBox_5 = new JComboBox();
-		comboBox_5.setModel(new DefaultComboBoxModel(new String[] {"0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20"}));
-		contentPane.add(comboBox_5, "cell 3 8,growx");
-		
-		JLabel lblBeamer = new JLabel("Beamer:");
-		contentPane.add(lblBeamer, "cell 1 9");
-		
-		JComboBox comboBox_6 = new JComboBox();
-		comboBox_6.setModel(new DefaultComboBoxModel(new String[] {"0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "29"}));
-		contentPane.add(comboBox_6, "cell 3 9,growx");
-		
-		JLabel lblVisualizer = new JLabel("Visualizer:");
-		contentPane.add(lblVisualizer, "cell 1 10");
-		
-		JComboBox comboBox_7 = new JComboBox();
-		comboBox_7.setModel(new DefaultComboBoxModel(new String[] {"0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "29"}));
-		contentPane.add(comboBox_7, "cell 3 10,growx");
-		
-		JLabel lblOverhead = new JLabel("Overhead:");
-		contentPane.add(lblOverhead, "cell 1 11");
-		
-		JComboBox comboBox_8 = new JComboBox();
-		comboBox_8.setModel(new DefaultComboBoxModel(new String[] {"0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "29"}));
-		contentPane.add(comboBox_8, "cell 3 11,growx");
-		
-		JLabel lblTafeln = new JLabel("Tafeln:");
-		contentPane.add(lblTafeln, "cell 1 12");
+		JLabel lblTafeln = new JLabel("SWS:");
+		contentPane.add(lblTafeln, "cell 1 6");
 		
 		JComboBox comboBox_9 = new JComboBox();
-		comboBox_9.setModel(new DefaultComboBoxModel(new String[] {"0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "29"}));
-		contentPane.add(comboBox_9, "cell 3 12,growx");
+		comboBox_9.setModel(new DefaultComboBoxModel(new String[] {"2", "4", "6", "8"}));
+		contentPane.add(comboBox_9, "cell 3 6,growx");
 		
-		JLabel lblWhiteboards = new JLabel("Whiteboards:");
-		contentPane.add(lblWhiteboards, "cell 1 13");
+		JLabel lblWhiteboards = new JLabel("Uhrzeit:");
+		contentPane.add(lblWhiteboards, "cell 1 7");
 		
 		JComboBox comboBox_10 = new JComboBox();
-		comboBox_10.setModel(new DefaultComboBoxModel(new String[] {"0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "29"}));
-		contentPane.add(comboBox_10, "cell 3 13,growx");
+		comboBox_10.setModel(new DefaultComboBoxModel(new String[] {"08:00-10:00 Uhr", "10:00-12:00 Uhr", "12:00-14:00 Uhr", "14:00-16:00 Uhr", "16:00-18:00 Uhr", "18:00-20:00 Uhr"}));
+		contentPane.add(comboBox_10, "cell 3 7,growx");
 		
 		JButton btnAbbrechen = new JButton("Abbrechen");
-		contentPane.add(btnAbbrechen, "cell 1 14");
+		contentPane.add(btnAbbrechen, "cell 1 8");
 		
 		JButton btnNewButton = new JButton("Raumanfrage senden");
-		contentPane.add(btnNewButton, "cell 3 14");
+		contentPane.add(btnNewButton, "cell 3 8");
+		
+		JLabel label_3 = new JLabel("");
+		contentPane.add(label_3, "cell 4 8");
 		
 		addWindowListener(new LVMaskeWindow());
 	}
