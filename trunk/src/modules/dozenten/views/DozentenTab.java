@@ -33,6 +33,7 @@ public class DozentenTab extends JPanel {
 	private JScrollPane verwaltungTableScrollPane;
 	private JPanel buttonPanel;
 	private JButton btnHinzufugen;
+	private JButton btnRaumanfrage;
 	private JButton btnBearbeiten;
 	private JLabel lblNewLabel;
 	private JComboBox<String> comboBox;
@@ -148,7 +149,12 @@ public class DozentenTab extends JPanel {
 		buttonPanel.add(btnBearbeiten);
 		
 		JButton btnVerffentlichen = new JButton("ver\u00F6ffentlichen");
-		btnVerffentlichen.setBounds(0, 95, 100, 23);
+		btnVerffentlichen.setBounds(0, 156, 100, 23);
 		buttonPanel.add(btnVerffentlichen);
+		
+		btnRaumanfrage = new JButton("Raumanfrage");
+		btnRaumanfrage.addActionListener(new RaumanfrageButton());
+		btnRaumanfrage.setBounds(0, 111, 100, 23);
+		buttonPanel.add(btnRaumanfrage);
 	}
 }

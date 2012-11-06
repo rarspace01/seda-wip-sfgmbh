@@ -107,6 +107,7 @@ public class ServiceManager {
 	*/
 	protected DozentenTab dozentenGui;
 	protected DozentenLVMaskeWindow dozLVMaske;
+	protected DozentenLVRaumanfrageMaskeWindow dozLVRaumanfrageMaske;
 	protected DozentenStundenplanTable dozTableModel;
 	protected DozentenStundenplanTab dozStundenplanTab;
 	protected DozentenLehrstuhlplanTable dozLerstuhlplanTableModel;
@@ -123,6 +124,12 @@ public class ServiceManager {
 			this.dozLVMaske = new DozentenLVMaskeWindow();
 		}
 		return this.dozLVMaske;
+	}
+	public DozentenLVRaumanfrageMaskeWindow getDozLVRaumanfrageMaske() {
+		if (this.dozLVRaumanfrageMaske == null) {
+			this.dozLVRaumanfrageMaske = new DozentenLVRaumanfrageMaskeWindow();
+		}
+		return this.dozLVRaumanfrageMaske;
 	}
 	public DozentenStundenplanTable getDozStundenplanTableModel() {
 		if (this.dozTableModel == null) {
