@@ -18,50 +18,56 @@ public class DozentenLVMaskeWindow extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JTextField textField;
+	private JTextField textField_1;
+	private JTextField textField_2;
 
 	/**
 	 * Create the frame.
 	 */
 	public DozentenLVMaskeWindow() {
 		setTitle("Lehrveranstaltungen hinzuf\u00FCgen");
-		setBounds(100, 100, 367, 271);
+		setBounds(100, 100, 367, 326);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
-		contentPane.setLayout(new MigLayout("", "[][][][grow][][][][][]", "[][][][][][][][][][][][][][][][]"));
-		
-		JLabel label_2 = new JLabel("");
-		contentPane.add(label_2, "cell 5 0");
-		
-		JLabel label_1 = new JLabel("");
-		contentPane.add(label_1, "cell 6 0");
-		
-		JLabel label = new JLabel("");
-		contentPane.add(label, "cell 7 0");
-		
-		JLabel lblNewLabel_2 = new JLabel("");
-		contentPane.add(lblNewLabel_2, "cell 8 0");
+		contentPane.setLayout(new MigLayout("", "[][][][grow][]", "[][][][][][][][][][][]"));
 		
 		JLabel lblStockwer = new JLabel("Lehrstuhl:");
-		contentPane.add(lblStockwer, "cell 1 2");
+		contentPane.add(lblStockwer, "cell 1 1");
 		
 		JComboBox comboBox_2 = new JComboBox();
+		comboBox_2.setEditable(true);
 		comboBox_2.setModel(new DefaultComboBoxModel(new String[] {"SEDA", "ISDL", "IIS"}));
-		contentPane.add(comboBox_2, "cell 3 2,growx");
+		contentPane.add(comboBox_2, "cell 3 1,growx");
 		
 		JLabel lblGewnschteRaum = new JLabel("Dozent:");
-		contentPane.add(lblGewnschteRaum, "cell 1 3");
+		contentPane.add(lblGewnschteRaum, "cell 1 2");
 		
 		JComboBox comboBox_3 = new JComboBox();
+		comboBox_3.setEditable(true);
 		comboBox_3.setModel(new DefaultComboBoxModel(new String[] {"Wolf", "Benker", "Sinz"}));
-		contentPane.add(comboBox_3, "cell 3 3,growx");
+		contentPane.add(comboBox_3, "cell 3 2,growx");
 		
 		JLabel lblPltze = new JLabel("Bezeichnung:");
-		contentPane.add(lblPltze, "cell 1 4");
+		contentPane.add(lblPltze, "cell 1 3");
 		
 		textField = new JTextField();
-		contentPane.add(textField, "cell 3 4,growx");
+		contentPane.add(textField, "cell 3 3,growx");
 		textField.setColumns(10);
+		
+		JLabel lblArt = new JLabel("Art:");
+		contentPane.add(lblArt, "cell 1 4");
+		
+		JComboBox comboBox_1 = new JComboBox();
+		comboBox_1.setModel(new DefaultComboBoxModel(new String[] {"\u00DCbung"}));
+		contentPane.add(comboBox_1, "cell 3 4,growx");
+		
+		JLabel lblSemester = new JLabel("Semester:");
+		contentPane.add(lblSemester, "cell 1 5");
+		
+		JComboBox comboBox = new JComboBox();
+		comboBox.setModel(new DefaultComboBoxModel(new String[] {"WS1213"}));
+		contentPane.add(comboBox, "cell 3 5,growx");
 		
 		JLabel lblTafeln = new JLabel("SWS:");
 		contentPane.add(lblTafeln, "cell 1 6");
@@ -70,21 +76,26 @@ public class DozentenLVMaskeWindow extends JFrame {
 		comboBox_9.setModel(new DefaultComboBoxModel(new String[] {"2", "4", "6", "8"}));
 		contentPane.add(comboBox_9, "cell 3 6,growx");
 		
-		JLabel lblWhiteboards = new JLabel("Uhrzeit:");
+		JLabel lblWhiteboards = new JLabel("Erw. Teilnehmer:");
 		contentPane.add(lblWhiteboards, "cell 1 7");
 		
-		JComboBox comboBox_10 = new JComboBox();
-		comboBox_10.setModel(new DefaultComboBoxModel(new String[] {"08:00-10:00 Uhr", "10:00-12:00 Uhr", "12:00-14:00 Uhr", "14:00-16:00 Uhr", "16:00-18:00 Uhr", "18:00-20:00 Uhr"}));
-		contentPane.add(comboBox_10, "cell 3 7,growx");
+		textField_1 = new JTextField();
+		textField_1.setColumns(10);
+		contentPane.add(textField_1, "cell 3 7,growx");
 		
-		JButton btnAbbrechen = new JButton("Abbrechen");
-		contentPane.add(btnAbbrechen, "cell 1 8");
+		JLabel lblBeschreibung = new JLabel("Beschreibung:");
+		contentPane.add(lblBeschreibung, "cell 1 8");
 		
-		JButton btnNewButton = new JButton("Raumanfrage senden");
-		contentPane.add(btnNewButton, "cell 3 8");
+		textField_2 = new JTextField();
+		textField_2.setMinimumSize(new Dimension(6, 40));
+		textField_2.setColumns(10);
+		contentPane.add(textField_2, "cell 3 8 1 2,growx");
 		
-		JLabel label_3 = new JLabel("");
-		contentPane.add(label_3, "cell 4 8");
+		JButton btnNewButton = new JButton("Abbrechen");
+		contentPane.add(btnNewButton, "cell 3 10,alignx right");
+		
+		JButton btnAbbrechen = new JButton("OK");
+		contentPane.add(btnAbbrechen, "cell 4 10");
 		
 		addWindowListener(new LVMaskeWindow());
 	}
