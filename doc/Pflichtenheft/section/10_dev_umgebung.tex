@@ -1,7 +1,9 @@
-\section{Entwicklungsumgebung}
+\section{Entwicklungsumgebung - Denis Hamann}
 \label{sec:Entwicklungsumgebung}
 
 Im folgenden wird die Umgebung beschrieben, in der die spätere Software entwickelt wird.
+Die Entwicklungsumgebung umfasst Anforderungen an Softwarewerkzeuge, die zur Entwicklung verwendete Hardware, organisatorische
+Randbedingungen. Des weiteren wird auf Schnittstellen der Entwicklungsumgebung eingegangen.
 
 \subsection{Software}
 \label{subsec:devsoftware}
@@ -29,6 +31,11 @@ Zur Entwicklung der in Kapitel \ref{subsec:software}beschriebenen Oberfläche de
 Das Programm wird auf die Swing-Komponenten von Java setzten, daher ist es notwendig sicher zustellen, dass eine entsprechende Shell vorhanden ist.
 Als Oberfläche wird auf die Standard Fensteroberfläche von Windows 7 (shell: explorer.exe) gesetzt. Kiosk-Systeme sind als GUI nicht vorgesehen. \\
 
+\subsubsection{Programmierstil}
+
+Bei der Programmierung ist darauf zu achten die Java Code Conventions einzuhalten [\url{http://www.oracle.com/technetwork/java/codeconventions-150003.pdf}].
+Zusätzlich sind alle Klassen entsprechend Javadoc konform zu kommentieren um die Dokumentation entsprechend automatisiert per Ant-Skript durchzuführen.
+
 \subsection{Hardware}
 \label{subsec:devhardware}
 
@@ -48,12 +55,11 @@ Entsprechende Netzwerkhardware zur Verbindung der Computer mit dem Datenbankserv
 \label{subsec:devorgware}
 
 Die Voraussetzungen für die Entwicklung wurden bereits in Kapitel \ref{subsec:orgware} beschrieben.
-Darüber hinaus muss sichergestellt werden das ein ständiger Dialog zwischen Auftragnehmer und Auftraggeber stattfindet um eventuelle Detailfragen zu klären und entsprechend das Pflichtenheft zu korrigieren.\\
+Darüber hinaus muss sichergestellt werden das ein ständiger Dialog zwischen Auftragsnehmer und Auftragsgeber stattfindet um eventuelle Detailfragen zu klären und entsprechend das Pflichtenheft zu korrigieren.\\
 
-\subsubsection{Programmierstil}
+Des weiteren wird bei der Entwicklung auf das Wasserfallmodell zurückgegriffen. Hierfür verfügen alle Entwickler über entsprechende Kenntnisse. Ablauf und Ergebnisse der Phasen sind Ihnen bekannt. Alle Entwickler weisen entsprechende Kenntnisse über die Entwicklungssoftware und Hardware auf. Sofern Wissenslücken vorhanden sind, werden diese vor Beginn des Projektes entsprechend kompensiert.
 
-Bei der Programmierung ist darauf zu achten die Java Code Conventions einzuhalten [\url{http://www.oracle.com/technetwork/java/codeconventions-150003.pdf}].
-Zusätzlich sind alle Klassen entsprechend Javadoc konform zu kommentieren um die Dokumentation entsprechend automatisiert per Ant-Skript durchzuführen.
+
 
 \subsection{Produkt-Schnittstellen}
 
