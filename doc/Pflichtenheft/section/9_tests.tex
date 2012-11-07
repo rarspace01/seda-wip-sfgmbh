@@ -6,22 +6,21 @@
 Damit festgestellt werden kann, ob die Software auch einwandfrei funktioniert, müssen verschiedene Testszenarien durchlaufen werden.
 Die Tests werden auf verschiedenen Ebenen ausgeführt. Unterschieden wird hierbei zwischen dem Modultest, Integrationstest, Systemtest und letztendlich dem Abnahmetest.
 Im Folgenden werden nun diese Testszenarien genauer beschrieben und dargelegt, wie sie am Programm durchgeführt werden.
-
+\\
 \begin{tabular}{p{1.5cm}p{14.5cm}}
  /T10/	& Im Komponententest, welcher wie auch der nachfolgende Integrationstest unter White-Box-Tests fällt, beinhaltet das Testen von einzeln abgrenzbaren Teilen (Modulen) des Gesamtprogramms. Das Testen erfolgt bei White-Box-Tests in der Entwicklungsumgebung Eclipse, wo der Quelltext sichtbar ist. Einzelne Klassen, Funktionen und Unterprogramme werden im Modultest dem Tester sequenziell unterworfen und auf Fehlerfreiheit geprüft. Dies umfasst unter anderem eine korrekte Ausgabe von Uhrzeiten. Auch SQL-Abfragen an die Datenbank ob die Passwortabfrage korrekt abgespeichert wurden, soll der Test beinhalten. \\[0.25cm]	 
 \end{tabular}
 
 \begin{tabular}{p{1.5cm}p{14.5cm}}
  /T20/	& Nachdem im Modultest jedes Modul einzeln überprüft wurde, wird nun im Integrationstest dazu übergegangen, auch die Interaktion einzelner Module mit anderen Modulen zu überprüfen.
-Hier soll u. a. getestet werden, ob der Live-Ticker auch alle Lehrveranstaltungen anzeigt, die in Kürze starten. Zudem soll geschaut werden, ob die Stundenplanausgabe die richtigen Inhalte ausgibt und diese anschließend in der PDF korrekt formatiert ausgegeben werden. \\[0.25cm]	 
+Hier soll u. a. getestet werden, ob der Live-Ticker auch alle Lehrveranstaltungen anzeigt, die in Kürze starten. Zudem soll überprüft werden, ob die Stundenplanausgabe die richtigen Inhalte ausgibt und diese anschließend in der PDF korrekt formatiert ausgegeben werden. \\[0.25cm]	 
 \end{tabular}
 
 \begin{tabular}{p{1.5cm}p{14.5cm}}
  /T30/	& Die dritte Teststufe beherbergt den Systemtest, bei dem das System gegen sämtliche Anforderungen aus dem Pflichtenheft getestet wird. Ab hier erfolgt das Testen nicht mehr in der Entwicklungsumgebung, sondern wird direkt am lauffähigem Programm ausgeführt. Dies wird auch als Black-Box Test bezeichnet.
-Hier werden nun 200 Lehrveranstaltungen zu Testzwecken angelegt. Diese werden vom Systemverwalter manipuliert und auch die Suche nach Alternativterminen für Veranstaltungen wird hierbei überprüft. Auch wird geschaut, ob die persistente Speicherung der Stammdaten
-(z. B. Name und Uhrzeit der Lehrveranstaltung) funktioniert. Hierfür wird ein Systemabsturz simuliert, bei dem aufeinanderfolgend erst dem Rechner, dann dem Server der Strom entzogen wird und beide somit neu booten müssen. Anschließend wird eine neue Datenbankabfrage ausgehend des Systems gemacht, um zu sehen, ob die Daten noch vorhanden sind. \\[0.25cm]	 
+Hier werden dann ca. 200 Lehrveranstaltungen zu Testzwecken angelegt. Diese werden vom Systemverwalter manipuliert und auch die Suche nach Alternativterminen für Veranstaltungen wird hierbei überprüft. Ebenso soll getestet werden, ob die persistente Speicherung der Stammdaten (z. B. Name und Uhrzeit der Lehrveranstaltung) funktioniert. Hierfür wird ein Systemabsturz simuliert, bei dem aufeinanderfolgend erst dem Rechner, dann dem Server der Strom entzogen wird und beide somit neu booten müssen. Anschließend wird eine neue Datenbankabfrage ausgehend des Systems durchgeführt, um zu überprüfen, ob die Daten noch vorhanden sind. \\[0.25cm]	 
 \end{tabular}
 
 \begin{tabular}{p{1.5cm}p{14.5cm}}
- /T40/	& Schlussendlich erfolgt der Abnahmetest. Dieser wird allerdings nicht von unserem Softwareunternehmen ausgeführt, sondern erfolgt durch den Abnehmer selbst. Durch den tatsächlichen Gebrauch können hierbei noch Fehler entdeckt werden, die bislang nicht auftauchten, da unter Umständen eine andere Reihenfolge der Menüaufrufe, etc. stattfindet. Der Endabnehmer muss die Software akzeptieren, damit die Tests erfolgreich beendet werden können. Besteht das Programm diesen letzten Test nicht, muss es von der SF-GmbH  nachgebessert werden. \\[0.25cm]	 
+ /T40/	& Schlussendlich erfolgt der Abnahmetest. Dieser wird allerdings nicht von unserem Softwareunternehmen ausgeführt, sondern erfolgt durch den Abnehmer selbst. Durch den tatsächlichen Gebrauch können hierbei noch Fehler entdeckt werden, die bislang nicht auftauchten, da unter Umständen eine andere Reihenfolge der Menüaufrufe, etc. stattfindet. Der Endabnehmer muss schließlich die Abnahme die Software bestätigen, damit die Tests erfolgreich beendet werden können. Besteht das Programm diesen letzten Test nicht, soll von Seiten der SF-GmbH  nachgebessert werden. \\[0.25cm]	 
 \end{tabular}

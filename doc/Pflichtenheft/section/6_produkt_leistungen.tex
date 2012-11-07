@@ -28,8 +28,8 @@
 
 \begin{tabular}{p{1.5cm}p{14.5cm}}
 						
-	 /L40/	& Die Programmarchitektur richtet sich nach einem Drei-Schichten-Modell, wobei in einer Schicht die Anwendungslogik ("`A-Schicht"'), in einer weiteren die nötigen Funktionen und Schnittstellen zur Datenbank-Kommunikation ("D-Schicht") und in einer letzten die für den Nutzer sichtbaren Teile, mit denen er interagiert, ("K-Schicht") untergebracht sind.\\
-	 & Das Programm ist zudem in logische Bereiche (Module) untergliedert, die innerhalb der ADK-Struktur existieren und die sich bei der Implementierung eines GUI (Graphical User Interface) nach dem MVC-Konzept (was für Model, View und Controller steht) richten. So kann ein Modul Views (etwa Fenster, Tabs oder Eingabemasken) besitzen, die innerhalb der "K-Schicht" liegen, innerhalb der "A-Schicht" sind die den Views zugrundeliegenden Models, sowie deren Controller und ggf. zusätzlich nötige Anwendungslogik angesiedelt. Sofern Teile der Datenbank exklusiv bestimmten Modulen zuzuordnen sind, kann sich ein Modul auch bis in "D-Schicht" erstrecken und hier eigene Funktionen und Schnittstellen bereitstellen. \\
+	 /L40/	& Die Programmarchitektur richtet sich nach einem Drei-Schichten-Modell, wobei in einer Schicht die Anwendungslogik ("`A-Schicht"'), in einer weiteren die nötigen Funktionen und Schnittstellen zur Datenbank-Kommunikation ("`D-Schicht"') und in einer letzten die für den Nutzer sichtbaren Teile, mit denen er interagiert, ("`K-Schicht"') untergebracht sind.\\
+	 & Das Programm ist zudem in logische Bereiche (Module) untergliedert, die innerhalb der ADK-Struktur existieren und die sich bei der Implementierung eines GUI (Graphical User Interface) nach dem MVC-Konzept (Model-View-Controller Konzept) richten. So kann ein Modul verschiedene Views (etwa Fenster, Tabs oder Eingabemasken) besitzen, die innerhalb der "`K-Schicht"' liegen, innerhalb der "`A-Schicht"' sind die den Views zugrundeliegenden Models, sowie deren Controller und ggf. zusätzlich nötige Anwendungslogik angesiedelt. Sofern Teile der Datenbank exklusiv bestimmten Modulen zuzuordnen sind, kann sich ein Modul auch bis in die "`D-Schicht"' erstrecken und hier eigene Funktionen und Schnittstellen bereitstellen. \\
 	 & Diese Architektur erlaubt dabei einerseits maximale Flexibilität in Bezug auf zukünftige Erweiterungen und gewährleistet zudem durch viele klar voneinander abgegrenzte Bereiche ein effektives Arbeiten im Team bei der Implementierung. \\[0.15cm]
 	 &	Die erste Version der Anwendung soll aus folgenden Modulen bestehen: \\[0.15cm]
 	 &	\textbf{CoreGUI:} Hier wird die Start-Routine sowie der Startbildschirm der Anwendung realisiert. Die Funktion /F01/ und /F60/ werden von diesem Modul umgesetzt.\\[0.15cm]
@@ -38,7 +38,7 @@
 	 &	\textbf{Stundenplan:} Hier wird die Anzeige für den Stundenplan von Studenten umgesetzt, die die Funktion /F130/ realisiert.\\
 	 &	\textbf{Raumplan:} Hier wird die Anzeige für Mitglieder der Verwaltung (und ggf. andere) von Räumen und deren Belegung umgesetzt, die die Funktion /F120/ realisiert.\\[0.15cm]
 	 &	\textbf{Studentenprofil (wünschenswert):} Hier wird die Anzeige für Studenten umgesetzt, die die Funktion /FW61/ realisiert.\\[0.15cm]
-	 & Alle Module sind von "CoreGUI" abhängig.\\[0.25cm]
+	 & Alle Module sind von "`CoreGUI"' abhängig.\\[0.25cm]
 
 \end{tabular}
 
