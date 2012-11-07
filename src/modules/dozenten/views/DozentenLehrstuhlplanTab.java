@@ -11,6 +11,8 @@ import javax.swing.JLabel;
 
 import services.Bootstrap;
 import javax.swing.JComboBox;
+import javax.swing.JButton;
+import java.awt.Font;
 
 public class DozentenLehrstuhlplanTab extends JPanel {
 
@@ -36,6 +38,15 @@ public class DozentenLehrstuhlplanTab extends JPanel {
 	
 		LehrstuhlStundenplanTable.setBackground(Color.WHITE);
 		LehrstuhlStundenplanTable.setModel(Bootstrap.serviceManager.getDozStundenplanTableModel());
+		
+		JButton btnPdfErzeugen = new JButton("PDF Erzeugen");
+		btnPdfErzeugen.setBounds(389, 17, 112, 23);
+		add(btnPdfErzeugen);
+		
+		JLabel lblWochenplanFrDen = new JLabel("<html><h3>Wochenplan f\u00FCr den Lehrstuhl SEDA</h3></html>");
+		lblWochenplanFrDen.setFont(new Font("Arial", Font.PLAIN, 11));
+		lblWochenplanFrDen.setBounds(20, 26, 359, 14);
+		add(lblWochenplanFrDen);
 		LehrstuhlStundenplanTable.getColumnModel().getColumn(0).setResizable(false);
 		LehrstuhlStundenplanTable.getColumnModel().getColumn(0).setPreferredWidth(50);
 		LehrstuhlStundenplanTable.getColumnModel().getColumn(0).setMinWidth(50);
@@ -57,5 +68,4 @@ public class DozentenLehrstuhlplanTab extends JPanel {
 		LehrstuhlStundenplanTable.getColumnModel().getColumn(5).setMaxWidth(200);
 
 	}
-
 }
