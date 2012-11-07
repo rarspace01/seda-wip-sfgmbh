@@ -130,14 +130,14 @@ public class DozentenTab extends JPanel {
 				{"SEDA-WIP-B", "Benker", "WS1213", "4", "30", "2", "nein", "nein"},
 			},
 			new String[] {
-				"Bezeichnung", "Dozent", "Semester", "SWS", "Erw. Teilnehmer", "Termine", "Alle freigegeben", "\u00D6ffentlich"
+				"Bezeichnung", "Dozent", "Semester", "SWS", "Erw. Teilnehmer", "Termine", "Raumanfrage freigegeben", "\u00D6ffentlich"
 			}
 		));
 		lvVerwaltungTable.getColumnModel().getColumn(1).setPreferredWidth(59);
 		lvVerwaltungTable.getColumnModel().getColumn(3).setPreferredWidth(48);
-		lvVerwaltungTable.getColumnModel().getColumn(4).setPreferredWidth(95);
+		lvVerwaltungTable.getColumnModel().getColumn(4).setPreferredWidth(35);
 		lvVerwaltungTable.getColumnModel().getColumn(5).setPreferredWidth(49);
-		lvVerwaltungTable.getColumnModel().getColumn(6).setPreferredWidth(91);
+		lvVerwaltungTable.getColumnModel().getColumn(6).setPreferredWidth(110);
 		lvVerwaltungTable.getColumnModel().getColumn(7).setPreferredWidth(59);
 		lvVerwaltungTable.setShowVerticalLines(false);
 		lvVerwaltungTable.setBackground(SystemColor.activeCaption);
