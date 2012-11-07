@@ -16,6 +16,7 @@ import javax.swing.table.DefaultTableModel;
 import java.awt.Color;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JButton;
 
 public class DozentenStundenplanTab extends JPanel {
 	private static final long serialVersionUID = 1L;
@@ -47,6 +48,10 @@ public class DozentenStundenplanTab extends JPanel {
 		comboBox.setModel(new DefaultComboBoxModel(new String[] {"Dozent", "Wolf", "Benker", "Sinz"}));
 		comboBox.setBounds(20, 20, 124, 20);
 		add(comboBox);
+		
+		JButton btnPdfErzeugen = new JButton("PDF Erzeugen");
+		btnPdfErzeugen.setBounds(167, 19, 112, 23);
+		add(btnPdfErzeugen);
 		DozentStundenplanTable.getColumnModel().getColumn(0).setResizable(false);
 		DozentStundenplanTable.getColumnModel().getColumn(0).setPreferredWidth(50);
 		DozentStundenplanTable.getColumnModel().getColumn(0).setMinWidth(50);

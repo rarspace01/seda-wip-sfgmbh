@@ -11,6 +11,7 @@ import javax.swing.JLabel;
 
 import services.Bootstrap;
 import java.awt.Color;
+import javax.swing.JButton;
 
 public class Stundenplan extends JPanel {
 
@@ -31,6 +32,10 @@ public class Stundenplan extends JPanel {
 	
 		StundenplanTable.setBackground(Color.WHITE);
 		StundenplanTable.setModel(Bootstrap.serviceManager.getDozStundenplanTableModel());
+		
+		JButton btnPdfErzeugen = new JButton("PDF erzeugen");
+		btnPdfErzeugen.setBounds(21, 17, 131, 23);
+		add(btnPdfErzeugen);
 		StundenplanTable.getColumnModel().getColumn(0).setResizable(false);
 		StundenplanTable.getColumnModel().getColumn(0).setPreferredWidth(70);
 		StundenplanTable.getColumnModel().getColumn(0).setMinWidth(50);
