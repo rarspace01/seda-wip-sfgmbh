@@ -105,23 +105,23 @@ public class VerwaltungNutzerTab extends JPanel {
 		leftPanel.add(leftBottomPanel);
 		leftBottomPanel.setLayout(new MigLayout("", "[]", "[][][][][]"));
 		
-		JLabel lblAndereBereiche = new JLabel("Andere Bereiche:");
+		JLabel lblAndereBereiche = new JLabel("Verwaltungs-Bereiche:");
 		leftBottomPanel.add(lblAndereBereiche, "cell 0 0");
 		
 		JButton btnRaumverwaltung = new JButton("R\u00E4ume");
 		btnRaumverwaltung.addActionListener(new RaumverwButton());
-		leftBottomPanel.add(btnRaumverwaltung, "cell 0 1");
-		
-		JButton btnLehrstuhlverwaltung = new JButton("Lehrst\u00FChle");
-		btnLehrstuhlverwaltung.addActionListener(new LehrstuhlverwButton());
-		leftBottomPanel.add(btnLehrstuhlverwaltung, "cell 0 2");
 		
 		btnAnfragen = new JButton("Anfragen");
 		btnAnfragen.addActionListener(new AnfrageverwButton());
-		leftBottomPanel.add(btnAnfragen, "cell 0 3");
+		leftBottomPanel.add(btnAnfragen, "cell 0 1");
+		leftBottomPanel.add(btnRaumverwaltung, "cell 0 2");
 		
-		btnLivetickerBearbeiten = new JButton("LiveTicker bearbeiten");
-		leftBottomPanel.add(btnLivetickerBearbeiten, "cell 0 4");
+		btnLivetickerBearbeiten = new JButton("LiveTicker");
+		leftBottomPanel.add(btnLivetickerBearbeiten, "cell 0 3");
+		
+		JButton btnLehrstuhlverwaltung = new JButton("Lehrst\u00FChle");
+		btnLehrstuhlverwaltung.addActionListener(new LehrstuhlverwButton());
+		leftBottomPanel.add(btnLehrstuhlverwaltung, "cell 0 4");
 		
 		verwaltungTableScrollPane = new JScrollPane();
 		add(verwaltungTableScrollPane, "flowx,cell 2 2 4 1,grow");
