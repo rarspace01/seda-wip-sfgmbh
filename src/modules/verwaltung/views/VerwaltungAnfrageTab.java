@@ -105,23 +105,23 @@ public class VerwaltungAnfrageTab extends JPanel {
 		leftPanel.add(leftBottomPanel);
 		leftBottomPanel.setLayout(new MigLayout("", "[]", "[][][][][]"));
 		
-		JLabel lblAndereBereiche = new JLabel("Andere Bereiche:");
+		JLabel lblAndereBereiche = new JLabel("Verwaltungs-Bereiche:");
 		leftBottomPanel.add(lblAndereBereiche, "cell 0 0");
 		
 		JButton btnNutzerverwaltung = new JButton("Nutzer");
 		btnNutzerverwaltung.addActionListener(new NutzerverwButton());
 		leftBottomPanel.add(btnNutzerverwaltung, "cell 0 1");
 		
-		JButton btnLehrstuhlverwaltung = new JButton("Lehrst\u00FChle");
-		btnLehrstuhlverwaltung.addActionListener(new LehrstuhlverwButton());
-		leftBottomPanel.add(btnLehrstuhlverwaltung, "cell 0 2");
-		
 		btnRäume = new JButton("R\u00E4ume");
 		btnRäume.addActionListener(new RaumverwButton());
-		leftBottomPanel.add(btnRäume, "cell 0 3");
+		leftBottomPanel.add(btnRäume, "cell 0 2");
 		
-		btnLivetickerBearbeiten = new JButton("LiveTicker bearbeiten");
-		leftBottomPanel.add(btnLivetickerBearbeiten, "cell 0 4");
+		JButton btnLehrstuhlverwaltung = new JButton("Lehrst\u00FChle");
+		btnLehrstuhlverwaltung.addActionListener(new LehrstuhlverwButton());
+		
+		btnLivetickerBearbeiten = new JButton("LiveTicker");
+		leftBottomPanel.add(btnLivetickerBearbeiten, "cell 0 3");
+		leftBottomPanel.add(btnLehrstuhlverwaltung, "cell 0 4");
 		
 		verwaltungTableScrollPane = new JScrollPane();
 		add(verwaltungTableScrollPane, "flowx,cell 2 2 4 1,grow");
@@ -134,7 +134,7 @@ public class VerwaltungAnfrageTab extends JPanel {
 		buttonPanel = new JPanel();
 		buttonPanel.setLayout(null);
 		buttonPanel.setMinimumSize(new Dimension(80, 10));
-		buttonPanel.setMaximumSize(new Dimension(100, 32767));
+		buttonPanel.setMaximumSize(new Dimension(120, 32767));
 		add(buttonPanel, "cell 6 2,grow");
 		
 		btnFreigeben = new JButton("freigeben");
@@ -146,8 +146,11 @@ public class VerwaltungAnfrageTab extends JPanel {
 		buttonPanel.add(btnAblehnen);
 		
 		JButton btnGegenvorschlag = new JButton("Konfliktl\u00F6sung");
+		btnGegenvorschlag.setMinimumSize(new Dimension(90, 23));
+		btnGegenvorschlag.setMaximumSize(new Dimension(90, 23));
+		btnGegenvorschlag.setPreferredSize(new Dimension(50, 23));
 		btnGegenvorschlag.addActionListener(new GegenvorschlagButton());
-		btnGegenvorschlag.setBounds(6, 79, 88, 23);
+		btnGegenvorschlag.setBounds(6, 79, 99, 23);
 		buttonPanel.add(btnGegenvorschlag);
 		
 	}
