@@ -10,7 +10,7 @@ public class RaumverwButton implements ActionListener {
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		Bootstrap.serviceManager.getCoreGUI().mainTabbedContainerPane.addTab("Raumverwaltung", null, Bootstrap.serviceManager.getVerwRaum(), null);
-		Bootstrap.serviceManager.getCoreGUI().mainTabbedContainerPane.setSelectedIndex(Bootstrap.serviceManager.getCoreGUI().mainTabbedContainerPane.getTabCount()-1);
+		Bootstrap.serviceManager.getBase().mainTabbedContainerPane.addTab("Raumverwaltung", null, Bootstrap.serviceManager.getVerwRaum(), null);
+		Bootstrap.serviceManager.getBase().mainTabbedContainerPane.setSelectedIndex(Bootstrap.serviceManager.getBase().mainTabbedContainerPane.getTabCount()-1);
 	}
 }

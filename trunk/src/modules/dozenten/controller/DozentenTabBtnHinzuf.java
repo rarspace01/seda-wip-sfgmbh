@@ -4,12 +4,12 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import services.Bootstrap;
 
-public class RaumanfrageButton implements ActionListener {
+public class DozentenTabBtnHinzuf implements ActionListener {
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
 
-		Bootstrap.serviceManager.getDozLVRaumanfrageMaske().setVisible(true);
+		Bootstrap.serviceManager.getDozLVMaske().setVisible(true);
 		
 	}
 }

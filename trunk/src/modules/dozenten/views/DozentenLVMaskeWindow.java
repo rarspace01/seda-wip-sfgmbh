@@ -1,11 +1,12 @@
 package modules.dozenten.views;
 
-import java.awt.BorderLayout;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
-import modules.dozenten.controller.LVMaskeWindow;
+import modules.dozenten.controller.LVWindow;
+import modules.dozenten.controller.LVWindowBtnAbbr;
+import modules.dozenten.controller.LVWindowBtnSpeichern;
 import java.awt.Dimension;
 import net.miginfocom.swing.MigLayout;
 import javax.swing.JComboBox;
@@ -24,6 +25,7 @@ public class DozentenLVMaskeWindow extends JFrame {
 	/**
 	 * Create the frame.
 	 */
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public DozentenLVMaskeWindow() {
 		setTitle("Lehrveranstaltungen hinzuf\u00FCgen");
 		setBounds(100, 100, 367, 326);
@@ -92,12 +94,13 @@ public class DozentenLVMaskeWindow extends JFrame {
 		contentPane.add(textField_2, "cell 3 8 1 2,growx");
 		
 		JButton btnNewButton = new JButton("Abbrechen");
+		btnNewButton.addActionListener(new LVWindowBtnAbbr());
 		contentPane.add(btnNewButton, "cell 3 10,alignx right");
 		
-		JButton btnAbbrechen = new JButton("OK");
+		JButton btnAbbrechen = new JButton("Speichern");
+		btnAbbrechen.addActionListener(new LVWindowBtnSpeichern());
 		contentPane.add(btnAbbrechen, "cell 4 10");
 		
-		addWindowListener(new LVMaskeWindow());
+		addWindowListener(new LVWindow());
 	}
-
 }

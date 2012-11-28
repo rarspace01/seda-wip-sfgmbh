@@ -1,7 +1,7 @@
 package services;
 
-import modules.coregui.model.*;
-import modules.coregui.views.CoreGUI;
+import modules.base.model.*;
+import modules.base.views.*;
 import modules.dozenten.model.*;
 import modules.dozenten.views.*;
 import modules.studentenprofil.views.StudProfil;
@@ -11,20 +11,27 @@ import modules.verwaltung.views.*;
 public class ServiceManager {
 	
 	/**
-	* Module: CoreGUI
+	* Module: Base
 	*/
-	protected CoreGUI coreGui;
-	protected VeranstaltungsTable vTableModel;
+	protected Base base;
+	protected InfoWindow infoWindow;
+	protected BaseTableMain vTableModel;
 	
-	public CoreGUI getCoreGUI() {
-		if (this.coreGui == null) {
-			this.coreGui = new CoreGUI();
+	public Base getBase() {
+		if (this.base == null) {
+			this.base = new Base();
 		}
-		return this.coreGui;
+		return this.base;
 	}
-	public VeranstaltungsTable getVTableModel(){
+	public InfoWindow getInfoWindow() {
+		if (this.infoWindow == null) {
+			this.infoWindow = new InfoWindow();
+		}
+		return this.infoWindow;
+	}
+	public BaseTableMain getVTableModel(){
 		if (this.vTableModel == null) {
-			this.vTableModel = new VeranstaltungsTable();
+			this.vTableModel = new BaseTableMain();
 		}
 		return this.vTableModel;
 	}
@@ -108,9 +115,9 @@ public class ServiceManager {
 	protected DozentenTab dozentenGui;
 	protected DozentenLVMaskeWindow dozLVMaske;
 	protected DozentenLVRaumanfrageMaskeWindow dozLVRaumanfrageMaske;
-	protected DozentenStundenplanTable dozTableModel;
+	protected StundenplanTabTable dozTableModel;
 	protected DozentenStundenplanTab dozStundenplanTab;
-	protected DozentenLehrstuhlplanTable dozLerstuhlplanTableModel;
+	protected LehrstuhlplanTabTable dozLerstuhlplanTableModel;
 	protected DozentenLehrstuhlplanTab dozLehrstuhlplanTab;
 	
 	public DozentenTab getDozenten() {
@@ -131,9 +138,9 @@ public class ServiceManager {
 		}
 		return this.dozLVRaumanfrageMaske;
 	}
-	public DozentenStundenplanTable getDozStundenplanTableModel() {
+	public StundenplanTabTable getDozStundenplanTableModel() {
 		if (this.dozTableModel == null) {
-			this.dozTableModel = new DozentenStundenplanTable();
+			this.dozTableModel = new StundenplanTabTable();
 		}
 		return this.dozTableModel;
 	}
@@ -149,9 +156,9 @@ public class ServiceManager {
 		}
 		return this.dozLehrstuhlplanTab;
 	}
-	public DozentenLehrstuhlplanTable getdozLerstuhlplanTableModel() {
+	public LehrstuhlplanTabTable getdozLerstuhlplanTableModel() {
 		if (this.dozLerstuhlplanTableModel == null) {
-			this.dozLerstuhlplanTableModel = new DozentenLehrstuhlplanTable();
+			this.dozLerstuhlplanTableModel = new LehrstuhlplanTabTable();
 		}
 		return this.dozLerstuhlplanTableModel;
 	}

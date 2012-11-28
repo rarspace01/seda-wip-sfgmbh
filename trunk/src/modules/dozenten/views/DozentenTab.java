@@ -2,22 +2,17 @@ package modules.dozenten.views;
 
 import java.awt.Dimension;
 import java.awt.SystemColor;
-import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import modules.dozenten.controller.*;
+import modules.dozenten.model.*;
 import net.miginfocom.swing.MigLayout;
 import javax.swing.JLabel;
 import javax.swing.border.TitledBorder;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 import java.awt.Font;
-import javax.swing.table.DefaultTableModel;
-import java.awt.Component;
-import javax.swing.Box;
 import javax.swing.UIManager;
 
 public class DozentenTab extends JPanel {
@@ -48,7 +43,6 @@ public class DozentenTab extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public DozentenTab() {
 		setMaximumSize(new Dimension(10, 32767));
 		setLayout(new MigLayout("", "[140px:n:140px,grow][][grow][grow][grow][grow][100px:n:100px,grow]", "[][grow]"));
@@ -80,14 +74,15 @@ public class DozentenTab extends JPanel {
 		bottomSidePanel.setLayout(new MigLayout("", "[]", "[][][]"));
 		
 		JButton btnStundenplan = new JButton("Stundenplan");
-		btnStundenplan.addActionListener(new StundenplanButton());
+		btnStundenplan.addActionListener(new DozentenTabBtnStundenpl());
 		bottomSidePanel.add(btnStundenplan, "cell 0 0");
 		
 		JButton btnLehrstuhlplan = new JButton("Lehrstuhlplan");
-		btnLehrstuhlplan.addActionListener(new LehrstuhlplanButton());
+		btnLehrstuhlplan.addActionListener(new DozentenTabBtnLPlan());
 		bottomSidePanel.add(btnLehrstuhlplan, "cell 0 1");
 		
-		btnLivetickerBearbeiten = new JButton("LiveTicker bearbeiten");
+		btnLivetickerBearbeiten = new JButton("LiveTicker");
+		btnLivetickerBearbeiten.addActionListener(new DozentenTabBtnTicker());
 		bottomSidePanel.add(btnLivetickerBearbeiten, "cell 0 2");
 		
 		tablePanel = new JPanel();
@@ -104,20 +99,23 @@ public class DozentenTab extends JPanel {
 		tablePanel.add(lblSemester, "cell 2 0");
 		
 		comboLehrstuhl = new JComboBox<String>();
+		comboLehrstuhl.addActionListener(new DozentenTabCmbboxFilter());
 		tablePanel.add(comboLehrstuhl, "cell 0 1");
-		comboLehrstuhl.setModel(new DefaultComboBoxModel(new String[] {"<alle>"}));
+		comboLehrstuhl.setModel(new DozentenTabCmbboxModelFilter("Lehrstuhl1"));
 		comboLehrstuhl.setEditable(true);
 		comboLehrstuhl.setAutoscrolls(true);
 		
 		comboDozent = new JComboBox<String>();
+		comboDozent.addActionListener(new DozentenTabCmbboxFilter());
 		tablePanel.add(comboDozent, "cell 1 1");
-		comboDozent.setModel(new DefaultComboBoxModel(new String[] {"<alle>"}));
+		comboDozent.setModel(new DozentenTabCmbboxModelFilter("Doz1"));
 		comboDozent.setEditable(true);
 		comboDozent.setAutoscrolls(true);
 		
 		comboBoxSemester = new JComboBox<String>();
 		tablePanel.add(comboBoxSemester, "cell 2 1");
-		comboBoxSemester.setModel(new DefaultComboBoxModel(new String[] {"<alle>"}));
+		comboBoxSemester.addActionListener(new DozentenTabCmbboxFilter());
+		comboBoxSemester.setModel(new DozentenTabCmbboxModelFilter("Sem1"));
 		comboBoxSemester.setEditable(true);
 		comboBoxSemester.setAutoscrolls(true);
 		
@@ -125,14 +123,7 @@ public class DozentenTab extends JPanel {
 		tablePanel.add(lvVerwaltungTableScrollPane, "cell 0 2 5 1,grow");
 		
 		lvVerwaltungTable = new JTable();
-		lvVerwaltungTable.setModel(new DefaultTableModel(
-			new Object[][] {
-				{"SEDA-WIP-B", "Benker", "WS1213", "4", "30", "2", "nein", "nein"},
-			},
-			new String[] {
-				"Bezeichnung", "Dozent", "Semester", "SWS", "Erw. Teilnehmer", "Termine", "Raumanfrage freigegeben", "\u00D6ffentlich"
-			}
-		));
+		lvVerwaltungTable.setModel(new DozentenTabTable1());
 		lvVerwaltungTable.getColumnModel().getColumn(1).setPreferredWidth(59);
 		lvVerwaltungTable.getColumnModel().getColumn(3).setPreferredWidth(48);
 		lvVerwaltungTable.getColumnModel().getColumn(4).setPreferredWidth(35);
@@ -163,31 +154,36 @@ public class DozentenTab extends JPanel {
 		tablePanel.add(lblStatus, "cell 4 4");
 		
 		JComboBox<String> comboBox_1 = new JComboBox<String>();
-		comboBox_1.setModel(new DefaultComboBoxModel(new String[] {"<alle>"}));
+		comboBox_1.addActionListener(new DozentenTabCmbboxFilter());
+		comboBox_1.setModel(new DozentenTabCmbboxModelFilter("Lehrstuhl2"));
 		comboBox_1.setEditable(true);
 		comboBox_1.setAutoscrolls(true);
 		tablePanel.add(comboBox_1, "cell 0 5,growx");
 		
 		JComboBox<String> comboBox_2 = new JComboBox<String>();
-		comboBox_2.setModel(new DefaultComboBoxModel(new String[] {"<alle>"}));
+		comboBox_2.setModel(new DozentenTabCmbboxModelFilter("Doz2"));
+		comboBox_2.addActionListener(new DozentenTabCmbboxFilter());
 		comboBox_2.setEditable(true);
 		comboBox_2.setAutoscrolls(true);
 		tablePanel.add(comboBox_2, "cell 1 5,growx");
 		
 		JComboBox<String> comboBox_3 = new JComboBox<String>();
-		comboBox_3.setModel(new DefaultComboBoxModel(new String[] {"<alle>"}));
+		comboBox_3.addActionListener(new DozentenTabCmbboxFilter());
+		comboBox_3.setModel(new DozentenTabCmbboxModelFilter("LV"));
 		comboBox_3.setEditable(true);
 		comboBox_3.setAutoscrolls(true);
 		tablePanel.add(comboBox_3, "cell 2 5,growx");
 		
 		JComboBox<String> comboBox_4 = new JComboBox<String>();
-		comboBox_4.setModel(new DefaultComboBoxModel(new String[] {"<alle>"}));
+		comboBox_4.addActionListener(new DozentenTabCmbboxFilter());
+		comboBox_4.setModel(new DozentenTabCmbboxModelFilter("Sem2"));
 		comboBox_4.setEditable(true);
 		comboBox_4.setAutoscrolls(true);
 		tablePanel.add(comboBox_4, "cell 3 5,growx");
 		
 		comboBox = new JComboBox<String>();
-		comboBox.setModel(new DefaultComboBoxModel(new String[] {"<alle>"}));
+		comboBox.addActionListener(new DozentenTabCmbboxFilter());
+		comboBox.setModel(new DozentenTabCmbboxModelFilter("Status"));
 		tablePanel.add(comboBox, "cell 4 5");
 		comboBox.setEditable(true);
 		comboBox.setAutoscrolls(true);
@@ -196,15 +192,7 @@ public class DozentenTab extends JPanel {
 		tablePanel.add(raumanfragenScrollPane, "cell 0 6 5 1,grow");
 		
 		raumanfragenTable = new JTable();
-		raumanfragenTable.setModel(new DefaultTableModel(
-			new Object[][] {
-				{"SEDA-WIP-B", "Benker", "WS1213", "Do.", "12:00 - 14:00", "WP3/02.001", "abgelehnt"},
-				{"SEDA-WIP-B", "Benker", "WS1213", "Mo.", "14:00 - 16:00", "WP3/04.002", "wartend"},
-			},
-			new String[] {
-				"Bezeichnung", "Dozent", "Semester", "Tag", "Zeit", "Raum", "Status"
-			}
-		));
+		raumanfragenTable.setModel(new DozentenTabTable2());
 		raumanfragenTable.setShowVerticalLines(false);
 		raumanfragenTable.setBackground(SystemColor.activeCaption);
 		raumanfragenScrollPane.setViewportView(raumanfragenTable);
@@ -216,20 +204,22 @@ public class DozentenTab extends JPanel {
 		add(buttonPanel, "cell 6 1,grow");
 		
 		btnHinzufugen = new JButton("hinzuf\u00FCgen");
-		btnHinzufugen.addActionListener(new HinzufugenButton());
+		btnHinzufugen.addActionListener(new DozentenTabBtnHinzuf());
 		btnHinzufugen.setBounds(0, 76, 88, 23);
 		buttonPanel.add(btnHinzufugen);
 		
 		btnBearbeiten = new JButton("bearbeiten");
+		btnBearbeiten.addActionListener(new DozentenTabBtnBearbeiten());
 		btnBearbeiten.setBounds(0, 110, 88, 23);
 		buttonPanel.add(btnBearbeiten);
 		
-		JButton btnVerffentlichen = new JButton("ver\u00F6ffentlichen");
+		JButton btnVerffentlichen = new JButton("freigeben");
+		btnVerffentlichen.addActionListener(new DozentenTabBtnOffentlich());
 		btnVerffentlichen.setBounds(0, 194, 100, 23);
 		buttonPanel.add(btnVerffentlichen);
 		
 		btnRaumanfrage = new JButton("Raumanfrage");
-		btnRaumanfrage.addActionListener(new RaumanfrageButton());
+		btnRaumanfrage.addActionListener(new DozentenTabBtnRaumanf());
 		btnRaumanfrage.setBounds(0, 160, 100, 23);
 		buttonPanel.add(btnRaumanfrage);
 		
@@ -239,6 +229,7 @@ public class DozentenTab extends JPanel {
 		buttonPanel.add(panel);
 		
 		JButton btnZurckziehen = new JButton("zur\u00FCckziehen");
+		btnZurckziehen.addActionListener(new DozentenTabBtnZuruckz());
 		btnZurckziehen.setBounds(0, 339, 100, 23);
 		buttonPanel.add(btnZurckziehen);
 	}

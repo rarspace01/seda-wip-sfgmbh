@@ -1,4 +1,4 @@
-package modules.coregui.views;
+package modules.base.views;
 
 import java.awt.*;
 import javax.swing.*;
@@ -6,9 +6,10 @@ import net.miginfocom.swing.MigLayout;
 import javax.swing.table.*;
 import javax.swing.border.*;
 import services.*;
-import modules.coregui.controller.*;
+import modules.base.controller.*;
+import modules.base.model.*;
 
-public class CoreGUI extends JFrame{
+public class Base extends JFrame{
 
 	private static final long serialVersionUID = 1L;
 	
@@ -16,8 +17,6 @@ public class CoreGUI extends JFrame{
 	private JLayeredPane contentPane;
 	public JTabbedPane mainTabbedContainerPane;
 	public JPanel startScreenPanel;
-	private JRadioButton rdbtnLehrveranstaltungen;
-	private JRadioButton rdbtnRume;
 	private JComboBox<String> comboBoxVeranstaltungFilter;
 	private JLabel lblLehrveranstaltung;
 	private JLabel lblLehrstuhl;
@@ -32,16 +31,23 @@ public class CoreGUI extends JFrame{
 	private JTextPane tickerMsgPos1;
 	private JPanel panel_1;
 	private final ButtonGroup buttonGroup = new ButtonGroup();
-	private JPasswordField passwordField;
-	private JTextField txtBenutzername;
 	private JLabel lblPasswort;
+	private JLabel lblBenutzername;
+	private JButton btnNewButton;
+	private JTextField txtBenutzername;
+	private JPasswordField pwdPasswort;
+	private JRadioButton rdbtnLehrveranstaltungen;
+	private JRadioButton rdbtnRaume;
 	
 
 	/**
 	 * Create the frame.
 	 */
-	@SuppressWarnings({ "unchecked", "rawtypes" })
-	public CoreGUI() {
+	@SuppressWarnings({ })
+	public Base() {
+		createContents();
+	}
+	private void createContents() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 900, 600);
 		contentPane = new JLayeredPane();
@@ -58,12 +64,7 @@ public class CoreGUI extends JFrame{
 		contentPane.setLayer(startScreenPanel, 1);
 		contentPane.add(startScreenPanel, "name_5256771068822");
 		startScreenPanel.setLayout(new MigLayout("", "[grow][][grow][grow][grow][grow][grow]", "[][][grow]"));
-		
-		rdbtnLehrveranstaltungen = new JRadioButton("Lehrveranstaltungen");
-		buttonGroup.add(rdbtnLehrveranstaltungen);
-		rdbtnLehrveranstaltungen.setMargin(new Insets(0, 0, 0, 0));
-		rdbtnLehrveranstaltungen.setSelected(true);
-		startScreenPanel.add(rdbtnLehrveranstaltungen, "cell 0 0");
+		startScreenPanel.add(getRdbtnLehrveranstaltungen(), "cell 0 0");
 		
 		lblLehrveranstaltung = new JLabel("Lehrveranstaltung:");
 		startScreenPanel.add(lblLehrveranstaltung, "cell 2 0,alignx left,aligny center");
@@ -77,33 +78,35 @@ public class CoreGUI extends JFrame{
 		lblSemester = new JLabel("Semester:");
 		startScreenPanel.add(lblSemester, "cell 5 0");
 		
-		rdbtnRume = new JRadioButton("R\u00E4ume");
-		buttonGroup.add(rdbtnRume);
-		rdbtnRume.setMargin(new Insets(0, 0, 0, 0));
-		startScreenPanel.add(rdbtnRume, "cell 0 1");
-		
 		comboBoxVeranstaltungFilter = new JComboBox<String>();
-		comboBoxVeranstaltungFilter.addKeyListener(new VeranstaltungsFilter());
-		comboBoxVeranstaltungFilter.addActionListener(new VeranstaltungsFilter());
+		comboBoxVeranstaltungFilter.addKeyListener(new BaseCmbboxFilter());
+		comboBoxVeranstaltungFilter.addActionListener(new BaseCmbboxFilter());
+		startScreenPanel.add(getRdbtnRaume(), "cell 0 1");
 		comboBoxVeranstaltungFilter.setAutoscrolls(true);
 		comboBoxVeranstaltungFilter.setEditable(true);
-		comboBoxVeranstaltungFilter.setModel(new DefaultComboBoxModel(new String[] {"<alle>", "WI Projekt", "Standards und Netzwerke"}));
+		comboBoxVeranstaltungFilter.setModel(new BaseCmbboxModelFilter("Veranst"));
 		startScreenPanel.add(comboBoxVeranstaltungFilter, "cell 2 1,growx");
 		
 		comboBoxLehrstuhlFilter = new JComboBox<String>();
-		comboBoxLehrstuhlFilter.setModel(new DefaultComboBoxModel(new String[] {"<alle>", "Lehrstuhl Eins", "Lehrstuhl Zwei", "SEDA", "IISM", "ISDL"}));
+		comboBoxLehrstuhlFilter.setModel(new BaseCmbboxModelFilter("Lehrstuhl"));
+		comboBoxLehrstuhlFilter.addKeyListener(new BaseCmbboxFilter());
+		comboBoxLehrstuhlFilter.addActionListener(new BaseCmbboxFilter());
 		comboBoxLehrstuhlFilter.setEditable(true);
 		comboBoxLehrstuhlFilter.setAutoscrolls(true);
 		startScreenPanel.add(comboBoxLehrstuhlFilter, "cell 3 1,growx");
 		
 		comboBoxDozentFilter = new JComboBox<String>();
-		comboBoxDozentFilter.setModel(new DefaultComboBoxModel(new String[] {"<alle>", "Sinz", "Ferstel", "Wolf", "Krieger"}));
+		comboBoxDozentFilter.setModel(new BaseCmbboxModelFilter("Doz"));
+		comboBoxDozentFilter.addKeyListener(new BaseCmbboxFilter());
+		comboBoxDozentFilter.addActionListener(new BaseCmbboxFilter());
 		comboBoxDozentFilter.setEditable(true);
 		comboBoxDozentFilter.setAutoscrolls(true);
 		startScreenPanel.add(comboBoxDozentFilter, "cell 4 1,growx");
 		
 		comboBoxSemesterFilter = new JComboBox<String>();
-		comboBoxSemesterFilter.setModel(new DefaultComboBoxModel(new String[] {"<alle>", "WS 12 / 13", "SS 13", "WS 13 /14"}));
+		comboBoxSemesterFilter.setModel(new BaseCmbboxModelFilter("Sem"));
+		comboBoxSemesterFilter.addKeyListener(new BaseCmbboxFilter());
+		comboBoxSemesterFilter.addActionListener(new BaseCmbboxFilter());
 		comboBoxSemesterFilter.setEditable(true);
 		comboBoxSemesterFilter.setAutoscrolls(true);
 		startScreenPanel.add(comboBoxSemesterFilter, "cell 5 1,growx");
@@ -122,47 +125,30 @@ public class CoreGUI extends JFrame{
 		panel.setLayout(null);
 		
 		JTextPane tickerMsgPos2 = new JTextPane();
-		tickerMsgPos2.setBounds(6, 108, 123, 90);
+		tickerMsgPos2.setBounds(6, 108, 123, 176);
 		panel.add(tickerMsgPos2);
 		tickerMsgPos2.setBackground(UIManager.getColor("Button.background"));
 		tickerMsgPos2.setContentType("text/html");
-		tickerMsgPos2.setText("<div style=\"font-family:arial\"><strong>Meldung:</strong><br> In 5 Minuten beginnt SEDA-DMS-B in Raum WP3/04.003</div>");
+		tickerMsgPos2.setText("<div style=\"font-family:arial\"><strong>Info:</strong><br>Logindaten: <br>Dozenten: Doz // Doz <br>Studenten: Stud // Stud<br> Verwaltung: Verw // Verw <br> Anderenfalls Fehler!</div>");
 		
 		tickerMsgPos1 = new JTextPane();
 		tickerMsgPos1.setBounds(6, 6, 123, 90);
 		panel.add(tickerMsgPos1);
 		tickerMsgPos1.setBackground(UIManager.getColor("Button.light"));
 		tickerMsgPos1.setContentType("text/html");
-		tickerMsgPos1.setText("<div style=\"font-family:arial\"><strong>News:</strong><br> <span style=\"color:red\">Alle</span> Vorlesungen n\u00E4chste Woche entfallen!</div>");
+		tickerMsgPos1.setText("<div style=\"font-family:arial\"><strong>News:</strong><br> <span style=\"color:red\">Neu!</span> Testlogin jetzt m\u00F6glich!</div>");
 		
 		panel_1 = new JPanel();
 		panel_1.setBounds(0, 319, 140, 161);
 		tickerJPanel.add(panel_1);
 		panel_1.setLayout(new MigLayout("", "[grow]", "[][][][][][]"));
-		
-		JButton btnTestLoginAs_1 = new JButton("Test: Login as Ver.");
-		panel_1.add(btnTestLoginAs_1, "cell 0 0");
-		btnTestLoginAs_1.addActionListener(new VerwLoginButton());
-		
-		JButton btnTestLoginAs = new JButton("Test: Login as Doz.");
-		panel_1.add(btnTestLoginAs, "cell 0 1");
-		btnTestLoginAs.addActionListener(new DozLoginButton());
-		
-		JButton btnNewButton = new JButton("Test: Login as Stud");
-		panel_1.add(btnNewButton, "cell 0 2");
-		
-		txtBenutzername = new JTextField();
-		txtBenutzername.setText("Benutzername");
-		panel_1.add(txtBenutzername, "cell 0 3,growx");
-		txtBenutzername.setColumns(10);
+		panel_1.add(getLblBenutzername(), "cell 0 0");
+		panel_1.add(getTxtBenutzername(), "cell 0 1,growx");
 		
 		lblPasswort = new JLabel("Passwort:");
-		panel_1.add(lblPasswort, "cell 0 4");
-		
-		passwordField = new JPasswordField();
-		passwordField.setToolTipText("Passwort");
-		panel_1.add(passwordField, "cell 0 5,growx");
-		btnNewButton.addActionListener(new StudLoginButton());
+		panel_1.add(lblPasswort, "cell 0 2");
+		panel_1.add(getPwdPasswort(), "cell 0 3,growx");
+		panel_1.add(getBtnNewButton(), "cell 0 4,alignx right");
 		
 		mainTableScrollPane = new JScrollPane();
 		startScreenPanel.add(mainTableScrollPane, "cell 2 2 4 1,grow");
@@ -180,15 +166,9 @@ public class CoreGUI extends JFrame{
 		buttonPanel.setLayout(null);
 		
 		JButton btnAddToStundenplan = new JButton("+");
-		btnAddToStundenplan.addActionListener(new AddToStundenplanButton());
-		btnAddToStundenplan.setBounds(10, 30, 41, 23);
+		btnAddToStundenplan.addActionListener(new BaseBtnAddToStundenplan());
+		btnAddToStundenplan.setBounds(0, 29, 41, 23);
 		buttonPanel.add(btnAddToStundenplan);
-		
-		JLabel lblLehrveranstaltungenAuswhlenUnd = new JLabel("<html>Lehrveranstaltungen ausw\u00E4hlen und zur Sammlung zum Stundenplan hinzuf\u00FCgen!</html>");
-		lblLehrveranstaltungenAuswhlenUnd.setToolTipText("");
-		lblLehrveranstaltungenAuswhlenUnd.setVerticalAlignment(SwingConstants.TOP);
-		lblLehrveranstaltungenAuswhlenUnd.setBounds(0, 64, 100, 105);
-		buttonPanel.add(lblLehrveranstaltungenAuswhlenUnd);
 		veranstaltungsTable.getColumnModel().getColumn(0).setResizable(false);
 		veranstaltungsTable.getColumnModel().getColumn(0).setPreferredWidth(50);
 		veranstaltungsTable.getColumnModel().getColumn(0).setMinWidth(50);
@@ -227,5 +207,50 @@ public class CoreGUI extends JFrame{
 		veranstaltungsTable.getColumnModel().getColumn(8).setCellRenderer(center);
 		veranstaltungsTable.getColumnModel().getColumn(1).setCellRenderer(center);
 		veranstaltungsTable.getColumnModel().getColumn(6).setCellRenderer(center);
+	}
+	public JLabel getLblBenutzername() {
+		if (lblBenutzername == null) {
+			lblBenutzername = new JLabel("Benutzername:");
+		}
+		return lblBenutzername;
+	}
+	public JButton getBtnNewButton() {
+		if (btnNewButton == null) {
+			btnNewButton = new JButton("Einloggen");
+			btnNewButton.addActionListener(new BaseBtnLogin());
+		}
+		return btnNewButton;
+	}
+	public JTextField getTxtBenutzername() {
+		if (txtBenutzername == null) {
+			txtBenutzername = new JTextField();
+			txtBenutzername.setColumns(10);
+		}
+		return txtBenutzername;
+	}
+	public JPasswordField getPwdPasswort() {
+		if (pwdPasswort == null) {
+			pwdPasswort = new JPasswordField();
+		}
+		return pwdPasswort;
+	}
+	public JRadioButton getRdbtnLehrveranstaltungen() {
+		if (rdbtnLehrveranstaltungen == null) {
+			rdbtnLehrveranstaltungen = new JRadioButton("Lehrveranstaltungen");
+			rdbtnLehrveranstaltungen.addActionListener(new BaseRdbtnTopLeft());
+			buttonGroup.add(rdbtnLehrveranstaltungen);
+			rdbtnLehrveranstaltungen.setSelected(true);
+			rdbtnLehrveranstaltungen.setMargin(new Insets(0, 0, 0, 0));
+		}
+		return rdbtnLehrveranstaltungen;
+	}
+	public JRadioButton getRdbtnRaume() {
+		if (rdbtnRaume == null) {
+			rdbtnRaume = new JRadioButton("R\u00E4ume");
+			rdbtnRaume.addActionListener(new BaseRdbtnTopLeft());
+			buttonGroup.add(rdbtnRaume);
+			rdbtnRaume.setMargin(new Insets(0, 0, 0, 0));
+		}
+		return rdbtnRaume;
 	}
 }

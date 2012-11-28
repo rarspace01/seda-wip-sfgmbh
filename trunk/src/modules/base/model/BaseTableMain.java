@@ -1,8 +1,8 @@
-package modules.coregui.model;
+package modules.base.model;
 
 import javax.swing.table.*;
 
-public class VeranstaltungsTable extends DefaultTableModel {
+public class BaseTableMain extends DefaultTableModel {
 
 	private static final long serialVersionUID = 1L;
 	private Object[][] preFill = {
@@ -13,7 +13,7 @@ public class VeranstaltungsTable extends DefaultTableModel {
 	private String[] preFillHeader = {"Sem.", "Art", "Bez.", "Name", "Dozent", "Tag", "Uhrzeit", "Raum", "SWS"};
 	
 	
-	public VeranstaltungsTable() {
+	public BaseTableMain() {
 		this.setDataVector(preFill, preFillHeader);
 	}
 }

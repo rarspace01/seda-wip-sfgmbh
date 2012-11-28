@@ -4,7 +4,7 @@ import java.awt.event.WindowListener;
 
 import services.Bootstrap;
 
-public class LVRaumanfrageMaskeWindow implements WindowListener {
+public class LVWindow implements WindowListener {
 
 	@Override
 	public void windowActivated(WindowEvent arg0) {

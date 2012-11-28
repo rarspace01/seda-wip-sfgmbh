@@ -6,40 +6,34 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 
-import net.miginfocom.swing.MigLayout;
+import modules.dozenten.controller.LehrstuhlplanTabBtnPdf;
 import javax.swing.JLabel;
-
 import services.Bootstrap;
-import javax.swing.JComboBox;
 import javax.swing.JButton;
 import java.awt.Font;
+import java.awt.Dimension;
+import net.miginfocom.swing.MigLayout;
 
 public class DozentenLehrstuhlplanTab extends JPanel {
 
 	private static final long serialVersionUID = 1L;
 	private JTable LehrstuhlStundenplanTable;
+	private JPanel panel;
 
 
 	/**
 	 * Create the panel.
 	 */
 	public DozentenLehrstuhlplanTab() {
+
+		createContents();
+	}
+	private void createContents() {
 		setAutoscrolls(true);
 		setLayout(null);
 		
-		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(20, 51, 854, 214);
-		add(scrollPane);
-		
-		LehrstuhlStundenplanTable = new JTable();
-		
-		scrollPane.setViewportView(LehrstuhlStundenplanTable);
-		
-	
-		LehrstuhlStundenplanTable.setBackground(Color.WHITE);
-		LehrstuhlStundenplanTable.setModel(Bootstrap.serviceManager.getDozStundenplanTableModel());
-		
 		JButton btnPdfErzeugen = new JButton("PDF Erzeugen");
+		btnPdfErzeugen.addActionListener(new LehrstuhlplanTabBtnPdf());
 		btnPdfErzeugen.setBounds(389, 17, 112, 23);
 		add(btnPdfErzeugen);
 		
@@ -47,25 +41,46 @@ public class DozentenLehrstuhlplanTab extends JPanel {
 		lblWochenplanFrDen.setFont(new Font("Arial", Font.PLAIN, 11));
 		lblWochenplanFrDen.setBounds(20, 26, 359, 14);
 		add(lblWochenplanFrDen);
-		LehrstuhlStundenplanTable.getColumnModel().getColumn(0).setResizable(false);
-		LehrstuhlStundenplanTable.getColumnModel().getColumn(0).setPreferredWidth(50);
-		LehrstuhlStundenplanTable.getColumnModel().getColumn(0).setMinWidth(50);
-		LehrstuhlStundenplanTable.getColumnModel().getColumn(0).setMaxWidth(200);
-		LehrstuhlStundenplanTable.getColumnModel().getColumn(1).setResizable(false);
-		LehrstuhlStundenplanTable.getColumnModel().getColumn(1).setPreferredWidth(50);
-		LehrstuhlStundenplanTable.getColumnModel().getColumn(1).setMinWidth(50);
-		LehrstuhlStundenplanTable.getColumnModel().getColumn(1).setMaxWidth(200);
-		LehrstuhlStundenplanTable.getColumnModel().getColumn(2).setResizable(false);
-		LehrstuhlStundenplanTable.getColumnModel().getColumn(2).setMinWidth(75);
-		LehrstuhlStundenplanTable.getColumnModel().getColumn(2).setMaxWidth(200);
-		LehrstuhlStundenplanTable.getColumnModel().getColumn(3).setPreferredWidth(80);
-		LehrstuhlStundenplanTable.getColumnModel().getColumn(3).setMinWidth(80);
-		LehrstuhlStundenplanTable.getColumnModel().getColumn(3).setMaxWidth(200);
-		LehrstuhlStundenplanTable.getColumnModel().getColumn(4).setPreferredWidth(70);
-		LehrstuhlStundenplanTable.getColumnModel().getColumn(4).setMinWidth(70);
-		LehrstuhlStundenplanTable.getColumnModel().getColumn(4).setMaxWidth(200);
-		LehrstuhlStundenplanTable.getColumnModel().getColumn(5).setMinWidth(70);
-		LehrstuhlStundenplanTable.getColumnModel().getColumn(5).setMaxWidth(200);
-
+		add(getPanel());
+	}
+	public JPanel getPanel() {
+		if (panel == null) {
+			panel = new JPanel();
+			panel.setBounds(20, 51, 868, 404);
+			panel.setLayout(new MigLayout("", "grow"));
+			
+			JScrollPane scrollPane = new JScrollPane();
+			panel.add(scrollPane, "cell 0 0,alignx center,aligny top");
+			
+			LehrstuhlStundenplanTable = new JTable();
+			LehrstuhlStundenplanTable.setPreferredScrollableViewportSize(new Dimension(750, 400));
+			LehrstuhlStundenplanTable.setBorder(null);
+			
+			scrollPane.setViewportView(LehrstuhlStundenplanTable);
+			
+	
+			LehrstuhlStundenplanTable.setBackground(Color.WHITE);
+			LehrstuhlStundenplanTable.setModel(Bootstrap.serviceManager.getDozStundenplanTableModel());
+			LehrstuhlStundenplanTable.getColumnModel().getColumn(0).setResizable(false);
+			LehrstuhlStundenplanTable.getColumnModel().getColumn(0).setPreferredWidth(50);
+			LehrstuhlStundenplanTable.getColumnModel().getColumn(0).setMinWidth(50);
+			LehrstuhlStundenplanTable.getColumnModel().getColumn(0).setMaxWidth(200);
+			LehrstuhlStundenplanTable.getColumnModel().getColumn(1).setResizable(false);
+			LehrstuhlStundenplanTable.getColumnModel().getColumn(1).setPreferredWidth(50);
+			LehrstuhlStundenplanTable.getColumnModel().getColumn(1).setMinWidth(50);
+			LehrstuhlStundenplanTable.getColumnModel().getColumn(1).setMaxWidth(200);
+			LehrstuhlStundenplanTable.getColumnModel().getColumn(2).setResizable(false);
+			LehrstuhlStundenplanTable.getColumnModel().getColumn(2).setMinWidth(75);
+			LehrstuhlStundenplanTable.getColumnModel().getColumn(2).setMaxWidth(200);
+			LehrstuhlStundenplanTable.getColumnModel().getColumn(3).setPreferredWidth(80);
+			LehrstuhlStundenplanTable.getColumnModel().getColumn(3).setMinWidth(80);
+			LehrstuhlStundenplanTable.getColumnModel().getColumn(3).setMaxWidth(200);
+			LehrstuhlStundenplanTable.getColumnModel().getColumn(4).setPreferredWidth(70);
+			LehrstuhlStundenplanTable.getColumnModel().getColumn(4).setMinWidth(70);
+			LehrstuhlStundenplanTable.getColumnModel().getColumn(4).setMaxWidth(200);
+			LehrstuhlStundenplanTable.getColumnModel().getColumn(5).setMinWidth(70);
+			LehrstuhlStundenplanTable.getColumnModel().getColumn(5).setMaxWidth(200);
+		}
+		return panel;
 	}
 }
