@@ -4,14 +4,12 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
-
-import modules.verwaltung.controller.GegenvorschlagMaskeWindow;
+import modules.verwaltung.controller.*;
 import java.awt.Font;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
-
 public class VerwaltungGegenvorschlagMaskeWindow extends JFrame {
 
 	private static final long serialVersionUID = 1L;
@@ -57,9 +55,11 @@ public class VerwaltungGegenvorschlagMaskeWindow extends JFrame {
 		
 		JButton btnSenden = new JButton("Senden");
 		btnSenden.setBounds(181, 236, 90, 28);
+		btnSenden.addActionListener(new GegenvorschlagWindowBtns("senden"));
 		contentPane.add(btnSenden);
 		
 		JButton btnAbbrechen = new JButton("Abbrechen");
+		btnAbbrechen.addActionListener(new GegenvorschlagWindowBtns("abbr"));
 		btnAbbrechen.setBounds(69, 236, 90, 28);
 		contentPane.add(btnAbbrechen);
 		
@@ -92,6 +92,6 @@ public class VerwaltungGegenvorschlagMaskeWindow extends JFrame {
 		comboBoxLV.setBounds(142, 40, 129, 20);
 		contentPane.add(comboBoxLV);
 		
-		addWindowListener(new GegenvorschlagMaskeWindow());
+		addWindowListener(new GegenvorschlagWindow());
 	}
 }

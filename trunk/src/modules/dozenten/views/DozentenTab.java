@@ -74,15 +74,15 @@ public class DozentenTab extends JPanel {
 		bottomSidePanel.setLayout(new MigLayout("", "[]", "[][][]"));
 		
 		JButton btnStundenplan = new JButton("Stundenplan");
-		btnStundenplan.addActionListener(new DozentenTabBtnStundenpl());
+		btnStundenplan.addActionListener(new DozentenTabBtnsNav("Stundenplan"));
 		bottomSidePanel.add(btnStundenplan, "cell 0 0");
 		
 		JButton btnLehrstuhlplan = new JButton("Lehrstuhlplan");
-		btnLehrstuhlplan.addActionListener(new DozentenTabBtnLPlan());
+		btnLehrstuhlplan.addActionListener(new DozentenTabBtnsNav("Lehrstuhlplan"));
 		bottomSidePanel.add(btnLehrstuhlplan, "cell 0 1");
 		
 		btnLivetickerBearbeiten = new JButton("LiveTicker");
-		btnLivetickerBearbeiten.addActionListener(new DozentenTabBtnTicker());
+		btnLivetickerBearbeiten.addActionListener(new DozentenTabBtnsNav("LiveTicker"));
 		bottomSidePanel.add(btnLivetickerBearbeiten, "cell 0 2");
 		
 		tablePanel = new JPanel();
@@ -204,22 +204,22 @@ public class DozentenTab extends JPanel {
 		add(buttonPanel, "cell 6 1,grow");
 		
 		btnHinzufugen = new JButton("hinzuf\u00FCgen");
-		btnHinzufugen.addActionListener(new DozentenTabBtnHinzuf());
+		btnHinzufugen.addActionListener(new DozentenTabBtnsControl("hinzu"));
 		btnHinzufugen.setBounds(0, 76, 88, 23);
 		buttonPanel.add(btnHinzufugen);
 		
 		btnBearbeiten = new JButton("bearbeiten");
-		btnBearbeiten.addActionListener(new DozentenTabBtnBearbeiten());
+		btnBearbeiten.addActionListener(new DozentenTabBtnsControl("bearbeiten"));
 		btnBearbeiten.setBounds(0, 110, 88, 23);
 		buttonPanel.add(btnBearbeiten);
 		
 		JButton btnVerffentlichen = new JButton("freigeben");
-		btnVerffentlichen.addActionListener(new DozentenTabBtnOffentlich());
+		btnVerffentlichen.addActionListener(new DozentenTabBtnsControl("freigeben"));
 		btnVerffentlichen.setBounds(0, 194, 100, 23);
 		buttonPanel.add(btnVerffentlichen);
 		
 		btnRaumanfrage = new JButton("Raumanfrage");
-		btnRaumanfrage.addActionListener(new DozentenTabBtnRaumanf());
+		btnRaumanfrage.addActionListener(new DozentenTabBtnsControl("raumanfrage"));
 		btnRaumanfrage.setBounds(0, 160, 100, 23);
 		buttonPanel.add(btnRaumanfrage);
 		
@@ -229,7 +229,7 @@ public class DozentenTab extends JPanel {
 		buttonPanel.add(panel);
 		
 		JButton btnZurckziehen = new JButton("zur\u00FCckziehen");
-		btnZurckziehen.addActionListener(new DozentenTabBtnZuruckz());
+		btnZurckziehen.addActionListener(new DozentenTabBtnsControl("zuruck"));
 		btnZurckziehen.setBounds(0, 339, 100, 23);
 		buttonPanel.add(btnZurckziehen);
 	}

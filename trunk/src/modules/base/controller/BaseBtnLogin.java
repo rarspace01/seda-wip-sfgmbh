@@ -30,7 +30,7 @@ public class BaseBtnLogin implements ActionListener {
 			Bootstrap.serviceManager.getBase().mainTabbedContainerPane.setVisible(true);
 			Bootstrap.serviceManager.getBase().mainTabbedContainerPane.removeAll();
 			Bootstrap.serviceManager.getBase().mainTabbedContainerPane.addTab("Start", null, Bootstrap.serviceManager.getBase().startScreenPanel, null);
-			Bootstrap.serviceManager.getBase().mainTabbedContainerPane.addTab("Studenten Profil", null, Bootstrap.serviceManager.getStudProfil(), null);
+			Bootstrap.serviceManager.getBase().mainTabbedContainerPane.addTab("Raumanfrage-Management", null, Bootstrap.serviceManager.getVerwAnfrage(), null);
 			Bootstrap.serviceManager.getBase().mainTabbedContainerPane.setSelectedIndex(1);
 			Bootstrap.serviceManager.getBase().startScreenPanel.setVisible(false);
 			
@@ -39,9 +39,10 @@ public class BaseBtnLogin implements ActionListener {
 			Bootstrap.serviceManager.getBase().mainTabbedContainerPane.setVisible(true);
 			Bootstrap.serviceManager.getBase().mainTabbedContainerPane.removeAll();
 			Bootstrap.serviceManager.getBase().mainTabbedContainerPane.addTab("Start", null, Bootstrap.serviceManager.getBase().startScreenPanel, null);
-			Bootstrap.serviceManager.getBase().mainTabbedContainerPane.addTab("Raumanfrage-Management", null, Bootstrap.serviceManager.getVerwAnfrage(), null);
+			Bootstrap.serviceManager.getBase().mainTabbedContainerPane.addTab("Studenten Profil", null, Bootstrap.serviceManager.getStudProfil(), null);
 			Bootstrap.serviceManager.getBase().mainTabbedContainerPane.setSelectedIndex(1);
 			Bootstrap.serviceManager.getBase().startScreenPanel.setVisible(false);
+		
 			
 		} else {
 			this.getInfoWindow().setVisible(true);	

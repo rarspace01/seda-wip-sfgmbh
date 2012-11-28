@@ -4,7 +4,9 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
-import modules.verwaltung.controller.NutzerMaskeWindow;
+import modules.verwaltung.controller.NutzerWindow;
+import modules.verwaltung.controller.NutzerWindowBtns;
+
 import java.awt.Font;
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
@@ -88,12 +90,14 @@ public class VerwaltungNutzerMaskeWindow extends JFrame {
 		
 		JButton btnSpeichern = new JButton("Speichern");
 		btnSpeichern.setBounds(141, 179, 90, 28);
+		btnSpeichern.addActionListener(new NutzerWindowBtns("speichern"));
 		contentPane.add(btnSpeichern);
 		
 		JButton btnAbbrechen = new JButton("Abbrechen");
 		btnAbbrechen.setBounds(40, 179, 90, 28);
+		btnAbbrechen.addActionListener(new NutzerWindowBtns("abbr"));
 		contentPane.add(btnAbbrechen);
 		
-		addWindowListener(new NutzerMaskeWindow());
+		addWindowListener(new NutzerWindow());
 	}
 }

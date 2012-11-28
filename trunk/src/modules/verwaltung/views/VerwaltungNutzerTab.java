@@ -64,23 +64,27 @@ public class VerwaltungNutzerTab extends JPanel {
 		
 		comboBoxBenutzerklasse = new JComboBox<String>();
 		comboBoxBenutzerklasse.setModel(new DefaultComboBoxModel(new String[] {"<alle>", "Dozenten", "Verwaltung", "Studenten"}));
+		comboBoxBenutzerklasse.addActionListener(new CmbboxFilter());
 		comboBoxBenutzerklasse.setEditable(true);
 		comboBoxBenutzerklasse.setAutoscrolls(true);
 		add(comboBoxBenutzerklasse, "cell 2 1,growx");
 		
 		comboBoxStockwerk = new JComboBox<String>();
 		comboBoxStockwerk.setModel(new DefaultComboBoxModel(new String[] {"<alle>"}));
+		comboBoxStockwerk.addActionListener(new CmbboxFilter());
 		comboBoxStockwerk.setEditable(true);
 		comboBoxStockwerk.setAutoscrolls(true);
 		add(comboBoxStockwerk, "cell 3 1,growx");
 		
 		textFieldPlatze = new JTextField();
 		textFieldPlatze.setText("<alle>");
+		textFieldPlatze.addActionListener(new CmbboxFilter());
 		add(textFieldPlatze, "cell 4 1,growx");
 		textFieldPlatze.setColumns(10);
 		
 		textFieldPCPlatze = new JTextField();
 		textFieldPCPlatze.setText("<alle>");
+		textFieldPCPlatze.addActionListener(new CmbboxFilter());
 		textFieldPCPlatze.setColumns(10);
 		add(textFieldPCPlatze, "cell 5 1,growx");
 		
@@ -109,18 +113,19 @@ public class VerwaltungNutzerTab extends JPanel {
 		leftBottomPanel.add(lblAndereBereiche, "cell 0 0");
 		
 		JButton btnRaumverwaltung = new JButton("R\u00E4ume");
-		btnRaumverwaltung.addActionListener(new RaumverwButton());
+		btnRaumverwaltung.addActionListener(new BtnsNav("Raumverw"));
 		
 		btnAnfragen = new JButton("Anfragen");
-		btnAnfragen.addActionListener(new AnfrageverwButton());
+		btnAnfragen.addActionListener(new BtnsNav("Anfrageverw"));
 		leftBottomPanel.add(btnAnfragen, "cell 0 1");
 		leftBottomPanel.add(btnRaumverwaltung, "cell 0 2");
 		
 		btnLivetickerBearbeiten = new JButton("LiveTicker");
+		btnLivetickerBearbeiten.addActionListener(new BtnsNav("LiveTicker"));
 		leftBottomPanel.add(btnLivetickerBearbeiten, "cell 0 3");
 		
 		JButton btnLehrstuhlverwaltung = new JButton("Lehrst\u00FChle");
-		btnLehrstuhlverwaltung.addActionListener(new LehrstuhlverwButton());
+		btnLehrstuhlverwaltung.addActionListener(new BtnsNav("Lehrstuhlverw"));
 		leftBottomPanel.add(btnLehrstuhlverwaltung, "cell 0 4");
 		
 		verwaltungTableScrollPane = new JScrollPane();
@@ -138,16 +143,17 @@ public class VerwaltungNutzerTab extends JPanel {
 		add(buttonPanel, "cell 6 2,grow");
 		
 		btnHinzufugen = new JButton("hinzuf\u00FCgen");
-		btnHinzufugen.addActionListener(new NutzerManageButton());
+		btnHinzufugen.addActionListener(new NutzerTabBtnsControl("hinz"));
 		btnHinzufugen.setBounds(6, 11, 88, 23);
 		buttonPanel.add(btnHinzufugen);
 		
 		JButton btnBearbeiten = new JButton("bearbeiten");
-		btnBearbeiten.addActionListener(new NutzerManageButton());
+		btnBearbeiten.addActionListener(new NutzerTabBtnsControl("bearbeiten"));
 		btnBearbeiten.setBounds(6, 45, 88, 23);
 		buttonPanel.add(btnBearbeiten);
 		
 		btnLschen = new JButton("l\u00F6schen");
+		btnLschen.addActionListener(new NutzerTabBtnsControl("loschen"));
 		btnLschen.setBounds(6, 79, 88, 23);
 		buttonPanel.add(btnLschen);
 		

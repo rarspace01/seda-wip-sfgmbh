@@ -1,14 +1,8 @@
 package modules.stundenplan.views;
 
-import java.awt.SystemColor;
-
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
-
-import net.miginfocom.swing.MigLayout;
-import javax.swing.JLabel;
-
 import services.Bootstrap;
 import java.awt.Color;
 import javax.swing.JButton;

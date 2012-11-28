@@ -4,7 +4,7 @@ import java.awt.event.WindowListener;
 
 import services.Bootstrap;
 
-public class LehrstuhlMaskeWindow implements WindowListener {
+public class RaumWindow implements WindowListener {
 
 	@Override
 	public void windowActivated(WindowEvent arg0) {
@@ -14,7 +14,7 @@ public class LehrstuhlMaskeWindow implements WindowListener {
 
 	@Override
 	public void windowClosed(WindowEvent arg0) {
-		Bootstrap.serviceManager.getVerwLehrstuhlMaske().setVisible(false);
+		Bootstrap.serviceManager.getVerwRaumMaske().setVisible(false);
 		
 	}
 

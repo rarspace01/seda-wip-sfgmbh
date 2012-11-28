@@ -135,11 +135,11 @@ public class DozentenLVRaumanfrageMaskeWindow extends JFrame {
 		contentPane.add(comboBox_10, "cell 3 17,growx");
 		
 		JButton btnAbbrechen = new JButton("Abbrechen");
-		btnAbbrechen.addActionListener(new LVRaumanfrageWindowBtnAbbr());
+		btnAbbrechen.addActionListener(new LVRaumanfrageWindowBtns("abbr"));
 		contentPane.add(btnAbbrechen, "cell 3 19,alignx right");
 		
 		JButton btnNewButton = new JButton("Los!");
-		btnNewButton.addActionListener(new LVRaumanfrageWindowBtnLos());
+		btnNewButton.addActionListener(new LVRaumanfrageWindowBtns("los"));
 		contentPane.add(btnNewButton, "cell 4 19");
 		
 		addWindowListener(new LVWindow());
