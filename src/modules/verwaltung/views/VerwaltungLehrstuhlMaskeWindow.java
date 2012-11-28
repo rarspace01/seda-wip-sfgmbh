@@ -4,7 +4,9 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
-import modules.verwaltung.controller.LehrstuhlMaskeWindow;
+import modules.verwaltung.controller.LehrstuhlWindow;
+import modules.verwaltung.controller.LehrstuhlWindowBtns;
+
 import java.awt.Font;
 import javax.swing.JTextField;
 import javax.swing.JButton;
@@ -76,10 +78,12 @@ public class VerwaltungLehrstuhlMaskeWindow extends JFrame {
 		
 		JButton btnSpeichern = new JButton("Speichern");
 		btnSpeichern.setBounds(141, 179, 90, 28);
+		btnSpeichern.addActionListener(new LehrstuhlWindowBtns("speichern"));
 		contentPane.add(btnSpeichern);
 		
 		JButton btnAbbrechen = new JButton("Abbrechen");
 		btnAbbrechen.setBounds(40, 179, 90, 28);
+		btnAbbrechen.addActionListener(new LehrstuhlWindowBtns("abbr"));
 		contentPane.add(btnAbbrechen);
 		
 		txtGebaude = new JTextField();
@@ -94,6 +98,6 @@ public class VerwaltungLehrstuhlMaskeWindow extends JFrame {
 		txtStock.setBounds(115, 125, 116, 20);
 		contentPane.add(txtStock);
 		
-		addWindowListener(new LehrstuhlMaskeWindow());
+		addWindowListener(new LehrstuhlWindow());
 	}
 }

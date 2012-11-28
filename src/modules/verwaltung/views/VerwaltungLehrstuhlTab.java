@@ -46,6 +46,7 @@ public class VerwaltungLehrstuhlTab extends JPanel {
 		add(lblLehrstuhlname, "cell 2 0");
 		
 		textFieldLehrstuhlname = new JTextField();
+		textFieldLehrstuhlname.addKeyListener(new CmbboxFilter());
 		textFieldLehrstuhlname.setText("<alle>");
 		textFieldLehrstuhlname.setColumns(10);
 		add(textFieldLehrstuhlname, "cell 2 1,growx");
@@ -75,18 +76,19 @@ public class VerwaltungLehrstuhlTab extends JPanel {
 		leftBottomPanel.add(lblAndereBereiche, "cell 0 0");
 		
 		JButton btnNutzerverwaltung = new JButton("Nutzer");
-		btnNutzerverwaltung.addActionListener(new NutzerverwButton());
+		btnNutzerverwaltung.addActionListener(new BtnsNav("Nutzerverw"));
 		leftBottomPanel.add(btnNutzerverwaltung, "cell 0 1");
 		
 		JButton btnRaumverwaltung = new JButton("R\u00E4ume");
-		btnRaumverwaltung.addActionListener(new RaumverwButton());
+		btnRaumverwaltung.addActionListener(new BtnsNav("Raumverw"));
 		leftBottomPanel.add(btnRaumverwaltung, "cell 0 2");
 		
 		btnLivetickerBeabeiten = new JButton("LiveTicker");
+		btnLivetickerBeabeiten.addActionListener(new BtnsNav("LiveTicker"));
 		leftBottomPanel.add(btnLivetickerBeabeiten, "cell 0 3");
 		
 		btnAnfragen = new JButton("Anfragen");
-		btnAnfragen.addActionListener(new AnfrageverwButton());
+		btnAnfragen.addActionListener(new BtnsNav("Anfrageverw"));
 		leftBottomPanel.add(btnAnfragen, "cell 0 4");
 		
 		verwaltungTableScrollPane = new JScrollPane();
@@ -105,18 +107,21 @@ public class VerwaltungLehrstuhlTab extends JPanel {
 		add(buttonPanel, "cell 6 2,grow");
 		
 		btnHinzufugen = new JButton("hinzuf\u00FCgen");
-		btnHinzufugen.addActionListener(new LehrstuhlManageButton());
+		btnHinzufugen.addActionListener(new LehrstuhlTabBtnsControl("hinz"));
 		btnHinzufugen.setBounds(6, 11, 88, 23);
 		buttonPanel.add(btnHinzufugen);
 		
 		JButton btnBearbeiten = new JButton("bearbeiten");
-		btnBearbeiten.addActionListener(new LehrstuhlManageButton());
+		btnBearbeiten.addActionListener(new LehrstuhlTabBtnsControl("bearbeiten"));
 		btnBearbeiten.setBounds(6, 45, 88, 23);
 		buttonPanel.add(btnBearbeiten);
 		
 		btnLschen = new JButton("l\u00F6schen");
+		btnLschen.addActionListener(new LehrstuhlTabBtnsControl("loschen"));
 		btnLschen.setBounds(6, 79, 88, 23);
 		buttonPanel.add(btnLschen);
 		
 	}
+
+	
 }

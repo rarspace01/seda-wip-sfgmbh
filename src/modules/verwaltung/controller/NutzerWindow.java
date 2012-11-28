@@ -4,7 +4,7 @@ import java.awt.event.WindowListener;
 
 import services.Bootstrap;
 
-public class GegenvorschlagMaskeWindow implements WindowListener {
+public class NutzerWindow implements WindowListener {
 
 	@Override
 	public void windowActivated(WindowEvent arg0) {
@@ -14,7 +14,7 @@ public class GegenvorschlagMaskeWindow implements WindowListener {
 
 	@Override
 	public void windowClosed(WindowEvent arg0) {
-		Bootstrap.serviceManager.getVerwGegenvorschlagMaske().setVisible(false);
+		Bootstrap.serviceManager.getVerwNutzerMaske().setVisible(false);
 		
 	}
 

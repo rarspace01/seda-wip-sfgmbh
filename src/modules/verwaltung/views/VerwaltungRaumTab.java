@@ -14,8 +14,6 @@ import javax.swing.JLabel;
 import javax.swing.border.TitledBorder;
 import javax.swing.JTextField;
 import java.awt.Font;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 
 public class VerwaltungRaumTab extends JPanel {
 
@@ -67,23 +65,27 @@ public class VerwaltungRaumTab extends JPanel {
 		
 		comboBoxGebaude = new JComboBox<String>();
 		comboBoxGebaude.setModel(new DefaultComboBoxModel(new String[] {"<alle>"}));
+		comboBoxGebaude.addActionListener(new CmbboxFilter());
 		comboBoxGebaude.setEditable(true);
 		comboBoxGebaude.setAutoscrolls(true);
 		add(comboBoxGebaude, "cell 2 1,growx");
 		
 		comboBoxStockwerk = new JComboBox<String>();
 		comboBoxStockwerk.setModel(new DefaultComboBoxModel(new String[] {"<alle>"}));
+		comboBoxStockwerk.addActionListener(new CmbboxFilter());
 		comboBoxStockwerk.setEditable(true);
 		comboBoxStockwerk.setAutoscrolls(true);
 		add(comboBoxStockwerk, "cell 3 1,growx");
 		
 		textFieldPlatze = new JTextField();
 		textFieldPlatze.setText("<alle>");
+		textFieldPlatze.addActionListener(new CmbboxFilter());
 		add(textFieldPlatze, "cell 4 1,growx");
 		textFieldPlatze.setColumns(10);
 		
 		textFieldPCPlatze = new JTextField();
 		textFieldPCPlatze.setText("<alle>");
+		textFieldPCPlatze.addActionListener(new CmbboxFilter());
 		textFieldPCPlatze.setColumns(10);
 		add(textFieldPCPlatze, "cell 5 1,growx");
 		
@@ -112,18 +114,19 @@ public class VerwaltungRaumTab extends JPanel {
 		leftBottomPanel.add(lblAndereBereiche, "cell 0 0");
 		
 		JButton btnNutzerverwaltung = new JButton("Nutzer");
-		btnNutzerverwaltung.addActionListener(new NutzerverwButton());
+		btnNutzerverwaltung.addActionListener(new BtnsNav("Nutzerverw"));
 		leftBottomPanel.add(btnNutzerverwaltung, "cell 0 1");
 		
 		btnAnfragen = new JButton("Anfragen");
-		btnAnfragen.addActionListener(new AnfrageverwButton());
+		btnAnfragen.addActionListener(new BtnsNav("Anfrageverw"));
 		leftBottomPanel.add(btnAnfragen, "cell 0 2");
 		
 		btnLivetickerBearbeiten = new JButton("LiveTicker");
+		btnLivetickerBearbeiten.addActionListener(new BtnsNav("LiveTicker"));
 		leftBottomPanel.add(btnLivetickerBearbeiten, "cell 0 3");
 		
 		JButton btnLehrstuhlverwaltung = new JButton("Lehrst\u00FChle");
-		btnLehrstuhlverwaltung.addActionListener(new LehrstuhlverwButton());
+		btnLehrstuhlverwaltung.addActionListener(new BtnsNav("Lehrstuhlverw"));
 		leftBottomPanel.add(btnLehrstuhlverwaltung, "cell 0 4");
 		
 		verwaltungTableScrollPane = new JScrollPane();
@@ -141,24 +144,22 @@ public class VerwaltungRaumTab extends JPanel {
 		add(buttonPanel, "cell 6 2,grow");
 		
 		btnHinzufugen = new JButton("hinzuf\u00FCgen");
-		btnHinzufugen.addActionListener(new  RaumManageButton());
+		btnHinzufugen.addActionListener(new RaumTabBtnsControl("hinz"));
 		btnHinzufugen.setBounds(6, 11, 88, 23);
 		buttonPanel.add(btnHinzufugen);
 		
 		JButton btnBearbeiten = new JButton("bearbeiten");
-		btnBearbeiten.addActionListener(new RaumManageButton());
+		btnBearbeiten.addActionListener(new RaumTabBtnsControl("bearbeiten"));
 		btnBearbeiten.setBounds(6, 45, 88, 23);
 		buttonPanel.add(btnBearbeiten);
 		
 		btnLschen = new JButton("l\u00F6schen");
+		btnLschen.addActionListener(new RaumTabBtnsControl("loschen"));
 		btnLschen.setBounds(6, 79, 88, 23);
 		buttonPanel.add(btnLschen);
 		
 		btnRaumplanDrucken = new JButton("Raumplan");
-		btnRaumplanDrucken.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
+		btnRaumplanDrucken.addActionListener(new RaumTabBtnsControl("Raumplan"));
 		btnRaumplanDrucken.setBounds(6, 124, 94, 23);
 		buttonPanel.add(btnRaumplanDrucken);
 		

@@ -4,9 +4,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
-import modules.dozenten.controller.LVWindow;
-import modules.dozenten.controller.LVWindowBtnAbbr;
-import modules.dozenten.controller.LVWindowBtnSpeichern;
+import modules.dozenten.controller.*;
 import java.awt.Dimension;
 import net.miginfocom.swing.MigLayout;
 import javax.swing.JComboBox;
@@ -94,11 +92,11 @@ public class DozentenLVMaskeWindow extends JFrame {
 		contentPane.add(textField_2, "cell 3 8 1 2,growx");
 		
 		JButton btnNewButton = new JButton("Abbrechen");
-		btnNewButton.addActionListener(new LVWindowBtnAbbr());
+		btnNewButton.addActionListener(new LVWindowBtns("abbr"));
 		contentPane.add(btnNewButton, "cell 3 10,alignx right");
 		
 		JButton btnAbbrechen = new JButton("Speichern");
-		btnAbbrechen.addActionListener(new LVWindowBtnSpeichern());
+		btnAbbrechen.addActionListener(new LVWindowBtns("speichern"));
 		contentPane.add(btnAbbrechen, "cell 4 10");
 		
 		addWindowListener(new LVWindow());

@@ -4,12 +4,11 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
-import modules.verwaltung.controller.RaumMaskeWindow;
+import modules.verwaltung.controller.RaumWindow;
+import modules.verwaltung.controller.RaumWindowBtns;
 import java.awt.Font;
 import javax.swing.JTextField;
 import javax.swing.JButton;
-import javax.swing.JComboBox;
-import javax.swing.DefaultComboBoxModel;
 
 public class VerwaltungRaumMaskeWindow extends JFrame {
 
@@ -17,20 +16,20 @@ public class VerwaltungRaumMaskeWindow extends JFrame {
 	private JPanel contentPane;
 	private JTextField txtNutzerkennung;
 	private JTextField txtPasswort;
-	private JComboBox textField;
-	private JComboBox textField_1;
-	private JComboBox textField_2;
-	private JComboBox textField_3;
-	private JComboBox textField_4;
-	private JComboBox textField_5;
-	private JComboBox textField_6;
+	private JTextField textField;
+	private JTextField textField_1;
+	private JTextField textField_2;
+	private JTextField textField_3;
+	private JTextField textField_4;
+	private JTextField textField_5;
+	private JTextField textField_6;
 
 	/**
 	 * Create the frame.
 	 */
 	@SuppressWarnings({ })
 	public VerwaltungRaumMaskeWindow() {
-		setTitle("Raum hinzuf\u00FCgen");
+		setTitle("Raum Info");
 		setBounds(100, 100, 266, 400);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -69,10 +68,12 @@ public class VerwaltungRaumMaskeWindow extends JFrame {
 		
 		JButton btnSpeichern = new JButton("Speichern");
 		btnSpeichern.setBounds(133, 288, 90, 28);
+		btnSpeichern.addActionListener(new RaumWindowBtns("speichern"));
 		contentPane.add(btnSpeichern);
 		
 		JButton btnAbbrechen = new JButton("Abbrechen");
 		btnAbbrechen.setBounds(23, 288, 90, 28);
+		btnAbbrechen.addActionListener(new RaumWindowBtns("abbr"));
 		contentPane.add(btnAbbrechen);
 		
 		JLabel lblBeamer = new JLabel("Beamer:");
@@ -100,48 +101,48 @@ public class VerwaltungRaumMaskeWindow extends JFrame {
 		lblWhiteboards.setBounds(12, 250, 120, 14);
 		contentPane.add(lblWhiteboards);
 		
-		textField = new JComboBox();
-		textField.setModel(new DefaultComboBoxModel(new String[] {"0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "29"}));
+		textField = new JTextField();
+		textField.setText("0");
 		textField.setFont(new Font("SansSerif", Font.PLAIN, 12));
 		textField.setBounds(115, 131, 116, 20);
 		contentPane.add(textField);
 		
-		textField_1 = new JComboBox();
-		textField_1.setModel(new DefaultComboBoxModel(new String[] {"0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "29"}));
+		textField_1 = new JTextField();
+		textField_1.setText("0");
 		textField_1.setFont(new Font("SansSerif", Font.PLAIN, 12));
 		textField_1.setBounds(115, 97, 116, 20);
 		contentPane.add(textField_1);
 		
-		textField_2 = new JComboBox();
-		textField_2.setModel(new DefaultComboBoxModel(new String[] {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "29"}));
+		textField_2 = new JTextField();
+		textField_2.setText("0");
 		textField_2.setFont(new Font("SansSerif", Font.PLAIN, 12));
 		textField_2.setBounds(115, 66, 116, 20);
 		contentPane.add(textField_2);
 		
-		textField_3 = new JComboBox();
-		textField_3.setModel(new DefaultComboBoxModel(new String[] {"0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "29"}));
+		textField_3 = new JTextField();
+		textField_3.setText("0");
 		textField_3.setFont(new Font("SansSerif", Font.PLAIN, 12));
 		textField_3.setBounds(115, 159, 116, 20);
 		contentPane.add(textField_3);
 		
-		textField_4 = new JComboBox();
-		textField_4.setModel(new DefaultComboBoxModel(new String[] {"0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "29"}));
+		textField_4 = new JTextField();
+		textField_4.setText("0");
 		textField_4.setFont(new Font("SansSerif", Font.PLAIN, 12));
 		textField_4.setBounds(115, 186, 116, 20);
 		contentPane.add(textField_4);
 		
-		textField_5 = new JComboBox();
-		textField_5.setModel(new DefaultComboBoxModel(new String[] {"0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "29"}));
+		textField_5 = new JTextField();
+		textField_5.setText("0");
 		textField_5.setFont(new Font("SansSerif", Font.PLAIN, 12));
 		textField_5.setBounds(115, 213, 116, 20);
 		contentPane.add(textField_5);
 		
-		textField_6 = new JComboBox();
-		textField_6.setModel(new DefaultComboBoxModel(new String[] {"0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "29"}));
+		textField_6 = new JTextField();
+		textField_6.setText("0");
 		textField_6.setFont(new Font("SansSerif", Font.PLAIN, 12));
 		textField_6.setBounds(115, 244, 116, 20);
 		contentPane.add(textField_6);
 		
-		addWindowListener(new RaumMaskeWindow());
+		addWindowListener(new RaumWindow());
 	}
 }
