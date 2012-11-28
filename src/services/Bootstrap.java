@@ -5,7 +5,7 @@ import java.awt.EventQueue;
 import javax.swing.UIManager;
 import javax.swing.UIManager.LookAndFeelInfo;
 
-import modules.coregui.views.CoreGUI;
+import modules.base.views.Base;
 
 public class Bootstrap {
 
@@ -38,7 +38,7 @@ public class Bootstrap {
 				}
 				
 				try {
-					CoreGUI frame = serviceManager.getCoreGUI();
+					Base frame = serviceManager.getBase();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();

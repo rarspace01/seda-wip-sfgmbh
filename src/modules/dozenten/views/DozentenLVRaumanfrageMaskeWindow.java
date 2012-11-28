@@ -1,16 +1,13 @@
 package modules.dozenten.views;
 
-import java.awt.BorderLayout;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
-import modules.dozenten.controller.LVMaskeWindow;
-import java.awt.Dimension;
+import modules.dozenten.controller.*;
 import net.miginfocom.swing.MigLayout;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
-import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.Font;
 
@@ -22,6 +19,7 @@ public class DozentenLVRaumanfrageMaskeWindow extends JFrame {
 	/**
 	 * Create the frame.
 	 */
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public DozentenLVRaumanfrageMaskeWindow() {
 		setTitle("Raumanfrage senden");
 		setBounds(100, 100, 475, 533);
@@ -137,12 +135,14 @@ public class DozentenLVRaumanfrageMaskeWindow extends JFrame {
 		contentPane.add(comboBox_10, "cell 3 17,growx");
 		
 		JButton btnAbbrechen = new JButton("Abbrechen");
+		btnAbbrechen.addActionListener(new LVRaumanfrageWindowBtnAbbr());
 		contentPane.add(btnAbbrechen, "cell 3 19,alignx right");
 		
 		JButton btnNewButton = new JButton("Los!");
+		btnNewButton.addActionListener(new LVRaumanfrageWindowBtnLos());
 		contentPane.add(btnNewButton, "cell 4 19");
 		
-		addWindowListener(new LVMaskeWindow());
+		addWindowListener(new LVWindow());
 	}
 
 }

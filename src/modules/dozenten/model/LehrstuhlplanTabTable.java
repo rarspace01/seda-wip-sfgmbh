@@ -2,7 +2,7 @@ package modules.dozenten.model;
 
 import javax.swing.table.*;
 
-public class DozentenLehrstuhlplanTable extends DefaultTableModel {
+public class LehrstuhlplanTabTable extends DefaultTableModel {
 
 	private static final long serialVersionUID = 1L;
 			private Object[][] preFill = {
@@ -18,7 +18,7 @@ public class DozentenLehrstuhlplanTable extends DefaultTableModel {
 			private String[] preFillHeader = {"Uhrzeit", "Montag", "Dienstag", "Mittwoch", "Donnerstag", "Freitag"};
 	
 	
-	public DozentenLehrstuhlplanTable() {
+	public LehrstuhlplanTabTable() {
 		this.setDataVector(preFill, preFillHeader);
 	}
 }
