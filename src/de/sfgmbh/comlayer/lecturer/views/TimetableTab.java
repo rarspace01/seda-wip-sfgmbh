@@ -1,4 +1,4 @@
-package comlayer.lecturer.views;
+package de.sfgmbh.comlayer.lecturer.views;
 
 import java.awt.Color;
 
@@ -9,9 +9,9 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import net.miginfocom.swing.MigLayout;
-import applayer.core.controller.Bootstrap;
-import comlayer.lecturer.controller.ProfessorshipTimetableTabBtn;
-import comlayer.lecturer.controller.ProfessorshipTimetableTabCmbbox;
+import de.sfgmbh.applayer.core.controller.Bootstrap;
+import de.sfgmbh.comlayer.lecturer.controller.ProfessorshipTimetableTabBtn;
+import de.sfgmbh.comlayer.lecturer.controller.ProfessorshipTimetableTabCmbbox;
 
 public class TimetableTab extends JPanel {
 	private static final long serialVersionUID = 1L;

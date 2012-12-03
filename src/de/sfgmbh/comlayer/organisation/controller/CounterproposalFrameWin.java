@@ -1,8 +1,8 @@
-package comlayer.organisation.controller;
+package de.sfgmbh.comlayer.organisation.controller;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 
-import applayer.core.controller.Bootstrap;
+import de.sfgmbh.applayer.core.controller.Bootstrap;
 
 
 public class CounterproposalFrameWin implements WindowListener {

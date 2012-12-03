@@ -1,10 +1,10 @@
-package comlayer.core.views;
+package de.sfgmbh.comlayer.core.views;
 
 import javax.swing.JDialog;
 import javax.swing.JButton;
 import javax.swing.JTextPane;
 
-import comlayer.core.controller.InfoDialogBtnOk;
+import de.sfgmbh.comlayer.core.controller.InfoDialogBtnOk;
 
 import java.awt.Dimension;
 import java.awt.SystemColor;

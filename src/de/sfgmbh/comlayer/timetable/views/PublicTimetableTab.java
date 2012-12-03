@@ -1,4 +1,4 @@
-package comlayer.timetable.views;
+package de.sfgmbh.comlayer.timetable.views;
 
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -6,7 +6,7 @@ import javax.swing.JTable;
 import java.awt.Color;
 import javax.swing.JButton;
 
-import applayer.core.controller.Bootstrap;
+import de.sfgmbh.applayer.core.controller.Bootstrap;
 
 public class PublicTimetableTab extends JPanel {
 

@@ -1,9 +1,9 @@
-package comlayer.core.controller;
+package de.sfgmbh.comlayer.core.controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import comlayer.core.views.InfoDialog;
+import de.sfgmbh.comlayer.core.views.InfoDialog;
 
 public class InfoDialogBtnOk implements ActionListener {
 	

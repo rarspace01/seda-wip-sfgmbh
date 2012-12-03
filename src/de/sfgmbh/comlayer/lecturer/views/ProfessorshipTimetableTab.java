@@ -1,4 +1,4 @@
-package comlayer.lecturer.views;
+package de.sfgmbh.comlayer.lecturer.views;
 
 import java.awt.Color;
 
@@ -9,9 +9,9 @@ import javax.swing.JTable;
 import javax.swing.JLabel;
 import javax.swing.JButton;
 
-import comlayer.lecturer.controller.ProfessorshipTimetableTabBtn;
+import de.sfgmbh.comlayer.lecturer.controller.ProfessorshipTimetableTabBtn;
 
-import applayer.core.controller.Bootstrap;
+import de.sfgmbh.applayer.core.controller.Bootstrap;
 
 import java.awt.Font;
 import java.awt.Dimension;

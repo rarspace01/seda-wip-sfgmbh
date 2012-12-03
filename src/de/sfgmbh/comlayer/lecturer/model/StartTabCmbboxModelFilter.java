@@ -1,4 +1,4 @@
-package comlayer.lecturer.model;
+package de.sfgmbh.comlayer.lecturer.model;
 
 import javax.swing.DefaultComboBoxModel;
 

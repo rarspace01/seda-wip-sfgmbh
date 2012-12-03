@@ -1,4 +1,4 @@
-package comlayer.organisation.views;
+package de.sfgmbh.comlayer.organisation.views;
 
 import java.awt.Dimension;
 import java.awt.Font;
@@ -12,9 +12,9 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.border.TitledBorder;
 import net.miginfocom.swing.MigLayout;
-import comlayer.organisation.controller.RequestTabBtnsControl;
-import comlayer.organisation.controller.BtnsNav;
-import comlayer.organisation.controller.CmbboxFilter;
+import de.sfgmbh.comlayer.organisation.controller.RequestTabBtnsControl;
+import de.sfgmbh.comlayer.organisation.controller.BtnsNav;
+import de.sfgmbh.comlayer.organisation.controller.CmbboxFilter;
 
 public class RequestTab extends JPanel {
 

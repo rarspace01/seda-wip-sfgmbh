@@ -1,4 +1,4 @@
-package comlayer.lecturer.views;
+package de.sfgmbh.comlayer.lecturer.views;
 
 import java.awt.Dimension;
 
@@ -11,8 +11,8 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 import net.miginfocom.swing.MigLayout;
-import comlayer.lecturer.controller.CourseFrameWin;
-import comlayer.lecturer.controller.CourseFrameBtns;
+import de.sfgmbh.comlayer.lecturer.controller.CourseFrameWin;
+import de.sfgmbh.comlayer.lecturer.controller.CourseFrameBtns;
 
 public class CourseFrame extends JFrame {
 

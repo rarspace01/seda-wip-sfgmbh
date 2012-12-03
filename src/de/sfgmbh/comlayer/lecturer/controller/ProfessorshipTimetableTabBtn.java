@@ -1,9 +1,9 @@
-package comlayer.lecturer.controller;
+package de.sfgmbh.comlayer.lecturer.controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import comlayer.core.views.InfoDialog;
+import de.sfgmbh.comlayer.core.views.InfoDialog;
 
 
 public class ProfessorshipTimetableTabBtn implements ActionListener {
