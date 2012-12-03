@@ -24,15 +24,15 @@ public class InfoDialog extends JDialog {
 		
 	}
 	public InfoDialog(String info) {
-		this.getTxtpnInfoWindowText().setText(info);
+		this.getTxtpnInfoWindowText().setText("<div style='font-family: Tahoma, Geneva, sans-serif; text-align: center;'>" + info + "</div>");
 		createContents();
 	}
 	public InfoDialog(String info, String title) {
 		if (info != null) {
-			this.getTxtpnInfoWindowText().setText(info);
+			this.getTxtpnInfoWindowText().setText("<div style='font-family: Tahoma, Geneva, sans-serif; text-align: center;'>" + info + "</div>");
 		}
-		if (info != null) {
-			createContents(info);
+		if (title != null) {
+			createContents(title);
 		} else {
 			createContents();
 		}
@@ -41,7 +41,7 @@ public class InfoDialog extends JDialog {
 	private void createContents() {
 		setModal(true);
 		setAlwaysOnTop(true);
-		this.createContents("Info");
+		this.createContents("Fehler");
 	}
 	private void createContents(String title) {
 		setTitle(title);
@@ -58,13 +58,14 @@ public class InfoDialog extends JDialog {
 			txtpnInfoDialogText.setContentType("text/html");
 			txtpnInfoDialogText.setSize(new Dimension(250, 150));
 			txtpnInfoDialogText.setBackground(SystemColor.control);
-			txtpnInfoDialogText.setText("Info Window Text");
+			txtpnInfoDialogText.setText("<div style='font-family: Tahoma, Geneva, sans-serif; text-align: center;'>Info Window Text</div>");
 		}
 		return txtpnInfoDialogText;
 	}
 	public JButton getBtnOk() {
 		if (btnOk == null) {
 			btnOk = new JButton("OK");
+			btnOk.setPreferredSize(new Dimension(60, 23));
 			btnOk.addActionListener(new InfoDialogBtnOk(this));
 		}
 		return btnOk;

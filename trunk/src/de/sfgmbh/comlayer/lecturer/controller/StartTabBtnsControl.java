@@ -45,7 +45,7 @@ public class StartTabBtnsControl implements ActionListener {
 		
 		// Zurückziehen button is pressed
 		if (this.ctrlAction.equals("back")){
-			this.getInfoWindow("Hier folgt die Anwendungslogik um einen Antrag zurückzuziehen!").setVisible(true);
+			this.getInfoWindow("Hier folgt die Anwendungslogik um einen Antrag zurückzuziehen!").setVisible(true); // Titel: "blaa"
 		}
 		
 	}
@@ -53,6 +53,10 @@ public class StartTabBtnsControl implements ActionListener {
 	// Manage InfoWindow instance
 	public InfoDialog getInfoWindow(String msg) {
 		this.infoWindow = new InfoDialog(msg);
+		return this.infoWindow;
+	}
+	public InfoDialog getInfoWindow(String msg, String title) {
+		this.infoWindow = new InfoDialog(msg, title);
 		return this.infoWindow;
 	}
 }
