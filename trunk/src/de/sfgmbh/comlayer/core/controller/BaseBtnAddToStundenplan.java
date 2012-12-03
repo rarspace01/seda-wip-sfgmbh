@@ -3,7 +3,7 @@ package de.sfgmbh.comlayer.core.controller;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import de.sfgmbh.applayer.core.controller.Bootstrap;
+import de.sfgmbh.init.Bootstrap;
 
 
 

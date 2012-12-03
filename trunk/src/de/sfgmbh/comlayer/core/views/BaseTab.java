@@ -29,9 +29,9 @@ import de.sfgmbh.comlayer.core.controller.BaseBtnLogin;
 import de.sfgmbh.comlayer.core.controller.BaseCmbboxFilter;
 import de.sfgmbh.comlayer.core.controller.BaseRdbtnTopLeft;
 import de.sfgmbh.comlayer.core.model.BaseCmbboxModelFilter;
+import de.sfgmbh.init.Bootstrap;
 
 import net.miginfocom.swing.MigLayout;
-import de.sfgmbh.applayer.core.controller.Bootstrap;
 
 public class BaseTab extends JFrame{
 

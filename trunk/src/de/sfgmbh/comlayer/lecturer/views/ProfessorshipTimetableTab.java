@@ -10,8 +10,8 @@ import javax.swing.JLabel;
 import javax.swing.JButton;
 
 import de.sfgmbh.comlayer.lecturer.controller.ProfessorshipTimetableTabBtn;
+import de.sfgmbh.init.Bootstrap;
 
-import de.sfgmbh.applayer.core.controller.Bootstrap;
 
 import java.awt.Font;
 import java.awt.Dimension;

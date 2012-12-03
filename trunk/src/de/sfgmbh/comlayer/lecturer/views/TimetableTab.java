@@ -9,9 +9,9 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import net.miginfocom.swing.MigLayout;
-import de.sfgmbh.applayer.core.controller.Bootstrap;
 import de.sfgmbh.comlayer.lecturer.controller.ProfessorshipTimetableTabBtn;
 import de.sfgmbh.comlayer.lecturer.controller.ProfessorshipTimetableTabCmbbox;
+import de.sfgmbh.init.Bootstrap;
 
 public class TimetableTab extends JPanel {
 	private static final long serialVersionUID = 1L;

@@ -6,8 +6,8 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 import de.sfgmbh.comlayer.core.views.InfoDialog;
+import de.sfgmbh.init.Bootstrap;
 
-import de.sfgmbh.applayer.core.controller.Bootstrap;
 
 
 
