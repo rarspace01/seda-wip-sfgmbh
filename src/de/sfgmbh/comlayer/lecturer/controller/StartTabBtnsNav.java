@@ -4,8 +4,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import de.sfgmbh.comlayer.core.views.InfoDialog;
+import de.sfgmbh.init.Bootstrap;
 
-import de.sfgmbh.applayer.core.controller.Bootstrap;
 
 
 

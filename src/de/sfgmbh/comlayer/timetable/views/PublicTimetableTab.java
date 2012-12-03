@@ -6,7 +6,7 @@ import javax.swing.JTable;
 import java.awt.Color;
 import javax.swing.JButton;
 
-import de.sfgmbh.applayer.core.controller.Bootstrap;
+import de.sfgmbh.init.Bootstrap;
 
 public class PublicTimetableTab extends JPanel {
 

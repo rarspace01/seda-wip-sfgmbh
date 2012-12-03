@@ -2,7 +2,7 @@ package de.sfgmbh.comlayer.lecturer.controller;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 
-import de.sfgmbh.applayer.core.controller.Bootstrap;
+import de.sfgmbh.init.Bootstrap;
 
 
 public class CourseFrameWin implements WindowListener {

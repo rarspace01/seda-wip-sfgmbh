@@ -1,10 +1,11 @@
-package de.sfgmbh.applayer.core.controller;
+package de.sfgmbh.init;
 
 import java.awt.EventQueue;
 
 import javax.swing.UIManager;
 import javax.swing.UIManager.LookAndFeelInfo;
 
+import de.sfgmbh.applayer.core.controller.ServiceManager;
 import de.sfgmbh.comlayer.core.views.BaseTab;
 
 
