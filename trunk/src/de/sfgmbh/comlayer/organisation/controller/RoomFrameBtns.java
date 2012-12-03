@@ -31,8 +31,8 @@ public class RoomFrameBtns implements ActionListener {
 		// Speichern button is pressed
 		if (this.ctrlAction.equals("save")){
 			Bootstrap.serviceManager.getOrgaRoomFrame().setVisible(false);
+			this.getInfoWindow("<b>Der Raum konnte nicht hinzugefügt werden:</b><br><br>1. Die Raumnummer ist bereits im System vorhanden.<br><br>2. Einer der von Ihnen eingegebenen Werte ist syntaktisch inkorrekt.<br><br>3. Der von Ihnen eingetragene Raum existiert nicht im System. Sollte er doch existieren, kontaktieren Sie bitte die Hausverwaltung.").setVisible(true);
 		}
-		
 	}
 	
 	// Manage InfoWindow instance

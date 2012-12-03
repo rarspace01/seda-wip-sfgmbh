@@ -55,7 +55,7 @@ public class InfoDialog extends JDialog {
 	public JTextPane getTxtpnInfoWindowText() {
 		if (txtpnInfoDialogText == null) {
 			txtpnInfoDialogText = new JTextPane();
-			txtpnInfoDialogText.setContentType("text/html\r\n");
+			txtpnInfoDialogText.setContentType("text/html");
 			txtpnInfoDialogText.setSize(new Dimension(250, 150));
 			txtpnInfoDialogText.setBackground(SystemColor.control);
 			txtpnInfoDialogText.setText("Info Window Text");
