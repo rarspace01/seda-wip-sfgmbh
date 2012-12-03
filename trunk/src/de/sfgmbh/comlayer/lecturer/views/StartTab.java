@@ -1,4 +1,4 @@
-package comlayer.lecturer.views;
+package de.sfgmbh.comlayer.lecturer.views;
 
 import java.awt.Dimension;
 import java.awt.Font;
@@ -15,12 +15,12 @@ import javax.swing.border.TitledBorder;
 
 import net.miginfocom.swing.MigLayout;
 
-import comlayer.lecturer.controller.StartTabBtnsControl;
-import comlayer.lecturer.controller.StartTabBtnsNav;
-import comlayer.lecturer.controller.StartTabCmbboxFilter;
-import comlayer.lecturer.model.StartTabCmbboxModelFilter;
-import comlayer.lecturer.model.StartTabTableBottom;
-import comlayer.lecturer.model.StartTabTableTop;
+import de.sfgmbh.comlayer.lecturer.controller.StartTabBtnsControl;
+import de.sfgmbh.comlayer.lecturer.controller.StartTabBtnsNav;
+import de.sfgmbh.comlayer.lecturer.controller.StartTabCmbboxFilter;
+import de.sfgmbh.comlayer.lecturer.model.StartTabCmbboxModelFilter;
+import de.sfgmbh.comlayer.lecturer.model.StartTabTableBottom;
+import de.sfgmbh.comlayer.lecturer.model.StartTabTableTop;
 
 public class StartTab extends JPanel {
 

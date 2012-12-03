@@ -1,9 +1,9 @@
-package comlayer.core.controller;
+package de.sfgmbh.comlayer.core.controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import applayer.core.controller.Bootstrap;
+import de.sfgmbh.applayer.core.controller.Bootstrap;
 
 
 

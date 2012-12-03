@@ -1,4 +1,4 @@
-package comlayer.organisation.views;
+package de.sfgmbh.comlayer.organisation.views;
 
 import java.awt.Dimension;
 import java.awt.Font;
@@ -14,9 +14,9 @@ import javax.swing.JTextField;
 import javax.swing.border.TitledBorder;
 import net.miginfocom.swing.MigLayout;
 
-import comlayer.organisation.controller.BtnsNav;
-import comlayer.organisation.controller.CmbboxFilter;
-import comlayer.organisation.controller.RoomTabBtnsControl;
+import de.sfgmbh.comlayer.organisation.controller.BtnsNav;
+import de.sfgmbh.comlayer.organisation.controller.CmbboxFilter;
+import de.sfgmbh.comlayer.organisation.controller.RoomTabBtnsControl;
 
 public class RoomTab extends JPanel {
 

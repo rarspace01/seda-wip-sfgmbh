@@ -1,4 +1,4 @@
-package comlayer.organisation.views;
+package de.sfgmbh.comlayer.organisation.views;
 
 import java.awt.Font;
 
@@ -10,8 +10,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
-import comlayer.organisation.controller.CounterproposalFrameWin;
-import comlayer.organisation.controller.CounterproposalFrameBtns;
+import de.sfgmbh.comlayer.organisation.controller.CounterproposalFrameWin;
+import de.sfgmbh.comlayer.organisation.controller.CounterproposalFrameBtns;
 
 public class CounterproposalFrame extends JFrame {
 

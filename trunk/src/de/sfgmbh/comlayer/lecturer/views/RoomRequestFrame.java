@@ -1,4 +1,4 @@
-package comlayer.lecturer.views;
+package de.sfgmbh.comlayer.lecturer.views;
 
 import java.awt.Font;
 
@@ -12,8 +12,8 @@ import javax.swing.border.EmptyBorder;
 
 import net.miginfocom.swing.MigLayout;
 
-import comlayer.lecturer.controller.RoomRequestFrameBtns;
-import comlayer.lecturer.controller.CourseFrameWin;
+import de.sfgmbh.comlayer.lecturer.controller.RoomRequestFrameBtns;
+import de.sfgmbh.comlayer.lecturer.controller.CourseFrameWin;
 
 public class RoomRequestFrame extends JFrame {
 

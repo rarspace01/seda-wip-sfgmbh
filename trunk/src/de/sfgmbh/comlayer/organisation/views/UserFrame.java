@@ -1,4 +1,4 @@
-package comlayer.organisation.views;
+package de.sfgmbh.comlayer.organisation.views;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -11,8 +11,8 @@ import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 
-import comlayer.organisation.controller.UserFrameWin;
-import comlayer.organisation.controller.UserFrameBtns;
+import de.sfgmbh.comlayer.organisation.controller.UserFrameWin;
+import de.sfgmbh.comlayer.organisation.controller.UserFrameBtns;
 
 public class UserFrame extends JFrame {
 

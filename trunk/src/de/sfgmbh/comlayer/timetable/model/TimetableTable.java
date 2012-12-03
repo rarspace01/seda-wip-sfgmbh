@@ -1,4 +1,4 @@
-package comlayer.timetable.model;
+package de.sfgmbh.comlayer.timetable.model;
 
 import javax.swing.table.*;
 

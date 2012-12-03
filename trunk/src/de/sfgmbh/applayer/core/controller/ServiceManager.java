@@ -1,24 +1,25 @@
-package applayer.core.controller;
+package de.sfgmbh.applayer.core.controller;
 
-import comlayer.core.model.BaseTableMain;
-import comlayer.core.views.BaseTab;
-import comlayer.core.views.InfoDialog;
-import comlayer.lecturer.model.ProfessorshipTimetableTabTable;
-import comlayer.lecturer.model.TimetableTabTable;
-import comlayer.lecturer.views.CourseFrame;
-import comlayer.lecturer.views.RoomRequestFrame;
-import comlayer.lecturer.views.ProfessorshipTimetableTab;
-import comlayer.lecturer.views.TimetableTab;
-import comlayer.lecturer.views.StartTab;
-import comlayer.organisation.views.RequestTab;
-import comlayer.organisation.views.CounterproposalFrame;
-import comlayer.organisation.views.ProfessorshipFrame;
-import comlayer.organisation.views.ProfessorshipTab;
-import comlayer.organisation.views.UserFrame;
-import comlayer.organisation.views.UserTab;
-import comlayer.organisation.views.RoomFrame;
-import comlayer.organisation.views.RoomTab;
-import comlayer.timetable.views.PublicTimetableTab;
+import de.sfgmbh.comlayer.core.model.BaseTableMain;
+import de.sfgmbh.comlayer.core.views.BaseTab;
+import de.sfgmbh.comlayer.core.views.InfoDialog;
+import de.sfgmbh.comlayer.lecturer.model.ProfessorshipTimetableTabTable;
+import de.sfgmbh.comlayer.lecturer.model.TimetableTabTable;
+import de.sfgmbh.comlayer.lecturer.views.CourseFrame;
+import de.sfgmbh.comlayer.lecturer.views.ProfessorshipTimetableTab;
+import de.sfgmbh.comlayer.lecturer.views.RoomRequestFrame;
+import de.sfgmbh.comlayer.lecturer.views.StartTab;
+import de.sfgmbh.comlayer.lecturer.views.TimetableTab;
+import de.sfgmbh.comlayer.organisation.views.CounterproposalFrame;
+import de.sfgmbh.comlayer.organisation.views.ProfessorshipFrame;
+import de.sfgmbh.comlayer.organisation.views.ProfessorshipTab;
+import de.sfgmbh.comlayer.organisation.views.RequestTab;
+import de.sfgmbh.comlayer.organisation.views.RoomFrame;
+import de.sfgmbh.comlayer.organisation.views.RoomTab;
+import de.sfgmbh.comlayer.organisation.views.UserFrame;
+import de.sfgmbh.comlayer.organisation.views.UserTab;
+import de.sfgmbh.comlayer.timetable.views.PublicTimetableTab;
+
 
 public class ServiceManager {
 	

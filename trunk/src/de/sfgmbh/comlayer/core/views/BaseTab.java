@@ -1,4 +1,4 @@
-package comlayer.core.views;
+package de.sfgmbh.comlayer.core.views;
 
 import java.awt.CardLayout;
 import java.awt.Dimension;
@@ -24,14 +24,14 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableCellRenderer;
 
-import comlayer.core.controller.BaseBtnAddToStundenplan;
-import comlayer.core.controller.BaseBtnLogin;
-import comlayer.core.controller.BaseCmbboxFilter;
-import comlayer.core.controller.BaseRdbtnTopLeft;
-import comlayer.core.model.BaseCmbboxModelFilter;
+import de.sfgmbh.comlayer.core.controller.BaseBtnAddToStundenplan;
+import de.sfgmbh.comlayer.core.controller.BaseBtnLogin;
+import de.sfgmbh.comlayer.core.controller.BaseCmbboxFilter;
+import de.sfgmbh.comlayer.core.controller.BaseRdbtnTopLeft;
+import de.sfgmbh.comlayer.core.model.BaseCmbboxModelFilter;
 
 import net.miginfocom.swing.MigLayout;
-import applayer.core.controller.Bootstrap;
+import de.sfgmbh.applayer.core.controller.Bootstrap;
 
 public class BaseTab extends JFrame{
 

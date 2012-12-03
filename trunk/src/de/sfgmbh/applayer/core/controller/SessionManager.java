@@ -1,4 +1,4 @@
-package applayer.core.controller;
+package de.sfgmbh.applayer.core.controller;
 
 public class SessionManager {
 	

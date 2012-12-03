@@ -1,11 +1,11 @@
-package comlayer.organisation.controller;
+package de.sfgmbh.comlayer.organisation.controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import comlayer.core.views.InfoDialog;
+import de.sfgmbh.comlayer.core.views.InfoDialog;
 
-import applayer.core.controller.Bootstrap;
+import de.sfgmbh.applayer.core.controller.Bootstrap;
 
 public class UserFrameBtns implements ActionListener {
 	

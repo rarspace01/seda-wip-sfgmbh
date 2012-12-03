@@ -1,4 +1,4 @@
-package comlayer.organisation.views;
+package de.sfgmbh.comlayer.organisation.views;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -9,8 +9,8 @@ import java.awt.Font;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 
-import comlayer.organisation.controller.ProfessorshipFrameWin;
-import comlayer.organisation.controller.ProfessorshipFrameBtns;
+import de.sfgmbh.comlayer.organisation.controller.ProfessorshipFrameWin;
+import de.sfgmbh.comlayer.organisation.controller.ProfessorshipFrameBtns;
 
 public class ProfessorshipFrame extends JFrame {
 

@@ -1,4 +1,4 @@
-package comlayer.core.model;
+package de.sfgmbh.comlayer.core.model;
 
 import javax.swing.DefaultComboBoxModel;
 
