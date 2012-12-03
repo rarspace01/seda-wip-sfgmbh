@@ -37,13 +37,14 @@ public class StartTab extends JPanel {
 	private JPanel bottomSidePanel;
 	private JScrollPane lvVerwaltungTableScrollPane;
 	private JPanel buttonPanel;
-	private JButton btnHinzufugen;
-	private JButton btnRaumanfrage;
-	private JButton btnBearbeiten;
+	private JButton btnAdd;
+	private JButton btnRoomRequest;
+	private JButton btnEdit;
+	private JButton btnDelete;
 	private JLabel lblNewLabel;
 	private JComboBox<String> comboBox;
 	private JLabel lblStatus;
-	private JButton btnLivetickerBearbeiten;
+	private JButton btnLivetickerEdit;
 	private JPanel tablePanel;
 	private JTable raumanfragenTable;
 
@@ -88,9 +89,9 @@ public class StartTab extends JPanel {
 		btnLehrstuhlplan.addActionListener(new StartTabBtnsNav("professorshiptimetable"));
 		bottomSidePanel.add(btnLehrstuhlplan, "cell 0 1");
 		
-		btnLivetickerBearbeiten = new JButton("LiveTicker");
-		btnLivetickerBearbeiten.addActionListener(new StartTabBtnsNav("liveticker"));
-		bottomSidePanel.add(btnLivetickerBearbeiten, "cell 0 2");
+		btnLivetickerEdit = new JButton("LiveTicker");
+		btnLivetickerEdit.addActionListener(new StartTabBtnsNav("liveticker"));
+		bottomSidePanel.add(btnLivetickerEdit, "cell 0 2");
 		
 		tablePanel = new JPanel();
 		add(tablePanel, "cell 1 1 5 1,grow");
@@ -210,25 +211,30 @@ public class StartTab extends JPanel {
 		buttonPanel.setMaximumSize(new Dimension(100, 32767));
 		add(buttonPanel, "cell 6 1,grow");
 		
-		btnHinzufugen = new JButton("hinzuf\u00FCgen");
-		btnHinzufugen.addActionListener(new StartTabBtnsControl("add"));
-		btnHinzufugen.setBounds(0, 76, 88, 23);
-		buttonPanel.add(btnHinzufugen);
+		btnAdd = new JButton("hinzuf\u00FCgen");
+		btnAdd.addActionListener(new StartTabBtnsControl("add"));
+		btnAdd.setBounds(0, 54, 88, 23);
+		buttonPanel.add(btnAdd);
 		
-		btnBearbeiten = new JButton("bearbeiten");
-		btnBearbeiten.addActionListener(new StartTabBtnsControl("edit"));
-		btnBearbeiten.setBounds(0, 110, 88, 23);
-		buttonPanel.add(btnBearbeiten);
+		btnEdit = new JButton("bearbeiten");
+		btnEdit.addActionListener(new StartTabBtnsControl("edit"));
+		btnEdit.setBounds(0, 79, 88, 23);
+		buttonPanel.add(btnEdit);
+		
+		btnDelete = new JButton("löschen");
+		btnDelete.addActionListener(new StartTabBtnsControl("edit"));
+		btnDelete.setBounds(0, 106, 88, 23);
+		buttonPanel.add(btnDelete);
 		
 		JButton btnVerffentlichen = new JButton("freigeben");
 		btnVerffentlichen.addActionListener(new StartTabBtnsControl("publish"));
 		btnVerffentlichen.setBounds(0, 194, 100, 23);
 		buttonPanel.add(btnVerffentlichen);
 		
-		btnRaumanfrage = new JButton("Raumanfrage");
-		btnRaumanfrage.addActionListener(new StartTabBtnsControl("roomrequest"));
-		btnRaumanfrage.setBounds(0, 160, 100, 23);
-		buttonPanel.add(btnRaumanfrage);
+		btnRoomRequest = new JButton("Raumanfrage");
+		btnRoomRequest.addActionListener(new StartTabBtnsControl("roomrequest"));
+		btnRoomRequest.setBounds(0, 160, 100, 23);
+		buttonPanel.add(btnRoomRequest);
 		
 		JPanel panel = new JPanel();
 		panel.setBorder(UIManager.getBorder("FormattedTextField.border"));
