@@ -30,7 +30,7 @@ public class StartTabBtnsControl implements ActionListener {
 		
 		// Bearbeiten button is pressed
 		if (this.ctrlAction.equals("edit")){
-			this.getInfoWindow("Hier erscheint die Bearbieten-Maske!").setVisible(true);
+			this.getInfoWindow("Fehlermeldung: Sie haben keine Lehveranstaltung selektiert! Oder: Hier erscheint die Bearbieten-Maske wie Lehrveranstaltung hinzufügen!").setVisible(true);
 		}
 		
 		// Veröffentlichen button is pressed
