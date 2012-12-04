@@ -1,11 +1,13 @@
 package de.sfgmbh.comlayer.timetable.views;
 
+import java.awt.Color;
+
+import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
-import java.awt.Color;
-import javax.swing.JButton;
 
+import de.sfgmbh.comlayer.timetable.controller.BtnPdf;
 import de.sfgmbh.init.Bootstrap;
 
 public class PublicTimetableTab extends JPanel {
@@ -29,6 +31,7 @@ public class PublicTimetableTab extends JPanel {
 		StundenplanTable.setModel(Bootstrap.serviceManager.getLecturerTimetableTabTable());
 		
 		JButton btnPdfErzeugen = new JButton("PDF erzeugen");
+		btnPdfErzeugen.addActionListener(new BtnPdf("pdfCreate"));
 		btnPdfErzeugen.setBounds(21, 17, 131, 23);
 		add(btnPdfErzeugen);
 		StundenplanTable.getColumnModel().getColumn(0).setResizable(false);
