@@ -15,6 +15,8 @@ import net.miginfocom.swing.MigLayout;
 import de.sfgmbh.comlayer.lecturer.controller.RoomRequestFrameBtns;
 import de.sfgmbh.comlayer.lecturer.controller.CourseFrameWin;
 import javax.swing.JTextPane;
+import java.awt.Color;
+import javax.swing.UIManager;
 
 public class RoomRequestFrame extends JFrame {
 
@@ -34,8 +36,9 @@ public class RoomRequestFrame extends JFrame {
 		contentPane.setLayout(new MigLayout("", "[][grow][][grow][]", "[grow][][][][][][][][][][][][][][][][][][][][]"));
 		
 		JTextPane txtpnFehlermeldungsieHaben = new JTextPane();
+		txtpnFehlermeldungsieHaben.setBackground(UIManager.getColor("Button.background"));
 		txtpnFehlermeldungsieHaben.setContentType("text/html");
-		txtpnFehlermeldungsieHaben.setText("<div font face='Tahoma'><strong>Fehlermeldung:</strong> \"Sie haben keine Lehrveranstaltung selektiert\" oder: </div>");
+		txtpnFehlermeldungsieHaben.setText("<div font face='Tahoma'><strong>Fehlermeldung 1:</strong> <br>Sie haben keine Lehrveranstaltung selektiert <br> \r\n<strong>Fehlermeldung 2:</strong> <br>F\u00FCr die Lehrveranstaltung wurde schon eine Raumanfrage erstellt <br><strong>Oder Sie k\u00F6nnen eine Raumanfrage erstellen: </strong></div>");
 		contentPane.add(txtpnFehlermeldungsieHaben, "cell 1 0 4 1,grow");
 		
 		JLabel lblNewLabel_3 = new JLabel("Veranstaltung: SEDA-WIP-B");

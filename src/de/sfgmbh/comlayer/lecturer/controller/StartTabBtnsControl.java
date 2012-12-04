@@ -30,12 +30,17 @@ public class StartTabBtnsControl implements ActionListener {
 		
 		// Bearbeiten button is pressed
 		if (this.ctrlAction.equals("edit")){
-			this.getInfoWindow("Fehlermeldung: Sie haben keine Lehveranstaltung selektiert! Oder: Hier erscheint die Bearbieten-Maske wie Lehrveranstaltung hinzufügen!").setVisible(true);
+			this.getInfoWindow("<strong>Fehlermeldung:</strong><br> Sie haben keine Lehveranstaltung selektiert! <br> <strong>Oder Sie gelangen sofort zu einer Bearbeiten-Maske wie bei Lehrveranstaltung hinzufügen</strong>)").setVisible(true);
+		}
+		
+		// Löschen button is pressed
+		if (this.ctrlAction.equals("delete")){
+			this.getInfoWindow("<strong>Fehlermeldung:</strong><br> Sie haben keine Lehrveranstaltung selektiert!").setVisible(true);
 		}
 		
 		// Veröffentlichen button is pressed
 		if (this.ctrlAction.equals("publish")){
-			this.getInfoWindow("Hier folgt die Anwendungslogik um einen Belegung öffentlich zu schalten!").setVisible(true);
+			this.getInfoWindow("<strong>Fehlermeldung:</strong><br> Sie haben keine Lehrveranstaltung selektiert!").setVisible(true);
 		}
 		
 		// Raumanfrage button is pressed
@@ -45,7 +50,7 @@ public class StartTabBtnsControl implements ActionListener {
 		
 		// Zurückziehen button is pressed
 		if (this.ctrlAction.equals("back")){
-			this.getInfoWindow("Hier folgt die Anwendungslogik um einen Antrag zurückzuziehen!").setVisible(true); // Titel: "blaa"
+			this.getInfoWindow("<strong>Fehlermeldung:</strong><br> Sie haben keine Lehrveranstaltung selektiert!").setVisible(true); // Titel: "blaa"
 		}
 		
 	}
