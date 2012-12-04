@@ -53,6 +53,7 @@ public class StartTabBtnsControl implements ActionListener {
 			this.getInfoWindow("<strong>Fehlermeldung:</strong><br> Sie haben keine Lehrveranstaltung selektiert!").setVisible(true); // Titel: "blaa"
 		}
 		
+		
 	}
 	
 	// Manage InfoWindow instance
