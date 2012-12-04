@@ -31,6 +31,7 @@ public class ProfessorshipFrameBtns implements ActionListener {
 		// Speichern button is pressed
 		if (this.ctrlAction.equals("save")){
 			Bootstrap.serviceManager.getOrgaProfessorshipFrame().setVisible(false);
+			this.getInfoWindow("<b>Ihr Lehrstuhl konnte nicht hinzugefügt werden:</b><br><br>1. Sie haben keinen Lehrstuhlnamen eingegeben.<br>2. Der Lehrstuhl existiert bereits.<br>3. Sie haben keinen Lehrstuhlinhaber eingegeben.<br>4. Der Lehrstuhlinhaber existiert bereits.<br>5. Sie haben kein Hauptgebäude eingegeben.<br>6. Sie haben keinen Stock eingegeben.").setVisible(true);
 		}
 	}
 	
