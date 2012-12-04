@@ -25,7 +25,7 @@ import de.sfgmbh.comlayer.lecturer.model.StartTabTableTop;
 public class StartTab extends JPanel {
 
 	private static final long serialVersionUID = 1L;
-	private JTable lvVerwaltungTable;
+	private JTable lvOrganisationTable;
 	private JLabel lblLehrstuhl;
 	private JLabel lblDozent;
 	private JLabel lblSemester;
@@ -35,7 +35,7 @@ public class StartTab extends JPanel {
 	private JPanel sidePanel;
 	private JPanel topSidePanel;
 	private JPanel bottomSidePanel;
-	private JScrollPane lvVerwaltungTableScrollPane;
+	private JScrollPane lvOrganisationTableScrollPane;
 	private JPanel buttonPanel;
 	private JButton btnAdd;
 	private JButton btnRoomRequest;
@@ -46,7 +46,7 @@ public class StartTab extends JPanel {
 	private JLabel lblStatus;
 	private JButton btnLivetickerEdit;
 	private JPanel tablePanel;
-	private JTable raumanfragenTable;
+	private JTable roomrequestTable;
 
 	/**
 	 * Create the panel.
@@ -127,20 +127,20 @@ public class StartTab extends JPanel {
 		comboBoxSemester.setEditable(true);
 		comboBoxSemester.setAutoscrolls(true);
 		
-		lvVerwaltungTableScrollPane = new JScrollPane();
-		tablePanel.add(lvVerwaltungTableScrollPane, "cell 0 2 5 1,grow");
+		lvOrganisationTableScrollPane = new JScrollPane();
+		tablePanel.add(lvOrganisationTableScrollPane, "cell 0 2 5 1,grow");
 		
-		lvVerwaltungTable = new JTable();
-		lvVerwaltungTable.setModel(new StartTabTableTop());
-		lvVerwaltungTable.getColumnModel().getColumn(1).setPreferredWidth(59);
-		lvVerwaltungTable.getColumnModel().getColumn(3).setPreferredWidth(48);
-		lvVerwaltungTable.getColumnModel().getColumn(4).setPreferredWidth(35);
-		lvVerwaltungTable.getColumnModel().getColumn(5).setPreferredWidth(49);
-		lvVerwaltungTable.getColumnModel().getColumn(6).setPreferredWidth(110);
-		lvVerwaltungTable.getColumnModel().getColumn(7).setPreferredWidth(59);
-		lvVerwaltungTable.setShowVerticalLines(false);
-		lvVerwaltungTable.setBackground(SystemColor.activeCaption);
-		lvVerwaltungTableScrollPane.setViewportView(lvVerwaltungTable);
+		lvOrganisationTable = new JTable();
+		lvOrganisationTable.setModel(new StartTabTableTop());
+		lvOrganisationTable.getColumnModel().getColumn(1).setPreferredWidth(59);
+		lvOrganisationTable.getColumnModel().getColumn(3).setPreferredWidth(48);
+		lvOrganisationTable.getColumnModel().getColumn(4).setPreferredWidth(35);
+		lvOrganisationTable.getColumnModel().getColumn(5).setPreferredWidth(49);
+		lvOrganisationTable.getColumnModel().getColumn(6).setPreferredWidth(110);
+		lvOrganisationTable.getColumnModel().getColumn(7).setPreferredWidth(59);
+		lvOrganisationTable.setShowVerticalLines(false);
+		lvOrganisationTable.setBackground(SystemColor.activeCaption);
+		lvOrganisationTableScrollPane.setViewportView(lvOrganisationTable);
 		
 		JLabel lblRaumzuordnungen = new JLabel("Raumzuordnungen:");
 		lblRaumzuordnungen.setFont(new Font("Tahoma", Font.BOLD, 12));
@@ -199,11 +199,11 @@ public class StartTab extends JPanel {
 		JScrollPane raumanfragenScrollPane = new JScrollPane();
 		tablePanel.add(raumanfragenScrollPane, "cell 0 6 5 1,grow");
 		
-		raumanfragenTable = new JTable();
-		raumanfragenTable.setModel(new StartTabTableBottom());
-		raumanfragenTable.setShowVerticalLines(false);
-		raumanfragenTable.setBackground(SystemColor.activeCaption);
-		raumanfragenScrollPane.setViewportView(raumanfragenTable);
+		roomrequestTable = new JTable();
+		roomrequestTable.setModel(new StartTabTableBottom());
+		roomrequestTable.setShowVerticalLines(false);
+		roomrequestTable.setBackground(SystemColor.activeCaption);
+		raumanfragenScrollPane.setViewportView(roomrequestTable);
 		
 		buttonPanel = new JPanel();
 		buttonPanel.setLayout(null);
