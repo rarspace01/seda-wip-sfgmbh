@@ -26,11 +26,11 @@ public class StartTab extends JPanel {
 
 	private static final long serialVersionUID = 1L;
 	private JTable lvOrganisationTable;
-	private JLabel lblLehrstuhl;
-	private JLabel lblDozent;
+	private JLabel lblProfessorship;
+	private JLabel lblLecturer;
 	private JLabel lblSemester;
-	private JComboBox<String> comboLehrstuhl;
-	private JComboBox<String> comboDozent;
+	private JComboBox<String> comboProfessorship;
+	private JComboBox<String> comboLecturer;
 	private JComboBox<String> comboBoxSemester;
 	private JPanel sidePanel;
 	private JPanel topSidePanel;
@@ -81,13 +81,13 @@ public class StartTab extends JPanel {
 		sidePanel.add(bottomSidePanel);
 		bottomSidePanel.setLayout(new MigLayout("", "[]", "[][][]"));
 		
-		JButton btnStundenplan = new JButton("Stundenplan");
-		btnStundenplan.addActionListener(new StartTabBtnsNav("timetable"));
-		bottomSidePanel.add(btnStundenplan, "cell 0 0");
+		JButton btnTimetable = new JButton("Stundenplan");
+		btnTimetable.addActionListener(new StartTabBtnsNav("timetable"));
+		bottomSidePanel.add(btnTimetable, "cell 0 0");
 		
-		JButton btnLehrstuhlplan = new JButton("Lehrstuhlplan");
-		btnLehrstuhlplan.addActionListener(new StartTabBtnsNav("professorshiptimetable"));
-		bottomSidePanel.add(btnLehrstuhlplan, "cell 0 1");
+		JButton btnProfessorshiptimetable = new JButton("Lehrstuhlplan");
+		btnProfessorshiptimetable.addActionListener(new StartTabBtnsNav("professorshiptimetable"));
+		bottomSidePanel.add(btnProfessorshiptimetable, "cell 0 1");
 		
 		btnLivetickerEdit = new JButton("LiveTicker");
 		btnLivetickerEdit.addActionListener(new StartTabBtnsNav("liveticker"));
@@ -97,28 +97,28 @@ public class StartTab extends JPanel {
 		add(tablePanel, "cell 1 1 5 1,grow");
 		tablePanel.setLayout(new MigLayout("", "[grow][grow][grow][grow][grow]", "[][][150px:n:200px,grow][][][][100px:n:200px,grow]"));
 		
-		lblLehrstuhl = new JLabel("Lehrstuhl:");
-		tablePanel.add(lblLehrstuhl, "cell 0 0");
+		lblProfessorship = new JLabel("Lehrstuhl:");
+		tablePanel.add(lblProfessorship, "cell 0 0");
 		
-		lblDozent = new JLabel("Dozent:");
-		tablePanel.add(lblDozent, "cell 1 0");
+		lblLecturer = new JLabel("Dozent:");
+		tablePanel.add(lblLecturer, "cell 1 0");
 		
 		lblSemester = new JLabel("Semester:");
 		tablePanel.add(lblSemester, "cell 2 0");
 		
-		comboLehrstuhl = new JComboBox<String>();
-		comboLehrstuhl.addActionListener(new StartTabCmbboxFilter());
-		tablePanel.add(comboLehrstuhl, "cell 0 1");
-		comboLehrstuhl.setModel(new StartTabCmbboxModelFilter("professorshiptop"));
-		comboLehrstuhl.setEditable(true);
-		comboLehrstuhl.setAutoscrolls(true);
+		comboProfessorship = new JComboBox<String>();
+		comboProfessorship.addActionListener(new StartTabCmbboxFilter());
+		tablePanel.add(comboProfessorship, "cell 0 1");
+		comboProfessorship.setModel(new StartTabCmbboxModelFilter("professorshiptop"));
+		comboProfessorship.setEditable(true);
+		comboProfessorship.setAutoscrolls(true);
 		
-		comboDozent = new JComboBox<String>();
-		comboDozent.addActionListener(new StartTabCmbboxFilter());
-		tablePanel.add(comboDozent, "cell 1 1");
-		comboDozent.setModel(new StartTabCmbboxModelFilter("lecturertop"));
-		comboDozent.setEditable(true);
-		comboDozent.setAutoscrolls(true);
+		comboLecturer = new JComboBox<String>();
+		comboLecturer.addActionListener(new StartTabCmbboxFilter());
+		tablePanel.add(comboLecturer, "cell 1 1");
+		comboLecturer.setModel(new StartTabCmbboxModelFilter("lecturertop"));
+		comboLecturer.setEditable(true);
+		comboLecturer.setAutoscrolls(true);
 		
 		comboBoxSemester = new JComboBox<String>();
 		tablePanel.add(comboBoxSemester, "cell 2 1");
