@@ -42,7 +42,7 @@ public class BaseBtnLogin implements ActionListener {
 		
 			
 		} else {
-			this.getInfoWindow("Der eingegebene Benutzername oder das eingegebene Passwort ist inkorrekt! Bitte versuche es nochmal.").setVisible(true);	
+			this.getInfoWindow("<strong> Fehlermeldung: </strong><br>Der eingegebene Benutzername oder das eingegebene Passwort ist inkorrekt! <p>Bitte versuche es nochmal und beachten Sie, dass die Nutzerkennung mindestens 7 Zeichen beinhaltet und ihr Passwort mindestens aus 8 Zeichen mit mindestens einem Groﬂ und Kleinbuchstaben sowie mindestens einer Zahl und einem Sonderzeichen besteht.").setVisible(true);	
 		}
 	}
 	
