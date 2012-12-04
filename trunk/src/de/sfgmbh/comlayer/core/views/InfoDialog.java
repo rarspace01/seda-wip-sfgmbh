@@ -46,10 +46,10 @@ public class InfoDialog extends JDialog {
 	private void createContents(String title) {
 		setTitle(title);
 		setMinimumSize(new Dimension(215, 250));
-		getContentPane().setLayout(new MigLayout("", "[180px:n,center]", "[150px:n][23px]"));
-		getContentPane().add(getTxtpnInfoWindowText(), "cell 0 0,alignx center,aligny center");
+		getContentPane().setLayout(new MigLayout("", "[180px:n,center][]", "[150px:n][23px][][][][][][][]"));
+		getContentPane().add(getTxtpnInfoWindowText(), "cell 0 0 2 8,alignx center,aligny center");
 		setLocationRelativeTo(null);
-		getContentPane().add(getBtnOk(), "cell 0 1,alignx center,aligny center");
+		getContentPane().add(getBtnOk(), "cell 0 8,alignx center,aligny center");
 	}
 	
 	public JTextPane getTxtpnInfoWindowText() {

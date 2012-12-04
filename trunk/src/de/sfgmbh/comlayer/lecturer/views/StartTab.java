@@ -222,15 +222,16 @@ public class StartTab extends JPanel {
 		buttonPanel.add(btnEdit);
 		
 		btnDelete = new JButton("löschen");
-		btnDelete.addActionListener(new StartTabBtnsControl("edit"));
+		btnDelete.addActionListener(new StartTabBtnsControl("delete"));
 		btnDelete.setBounds(0, 106, 88, 23);
 		buttonPanel.add(btnDelete);
 		
-		JButton btnVerffentlichen = new JButton("freigeben");
-		btnVerffentlichen.addActionListener(new StartTabBtnsControl("publish"));
-		btnVerffentlichen.setBounds(0, 194, 100, 23);
-		buttonPanel.add(btnVerffentlichen);
+		JButton btnPublish = new JButton("freigeben");
+		btnPublish.addActionListener(new StartTabBtnsControl("publish"));
+		btnPublish.setBounds(0, 194, 100, 23);
+		buttonPanel.add(btnPublish);
 		
+		//Ist hier die Schreibweise gemäß der java code conventions?mit RoomRequest?
 		btnRoomRequest = new JButton("Raumanfrage");
 		btnRoomRequest.addActionListener(new StartTabBtnsControl("roomrequest"));
 		btnRoomRequest.setBounds(0, 160, 100, 23);
