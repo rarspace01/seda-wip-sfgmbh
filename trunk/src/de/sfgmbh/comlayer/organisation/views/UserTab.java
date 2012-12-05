@@ -122,7 +122,7 @@ public class UserTab extends JPanel {
 		leftBottomPanel.add(btnAnfragen, "cell 0 1");
 		leftBottomPanel.add(btnRaumverwaltung, "cell 0 2");
 		
-		btnLivetickerBearbeiten = new JButton("liveticker");
+		btnLivetickerBearbeiten = new JButton("Live-Ticker");
 		btnLivetickerBearbeiten.addActionListener(new BtnsNav("liveticker"));
 		leftBottomPanel.add(btnLivetickerBearbeiten, "cell 0 3");
 		
@@ -149,7 +149,7 @@ public class UserTab extends JPanel {
 		btnHinzufugen.setBounds(6, 11, 88, 23);
 		buttonPanel.add(btnHinzufugen);
 		
-		JButton btnBearbeiten = new JButton("edit");
+		JButton btnBearbeiten = new JButton("bearbeiten");
 		btnBearbeiten.addActionListener(new UserTabBtnsControl("edit"));
 		btnBearbeiten.setBounds(6, 45, 88, 23);
 		buttonPanel.add(btnBearbeiten);

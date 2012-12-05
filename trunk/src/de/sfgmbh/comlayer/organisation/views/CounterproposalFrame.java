@@ -62,7 +62,7 @@ public class CounterproposalFrame extends JFrame {
 		contentPane.add(btnSenden);
 		
 		JButton btnAbbrechen = new JButton("Abbrechen");
-		btnAbbrechen.addActionListener(new CounterproposalFrameBtns("cancle"));
+		btnAbbrechen.addActionListener(new CounterproposalFrameBtns("cancel"));
 		btnAbbrechen.setBounds(69, 236, 90, 28);
 		contentPane.add(btnAbbrechen);
 		
