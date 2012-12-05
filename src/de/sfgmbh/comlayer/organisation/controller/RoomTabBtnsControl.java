@@ -31,12 +31,13 @@ public class RoomTabBtnsControl implements ActionListener {
 		
 		// Raum bearbeiten Button is pressed
 		if (this.navAction.equals("edit")) {
-			Bootstrap.serviceManager.getOrgaRoomFrame().setVisible(true);
+			//Bootstrap.serviceManager.getOrgaRoomFrame().setVisible(true)
+			this.getInfoWindow("<b>Alternativen:</b><br><br>1. Sie haben keinen Raum selektiert!<br>2. Sie gelangen sofort zu einer Bearbeiten-Maske, welche allerdings noch nicht implementiert ist.").setVisible(true);
 		}
 		
 		// Raum löschen Button is pressed
 		if (this.navAction.equals("loschen")) {
-			this.getInfoWindow("Raum wird gelöscht!").setVisible(true);
+			this.getInfoWindow("<b>Der Raum konnte nicht gelöscht werden:</b><br><br>Sie haben keinen Raum selektiert.").setVisible(true);
 		}
 		
 		// Raumplan Button is pressed
