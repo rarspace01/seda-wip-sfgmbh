@@ -72,8 +72,8 @@ public class StartTab extends JPanel {
 		topSidePanel.setBounds(0, 6, 130, 313);
 		sidePanel.add(topSidePanel);
 		
-		lblNewLabel = new JLabel("<html>Info:</html>\r\n");
-		lblNewLabel.setBounds(10, 11, 120, 42);
+		lblNewLabel = new JLabel("<html>LiveTickerNews:<br><br><b>Fehlermeldung 1: </b>Es wurden keine Lehrveranstaltungen gefunden werden, die in 10 Minuten beginnen. <br> <b>Fehlermeldung 2: </b>Es wurden keine Meldungen von Dozenten oder der Hausverwaltung gefunden. <b>Fehlermeldung 3:</b> Es besteht keine Verbindung zur Datenbank.</html>\r\n");
+		lblNewLabel.setBounds(10, 11, 120, 277);
 		topSidePanel.add(lblNewLabel);
 		
 		bottomSidePanel = new JPanel();
