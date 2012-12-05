@@ -10,6 +10,10 @@ import de.sfgmbh.comlayer.lecturer.views.ProfessorshipTimetableTab;
 import de.sfgmbh.comlayer.lecturer.views.RoomRequestFrame;
 import de.sfgmbh.comlayer.lecturer.views.StartTab;
 import de.sfgmbh.comlayer.lecturer.views.TimetableTab;
+import de.sfgmbh.comlayer.organisation.model.ProfessorshipTabTable;
+import de.sfgmbh.comlayer.organisation.model.RequestTabTable;
+import de.sfgmbh.comlayer.organisation.model.RoomTabTable;
+import de.sfgmbh.comlayer.organisation.model.UserTabTable;
 import de.sfgmbh.comlayer.organisation.views.CounterproposalFrame;
 import de.sfgmbh.comlayer.organisation.views.ProfessorshipFrame;
 import de.sfgmbh.comlayer.organisation.views.ProfessorshipTab;
@@ -72,7 +76,35 @@ public class ServiceManager {
 	protected UserFrame userFrame;
 	protected ProfessorshipFrame professorshipFrame;
 	protected CounterproposalFrame counterproposalFrame;
+	protected RequestTabTable requestTabTable;
+	protected UserTabTable userTabTable;
+	protected RoomTabTable roomTabTable;
+	protected ProfessorshipTabTable professorshipTabTable;
 	
+	public ProfessorshipTabTable getOrgaProfessorshipTableModel() {
+		if (this.professorshipTabTable == null) {
+			this.professorshipTabTable = new ProfessorshipTabTable();
+		}
+		return this.professorshipTabTable;
+	}
+	public RoomTabTable getOrgaRoomTableModel() {
+		if (this.roomTabTable == null) {
+			this.roomTabTable = new RoomTabTable();
+		}
+		return this.roomTabTable;
+	}
+	public UserTabTable getOrgaUserTableModel() {
+		if (this.userTabTable == null) {
+			this.userTabTable = new UserTabTable();
+		}
+		return this.userTabTable;
+	}
+	public RequestTabTable getOrgaRequestTableModel() {
+		if (this.requestTabTable == null) {
+			this.requestTabTable = new RequestTabTable();
+		}
+		return this.requestTabTable;
+	}
 	public RoomTab getOrgaRoomTab() {
 		if (this.roomTab == null) {
 			this.roomTab = new RoomTab();
