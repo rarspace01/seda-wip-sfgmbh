@@ -27,7 +27,7 @@ public class BtnPdf implements ActionListener {
 		
 		// Pdf Button is pressed
 		if (this.navAction.equals("pdfCreate")) {
-			this.getInfoWindow("Momentan kann ihr Stundenplan nicht implementiert werden").setVisible(true);
+			this.getInfoWindow("<b>Fehlermeldung</b><br>Momentan kann keine PDF erzeugt werden.<br>1. Es wurden keine Daten ausgewählt.<br>2. Es wurde kein Dozent ausgewählt.<br>3. Die Funktionalität momentan nicht ausführbar. Wenden Sie sich bitte an Ihren Systemadministrator!").setVisible(true);
 		}
 	}
 	
