@@ -3,6 +3,7 @@ package de.sfgmbh.comlayer.organisation.views;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.SystemColor;
+
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -12,10 +13,12 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.border.TitledBorder;
+
 import net.miginfocom.swing.MigLayout;
 import de.sfgmbh.comlayer.organisation.controller.BtnsNav;
 import de.sfgmbh.comlayer.organisation.controller.CmbboxFilter;
 import de.sfgmbh.comlayer.organisation.controller.UserTabBtnsControl;
+import de.sfgmbh.init.Bootstrap;
 
 public class UserTab extends JPanel {
 
@@ -134,9 +137,10 @@ public class UserTab extends JPanel {
 		add(verwaltungTableScrollPane, "flowx,cell 2 2 4 1,grow");
 		
 		raumverwaltungTable = new JTable();
+		raumverwaltungTable.setModel(Bootstrap.serviceManager.getOrgaUserTableModel());
 		raumverwaltungTable.setShowVerticalLines(false);
 		raumverwaltungTable.setBackground(SystemColor.activeCaption);
-		verwaltungTableScrollPane.setColumnHeaderView(raumverwaltungTable);
+		verwaltungTableScrollPane.setViewportView(raumverwaltungTable);
 		
 		buttonPanel = new JPanel();
 		buttonPanel.setLayout(null);

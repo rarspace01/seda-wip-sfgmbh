@@ -3,6 +3,7 @@ package de.sfgmbh.comlayer.organisation.views;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.SystemColor;
+
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -12,24 +13,25 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.border.TitledBorder;
-import net.miginfocom.swing.MigLayout;
 
+import net.miginfocom.swing.MigLayout;
 import de.sfgmbh.comlayer.organisation.controller.BtnsNav;
 import de.sfgmbh.comlayer.organisation.controller.CmbboxFilter;
 import de.sfgmbh.comlayer.organisation.controller.RoomTabBtnsControl;
+import de.sfgmbh.init.Bootstrap;
 
 public class RoomTab extends JPanel {
 
 	private static final long serialVersionUID = 1L;
-	private JTextField textFieldPlatze;
-	private JTextField textFieldPCPlatze;
+	private JTextField textFieldSeats;
+	private JTextField textFieldPcSeats;
 	private JTable raumverwaltungTable;
 	private JLabel lblGebude;
 	private JLabel lblStockwerk;
 	private JLabel lblPltze;
 	private JLabel lblPcpltze;
-	private JComboBox<String> comboBoxGebaude;
-	private JComboBox<String> comboBoxStockwerk;
+	private JComboBox<String> comboBoxRoom;
+	private JComboBox<String> comboBoxBuilding;
 	private JPanel leftPanel;
 	private JPanel leftTopPanel;
 	private JPanel leftBottomPanel;
@@ -54,10 +56,10 @@ public class RoomTab extends JPanel {
 		lblRaumverwaltung.setFont(new Font("SansSerif", Font.BOLD, 13));
 		add(lblRaumverwaltung, "cell 0 0,alignx center");
 		
-		lblGebude = new JLabel("Stockwerke:");
+		lblGebude = new JLabel("Raum:");
 		add(lblGebude, "cell 2 0");
 		
-		lblStockwerk = new JLabel("R\u00E4ume:");
+		lblStockwerk = new JLabel("Geb\u00E4ude:");
 		add(lblStockwerk, "cell 3 0");
 		
 		lblPltze = new JLabel("Pl\u00E4tze:");
@@ -66,31 +68,31 @@ public class RoomTab extends JPanel {
 		lblPcpltze = new JLabel("PC-Pl\u00E4tze:");
 		add(lblPcpltze, "cell 5 0");
 		
-		comboBoxGebaude = new JComboBox<String>();
-		comboBoxGebaude.setModel(new DefaultComboBoxModel(new String[] {"<alle>"}));
-		comboBoxGebaude.addActionListener(new CmbboxFilter());
-		comboBoxGebaude.setEditable(true);
-		comboBoxGebaude.setAutoscrolls(true);
-		add(comboBoxGebaude, "cell 2 1,growx");
+		comboBoxRoom = new JComboBox<String>();
+		comboBoxRoom.setModel(new DefaultComboBoxModel(new String[] {"<alle>"}));
+		comboBoxRoom.addActionListener(new CmbboxFilter());
+		comboBoxRoom.setEditable(true);
+		comboBoxRoom.setAutoscrolls(true);
+		add(comboBoxRoom, "cell 2 1,growx");
 		
-		comboBoxStockwerk = new JComboBox<String>();
-		comboBoxStockwerk.setModel(new DefaultComboBoxModel(new String[] {"<alle>"}));
-		comboBoxStockwerk.addActionListener(new CmbboxFilter());
-		comboBoxStockwerk.setEditable(true);
-		comboBoxStockwerk.setAutoscrolls(true);
-		add(comboBoxStockwerk, "cell 3 1,growx");
+		comboBoxBuilding = new JComboBox<String>();
+		comboBoxBuilding.setModel(new DefaultComboBoxModel(new String[] {"<alle>"}));
+		comboBoxBuilding.addActionListener(new CmbboxFilter());
+		comboBoxBuilding.setEditable(true);
+		comboBoxBuilding.setAutoscrolls(true);
+		add(comboBoxBuilding, "cell 3 1,growx");
 		
-		textFieldPlatze = new JTextField();
-		textFieldPlatze.setText("<alle>");
-		textFieldPlatze.addActionListener(new CmbboxFilter());
-		add(textFieldPlatze, "cell 4 1,growx");
-		textFieldPlatze.setColumns(10);
+		textFieldSeats = new JTextField();
+		textFieldSeats.setText("<alle>");
+		textFieldSeats.addActionListener(new CmbboxFilter());
+		add(textFieldSeats, "cell 4 1,growx");
+		textFieldSeats.setColumns(10);
 		
-		textFieldPCPlatze = new JTextField();
-		textFieldPCPlatze.setText("<alle>");
-		textFieldPCPlatze.addActionListener(new CmbboxFilter());
-		textFieldPCPlatze.setColumns(10);
-		add(textFieldPCPlatze, "cell 5 1,growx");
+		textFieldPcSeats = new JTextField();
+		textFieldPcSeats.setText("<alle>");
+		textFieldPcSeats.addActionListener(new CmbboxFilter());
+		textFieldPcSeats.setColumns(10);
+		add(textFieldPcSeats, "cell 5 1,growx");
 		
 		leftPanel = new JPanel();
 		leftPanel.setLayout(null);
@@ -136,9 +138,10 @@ public class RoomTab extends JPanel {
 		add(verwaltungTableScrollPane, "flowx,cell 2 2 4 1,grow");
 		
 		raumverwaltungTable = new JTable();
+		raumverwaltungTable.setModel(Bootstrap.serviceManager.getOrgaRoomTableModel());
 		raumverwaltungTable.setShowVerticalLines(false);
 		raumverwaltungTable.setBackground(SystemColor.activeCaption);
-		verwaltungTableScrollPane.setColumnHeaderView(raumverwaltungTable);
+		verwaltungTableScrollPane.setViewportView(raumverwaltungTable);
 		
 		buttonPanel = new JPanel();
 		buttonPanel.setLayout(null);
