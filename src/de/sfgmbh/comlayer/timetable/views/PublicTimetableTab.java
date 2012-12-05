@@ -19,7 +19,7 @@ public class PublicTimetableTab extends JPanel {
 		setLayout(null);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(20, 51, 817, 234);
+		scrollPane.setBounds(20, 51, 908, 410);
 		add(scrollPane);
 		
 		StundenplanTable = new JTable();

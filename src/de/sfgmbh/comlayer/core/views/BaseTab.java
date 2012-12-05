@@ -190,7 +190,7 @@ public class BaseTab extends JFrame{
 		buttonPanel.setLayout(null);
 		
 		JButton btnAddToStundenplan = new JButton("+");
-		btnAddToStundenplan.addActionListener(new BaseBtnAddToStundenplan());
+		btnAddToStundenplan.addActionListener(new BaseBtnAddToStundenplan("plus"));
 		btnAddToStundenplan.setBounds(0, 29, 41, 23);
 		buttonPanel.add(btnAddToStundenplan);
 		organisationTable.getColumnModel().getColumn(0).setResizable(false);

@@ -17,7 +17,7 @@ public class ProfessorshipTimetableTabBtn implements ActionListener {
 	
 	public InfoDialog getInfoWindow() {
 		if (this.infoWindow == null) {
-			this.infoWindow = new InfoDialog("<strong> Fehlermeldung:</strong><br>Leider sind keine Lehrveranstaltung für den Lehrstuhl eingetragen. <p> Oder hier öffnet sich ein Tab mit dem Lehrstuhlstundenplan.");
+			this.infoWindow = new InfoDialog("<strong> Fehlermeldung:</strong><br>1. Momentan kann keine PDF erzeugt werden.<br>2. Es wurden keine Daten ausgewählt.<br>3. Es wurde kein Dozent ausgewählt.<br>4. Die Funktionalität momentan nicht ausführbar. Wenden Sie sich an Ihren Systemadministrator");
 		}
 		return this.infoWindow;
 	}
