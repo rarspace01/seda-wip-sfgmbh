@@ -24,7 +24,7 @@ public class CounterproposalFrameBtns implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		
 		// Abbrechen button is pressed
-		if (this.ctrlAction.equals("cancle")){
+		if (this.ctrlAction.equals("cancel")){
 			Bootstrap.serviceManager.getOrgaCounterproposalFrame().setVisible(false);
 		}
 		

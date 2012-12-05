@@ -12,7 +12,7 @@ public class BaseCmbboxModelFilter extends DefaultComboBoxModel<String> {
 	public BaseCmbboxModelFilter(String variant) {
 		if (variant.equals("Doz")) {
 			
-			String[] elements = new String[] {"<alle>", "Sinz", "Ferstel", "Wolf", "Krieger"};
+			String[] elements = new String[] {"<alle>", "Sinz", "Ferstl", "Wolf", "Krieger"};
 			
 			for (String element : elements) {
 				this.addElement(element);
