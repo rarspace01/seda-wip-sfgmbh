@@ -31,12 +31,13 @@ public class ProfessorshipTabBtnsControl implements ActionListener {
 		
 		// Lehrstuhl bearbeiten Button is pressed
 		if (this.navAction.equals("edit")) {
-			Bootstrap.serviceManager.getOrgaProfessorshipFrame().setVisible(true);
+			//Bootstrap.serviceManager.getOrgaProfessorshipFrame().setVisible(true);
+			this.getInfoWindow("<b>Alternativen:</b><br><br>1. Sie haben keinen Lehrstuhl selektiert!<br>2. Sie gelangen sofort zu einer Bearbeiten-Maske, welche allerdings noch nicht implementiert ist.").setVisible(true);
 		}
 		
 		// Lehrstuhl löschen Button is pressed
 		if (this.navAction.equals("loschen")) {
-			this.getInfoWindow("Lehrstuhl wird gelöscht!").setVisible(true);
+			this.getInfoWindow("<b>Der Lehrstuhl konnte nicht gelöscht werden:</b><br><br>Sie haben keinen Lehrstuhl selektiert.").setVisible(true);
 		}
 		
 	}

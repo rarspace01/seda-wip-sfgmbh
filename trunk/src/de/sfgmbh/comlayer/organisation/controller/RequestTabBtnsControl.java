@@ -31,12 +31,12 @@ public class RequestTabBtnsControl implements ActionListener {
 		
 		// Ablehnen Button is pressed
 		if (this.navAction.equals("ablehnen")) {
-			this.getInfoWindow("Anfrage wird abgelehnt!").setVisible(true);
+			this.getInfoWindow("<b>Die Lehrveranstaltung konnte nicht freigegeben werden:</b><br><br>Sie haben keine Lehrveranstaltung selektiert!").setVisible(true);
 		}
 		
 		// Freigeben Button is pressed
 		if (this.navAction.equals("publish")) {
-			this.getInfoWindow("Anfrage wird freigegeben!").setVisible(true);
+			this.getInfoWindow("<b>Die Lehrveranstaltung konnte nicht freigegeben werden:</b><br><br>Sie haben keine Lehrveranstaltung selektiert!").setVisible(true);
 		}
 		
 	}
@@ -45,5 +45,6 @@ public class RequestTabBtnsControl implements ActionListener {
 	public InfoDialog getInfoWindow(String msg) {
 		this.infoWindow = new InfoDialog(msg);
 		return this.infoWindow;
+		
 	}
 }

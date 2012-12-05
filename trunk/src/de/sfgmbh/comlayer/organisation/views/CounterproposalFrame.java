@@ -18,14 +18,18 @@ public class CounterproposalFrame extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JTextField txtGebaude;
+	private JLabel lblmsg;
 
 	/**
 	 * Create the frame.
 	 */
 	@SuppressWarnings({"rawtypes", "unchecked" })
 	public CounterproposalFrame() {
+		initialize();
+	}
+	private void initialize() {
 		setTitle("Konfliktl\u00F6sung");
-		setBounds(100, 100, 320, 330);
+		setBounds(100, 100, 320, 410);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -33,68 +37,76 @@ public class CounterproposalFrame extends JFrame {
 		
 		JLabel lblDozent = new JLabel("Dozent:");
 		lblDozent.setFont(new Font("SansSerif", Font.PLAIN, 12));
-		lblDozent.setBounds(12, 11, 120, 14);
+		lblDozent.setBounds(10, 93, 120, 14);
 		contentPane.add(lblDozent);
 		
 		JLabel lblEmail = new JLabel("Lehrveranstaltung:");
 		lblEmail.setFont(new Font("SansSerif", Font.PLAIN, 12));
-		lblEmail.setBounds(12, 42, 120, 14);
+		lblEmail.setBounds(10, 124, 120, 14);
 		contentPane.add(lblEmail);
 		
 		JLabel lblPasswort = new JLabel("Raum:");
 		lblPasswort.setFont(new Font("SansSerif", Font.PLAIN, 12));
-		lblPasswort.setBounds(12, 69, 120, 14);
+		lblPasswort.setBounds(10, 151, 120, 14);
 		contentPane.add(lblPasswort);
 		
 		JLabel lblNutzerklasse = new JLabel("Zeit:");
 		lblNutzerklasse.setFont(new Font("SansSerif", Font.PLAIN, 12));
-		lblNutzerklasse.setBounds(12, 96, 120, 14);
+		lblNutzerklasse.setBounds(10, 178, 120, 14);
 		contentPane.add(lblNutzerklasse);
 		
 		JLabel lblLehrstuhl = new JLabel("Nachricht an Dozent:");
 		lblLehrstuhl.setFont(new Font("SansSerif", Font.PLAIN, 12));
-		lblLehrstuhl.setBounds(12, 127, 120, 14);
+		lblLehrstuhl.setBounds(10, 209, 120, 14);
 		contentPane.add(lblLehrstuhl);
 		
 		JButton btnSenden = new JButton("Senden");
-		btnSenden.setBounds(181, 236, 90, 28);
+		btnSenden.setBounds(179, 318, 90, 28);
 		btnSenden.addActionListener(new CounterproposalFrameBtns("send"));
 		contentPane.add(btnSenden);
 		
 		JButton btnAbbrechen = new JButton("Abbrechen");
 		btnAbbrechen.addActionListener(new CounterproposalFrameBtns("cancel"));
-		btnAbbrechen.setBounds(69, 236, 90, 28);
+		btnAbbrechen.setBounds(67, 318, 90, 28);
 		contentPane.add(btnAbbrechen);
 		
 		txtGebaude = new JTextField();
 		txtGebaude.setFont(new Font("SansSerif", Font.PLAIN, 12));
 		txtGebaude.setColumns(10);
-		txtGebaude.setBounds(12, 152, 259, 73);
+		txtGebaude.setBounds(10, 234, 259, 73);
 		contentPane.add(txtGebaude);
 		
 		JComboBox comboBoxDozent = new JComboBox();
 		comboBoxDozent.setModel(new DefaultComboBoxModel(new String[] {"Benker"}));
 		comboBoxDozent.setEditable(true);
-		comboBoxDozent.setBounds(142, 9, 129, 20);
+		comboBoxDozent.setBounds(140, 91, 129, 20);
 		contentPane.add(comboBoxDozent);
 		
 		JComboBox comboBoxRaum = new JComboBox();
 		comboBoxRaum.setModel(new DefaultComboBoxModel(new String[] {"05.002"}));
 		comboBoxRaum.setEditable(true);
-		comboBoxRaum.setBounds(142, 67, 129, 20);
+		comboBoxRaum.setBounds(140, 149, 129, 20);
 		contentPane.add(comboBoxRaum);
 		
 		JComboBox comboBoxZeit = new JComboBox();
 		comboBoxZeit.setModel(new DefaultComboBoxModel(new String[] {"Mo. 10:00 - 12:00"}));
-		comboBoxZeit.setBounds(142, 94, 129, 20);
+		comboBoxZeit.setBounds(140, 176, 129, 20);
 		contentPane.add(comboBoxZeit);
 		
 		JComboBox comboBoxLV = new JComboBox();
 		comboBoxLV.setModel(new DefaultComboBoxModel(new String[] {"WI-Projekt"}));
 		comboBoxLV.setEditable(true);
-		comboBoxLV.setBounds(142, 40, 129, 20);
+		comboBoxLV.setBounds(140, 122, 129, 20);
 		contentPane.add(comboBoxLV);
 		
 		addWindowListener(new CounterproposalFrameWin());
+		contentPane.add(getLblmsg());
+	}
+	private JLabel getLblmsg() {
+		if (lblmsg == null) {
+			lblmsg = new JLabel("<html><b>Der Konflikt konnte nicht gel\u00F6st werden:</b><br>\r\nSie haben keinen Konflikt selektiert.<br><br>\r\n\r\n<b>Variante2 (sofern Selektion geg.):</b></html>");
+			lblmsg.setBounds(10, 11, 259, 71);
+		}
+		return lblmsg;
 	}
 }
