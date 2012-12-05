@@ -102,8 +102,8 @@ public class UserTab extends JPanel {
 		leftTopPanel.setBounds(0, 6, 140, 313);
 		leftPanel.add(leftTopPanel);
 		
-		JLabel lblInfo = new JLabel("Info:");
-		lblInfo.setBounds(6, 6, 55, 16);
+		JLabel lblInfo = new JLabel("<html>LiveTickerNews:<br><br><b>Fehlermeldung 1: </b>Es wurden keine Lehrveranstaltungen gefunden werden, die in 10 Minuten beginnen. <br> <b>Fehlermeldung 2: </b>Es wurden keine Meldungen von Dozenten oder der Hausverwaltung gefunden. <b>Fehlermeldung 3:</b> Es besteht keine Verbindung zur Datenbank.</html>");
+		lblInfo.setBounds(6, 6, 134, 296);
 		leftTopPanel.add(lblInfo);
 		
 		leftBottomPanel = new JPanel();

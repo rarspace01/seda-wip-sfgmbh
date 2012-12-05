@@ -28,7 +28,7 @@ public class StartTabBtnsNav implements ActionListener {
 		
 		// Studenplan button is pressed
 		if (this.navAction.equals("timetable")) {
-			this.getInfoWindow("<strong>Fehlermeldung 1:</strong><br> Es konnte kein Dozentenstundenplan erstellt werden, da kein Dozent dem Lehrstuhl zugeordnet ist.<p><strong>Fehlermeldung 2:</strong><brEs konnte kein Lehrstuhlplan erstellt werden, da noch keine Lehrveranstaltungen exisiteren").setVisible(true);
+			this.getInfoWindow("<strong>Fehlermeldung 1:</strong><br> Es konnte kein Dozentenstundenplan erstellt werden, da kein Dozent dem Lehrstuhl zugeordnet ist.<p><strong>Fehlermeldung 2:</strong><br>Es konnte kein Lehrstuhlplan erstellt werden, da noch keine Lehrveranstaltungen exisiteren").setVisible(true);
 			Bootstrap.serviceManager.getCoreBaseTab().mainTabbedContainerPane.addTab("Dozentenstundenplan", null, Bootstrap.serviceManager.getLecturerTimetableTab(), null);
 			Bootstrap.serviceManager.getCoreBaseTab().mainTabbedContainerPane.setSelectedIndex(Bootstrap.serviceManager.getCoreBaseTab().mainTabbedContainerPane.getTabCount()-1);
 		}

@@ -27,7 +27,7 @@ public class ProfessorshipFrame extends JFrame {
 	 */
 	@SuppressWarnings({ })
 	public ProfessorshipFrame() {
-		setTitle("Lehrst\u00FChle hinzuf\u00FCgen");
+		setTitle("Lehrst\u00FChle hinzuf\u00FCgen/bearbeiten");
 		setBounds(100, 100, 266, 294);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
