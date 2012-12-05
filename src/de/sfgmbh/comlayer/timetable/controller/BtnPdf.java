@@ -7,8 +7,6 @@ import de.sfgmbh.comlayer.core.views.InfoDialog;
 
 
 
-
-
 public class BtnPdf implements ActionListener {
 	
 	private String navAction;
