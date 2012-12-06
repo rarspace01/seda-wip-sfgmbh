@@ -151,6 +151,7 @@ public class BaseTab extends JFrame{
 		panel.setLayout(null);
 		
 		JTextPane tickerMsgPos2 = new JTextPane();
+		tickerMsgPos2.setEditable(false);
 		tickerMsgPos2.setBounds(6, 108, 123, 194);
 		panel.add(tickerMsgPos2);
 		tickerMsgPos2.setBackground(UIManager.getColor("Button.background"));
@@ -158,6 +159,7 @@ public class BaseTab extends JFrame{
 		tickerMsgPos2.setText("<div style=\"font-family: Calibri, monospace;\"><strong>Logindaten:</strong><br>Dozenten:<br>Doz // Doz <br><br>Studenten:<br>Stud // Stud<br><br>Verwaltung:<br>Verw // Verw <br><br> Anderenfalls Fehler!</div>");
 		
 		tickerMsgPos1 = new JTextPane();
+		tickerMsgPos1.setEditable(false);
 		tickerMsgPos1.setBounds(6, 6, 123, 90);
 		panel.add(tickerMsgPos1);
 		tickerMsgPos1.setBackground(UIManager.getColor("Button.light"));
