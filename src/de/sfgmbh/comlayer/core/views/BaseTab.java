@@ -25,6 +25,7 @@ import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableCellRenderer;
 
 import de.sfgmbh.comlayer.core.controller.BaseBtnAddToStundenplan;
+import de.sfgmbh.comlayer.core.controller.BaseBtnFailureprompt;
 import de.sfgmbh.comlayer.core.controller.BaseBtnLogin;
 import de.sfgmbh.comlayer.core.controller.BaseCmbboxFilter;
 import de.sfgmbh.comlayer.core.controller.BaseRdbtnTopLeft;
@@ -62,6 +63,7 @@ public class BaseTab extends JFrame{
 	private JPasswordField pwdPasswort;
 	private JRadioButton rdbtnLehrveranstaltungen;
 	private JRadioButton rdbtnRaume;
+	private JButton btnFehlermeldung;
 	
 
 	/**
@@ -87,7 +89,7 @@ public class BaseTab extends JFrame{
 		startScreenPanel.setMaximumSize(new Dimension(10, 32767));
 		contentPane.setLayer(startScreenPanel, 1);
 		contentPane.add(startScreenPanel, "name_5256771068822");
-		startScreenPanel.setLayout(new MigLayout("", "[grow][][grow][grow][grow][grow][grow]", "[][][grow]"));
+		startScreenPanel.setLayout(new MigLayout("", "[grow][][grow][grow][grow][grow][grow]", "[][][grow][]"));
 		startScreenPanel.add(getRdbtnLehrveranstaltungen(), "cell 0 0");
 		
 		lblLehrveranstaltung = new JLabel("Lehrveranstaltung:");
@@ -193,6 +195,11 @@ public class BaseTab extends JFrame{
 		btnAddToStundenplan.addActionListener(new BaseBtnAddToStundenplan("plus"));
 		btnAddToStundenplan.setBounds(0, 29, 41, 23);
 		buttonPanel.add(btnAddToStundenplan);
+		
+		btnFehlermeldung = new JButton("Fehlermeldung");
+		btnFehlermeldung.addActionListener(new BaseBtnFailureprompt("error"));
+		startScreenPanel.add(btnFehlermeldung, "cell 2 3");
+		
 		organisationTable.getColumnModel().getColumn(0).setResizable(false);
 		organisationTable.getColumnModel().getColumn(0).setPreferredWidth(50);
 		organisationTable.getColumnModel().getColumn(0).setMinWidth(50);
