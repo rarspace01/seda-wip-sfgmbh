@@ -39,6 +39,10 @@ public class UserTabBtnsControl implements ActionListener {
 			this.getInfoWindow("Benutzer wird gelöscht!").setVisible(true);
 		}
 		
+		// Fehlermeldung Button is pressed
+		if (this.navAction.equals("Fehlermeldung")) {
+			this.getInfoWindow("Es besteht keine Verbindung zur Datenbank. Daher können keine Nutzer angezeigt werden.").setVisible(true);
+		}
 	}
 	
 	// Manage InfoWindow instance

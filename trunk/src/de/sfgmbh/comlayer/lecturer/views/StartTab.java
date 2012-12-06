@@ -21,6 +21,9 @@ import de.sfgmbh.comlayer.lecturer.controller.StartTabCmbboxFilter;
 import de.sfgmbh.comlayer.lecturer.model.StartTabCmbboxModelFilter;
 import de.sfgmbh.comlayer.lecturer.model.StartTabTableBottom;
 import de.sfgmbh.comlayer.lecturer.model.StartTabTableTop;
+import javax.swing.SwingConstants;
+import javax.swing.JTextPane;
+import javax.swing.DropMode;
 
 public class StartTab extends JPanel {
 
@@ -41,12 +44,13 @@ public class StartTab extends JPanel {
 	private JButton btnRoomRequest;
 	private JButton btnEdit;
 	private JButton btnDelete;
-	private JLabel lblNewLabel;
 	private JComboBox<String> comboBox;
 	private JLabel lblStatus;
 	private JButton btnLivetickerEdit;
 	private JPanel tablePanel;
 	private JTable roomrequestTable;
+	private JTextPane txtpnBajksbfwebfskbjfsbksbksdbkgdbfkgbdkrgbekrbgf;
+	private JButton btnFailureprompt;
 
 	/**
 	 * Create the panel.
@@ -72,9 +76,12 @@ public class StartTab extends JPanel {
 		topSidePanel.setBounds(0, 6, 130, 313);
 		sidePanel.add(topSidePanel);
 		
-		lblNewLabel = new JLabel("<html>LiveTickerNews:<br><br><b>Fehlermeldung 1: </b>Es wurden keine Lehrveranstaltungen gefunden werden, die in 10 Minuten beginnen. <br> <b>Fehlermeldung 2: </b>Es wurden keine Meldungen von Dozenten oder der Hausverwaltung gefunden. <b>Fehlermeldung 3:</b> Es besteht keine Verbindung zur Datenbank.</html>\r\n");
-		lblNewLabel.setBounds(10, 11, 120, 277);
-		topSidePanel.add(lblNewLabel);
+		txtpnBajksbfwebfskbjfsbksbksdbkgdbfkgbdkrgbekrbgf = new JTextPane();
+		txtpnBajksbfwebfskbjfsbksbksdbkgdbfkgbdkrgbekrbgf.setBackground(UIManager.getColor("Button.background"));
+		txtpnBajksbfwebfskbjfsbksbksdbkgdbfkgbdkrgbekrbgf.setContentType("text/plain\r\n");
+		txtpnBajksbfwebfskbjfsbksbksdbkgdbfkgbdkrgbekrbgf.setText("LiveTickerNews:\r\n\r\nFehler: Es wurden keine Lehrveranstaltungen gefunden werden, die in 10 Minuten beginnen. \r\n\r\nFehler: Es wurden keine Meldungen von Dozenten oder der Hausverwaltung gefunden. \r\n\r\nFehler: Es besteht keine Verbindung zur Datenbank.");
+		txtpnBajksbfwebfskbjfsbksbksdbkgdbfkgbdkrgbekrbgf.setBounds(0, 0, 130, 302);
+		topSidePanel.add(txtpnBajksbfwebfskbjfsbksbksdbkgdbfkgbdkrgbekrbgf);
 		
 		bottomSidePanel = new JPanel();
 		bottomSidePanel.setBounds(0, 319, 140, 161);
@@ -95,7 +102,7 @@ public class StartTab extends JPanel {
 		
 		tablePanel = new JPanel();
 		add(tablePanel, "cell 1 1 5 1,grow");
-		tablePanel.setLayout(new MigLayout("", "[grow][grow][grow][grow][grow]", "[][][150px:n:200px,grow][][][][100px:n:200px,grow]"));
+		tablePanel.setLayout(new MigLayout("", "[grow][grow][grow][grow][grow]", "[][][150px:n:200px,grow][][][][100px:n:200px,grow][]"));
 		
 		lblProfessorship = new JLabel("Lehrstuhl:");
 		tablePanel.add(lblProfessorship, "cell 0 0");
@@ -205,6 +212,10 @@ public class StartTab extends JPanel {
 		roomrequestTable.setBackground(SystemColor.activeCaption);
 		raumanfragenScrollPane.setViewportView(roomrequestTable);
 		
+		btnFailureprompt = new JButton("Fehlermeldung");
+		btnFailureprompt.addActionListener(new StartTabBtnsControl("Fehlermeldung"));
+		tablePanel.add(btnFailureprompt, "cell 0 7");
+				
 		buttonPanel = new JPanel();
 		buttonPanel.setLayout(null);
 		buttonPanel.setMinimumSize(new Dimension(80, 10));

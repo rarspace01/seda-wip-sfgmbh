@@ -18,17 +18,19 @@ import de.sfgmbh.comlayer.organisation.controller.BtnsNav;
 import de.sfgmbh.comlayer.organisation.controller.CmbboxFilter;
 import de.sfgmbh.comlayer.organisation.controller.RequestTabBtnsControl;
 import de.sfgmbh.init.Bootstrap;
+import javax.swing.JTextPane;
+import javax.swing.UIManager;
 
 public class RequestTab extends JPanel {
 
 	private static final long serialVersionUID = 1L;
 	private JTable raumverwaltungTable;
-	private JLabel lblDozent;
-	private JLabel lblLehrstuhl;
+	private JLabel lblLecturer;
+	private JLabel lblProfessorship;
 	private JLabel lblStatus;
-	private JLabel lblPcpltze;
-	private JComboBox<String> comboBoxDozent;
-	private JComboBox<String> comboBoxLehrstuhl;
+	private JLabel lblPcseats;
+	private JComboBox<String> comboBoxLecturer;
+	private JComboBox<String> comboBoxProfessorship;
 	private JPanel leftPanel;
 	private JPanel leftTopPanel;
 	private JPanel leftBottomPanel;
@@ -37,47 +39,53 @@ public class RequestTab extends JPanel {
 	private JButton btnFreigeben;
 	private JComboBox<String> comboBoxStatus;
 	private JComboBox<String> comboBoxSemester;
-	private JButton btnRäume;
-	private JButton btnLivetickerBearbeiten;
+	private JButton btnRoom;
+	private JButton btnLivetickerEdit;
+	private JTextPane tickerMsgPos1;
+	private JButton btnFailureprompt;
 
 	/**
 	 * Create the frame.
 	 */
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public RequestTab() {
+		
+		initialize();
+	}
+	private void initialize() {
 		setMinimumSize(new Dimension(100, 10));
 		setMaximumSize(new Dimension(100, 32767));
-		setLayout(new MigLayout("", "[140px:140px:140px,grow][10px:10px:10px][grow][grow][grow][grow][grow]", "[][][grow]"));
+		setLayout(new MigLayout("", "[140px:140px:140px,grow][10px:10px:10px][grow][grow][grow][grow][grow]", "[][][grow][]"));
 		
 		JLabel lblRaumverwaltung = new JLabel("Raumanfragen");
 		lblRaumverwaltung.setFont(new Font("SansSerif", Font.BOLD, 13));
 		add(lblRaumverwaltung, "cell 0 0,alignx center");
 		
-		lblDozent = new JLabel("Dozent:");
-		add(lblDozent, "cell 2 0");
+		lblLecturer = new JLabel("Dozent:");
+		add(lblLecturer, "cell 2 0");
 		
-		lblLehrstuhl = new JLabel("Lehrstuhl:");
-		add(lblLehrstuhl, "cell 3 0");
+		lblProfessorship = new JLabel("Lehrstuhl:");
+		add(lblProfessorship, "cell 3 0");
 		
 		lblStatus = new JLabel("Freigabestatus:");
 		add(lblStatus, "cell 4 0");
 		
-		lblPcpltze = new JLabel("Semester:");
-		add(lblPcpltze, "cell 5 0");
+		lblPcseats = new JLabel("Semester:");
+		add(lblPcseats, "cell 5 0");
 		
-		comboBoxDozent = new JComboBox<String>();
-		comboBoxDozent.addActionListener(new CmbboxFilter());
-		comboBoxDozent.setModel(new DefaultComboBoxModel(new String[] {"<alle>"}));
-		comboBoxDozent.setEditable(true);
-		comboBoxDozent.setAutoscrolls(true);
-		add(comboBoxDozent, "cell 2 1,growx");
+		comboBoxLecturer = new JComboBox<String>();
+		comboBoxLecturer.addActionListener(new CmbboxFilter());
+		comboBoxLecturer.setModel(new DefaultComboBoxModel(new String[] {"<alle>"}));
+		comboBoxLecturer.setEditable(true);
+		comboBoxLecturer.setAutoscrolls(true);
+		add(comboBoxLecturer, "cell 2 1,growx");
 		
-		comboBoxLehrstuhl = new JComboBox<String>();
-		comboBoxLehrstuhl.addActionListener(new CmbboxFilter());
-		comboBoxLehrstuhl.setModel(new DefaultComboBoxModel(new String[] {"<alle>"}));
-		comboBoxLehrstuhl.setEditable(true);
-		comboBoxLehrstuhl.setAutoscrolls(true);
-		add(comboBoxLehrstuhl, "cell 3 1,growx");
+		comboBoxProfessorship = new JComboBox<String>();
+		comboBoxProfessorship.addActionListener(new CmbboxFilter());
+		comboBoxProfessorship.setModel(new DefaultComboBoxModel(new String[] {"<alle>"}));
+		comboBoxProfessorship.setEditable(true);
+		comboBoxProfessorship.setAutoscrolls(true);
+		add(comboBoxProfessorship, "cell 3 1,growx");
 		
 		comboBoxStatus = new JComboBox<String>();
 		comboBoxStatus.addActionListener(new CmbboxFilter());
@@ -102,15 +110,17 @@ public class RequestTab extends JPanel {
 		leftTopPanel = new JPanel();
 		leftTopPanel.setLayout(null);
 		leftTopPanel.setBorder(new TitledBorder(null, "", TitledBorder.TRAILING, TitledBorder.ABOVE_TOP, null, null));
-		leftTopPanel.setBounds(0, 6, 140, 313);
+		leftTopPanel.setBounds(0, 6, 140, 291);
 		leftPanel.add(leftTopPanel);
 		
-		JLabel lblInfo = new JLabel("<html>LiveTickerNews:<br><br><b>Fehlermeldung 1: </b>Es wurden keine Lehrveranstaltungen gefunden werden, die in 10 Minuten beginnen. <br> <b>Fehlermeldung 2: </b>Es wurden keine Meldungen von Dozenten oder der Hausverwaltung gefunden. <b>Fehlermeldung 3:</b> Es besteht keine Verbindung zur Datenbank.</html>\r\n");
-		lblInfo.setBounds(6, 6, 134, 296);
-		leftTopPanel.add(lblInfo);
+		tickerMsgPos1 = new JTextPane();
+		tickerMsgPos1.setBackground(UIManager.getColor("Button.background"));
+		tickerMsgPos1.setText("LiveTickerNews:\r\n\r\nFehler: Es wurden keine Lehrveranstaltungen gefunden werden, die in 10 Minuten beginnen.\r\n\r\nFehler: Es wurden keine Meldungen von Dozenten oder der Hausverwaltung gefunden. \r\n\r\nFehler: Es besteht keine Verbindung zur Datenbank.\r\n");
+		tickerMsgPos1.setBounds(6, 0, 134, 280);
+		leftTopPanel.add(tickerMsgPos1);
 		
 		leftBottomPanel = new JPanel();
-		leftBottomPanel.setBounds(0, 319, 140, 161);
+		leftBottomPanel.setBounds(0, 296, 140, 150);
 		leftPanel.add(leftBottomPanel);
 		leftBottomPanel.setLayout(new MigLayout("", "[]", "[][][][][]"));
 		
@@ -121,20 +131,20 @@ public class RequestTab extends JPanel {
 		btnNutzerverwaltung.addActionListener(new BtnsNav("Nutzerverw"));
 		leftBottomPanel.add(btnNutzerverwaltung, "cell 0 1");
 		
-		btnRäume = new JButton("R\u00E4ume");
-		btnRäume.addActionListener(new BtnsNav("Raumverw"));
-		leftBottomPanel.add(btnRäume, "cell 0 2");
+		btnRoom = new JButton("R\u00E4ume");
+		btnRoom.addActionListener(new BtnsNav("Raumverw"));
+		leftBottomPanel.add(btnRoom, "cell 0 2");
 		
 		JButton btnLehrstuhlverwaltung = new JButton("Lehrst\u00FChle");
 		btnLehrstuhlverwaltung.addActionListener(new BtnsNav("Lehrstuhlverw"));
 		
-		btnLivetickerBearbeiten = new JButton("LiveTicker");
-		btnLivetickerBearbeiten.addActionListener(new BtnsNav("liveticker"));
-		leftBottomPanel.add(btnLivetickerBearbeiten, "cell 0 3");
+		btnLivetickerEdit = new JButton("LiveTicker");
+		btnLivetickerEdit.addActionListener(new BtnsNav("liveticker"));
+		leftBottomPanel.add(btnLivetickerEdit, "cell 0 3");
 		leftBottomPanel.add(btnLehrstuhlverwaltung, "cell 0 4");
 		
-		verwaltungTableScrollPane = new JScrollPane();
-		add(verwaltungTableScrollPane, "flowx,cell 2 2 4 1,grow");
+		organisationTableScrollPane = new JScrollPane();
+		add(organisationTableScrollPane, "flowx,cell 2 2 4 1,grow");
 		
 		raumverwaltungTable = new JTable();
 		raumverwaltungTable.setModel(Bootstrap.serviceManager.getOrgaRequestTableModel());
@@ -166,5 +176,8 @@ public class RequestTab extends JPanel {
 		btnGegenvorschlag.setBounds(6, 79, 99, 23);
 		buttonPanel.add(btnGegenvorschlag);
 		
+		btnFailureprompt = new JButton("Fehlermeldung");
+		add(btnFailureprompt, "cell 2 3");
+		btnFailureprompt.addActionListener(new RequestTabBtnsControl("Fehlermeldung"));
 	}
 }

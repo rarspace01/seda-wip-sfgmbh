@@ -34,6 +34,11 @@ public class RequestTabBtnsControl implements ActionListener {
 			this.getInfoWindow("<b>Die Lehrveranstaltung konnte nicht freigegeben werden:</b><br><br>Sie haben keine Lehrveranstaltung selektiert!").setVisible(true);
 		}
 		
+		// Fehlermeldung Button is pressed
+		if (this.navAction.equals("Fehlermeldung")) {
+			this.getInfoWindow("<b> Es konnte keine Datenverbindung hergestellt werden. Somit können keine Anfragen angezeigt werden.</b>").setVisible(true);
+		}
+		
 		// Freigeben Button is pressed
 		if (this.navAction.equals("publish")) {
 			this.getInfoWindow("<b>Die Lehrveranstaltung konnte nicht freigegeben werden:</b><br><br>Sie haben keine Lehrveranstaltung selektiert!").setVisible(true);

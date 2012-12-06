@@ -25,6 +25,7 @@ import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableCellRenderer;
 
 import de.sfgmbh.comlayer.core.controller.BaseBtnAddToStundenplan;
+import de.sfgmbh.comlayer.core.controller.BaseBtnFailureprompt;
 import de.sfgmbh.comlayer.core.controller.BaseBtnLogin;
 import de.sfgmbh.comlayer.core.controller.BaseCmbboxFilter;
 import de.sfgmbh.comlayer.core.controller.BaseRdbtnTopLeft;
@@ -32,6 +33,7 @@ import de.sfgmbh.comlayer.core.model.BaseCmbboxModelFilter;
 import de.sfgmbh.init.Bootstrap;
 
 import net.miginfocom.swing.MigLayout;
+import java.awt.Font;
 
 public class BaseTab extends JFrame{
 
@@ -41,12 +43,12 @@ public class BaseTab extends JFrame{
 	private JLayeredPane contentPane;
 	public JTabbedPane mainTabbedContainerPane;
 	public JPanel startScreenPanel;
-	private JComboBox<String> comboBoxVeranstaltungFilter;
-	private JLabel lblLehrveranstaltung;
-	private JLabel lblLehrstuhl;
-	private JLabel lblDozent;
-	private JComboBox<String> comboBoxLehrstuhlFilter;
-	private JComboBox<String> comboBoxDozentFilter;
+	private JComboBox<String> comboBoxOrganisationFilter;
+	private JLabel lblCourse;
+	private JLabel lblProfessorship;
+	private JLabel lblLecturer;
+	private JComboBox<String> comboBoxProfessorshipFilter;
+	private JComboBox<String> comboBoxLecturerFilter;
 	private JComboBox<String> comboBoxSemesterFilter;
 	private JLabel lblSemester;
 	private JTable organisationTable;
@@ -55,13 +57,15 @@ public class BaseTab extends JFrame{
 	private JTextPane tickerMsgPos1;
 	private JPanel panel_1;
 	private final ButtonGroup buttonGroup = new ButtonGroup();
-	private JLabel lblPasswort;
-	private JLabel lblBenutzername;
+	private JLabel lblPassword;
+	private JLabel lblUsername;
 	private JButton btnNewButton;
-	private JTextField txtBenutzername;
-	private JPasswordField pwdPasswort;
-	private JRadioButton rdbtnLehrveranstaltungen;
-	private JRadioButton rdbtnRaume;
+	private JTextField txtUsername;
+	private JPasswordField pwdPassword;
+	private JRadioButton rdbtnCourses;
+	private JRadioButton rdbtnRooms;
+	private JButton btnFailureprompt;
+	private JTextPane tickerMsgPos3;
 	
 
 	/**
@@ -69,11 +73,12 @@ public class BaseTab extends JFrame{
 	 */
 	@SuppressWarnings({ })
 	public BaseTab() {
+		setTitle("UnivIS 2.0");
 		createContents();
 	}
 	private void createContents() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 900, 600);
+		setBounds(100, 100, 804, 593);
 		contentPane = new JLayeredPane();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -87,45 +92,45 @@ public class BaseTab extends JFrame{
 		startScreenPanel.setMaximumSize(new Dimension(10, 32767));
 		contentPane.setLayer(startScreenPanel, 1);
 		contentPane.add(startScreenPanel, "name_5256771068822");
-		startScreenPanel.setLayout(new MigLayout("", "[grow][][grow][grow][grow][grow][grow]", "[][][grow]"));
+		startScreenPanel.setLayout(new MigLayout("", "[grow][][grow][grow][grow][grow][grow]", "[][][grow][]"));
 		startScreenPanel.add(getRdbtnLehrveranstaltungen(), "cell 0 0");
 		
-		lblLehrveranstaltung = new JLabel("Lehrveranstaltung:");
-		startScreenPanel.add(lblLehrveranstaltung, "cell 2 0,alignx left,aligny center");
+		lblCourse = new JLabel("Lehrveranstaltung:");
+		startScreenPanel.add(lblCourse, "cell 2 0,alignx left,aligny center");
 		
-		lblLehrstuhl = new JLabel("Lehrstuhl:");
-		startScreenPanel.add(lblLehrstuhl, "cell 3 0");
+		lblProfessorship = new JLabel("Lehrstuhl:");
+		startScreenPanel.add(lblProfessorship, "cell 3 0");
 		
-		lblDozent = new JLabel("Dozent:");
-		startScreenPanel.add(lblDozent, "cell 4 0");
+		lblLecturer = new JLabel("Dozent:");
+		startScreenPanel.add(lblLecturer, "cell 4 0");
 		
 		lblSemester = new JLabel("Semester:");
 		startScreenPanel.add(lblSemester, "cell 5 0");
 		
-		comboBoxVeranstaltungFilter = new JComboBox<String>();
-		comboBoxVeranstaltungFilter.addKeyListener(new BaseCmbboxFilter());
-		comboBoxVeranstaltungFilter.addActionListener(new BaseCmbboxFilter());
+		comboBoxOrganisationFilter = new JComboBox<String>();
+		comboBoxOrganisationFilter.addKeyListener(new BaseCmbboxFilter());
+		comboBoxOrganisationFilter.addActionListener(new BaseCmbboxFilter());
 		startScreenPanel.add(getRdbtnRaume(), "cell 0 1");
-		comboBoxVeranstaltungFilter.setAutoscrolls(true);
-		comboBoxVeranstaltungFilter.setEditable(true);
-		comboBoxVeranstaltungFilter.setModel(new BaseCmbboxModelFilter("Veranst"));
-		startScreenPanel.add(comboBoxVeranstaltungFilter, "cell 2 1,growx");
+		comboBoxOrganisationFilter.setAutoscrolls(true);
+		comboBoxOrganisationFilter.setEditable(true);
+		comboBoxOrganisationFilter.setModel(new BaseCmbboxModelFilter("Veranst"));
+		startScreenPanel.add(comboBoxOrganisationFilter, "cell 2 1,growx");
 		
-		comboBoxLehrstuhlFilter = new JComboBox<String>();
-		comboBoxLehrstuhlFilter.setModel(new BaseCmbboxModelFilter("Lehrstuhl"));
-		comboBoxLehrstuhlFilter.addKeyListener(new BaseCmbboxFilter());
-		comboBoxLehrstuhlFilter.addActionListener(new BaseCmbboxFilter());
-		comboBoxLehrstuhlFilter.setEditable(true);
-		comboBoxLehrstuhlFilter.setAutoscrolls(true);
-		startScreenPanel.add(comboBoxLehrstuhlFilter, "cell 3 1,growx");
+		comboBoxProfessorshipFilter = new JComboBox<String>();
+		comboBoxProfessorshipFilter.setModel(new BaseCmbboxModelFilter("Lehrstuhl"));
+		comboBoxProfessorshipFilter.addKeyListener(new BaseCmbboxFilter());
+		comboBoxProfessorshipFilter.addActionListener(new BaseCmbboxFilter());
+		comboBoxProfessorshipFilter.setEditable(true);
+		comboBoxProfessorshipFilter.setAutoscrolls(true);
+		startScreenPanel.add(comboBoxProfessorshipFilter, "cell 3 1,growx");
 		
-		comboBoxDozentFilter = new JComboBox<String>();
-		comboBoxDozentFilter.setModel(new BaseCmbboxModelFilter("Doz"));
-		comboBoxDozentFilter.addKeyListener(new BaseCmbboxFilter());
-		comboBoxDozentFilter.addActionListener(new BaseCmbboxFilter());
-		comboBoxDozentFilter.setEditable(true);
-		comboBoxDozentFilter.setAutoscrolls(true);
-		startScreenPanel.add(comboBoxDozentFilter, "cell 4 1,growx");
+		comboBoxLecturerFilter = new JComboBox<String>();
+		comboBoxLecturerFilter.setModel(new BaseCmbboxModelFilter("Doz"));
+		comboBoxLecturerFilter.addKeyListener(new BaseCmbboxFilter());
+		comboBoxLecturerFilter.addActionListener(new BaseCmbboxFilter());
+		comboBoxLecturerFilter.setEditable(true);
+		comboBoxLecturerFilter.setAutoscrolls(true);
+		startScreenPanel.add(comboBoxLecturerFilter, "cell 4 1,growx");
 		
 		comboBoxSemesterFilter = new JComboBox<String>();
 		comboBoxSemesterFilter.setModel(new BaseCmbboxModelFilter("Sem"));
@@ -144,11 +149,38 @@ public class BaseTab extends JFrame{
 		
 		JPanel panel = new JPanel();
 		panel.setBorder(new TitledBorder(null, "", TitledBorder.TRAILING, TitledBorder.ABOVE_TOP, null, null));
-		panel.setBounds(0, 6, 140, 313);
+		panel.setBounds(0, 6, 140, 334);
 		tickerJPanel.add(panel);
 		panel.setLayout(null);
 		
 		JTextPane tickerMsgPos2 = new JTextPane();
+		tickerMsgPos2.setFont(new Font("Tahoma", Font.PLAIN, 9));
+		tickerMsgPos2.setBounds(6, 63, 123, 176);
+		panel.add(tickerMsgPos2);
+		tickerMsgPos2.setBackground(UIManager.getColor("Button.background"));
+		tickerMsgPos2.setContentType("text/html");
+		tickerMsgPos2.setText("<div style=\"font-family:arial\" size=\"10\"><strong>Info:</strong><br>Logindaten: <br>Dozenten: Doz // Doz <br>Studenten: Stud // Stud<br> Verwaltung: Verw // Verw <br> Anderenfalls Fehler! Oder:</div>");
+		
+		tickerMsgPos1 = new JTextPane();
+		tickerMsgPos1.setBounds(6, 6, 123, 57);
+		panel.add(tickerMsgPos1);
+		tickerMsgPos1.setBackground(UIManager.getColor("Button.background"));
+		tickerMsgPos1.setContentType("text/html");
+		tickerMsgPos1.setText("<div style=\"font-family:arial\" size=\"11\"><strong>News:</strong><br> <span style=\"color:red\">Neu!</span> Testlogin jetzt m\u00F6glich!</div>");
+		
+		tickerMsgPos3 = new JTextPane();
+		tickerMsgPos3.setFont(new Font("Arial", Font.BOLD, 14));
+		tickerMsgPos3.setText("Fehler: Es wurde keine Lehrveranstaltung oder Meldung gefunden!");
+		tickerMsgPos3.setBackground(UIManager.getColor("Button.background"));
+		tickerMsgPos3.setBounds(6, 242, 124, 90);
+		panel.add(tickerMsgPos3);
+		
+		panel_1 = new JPanel();
+		panel_1.setBounds(0, 337, 140, 143);
+		tickerJPanel.add(panel_1);
+		panel_1.setLayout(new MigLayout("", "[grow]", "[][][][][][]"));
+		panel_1.add(getLblUsername(), "cell 0 0");
+		panel_1.add(getTxtBenutzername(), "cell 0 1,growx");
 		tickerMsgPos2.setBounds(6, 108, 123, 194);
 		panel.add(tickerMsgPos2);
 		tickerMsgPos2.setBackground(UIManager.getColor("Button.background"));
@@ -169,10 +201,10 @@ public class BaseTab extends JFrame{
 		panel_1.add(getLblBenutzername(), "cell 0 0");
 		panel_1.add(getTxtBenutzername(), "cell 0 1,growx");
 		
-		lblPasswort = new JLabel("Passwort:");
-		panel_1.add(lblPasswort, "cell 0 2");
+		lblPassword = new JLabel("Passwort:");
+		panel_1.add(lblPassword, "cell 0 2");
 		panel_1.add(getPwdPasswort(), "cell 0 3,growx");
-		panel_1.add(getBtnNewButton(), "cell 0 4,alignx right");
+		panel_1.add(getBtnNewButton(), "cell 0 4 1 2,alignx right");
 		
 		mainTableScrollPane = new JScrollPane();
 		startScreenPanel.add(mainTableScrollPane, "cell 2 2 4 1,grow");
@@ -193,6 +225,7 @@ public class BaseTab extends JFrame{
 		btnAddToStundenplan.addActionListener(new BaseBtnAddToStundenplan("plus"));
 		btnAddToStundenplan.setBounds(0, 29, 41, 23);
 		buttonPanel.add(btnAddToStundenplan);
+		startScreenPanel.add(getBtnFehlermeldung(), "cell 2 3");
 		organisationTable.getColumnModel().getColumn(0).setResizable(false);
 		organisationTable.getColumnModel().getColumn(0).setPreferredWidth(50);
 		organisationTable.getColumnModel().getColumn(0).setMinWidth(50);
@@ -232,11 +265,11 @@ public class BaseTab extends JFrame{
 		organisationTable.getColumnModel().getColumn(1).setCellRenderer(center);
 		organisationTable.getColumnModel().getColumn(6).setCellRenderer(center);
 	}
-	public JLabel getLblBenutzername() {
-		if (lblBenutzername == null) {
-			lblBenutzername = new JLabel("Benutzername:");
+	public JLabel getLblUsername() {
+		if (lblUsername == null) {
+			lblUsername = new JLabel("Benutzername:");
 		}
-		return lblBenutzername;
+		return lblUsername;
 	}
 	public JButton getBtnNewButton() {
 		if (btnNewButton == null) {
@@ -245,36 +278,44 @@ public class BaseTab extends JFrame{
 		}
 		return btnNewButton;
 	}
-	public JTextField getTxtBenutzername() {
-		if (txtBenutzername == null) {
-			txtBenutzername = new JTextField();
-			txtBenutzername.setColumns(10);
+	private JButton getBtnFehlermeldung() {
+		if (btnFailureprompt == null) {
+			btnFailureprompt = new JButton("Fehlermeldung");
+			btnFailureprompt.addActionListener(new BaseBtnFailureprompt("error"));
 		}
-		return txtBenutzername;
+		return btnFailureprompt;
+	}
+	public JTextField getTxtBenutzername() {
+		if (txtUsername == null) {
+			txtUsername = new JTextField();
+			txtUsername.setColumns(10);
+		}
+		return txtUsername;
 	}
 	public JPasswordField getPwdPasswort() {
-		if (pwdPasswort == null) {
-			pwdPasswort = new JPasswordField();
+		if (pwdPassword == null) {
+			pwdPassword = new JPasswordField();
 		}
-		return pwdPasswort;
+		return pwdPassword;
 	}
 	public JRadioButton getRdbtnLehrveranstaltungen() {
-		if (rdbtnLehrveranstaltungen == null) {
-			rdbtnLehrveranstaltungen = new JRadioButton("Lehrveranstaltungen");
-			rdbtnLehrveranstaltungen.addActionListener(new BaseRdbtnTopLeft());
-			buttonGroup.add(rdbtnLehrveranstaltungen);
-			rdbtnLehrveranstaltungen.setSelected(true);
-			rdbtnLehrveranstaltungen.setMargin(new Insets(0, 0, 0, 0));
+		if (rdbtnCourses == null) {
+			rdbtnCourses = new JRadioButton("Lehrveranstaltungen");
+			rdbtnCourses.addActionListener(new BaseRdbtnTopLeft());
+			buttonGroup.add(rdbtnCourses);
+			rdbtnCourses.setSelected(true);
+			rdbtnCourses.setMargin(new Insets(0, 0, 0, 0));
 		}
-		return rdbtnLehrveranstaltungen;
+		return rdbtnCourses;
 	}
 	public JRadioButton getRdbtnRaume() {
-		if (rdbtnRaume == null) {
-			rdbtnRaume = new JRadioButton("R\u00E4ume");
-			rdbtnRaume.addActionListener(new BaseRdbtnTopLeft());
-			buttonGroup.add(rdbtnRaume);
-			rdbtnRaume.setMargin(new Insets(0, 0, 0, 0));
+		if (rdbtnRooms == null) {
+			rdbtnRooms = new JRadioButton("R\u00E4ume");
+			rdbtnRooms.addActionListener(new BaseRdbtnTopLeft());
+			buttonGroup.add(rdbtnRooms);
+			rdbtnRooms.setMargin(new Insets(0, 0, 0, 0));
 		}
-		return rdbtnRaume;
+		return rdbtnRooms;
 	}
+	
 }
