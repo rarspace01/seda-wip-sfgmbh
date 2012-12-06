@@ -1,3 +1,4 @@
+
 package de.sfgmbh.comlayer.organisation.views;
 
 import java.awt.Dimension;
