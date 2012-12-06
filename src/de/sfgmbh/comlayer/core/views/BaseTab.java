@@ -149,7 +149,7 @@ public class BaseTab extends JFrame{
 		panel.setLayout(null);
 		
 		JTextPane tickerMsgPos2 = new JTextPane();
-		tickerMsgPos2.setBounds(6, 108, 123, 176);
+		tickerMsgPos2.setBounds(6, 108, 123, 194);
 		panel.add(tickerMsgPos2);
 		tickerMsgPos2.setBackground(UIManager.getColor("Button.background"));
 		tickerMsgPos2.setContentType("text/html");
