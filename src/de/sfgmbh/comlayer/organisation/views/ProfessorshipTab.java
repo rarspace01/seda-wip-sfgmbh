@@ -110,11 +110,11 @@ public class ProfessorshipTab extends JPanel {
 		organisationTableScrollPane.setMinimumSize(new Dimension(400, 25));
 		add(organisationTableScrollPane, "flowx,cell 2 2 4 1,grow");
 		
-		raumverwaltungTable = new JTable();
-		raumverwaltungTable.setModel(Bootstrap.serviceManager.getOrgaProfessorshipTableModel());
-		raumverwaltungTable.setShowVerticalLines(false);
-		raumverwaltungTable.setBackground(SystemColor.activeCaption);
-		verwaltungTableScrollPane.setViewportView(raumverwaltungTable);
+		roomTable = new JTable();
+		roomTable.setModel(Bootstrap.serviceManager.getOrgaProfessorshipTableModel());
+		roomTable.setShowVerticalLines(false);
+		roomTable.setBackground(SystemColor.activeCaption);
+		organisationTableScrollPane.setViewportView(roomTable);
 		
 		buttonPanel = new JPanel();
 		buttonPanel.setLayout(null);

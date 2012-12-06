@@ -38,7 +38,7 @@ public class UserTab extends JPanel {
 	private JPanel leftPanel;
 	private JPanel leftTopPanel;
 	private JPanel leftBottomPanel;
-	private JScrollPane verwaltungTableScrollPane;
+	private JScrollPane organisationTableScrollPane;
 	private JPanel buttonPanel;
 	private JButton btnEdit;
 	private JButton btnRequest;
@@ -151,7 +151,7 @@ public class UserTab extends JPanel {
 		raumverwaltungTable.setModel(Bootstrap.serviceManager.getOrgaUserTableModel());
 		raumverwaltungTable.setShowVerticalLines(false);
 		raumverwaltungTable.setBackground(SystemColor.activeCaption);
-		verwaltungTableScrollPane.setViewportView(raumverwaltungTable);
+		organisationTableScrollPane.setViewportView(raumverwaltungTable);
 		
 		buttonPanel = new JPanel();
 		buttonPanel.setLayout(null);
