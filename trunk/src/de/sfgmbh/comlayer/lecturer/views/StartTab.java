@@ -80,7 +80,7 @@ public class StartTab extends JPanel {
 		txtpnBajksbfwebfskbjfsbksbksdbkgdbfkgbdkrgbekrbgf.setBackground(UIManager.getColor("Button.background"));
 		txtpnBajksbfwebfskbjfsbksbksdbkgdbfkgbdkrgbekrbgf.setContentType("text/plain\r\n");
 		txtpnBajksbfwebfskbjfsbksbksdbkgdbfkgbdkrgbekrbgf.setText("LiveTickerNews:\r\n\r\nFehler: Es wurden keine Lehrveranstaltungen gefunden werden, die in 10 Minuten beginnen. \r\n\r\nFehler: Es wurden keine Meldungen von Dozenten oder der Hausverwaltung gefunden. \r\n\r\nFehler: Es besteht keine Verbindung zur Datenbank.");
-		txtpnBajksbfwebfskbjfsbksbksdbkgdbfkgbdkrgbekrbgf.setBounds(0, 0, 130, 302);
+		txtpnBajksbfwebfskbjfsbksbksdbkgdbfkgbdkrgbekrbgf.setBounds(10, 11, 110, 291);
 		topSidePanel.add(txtpnBajksbfwebfskbjfsbksbksdbkgdbfkgbdkrgbekrbgf);
 		
 		bottomSidePanel = new JPanel();
