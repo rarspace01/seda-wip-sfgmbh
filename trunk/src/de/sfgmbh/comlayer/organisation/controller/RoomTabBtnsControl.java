@@ -47,7 +47,12 @@ public class RoomTabBtnsControl implements ActionListener {
 		
 		// Raumplan Button is pressed
 		if (this.navAction.equals("Raumplan")) {
-			this.getInfoWindow("Raumplan noch nicht implementiert!").setVisible(true);
+			
+			this.getInfoWindow("<strong>Fehlermeldung</strong><br> Es konnte keine Übersicht Ihrer Veranstaltungen angezeigt werden. Sie haben keine Lehrveranstaltung ausgewählt!").setVisible(true);	
+			Bootstrap.serviceManager.getCoreBaseTab().mainTabbedContainerPane.setVisible(true);
+			Bootstrap.serviceManager.getCoreBaseTab().mainTabbedContainerPane.addTab("Raumplan", null, Bootstrap.serviceManager.getOrgaRoomtableTab(), null);
+			Bootstrap.serviceManager.getCoreBaseTab().mainTabbedContainerPane.setSelectedIndex(Bootstrap.serviceManager.getCoreBaseTab().mainTabbedContainerPane.getTabCount()-1);
+
 		}
 		
 	}
