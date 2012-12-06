@@ -40,6 +40,11 @@ public class RoomTabBtnsControl implements ActionListener {
 			this.getInfoWindow("<b>Der Raum konnte nicht gelöscht werden:</b><br><br>Sie haben keinen Raum selektiert.").setVisible(true);
 		}
 		
+		// Fehlermeldung Button is pressed
+		if (this.navAction.equals("Fehlermeldung")) {
+			this.getInfoWindow("Es besteht keine Verbindung zur Datenbank. Daher können keine Räume angezeigt werden.").setVisible(true);
+		}
+		
 		// Raumplan Button is pressed
 		if (this.navAction.equals("Raumplan")) {
 			this.getInfoWindow("Raumplan noch nicht implementiert!").setVisible(true);

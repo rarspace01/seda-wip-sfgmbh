@@ -38,7 +38,7 @@ public class RoomRequestFrame extends JFrame {
 		JTextPane txtpnFehlermeldungsieHaben = new JTextPane();
 		txtpnFehlermeldungsieHaben.setBackground(UIManager.getColor("Button.background"));
 		txtpnFehlermeldungsieHaben.setContentType("text/html");
-		txtpnFehlermeldungsieHaben.setText("<div font face='Tahoma'><strong>Fehlermeldung 1:</strong> <br>Sie haben keine Lehrveranstaltung selektiert <br> \r\n<strong>Fehlermeldung 2:</strong> <br>F\u00FCr die Lehrveranstaltung wurde schon eine Raumanfrage erstellt <br><strong>Oder Sie k\u00F6nnen eine Raumanfrage erstellen: </strong></div>");
+		txtpnFehlermeldungsieHaben.setText("<div font face='Tahoma'><strong>Sie haben keine Lehrveranstaltung selektiert! <br> Für die Lehrveranstaltung wurde schon eine Raumanfrage erstellt <br></strong>Oder Sie k\u00F6nnen eine Raumanfrage erstellen:</div>");
 		contentPane.add(txtpnFehlermeldungsieHaben, "cell 1 0 4 1,grow");
 		
 		JLabel lblNewLabel_3 = new JLabel("Veranstaltung: SEDA-WIP-B");

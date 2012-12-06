@@ -40,6 +40,11 @@ public class ProfessorshipTabBtnsControl implements ActionListener {
 			this.getInfoWindow("<b>Der Lehrstuhl konnte nicht gelöscht werden:</b><br><br>Sie haben keinen Lehrstuhl selektiert.").setVisible(true);
 		}
 		
+		// Fehlermeldung button is pressed
+				if (this.navAction.equals("Fehlermeldung")){
+					this.getInfoWindow("<strong> Es besteht keine Verbindung zur Datenbank, deswegen können die Lehrstühle nicht geladen werden</strong>").setVisible(true);
+				}
+		
 	}
 	
 	// Manage InfoWindow instance

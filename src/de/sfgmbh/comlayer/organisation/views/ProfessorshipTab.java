@@ -17,44 +17,52 @@ import de.sfgmbh.comlayer.organisation.controller.BtnsNav;
 import de.sfgmbh.comlayer.organisation.controller.CmbboxFilter;
 import de.sfgmbh.comlayer.organisation.controller.ProfessorshipTabBtnsControl;
 import de.sfgmbh.init.Bootstrap;
+import javax.swing.JTextPane;
+import javax.swing.UIManager;
 
 public class ProfessorshipTab extends JPanel {
 
 	private static final long serialVersionUID = 1L;
-	private JTextField textFieldLehrstuhlname;
-	private JTable raumverwaltungTable;
-	private JLabel lblLehrstuhlname;
+	private JTextField textFieldProfessorshipname;
+	private JTable roomTable;
+	private JLabel lblProfessorshipname;
 	private JPanel leftPanel;
 	private JPanel leftTopPanel;
 	private JPanel leftBottomPanel;
-	private JScrollPane verwaltungTableScrollPane;
+	private JScrollPane organisationTableScrollPane;
 	private JPanel buttonPanel;
-	private JButton btnHinzufugen;
-	private JButton btnAnfragen;
-	private JButton btnLschen;
-	private JButton btnLivetickerBeabeiten;
+	private JButton btnAdd;
+	private JButton btnRequest;
+	private JButton btnDelete;
+	private JButton btnLivetickerEdit;
+	private JTextPane tickerMsgPos1;
+	private JButton btnFailureprompt;
 
 	/**
 	 * Create the frame.
 	 */
 	@SuppressWarnings({ })
 	public ProfessorshipTab() {
+		
+		initialize();
+	}
+	private void initialize() {
 		setMinimumSize(new Dimension(100, 10));
 		setMaximumSize(new Dimension(100, 32767));
-		setLayout(new MigLayout("", "[140px:140px:140px,grow][10px:10px:10px][grow][grow][grow][grow][grow]", "[][][grow]"));
+		setLayout(new MigLayout("", "[140px:140px:140px,grow][10px:10px:10px][grow][grow][grow][grow][grow]", "[][][grow][]"));
 		
 		JLabel lblLehrstuhlverwaltung = new JLabel("Lehrstuhlverwaltung");
 		lblLehrstuhlverwaltung.setFont(new Font("SansSerif", Font.BOLD, 13));
 		add(lblLehrstuhlverwaltung, "cell 0 0,alignx center");
 		
-		lblLehrstuhlname = new JLabel("Lehrstuhlname:");
-		add(lblLehrstuhlname, "cell 2 0");
+		lblProfessorshipname = new JLabel("Lehrstuhlname:");
+		add(lblProfessorshipname, "cell 2 0");
 		
-		textFieldLehrstuhlname = new JTextField();
-		textFieldLehrstuhlname.addKeyListener(new CmbboxFilter());
-		textFieldLehrstuhlname.setText("<alle>");
-		textFieldLehrstuhlname.setColumns(10);
-		add(textFieldLehrstuhlname, "cell 2 1,growx");
+		textFieldProfessorshipname = new JTextField();
+		textFieldProfessorshipname.addKeyListener(new CmbboxFilter());
+		textFieldProfessorshipname.setText("<alle>");
+		textFieldProfessorshipname.setColumns(10);
+		add(textFieldProfessorshipname, "cell 2 1,growx");
 		
 		leftPanel = new JPanel();
 		leftPanel.setLayout(null);
@@ -68,9 +76,11 @@ public class ProfessorshipTab extends JPanel {
 		leftTopPanel.setBounds(0, 6, 140, 313);
 		leftPanel.add(leftTopPanel);
 		
-		JLabel lblInfo = new JLabel("<html>LiveTickerNews:<br><br><b>Fehlermeldung 1: </b>Es wurden keine Lehrveranstaltungen gefunden werden, die in 10 Minuten beginnen. <br> <b>Fehlermeldung 2: </b>Es wurden keine Meldungen von Dozenten oder der Hausverwaltung gefunden. <b>Fehlermeldung 3:</b> Es besteht keine Verbindung zur Datenbank.</html>\r\n");
-		lblInfo.setBounds(6, 6, 134, 296);
-		leftTopPanel.add(lblInfo);
+		tickerMsgPos1 = new JTextPane();
+		tickerMsgPos1.setText("LiveTickerNews:\r\n\r\nFehler: Es wurden keine Lehrveranstaltungen gefunden werden, die in 10 Minuten beginnen. \r\n\r\nFehler: Es wurden keine Meldungen von Dozenten oder der Hausverwaltung gefunden. \r\n\r\nFehler: Es besteht keine Verbindung zur Datenbank.\r\n");
+		tickerMsgPos1.setBackground(UIManager.getColor("Button.background"));
+		tickerMsgPos1.setBounds(6, 11, 134, 302);
+		leftTopPanel.add(tickerMsgPos1);
 		
 		leftBottomPanel = new JPanel();
 		leftBottomPanel.setBounds(0, 319, 140, 161);
@@ -88,17 +98,17 @@ public class ProfessorshipTab extends JPanel {
 		btnRaumverwaltung.addActionListener(new BtnsNav("Raumverw"));
 		leftBottomPanel.add(btnRaumverwaltung, "cell 0 2");
 		
-		btnLivetickerBeabeiten = new JButton("LiveTicker");
-		btnLivetickerBeabeiten.addActionListener(new BtnsNav("liveticker"));
-		leftBottomPanel.add(btnLivetickerBeabeiten, "cell 0 3");
+		btnLivetickerEdit = new JButton("LiveTicker");
+		btnLivetickerEdit.addActionListener(new BtnsNav("liveticker"));
+		leftBottomPanel.add(btnLivetickerEdit, "cell 0 3");
 		
-		btnAnfragen = new JButton("Anfragen");
-		btnAnfragen.addActionListener(new BtnsNav("Anfrageverw"));
-		leftBottomPanel.add(btnAnfragen, "cell 0 4");
+		btnRequest = new JButton("Anfragen");
+		btnRequest.addActionListener(new BtnsNav("Anfrageverw"));
+		leftBottomPanel.add(btnRequest, "cell 0 4");
 		
-		verwaltungTableScrollPane = new JScrollPane();
-		verwaltungTableScrollPane.setMinimumSize(new Dimension(400, 25));
-		add(verwaltungTableScrollPane, "flowx,cell 2 2 4 1,grow");
+		organisationTableScrollPane = new JScrollPane();
+		organisationTableScrollPane.setMinimumSize(new Dimension(400, 25));
+		add(organisationTableScrollPane, "flowx,cell 2 2 4 1,grow");
 		
 		raumverwaltungTable = new JTable();
 		raumverwaltungTable.setModel(Bootstrap.serviceManager.getOrgaProfessorshipTableModel());
@@ -112,20 +122,24 @@ public class ProfessorshipTab extends JPanel {
 		buttonPanel.setMaximumSize(new Dimension(100, 32767));
 		add(buttonPanel, "cell 6 2,grow");
 		
-		btnHinzufugen = new JButton("hinzuf\u00FCgen");
-		btnHinzufugen.addActionListener(new ProfessorshipTabBtnsControl("hinz"));
-		btnHinzufugen.setBounds(6, 11, 88, 23);
-		buttonPanel.add(btnHinzufugen);
+		btnAdd = new JButton("hinzuf\u00FCgen");
+		btnAdd.addActionListener(new ProfessorshipTabBtnsControl("hinz"));
+		btnAdd.setBounds(6, 11, 88, 23);
+		buttonPanel.add(btnAdd);
 		
 		JButton btnBearbeiten = new JButton("bearbeiten");
 		btnBearbeiten.addActionListener(new ProfessorshipTabBtnsControl("edit"));
 		btnBearbeiten.setBounds(6, 45, 88, 23);
 		buttonPanel.add(btnBearbeiten);
 		
-		btnLschen = new JButton("l\u00F6schen");
-		btnLschen.addActionListener(new ProfessorshipTabBtnsControl("loschen"));
-		btnLschen.setBounds(6, 79, 88, 23);
-		buttonPanel.add(btnLschen);
+		btnDelete = new JButton("l\u00F6schen");
+		btnDelete.addActionListener(new ProfessorshipTabBtnsControl("loschen"));
+		btnDelete.setBounds(6, 79, 88, 23);
+		buttonPanel.add(btnDelete);
+		
+		btnFailureprompt = new JButton("Fehlermeldung");
+		btnFailureprompt.addActionListener(new ProfessorshipTabBtnsControl("Fehlermeldung"));
+		add(btnFailureprompt, "cell 2 3");
 		
 	}
 
