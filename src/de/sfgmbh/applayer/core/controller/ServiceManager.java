@@ -13,6 +13,7 @@ import de.sfgmbh.comlayer.lecturer.views.TimetableTab;
 import de.sfgmbh.comlayer.organisation.model.ProfessorshipTabTable;
 import de.sfgmbh.comlayer.organisation.model.RequestTabTable;
 import de.sfgmbh.comlayer.organisation.model.RoomTabTable;
+import de.sfgmbh.comlayer.organisation.model.RoomtableTable;
 import de.sfgmbh.comlayer.organisation.model.UserTabTable;
 import de.sfgmbh.comlayer.organisation.views.CounterproposalFrame;
 import de.sfgmbh.comlayer.organisation.views.ProfessorshipFrame;
@@ -20,6 +21,7 @@ import de.sfgmbh.comlayer.organisation.views.ProfessorshipTab;
 import de.sfgmbh.comlayer.organisation.views.RequestTab;
 import de.sfgmbh.comlayer.organisation.views.RoomFrame;
 import de.sfgmbh.comlayer.organisation.views.RoomTab;
+import de.sfgmbh.comlayer.organisation.views.RoomtableTab;
 import de.sfgmbh.comlayer.organisation.views.UserFrame;
 import de.sfgmbh.comlayer.organisation.views.UserTab;
 import de.sfgmbh.comlayer.timetable.views.PublicTimetableTab;
@@ -80,7 +82,21 @@ public class ServiceManager {
 	protected UserTabTable userTabTable;
 	protected RoomTabTable roomTabTable;
 	protected ProfessorshipTabTable professorshipTabTable;
+	protected RoomtableTab roomtableTab;
+	protected RoomtableTable roomtableTable;
 	
+	public RoomtableTable getOrgaRoomtableTableModel() {
+		if (this.roomtableTable == null) {
+			this.roomtableTable = new RoomtableTable();
+		}
+		return this.roomtableTable;
+	}
+	public RoomtableTab getOrgaRoomtableTab() {
+		if (this.roomtableTab == null) {
+			this.roomtableTab = new RoomtableTab();
+		}
+		return this.roomtableTab;
+	}
 	public ProfessorshipTabTable getOrgaProfessorshipTableModel() {
 		if (this.professorshipTabTable == null) {
 			this.professorshipTabTable = new ProfessorshipTabTable();
