@@ -17,7 +17,7 @@ public class ProfessorshipTimetableTabBtn implements ActionListener {
 	
 	public InfoDialog getInfoWindow() {
 		if (this.infoWindow == null) {
-			this.infoWindow = new InfoDialog("<strong> Fehlermeldung1:</strong><br> Momentan kann keine PDF erzeugt werden.<br><br><strong>Fehlermeldung 2:</strong><br>Es wurden keine Daten ausgewählt.<br><br><strong>Fehlermeldung 3:</strong><br> Es wurde kein Dozent ausgewählt.<br><br><strong>Fehlermeldung 4:</strong><br> Die Funktionalität momentan nicht ausführbar. Wenden Sie sich an Ihren Systemadministrator");
+			this.infoWindow = new InfoDialog("<strong> Fehlermeldung 1:</strong><br> Momentan kann keine PDF erzeugt werden.<br><br><strong>Fehlermeldung 2:</strong><br>Es wurden keine Daten ausgewählt.<br><br><strong>Fehlermeldung 3:</strong><br> Es wurde kein Dozent ausgewählt.<br><br><strong>Fehlermeldung 4:</strong><br> Die Funktionalität momentan nicht ausführbar. Wenden Sie sich an Ihren Systemadministrator.");
 		}
 		return this.infoWindow;
 	}
