@@ -153,14 +153,14 @@ public class BaseTab extends JFrame{
 		panel.add(tickerMsgPos2);
 		tickerMsgPos2.setBackground(UIManager.getColor("Button.background"));
 		tickerMsgPos2.setContentType("text/html");
-		tickerMsgPos2.setText("<div style=\"font-family:arial\"><strong>Info:</strong><br>Logindaten: <br>Dozenten: Doz // Doz <br>Studenten: Stud // Stud<br> Verwaltung: Verw // Verw <br> Anderenfalls Fehler!</div>");
+		tickerMsgPos2.setText("<div style=\"font-family: Calibri, monospace;\"><strong>Logindaten:</strong><br>Dozenten:<br>Doz // Doz <br><br>Studenten:<br>Stud // Stud<br><br>Verwaltung:<br>Verw // Verw <br><br> Anderenfalls Fehler!</div>");
 		
 		tickerMsgPos1 = new JTextPane();
 		tickerMsgPos1.setBounds(6, 6, 123, 90);
 		panel.add(tickerMsgPos1);
 		tickerMsgPos1.setBackground(UIManager.getColor("Button.light"));
 		tickerMsgPos1.setContentType("text/html");
-		tickerMsgPos1.setText("<div style=\"font-family:arial\"><strong>News:</strong><br> <span style=\"color:red\">Neu!</span> Testlogin jetzt m\u00F6glich!</div>");
+		tickerMsgPos1.setText("<div style=\"font-family: font-family: Calibri, monospace;\"><strong>News:</strong><br> <span style=\"color:red\">Neu!</span> Testlogin jetzt m\u00F6glich!</div>");
 		
 		panel_1 = new JPanel();
 		panel_1.setBounds(0, 319, 140, 161);
