@@ -30,7 +30,8 @@ public class StartTabBtnsControl implements ActionListener {
 		
 		// Bearbeiten button is pressed
 		if (this.ctrlAction.equals("edit")){
-			this.getInfoWindow("<strong>Fehlermeldung:</strong> <br>Sie haben keine Lehveranstaltung selektiert!<br><br> Wenn Sie keine Fehlermeldung erhalten, gelangen sofort zu einer Bearbeiten-Maske wie beim Hinzufügen von Lehrveranstaltung.").setVisible(true);
+			this.getInfoWindow("<strong>Fehlermeldung:</strong> <br>Sie haben keine Lehveranstaltung selektiert! <br> " +
+					"Wenn Sie keine Fehlermeldung erhalten, gelangen sofort zu einer Bearbeiten-Maske wie beim Hinzufügen von Lehrveranstaltung.").setVisible(true);
 		}
 		
 		// Löschen button is pressed
@@ -50,7 +51,7 @@ public class StartTabBtnsControl implements ActionListener {
 		
 		// Zurückziehen button is pressed
 		if (this.ctrlAction.equals("back")){
-			this.getInfoWindow("<strong>Fehlermeldung:</strong> Sie haben keine Lehrveranstaltung selektiert!").setVisible(true); // Titel: "blaa"
+			this.getInfoWindow("<strong>Fehlermeldung:</strong><br> Sie haben keine Lehrveranstaltung selektiert!").setVisible(true); // Titel: "blaa"
 		}
 		
 		// Fehlermeldung button is pressed

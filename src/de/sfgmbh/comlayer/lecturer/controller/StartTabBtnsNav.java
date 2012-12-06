@@ -28,7 +28,8 @@ public class StartTabBtnsNav implements ActionListener {
 		
 		// Stundenplan button is pressed
 		if (this.navAction.equals("timetable")) {
-			this.getInfoWindow("<strong>Fehlermeldung1:</strong><br> Es konnte kein Dozentenstundenplan erstellt werden, da kein Dozent dem Lehrstuhl zugeordnet ist.<br><strong>Fehlermeldung2:</strong><br>Es konnte kein Dozentenstundenplan erstellt werden, da noch keine Lehrveranstaltungen exisiteren.").setVisible(true);
+			this.getInfoWindow("<strong>Fehlermeldung 1:</strong><br> Es konnte kein Dozentenstundenplan erstellt werden, da kein Dozent dem Lehrstuhl zugeordnet ist.<br><br>" +
+					"<strong>Fehlermeldung 2:</strong><br>Es konnte kein Dozentenstundenplan erstellt werden, da noch keine Lehrveranstaltungen exisiteren.").setVisible(true);
 			Bootstrap.serviceManager.getCoreBaseTab().mainTabbedContainerPane.addTab("Dozentenstundenplan", null, Bootstrap.serviceManager.getLecturerTimetableTab(), null);
 			Bootstrap.serviceManager.getCoreBaseTab().mainTabbedContainerPane.setSelectedIndex(Bootstrap.serviceManager.getCoreBaseTab().mainTabbedContainerPane.getTabCount()-1);
 		}
@@ -42,7 +43,8 @@ public class StartTabBtnsNav implements ActionListener {
 		
 		// LiveTicker button is pressed
 		if (this.navAction.equals("liveticker")) {
-			this.getInfoWindow("<strong>Fehlermeldung:</strong>LiveTicker Bearbeitung momentan noch nicht implementiert!").setVisible(true);
+			this.getInfoWindow("<strong>Fehlermeldung:</strong><br>" +
+					"LiveTicker Bearbeitung momentan noch nicht implementiert!").setVisible(true);
 		}
 		
 	}
