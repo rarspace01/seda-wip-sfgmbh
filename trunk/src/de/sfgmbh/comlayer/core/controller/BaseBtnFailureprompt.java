@@ -24,7 +24,7 @@ public class BaseBtnFailureprompt implements ActionListener {
 	
 		// Fehlermeldung button is pressed
 		if (this.ctrlAction.equals("error")){
-			this.getInfoWindow("<b>Fehlermeldung:</b></br> Es konnte keine Verbindung" +
+			this.getInfoWindow("<b>Fehlermeldung:</b><br>Es konnte keine Verbindung" +
 					" zur Datenbank aufgebaut werden. Bitte wenden Sie sich an Ihren Systemadministrator.").setVisible(true);
 		}
 		

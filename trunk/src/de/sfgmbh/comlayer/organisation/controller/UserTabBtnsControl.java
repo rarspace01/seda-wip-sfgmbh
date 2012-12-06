@@ -31,7 +31,9 @@ public class UserTabBtnsControl implements ActionListener {
 		
 		// Benutzer bearbeiten Button is pressed
 		if (this.navAction.equals("edit")) {
-			Bootstrap.serviceManager.getOrgaUserFrame().setVisible(true);
+			//Bootstrap.serviceManager.getOrgaUserFrame().setVisible(true);
+			this.getInfoWindow("<b>Fehlermeldung:</b><br> Sie haben keinen Nutzer selektiert!<br> Wenn Sie keine Fehlermeldung erhalten gelangen Sie" +
+					" sofort zu einer Bearbeiten-Maske, welche allerdings noch nicht implementiert ist.").setVisible(true);
 		}
 		
 		// Benutzer löschen Button is pressed

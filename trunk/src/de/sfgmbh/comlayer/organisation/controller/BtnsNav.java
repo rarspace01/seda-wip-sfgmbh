@@ -46,7 +46,7 @@ public class BtnsNav implements ActionListener {
 		
 		// LiveTicker Button is pressed
 		if (this.navAction.equals("liveticker")) {
-			this.getInfoWindow("Live-Ticker Bearbeitung momentan noch nicht implementiert!").setVisible(true);
+			this.getInfoWindow("Live-Ticker-Bearbeitung ist momentan noch nicht implementiert!").setVisible(true);
 		}
 		
 		// Anfrageverwaltung Button is pressed

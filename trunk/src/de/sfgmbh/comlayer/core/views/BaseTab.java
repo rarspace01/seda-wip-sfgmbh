@@ -71,6 +71,7 @@ public class BaseTab extends JFrame{
 	 */
 	@SuppressWarnings({ })
 	public BaseTab() {
+		setTitle("UnivIS 2.0");
 		createContents();
 	}
 	private void createContents() {

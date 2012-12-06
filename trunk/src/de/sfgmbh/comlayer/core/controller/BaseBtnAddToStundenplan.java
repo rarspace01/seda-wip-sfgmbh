@@ -23,7 +23,7 @@ public class BaseBtnAddToStundenplan implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		//Add to Stundenplan button is pressed
 		if (this.navAction.equals("plus")) {
-					this.getInfoWindow("<strong>Fehlermeldung</strong><br> Es konnte keine Übersicht Ihrer Veranstaltungen angezeigt werden. Sie haben keine Lehrveranstaltung ausgewählt!").setVisible(true);	
+					this.getInfoWindow("<strong>Fehlermeldung:</strong><br> Es konnte keine Übersicht Ihrer Veranstaltungen angezeigt werden. Sie haben keine Lehrveranstaltung ausgewählt!").setVisible(true);	
 		}
 		Bootstrap.serviceManager.getCoreBaseTab().mainTabbedContainerPane.setVisible(true);
 		Bootstrap.serviceManager.getCoreBaseTab().mainTabbedContainerPane.removeAll();
