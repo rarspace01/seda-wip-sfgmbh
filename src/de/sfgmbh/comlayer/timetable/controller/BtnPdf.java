@@ -25,7 +25,7 @@ public class BtnPdf implements ActionListener {
 		
 		// Pdf Button is pressed
 		if (this.navAction.equals("pdfCreate")) {
-			this.getInfoWindow("<b>Fehlermeldung1:</b><br> Momentan kann keine PDF erzeugt werden.<b><br><br>Fehlermeldung:2</b><br> Es wurden keine Daten ausgewählt.<br><br><b>Fehlermeldung3:</b><br> Es wurde kein Dozent ausgewählt.<br><br><b>Fehlermeldung4:</b><br> Die Funktionalität momentan nicht ausführbar. Wenden Sie sich bitte an Ihren Systemadministrator!").setVisible(true);
+			this.getInfoWindow("<b>Fehlermeldung 1:</b><br> Momentan kann keine PDF erzeugt werden.<b><br><br>Fehlermeldung 2:</b><br> Es wurden keine Daten ausgewählt.<br><br><b>Fehlermeldung 3:</b><br> Es wurde kein Dozent ausgewählt.<br><br><b>Fehlermeldung 4:</b><br> Die Funktionalität momentan nicht ausführbar. Wenden Sie sich bitte an Ihren Systemadministrator!").setVisible(true);
 		}
 	}
 	
