@@ -34,7 +34,7 @@ public class RequestTab extends JPanel {
 	private JPanel leftPanel;
 	private JPanel leftTopPanel;
 	private JPanel leftBottomPanel;
-	private JScrollPane verwaltungTableScrollPane;
+	private JScrollPane organisationTableScrollPane;
 	private JPanel buttonPanel;
 	private JButton btnFreigeben;
 	private JComboBox<String> comboBoxStatus;
@@ -47,7 +47,7 @@ public class RequestTab extends JPanel {
 	/**
 	 * Create the frame.
 	 */
-	@SuppressWarnings({ "unchecked", "rawtypes" })
+	@SuppressWarnings({ })
 	public RequestTab() {
 		
 		initialize();
@@ -150,7 +150,7 @@ public class RequestTab extends JPanel {
 		raumverwaltungTable.setModel(Bootstrap.serviceManager.getOrgaRequestTableModel());
 		raumverwaltungTable.setShowVerticalLines(false);
 		raumverwaltungTable.setBackground(SystemColor.activeCaption);
-		verwaltungTableScrollPane.setViewportView(raumverwaltungTable);
+		organisationTableScrollPane.setViewportView(raumverwaltungTable);
 		
 		buttonPanel = new JPanel();
 		buttonPanel.setLayout(null);

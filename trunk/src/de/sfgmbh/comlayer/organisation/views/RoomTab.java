@@ -37,7 +37,7 @@ public class RoomTab extends JPanel {
 	private JPanel leftPanel;
 	private JPanel leftTopPanel;
 	private JPanel leftBottomPanel;
-	private JScrollPane verwaltungTableScrollPane;
+	private JScrollPane organisationTableScrollPane;
 	private JPanel buttonPanel;
 	private JButton btnEdit;
 	private JButton btnRequest;
@@ -50,7 +50,7 @@ public class RoomTab extends JPanel {
 	/**
 	 * Create the frame.
 	 */
-	@SuppressWarnings({ "unchecked", "rawtypes" })
+	@SuppressWarnings({ })
 	public RoomTab() {
 		
 		initialize();
@@ -151,7 +151,7 @@ public class RoomTab extends JPanel {
 		raumverwaltungTable.setModel(Bootstrap.serviceManager.getOrgaRoomTableModel());
 		raumverwaltungTable.setShowVerticalLines(false);
 		raumverwaltungTable.setBackground(SystemColor.activeCaption);
-		verwaltungTableScrollPane.setViewportView(raumverwaltungTable);
+		organisationTableScrollPane.setViewportView(raumverwaltungTable);
 		
 		buttonPanel = new JPanel();
 		buttonPanel.setLayout(null);
