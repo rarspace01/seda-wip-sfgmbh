@@ -30,17 +30,17 @@ public class StartTabBtnsControl implements ActionListener {
 		
 		// Bearbeiten button is pressed
 		if (this.ctrlAction.equals("edit")){
-			this.getInfoWindow("<strong>Sie haben keine Lehveranstaltung selektiert!</strong> <br> Oder Sie gelangen sofort zu einer Bearbeiten-Maske wie bei Lehrveranstaltung hinzufügen").setVisible(true);
+			this.getInfoWindow("<strong>Fehlermeldung:</strong> <br>Sie haben keine Lehveranstaltung selektiert!<br><br> Oder Sie gelangen sofort zu einer Bearbeiten-Maske wie bei Lehrveranstaltung hinzufügen.").setVisible(true);
 		}
 		
 		// Löschen button is pressed
 		if (this.ctrlAction.equals("delete")){
-			this.getInfoWindow("<strong> Sie haben keine Lehrveranstaltung selektiert!</strong>").setVisible(true);
+			this.getInfoWindow("<strong>Fehlermeldung:</strong><br> Sie haben keine Lehrveranstaltung selektiert!").setVisible(true);
 		}
 		
 		// Veröffentlichen button is pressed
 		if (this.ctrlAction.equals("publish")){
-			this.getInfoWindow("<strong> Sie haben keine Lehrveranstaltung selektiert!</strong>").setVisible(true);
+			this.getInfoWindow("<strong>Fehlermeldung:</strong> <br>Sie haben keine Lehrveranstaltung selektiert!").setVisible(true);
 		}
 		
 		// Raumanfrage button is pressed
@@ -50,12 +50,12 @@ public class StartTabBtnsControl implements ActionListener {
 		
 		// Zurückziehen button is pressed
 		if (this.ctrlAction.equals("back")){
-			this.getInfoWindow("<strong> Sie haben keine Lehrveranstaltung selektiert!</strong>").setVisible(true); // Titel: "blaa"
+			this.getInfoWindow("<strong>Fehlermeldung:</strong> Sie haben keine Lehrveranstaltung selektiert!").setVisible(true); // Titel: "blaa"
 		}
 		
 		// Fehlermeldung button is pressed
 		if (this.ctrlAction.equals("Fehlermeldung")) {
-			this.getInfoWindow("Es konnte keine Verbindung zur Datenbank aufgebaut werden. Daher können keine Lehrveranstaltungen und/oder Raumanfragen angezeigt werden").setVisible(true);
+			this.getInfoWindow("<strong>Fehlermeldung:</strong><br> Es konnte keine Verbindung zur Datenbank aufgebaut werden. Daher können keine Lehrveranstaltungen und/oder Raumanfragen angezeigt werden.").setVisible(true);
 		}
 		
 	}
