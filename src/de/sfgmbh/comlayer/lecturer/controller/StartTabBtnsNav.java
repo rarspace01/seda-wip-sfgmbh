@@ -28,21 +28,21 @@ public class StartTabBtnsNav implements ActionListener {
 		
 		// Stundenplan button is pressed
 		if (this.navAction.equals("timetable")) {
-			this.getInfoWindow("<strong>Es konnte kein Dozentenstundenplan erstellt werden, da kein Dozent dem Lehrstuhl zugeordnet ist.<br>Es konnte kein Lehrstuhlplan erstellt werden, da noch keine Lehrveranstaltungen exisiteren.</strong>").setVisible(true);
+			this.getInfoWindow("<strong>Fehlermeldung1:</strong><br>Es konnte kein Dozentenstundenplan erstellt werden, da kein Dozent dem Lehrstuhl zugeordnet ist.<br><strong>Fehlermeldung2:</strong><br>Es konnte kein Dozentenstundenplan erstellt werden, da noch keine Lehrveranstaltungen exisiteren.").setVisible(true);
 			Bootstrap.serviceManager.getCoreBaseTab().mainTabbedContainerPane.addTab("Dozentenstundenplan", null, Bootstrap.serviceManager.getLecturerTimetableTab(), null);
 			Bootstrap.serviceManager.getCoreBaseTab().mainTabbedContainerPane.setSelectedIndex(Bootstrap.serviceManager.getCoreBaseTab().mainTabbedContainerPane.getTabCount()-1);
 		}
 		
 		// Lehrstuhlplan button is pressed
 		if (this.navAction.equals("professorshiptimetable")) {
-			this.getInfoWindow("<strong>Es konnte kein Lehrstuhlplan erstellt werden, da noch keine Lehrveranstaltungen exisiteren.</strong>").setVisible(true);
+			this.getInfoWindow("<strong>Fehlermeldung:</strong><br>Es konnte kein Lehrstuhlplan erstellt werden, da noch keine Lehrveranstaltungen exisiteren.").setVisible(true);
 			Bootstrap.serviceManager.getCoreBaseTab().mainTabbedContainerPane.addTab("Lehrstuhlplan", null, Bootstrap.serviceManager.getLecturerProfessorshipTimetableTab(), null);
 			Bootstrap.serviceManager.getCoreBaseTab().mainTabbedContainerPane.setSelectedIndex(Bootstrap.serviceManager.getCoreBaseTab().mainTabbedContainerPane.getTabCount()-1);
 		}
 		
 		// LiveTicker button is pressed
 		if (this.navAction.equals("liveticker")) {
-			this.getInfoWindow("<strong>LiveTicker Bearbeitung momentan noch nicht implementiert!</strong>").setVisible(true);
+			this.getInfoWindow("<strong>Fehlermeldung:</strong>LiveTicker Bearbeitung momentan noch nicht implementiert!").setVisible(true);
 		}
 		
 	}

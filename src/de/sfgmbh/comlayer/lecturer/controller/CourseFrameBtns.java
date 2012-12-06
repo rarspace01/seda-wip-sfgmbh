@@ -30,7 +30,11 @@ public class CourseFrameBtns implements ActionListener {
 		
 		// Speichern button is pressed
 		if (this.ctrlAction.equals("save")){
-			this.getInfoWindow("<strong>Fehlermeldung:</strong><br> Die Speicherung Ihrer eingegeben Daten wurde abgebrochen!<br> Sie haben keinen 1. Lehrstuhl, 2. Dozenten ausgewählt. 3. Ihre Bezeichnung erhält unerlaubte Zeichen. 4. Ihre Beschreibung erhält nicht genug Zeichen, sie muss mindestens 300 Zeichen erhalten. 5. Sie haben kein Semester, 6. keine erwartete Teilnehmerzahl ausgewählt. 7. Die Lehrveranstaltung existiert bereits; Überprüfen Sie die Angaben oder ändern Sie dei gewünschte Lehrveranstaltung über die Selektion in der Liste und die Funktion bearbeiten.").setVisible(true); // Titel: "Fehler beim Speichern erfolgt"
+			this.getInfoWindow("<strong>Fehlermeldung:</strong><br> Die Speicherung Ihrer eingegeben Daten wurde abgebrochen:<br> " +
+					"1. Sie haben keinen Lehrstuhl ausgewählt <br> 2. Sie haben keinen Dozenten ausgewählt. <br> 3. Ihre Bezeichnung erhält unerlaubte Zeichen. <br>" +
+					"4. Ihre Beschreibung erhält nicht genug Zeichen, sie muss mindestens 300 Zeichen erhalten. <br>5. Sie haben kein Semester, <br>" +
+					"6. keine erwartete Teilnehmerzahl ausgewählt. <br>7. Die Lehrveranstaltung existiert bereits. <br> Überprüfen Sie die Angaben oder ändern Sie " +
+					"die gewünschte Lehrveranstaltung über die Selektion in der Liste und die Funktion bearbeiten.").setVisible(true); 
 			// Bootstrap.serviceManager.getLecturerCourseFrame().setVisible(false);
 		}
 		
