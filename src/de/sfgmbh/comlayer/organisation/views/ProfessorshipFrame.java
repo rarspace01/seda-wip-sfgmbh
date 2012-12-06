@@ -104,8 +104,7 @@ public class ProfessorshipFrame extends JFrame {
 		
 		addWindowListener(new ProfessorshipFrameWin());
 		
-		JLabel lblmsg = new JLabel("<html><b>Fehlermeldung:</b><br>Der Lehrstuhl konnte nicht hinzugef\u00FCgt werden:<br> " +
-				"Sie haben keinen Lehrstuhl selektiert.<br> Wenn Sie keine Fehlermeldung erhalten gelangen Sie zur Eingabemaske für Lehrveranstaltungen.</html>");
+		JLabel lblmsg = new JLabel("<html><b>Fehlermeldung:</b><br>Der Lehrstuhl konnte nicht hinzugef\u00FCgt werden:<br> Sie haben keinen Lehrstuhl selektiert.<br> Wenn Sie keine Fehlermeldung erhalten gelangen Sie zur Eingabemaske f\u00FCr Lehrveranstaltungen.</html>");
 		lblmsg.setBounds(10, 11, 230, 85);
 		contentPane.add(lblmsg);
 	}
