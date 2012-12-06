@@ -32,17 +32,18 @@ public class RoomTabBtnsControl implements ActionListener {
 		// Raum bearbeiten Button is pressed
 		if (this.navAction.equals("edit")) {
 			//Bootstrap.serviceManager.getOrgaRoomFrame().setVisible(true)
-			this.getInfoWindow("<b>Alternativen:</b><br><br>1. Sie haben keinen Raum selektiert!<br>2. Sie gelangen sofort zu einer Bearbeiten-Maske, welche allerdings noch nicht implementiert ist.").setVisible(true);
+			this.getInfoWindow("<b>Fehlermeldung:</b><br> Sie haben keinen Raum selektiert!<br> Wenn Sie keine Fehlermeldung erhalten gelangen Sie" +
+					" sofort zu einer Bearbeiten-Maske, welche allerdings noch nicht implementiert ist.").setVisible(true);
 		}
 		
 		// Raum löschen Button is pressed
 		if (this.navAction.equals("loschen")) {
-			this.getInfoWindow("<b>Der Raum konnte nicht gelöscht werden:</b><br><br>Sie haben keinen Raum selektiert.").setVisible(true);
+			this.getInfoWindow("<b>Fehlermeldung:</b><br>Der Raum konnte nicht gelöscht werden:<br>Sie haben keinen Raum selektiert.").setVisible(true);
 		}
 		
 		// Fehlermeldung Button is pressed
 		if (this.navAction.equals("Fehlermeldung")) {
-			this.getInfoWindow("Es besteht keine Verbindung zur Datenbank. Daher können keine Räume angezeigt werden.").setVisible(true);
+			this.getInfoWindow("<b>Fehlermeldung:</b><br>Es besteht keine Verbindung zur Datenbank. Daher können keine Räume angezeigt werden.").setVisible(true);
 		}
 		
 		// Raumplan Button is pressed

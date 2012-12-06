@@ -104,7 +104,7 @@ public class CounterproposalFrame extends JFrame {
 	}
 	private JLabel getLblmsg() {
 		if (lblmsg == null) {
-			lblmsg = new JLabel("<html><b>Der Konflikt konnte nicht gel\u00F6st werden:</b><br>\r\nSie haben keinen Konflikt selektiert.<br><br>\r\n\r\n<b>Variante2 (sofern Selektion geg.):</b></html>");
+			lblmsg = new JLabel("<b>Fehlermeldung:</b><br>Der Konflikt konnte nicht gel\u00F6st werden:<br>\r\nSie haben keinen Konflikt selektiert.<br>Wenn Sie keine Fehlermeldung erhalten gelangen Sie zur Eingabemaske der Konfliktlösung.");
 			lblmsg.setBounds(10, 11, 259, 71);
 		}
 		return lblmsg;

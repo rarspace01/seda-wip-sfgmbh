@@ -32,17 +32,17 @@ public class ProfessorshipTabBtnsControl implements ActionListener {
 		// Lehrstuhl bearbeiten Button is pressed
 		if (this.navAction.equals("edit")) {
 			//Bootstrap.serviceManager.getOrgaProfessorshipFrame().setVisible(true);
-			this.getInfoWindow("<b>Alternativen:</b><br><br>1. Sie haben keinen Lehrstuhl selektiert!<br>2. Sie gelangen sofort zu einer Bearbeiten-Maske, welche allerdings noch nicht implementiert ist.").setVisible(true);
+			this.getInfoWindow("<b>Fehlermeldung:</b><br> Sie haben keinen Lehrstuhl selektiert!<br> Wenn Sie keine Fehlermeldung erscheint gelangen Sie sofort zu einer Bearbeiten-Maske, welche allerdings noch nicht implementiert ist.").setVisible(true);
 		}
 		
 		// Lehrstuhl löschen Button is pressed
 		if (this.navAction.equals("loschen")) {
-			this.getInfoWindow("<b>Der Lehrstuhl konnte nicht gelöscht werden:</b><br><br>Sie haben keinen Lehrstuhl selektiert.").setVisible(true);
+			this.getInfoWindow("<b>Fehlermeldung:</b><br>Der Lehrstuhl konnte nicht gelöscht werden:<br>Sie haben keinen Lehrstuhl selektiert.").setVisible(true);
 		}
 		
 		// Fehlermeldung button is pressed
 				if (this.navAction.equals("Fehlermeldung")){
-					this.getInfoWindow("<strong> Es besteht keine Verbindung zur Datenbank, deswegen können die Lehrstühle nicht geladen werden</strong>").setVisible(true);
+					this.getInfoWindow("<b>Fehlermeldung:</b><br> Es besteht keine Verbindung zur Datenbank, deswegen können die Lehrstühle nicht geladen werden").setVisible(true);
 				}
 		
 	}

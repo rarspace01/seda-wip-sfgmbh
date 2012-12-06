@@ -31,7 +31,7 @@ public class CounterproposalFrameBtns implements ActionListener {
 		// Senden button is pressed
 		if (this.ctrlAction.equals("send")){
 			Bootstrap.serviceManager.getOrgaCounterproposalFrame().setVisible(false);
-			this.getInfoWindow("<b>Der Konflikt konnte nicht gelöst werden:</b><br><br>1. Sie haben keinen Dozenten ausgewählt.<br>2. Sie haben keine Lehrveranstaltung ausgewählt.<br>3. Sie haben keinen Raum ausgewählt.<br>4. Sie haben keine Zeit ausgewählt.<br>5. Ihre Nachricht an den Dozenten ist zu lang.<br>6. Ihre Nachricht an den Dozenten ist zu kurz.").setVisible(true);
+			this.getInfoWindow("<b>Fehlermeldung1:</b><br>Der Konflikt konnte nicht gelöst werden:<br>1. Sie haben keinen Dozenten ausgewählt.<br>2. Sie haben keine Lehrveranstaltung ausgewählt.<br>3. Sie haben keinen Raum ausgewählt.<br>4. Sie haben keine Zeit ausgewählt.<br>5. Ihre Nachricht an den Dozenten ist zu lang.<br>6. Ihre Nachricht an den Dozenten ist zu kurz.").setVisible(true);
 		}
 		
 	}
