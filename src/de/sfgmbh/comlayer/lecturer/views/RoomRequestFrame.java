@@ -8,15 +8,13 @@ import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextPane;
+import javax.swing.UIManager;
 import javax.swing.border.EmptyBorder;
 
 import net.miginfocom.swing.MigLayout;
-
-import de.sfgmbh.comlayer.lecturer.controller.RoomRequestFrameBtns;
 import de.sfgmbh.comlayer.lecturer.controller.CourseFrameWin;
-import javax.swing.JTextPane;
-import java.awt.Color;
-import javax.swing.UIManager;
+import de.sfgmbh.comlayer.lecturer.controller.RoomRequestFrameBtns;
 
 public class RoomRequestFrame extends JFrame {
 

@@ -76,28 +76,28 @@ public class RequestTab extends JPanel {
 		
 		comboBoxLecturer = new JComboBox<String>();
 		comboBoxLecturer.addActionListener(new CmbboxFilter());
-		comboBoxLecturer.setModel(new DefaultComboBoxModel(new String[] {"<alle>"}));
+		comboBoxLecturer.setModel(new DefaultComboBoxModel<String>(new String[] {"<alle>"}));
 		comboBoxLecturer.setEditable(true);
 		comboBoxLecturer.setAutoscrolls(true);
 		add(comboBoxLecturer, "cell 2 1,growx");
 		
 		comboBoxProfessorship = new JComboBox<String>();
 		comboBoxProfessorship.addActionListener(new CmbboxFilter());
-		comboBoxProfessorship.setModel(new DefaultComboBoxModel(new String[] {"<alle>"}));
+		comboBoxProfessorship.setModel(new DefaultComboBoxModel<String>(new String[] {"<alle>"}));
 		comboBoxProfessorship.setEditable(true);
 		comboBoxProfessorship.setAutoscrolls(true);
 		add(comboBoxProfessorship, "cell 3 1,growx");
 		
 		comboBoxStatus = new JComboBox<String>();
 		comboBoxStatus.addActionListener(new CmbboxFilter());
-		comboBoxStatus.setModel(new DefaultComboBoxModel(new String[] {"<alle>"}));
+		comboBoxStatus.setModel(new DefaultComboBoxModel<String>(new String[] {"<alle>"}));
 		comboBoxStatus.setEditable(true);
 		comboBoxStatus.setAutoscrolls(true);
 		add(comboBoxStatus, "cell 4 1,growx");
 		
 		comboBoxSemester = new JComboBox<String>();
 		comboBoxSemester.addActionListener(new CmbboxFilter());
-		comboBoxSemester.setModel(new DefaultComboBoxModel(new String[] {"<alle>"}));
+		comboBoxSemester.setModel(new DefaultComboBoxModel<String>(new String[] {"<alle>"}));
 		comboBoxSemester.setEditable(true);
 		comboBoxSemester.setAutoscrolls(true);
 		add(comboBoxSemester, "cell 5 1,growx");

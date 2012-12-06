@@ -12,6 +12,8 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.JTextPane;
+import javax.swing.UIManager;
 import javax.swing.border.TitledBorder;
 
 import net.miginfocom.swing.MigLayout;
@@ -19,8 +21,6 @@ import de.sfgmbh.comlayer.organisation.controller.BtnsNav;
 import de.sfgmbh.comlayer.organisation.controller.CmbboxFilter;
 import de.sfgmbh.comlayer.organisation.controller.RoomTabBtnsControl;
 import de.sfgmbh.init.Bootstrap;
-import javax.swing.JTextPane;
-import javax.swing.UIManager;
 
 public class RoomTab extends JPanel {
 
@@ -77,14 +77,14 @@ public class RoomTab extends JPanel {
 		add(lblPcseats, "cell 5 0");
 		
 		comboBoxBuilding = new JComboBox<String>();
-		comboBoxBuilding.setModel(new DefaultComboBoxModel(new String[] {"<alle>"}));
+		comboBoxBuilding.setModel(new DefaultComboBoxModel<String>(new String[] {"<alle>"}));
 		comboBoxBuilding.addActionListener(new CmbboxFilter());
 		comboBoxBuilding.setEditable(true);
 		comboBoxBuilding.setAutoscrolls(true);
 		add(comboBoxBuilding, "cell 2 1,growx");
 		
 		comboBoxLevel = new JComboBox<String>();
-		comboBoxLevel.setModel(new DefaultComboBoxModel(new String[] {"<alle>"}));
+		comboBoxLevel.setModel(new DefaultComboBoxModel<String>(new String[] {"<alle>"}));
 		comboBoxLevel.addActionListener(new CmbboxFilter());
 		comboBoxLevel.setEditable(true);
 		comboBoxLevel.setAutoscrolls(true);

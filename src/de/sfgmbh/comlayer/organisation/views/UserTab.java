@@ -12,6 +12,8 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.JTextPane;
+import javax.swing.UIManager;
 import javax.swing.border.TitledBorder;
 
 import net.miginfocom.swing.MigLayout;
@@ -20,8 +22,6 @@ import de.sfgmbh.comlayer.organisation.controller.CmbboxFilter;
 import de.sfgmbh.comlayer.organisation.controller.RoomTabBtnsControl;
 import de.sfgmbh.comlayer.organisation.controller.UserTabBtnsControl;
 import de.sfgmbh.init.Bootstrap;
-import javax.swing.JTextPane;
-import javax.swing.UIManager;
 
 public class UserTab extends JPanel {
 
@@ -50,7 +50,7 @@ public class UserTab extends JPanel {
 	/**
 	 * Create the frame.
 	 */
-	@SuppressWarnings({ "unchecked", "rawtypes" })
+	@SuppressWarnings({ })
 	public UserTab() {
 		
 		initialize();
@@ -77,14 +77,14 @@ public class UserTab extends JPanel {
 		add(lblEmail, "cell 5 0");
 		
 		comboBoxUserclass = new JComboBox<String>();
-		comboBoxUserclass.setModel(new DefaultComboBoxModel(new String[] {"<alle>", "Dozenten", "Verwaltung", "Studenten"}));
+		comboBoxUserclass.setModel(new DefaultComboBoxModel<String>(new String[] {"<alle>", "Dozenten", "Verwaltung", "Studenten"}));
 		comboBoxUserclass.addActionListener(new CmbboxFilter());
 		comboBoxUserclass.setEditable(true);
 		comboBoxUserclass.setAutoscrolls(true);
 		add(comboBoxUserclass, "cell 2 1,growx");
 		
 		comboBoxLevel = new JComboBox<String>();
-		comboBoxLevel.setModel(new DefaultComboBoxModel(new String[] {"<alle>"}));
+		comboBoxLevel.setModel(new DefaultComboBoxModel<String>(new String[] {"<alle>"}));
 		comboBoxLevel.addActionListener(new CmbboxFilter());
 		comboBoxLevel.setEditable(true);
 		comboBoxLevel.setAutoscrolls(true);

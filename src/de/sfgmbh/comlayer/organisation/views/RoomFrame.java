@@ -1,20 +1,19 @@
 package de.sfgmbh.comlayer.organisation.views;
 
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-import javax.swing.JLabel;
 import java.awt.Font;
-import javax.swing.JTextField;
-import javax.swing.JButton;
-
-import de.sfgmbh.comlayer.organisation.controller.RoomFrameWin;
-import de.sfgmbh.comlayer.organisation.controller.RoomFrameBtns;
-import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
 import java.awt.Insets;
-import javax.swing.SwingConstants;
-import java.awt.Dimension;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+import javax.swing.border.EmptyBorder;
+
+import de.sfgmbh.comlayer.organisation.controller.RoomFrameBtns;
+import de.sfgmbh.comlayer.organisation.controller.RoomFrameWin;
 
 public class RoomFrame extends JFrame {
 
