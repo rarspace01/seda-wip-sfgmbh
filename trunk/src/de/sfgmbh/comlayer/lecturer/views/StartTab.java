@@ -10,20 +10,17 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.JTextPane;
 import javax.swing.UIManager;
 import javax.swing.border.TitledBorder;
 
 import net.miginfocom.swing.MigLayout;
-
 import de.sfgmbh.comlayer.lecturer.controller.StartTabBtnsControl;
 import de.sfgmbh.comlayer.lecturer.controller.StartTabBtnsNav;
 import de.sfgmbh.comlayer.lecturer.controller.StartTabCmbboxFilter;
 import de.sfgmbh.comlayer.lecturer.model.StartTabCmbboxModelFilter;
 import de.sfgmbh.comlayer.lecturer.model.StartTabTableBottom;
 import de.sfgmbh.comlayer.lecturer.model.StartTabTableTop;
-import javax.swing.SwingConstants;
-import javax.swing.JTextPane;
-import javax.swing.DropMode;
 
 public class StartTab extends JPanel {
 

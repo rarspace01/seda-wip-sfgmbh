@@ -10,8 +10,9 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
-import de.sfgmbh.comlayer.organisation.controller.CounterproposalFrameWin;
+
 import de.sfgmbh.comlayer.organisation.controller.CounterproposalFrameBtns;
+import de.sfgmbh.comlayer.organisation.controller.CounterproposalFrameWin;
 
 public class CounterproposalFrame extends JFrame {
 
@@ -23,7 +24,7 @@ public class CounterproposalFrame extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	@SuppressWarnings({"rawtypes", "unchecked" })
+	@SuppressWarnings({ })
 	public CounterproposalFrame() {
 		initialize();
 	}
@@ -76,25 +77,25 @@ public class CounterproposalFrame extends JFrame {
 		txtGebaude.setBounds(10, 234, 259, 73);
 		contentPane.add(txtGebaude);
 		
-		JComboBox comboBoxDozent = new JComboBox();
-		comboBoxDozent.setModel(new DefaultComboBoxModel(new String[] {"Benker"}));
+		JComboBox<String> comboBoxDozent = new JComboBox<String>();
+		comboBoxDozent.setModel(new DefaultComboBoxModel<String>(new String[] {"Benker"}));
 		comboBoxDozent.setEditable(true);
 		comboBoxDozent.setBounds(140, 91, 129, 20);
 		contentPane.add(comboBoxDozent);
 		
-		JComboBox comboBoxRaum = new JComboBox();
-		comboBoxRaum.setModel(new DefaultComboBoxModel(new String[] {"05.002"}));
+		JComboBox<String> comboBoxRaum = new JComboBox<String>();
+		comboBoxRaum.setModel(new DefaultComboBoxModel<String>(new String[] {"05.002"}));
 		comboBoxRaum.setEditable(true);
 		comboBoxRaum.setBounds(140, 149, 129, 20);
 		contentPane.add(comboBoxRaum);
 		
-		JComboBox comboBoxZeit = new JComboBox();
-		comboBoxZeit.setModel(new DefaultComboBoxModel(new String[] {"Mo. 10:00 - 12:00"}));
+		JComboBox<String> comboBoxZeit = new JComboBox<String>();
+		comboBoxZeit.setModel(new DefaultComboBoxModel<String>(new String[] {"Mo. 10:00 - 12:00"}));
 		comboBoxZeit.setBounds(140, 176, 129, 20);
 		contentPane.add(comboBoxZeit);
 		
-		JComboBox comboBoxLV = new JComboBox();
-		comboBoxLV.setModel(new DefaultComboBoxModel(new String[] {"WI-Projekt"}));
+		JComboBox<String> comboBoxLV = new JComboBox<String>();
+		comboBoxLV.setModel(new DefaultComboBoxModel<String>(new String[] {"WI-Projekt"}));
 		comboBoxLV.setEditable(true);
 		comboBoxLV.setBounds(140, 122, 129, 20);
 		contentPane.add(comboBoxLV);
