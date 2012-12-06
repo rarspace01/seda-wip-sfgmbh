@@ -13,6 +13,8 @@ import de.sfgmbh.comlayer.organisation.controller.RoomFrameBtns;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
+import javax.swing.SwingConstants;
+import java.awt.Dimension;
 
 public class RoomFrame extends JFrame {
 
@@ -33,17 +35,39 @@ public class RoomFrame extends JFrame {
 	 */
 	@SuppressWarnings({ })
 	public RoomFrame() {
+		initialize();
+	}
+	private void initialize() {
 		setTitle("Raum Info");
-		setBounds(100, 100, 266, 400);
+		setBounds(100, 100, 266, 440);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		GridBagLayout gbl_contentPane = new GridBagLayout();
 		gbl_contentPane.columnWidths = new int[]{101, 17, 98, 0};
-		gbl_contentPane.rowHeights = new int[]{20, 20, 20, 20, 20, 20, 20, 20, 20, 28, 0};
+		gbl_contentPane.rowHeights = new int[]{20, 20, 20, 20, 20, 20, 20, 20, 20, 28, 0, 0, 0, 0};
 		gbl_contentPane.columnWeights = new double[]{0.0, 0.0, 0.0, Double.MIN_VALUE};
-		gbl_contentPane.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+		gbl_contentPane.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		contentPane.setLayout(gbl_contentPane);
+		
+		JLabel lblNewLabel = new JLabel("<html><br><b>Der Raum konnte nicht hinzugef\u00FCgt werden:</b><br> Sie haben keinen Raum selektiert.<br><br><b>Variante 2 (Selektion gegeben):</b></html>");
+		lblNewLabel.setMinimumSize(new Dimension(190, 90));
+		lblNewLabel.setHorizontalAlignment(SwingConstants.LEFT);
+		GridBagConstraints gbc_lblNewLabel = new GridBagConstraints();
+		gbc_lblNewLabel.insets = new Insets(0, 0, 5, 0);
+		gbc_lblNewLabel.gridheight = 2;
+		gbc_lblNewLabel.gridwidth = 3;
+		gbc_lblNewLabel.gridx = 0;
+		gbc_lblNewLabel.gridy = 0;
+		contentPane.add(lblNewLabel, gbc_lblNewLabel);
+		
+		addWindowListener(new RoomFrameWin());
+		
+		JButton btnSpeichern = new JButton("Speichern");
+		btnSpeichern.addActionListener(new RoomFrameBtns("save"));
+		
+		JButton btnAbbrechen = new JButton("Abbrechen");
+		btnAbbrechen.addActionListener(new RoomFrameBtns("cancle"));
 		
 		JLabel lblPasswort = new JLabel("Stockwerk:");
 		lblPasswort.setFont(new Font("SansSerif", Font.PLAIN, 12));
@@ -52,7 +76,7 @@ public class RoomFrame extends JFrame {
 		gbc_lblPasswort.insets = new Insets(0, 0, 5, 5);
 		gbc_lblPasswort.gridwidth = 2;
 		gbc_lblPasswort.gridx = 0;
-		gbc_lblPasswort.gridy = 0;
+		gbc_lblPasswort.gridy = 2;
 		contentPane.add(lblPasswort, gbc_lblPasswort);
 		
 		txtNutzerkennung = new JTextField();
@@ -62,7 +86,7 @@ public class RoomFrame extends JFrame {
 		gbc_txtNutzerkennung.insets = new Insets(0, 0, 5, 0);
 		gbc_txtNutzerkennung.gridwidth = 2;
 		gbc_txtNutzerkennung.gridx = 1;
-		gbc_txtNutzerkennung.gridy = 0;
+		gbc_txtNutzerkennung.gridy = 2;
 		contentPane.add(txtNutzerkennung, gbc_txtNutzerkennung);
 		
 		JLabel lblNutzerkennung = new JLabel("Raumnummer:");
@@ -73,7 +97,7 @@ public class RoomFrame extends JFrame {
 		gbc_lblNutzerkennung.insets = new Insets(0, 0, 5, 5);
 		gbc_lblNutzerkennung.gridwidth = 2;
 		gbc_lblNutzerkennung.gridx = 0;
-		gbc_lblNutzerkennung.gridy = 1;
+		gbc_lblNutzerkennung.gridy = 3;
 		contentPane.add(lblNutzerkennung, gbc_lblNutzerkennung);
 		
 		txtPasswort = new JTextField();
@@ -83,7 +107,7 @@ public class RoomFrame extends JFrame {
 		gbc_txtPasswort.insets = new Insets(0, 0, 5, 0);
 		gbc_txtPasswort.gridwidth = 2;
 		gbc_txtPasswort.gridx = 1;
-		gbc_txtPasswort.gridy = 1;
+		gbc_txtPasswort.gridy = 3;
 		contentPane.add(txtPasswort, gbc_txtPasswort);
 		
 		JLabel lblNutzerklasse = new JLabel("Pl\u00E4tze:");
@@ -93,7 +117,7 @@ public class RoomFrame extends JFrame {
 		gbc_lblNutzerklasse.insets = new Insets(0, 0, 5, 5);
 		gbc_lblNutzerklasse.gridwidth = 2;
 		gbc_lblNutzerklasse.gridx = 0;
-		gbc_lblNutzerklasse.gridy = 2;
+		gbc_lblNutzerklasse.gridy = 4;
 		contentPane.add(lblNutzerklasse, gbc_lblNutzerklasse);
 		
 		textField_2 = new JTextField();
@@ -104,7 +128,7 @@ public class RoomFrame extends JFrame {
 		gbc_textField_2.insets = new Insets(0, 0, 5, 0);
 		gbc_textField_2.gridwidth = 2;
 		gbc_textField_2.gridx = 1;
-		gbc_textField_2.gridy = 2;
+		gbc_textField_2.gridy = 4;
 		contentPane.add(textField_2, gbc_textField_2);
 		
 		JLabel lblLehrstuhl = new JLabel("PC-Pl\u00E4tze:");
@@ -114,7 +138,7 @@ public class RoomFrame extends JFrame {
 		gbc_lblLehrstuhl.insets = new Insets(0, 0, 5, 5);
 		gbc_lblLehrstuhl.gridwidth = 2;
 		gbc_lblLehrstuhl.gridx = 0;
-		gbc_lblLehrstuhl.gridy = 3;
+		gbc_lblLehrstuhl.gridy = 5;
 		contentPane.add(lblLehrstuhl, gbc_lblLehrstuhl);
 		
 		textField_1 = new JTextField();
@@ -125,7 +149,7 @@ public class RoomFrame extends JFrame {
 		gbc_textField_1.insets = new Insets(0, 0, 5, 0);
 		gbc_textField_1.gridwidth = 2;
 		gbc_textField_1.gridx = 1;
-		gbc_textField_1.gridy = 3;
+		gbc_textField_1.gridy = 5;
 		contentPane.add(textField_1, gbc_textField_1);
 		
 		JLabel lblBeamer = new JLabel("Beamer:");
@@ -135,7 +159,7 @@ public class RoomFrame extends JFrame {
 		gbc_lblBeamer.insets = new Insets(0, 0, 5, 5);
 		gbc_lblBeamer.gridwidth = 2;
 		gbc_lblBeamer.gridx = 0;
-		gbc_lblBeamer.gridy = 4;
+		gbc_lblBeamer.gridy = 6;
 		contentPane.add(lblBeamer, gbc_lblBeamer);
 		
 		textField = new JTextField();
@@ -146,7 +170,7 @@ public class RoomFrame extends JFrame {
 		gbc_textField.insets = new Insets(0, 0, 5, 0);
 		gbc_textField.gridwidth = 2;
 		gbc_textField.gridx = 1;
-		gbc_textField.gridy = 4;
+		gbc_textField.gridy = 6;
 		contentPane.add(textField, gbc_textField);
 		
 		JLabel lblVisualizer = new JLabel("Visualizer:");
@@ -157,7 +181,7 @@ public class RoomFrame extends JFrame {
 		gbc_lblVisualizer.insets = new Insets(0, 0, 5, 5);
 		gbc_lblVisualizer.gridwidth = 2;
 		gbc_lblVisualizer.gridx = 0;
-		gbc_lblVisualizer.gridy = 5;
+		gbc_lblVisualizer.gridy = 7;
 		contentPane.add(lblVisualizer, gbc_lblVisualizer);
 		
 		textField_3 = new JTextField();
@@ -168,7 +192,7 @@ public class RoomFrame extends JFrame {
 		gbc_textField_3.insets = new Insets(0, 0, 5, 0);
 		gbc_textField_3.gridwidth = 2;
 		gbc_textField_3.gridx = 1;
-		gbc_textField_3.gridy = 5;
+		gbc_textField_3.gridy = 7;
 		contentPane.add(textField_3, gbc_textField_3);
 		
 		JLabel lblOverheads = new JLabel("Overheads:");
@@ -179,7 +203,7 @@ public class RoomFrame extends JFrame {
 		gbc_lblOverheads.insets = new Insets(0, 0, 5, 5);
 		gbc_lblOverheads.gridwidth = 2;
 		gbc_lblOverheads.gridx = 0;
-		gbc_lblOverheads.gridy = 6;
+		gbc_lblOverheads.gridy = 8;
 		contentPane.add(lblOverheads, gbc_lblOverheads);
 		
 		textField_4 = new JTextField();
@@ -190,7 +214,7 @@ public class RoomFrame extends JFrame {
 		gbc_textField_4.insets = new Insets(0, 0, 5, 0);
 		gbc_textField_4.gridwidth = 2;
 		gbc_textField_4.gridx = 1;
-		gbc_textField_4.gridy = 6;
+		gbc_textField_4.gridy = 8;
 		contentPane.add(textField_4, gbc_textField_4);
 		
 		JLabel lblTafeln = new JLabel("Tafeln:");
@@ -201,7 +225,7 @@ public class RoomFrame extends JFrame {
 		gbc_lblTafeln.insets = new Insets(0, 0, 5, 5);
 		gbc_lblTafeln.gridwidth = 2;
 		gbc_lblTafeln.gridx = 0;
-		gbc_lblTafeln.gridy = 7;
+		gbc_lblTafeln.gridy = 9;
 		contentPane.add(lblTafeln, gbc_lblTafeln);
 		
 		textField_5 = new JTextField();
@@ -212,7 +236,7 @@ public class RoomFrame extends JFrame {
 		gbc_textField_5.insets = new Insets(0, 0, 5, 0);
 		gbc_textField_5.gridwidth = 2;
 		gbc_textField_5.gridx = 1;
-		gbc_textField_5.gridy = 7;
+		gbc_textField_5.gridy = 9;
 		contentPane.add(textField_5, gbc_textField_5);
 		
 		JLabel lblWhiteboards = new JLabel("Whiteboards:");
@@ -223,7 +247,7 @@ public class RoomFrame extends JFrame {
 		gbc_lblWhiteboards.insets = new Insets(0, 0, 5, 5);
 		gbc_lblWhiteboards.gridwidth = 2;
 		gbc_lblWhiteboards.gridx = 0;
-		gbc_lblWhiteboards.gridy = 8;
+		gbc_lblWhiteboards.gridy = 10;
 		contentPane.add(lblWhiteboards, gbc_lblWhiteboards);
 		
 		textField_6 = new JTextField();
@@ -234,27 +258,19 @@ public class RoomFrame extends JFrame {
 		gbc_textField_6.insets = new Insets(0, 0, 5, 0);
 		gbc_textField_6.gridwidth = 2;
 		gbc_textField_6.gridx = 1;
-		gbc_textField_6.gridy = 8;
+		gbc_textField_6.gridy = 10;
 		contentPane.add(textField_6, gbc_textField_6);
-		
-		JButton btnSpeichern = new JButton("Speichern");
-		btnSpeichern.addActionListener(new RoomFrameBtns("save"));
-		
-		JButton btnAbbrechen = new JButton("Abbrechen");
-		btnAbbrechen.addActionListener(new RoomFrameBtns("cancle"));
 		GridBagConstraints gbc_btnAbbrechen = new GridBagConstraints();
 		gbc_btnAbbrechen.anchor = GridBagConstraints.EAST;
 		gbc_btnAbbrechen.fill = GridBagConstraints.VERTICAL;
 		gbc_btnAbbrechen.insets = new Insets(0, 0, 0, 5);
 		gbc_btnAbbrechen.gridx = 0;
-		gbc_btnAbbrechen.gridy = 9;
+		gbc_btnAbbrechen.gridy = 12;
 		contentPane.add(btnAbbrechen, gbc_btnAbbrechen);
 		GridBagConstraints gbc_btnSpeichern = new GridBagConstraints();
 		gbc_btnSpeichern.fill = GridBagConstraints.BOTH;
 		gbc_btnSpeichern.gridx = 2;
-		gbc_btnSpeichern.gridy = 9;
+		gbc_btnSpeichern.gridy = 12;
 		contentPane.add(btnSpeichern, gbc_btnSpeichern);
-		
-		addWindowListener(new RoomFrameWin());
 	}
 }
