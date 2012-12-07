@@ -50,10 +50,10 @@ public class ProfessorshipTimetableTab extends JPanel {
 		if (panel == null) {
 			panel = new JPanel();
 			panel.setBounds(20, 51, 868, 404);
-			panel.setLayout(new MigLayout("", "grow"));
+			panel.setLayout(new MigLayout("", "[830px:n:830px,grow]", "[]"));
 			
 			JScrollPane scrollPane = new JScrollPane();
-			panel.add(scrollPane, "cell 0 0,alignx center,aligny top");
+			panel.add(scrollPane, "cell 0 0,growx,aligny top");
 			
 			LehrstuhlStundenplanTable = new JTable();
 			LehrstuhlStundenplanTable.setPreferredScrollableViewportSize(new Dimension(750, 400));
@@ -67,22 +67,22 @@ public class ProfessorshipTimetableTab extends JPanel {
 			LehrstuhlStundenplanTable.getColumnModel().getColumn(0).setResizable(false);
 			LehrstuhlStundenplanTable.getColumnModel().getColumn(0).setPreferredWidth(50);
 			LehrstuhlStundenplanTable.getColumnModel().getColumn(0).setMinWidth(50);
-			LehrstuhlStundenplanTable.getColumnModel().getColumn(0).setMaxWidth(200);
+			LehrstuhlStundenplanTable.getColumnModel().getColumn(0).setMaxWidth(105);
 			LehrstuhlStundenplanTable.getColumnModel().getColumn(1).setResizable(false);
 			LehrstuhlStundenplanTable.getColumnModel().getColumn(1).setPreferredWidth(50);
 			LehrstuhlStundenplanTable.getColumnModel().getColumn(1).setMinWidth(50);
-			LehrstuhlStundenplanTable.getColumnModel().getColumn(1).setMaxWidth(200);
+			LehrstuhlStundenplanTable.getColumnModel().getColumn(1).setMaxWidth(145);
 			LehrstuhlStundenplanTable.getColumnModel().getColumn(2).setResizable(false);
 			LehrstuhlStundenplanTable.getColumnModel().getColumn(2).setMinWidth(75);
-			LehrstuhlStundenplanTable.getColumnModel().getColumn(2).setMaxWidth(200);
+			LehrstuhlStundenplanTable.getColumnModel().getColumn(2).setMaxWidth(145);
 			LehrstuhlStundenplanTable.getColumnModel().getColumn(3).setPreferredWidth(80);
 			LehrstuhlStundenplanTable.getColumnModel().getColumn(3).setMinWidth(80);
-			LehrstuhlStundenplanTable.getColumnModel().getColumn(3).setMaxWidth(200);
+			LehrstuhlStundenplanTable.getColumnModel().getColumn(3).setMaxWidth(145);
 			LehrstuhlStundenplanTable.getColumnModel().getColumn(4).setPreferredWidth(70);
 			LehrstuhlStundenplanTable.getColumnModel().getColumn(4).setMinWidth(70);
-			LehrstuhlStundenplanTable.getColumnModel().getColumn(4).setMaxWidth(200);
+			LehrstuhlStundenplanTable.getColumnModel().getColumn(4).setMaxWidth(145);
 			LehrstuhlStundenplanTable.getColumnModel().getColumn(5).setMinWidth(70);
-			LehrstuhlStundenplanTable.getColumnModel().getColumn(5).setMaxWidth(200);
+			LehrstuhlStundenplanTable.getColumnModel().getColumn(5).setMaxWidth(145);
 		}
 		return panel;
 	}

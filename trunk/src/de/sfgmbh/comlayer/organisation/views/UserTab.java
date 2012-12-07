@@ -121,7 +121,7 @@ public class UserTab extends JPanel {
 		leftTopPanel.add(tickerMsgPos1);
 		
 		leftBottomPanel = new JPanel();
-		leftBottomPanel.setBounds(0, 292, 140, 161);
+		leftBottomPanel.setBounds(0, 279, 140, 161);
 		leftPanel.add(leftBottomPanel);
 		leftBottomPanel.setLayout(new MigLayout("", "[]", "[][][][][]"));
 		

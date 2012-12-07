@@ -50,7 +50,7 @@ public class TimetableTab extends JPanel {
 		if (panel == null) {
 			panel = new JPanel();
 			panel.setBounds(20, 51, 854, 376);
-			panel.setLayout(new MigLayout("", "grow"));
+			panel.setLayout(new MigLayout("", "[830px:n:830px,grow]", "[]"));
 			
 			JScrollPane scrollPane = new JScrollPane();
 			panel.add(scrollPane, "cell 0 0,grow");
@@ -65,22 +65,22 @@ public class TimetableTab extends JPanel {
 			lecturerTimetableTable.getColumnModel().getColumn(0).setResizable(false);
 			lecturerTimetableTable.getColumnModel().getColumn(0).setPreferredWidth(50);
 			lecturerTimetableTable.getColumnModel().getColumn(0).setMinWidth(50);
-			lecturerTimetableTable.getColumnModel().getColumn(0).setMaxWidth(200);
+			lecturerTimetableTable.getColumnModel().getColumn(0).setMaxWidth(105);
 			lecturerTimetableTable.getColumnModel().getColumn(1).setResizable(false);
 			lecturerTimetableTable.getColumnModel().getColumn(1).setPreferredWidth(50);
 			lecturerTimetableTable.getColumnModel().getColumn(1).setMinWidth(50);
-			lecturerTimetableTable.getColumnModel().getColumn(1).setMaxWidth(200);
+			lecturerTimetableTable.getColumnModel().getColumn(1).setMaxWidth(145);
 			lecturerTimetableTable.getColumnModel().getColumn(2).setResizable(false);
 			lecturerTimetableTable.getColumnModel().getColumn(2).setMinWidth(75);
-			lecturerTimetableTable.getColumnModel().getColumn(2).setMaxWidth(200);
+			lecturerTimetableTable.getColumnModel().getColumn(2).setMaxWidth(145);
 			lecturerTimetableTable.getColumnModel().getColumn(3).setPreferredWidth(80);
 			lecturerTimetableTable.getColumnModel().getColumn(3).setMinWidth(80);
-			lecturerTimetableTable.getColumnModel().getColumn(3).setMaxWidth(200);
+			lecturerTimetableTable.getColumnModel().getColumn(3).setMaxWidth(145);
 			lecturerTimetableTable.getColumnModel().getColumn(4).setPreferredWidth(70);
 			lecturerTimetableTable.getColumnModel().getColumn(4).setMinWidth(70);
-			lecturerTimetableTable.getColumnModel().getColumn(4).setMaxWidth(200);
+			lecturerTimetableTable.getColumnModel().getColumn(4).setMaxWidth(145);
 			lecturerTimetableTable.getColumnModel().getColumn(5).setMinWidth(70);
-			lecturerTimetableTable.getColumnModel().getColumn(5).setMaxWidth(200);
+			lecturerTimetableTable.getColumnModel().getColumn(5).setMaxWidth(145);
 		}
 		return panel;
 	}

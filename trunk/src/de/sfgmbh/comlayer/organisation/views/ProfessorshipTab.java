@@ -73,17 +73,17 @@ public class ProfessorshipTab extends JPanel {
 		leftTopPanel = new JPanel();
 		leftTopPanel.setLayout(null);
 		leftTopPanel.setBorder(new TitledBorder(null, "", TitledBorder.TRAILING, TitledBorder.ABOVE_TOP, null, null));
-		leftTopPanel.setBounds(0, 6, 140, 313);
+		leftTopPanel.setBounds(0, 6, 140, 249);
 		leftPanel.add(leftTopPanel);
 		
 		tickerMsgPos1 = new JTextPane();
 		tickerMsgPos1.setText("LiveTickerNews:\r\n\r\nFehler: Es wurden keine Lehrveranstaltungen gefunden werden, die in 10 Minuten beginnen. \r\n\r\nFehler: Es wurden keine Meldungen von Dozenten oder der Hausverwaltung gefunden. \r\n\r\nFehler: Es besteht keine Verbindung zur Datenbank.\r\n");
 		tickerMsgPos1.setBackground(UIManager.getColor("Button.background"));
-		tickerMsgPos1.setBounds(6, 11, 134, 291);
+		tickerMsgPos1.setBounds(6, 11, 124, 228);
 		leftTopPanel.add(tickerMsgPos1);
 		
 		leftBottomPanel = new JPanel();
-		leftBottomPanel.setBounds(0, 319, 140, 161);
+		leftBottomPanel.setBounds(0, 266, 140, 161);
 		leftPanel.add(leftBottomPanel);
 		leftBottomPanel.setLayout(new MigLayout("", "[]", "[][][][][]"));
 		
