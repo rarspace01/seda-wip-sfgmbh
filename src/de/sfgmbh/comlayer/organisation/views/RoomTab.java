@@ -111,13 +111,13 @@ public class RoomTab extends JPanel {
 		leftTopPanel = new JPanel();
 		leftTopPanel.setLayout(null);
 		leftTopPanel.setBorder(new TitledBorder(null, "", TitledBorder.TRAILING, TitledBorder.ABOVE_TOP, null, null));
-		leftTopPanel.setBounds(0, 6, 140, 313);
+		leftTopPanel.setBounds(0, 6, 130, 288);
 		leftPanel.add(leftTopPanel);
 		
 		tickerMsgPos1 = new JTextPane();
 		tickerMsgPos1.setBackground(UIManager.getColor("Button.background"));
 		tickerMsgPos1.setText("LiveTickerNews:\r\n\r\n\r\nFehler: Es wurden keine Lehrveranstaltungen gefunden werden, die in 10 Minuten beginnen.\r\n\r\nFehler: Es wurden keine Meldungen von Dozenten oder der Hausverwaltung gefunden. \r\n\r\nFehler: Es besteht keine Verbindung zur Datenbank.");
-		tickerMsgPos1.setBounds(10, 11, 120, 291);
+		tickerMsgPos1.setBounds(10, 11, 110, 267);
 		leftTopPanel.add(tickerMsgPos1);
 		
 		leftBottomPanel = new JPanel();
