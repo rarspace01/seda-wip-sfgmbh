@@ -25,9 +25,9 @@ public class DataManagerPostgreSql {
         
         private DataManagerPostgreSql() {
                 try {
-                        Class.forName("com.mysql.jdbc.Driver"); 
-                        conn = DriverManager.getConnection("jdbc:psotgresql://"+"127.0.0.1"+"/"+"dbname"+"?" +
-                                   "user="+"username"+"&password="+"pwd"+"");
+                        Class.forName("org.postgresql.Driver"); 
+                        conn = DriverManager.getConnection("jdbc:postgresql://"+"141.13.6.76:5433"+"/"+"WIP-SFGmbH"+"?" +
+                                   "user="+"WIP-SFGmbH"+"&password="+"n1qeiFhp"+"");
                         stmt = conn.createStatement();
                         
                 } catch (SQLException e) {
