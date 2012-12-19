@@ -2,36 +2,36 @@ package de.sfgmbh.datalayer.core.definitions;
 
 import java.util.List;
 
-import de.sfgmbh.applayer.core.model.Room;
+import de.sfgmbh.applayer.core.model.Building;
 
 /**
- * class for handling the Room table in the database
+ * class for handling the Building table in the database
  * 
  * @author denis
  * 
  */
-public interface IntfDataRoom {
+public interface IntfDataBuilding {
 
 	/**
 	 * 
-	 * @return List of Room objects which are present in the database
+	 * @return List of Building objects which are present in the database
 	 */
-	public List<Room> getAll();
+	public List<Building> getAll();
 
 	/**
 	 * 
-	 * @param iRoomId
+	 * @param iBuildingId
 	 *            - room id in the database
-	 * @return Room object
+	 * @return Building object
 	 */
-	public Room get(int iRoomId);
+	public Building get(int iBuildingId);
 
 	/**
 	 * 
 	 * @param searchQry - Search pattern
 	 * @return Room objects
 	 */
-	public List<Room> search(String searchQry);
+	public List<Building> search(String searchQry);
 
 	/**
 	 * 
@@ -39,24 +39,24 @@ public interface IntfDataRoom {
 	 * <br/>Patter example: "{@code building=ERBA&level=2.1}"
 	 * <br/>"{@code building=FEKI&level=2&pc_min=10}"  
 	 *            
-	 * @return Room objects
+	 * @return Building objects
 	 */
-	public List<Room> filter(String filterQry);
+	public List<Building> filter(String filterQry);
 	
 	/**
 	 * 
-	 * @param toBeDeletedRoom
+	 * @param toBeDeletedBuilding
 	 *            - the object which should be remove from the database
 	 * @return
 	 */
-	public int delete(Room toBeDeletedRoom);
+	public int delete(Building toBeDeletedBuilding);
 
 	/**
 	 * 
-	 * @param toBeSavedRoom
+	 * @param toBeSavedBuilding
 	 *            - object of type Room to be saved in DB
 	 * @return - int for error handling
 	 */
-	public int save(Room toBeSavedRoom);
+	public int save(Building toBeSavedBuilding);
 
 }

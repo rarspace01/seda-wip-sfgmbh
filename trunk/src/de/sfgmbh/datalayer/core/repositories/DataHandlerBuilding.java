@@ -2,43 +2,43 @@ package de.sfgmbh.datalayer.core.repositories;
 
 import java.util.List;
 
-import de.sfgmbh.applayer.core.model.Room;
-import de.sfgmbh.datalayer.core.definitions.IntfDataRoom;
+import de.sfgmbh.applayer.core.model.Building;
+import de.sfgmbh.datalayer.core.definitions.IntfDataBuilding;
 
-public class DataHandlerRoom implements IntfDataRoom{
+public class DataHandlerBuilding implements IntfDataBuilding{
 
 	@Override
-	public List<Room> getAll() {
+	public List<Building> getAll() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public Room get(int iRoomId) {
+	public Building get(int iBuildingId) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public List<Room> search(String searchQry) {
+	public List<Building> search(String searchQry) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public List<Room> filter(String filterQry) {
+	public List<Building> filter(String filterQry) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public int delete(Room toBeDeletedRoom) {
+	public int delete(Building toBeDeletedBuilding) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
 	@Override
-	public int save(Room toBeSavedRoom) {
+	public int save(Building toBeSavedBuilding) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
