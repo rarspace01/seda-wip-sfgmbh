@@ -5,7 +5,6 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.Calendar;
 
 /**
  * Class is used for the PostgreSQL DB connection
@@ -18,17 +17,15 @@ import java.util.Calendar;
 public class DataManagerPostgreSql {
 	private static DataManagerPostgreSql uniqueInstance_ = null;
 
-	private static long lLastAccessed = 0;
-
 	private java.sql.Connection conn;
 	private Statement stmt;
 
 	private DataManagerPostgreSql() {
 		try {
 			Class.forName("org.postgresql.Driver");
-			conn = DriverManager.getConnection("jdbc:postgresql://"
-					+ "141.13.6.76:5433" + "/" + "WIP-SFGmbH" + "?" + "user="
-					+ "WIP-SFGmbH" + "&password=" + "n1qeiFhp" + "");
+			conn = DriverManager.getConnection("jdbc:postgresql://" +
+			"141.13.6.76:5433" + "/" + "WIP-SFGmbH" + "?" + "user=" +
+			"WIP-SFGmbH" + "&password=" + "n1qeiFhp" + "");
 			stmt = conn.createStatement();
 
 		} catch (SQLException e) {
