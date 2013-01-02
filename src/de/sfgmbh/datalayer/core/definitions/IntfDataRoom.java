@@ -59,4 +59,6 @@ public interface IntfDataRoom {
 	 */
 	public int save(Room toBeSavedRoom);
 
+	
+	
 }

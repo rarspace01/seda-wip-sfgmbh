@@ -40,6 +40,11 @@ public class DataHandlerRoom implements IntfDataRoom{
 	@Override
 	public int save(Room toBeSavedRoom) {
 		// TODO Auto-generated method stub
+		
+		String sSQL="INSERT INTO ";
+		
+		//toBeSavedRoom.
+		
 		return 0;
 	}
 
