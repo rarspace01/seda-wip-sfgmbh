@@ -24,7 +24,7 @@ public interface IntfDataRoom {
 	 *            - room id in the database
 	 * @return Room object
 	 */
-	public Room get(int iRoomId);
+	public Room get(int roomId);
 
 	/**
 	 * 
@@ -49,7 +49,7 @@ public interface IntfDataRoom {
 	 *            - the object which should be remove from the database
 	 * @return
 	 */
-	public int delete(Room toBeDeletedRoom);
+	public void delete(Room toBeDeletedRoom);
 
 	/**
 	 * 
@@ -57,7 +57,15 @@ public interface IntfDataRoom {
 	 *            - object of type Room to be saved in DB
 	 * @return - int for error handling
 	 */
-	public int save(Room toBeSavedRoom);
+	public void save(Room toBeSavedRoom);
+	
+	/**
+	 * 
+	 * @param toBeUpdatedRoom
+	 *            - object of type Room to be udpated in DB
+	 * @return - int for error handling
+	 */
+	public void update(Room toBeUpdatedRoom);
 
 	
 	

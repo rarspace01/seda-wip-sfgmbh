@@ -1,9 +1,12 @@
 package de.sfgmbh.datalayer.core.repositories;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.List;
 
 import de.sfgmbh.applayer.core.model.Room;
 import de.sfgmbh.datalayer.core.definitions.IntfDataRoom;
+import de.sfgmbh.datalayer.io.DataManagerPostgreSql;
 
 public class DataHandlerRoom implements IntfDataRoom{
 
@@ -14,9 +17,38 @@ public class DataHandlerRoom implements IntfDataRoom{
 	}
 
 	@Override
-	public Room get(int iRoomId) {
-		// TODO Auto-generated method stub
-		return null;
+	public Room get(int roomId) {
+
+		Room returnRoom = null;
+		
+		String SqlStatement="SELECT * FROM public.room WHERE roomid='"+roomId+"'";
+		
+try {
+			
+			ResultSet resultSet=DataManagerPostgreSql.getInstance().select(SqlStatement);
+			
+			resultSet.next();
+			
+			returnRoom=new Room(resultSet.getInt("roomid"),resultSet.getInt("buildingid"));
+			
+			returnRoom.setBeamer_(resultSet.getInt("beamer"));
+			returnRoom.setChalkboards_(resultSet.getInt("chalkboards"));
+			returnRoom.setLevel_(resultSet.getString("level"));
+			returnRoom.setOverheads_(resultSet.getInt("overheads"));
+			returnRoom.setPcseats_(resultSet.getInt("pcseats"));
+			returnRoom.setRoomNumber_(resultSet.getString("roomnumber"));
+			returnRoom.setSeats_(resultSet.getInt("seats"));
+			returnRoom.setVisualizer_(resultSet.getInt("visualizer"));
+			returnRoom.setWhiteboards_(resultSet.getInt("whiteboards"));
+			
+			
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return returnRoom;
 	}
 
 	@Override
@@ -32,20 +64,63 @@ public class DataHandlerRoom implements IntfDataRoom{
 	}
 
 	@Override
-	public int delete(Room toBeDeletedRoom) {
+	public void delete(Room toBeDeletedRoom) {
 		// TODO Auto-generated method stub
-		return 0;
 	}
 
 	@Override
-	public int save(Room toBeSavedRoom) {
-		// TODO Auto-generated method stub
+	public void save(Room toBeSavedRoom) {
 		
-		String sSQL="INSERT INTO ";
+		String SqlStatement="INSERT INTO public.room "
+				+ "(roomnumber, buildingid, level, seats, pcseats, beamer, visualizer, overheads, chalkboards, whiteboards) "
+				+"VALUES ('"+toBeSavedRoom.getRoomNumber_()
+				+"','"+toBeSavedRoom.getBuildingId_()
+				+"','"+toBeSavedRoom.getLevel_()
+				+"','"+toBeSavedRoom.getSeats_()
+				+"','"+toBeSavedRoom.getPcseats_()
+				+"','"+toBeSavedRoom.getBeamer_()
+				+"','"+toBeSavedRoom.getVisualizer_()
+				+"','"+toBeSavedRoom.getOverheads_()
+				+"','"+toBeSavedRoom.getChalkboards_()
+				+"','"+toBeSavedRoom.getWhiteboards_()
+				+"');";
 		
-		//toBeSavedRoom.
+		try {
+			
+			DataManagerPostgreSql.getInstance().execute(SqlStatement);
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
-		return 0;
+	}
+
+	@Override
+	public void update(Room toBeUpdatedRoom) {
+		
+		String SqlStatement="UPDATE public.room SET "
+				+"roomnumber ='"+toBeUpdatedRoom.getRoomNumber_()+"', "
+				+"buildingid ='"+toBeUpdatedRoom.getBuildingId_()+"', "
+				+"level ='"+toBeUpdatedRoom.getLevel_()+"', "
+				+"seats ='"+toBeUpdatedRoom.getSeats_()+"', "
+				+"pcseats ='"+toBeUpdatedRoom.getPcseats_()+"', "
+				+"beamer ='"+toBeUpdatedRoom.getBeamer_()+"', "
+				+"visualizer ='"+toBeUpdatedRoom.getVisualizer_()+"', "
+				+"overheads ='"+toBeUpdatedRoom.getOverheads_()+"', "
+				+"chalkboards ='"+toBeUpdatedRoom.getChalkboards_()+"', "
+				+"whiteboards ='"+toBeUpdatedRoom.getWhiteboards_()+"' "
+				+"WHERE roomid='"+toBeUpdatedRoom.getRoomId_()+"';";
+		
+		try {
+			
+			DataManagerPostgreSql.getInstance().execute(SqlStatement);
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 	}
 
 }
