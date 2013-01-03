@@ -16,6 +16,39 @@ public class Room implements IntfDataRetrievable{
 	private int chalkboards_;
 	private int whiteboards_;
 	
+	public Room(int buildingId) {
+
+		buildingId_=buildingId;
+		
+		roomNumber_="";
+		level_="";
+		seats_=0;
+		pcseats_=0;
+		beamer_=0;
+		visualizer_=0;
+		overheads_=0;
+		chalkboards_=0;
+		whiteboards_=0;
+		
+	}
+	
+	public Room(int roomID, int buildingId) {
+
+		roomId_=roomID;
+		buildingId_=buildingId;
+		
+		roomNumber_="";
+		level_="";
+		seats_=0;
+		pcseats_=0;
+		beamer_=0;
+		visualizer_=0;
+		overheads_=0;
+		chalkboards_=0;
+		whiteboards_=0;
+		
+	}
+	
 	public int getRoomId_() {
 		return roomId_;
 	}
