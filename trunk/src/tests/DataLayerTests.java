@@ -1,5 +1,7 @@
 package tests;
 
+import java.util.List;
+
 import de.sfgmbh.applayer.core.model.Room;
 import de.sfgmbh.datalayer.core.repositories.DataHandlerRoom;
 
@@ -11,8 +13,9 @@ public class DataLayerTests {
 		
 		dlt.testRoomSave();
 		
-		dlt.testUpdate();
+		dlt.testRoomUpdate();
 		
+		dlt.testRoomRetrievAll();
 		
 	}
 	
@@ -31,7 +34,7 @@ public class DataLayerTests {
 		
 	}
 	
-	void testUpdate(){
+	void testRoomUpdate(){
 	
 		DataHandlerRoom dhr=new DataHandlerRoom();
 		Room r1=dhr.get(1);
@@ -39,6 +42,17 @@ public class DataLayerTests {
 		r1.setBeamer_(r1.getBeamer_()+1);
 		
 		dhr.update(r1);
+		
+	}
+	
+	void testRoomRetrievAll(){
+		DataHandlerRoom dhr=new DataHandlerRoom();
+		
+		List<Room> roomlist=dhr.getAll();
+		
+		for(int i=0; i<roomlist.size();i++){
+			System.out.println("Room in DB: ["+roomlist.get(i).getRoomId_()+"]["+roomlist.get(i).getRoomNumber_()+"]");
+		}
 		
 	}
 	
