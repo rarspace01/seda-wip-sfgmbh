@@ -6,10 +6,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import de.sfgmbh.applayer.core.model.Room;
+import de.sfgmbh.datalayer.core.definitions.IntfDataFilter;
 import de.sfgmbh.datalayer.core.definitions.IntfDataRoom;
 import de.sfgmbh.datalayer.io.DataManagerPostgreSql;
 
-public class DataHandlerRoom implements IntfDataRoom {
+public class DataHandlerRoom implements IntfDataRoom,IntfDataFilter {
 
 	@Override
 	public List<Room> getAll() {
@@ -157,5 +158,47 @@ public class DataHandlerRoom implements IntfDataRoom {
 		}
 
 	}
+
+	@Override
+	public List<Room> getByFilter(String filterName, String filterValue) {
+		List<Room> listRoom = new ArrayList<Room>();
+		Room returnRoom = null;
+		
+		String SqlStatement = "SELECT * FROM public.room WHERE "+filterName+"='"+filterValue+"'";
+
+		try {
+
+			ResultSet resultSet = DataManagerPostgreSql.getInstance().select(
+					SqlStatement);
+
+			while (resultSet.next()) {
+
+				returnRoom = new Room(resultSet.getInt("roomid"),
+						resultSet.getInt("buildingid"));
+
+				returnRoom.setBeamer_(resultSet.getInt("beamer"));
+				returnRoom.setChalkboards_(resultSet.getInt("chalkboards"));
+				returnRoom.setLevel_(resultSet.getString("level"));
+				returnRoom.setOverheads_(resultSet.getInt("overheads"));
+				returnRoom.setPcseats_(resultSet.getInt("pcseats"));
+				returnRoom.setRoomNumber_(resultSet.getString("roomnumber"));
+				returnRoom.setSeats_(resultSet.getInt("seats"));
+				returnRoom.setVisualizer_(resultSet.getInt("visualizer"));
+				returnRoom.setWhiteboards_(resultSet.getInt("whiteboards"));
+				
+				listRoom.add(returnRoom);
+				returnRoom=null;
+
+			}
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return listRoom;
+	}
+
+
 
 }
