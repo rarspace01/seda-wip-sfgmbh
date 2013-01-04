@@ -35,6 +35,11 @@ public class BaseBtnLogin implements ActionListener {
 			Bootstrap.serviceManager.getCoreBaseTab().mainTabbedContainerPane.addTab("Raumanfrage-Management", null, Bootstrap.serviceManager.getOrgaRquestTab(), null);
 			Bootstrap.serviceManager.getCoreBaseTab().mainTabbedContainerPane.setSelectedIndex(1);
 			Bootstrap.serviceManager.getCoreBaseTab().startScreenPanel.setVisible(false);
+			Bootstrap.serviceManager.getCoreBaseTab().mainTabbedContainerPane.addTab("Nutzerverwaltung", null, Bootstrap.serviceManager.getOrgaUserTab(), null);
+			Bootstrap.serviceManager.getCoreBaseTab().mainTabbedContainerPane.addTab("Lehrstuhlverwaltung", null, Bootstrap.serviceManager.getOrgaProfessorshipTab(), null);
+			Bootstrap.serviceManager.getCoreBaseTab().mainTabbedContainerPane.addTab("Raumverwaltung", null, Bootstrap.serviceManager.getOrgaRoomTab(), null);
+			
+			
 			
 		} else if (pwd.equals("Stud") && user.equals("Stud")) {
 			
