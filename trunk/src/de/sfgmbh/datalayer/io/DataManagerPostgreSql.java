@@ -57,7 +57,7 @@ public class DataManagerPostgreSql {
 	 */
 	public ResultSet select(String SQLString) throws SQLException {
 		
-		System.out.println("SQL Qry: ["+SQLString+"]");
+		System.out.println("SQL select: ["+SQLString+"]");
 		
 		ResultSet rs = null;
 
@@ -79,7 +79,7 @@ public class DataManagerPostgreSql {
 	 */
 	public int execute(String SQLString) throws SQLException {
 		
-		System.out.println("SQL Qry: ["+SQLString+"]");
+		System.out.println("SQL ececute: ["+SQLString+"]");
 		
 		int i = -1;
 
