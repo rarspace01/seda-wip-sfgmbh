@@ -2,6 +2,7 @@ package de.sfgmbh.comlayer.lecturer.views;
 
 import java.awt.Color;
 
+import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -9,6 +10,7 @@ import javax.swing.JTable;
 import javax.swing.JLabel;
 import javax.swing.JButton;
 
+import de.sfgmbh.comlayer.core.views.BaseTab;
 import de.sfgmbh.comlayer.lecturer.controller.ProfessorshipTimetableTabBtn;
 import de.sfgmbh.init.Bootstrap;
 
@@ -45,11 +47,21 @@ public class ProfessorshipTimetableTab extends JPanel {
 		lblWochenplanFrDen.setBounds(20, 26, 359, 14);
 		add(lblWochenplanFrDen);
 		add(getPanel());
+		
+		JPanel UniIconpanel = new JPanel();
+		UniIconpanel.setBounds(787, 11, 70, 61);
+		add(UniIconpanel);
+		
+		JLabel UniIconJLbl = new JLabel("");
+		UniIconJLbl.setIcon(new ImageIcon(BaseTab.class.getResource("/de/sfgmbh/comlayer/core/views/UniBA_logo.png")));
+		UniIconJLbl.setMaximumSize(new Dimension(50,50));
+		UniIconpanel.add(UniIconJLbl);
 	}
+	
 	public JPanel getPanel() {
 		if (panel == null) {
 			panel = new JPanel();
-			panel.setBounds(20, 51, 868, 404);
+			panel.setBounds(20, 72, 868, 383);
 			panel.setLayout(new MigLayout("", "[830px:n:830px,grow]", "[]"));
 			
 			JScrollPane scrollPane = new JScrollPane();
