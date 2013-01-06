@@ -26,6 +26,8 @@ public class BaseBtnLogin implements ActionListener {
 			Bootstrap.serviceManager.getCoreBaseTab().mainTabbedContainerPane.addTab("Dozenten Bereich", null, Bootstrap.serviceManager.getLecturerStartTab(), null);
 			Bootstrap.serviceManager.getCoreBaseTab().mainTabbedContainerPane.setSelectedIndex(1);
 			Bootstrap.serviceManager.getCoreBaseTab().startScreenPanel.setVisible(false);
+			Bootstrap.serviceManager.getCoreBaseTab().mainTabbedContainerPane.addTab("Dozentenstundenplan", null, Bootstrap.serviceManager.getLecturerTimetableTab(), null);
+			Bootstrap.serviceManager.getCoreBaseTab().mainTabbedContainerPane.addTab("Lehrstuhlplan", null, Bootstrap.serviceManager.getLecturerProfessorshipTimetableTab(), null);
 			
 		} else if (pwd.equals("Verw") && user.equals("Verw")) {
 			
