@@ -35,6 +35,7 @@ import de.sfgmbh.init.Bootstrap;
 
 import net.miginfocom.swing.MigLayout;
 import java.awt.Toolkit;
+import javax.swing.JInternalFrame;
 
 public class BaseTab extends JFrame{
 
@@ -95,23 +96,24 @@ public class BaseTab extends JFrame{
 		contentPane.setLayer(startScreenPanel, 1);
 		contentPane.add(startScreenPanel, "name_5256771068822");
 		startScreenPanel.setLayout(new MigLayout("", "[grow][][grow][grow][grow][grow][grow]", "[][][grow][]"));
-		startScreenPanel.add(getRdbtnLehrveranstaltungen(), "cell 0 0");
+		startScreenPanel.add(getRdbtnLehrveranstaltungen(), "cell 0 0,aligny bottom");
 		
 		lblLehrveranstaltung = new JLabel("Lehrveranstaltung:");
-		startScreenPanel.add(lblLehrveranstaltung, "cell 2 0,alignx left,aligny center");
+		startScreenPanel.add(lblLehrveranstaltung, "cell 2 0,alignx left,aligny bottom");
 		
 		lblLehrstuhl = new JLabel("Lehrstuhl:");
-		startScreenPanel.add(lblLehrstuhl, "cell 3 0");
+		startScreenPanel.add(lblLehrstuhl, "cell 3 0,aligny bottom");
 		
 		lblDozent = new JLabel("Dozent:");
-		startScreenPanel.add(lblDozent, "cell 4 0");
+		startScreenPanel.add(lblDozent, "cell 4 0,aligny bottom");
 		
 		lblSemester = new JLabel("Semester:");
-		startScreenPanel.add(lblSemester, "cell 5 0");
+		startScreenPanel.add(lblSemester, "cell 5 0,aligny bottom");
 		
 		comboBoxVeranstaltungFilter = new JComboBox<String>();
 		comboBoxVeranstaltungFilter.addKeyListener(new BaseCmbboxFilter());
 		comboBoxVeranstaltungFilter.addActionListener(new BaseCmbboxFilter());
+		startScreenPanel.add(getLblNewLabel(), "cell 6 0,alignx center");
 		startScreenPanel.add(getRdbtnRaume(), "cell 0 1");
 		comboBoxVeranstaltungFilter.setAutoscrolls(true);
 		comboBoxVeranstaltungFilter.setEditable(true);
@@ -172,7 +174,7 @@ public class BaseTab extends JFrame{
 		tickerMsgPos1.setText("<div style=\"font-family: font-family: Calibri, monospace;\"><strong>News:</strong><br> <span style=\"color:red\">Neu!</span> Testlogin jetzt m\u00F6glich!</div>");
 		
 		panel_1 = new JPanel();
-		panel_1.setBounds(0, 319, 140, 161);
+		panel_1.setBounds(0, 319, 140, 150);
 		tickerJPanel.add(panel_1);
 		panel_1.setLayout(new MigLayout("", "[grow]", "[][][][][][]"));
 		panel_1.add(getLblBenutzername(), "cell 0 0");
@@ -206,7 +208,6 @@ public class BaseTab extends JFrame{
 		btnFehlermeldung = new JButton("Fehlermeldung");
 		btnFehlermeldung.addActionListener(new BaseBtnFailureprompt("error"));
 		startScreenPanel.add(btnFehlermeldung, "cell 2 3");
-		startScreenPanel.add(getLblNewLabel(), "cell 6 3,alignx right");
 		
 		organisationTable.getColumnModel().getColumn(0).setResizable(false);
 		organisationTable.getColumnModel().getColumn(0).setPreferredWidth(50);

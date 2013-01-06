@@ -4,6 +4,7 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.SystemColor;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
@@ -15,12 +16,14 @@ import javax.swing.UIManager;
 import javax.swing.border.TitledBorder;
 
 import net.miginfocom.swing.MigLayout;
+import de.sfgmbh.comlayer.core.views.BaseTab;
 import de.sfgmbh.comlayer.lecturer.controller.StartTabBtnsControl;
 import de.sfgmbh.comlayer.lecturer.controller.StartTabBtnsNav;
 import de.sfgmbh.comlayer.lecturer.controller.StartTabCmbboxFilter;
 import de.sfgmbh.comlayer.lecturer.model.StartTabCmbboxModelFilter;
 import de.sfgmbh.comlayer.lecturer.model.StartTabTableBottom;
 import de.sfgmbh.comlayer.lecturer.model.StartTabTableTop;
+import javax.swing.SwingConstants;
 
 public class StartTab extends JPanel {
 
@@ -47,6 +50,8 @@ public class StartTab extends JPanel {
 	private JTable roomrequestTable;
 	private JTextPane txtpnBajksbfwebfskbjfsbksbksdbkgdbfkgbdkrgbekrbgf;
 	private JButton btnFailureprompt;
+	private JPanel panel_1;
+	private JLabel label_3;
 
 	/**
 	 * Create the panel.
@@ -58,6 +63,7 @@ public class StartTab extends JPanel {
 		JLabel lblLehrveranstaltungen = new JLabel("Lehrveranstaltungen:");
 		lblLehrveranstaltungen.setFont(new Font("Tahoma", Font.BOLD, 12));
 		add(lblLehrveranstaltungen, "cell 1 0");
+		add(getPanel_1(), "cell 6 0,alignx center");
 		
 		sidePanel = new JPanel();
 		sidePanel.setMinimumSize(new Dimension(140, 10));
@@ -246,7 +252,24 @@ public class StartTab extends JPanel {
 		
 		JButton btnZurckziehen = new JButton("zur\u00FCckziehen");
 		btnZurckziehen.addActionListener(new StartTabBtnsControl("back"));
-		btnZurckziehen.setBounds(0, 339, 100, 23);
+		btnZurckziehen.setBounds(0, 260, 100, 23);
 		buttonPanel.add(btnZurckziehen);
+	}
+	private JPanel getPanel_1() {
+		if (panel_1 == null) {
+			panel_1 = new JPanel();
+			panel_1.add(getLabel_3());
+		}
+		return panel_1;
+	}
+	private JLabel getLabel_3() {
+		if (label_3 == null) {
+			label_3 = new JLabel("");
+			label_3.setIcon(new ImageIcon(BaseTab.class.getResource("/de/sfgmbh/comlayer/core/views/UniBA_logo.png")));
+			label_3.setMaximumSize(new Dimension(50,50));
+					
+
+		}
+		return label_3;
 	}
 }

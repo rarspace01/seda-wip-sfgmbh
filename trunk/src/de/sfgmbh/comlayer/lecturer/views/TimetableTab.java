@@ -1,17 +1,21 @@
 package de.sfgmbh.comlayer.lecturer.views;
 
 import java.awt.Color;
+import java.awt.Dimension;
 
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import net.miginfocom.swing.MigLayout;
+import de.sfgmbh.comlayer.core.views.BaseTab;
 import de.sfgmbh.comlayer.lecturer.controller.ProfessorshipTimetableTabBtn;
 import de.sfgmbh.comlayer.lecturer.controller.ProfessorshipTimetableTabCmbbox;
 import de.sfgmbh.init.Bootstrap;
+import javax.swing.JLabel;
 
 public class TimetableTab extends JPanel {
 	private static final long serialVersionUID = 1L;
@@ -45,11 +49,20 @@ public class TimetableTab extends JPanel {
 		btnPdfErzeugen.setBounds(167, 19, 112, 23);
 		add(btnPdfErzeugen);
 		add(getPanel());
+		
+		JPanel panel_1 = new JPanel();
+		panel_1.setBounds(780, 0, 76, 67);
+		add(panel_1);
+		
+		JLabel UniIconJLbl = new JLabel("");
+		UniIconJLbl.setIcon(new ImageIcon(BaseTab.class.getResource("/de/sfgmbh/comlayer/core/views/UniBA_logo.png")));
+		UniIconJLbl.setMaximumSize(new Dimension(50,50));
+		panel_1.add(UniIconJLbl);
 	}
 	public JPanel getPanel() {
 		if (panel == null) {
 			panel = new JPanel();
-			panel.setBounds(20, 51, 854, 376);
+			panel.setBounds(20, 63, 854, 364);
 			panel.setLayout(new MigLayout("", "[830px:n:830px,grow]", "[]"));
 			
 			JScrollPane scrollPane = new JScrollPane();
