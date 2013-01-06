@@ -5,7 +5,7 @@ import java.util.List;
 import de.sfgmbh.applayer.core.model.Room;
 
 /**
- * class for handling the Room table in the database
+ * interface for handling the Room table in the database
  * 
  * @author denis
  * 
