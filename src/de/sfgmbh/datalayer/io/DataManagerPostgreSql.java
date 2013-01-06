@@ -79,7 +79,7 @@ public class DataManagerPostgreSql {
 	 */
 	public int execute(String SQLString) throws SQLException {
 		
-		System.out.println("SQL ececute: ["+SQLString+"]");
+		System.out.println("SQL execute: ["+SQLString+"]");
 		
 		int i = -1;
 
