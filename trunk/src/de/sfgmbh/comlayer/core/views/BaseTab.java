@@ -33,6 +33,7 @@ import de.sfgmbh.comlayer.core.model.BaseCmbboxModelFilter;
 import de.sfgmbh.init.Bootstrap;
 
 import net.miginfocom.swing.MigLayout;
+import java.awt.Toolkit;
 
 public class BaseTab extends JFrame{
 
@@ -71,6 +72,7 @@ public class BaseTab extends JFrame{
 	 */
 	@SuppressWarnings({ })
 	public BaseTab() {
+		setIconImage(Toolkit.getDefaultToolkit().getImage(BaseTab.class.getResource("/de/sfgmbh/comlayer/core/views/HUT_klein.png")));
 		setTitle("UnivIS 2.0");
 		createContents();
 	}
