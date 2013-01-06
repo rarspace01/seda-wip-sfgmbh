@@ -34,7 +34,6 @@ public class RequestTab extends JPanel {
 	private JComboBox<String> comboBoxProfessorship;
 	private JPanel leftPanel;
 	private JPanel leftTopPanel;
-	private JPanel leftBottomPanel;
 	private JScrollPane organisationTableScrollPane;
 	private JPanel buttonPanel;
 	private JButton btnFreigeben;
@@ -111,20 +110,15 @@ public class RequestTab extends JPanel {
 		leftTopPanel = new JPanel();
 		leftTopPanel.setLayout(null);
 		leftTopPanel.setBorder(new TitledBorder(null, "", TitledBorder.TRAILING, TitledBorder.ABOVE_TOP, null, null));
-		leftTopPanel.setBounds(0, 6, 140, 291);
+		leftTopPanel.setBounds(0, 6, 140, 428);
 		leftPanel.add(leftTopPanel);
 		
 		tickerMsgPos1 = new JTextPane();
 		tickerMsgPos1.setBackground(UIManager.getColor("Button.background"));
 		tickerMsgPos1.setText("LiveTickerNews:\r\n\r\nFehler: Es wurden keine Lehrveranstaltungen gefunden werden, die in 10 Minuten beginnen.\r\n\r\nFehler: Es wurden keine Meldungen von Dozenten oder der Hausverwaltung gefunden. \r\n\r\nFehler: Es besteht keine Verbindung zur Datenbank.\r\n");
-		tickerMsgPos1.setBounds(6, 11, 124, 269);
+		tickerMsgPos1.setBounds(6, 11, 124, 417);
 		leftTopPanel.add(tickerMsgPos1);
-		
-		leftBottomPanel = new JPanel();
-		leftBottomPanel.setBounds(0, 296, 140, 150);
-		leftPanel.add(leftBottomPanel);
-		leftBottomPanel.setLayout(new MigLayout("", "[]", "[][][][][]"));
-		
+		/*
 		JLabel lblAndereBereiche = new JLabel("Verwaltungs-Bereiche:");
 		leftBottomPanel.add(lblAndereBereiche, "cell 0 0");
 		
@@ -143,7 +137,7 @@ public class RequestTab extends JPanel {
 		btnLivetickerEdit.addActionListener(new BtnsNav("liveticker"));
 		leftBottomPanel.add(btnLivetickerEdit, "cell 0 3");
 		leftBottomPanel.add(btnLehrstuhlverwaltung, "cell 0 4");
-		
+		*/
 		organisationTableScrollPane = new JScrollPane();
 		add(organisationTableScrollPane, "flowx,cell 2 2 4 1,grow");
 		
@@ -177,7 +171,7 @@ public class RequestTab extends JPanel {
 		btnGegenvorschlag.setBounds(6, 79, 99, 23);
 		buttonPanel.add(btnGegenvorschlag);
 		
-		btnFailureprompt = new JButton("Fehlermeldung");
+		btnFailureprompt = new JButton("Ausloggen");
 		add(btnFailureprompt, "cell 2 3");
 		btnFailureprompt.addActionListener(new RequestTabBtnsControl("Fehlermeldung"));
 	}
