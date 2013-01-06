@@ -5,6 +5,7 @@ import java.awt.Dimension;
 import java.awt.Insets;
 import java.awt.SystemColor;
 import javax.swing.ButtonGroup;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
@@ -65,6 +66,7 @@ public class BaseTab extends JFrame{
 	private JRadioButton rdbtnLehrveranstaltungen;
 	private JRadioButton rdbtnRaume;
 	private JButton btnFehlermeldung;
+	private JLabel lblNewLabel;
 	
 
 	/**
@@ -204,6 +206,7 @@ public class BaseTab extends JFrame{
 		btnFehlermeldung = new JButton("Fehlermeldung");
 		btnFehlermeldung.addActionListener(new BaseBtnFailureprompt("error"));
 		startScreenPanel.add(btnFehlermeldung, "cell 2 3");
+		startScreenPanel.add(getLblNewLabel(), "cell 6 3,alignx right");
 		
 		organisationTable.getColumnModel().getColumn(0).setResizable(false);
 		organisationTable.getColumnModel().getColumn(0).setPreferredWidth(50);
@@ -289,4 +292,15 @@ public class BaseTab extends JFrame{
 		}
 		return rdbtnRaume;
 	}
+	private JLabel getLblNewLabel() {
+		if (lblNewLabel == null) {
+			lblNewLabel = new JLabel("");
+			lblNewLabel.setIcon(new ImageIcon(BaseTab.class.getResource("/de/sfgmbh/comlayer/core/views/UniBA_logo.png")));
+			lblNewLabel.setMaximumSize(new Dimension(50,50));
+			
+		}
+		return lblNewLabel;
+	}
+	
+	
 }
