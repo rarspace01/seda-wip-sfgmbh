@@ -10,14 +10,14 @@ import de.sfgmbh.datalayer.core.definitions.IntfDataFilter;
 import de.sfgmbh.datalayer.core.definitions.IntfDataRoom;
 import de.sfgmbh.datalayer.io.DataManagerPostgreSql;
 
-public class DataHandlerRoom implements IntfDataRoom,IntfDataFilter {
+public class DataHandlerRoom implements IntfDataRoom, IntfDataFilter {
 
 	@Override
 	public List<Room> getAll() {
 
 		List<Room> listRoom = new ArrayList<Room>();
 		Room returnRoom = null;
-		
+
 		String SqlStatement = "SELECT * FROM public.room";
 
 		try {
@@ -39,9 +39,9 @@ public class DataHandlerRoom implements IntfDataRoom,IntfDataFilter {
 				returnRoom.setSeats_(resultSet.getInt("seats"));
 				returnRoom.setVisualizer_(resultSet.getInt("visualizer"));
 				returnRoom.setWhiteboards_(resultSet.getInt("whiteboards"));
-				
+
 				listRoom.add(returnRoom);
-				returnRoom=null;
+				returnRoom = null;
 
 			}
 
@@ -91,8 +91,44 @@ public class DataHandlerRoom implements IntfDataRoom,IntfDataFilter {
 
 	@Override
 	public List<Room> search(String searchQry) {
-		// TODO Auto-generated method stub
-		return null;
+		List<Room> listRoom = new ArrayList<Room>();
+		Room returnRoom = null;
+
+		String SqlStatement = "SELECT * FROM public.room WHERE roomnumber LIKE '%"
+				+ searchQry + "%'";
+
+		try {
+
+			ResultSet resultSet = DataManagerPostgreSql.getInstance().select(
+					SqlStatement);
+
+			while (resultSet.next()) {
+
+				returnRoom = new Room(resultSet.getInt("roomid"),
+						resultSet.getInt("buildingid"));
+
+				returnRoom.setBeamer_(resultSet.getInt("beamer"));
+				returnRoom.setChalkboards_(resultSet.getInt("chalkboards"));
+				returnRoom.setLevel_(resultSet.getString("level"));
+				returnRoom.setOverheads_(resultSet.getInt("overheads"));
+				returnRoom.setPcseats_(resultSet.getInt("pcseats"));
+				returnRoom.setRoomNumber_(resultSet.getString("roomnumber"));
+				returnRoom.setSeats_(resultSet.getInt("seats"));
+				returnRoom.setVisualizer_(resultSet.getInt("visualizer"));
+				returnRoom.setWhiteboards_(resultSet.getInt("whiteboards"));
+
+				listRoom.add(returnRoom);
+				returnRoom = null;
+
+			}
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return listRoom;
+
 	}
 
 	@Override
@@ -103,7 +139,19 @@ public class DataHandlerRoom implements IntfDataRoom,IntfDataFilter {
 
 	@Override
 	public void delete(Room toBeDeletedRoom) {
-		// TODO Auto-generated method stub
+
+		String SqlStatement = "DELETE FROM public.room " + "WHERE roomid = '"
+				+ toBeDeletedRoom.getRoomId_() + "';";
+
+		try {
+
+			DataManagerPostgreSql.getInstance().execute(SqlStatement);
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
 	}
 
 	@Override
@@ -163,8 +211,9 @@ public class DataHandlerRoom implements IntfDataRoom,IntfDataFilter {
 	public List<Room> getByFilter(String filterName, String filterValue) {
 		List<Room> listRoom = new ArrayList<Room>();
 		Room returnRoom = null;
-		
-		String SqlStatement = "SELECT * FROM public.room WHERE "+filterName+"='"+filterValue+"'";
+
+		String SqlStatement = "SELECT * FROM public.room WHERE " + filterName
+				+ "='" + filterValue + "'";
 
 		try {
 
@@ -185,9 +234,9 @@ public class DataHandlerRoom implements IntfDataRoom,IntfDataFilter {
 				returnRoom.setSeats_(resultSet.getInt("seats"));
 				returnRoom.setVisualizer_(resultSet.getInt("visualizer"));
 				returnRoom.setWhiteboards_(resultSet.getInt("whiteboards"));
-				
+
 				listRoom.add(returnRoom);
-				returnRoom=null;
+				returnRoom = null;
 
 			}
 
@@ -198,7 +247,5 @@ public class DataHandlerRoom implements IntfDataRoom,IntfDataFilter {
 
 		return listRoom;
 	}
-
-
 
 }
