@@ -34,7 +34,6 @@ public class StartTab extends JPanel {
 	private JComboBox<String> comboBoxSemester;
 	private JPanel sidePanel;
 	private JPanel topSidePanel;
-	private JPanel bottomSidePanel;
 	private JScrollPane lvOrganisationTableScrollPane;
 	private JPanel buttonPanel;
 	private JButton btnAdd;
@@ -70,21 +69,16 @@ public class StartTab extends JPanel {
 		topSidePanel = new JPanel();
 		topSidePanel.setLayout(null);
 		topSidePanel.setBorder(new TitledBorder(null, "", TitledBorder.TRAILING, TitledBorder.ABOVE_TOP, null, null));
-		topSidePanel.setBounds(0, 6, 130, 313);
+		topSidePanel.setBounds(0, 6, 130, 464);
 		sidePanel.add(topSidePanel);
 		
 		txtpnBajksbfwebfskbjfsbksbksdbkgdbfkgbdkrgbekrbgf = new JTextPane();
 		txtpnBajksbfwebfskbjfsbksbksdbkgdbfkgbdkrgbekrbgf.setBackground(UIManager.getColor("Button.background"));
 		txtpnBajksbfwebfskbjfsbksbksdbkgdbfkgbdkrgbekrbgf.setContentType("text/plain\r\n");
 		txtpnBajksbfwebfskbjfsbksbksdbkgdbfkgbdkrgbekrbgf.setText("LiveTickerNews:\r\n\r\nFehler: Es wurden keine Lehrveranstaltungen gefunden werden, die in 10 Minuten beginnen. \r\n\r\nFehler: Es wurden keine Meldungen von Dozenten oder der Hausverwaltung gefunden. \r\n\r\nFehler: Es besteht keine Verbindung zur Datenbank.");
-		txtpnBajksbfwebfskbjfsbksbksdbkgdbfkgbdkrgbekrbgf.setBounds(10, 11, 110, 291);
+		txtpnBajksbfwebfskbjfsbksbksdbkgdbfkgbdkrgbekrbgf.setBounds(10, 11, 110, 453);
 		topSidePanel.add(txtpnBajksbfwebfskbjfsbksbksdbkgdbfkgbdkrgbekrbgf);
-		
-		bottomSidePanel = new JPanel();
-		bottomSidePanel.setBounds(0, 319, 140, 161);
-		sidePanel.add(bottomSidePanel);
-		bottomSidePanel.setLayout(new MigLayout("", "[]", "[][][]"));
-		
+		/*
 		JButton btnTimetable = new JButton("Stundenplan");
 		btnTimetable.addActionListener(new StartTabBtnsNav("timetable"));
 		bottomSidePanel.add(btnTimetable, "cell 0 0");
@@ -96,7 +90,7 @@ public class StartTab extends JPanel {
 		btnLivetickerEdit = new JButton("LiveTicker");
 		btnLivetickerEdit.addActionListener(new StartTabBtnsNav("liveticker"));
 		bottomSidePanel.add(btnLivetickerEdit, "cell 0 2");
-		
+		*/
 		tablePanel = new JPanel();
 		add(tablePanel, "cell 1 1 5 1,grow");
 		tablePanel.setLayout(new MigLayout("", "[grow][grow][grow][grow][grow]", "[][][150px:n:200px,grow][][][][100px:n:200px,grow][]"));
@@ -209,7 +203,7 @@ public class StartTab extends JPanel {
 		roomrequestTable.setBackground(SystemColor.activeCaption);
 		raumanfragenScrollPane.setViewportView(roomrequestTable);
 		
-		btnFailureprompt = new JButton("Fehlermeldung");
+		btnFailureprompt = new JButton("Ausloggen");
 		btnFailureprompt.addActionListener(new StartTabBtnsControl("Fehlermeldung"));
 		tablePanel.add(btnFailureprompt, "cell 0 7");
 				
