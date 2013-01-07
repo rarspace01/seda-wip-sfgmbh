@@ -118,7 +118,7 @@ public class DataHandlerUser implements IntfDataUser{
 					dm.pstmt.setString(5, user.getClass_());
 					dm.pstmt.setString(6, user.getfName_());
 					dm.pstmt.setString(7, user.getlName_());
-					dm.pstmt.setInt(8, (int) user.getLastLogin_());
+					dm.pstmt.setLong(8, user.getLastLogin_());
 					dm.executePstmt();
 					
 				} catch (SQLException e) {
@@ -137,8 +137,8 @@ public class DataHandlerUser implements IntfDataUser{
 				dm.pstmt.setString(5, user.getClass_());
 				dm.pstmt.setString(6, user.getfName_());
 				dm.pstmt.setString(7, user.getlName_());
-				dm.pstmt.setInt(8, (int) user.getLastLogin_());
-				dm.pstmt.setInt(9, (int) user.getUserId_());
+				dm.pstmt.setLong(8, user.getLastLogin_());
+				dm.pstmt.setInt(9, user.getUserId_());
 				dm.executePstmt();
 				
 			} catch (SQLException e) {
