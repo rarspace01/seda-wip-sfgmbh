@@ -10,6 +10,8 @@ import de.sfgmbh.datalayer.core.definitions.IntfDataUser;
 import de.sfgmbh.datalayer.io.DataManagerPostgreSql;
 
 public class DataHandlerUser implements IntfDataUser{
+	
+	private DataManagerPostgreSql dm = DataManagerPostgreSql.getInstance();
 
 	@Override
 	public List<User> getAll() {
@@ -55,6 +57,38 @@ public class DataHandlerUser implements IntfDataUser{
 		// TODO Auto-generated method stub
 		return null;
 	}
+	
+	public User getByLogin(String login) {
+	
+		User returnUser = new User();
+		
+		try {
+			dm.prepare("SELECT * FROM public.user WHERE login = ?");
+			dm.pstmt.setString(1, login);
+			ResultSet rs = dm.selectPstmt();
+			while (rs.next()) {
+
+				returnUser.setUserId_(rs.getInt("userid"));
+				returnUser.setLogin_(rs.getString("login"));
+				returnUser.setPass_(rs.getString("pass"));
+				returnUser.setSalt_(rs.getString("salt"));
+				returnUser.setMail_(rs.getString("mail"));
+				returnUser.setClass_(rs.getString("class"));
+				returnUser.setfName_(rs.getString("fname"));
+				returnUser.setlName_(rs.getString("lname"));
+				returnUser.setLastLogin_(rs.getLong("lastlogin"));
+
+				return returnUser;
+
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			
+		}
+		
+		return null;
+	}
 
 	@Override
 	public List<User> search(String searchQry) {
@@ -69,9 +103,29 @@ public class DataHandlerUser implements IntfDataUser{
 	}
 
 	@Override
-	public void save(User toBeSavedUser) {
-		// TODO Auto-generated method stub
+	public void save(User user) {
 		
+		if (user.getUserId_() == 0 || user.getUserId_() == -1) {
+				try {
+					
+					dm.prepare("INSERT INTO public.user"
+							+ "(login, pass, salt, mail, class, fname, lname, lastlogin)"
+							+ "VALUES (?,?,?,?,?,?,?,?)");
+					dm.pstmt.setString(1, user.getLogin_());
+					dm.pstmt.setString(2, user.getPass_());
+					dm.pstmt.setString(3, user.getSalt_());
+					dm.pstmt.setString(4, user.getMail_());
+					dm.pstmt.setString(5, user.getClass_());
+					dm.pstmt.setString(6, user.getfName_());
+					dm.pstmt.setString(7, user.getlName_());
+					dm.pstmt.setInt(8, (int) user.getLastLogin_());
+					dm.executePstmt();
+					
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+		}
+			
 	}
 
 	@Override

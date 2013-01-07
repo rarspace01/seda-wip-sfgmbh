@@ -29,6 +29,23 @@ import de.sfgmbh.comlayer.timetable.views.PublicTimetableTab;
 
 public class ServiceManager {
 	
+	private static ServiceManager uniqueInstance_ = null;
+	
+	public ServiceManager() {
+		uniqueInstance_ = this;
+	}
+	
+	public static ServiceManager getInstance() {
+		if (uniqueInstance_ == null) {
+			new ServiceManager();
+		}
+		return uniqueInstance_;
+	}
+
+	public void dispose() {
+		uniqueInstance_ = null;
+	}
+	
 	/**
 	* Module: Core (global area - all other modules have dependencies to this one)
 	*/

@@ -2,6 +2,7 @@ package de.sfgmbh.datalayer.io;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -19,6 +20,7 @@ public class DataManagerPostgreSql {
 
 	private java.sql.Connection conn;
 	private Statement stmt;
+	public PreparedStatement pstmt;
 
 	private DataManagerPostgreSql() {
 		try {
@@ -95,6 +97,46 @@ public class DataManagerPostgreSql {
 
 	public Connection getConnection() {
 		return conn;
+	}
+	
+	// Prepare statement
+	public PreparedStatement prepare(String SqlString) {
+		
+		try {
+			this.pstmt = conn.prepareStatement(SqlString);
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+		
+		return this.pstmt;
+		
+	}
+	
+	// Execute prepared statement
+	public ResultSet selectPstmt()  throws SQLException {
+		
+		ResultSet rs = null;
+		
+		try {
+			rs = this.pstmt.executeQuery();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return rs;
+	}
+	
+	public int executePstmt()  throws SQLException {
+		
+		int i = -1;
+		
+		try {
+			i = this.pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return i;
 	}
 
 }

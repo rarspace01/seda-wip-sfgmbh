@@ -1,5 +1,9 @@
 package de.sfgmbh.applayer.core.model;
 
+import java.math.BigInteger;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.security.SecureRandom;
 import java.util.HashMap;
 
 import de.sfgmbh.datalayer.core.definitions.IntfDataRetrievable;
@@ -165,6 +169,53 @@ public class User implements IntfDataRetrievable {
 		returnData.put("lastlogin", this.lastLogin_);
 
 		return returnData;
+	}
+	
+	public void setPwHashAndSalt (String pw) {
+		
+		SecureRandom rand = new SecureRandom();
+		
+		this.salt_ = new BigInteger(32, rand).toString(32);
+		
+		String hashed = this.getSha256(this.salt_ + pw);
+		
+		if (hashed != null) {
+			this.pass_ = hashed;
+		}
+	}
+	
+	public boolean checkPw (String pw) {
+		
+		String checkPhrase = this.salt_ + pw;
+		String checksum = this.getSha256(checkPhrase);
+		
+		if (checksum.equals(this.pass_)) {
+			return true;
+		}
+		
+		return false;
+	}
+	
+	private String getSha256 (String string) {
+		
+		MessageDigest md ;
+		
+		try {
+			md = MessageDigest.getInstance("SHA-256");
+			byte[] hash = md.digest(string.getBytes());
+			
+		    StringBuffer sb = new StringBuffer();
+		    for(byte b : hash) {
+		    	sb.append(String.format("%02x", b));
+		    }
+
+		    return sb.toString();
+		    
+		} catch (NoSuchAlgorithmException e) {
+			e.printStackTrace();
+		}
+		
+		return null;
 	}
 
 }
