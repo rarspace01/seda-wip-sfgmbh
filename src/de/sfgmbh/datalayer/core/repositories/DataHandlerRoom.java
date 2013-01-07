@@ -138,10 +138,10 @@ public class DataHandlerRoom implements IntfDataRoom, IntfDataFilter {
 	}
 
 	@Override
-	public void delete(Room toBeDeletedRoom) {
+	public void delete(Room room) {
 
 		String SqlStatement = "DELETE FROM public.room " + "WHERE roomid = '"
-				+ toBeDeletedRoom.getRoomId_() + "';";
+				+ room.getRoomId_() + "';";
 
 		try {
 
@@ -155,19 +155,19 @@ public class DataHandlerRoom implements IntfDataRoom, IntfDataFilter {
 	}
 
 	@Override
-	public void save(Room toBeSavedRoom) {
+	public void save(Room room) {
 
 		String SqlStatement = "INSERT INTO public.room "
 				+ "(roomnumber, buildingid, level, seats, pcseats, beamer, visualizer, overheads, chalkboards, whiteboards) "
-				+ "VALUES ('" + toBeSavedRoom.getRoomNumber_() + "','"
-				+ toBeSavedRoom.getBuildingId_() + "','"
-				+ toBeSavedRoom.getLevel_() + "','" + toBeSavedRoom.getSeats_()
-				+ "','" + toBeSavedRoom.getPcseats_() + "','"
-				+ toBeSavedRoom.getBeamer_() + "','"
-				+ toBeSavedRoom.getVisualizer_() + "','"
-				+ toBeSavedRoom.getOverheads_() + "','"
-				+ toBeSavedRoom.getChalkboards_() + "','"
-				+ toBeSavedRoom.getWhiteboards_() + "');";
+				+ "VALUES ('" + room.getRoomNumber_() + "','"
+				+ room.getBuildingId_() + "','"
+				+ room.getLevel_() + "','" + room.getSeats_()
+				+ "','" + room.getPcseats_() + "','"
+				+ room.getBeamer_() + "','"
+				+ room.getVisualizer_() + "','"
+				+ room.getOverheads_() + "','"
+				+ room.getChalkboards_() + "','"
+				+ room.getWhiteboards_() + "');";
 
 		try {
 
@@ -178,34 +178,31 @@ public class DataHandlerRoom implements IntfDataRoom, IntfDataFilter {
 			e.printStackTrace();
 		}
 
-	}
-
-	@Override
-	public void update(Room toBeUpdatedRoom) {
-
-		String SqlStatement = "UPDATE public.room SET " + "roomnumber ='"
-				+ toBeUpdatedRoom.getRoomNumber_() + "', " + "buildingid ='"
-				+ toBeUpdatedRoom.getBuildingId_() + "', " + "level ='"
-				+ toBeUpdatedRoom.getLevel_() + "', " + "seats ='"
-				+ toBeUpdatedRoom.getSeats_() + "', " + "pcseats ='"
-				+ toBeUpdatedRoom.getPcseats_() + "', " + "beamer ='"
-				+ toBeUpdatedRoom.getBeamer_() + "', " + "visualizer ='"
-				+ toBeUpdatedRoom.getVisualizer_() + "', " + "overheads ='"
-				+ toBeUpdatedRoom.getOverheads_() + "', " + "chalkboards ='"
-				+ toBeUpdatedRoom.getChalkboards_() + "', " + "whiteboards ='"
-				+ toBeUpdatedRoom.getWhiteboards_() + "' " + "WHERE roomid='"
-				+ toBeUpdatedRoom.getRoomId_() + "';";
+		
+		String sqlStatement = "UPDATE public.room SET " + "roomnumber ='"
+				+ room.getRoomNumber_() + "', " + "buildingid ='"
+				+ room.getBuildingId_() + "', " + "level ='"
+				+ room.getLevel_() + "', " + "seats ='"
+				+ room.getSeats_() + "', " + "pcseats ='"
+				+ room.getPcseats_() + "', " + "beamer ='"
+				+ room.getBeamer_() + "', " + "visualizer ='"
+				+ room.getVisualizer_() + "', " + "overheads ='"
+				+ room.getOverheads_() + "', " + "chalkboards ='"
+				+ room.getChalkboards_() + "', " + "whiteboards ='"
+				+ room.getWhiteboards_() + "' " + "WHERE roomid='"
+				+ room.getRoomId_() + "';";
 
 		try {
 
-			DataManagerPostgreSql.getInstance().execute(SqlStatement);
+			DataManagerPostgreSql.getInstance().execute(sqlStatement);
 
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
+		
 	}
+
 
 	@Override
 	public List<Room> getByFilter(String filterName, String filterValue) {
