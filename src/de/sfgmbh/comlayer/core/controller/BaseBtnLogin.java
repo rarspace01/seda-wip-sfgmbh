@@ -14,41 +14,62 @@ public class BaseBtnLogin implements ActionListener {
 	
 	protected InfoDialog infoWindow;
 	protected CtrlBaseTab ctrlBaseTab;
+	protected String version;
 	
 	public BaseBtnLogin() {
+		this.ctrlBaseTab = new CtrlBaseTab();
+	}
+	
+	public BaseBtnLogin(String version) {
+		this.version = version;
 		this.ctrlBaseTab = new CtrlBaseTab();
 	}
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		
-		String pwd = new String(Bootstrap.serviceManager.getCoreBaseTab().getPwdPasswort().getPassword());
-		String user = Bootstrap.serviceManager.getCoreBaseTab().getTxtBenutzername().getText();
-		
-		if (pwd.equals("Doz") && user.equals("Doz")) {
+		if (this.version == null || this.version.equals("login")) {
+			String pwd = new String(Bootstrap.serviceManager.getCoreBaseTab().getPwdPasswort().getPassword());
+			String user = Bootstrap.serviceManager.getCoreBaseTab().getTxtBenutzername().getText();
 			
-			this.callLecturer();
-			
-		} else if (pwd.equals("Verw") && user.equals("Verw")) {
-			
-			this.callOrga();
-			
-		} else if (pwd.equals("Stud") && user.equals("Stud")) {
-			
-			this.getInfoWindow("Das Studentenprofil ist ein Wunschkriterium, das vermutlich nicht in der ersten Version implementiert wird.").setVisible(true);
-		
-		} else {
-			
-			User checkUser = ctrlBaseTab.login(user, pwd);
-			
-			if (checkUser == null) {
-				this.getInfoWindow("<strong> Fehlermeldung: </strong><br>Der eingegebene Benutzername oder das eingegebene Passwort ist inkorrekt! <p>Bitte versuche es noch einmal.</p>").setVisible(true);
-			} else if (checkUser.getClass_().equals("orga")) {
-				this.callOrga();
-			} else if (checkUser.getClass_().equals("lecturer")) {
-				this.callLecturer();
-			}
+			if (pwd.equals("Doz") && user.equals("Doz")) {
 				
+				this.callLecturer();
+				
+			} else if (pwd.equals("Verw") && user.equals("Verw")) {
+				
+				this.callOrga();
+				
+			} else if (pwd.equals("Stud") && user.equals("Stud")) {
+				
+				this.getInfoWindow("Das Studentenprofil ist ein Wunschkriterium, das vermutlich nicht in der ersten Version implementiert wird.").setVisible(true);
+			
+			} else {
+				
+				User checkUser = ctrlBaseTab.login(user, pwd);
+				
+				if (checkUser == null) {
+					this.getInfoWindow("<strong> Fehlermeldung: </strong><br>Der eingegebene Benutzername oder das eingegebene Passwort ist inkorrekt! <p>Bitte versuche es noch einmal.</p>").setVisible(true);
+				} else if (checkUser.getClass_().equals("orga")) {
+					this.callOrga();
+					Bootstrap.serviceManager.getCoreBaseTab().getPanelLogin().setVisible(false);
+					Bootstrap.serviceManager.getCoreBaseTab().getPanelLogout().setVisible(true);
+				} else if (checkUser.getClass_().equals("lecturer")) {
+					this.callLecturer();
+					Bootstrap.serviceManager.getCoreBaseTab().getPanelLogin().setVisible(false);
+					Bootstrap.serviceManager.getCoreBaseTab().getPanelLogout().setVisible(true);
+				}
+			}
+		} else if (this.version.equals("logout")){
+			ctrlBaseTab.logout();
+			Bootstrap.serviceManager.getCoreBaseTab().mainTabbedContainerPane.removeAll();
+			Bootstrap.serviceManager.getCoreBaseTab().mainTabbedContainerPane.setVisible(false);
+			Bootstrap.serviceManager.getCoreBaseTab().contentPane.add(Bootstrap.serviceManager.getCoreBaseTab().startScreenPanel, "name_5256771068822");
+			Bootstrap.serviceManager.getCoreBaseTab().getPwdPasswort().setText("");
+			Bootstrap.serviceManager.getCoreBaseTab().getTxtBenutzername().setText("");
+			Bootstrap.serviceManager.getCoreBaseTab().startScreenPanel.setVisible(true);
+			Bootstrap.serviceManager.getCoreBaseTab().getPanelLogin().setVisible(true);
+			Bootstrap.serviceManager.getCoreBaseTab().getPanelLogout().setVisible(false);
 		}
 	}
 		

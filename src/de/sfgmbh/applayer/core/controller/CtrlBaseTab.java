@@ -14,11 +14,18 @@ public class CtrlBaseTab {
 		if (checkUser != null) {
 			if (checkUser.checkPw(pw) == true) {
 				ServiceManager.getInstance().getSessionManager().setSession(checkUser);
+				checkUser.setLastLogin_((long) System.currentTimeMillis()/1000);
+				checkUser.save();
 				return checkUser;
 			}
 		}
 		
 		return null;
+	}
+	
+	// Logout action
+	public void logout() {
+		ServiceManager.getInstance().getSessionManager().clearSession();
 	}
 
 }

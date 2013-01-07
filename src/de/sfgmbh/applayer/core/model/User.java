@@ -7,6 +7,7 @@ import java.security.SecureRandom;
 import java.util.HashMap;
 
 import de.sfgmbh.datalayer.core.definitions.IntfDataRetrievable;
+import de.sfgmbh.datalayer.core.repositories.DataHandlerUser;
 
 public class User implements IntfDataRetrievable {
 
@@ -19,6 +20,11 @@ public class User implements IntfDataRetrievable {
 	private String fName_;
 	private String lName_;
 	private long lastLogin_;
+	protected DataHandlerUser dhu;
+	
+	public User() {
+		this.dhu = new DataHandlerUser();
+	}
 
 	public int getUserId_() {
 		return userId_;
@@ -96,10 +102,6 @@ public class User implements IntfDataRetrievable {
 		this.setData(dataExchange);
 	}
 
-	public User() {
-
-	}
-
 	public void setData(HashMap<String, Object> dataExchange) {
 		if (dataExchange.containsKey("userid")
 				&& (int) dataExchange.get("userid") != 0) {
@@ -171,6 +173,7 @@ public class User implements IntfDataRetrievable {
 		return returnData;
 	}
 	
+	// Set hash for a plain text password string salted by a random string
 	public void setPwHashAndSalt (String pw) {
 		
 		SecureRandom rand = new SecureRandom();
@@ -184,6 +187,7 @@ public class User implements IntfDataRetrievable {
 		}
 	}
 	
+	// Check if a plain text password string together with the users salt matches its hash
 	public boolean checkPw (String pw) {
 		
 		String checkPhrase = this.salt_ + pw;
@@ -196,6 +200,7 @@ public class User implements IntfDataRetrievable {
 		return false;
 	}
 	
+	// Get the SHA-256 hash for any string
 	private String getSha256 (String string) {
 		
 		MessageDigest md ;
@@ -216,6 +221,11 @@ public class User implements IntfDataRetrievable {
 		}
 		
 		return null;
+	}
+	
+	// Save this user object in the DB (this will update a database entry if there is already one and create one if there is none)
+	public void save() {
+		dhu.save(this);
 	}
 
 }
