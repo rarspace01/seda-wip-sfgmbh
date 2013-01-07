@@ -9,9 +9,14 @@ import de.sfgmbh.applayer.core.model.User;
 import de.sfgmbh.datalayer.core.definitions.IntfDataUser;
 import de.sfgmbh.datalayer.io.DataManagerPostgreSql;
 
+/**
+ * Data Handler for User Table
+ * @author denis
+ *
+ */
 public class DataHandlerUser implements IntfDataUser{
 	
-	private DataManagerPostgreSql dm = DataManagerPostgreSql.getInstance();
+	//private DataManagerPostgreSql dm = DataManagerPostgreSql.getInstance();
 
 	@Override
 	public List<User> getAll() {
@@ -63,9 +68,9 @@ public class DataHandlerUser implements IntfDataUser{
 		User returnUser = new User();
 		
 		try {
-			dm.prepare("SELECT * FROM public.user WHERE login = ?");
-			dm.pstmt.setString(1, login);
-			ResultSet rs = dm.selectPstmt();
+			DataManagerPostgreSql.getInstance().prepare("SELECT * FROM public.user WHERE login = ?");
+			DataManagerPostgreSql.getInstance().pstmt.setString(1, login);
+			ResultSet rs = DataManagerPostgreSql.getInstance().selectPstmt();
 			while (rs.next()) {
 
 				returnUser.setUserId_(rs.getInt("userid"));
@@ -105,8 +110,10 @@ public class DataHandlerUser implements IntfDataUser{
 	@Override
 	public void save(User user) {
 		
-		if (user.getUserId_() == 0 || user.getUserId_() == -1) {
+		if (user.getUserId_() == -1) {
 				try {
+					
+					DataManagerPostgreSql dm=DataManagerPostgreSql.getInstance();
 					
 					dm.prepare("INSERT INTO public.user"
 							+ "(login, pass, salt, mail, class, fname, lname, lastlogin)"
@@ -126,7 +133,7 @@ public class DataHandlerUser implements IntfDataUser{
 				}
 		} else {
 			try {
-				
+				DataManagerPostgreSql dm=DataManagerPostgreSql.getInstance();
 				dm.prepare("UPDATE public.user SET "
 						+ "login = ?, pass = ?, salt = ?, mail = ?, class = ?, fname = ?, lname = ?, lastlogin = ?"
 						+ "WHERE userid = ?");
@@ -148,10 +155,5 @@ public class DataHandlerUser implements IntfDataUser{
 			
 	}
 
-	@Override
-	public void update(User toBeUpdatedUser) {
-		// TODO Auto-generated method stub
-		
-	}
 
 }
