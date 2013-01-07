@@ -4,6 +4,8 @@ import java.awt.CardLayout;
 import java.awt.Dimension;
 import java.awt.Insets;
 import java.awt.SystemColor;
+import java.awt.Toolkit;
+
 import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -25,6 +27,7 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableCellRenderer;
 
+import net.miginfocom.swing.MigLayout;
 import de.sfgmbh.comlayer.core.controller.BaseBtnAddToStundenplan;
 import de.sfgmbh.comlayer.core.controller.BaseBtnFailureprompt;
 import de.sfgmbh.comlayer.core.controller.BaseBtnLogin;
@@ -33,22 +36,19 @@ import de.sfgmbh.comlayer.core.controller.BaseRdbtnTopLeft;
 import de.sfgmbh.comlayer.core.model.BaseCmbboxModelFilter;
 import de.sfgmbh.init.Bootstrap;
 
-import net.miginfocom.swing.MigLayout;
-import java.awt.Toolkit;
-import javax.swing.JInternalFrame;
-
 public class BaseTab extends JFrame{
 
 	private static final long serialVersionUID = 1L;
 	
 	// GUI components
-	private JLayeredPane contentPane;
+	public JLayeredPane contentPane;
 	public JTabbedPane mainTabbedContainerPane;
 	public JPanel startScreenPanel;
 	private JComboBox<String> comboBoxVeranstaltungFilter;
 	private JLabel lblLehrveranstaltung;
 	private JLabel lblLehrstuhl;
 	private JLabel lblDozent;
+	private JLabel lblLoggedIn;
 	private JComboBox<String> comboBoxLehrstuhlFilter;
 	private JComboBox<String> comboBoxDozentFilter;
 	private JComboBox<String> comboBoxSemesterFilter;
@@ -57,7 +57,8 @@ public class BaseTab extends JFrame{
 	private JScrollPane mainTableScrollPane;
 	private JPanel tickerJPanel;
 	private JTextPane tickerMsgPos1;
-	private JPanel panel_1;
+	private JPanel panelLogin;
+	private JPanel panelLogout;
 	private final ButtonGroup buttonGroup = new ButtonGroup();
 	private JLabel lblPasswort;
 	private JLabel lblBenutzername;
@@ -67,6 +68,7 @@ public class BaseTab extends JFrame{
 	private JRadioButton rdbtnLehrveranstaltungen;
 	private JRadioButton rdbtnRaume;
 	private JButton btnFehlermeldung;
+	private JButton btnLogout;
 	private JLabel lblNewLabel;
 	
 
@@ -173,17 +175,9 @@ public class BaseTab extends JFrame{
 		tickerMsgPos1.setContentType("text/html");
 		tickerMsgPos1.setText("<div style=\"font-family: font-family: Calibri, monospace;\"><strong>News:</strong><br> <span style=\"color:red\">Neu!</span> Testlogin jetzt m\u00F6glich!</div>");
 		
-		panel_1 = new JPanel();
-		panel_1.setBounds(0, 319, 140, 150);
-		tickerJPanel.add(panel_1);
-		panel_1.setLayout(new MigLayout("", "[grow]", "[][][][][][]"));
-		panel_1.add(getLblBenutzername(), "cell 0 0");
-		panel_1.add(getTxtBenutzername(), "cell 0 1,growx");
+		tickerJPanel.add(getPanelLogin());
 		
-		lblPasswort = new JLabel("Passwort:");
-		panel_1.add(lblPasswort, "cell 0 2");
-		panel_1.add(getPwdPasswort(), "cell 0 3,growx");
-		panel_1.add(getBtnNewButton(), "cell 0 4,alignx right");
+		tickerJPanel.add(getPanelLogout());
 		
 		mainTableScrollPane = new JScrollPane();
 		startScreenPanel.add(mainTableScrollPane, "cell 2 2 4 1,grow");
@@ -261,6 +255,13 @@ public class BaseTab extends JFrame{
 		}
 		return btnNewButton;
 	}
+	public JButton getBtnLogout() {
+		if (btnLogout == null) {
+			btnLogout = new JButton("Logout");
+			btnLogout.addActionListener(new BaseBtnLogin("logout"));
+		}
+		return btnLogout;
+	}
 	public JTextField getTxtBenutzername() {
 		if (txtBenutzername == null) {
 			txtBenutzername = new JTextField();
@@ -301,6 +302,32 @@ public class BaseTab extends JFrame{
 			
 		}
 		return lblNewLabel;
+	}
+	public JPanel getPanelLogin() {
+		if (panelLogin == null) {
+			panelLogin = new JPanel();
+			panelLogin.setBounds(0, 319, 140, 150);
+			panelLogin.setLayout(new MigLayout("", "[grow]", "[][][][][][]"));
+			panelLogin.add(getLblBenutzername(), "cell 0 0");
+			panelLogin.add(getTxtBenutzername(), "cell 0 1,growx");
+			lblPasswort = new JLabel("Passwort:");
+			panelLogin.add(lblPasswort, "cell 0 2");
+			panelLogin.add(getPwdPasswort(), "cell 0 3,growx");
+			panelLogin.add(getBtnNewButton(), "cell 0 4,alignx right");
+		}
+		return panelLogin;
+	}
+	public JPanel getPanelLogout() {
+		if (panelLogout == null) {
+			panelLogout = new JPanel();
+			panelLogout.setBounds(0, 319, 140, 150);
+			panelLogout.setLayout(new MigLayout("", "[grow]", "[][][][][][]"));
+			lblLoggedIn = new JLabel("Du bist eingeloggt!");
+			panelLogout.add(lblLoggedIn, "cell 0 0");
+			panelLogout.add(getBtnLogout(), "cell 0 1,alignx left");
+			panelLogout.setVisible(false);
+		}
+		return panelLogout;
 	}
 	
 	

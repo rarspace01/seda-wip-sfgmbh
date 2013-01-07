@@ -124,6 +124,26 @@ public class DataHandlerUser implements IntfDataUser{
 				} catch (SQLException e) {
 					e.printStackTrace();
 				}
+		} else {
+			try {
+				
+				dm.prepare("UPDATE public.user SET "
+						+ "login = ?, pass = ?, salt = ?, mail = ?, class = ?, fname = ?, lname = ?, lastlogin = ?"
+						+ "WHERE userid = ?");
+				dm.pstmt.setString(1, user.getLogin_());
+				dm.pstmt.setString(2, user.getPass_());
+				dm.pstmt.setString(3, user.getSalt_());
+				dm.pstmt.setString(4, user.getMail_());
+				dm.pstmt.setString(5, user.getClass_());
+				dm.pstmt.setString(6, user.getfName_());
+				dm.pstmt.setString(7, user.getlName_());
+				dm.pstmt.setInt(8, (int) user.getLastLogin_());
+				dm.pstmt.setInt(9, (int) user.getUserId_());
+				dm.executePstmt();
+				
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 		}
 			
 	}

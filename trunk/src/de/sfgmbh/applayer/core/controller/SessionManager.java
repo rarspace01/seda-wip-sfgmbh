@@ -24,5 +24,10 @@ public class SessionManager {
 	public boolean checkSession() {
 		return this.isLoggedIn;
 	}
+	
+	public void clearSession() {
+		this.user = null;
+		this.isLoggedIn = false;
+	}
 
 }
