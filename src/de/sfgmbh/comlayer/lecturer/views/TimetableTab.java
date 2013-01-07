@@ -54,10 +54,10 @@ public class TimetableTab extends JPanel {
 		panel_1.setBounds(780, 0, 76, 67);
 		add(panel_1);
 		
-		JLabel UniIconJLbl = new JLabel("");
-		UniIconJLbl.setIcon(new ImageIcon(BaseTab.class.getResource("/de/sfgmbh/comlayer/core/views/UniBA_logo.png")));
-		UniIconJLbl.setMaximumSize(new Dimension(50,50));
-		panel_1.add(UniIconJLbl);
+		JLabel uniIconJLbl = new JLabel("");
+		uniIconJLbl.setIcon(new ImageIcon(BaseTab.class.getResource("/de/sfgmbh/comlayer/core/views/UniBA_logo.png")));
+		uniIconJLbl.setMaximumSize(new Dimension(50,50));
+		panel_1.add(uniIconJLbl);
 	}
 	public JPanel getPanel() {
 		if (panel == null) {

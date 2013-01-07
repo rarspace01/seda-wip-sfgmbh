@@ -52,10 +52,10 @@ public class ProfessorshipTimetableTab extends JPanel {
 		UniIconpanel.setBounds(787, 11, 70, 61);
 		add(UniIconpanel);
 		
-		JLabel UniIconJLbl = new JLabel("");
-		UniIconJLbl.setIcon(new ImageIcon(BaseTab.class.getResource("/de/sfgmbh/comlayer/core/views/UniBA_logo.png")));
-		UniIconJLbl.setMaximumSize(new Dimension(50,50));
-		UniIconpanel.add(UniIconJLbl);
+		JLabel uniIconJLbl = new JLabel("");
+		uniIconJLbl.setIcon(new ImageIcon(BaseTab.class.getResource("/de/sfgmbh/comlayer/core/views/UniBA_logo.png")));
+		uniIconJLbl.setMaximumSize(new Dimension(50,50));
+		UniIconpanel.add(uniIconJLbl);
 	}
 	
 	public JPanel getPanel() {
