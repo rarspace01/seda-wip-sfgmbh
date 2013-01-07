@@ -67,7 +67,7 @@ public class DataLayerTests {
 		
 		r1.setBeamer_(r1.getBeamer_()+1);
 		
-		dhr.update(r1);
+		dhr.save(r1);
 		
 	}
 	
