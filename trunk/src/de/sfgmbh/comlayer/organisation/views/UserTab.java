@@ -5,6 +5,7 @@ import java.awt.Font;
 import java.awt.SystemColor;
 
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
@@ -17,6 +18,7 @@ import javax.swing.UIManager;
 import javax.swing.border.TitledBorder;
 
 import net.miginfocom.swing.MigLayout;
+import de.sfgmbh.comlayer.core.views.BaseTab;
 import de.sfgmbh.comlayer.organisation.controller.BtnsNav;
 import de.sfgmbh.comlayer.organisation.controller.CmbboxFilter;
 import de.sfgmbh.comlayer.organisation.controller.RoomTabBtnsControl;
@@ -45,6 +47,8 @@ public class UserTab extends JPanel {
 	private JButton btnLivetickerEdit;
 	private JTextPane tickerMsgPos1;
 	private JButton btnFailureprompt;
+	private JPanel panel;
+	private JLabel uniIconJLbl;
 
 	/**
 	 * Create the frame.
@@ -57,27 +61,34 @@ public class UserTab extends JPanel {
 	private void initialize() {
 		setMinimumSize(new Dimension(100, 10));
 		setMaximumSize(new Dimension(100, 32767));
-		setLayout(new MigLayout("", "[140px:140px:140px,grow][10px:10px:10px][grow][grow][grow][grow][grow]", "[][][grow][]"));
+		setLayout(new MigLayout("", "[140px:140px:140px,grow][10px:10px:10px][grow][grow][grow][grow][grow]", "[grow][][grow][]"));
 		
 		JLabel lblNutzerverwaltung = new JLabel("Nutzerverwaltung");
 		lblNutzerverwaltung.setFont(new Font("SansSerif", Font.BOLD, 13));
-		add(lblNutzerverwaltung, "cell 0 0,alignx center");
+		add(lblNutzerverwaltung, "cell 0 0,alignx center,aligny bottom");
 		
 		lblUserclass = new JLabel("Benutzerklasse:");
-		add(lblUserclass, "cell 2 0");
+		add(lblUserclass, "cell 2 0,aligny bottom");
 		
 		lblLecturer = new JLabel("Lehrstuhl (falls Dozent):");
-		add(lblLecturer, "cell 3 0");
+		add(lblLecturer, "cell 3 0,aligny bottom");
 		
 		lblAuthentification = new JLabel("Benutzerkennung:");
-		add(lblAuthentification, "cell 4 0");
+		add(lblAuthentification, "cell 4 0,aligny bottom");
 		
 		lblEmail = new JLabel("E-Mail:");
-		add(lblEmail, "cell 5 0");
+		add(lblEmail, "cell 5 0,aligny bottom");
 		
 		comboBoxUserclass = new JComboBox<String>();
 		comboBoxUserclass.setModel(new DefaultComboBoxModel<String>(new String[] {"<alle>", "Dozenten", "Verwaltung", "Studenten"}));
 		comboBoxUserclass.addActionListener(new CmbboxFilter());
+		
+		panel = new JPanel();
+		add(panel, "cell 6 0,alignx center,growy");
+		uniIconJLbl = new JLabel("");
+		uniIconJLbl.setIcon(new ImageIcon(BaseTab.class.getResource("/de/sfgmbh/comlayer/core/views/UniBA_logo.png")));
+		uniIconJLbl.setMaximumSize(new Dimension(50,50));
+		panel.add(uniIconJLbl);
 		comboBoxUserclass.setEditable(true);
 		comboBoxUserclass.setAutoscrolls(true);
 		add(comboBoxUserclass, "cell 2 1,growx");
@@ -172,4 +183,5 @@ public class UserTab extends JPanel {
 		btnFailureprompt.addActionListener(new RoomTabBtnsControl("Fehlermeldung"));
 		add(btnFailureprompt, "cell 2 3");
 	}
+	
 }

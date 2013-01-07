@@ -6,6 +6,7 @@ import java.awt.Font;
 import java.awt.SystemColor;
 
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
@@ -15,6 +16,7 @@ import javax.swing.JTable;
 import javax.swing.border.TitledBorder;
 
 import net.miginfocom.swing.MigLayout;
+import de.sfgmbh.comlayer.core.views.BaseTab;
 import de.sfgmbh.comlayer.organisation.controller.BtnsNav;
 import de.sfgmbh.comlayer.organisation.controller.CmbboxFilter;
 import de.sfgmbh.comlayer.organisation.controller.RequestTabBtnsControl;
@@ -43,6 +45,8 @@ public class RequestTab extends JPanel {
 	private JButton btnLivetickerEdit;
 	private JTextPane tickerMsgPos1;
 	private JButton btnFailureprompt;
+	private JPanel panel;
+	private JLabel uniIconJLbl;
 
 	/**
 	 * Create the frame.
@@ -55,26 +59,30 @@ public class RequestTab extends JPanel {
 	private void initialize() {
 		setMinimumSize(new Dimension(100, 10));
 		setMaximumSize(new Dimension(100, 32767));
-		setLayout(new MigLayout("", "[140px:140px:140px,grow][10px:10px:10px][grow][grow][grow][grow][grow]", "[][][grow][]"));
+		setLayout(new MigLayout("", "[140px:140px:140px,grow][10px:10px:10px][grow][grow][grow][grow][grow]", "[grow][][grow][]"));
 		
 		JLabel lblRaumverwaltung = new JLabel("Raumanfragen");
 		lblRaumverwaltung.setFont(new Font("SansSerif", Font.BOLD, 13));
-		add(lblRaumverwaltung, "cell 0 0,alignx center");
+		add(lblRaumverwaltung, "cell 0 0,alignx center,aligny bottom");
 		
 		lblLecturer = new JLabel("Dozent:");
-		add(lblLecturer, "cell 2 0");
+		add(lblLecturer, "cell 2 0,aligny bottom");
 		
 		lblProfessorship = new JLabel("Lehrstuhl:");
-		add(lblProfessorship, "cell 3 0");
+		add(lblProfessorship, "cell 3 0,aligny bottom");
 		
 		lblStatus = new JLabel("Freigabestatus:");
-		add(lblStatus, "cell 4 0");
+		add(lblStatus, "cell 4 0,aligny bottom");
 		
 		lblPcseats = new JLabel("Semester:");
-		add(lblPcseats, "cell 5 0");
+		add(lblPcseats, "cell 5 0,aligny bottom");
 		
 		comboBoxLecturer = new JComboBox<String>();
 		comboBoxLecturer.addActionListener(new CmbboxFilter());
+		
+		panel = new JPanel();
+		add(panel, "cell 6 0,alignx center,growy");	
+		panel.add(getUniIconJLbl());
 		comboBoxLecturer.setModel(new DefaultComboBoxModel<String>(new String[] {"<alle>"}));
 		comboBoxLecturer.setEditable(true);
 		comboBoxLecturer.setAutoscrolls(true);
@@ -174,5 +182,13 @@ public class RequestTab extends JPanel {
 		btnFailureprompt = new JButton("Ausloggen");
 		add(btnFailureprompt, "cell 2 3");
 		btnFailureprompt.addActionListener(new RequestTabBtnsControl("Fehlermeldung"));
+	}
+	private JLabel getUniIconJLbl() {
+		if (uniIconJLbl == null) {
+			uniIconJLbl = new JLabel("");
+			uniIconJLbl.setIcon(new ImageIcon(BaseTab.class.getResource("/de/sfgmbh/comlayer/core/views/UniBA_logo.png")));
+			uniIconJLbl.setMaximumSize(new Dimension(50,50));
+		}
+		return uniIconJLbl;
 	}
 }
