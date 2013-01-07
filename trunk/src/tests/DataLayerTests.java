@@ -2,20 +2,46 @@ package tests;
 
 import java.util.List;
 
+import de.sfgmbh.applayer.core.controller.CtrlBaseTab;
 import de.sfgmbh.applayer.core.model.Room;
+import de.sfgmbh.applayer.core.model.User;
 import de.sfgmbh.datalayer.core.repositories.DataHandlerRoom;
+import de.sfgmbh.datalayer.core.repositories.DataHandlerUser;
 
 public class DataLayerTests {
 
 	public static void main(String[] args) {
 	
 		DataLayerTests dlt=new DataLayerTests();
+		CtrlBaseTab cbt = new CtrlBaseTab();
 		
-		dlt.testRoomSave();
+		// dlt.generateNewUser();
+		dlt.getUserLogin();
 		
-		dlt.testRoomUpdate();
+		User test = cbt.login("Test", "Test");
+		System.out.println(test.getPass_());
 		
-		dlt.testRoomRetrievAll();
+	}
+	
+	public void getUserLogin() {
+		String login = "Test";
+		DataHandlerUser dhu = new DataHandlerUser();
+		User checkUser = dhu.getByLogin(login);
+		
+		System.out.println(checkUser.getPass_());
+	}
+	
+	public void generateNewUser() {
+		User newUser = new User();
+		
+		newUser.setPwHashAndSalt("Test");
+		newUser.setLogin_("Test");
+		newUser.setClass_("orga");
+		
+		DataHandlerUser dhu = new DataHandlerUser();
+		dhu.save(newUser);
+		
+		System.out.println(newUser.checkPw("Test"));
 		
 	}
 	

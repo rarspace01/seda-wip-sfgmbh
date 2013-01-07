@@ -1,18 +1,28 @@
 package de.sfgmbh.applayer.core.controller;
 
+import de.sfgmbh.applayer.core.model.User;
+
 public class SessionManager {
 	
 	private boolean isLoggedIn;
-	private String userClass;
-	private String userName;
+	private User user;
 	
-	public String[] getSession() {
-		String[] sessionInfo = { new Boolean(this.isLoggedIn).toString(), this.userClass, this.userName };
-		return sessionInfo;
+	public SessionManager() {
+		this.isLoggedIn = false;
+		this.user = null;
 	}
 	
-	public void setSession() {
-		// Set the session
+	public User getSession() {
+		return this.user;
+	}
+	
+	public void setSession(User user) {
+		this.user = user;
+		this.isLoggedIn = true;
+	}
+	
+	public boolean checkSession() {
+		return this.isLoggedIn;
 	}
 
 }
