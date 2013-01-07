@@ -5,6 +5,7 @@ import java.awt.Font;
 import java.awt.SystemColor;
 
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
@@ -17,6 +18,7 @@ import javax.swing.UIManager;
 import javax.swing.border.TitledBorder;
 
 import net.miginfocom.swing.MigLayout;
+import de.sfgmbh.comlayer.core.views.BaseTab;
 import de.sfgmbh.comlayer.organisation.controller.BtnsNav;
 import de.sfgmbh.comlayer.organisation.controller.CmbboxFilter;
 import de.sfgmbh.comlayer.organisation.controller.RoomTabBtnsControl;
@@ -45,6 +47,8 @@ public class RoomTab extends JPanel {
 	private JButton btnLivetickerEdit;
 	private JTextPane tickerMsgPos1;
 	private JButton btnFailureprompt;
+	private JPanel panel;
+	private JLabel uniIconJLbl;
 
 	/**
 	 * Create the frame.
@@ -57,27 +61,31 @@ public class RoomTab extends JPanel {
 	private void initialize() {
 		setMinimumSize(new Dimension(100, 10));
 		setMaximumSize(new Dimension(100, 32767));
-		setLayout(new MigLayout("", "[140px:140px:140px,grow][10px:10px:10px][grow][grow][grow][grow][grow]", "[][][grow][]"));
+		setLayout(new MigLayout("", "[140px:140px:140px,grow][10px:10px:10px][grow][grow][grow][grow][grow]", "[grow][][grow][]"));
 		
 		JLabel lblRaumverwaltung = new JLabel("Raumverwaltung");
 		lblRaumverwaltung.setFont(new Font("SansSerif", Font.BOLD, 13));
-		add(lblRaumverwaltung, "cell 0 0,alignx center");
+		add(lblRaumverwaltung, "cell 0 0,alignx center,aligny bottom");
 		
 		lblBuilding = new JLabel("Stockwerke:");
-		add(lblBuilding, "cell 2 0");
+		add(lblBuilding, "cell 2 0,aligny bottom");
 		
 		lblLevel = new JLabel("R\u00E4ume:");
-		add(lblLevel, "cell 3 0");
+		add(lblLevel, "cell 3 0,aligny bottom");
 		
 		lblSeats = new JLabel("Pl\u00E4tze:");
-		add(lblSeats, "cell 4 0");
+		add(lblSeats, "cell 4 0,aligny bottom");
 		
 		lblPcseats = new JLabel("PC-Pl\u00E4tze:");
-		add(lblPcseats, "cell 5 0");
+		add(lblPcseats, "cell 5 0,aligny bottom");
 		
 		comboBoxBuilding = new JComboBox<String>();
 		comboBoxBuilding.setModel(new DefaultComboBoxModel<String>(new String[] {"<alle>"}));
 		comboBoxBuilding.addActionListener(new CmbboxFilter());
+		
+		panel = new JPanel();
+		add(panel, "cell 6 0,alignx center,growy");
+		panel.add(getUniIconJLbl());
 		comboBoxBuilding.setEditable(true);
 		comboBoxBuilding.setAutoscrolls(true);
 		add(comboBoxBuilding, "cell 2 1,growx");
@@ -176,5 +184,13 @@ public class RoomTab extends JPanel {
 		btnFailureprompt = new JButton("Ausloggen");
 		btnFailureprompt.addActionListener(new RoomTabBtnsControl("Fehlermeldung"));
 		add(btnFailureprompt, "cell 2 3");
+	}
+	private JLabel getUniIconJLbl() {
+		if (uniIconJLbl == null) {
+			uniIconJLbl = new JLabel("");
+			uniIconJLbl.setIcon(new ImageIcon(BaseTab.class.getResource("/de/sfgmbh/comlayer/core/views/UniBA_logo.png")));
+			uniIconJLbl.setMaximumSize(new Dimension(50,50));
+		}
+		return uniIconJLbl;
 	}
 }

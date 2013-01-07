@@ -1,25 +1,34 @@
 package de.sfgmbh.comlayer.organisation.views;
 
 import java.awt.Color;
+import java.awt.Dimension;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 
+import de.sfgmbh.comlayer.core.views.BaseTab;
 import de.sfgmbh.comlayer.organisation.controller.RoomtableTabBtnPdf;
 import de.sfgmbh.init.Bootstrap;
+import javax.swing.JLabel;
 
 public class RoomtableTab extends JPanel {
 
 	private static final long serialVersionUID = 1L;
 	private JTable StundenplanTable;
+	private JPanel panel;
+	private JLabel uniIconJLbl;
 	public RoomtableTab() {
+		initialize();
+	}
+	private void initialize() {
 		setAutoscrolls(true);
 		setLayout(null);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(20, 51, 830, 410);
+		scrollPane.setBounds(31, 69, 830, 392);
 		add(scrollPane);
 		
 		StundenplanTable = new JTable();
@@ -53,6 +62,23 @@ public class RoomtableTab extends JPanel {
 		StundenplanTable.getColumnModel().getColumn(4).setMaxWidth(145);
 		StundenplanTable.getColumnModel().getColumn(5).setMinWidth(50);
 		StundenplanTable.getColumnModel().getColumn(5).setMaxWidth(145);
+		add(getPanel());
 	}
-
+	private JPanel getPanel() {
+		if (panel == null) {
+			panel = new JPanel();
+			panel.setBounds(792, 0, 69, 68);
+			panel.add(getLabel());
+		}
+		return panel;
+	}
+	private JLabel getLabel() {
+		if (uniIconJLbl == null) {
+			uniIconJLbl = new JLabel("");
+			uniIconJLbl.setIcon(new ImageIcon(BaseTab.class.getResource("/de/sfgmbh/comlayer/core/views/UniBA_logo.png")));
+			uniIconJLbl.setMaximumSize(new Dimension(50,50));
+		
+		}
+		return uniIconJLbl;
+	}
 }

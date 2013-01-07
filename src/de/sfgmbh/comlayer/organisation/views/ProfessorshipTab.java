@@ -4,6 +4,7 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.SystemColor;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -13,6 +14,7 @@ import javax.swing.JTextField;
 import javax.swing.border.TitledBorder;
 
 import net.miginfocom.swing.MigLayout;
+import de.sfgmbh.comlayer.core.views.BaseTab;
 import de.sfgmbh.comlayer.organisation.controller.BtnsNav;
 import de.sfgmbh.comlayer.organisation.controller.CmbboxFilter;
 import de.sfgmbh.comlayer.organisation.controller.ProfessorshipTabBtnsControl;
@@ -36,6 +38,8 @@ public class ProfessorshipTab extends JPanel {
 	private JButton btnLivetickerEdit;
 	private JTextPane tickerMsgPos1;
 	private JButton btnFailureprompt;
+	private JPanel panel;
+	private JLabel uniIconJLbl;
 
 	/**
 	 * Create the frame.
@@ -48,17 +52,21 @@ public class ProfessorshipTab extends JPanel {
 	private void initialize() {
 		setMinimumSize(new Dimension(100, 10));
 		setMaximumSize(new Dimension(100, 32767));
-		setLayout(new MigLayout("", "[140px:140px:140px,grow][10px:10px:10px][grow][grow][grow][grow][grow]", "[][][grow][]"));
+		setLayout(new MigLayout("", "[140px:140px:140px,grow][10px:10px:10px][grow][grow][grow][grow][grow]", "[grow][][grow][]"));
 		
 		JLabel lblLehrstuhlverwaltung = new JLabel("Lehrstuhlverwaltung");
 		lblLehrstuhlverwaltung.setFont(new Font("SansSerif", Font.BOLD, 13));
-		add(lblLehrstuhlverwaltung, "cell 0 0,alignx center");
+		add(lblLehrstuhlverwaltung, "cell 0 0,alignx center,aligny bottom");
 		
 		lblProfessorshipname = new JLabel("Lehrstuhlname:");
-		add(lblProfessorshipname, "cell 2 0");
+		add(lblProfessorshipname, "cell 2 0,aligny bottom");
 		
 		textFieldProfessorshipname = new JTextField();
 		textFieldProfessorshipname.addKeyListener(new CmbboxFilter());
+		
+		panel = new JPanel();
+		add(panel, "cell 6 0,alignx center,growy");
+		panel.add(getUniIconJLbl());
 		textFieldProfessorshipname.setText("<alle>");
 		textFieldProfessorshipname.setColumns(10);
 		add(textFieldProfessorshipname, "cell 2 1,growx");
@@ -136,6 +144,12 @@ public class ProfessorshipTab extends JPanel {
 		add(btnFailureprompt, "cell 2 3");
 		
 	}
-
-	
+	private JLabel getUniIconJLbl() {
+		if (uniIconJLbl == null) {
+			uniIconJLbl = new JLabel("");
+			uniIconJLbl.setIcon(new ImageIcon(BaseTab.class.getResource("/de/sfgmbh/comlayer/core/views/UniBA_logo.png")));
+			uniIconJLbl.setMaximumSize(new Dimension(50,50));
+		}
+		return uniIconJLbl;
+	}
 }
