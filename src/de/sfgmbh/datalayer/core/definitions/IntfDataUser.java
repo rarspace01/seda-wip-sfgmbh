@@ -48,12 +48,4 @@ public interface IntfDataUser {
 	 */
 	public void save(User toBeSavedUser);
 	
-	/**
-	 * 
-	 * @param toBeUpdatedUser
-	 *            - object of type User to be udpated in DB
-	 * @return - int for error handling
-	 */
-	public void update(User toBeUpdatedUser);
-	
 }

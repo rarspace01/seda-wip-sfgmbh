@@ -45,28 +45,19 @@ public interface IntfDataRoom {
 	
 	/**
 	 * 
-	 * @param toBeDeletedRoom
+	 * @param room
 	 *            - the object which should be remove from the database
 	 * @return
 	 */
-	public void delete(Room toBeDeletedRoom);
+	public void delete(Room room);
 
 	/**
 	 * 
-	 * @param toBeSavedRoom
+	 * @param room
 	 *            - object of type Room to be saved in DB
 	 * @return - int for error handling
 	 */
-	public void save(Room toBeSavedRoom);
-	
-	/**
-	 * 
-	 * @param toBeUpdatedRoom
-	 *            - object of type Room to be udpated in DB
-	 * @return - int for error handling
-	 */
-	public void update(Room toBeUpdatedRoom);
-
+	public void save(Room room);
 	
 	
 }
