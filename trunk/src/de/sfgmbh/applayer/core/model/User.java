@@ -20,10 +20,9 @@ public class User implements IntfDataRetrievable {
 	private String fName_;
 	private String lName_;
 	private long lastLogin_;
-	protected DataHandlerUser dhu;
 	
 	public User() {
-		this.dhu = new DataHandlerUser();
+		userId_=-1;
 	}
 
 	public int getUserId_() {
@@ -225,6 +224,7 @@ public class User implements IntfDataRetrievable {
 	
 	// Save this user object in the DB (this will update a database entry if there is already one and create one if there is none)
 	public void save() {
+		DataHandlerUser dhu = new DataHandlerUser();
 		dhu.save(this);
 	}
 
