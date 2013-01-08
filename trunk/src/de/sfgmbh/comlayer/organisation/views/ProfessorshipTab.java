@@ -15,7 +15,6 @@ import javax.swing.border.TitledBorder;
 
 import net.miginfocom.swing.MigLayout;
 import de.sfgmbh.comlayer.core.views.BaseTab;
-import de.sfgmbh.comlayer.organisation.controller.BtnsNav;
 import de.sfgmbh.comlayer.organisation.controller.CmbboxFilter;
 import de.sfgmbh.comlayer.organisation.controller.ProfessorshipTabBtnsControl;
 import de.sfgmbh.init.Bootstrap;
@@ -33,13 +32,11 @@ public class ProfessorshipTab extends JPanel {
 	private JScrollPane organisationTableScrollPane;
 	private JPanel buttonPanel;
 	private JButton btnAdd;
-	private JButton btnRequest;
 	private JButton btnDelete;
-	private JButton btnLivetickerEdit;
 	private JTextPane tickerMsgPos1;
 	private JButton btnFailureprompt;
-	private JPanel panel;
-	private JLabel uniIconJLbl;
+	private JPanel uniIconPanel;
+	private JLabel lblUniIcon;
 
 	/**
 	 * Create the frame.
@@ -64,9 +61,9 @@ public class ProfessorshipTab extends JPanel {
 		textFieldProfessorshipname = new JTextField();
 		textFieldProfessorshipname.addKeyListener(new CmbboxFilter());
 		
-		panel = new JPanel();
-		add(panel, "cell 6 0,alignx center,growy");
-		panel.add(getUniIconJLbl());
+		uniIconPanel = new JPanel();
+		add(uniIconPanel, "cell 6 0,alignx center,growy");
+		uniIconPanel.add(getUniIconJLbl());
 		textFieldProfessorshipname.setText("<alle>");
 		textFieldProfessorshipname.setColumns(10);
 		add(textFieldProfessorshipname, "cell 2 1,growx");
@@ -88,26 +85,7 @@ public class ProfessorshipTab extends JPanel {
 		tickerMsgPos1.setBackground(UIManager.getColor("Button.background"));
 		tickerMsgPos1.setBounds(6, 11, 124, 421);
 		leftTopPanel.add(tickerMsgPos1);
-		/*
-		JLabel lblAndereBereiche = new JLabel("Verwaltungs-Bereiche:");
-		leftBottomPanel.add(lblAndereBereiche, "cell 0 0");
 		
-		JButton btnNutzerverwaltung = new JButton("Nutzer");
-		btnNutzerverwaltung.addActionListener(new BtnsNav("Nutzerverw"));
-		leftBottomPanel.add(btnNutzerverwaltung, "cell 0 1");
-		
-		JButton btnRaumverwaltung = new JButton("R\u00E4ume");
-		btnRaumverwaltung.addActionListener(new BtnsNav("Raumverw"));
-		leftBottomPanel.add(btnRaumverwaltung, "cell 0 2");
-		
-		btnLivetickerEdit = new JButton("LiveTicker");
-		btnLivetickerEdit.addActionListener(new BtnsNav("liveticker"));
-		leftBottomPanel.add(btnLivetickerEdit, "cell 0 3");
-		
-		btnRequest = new JButton("Anfragen");
-		btnRequest.addActionListener(new BtnsNav("Anfrageverw"));
-		leftBottomPanel.add(btnRequest, "cell 0 4");
-		*/
 		organisationTableScrollPane = new JScrollPane();
 		organisationTableScrollPane.setMinimumSize(new Dimension(400, 25));
 		add(organisationTableScrollPane, "flowx,cell 2 2 4 1,grow");
@@ -145,11 +123,11 @@ public class ProfessorshipTab extends JPanel {
 		
 	}
 	private JLabel getUniIconJLbl() {
-		if (uniIconJLbl == null) {
-			uniIconJLbl = new JLabel("");
-			uniIconJLbl.setIcon(new ImageIcon(BaseTab.class.getResource("/de/sfgmbh/comlayer/core/views/UniBA_logo.png")));
-			uniIconJLbl.setMaximumSize(new Dimension(50,50));
+		if (lblUniIcon == null) {
+			lblUniIcon = new JLabel("");
+			lblUniIcon.setIcon(new ImageIcon(BaseTab.class.getResource("/de/sfgmbh/comlayer/core/views/UniBA_logo.png")));
+			lblUniIcon.setMaximumSize(new Dimension(50,50));
 		}
-		return uniIconJLbl;
+		return lblUniIcon;
 	}
 }

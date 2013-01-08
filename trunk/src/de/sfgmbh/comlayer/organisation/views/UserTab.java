@@ -16,10 +16,8 @@ import javax.swing.JTextField;
 import javax.swing.JTextPane;
 import javax.swing.UIManager;
 import javax.swing.border.TitledBorder;
-
 import net.miginfocom.swing.MigLayout;
 import de.sfgmbh.comlayer.core.views.BaseTab;
-import de.sfgmbh.comlayer.organisation.controller.BtnsNav;
 import de.sfgmbh.comlayer.organisation.controller.CmbboxFilter;
 import de.sfgmbh.comlayer.organisation.controller.RoomTabBtnsControl;
 import de.sfgmbh.comlayer.organisation.controller.UserTabBtnsControl;
@@ -42,13 +40,11 @@ public class UserTab extends JPanel {
 	private JScrollPane organisationTableScrollPane;
 	private JPanel buttonPanel;
 	private JButton btnEdit;
-	private JButton btnRequest;
 	private JButton btnDelete;
-	private JButton btnLivetickerEdit;
 	private JTextPane tickerMsgPos1;
 	private JButton btnFailureprompt;
-	private JPanel panel;
-	private JLabel uniIconJLbl;
+	private JPanel uniIconPanel;
+	private JLabel lblUniIcon;
 
 	/**
 	 * Create the frame.
@@ -83,12 +79,12 @@ public class UserTab extends JPanel {
 		comboBoxUserclass.setModel(new DefaultComboBoxModel<String>(new String[] {"<alle>", "Dozenten", "Verwaltung", "Studenten"}));
 		comboBoxUserclass.addActionListener(new CmbboxFilter());
 		
-		panel = new JPanel();
-		add(panel, "cell 6 0,alignx center,growy");
-		uniIconJLbl = new JLabel("");
-		uniIconJLbl.setIcon(new ImageIcon(BaseTab.class.getResource("/de/sfgmbh/comlayer/core/views/UniBA_logo.png")));
-		uniIconJLbl.setMaximumSize(new Dimension(50,50));
-		panel.add(uniIconJLbl);
+		uniIconPanel = new JPanel();
+		add(uniIconPanel, "cell 6 0,alignx center,growy");
+		lblUniIcon = new JLabel("");
+		lblUniIcon.setIcon(new ImageIcon(BaseTab.class.getResource("/de/sfgmbh/comlayer/core/views/UniBA_logo.png")));
+		lblUniIcon.setMaximumSize(new Dimension(50,50));
+		uniIconPanel.add(lblUniIcon);
 		comboBoxUserclass.setEditable(true);
 		comboBoxUserclass.setAutoscrolls(true);
 		add(comboBoxUserclass, "cell 2 1,growx");
@@ -129,26 +125,7 @@ public class UserTab extends JPanel {
 		tickerMsgPos1.setText("LiveTickerNews:\r\n\r\nFehler: Es wurden keine Lehrveranstaltungen gefunden werden, die in 10 Minuten beginnen.\r\n\r\nFehler: Es wurden keine Meldungen von Dozenten oder der Hausverwaltung gefunden. \r\n\r\nFehler: Es besteht keine Verbindung zur Datenbank.\r\n");
 		tickerMsgPos1.setBounds(10, 11, 120, 415);
 		leftTopPanel.add(tickerMsgPos1);
-		/*
-		JLabel lblAndereBereiche = new JLabel("Verwaltungs-Bereiche:");
-		leftBottomPanel.add(lblAndereBereiche, "cell 0 0");
 		
-		JButton btnRaumverwaltung = new JButton("R\u00E4ume");
-		btnRaumverwaltung.addActionListener(new BtnsNav("Raumverw"));
-		
-		btnRequest = new JButton("Anfragen");
-		btnRequest.addActionListener(new BtnsNav("Anfrageverw"));
-		leftBottomPanel.add(btnRequest, "cell 0 1");
-		leftBottomPanel.add(btnRaumverwaltung, "cell 0 2");
-		
-		btnLivetickerEdit = new JButton("Live-Ticker");
-		btnLivetickerEdit.addActionListener(new BtnsNav("liveticker"));
-		leftBottomPanel.add(btnLivetickerEdit, "cell 0 3");
-		
-		JButton btnLehrstuhlverwaltung = new JButton("Lehrst\u00FChle");
-		btnLehrstuhlverwaltung.addActionListener(new BtnsNav("Lehrstuhlverw"));
-		leftBottomPanel.add(btnLehrstuhlverwaltung, "cell 0 4");
-		*/
 		organisationTableScrollPane = new JScrollPane();
 		add(organisationTableScrollPane, "flowx,cell 2 2 4 1,grow");
 		
