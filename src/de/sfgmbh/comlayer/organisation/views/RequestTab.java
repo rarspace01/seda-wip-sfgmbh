@@ -17,7 +17,6 @@ import javax.swing.border.TitledBorder;
 
 import net.miginfocom.swing.MigLayout;
 import de.sfgmbh.comlayer.core.views.BaseTab;
-import de.sfgmbh.comlayer.organisation.controller.BtnsNav;
 import de.sfgmbh.comlayer.organisation.controller.CmbboxFilter;
 import de.sfgmbh.comlayer.organisation.controller.RequestTabBtnsControl;
 import de.sfgmbh.init.Bootstrap;
@@ -31,7 +30,7 @@ public class RequestTab extends JPanel {
 	private JLabel lblLecturer;
 	private JLabel lblProfessorship;
 	private JLabel lblStatus;
-	private JLabel lblPcseats;
+	private JLabel lblPCSeats;
 	private JComboBox<String> comboBoxLecturer;
 	private JComboBox<String> comboBoxProfessorship;
 	private JPanel leftPanel;
@@ -41,12 +40,10 @@ public class RequestTab extends JPanel {
 	private JButton btnFreigeben;
 	private JComboBox<String> comboBoxStatus;
 	private JComboBox<String> comboBoxSemester;
-	private JButton btnRoom;
-	private JButton btnLivetickerEdit;
 	private JTextPane tickerMsgPos1;
 	private JButton btnFailureprompt;
-	private JPanel panel;
-	private JLabel uniIconJLbl;
+	private JPanel uniIconPanel;
+	private JLabel lblUniIcon;
 
 	/**
 	 * Create the frame.
@@ -74,15 +71,15 @@ public class RequestTab extends JPanel {
 		lblStatus = new JLabel("Freigabestatus:");
 		add(lblStatus, "cell 4 0,aligny bottom");
 		
-		lblPcseats = new JLabel("Semester:");
-		add(lblPcseats, "cell 5 0,aligny bottom");
+		lblPCSeats = new JLabel("Semester:");
+		add(lblPCSeats, "cell 5 0,aligny bottom");
 		
 		comboBoxLecturer = new JComboBox<String>();
 		comboBoxLecturer.addActionListener(new CmbboxFilter());
 		
-		panel = new JPanel();
-		add(panel, "cell 6 0,alignx center,growy");	
-		panel.add(getUniIconJLbl());
+		uniIconPanel = new JPanel();
+		add(uniIconPanel, "cell 6 0,alignx center,growy");	
+		uniIconPanel.add(getUniIconJLbl());
 		comboBoxLecturer.setModel(new DefaultComboBoxModel<String>(new String[] {"<alle>"}));
 		comboBoxLecturer.setEditable(true);
 		comboBoxLecturer.setAutoscrolls(true);
@@ -126,26 +123,7 @@ public class RequestTab extends JPanel {
 		tickerMsgPos1.setText("LiveTickerNews:\r\n\r\nFehler: Es wurden keine Lehrveranstaltungen gefunden werden, die in 10 Minuten beginnen.\r\n\r\nFehler: Es wurden keine Meldungen von Dozenten oder der Hausverwaltung gefunden. \r\n\r\nFehler: Es besteht keine Verbindung zur Datenbank.\r\n");
 		tickerMsgPos1.setBounds(6, 11, 124, 417);
 		leftTopPanel.add(tickerMsgPos1);
-		/*
-		JLabel lblAndereBereiche = new JLabel("Verwaltungs-Bereiche:");
-		leftBottomPanel.add(lblAndereBereiche, "cell 0 0");
 		
-		JButton btnNutzerverwaltung = new JButton("Nutzer");
-		btnNutzerverwaltung.addActionListener(new BtnsNav("Nutzerverw"));
-		leftBottomPanel.add(btnNutzerverwaltung, "cell 0 1");
-		
-		btnRoom = new JButton("R\u00E4ume");
-		btnRoom.addActionListener(new BtnsNav("Raumverw"));
-		leftBottomPanel.add(btnRoom, "cell 0 2");
-		
-		JButton btnLehrstuhlverwaltung = new JButton("Lehrst\u00FChle");
-		btnLehrstuhlverwaltung.addActionListener(new BtnsNav("Lehrstuhlverw"));
-		
-		btnLivetickerEdit = new JButton("LiveTicker");
-		btnLivetickerEdit.addActionListener(new BtnsNav("liveticker"));
-		leftBottomPanel.add(btnLivetickerEdit, "cell 0 3");
-		leftBottomPanel.add(btnLehrstuhlverwaltung, "cell 0 4");
-		*/
 		organisationTableScrollPane = new JScrollPane();
 		add(organisationTableScrollPane, "flowx,cell 2 2 4 1,grow");
 		
@@ -184,11 +162,11 @@ public class RequestTab extends JPanel {
 		btnFailureprompt.addActionListener(new RequestTabBtnsControl("Fehlermeldung"));
 	}
 	private JLabel getUniIconJLbl() {
-		if (uniIconJLbl == null) {
-			uniIconJLbl = new JLabel("");
-			uniIconJLbl.setIcon(new ImageIcon(BaseTab.class.getResource("/de/sfgmbh/comlayer/core/views/UniBA_logo.png")));
-			uniIconJLbl.setMaximumSize(new Dimension(50,50));
+		if (lblUniIcon == null) {
+			lblUniIcon = new JLabel("");
+			lblUniIcon.setIcon(new ImageIcon(BaseTab.class.getResource("/de/sfgmbh/comlayer/core/views/UniBA_logo.png")));
+			lblUniIcon.setMaximumSize(new Dimension(50,50));
 		}
-		return uniIconJLbl;
+		return lblUniIcon;
 	}
 }
