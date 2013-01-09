@@ -16,6 +16,9 @@ public class Room implements IntfDataRetrievable{
 	private int chalkboards_;
 	private int whiteboards_;
 	
+	public Room(){
+		this.roomId_ = -1;
+	}
 	public Room(int buildingId) {
 
 		buildingId_=buildingId;
@@ -31,7 +34,6 @@ public class Room implements IntfDataRetrievable{
 		whiteboards_=0;
 		
 	}
-	
 	public Room(int roomID, int buildingId) {
 
 		roomId_=roomID;

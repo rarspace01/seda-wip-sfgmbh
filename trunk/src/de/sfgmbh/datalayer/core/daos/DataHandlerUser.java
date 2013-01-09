@@ -19,7 +19,6 @@ public class DataHandlerUser implements IntfDataUser, IntfDataObservable {
 	@Override
 	public List<User> getAll() {
 		List<User> listUser = new ArrayList<User>();
-		User returnUser = null;
 
 		String SqlStatement = "SELECT * FROM public.user";
 
@@ -29,22 +28,7 @@ public class DataHandlerUser implements IntfDataUser, IntfDataObservable {
 					SqlStatement);
 
 			while (resultSet.next()) {
-
-				returnUser = new User();
-
-				returnUser.setUserId_(resultSet.getInt("userid"));
-				returnUser.setLogin_(resultSet.getString("login"));
-				returnUser.setPass_(resultSet.getString("pass"));
-				returnUser.setSalt_(resultSet.getString("salt"));
-				returnUser.setMail_(resultSet.getString("mail"));
-				returnUser.setClass_(resultSet.getString("class"));
-				returnUser.setfName_(resultSet.getString("fname"));
-				returnUser.setlName_(resultSet.getString("lname"));
-				returnUser.setLastLogin_(resultSet.getLong("lastlogin"));
-
-				listUser.add(returnUser);
-				returnUser = null;
-
+				listUser.add(this.makeUser(resultSet));
 			}
 
 		} catch (SQLException e) {
@@ -60,7 +44,6 @@ public class DataHandlerUser implements IntfDataUser, IntfDataObservable {
 	
 	public List<User> getAllLecturer() {
 		List<User> listUser = new ArrayList<User>();
-		User returnUser = null;
 
 		String SqlStatement = "SELECT * FROM public.user WHERE class = 'lecturer' ";
 
@@ -70,22 +53,7 @@ public class DataHandlerUser implements IntfDataUser, IntfDataObservable {
 					SqlStatement);
 
 			while (resultSet.next()) {
-
-				returnUser = new User();
-
-				returnUser.setUserId_(resultSet.getInt("userid"));
-				returnUser.setLogin_(resultSet.getString("login"));
-				returnUser.setPass_(resultSet.getString("pass"));
-				returnUser.setSalt_(resultSet.getString("salt"));
-				returnUser.setMail_(resultSet.getString("mail"));
-				returnUser.setClass_(resultSet.getString("class"));
-				returnUser.setfName_(resultSet.getString("fname"));
-				returnUser.setlName_(resultSet.getString("lname"));
-				returnUser.setLastLogin_(resultSet.getLong("lastlogin"));
-
-				listUser.add(returnUser);
-				returnUser = null;
-
+				listUser.add(this.makeUser(resultSet));
 			}
 
 		} catch (SQLException e) {
@@ -106,27 +74,13 @@ public class DataHandlerUser implements IntfDataUser, IntfDataObservable {
 	}
 	
 	public User getByLogin(String login) {
-	
-		User returnUser = new User();
 		
 		try {
 			DataManagerPostgreSql.getInstance().prepare("SELECT * FROM public.user WHERE login = ?");
 			DataManagerPostgreSql.getInstance().pstmt.setString(1, login);
 			ResultSet rs = DataManagerPostgreSql.getInstance().selectPstmt();
 			while (rs.next()) {
-
-				returnUser.setUserId_(rs.getInt("userid"));
-				returnUser.setLogin_(rs.getString("login"));
-				returnUser.setPass_(rs.getString("pass"));
-				returnUser.setSalt_(rs.getString("salt"));
-				returnUser.setMail_(rs.getString("mail"));
-				returnUser.setClass_(rs.getString("class"));
-				returnUser.setfName_(rs.getString("fname"));
-				returnUser.setlName_(rs.getString("lname"));
-				returnUser.setLastLogin_(rs.getLong("lastlogin"));
-
-				return returnUser;
-
+				return this.makeUser(rs);
 			}
 			
 		} catch (SQLException e) {
@@ -206,6 +160,35 @@ public class DataHandlerUser implements IntfDataUser, IntfDataObservable {
 			}
 		}
 			
+	}
+	
+	/**
+	 * Forms a User object out of a given result set
+	 * @param ResultSet rs
+	 * @return a User object
+	 */
+	private User makeUser(ResultSet rs) {
+		User returnUser = new User();
+		
+		try {
+			returnUser.setUserId_(rs.getInt("userid"));
+			returnUser.setLogin_(rs.getString("login"));
+			returnUser.setPass_(rs.getString("pass"));
+			returnUser.setSalt_(rs.getString("salt"));
+			returnUser.setMail_(rs.getString("mail"));
+			returnUser.setClass_(rs.getString("class"));
+			returnUser.setfName_(rs.getString("fname"));
+			returnUser.setlName_(rs.getString("lname"));
+			returnUser.setLastLogin_(rs.getLong("lastlogin"));
+		} catch (SQLException e) {
+			e.printStackTrace();
+			DataModel.getInstance().dataExcaptions.setNewException(("Es ist ein SQL-Fehler (DataHandlerUser-13) aufgetreten:<br /><br />" + e.toString()), "Datenbank-Fehler!");
+		} catch (Exception e) {
+			e.printStackTrace();
+			DataModel.getInstance().dataExcaptions.setNewException(("Es ist ein unbekannter Fehler (DataHandlerUser-14) in der Datenhaltung aufgetreten:<br /><br />" + e.toString()), "Fehler!");
+		}
+		
+		return returnUser;
 	}
 
 	/**

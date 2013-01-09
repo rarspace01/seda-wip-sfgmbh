@@ -21,7 +21,6 @@ public class DataHandlerRoom implements IntfDataRoom, IntfDataFilter, IntfDataOb
 	public List<Room> getAll() {
 
 		List<Room> listRoom = new ArrayList<Room>();
-		Room returnRoom = null;
 
 		String SqlStatement = "SELECT * FROM public.room";
 
@@ -31,74 +30,47 @@ public class DataHandlerRoom implements IntfDataRoom, IntfDataFilter, IntfDataOb
 					SqlStatement);
 
 			while (resultSet.next()) {
-
-				returnRoom = new Room(resultSet.getInt("roomid"),
-						resultSet.getInt("buildingid"));
-
-				returnRoom.setBeamer_(resultSet.getInt("beamer"));
-				returnRoom.setChalkboards_(resultSet.getInt("chalkboards"));
-				returnRoom.setLevel_(resultSet.getString("level"));
-				returnRoom.setOverheads_(resultSet.getInt("overheads"));
-				returnRoom.setPcseats_(resultSet.getInt("pcseats"));
-				returnRoom.setRoomNumber_(resultSet.getString("roomnumber"));
-				returnRoom.setSeats_(resultSet.getInt("seats"));
-				returnRoom.setVisualizer_(resultSet.getInt("visualizer"));
-				returnRoom.setWhiteboards_(resultSet.getInt("whiteboards"));
-
-				listRoom.add(returnRoom);
-				returnRoom = null;
-
+				listRoom.add(this.makeRoom(resultSet));
 			}
 
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
+			DataModel.getInstance().dataExcaptions.setNewException(("Es ist ein SQL-Fehler (DataHandlerRoom-06) aufgetreten:<br /><br />" + e.toString()), "Datenbank-Fehler!");
+		} catch (Exception e) {
+			e.printStackTrace();
+			DataModel.getInstance().dataExcaptions.setNewException(("Es ist ein unbekannter Fehler (DataHandlerRoom-07) in der Datenhaltung aufgetreten:<br /><br />" + e.toString()), "Fehler!");
 		}
 
 		return listRoom;
 	}
 
 	@Override
-	public Room get(int roomId) {
-
-		Room returnRoom = null;
-
-		String SqlStatement = "SELECT * FROM public.room WHERE roomid='"
-				+ roomId + "'";
-
+	public Room get(int id) {
+		
 		try {
-
-			ResultSet resultSet = DataManagerPostgreSql.getInstance().select(
-					SqlStatement);
-
-			resultSet.next();
-
-			returnRoom = new Room(resultSet.getInt("roomid"),
-					resultSet.getInt("buildingid"));
-
-			returnRoom.setBeamer_(resultSet.getInt("beamer"));
-			returnRoom.setChalkboards_(resultSet.getInt("chalkboards"));
-			returnRoom.setLevel_(resultSet.getString("level"));
-			returnRoom.setOverheads_(resultSet.getInt("overheads"));
-			returnRoom.setPcseats_(resultSet.getInt("pcseats"));
-			returnRoom.setRoomNumber_(resultSet.getString("roomnumber"));
-			returnRoom.setSeats_(resultSet.getInt("seats"));
-			returnRoom.setVisualizer_(resultSet.getInt("visualizer"));
-			returnRoom.setWhiteboards_(resultSet.getInt("whiteboards"));
-
+			DataManagerPostgreSql.getInstance().prepare("SELECT * FROM public.room WHERE roomid = ?");
+			DataManagerPostgreSql.getInstance().pstmt.setInt(1, id);
+			ResultSet rs = DataManagerPostgreSql.getInstance().selectPstmt();
+			while (rs.next()) {
+				return this.makeRoom(rs);
+			}
+			
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
+			DataModel.getInstance().dataExcaptions.setNewException(("Es ist ein SQL-Fehler (DataHandlerRoom-04) aufgetreten:<br /><br />" + e.toString()), "Datenbank-Fehler!");
+		} catch (Exception e) {
+			e.printStackTrace();
+			DataModel.getInstance().dataExcaptions.setNewException(("Es ist ein unbekannter Fehler (DataHandlerRoom-05) in der Datenhaltung aufgetreten:<br /><br />" + e.toString()), "Fehler!");
 		}
-
-		return returnRoom;
+		
+		return null;
 	}
 
+	// Needs to changed to prepared statements!
 	@Override
 	public List<Room> search(String searchQry) {
 		List<Room> listRoom = new ArrayList<Room>();
-		Room returnRoom = null;
-
+		
 		String SqlStatement = "SELECT * FROM public.room WHERE roomnumber LIKE '%"
 				+ searchQry + "%'";
 
@@ -108,23 +80,7 @@ public class DataHandlerRoom implements IntfDataRoom, IntfDataFilter, IntfDataOb
 					SqlStatement);
 
 			while (resultSet.next()) {
-
-				returnRoom = new Room(resultSet.getInt("roomid"),
-						resultSet.getInt("buildingid"));
-
-				returnRoom.setBeamer_(resultSet.getInt("beamer"));
-				returnRoom.setChalkboards_(resultSet.getInt("chalkboards"));
-				returnRoom.setLevel_(resultSet.getString("level"));
-				returnRoom.setOverheads_(resultSet.getInt("overheads"));
-				returnRoom.setPcseats_(resultSet.getInt("pcseats"));
-				returnRoom.setRoomNumber_(resultSet.getString("roomnumber"));
-				returnRoom.setSeats_(resultSet.getInt("seats"));
-				returnRoom.setVisualizer_(resultSet.getInt("visualizer"));
-				returnRoom.setWhiteboards_(resultSet.getInt("whiteboards"));
-
-				listRoom.add(returnRoom);
-				returnRoom = null;
-
+				listRoom.add(this.makeRoom(resultSet));
 			}
 
 		} catch (SQLException e) {
@@ -212,8 +168,7 @@ public class DataHandlerRoom implements IntfDataRoom, IntfDataFilter, IntfDataOb
 	@Override
 	public List<Room> getByFilter(String filterName, String filterValue) {
 		List<Room> listRoom = new ArrayList<Room>();
-		Room returnRoom = null;
-
+		
 		String SqlStatement = "SELECT * FROM public.room WHERE " + filterName
 				+ "='" + filterValue + "'";
 
@@ -223,23 +178,7 @@ public class DataHandlerRoom implements IntfDataRoom, IntfDataFilter, IntfDataOb
 					SqlStatement);
 
 			while (resultSet.next()) {
-
-				returnRoom = new Room(resultSet.getInt("roomid"),
-						resultSet.getInt("buildingid"));
-
-				returnRoom.setBeamer_(resultSet.getInt("beamer"));
-				returnRoom.setChalkboards_(resultSet.getInt("chalkboards"));
-				returnRoom.setLevel_(resultSet.getString("level"));
-				returnRoom.setOverheads_(resultSet.getInt("overheads"));
-				returnRoom.setPcseats_(resultSet.getInt("pcseats"));
-				returnRoom.setRoomNumber_(resultSet.getString("roomnumber"));
-				returnRoom.setSeats_(resultSet.getInt("seats"));
-				returnRoom.setVisualizer_(resultSet.getInt("visualizer"));
-				returnRoom.setWhiteboards_(resultSet.getInt("whiteboards"));
-
-				listRoom.add(returnRoom);
-				returnRoom = null;
-
+				listRoom.add(this.makeRoom(resultSet));
 			}
 
 		} catch (SQLException e) {
@@ -250,6 +189,37 @@ public class DataHandlerRoom implements IntfDataRoom, IntfDataFilter, IntfDataOb
 		return listRoom;
 	}
 
+	/**
+	 * Forms a Room object out of a given result set
+	 * @param ResultSet rs
+	 * @return a Room object
+	 */
+	private Room makeRoom(ResultSet rs) {
+		Room returnRoom = new Room();
+		
+		try {
+			returnRoom.setRoomId_(rs.getInt("roomid"));
+			returnRoom.setBuildingId_(rs.getInt("buildingid"));
+			returnRoom.setBeamer_(rs.getInt("beamer"));
+			returnRoom.setChalkboards_(rs.getInt("chalkboards"));
+			returnRoom.setLevel_(rs.getString("level"));
+			returnRoom.setOverheads_(rs.getInt("overheads"));
+			returnRoom.setPcseats_(rs.getInt("pcseats"));
+			returnRoom.setRoomNumber_(rs.getString("roomnumber"));
+			returnRoom.setSeats_(rs.getInt("seats"));
+			returnRoom.setVisualizer_(rs.getInt("visualizer"));
+			returnRoom.setWhiteboards_(rs.getInt("whiteboards"));
+		} catch (SQLException e) {
+			e.printStackTrace();
+			DataModel.getInstance().dataExcaptions.setNewException(("Es ist ein SQL-Fehler (DataHandlerRoom-02) aufgetreten:<br /><br />" + e.toString()), "Datenbank-Fehler!");
+		} catch (Exception e) {
+			e.printStackTrace();
+			DataModel.getInstance().dataExcaptions.setNewException(("Es ist ein unbekannter Fehler (DataHandlerRoom-03) in der Datenhaltung aufgetreten:<br /><br />" + e.toString()), "Fehler!");
+		}
+		
+		return returnRoom;
+	}
+	
 	/**
 	 * 
 	 */
