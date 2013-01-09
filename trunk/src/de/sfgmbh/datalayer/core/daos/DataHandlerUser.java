@@ -59,6 +59,47 @@ public class DataHandlerUser implements IntfDataUser, IntfDataObservable {
 
 		return listUser;
 	}
+	
+	public List<User> getAllLecturer() {
+		List<User> listUser = new ArrayList<User>();
+		User returnUser = null;
+
+		String SqlStatement = "SELECT * FROM public.user WHERE class = 'lecturer' ";
+
+		try {
+
+			ResultSet resultSet = DataManagerPostgreSql.getInstance().select(
+					SqlStatement);
+
+			while (resultSet.next()) {
+
+				returnUser = new User();
+
+				returnUser.setUserId_(resultSet.getInt("userid"));
+				returnUser.setLogin_(resultSet.getString("login"));
+				returnUser.setPass_(resultSet.getString("pass"));
+				returnUser.setSalt_(resultSet.getString("salt"));
+				returnUser.setMail_(resultSet.getString("mail"));
+				returnUser.setClass_(resultSet.getString("class"));
+				returnUser.setfName_(resultSet.getString("fname"));
+				returnUser.setlName_(resultSet.getString("lname"));
+				returnUser.setLastLogin_(resultSet.getLong("lastlogin"));
+
+				listUser.add(returnUser);
+				returnUser = null;
+
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+			DataModel.getInstance().dataExcaptions.setNewException(("Es ist ein SQL-Fehler (DataHandlerUser-01) aufgetreten:<br /><br />" + e.toString()), "Datenbank-Fehler!");
+		} catch (Exception e) {
+			e.printStackTrace();
+			DataModel.getInstance().dataExcaptions.setNewException(("Es ist ein unbekannter Fehler (DataHandlerUser-02) in der Datenhaltung aufgetreten:<br /><br />" + e.toString()), "Fehler!");
+		}
+
+		return listUser;
+	}
 
 	@Override
 	public User get(int UserId) {
@@ -92,10 +133,10 @@ public class DataHandlerUser implements IntfDataUser, IntfDataObservable {
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
-			DataModel.getInstance().dataExcaptions.setNewException(("Es ist ein SQL-Fehler (DataHandlerUser-03) aufgetreten:<br /><br />" + e.toString()), "Datenbank-Fehler!");
+			DataModel.getInstance().dataExcaptions.setNewException(("Es ist ein SQL-Fehler (DataHandlerUser-10) aufgetreten:<br /><br />" + e.toString()), "Datenbank-Fehler!");
 		} catch (Exception e) {
 			e.printStackTrace();
-			DataModel.getInstance().dataExcaptions.setNewException(("Es ist ein unbekannter Fehler (DataHandlerUser-04) in der Datenhaltung aufgetreten:<br /><br />" + e.toString()), "Fehler!");
+			DataModel.getInstance().dataExcaptions.setNewException(("Es ist ein unbekannter Fehler (DataHandlerUser-11) in der Datenhaltung aufgetreten:<br /><br />" + e.toString()), "Fehler!");
 		}
 		
 		return null;

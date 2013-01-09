@@ -33,7 +33,10 @@ import de.sfgmbh.comlayer.core.controller.BaseBtnFailureprompt;
 import de.sfgmbh.comlayer.core.controller.BaseBtnLogin;
 import de.sfgmbh.comlayer.core.controller.BaseCmbboxFilter;
 import de.sfgmbh.comlayer.core.controller.BaseRdbtnTopLeft;
-import de.sfgmbh.comlayer.core.model.BaseCmbboxModelFilter;
+import de.sfgmbh.comlayer.core.model.CmbboxFilterChair;
+import de.sfgmbh.comlayer.core.model.CmbboxFilterCourse;
+import de.sfgmbh.comlayer.core.model.CmbboxFilterLecturer;
+import de.sfgmbh.comlayer.core.model.CmbboxFilterSemester;
 import de.sfgmbh.init.Bootstrap;
 
 public class BaseTab extends JFrame{
@@ -119,11 +122,11 @@ public class BaseTab extends JFrame{
 		startScreenPanel.add(getRdbtnRaume(), "cell 0 1");
 		comboBoxVeranstaltungFilter.setAutoscrolls(true);
 		comboBoxVeranstaltungFilter.setEditable(true);
-		comboBoxVeranstaltungFilter.setModel(new BaseCmbboxModelFilter("Veranst"));
+		comboBoxVeranstaltungFilter.setModel(new CmbboxFilterCourse());
 		startScreenPanel.add(comboBoxVeranstaltungFilter, "cell 2 1,growx");
 		
 		comboBoxLehrstuhlFilter = new JComboBox<String>();
-		comboBoxLehrstuhlFilter.setModel(new BaseCmbboxModelFilter("Lehrstuhl"));
+		comboBoxLehrstuhlFilter.setModel(new CmbboxFilterChair());
 		comboBoxLehrstuhlFilter.addKeyListener(new BaseCmbboxFilter());
 		comboBoxLehrstuhlFilter.addActionListener(new BaseCmbboxFilter());
 		comboBoxLehrstuhlFilter.setEditable(true);
@@ -131,7 +134,7 @@ public class BaseTab extends JFrame{
 		startScreenPanel.add(comboBoxLehrstuhlFilter, "cell 3 1,growx");
 		
 		comboBoxDozentFilter = new JComboBox<String>();
-		comboBoxDozentFilter.setModel(new BaseCmbboxModelFilter("Doz"));
+		comboBoxDozentFilter.setModel(new CmbboxFilterLecturer());
 		comboBoxDozentFilter.addKeyListener(new BaseCmbboxFilter());
 		comboBoxDozentFilter.addActionListener(new BaseCmbboxFilter());
 		comboBoxDozentFilter.setEditable(true);
@@ -139,7 +142,7 @@ public class BaseTab extends JFrame{
 		startScreenPanel.add(comboBoxDozentFilter, "cell 4 1,growx");
 		
 		comboBoxSemesterFilter = new JComboBox<String>();
-		comboBoxSemesterFilter.setModel(new BaseCmbboxModelFilter("Sem"));
+		comboBoxSemesterFilter.setModel(new CmbboxFilterSemester());
 		comboBoxSemesterFilter.addKeyListener(new BaseCmbboxFilter());
 		comboBoxSemesterFilter.addActionListener(new BaseCmbboxFilter());
 		comboBoxSemesterFilter.setEditable(true);

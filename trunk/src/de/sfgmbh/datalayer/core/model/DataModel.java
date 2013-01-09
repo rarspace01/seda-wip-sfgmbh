@@ -3,6 +3,9 @@ package de.sfgmbh.datalayer.core.model;
 import java.util.ArrayList;
 
 import de.sfgmbh.applayer.core.definitions.IntfAppObservable;
+import de.sfgmbh.datalayer.core.daos.DataHandlerChair;
+import de.sfgmbh.datalayer.core.daos.DataHandlerCourse;
+import de.sfgmbh.datalayer.core.daos.DataHandlerUser;
 import de.sfgmbh.datalayer.core.definitions.IntfDataObserver;
 
 public class DataModel implements IntfAppObservable {
@@ -10,6 +13,9 @@ public class DataModel implements IntfAppObservable {
 	private static DataModel uniqueInstance_ = new DataModel(); // declare on first access through JVM (thread-safe)
 	private ArrayList<Object> observer_ = new ArrayList<Object>();
 	public DataExceptions dataExcaptions = new DataExceptions();
+	public DataHandlerChair dataHandlerChair = new DataHandlerChair();
+	public DataHandlerUser dataHandlerUser = new DataHandlerUser();
+	public DataHandlerCourse dataHandlerCourse = new DataHandlerCourse();
 	
 	private DataModel() {} // class may only call itself via declaration
 	
