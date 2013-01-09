@@ -13,6 +13,7 @@ public class AppModel implements IntfAppObservable {
 	public RepositoryChair repositoryChair = new RepositoryChair();
 	public RepositoryUser repositoryUser = new RepositoryUser();
 	public RepositoryCourse repositoryCourse = new RepositoryCourse();
+	public RepositoryRoom repositoryRoom = new RepositoryRoom();
 	
 	private AppModel() {} // class may only call itself via declaration
 	

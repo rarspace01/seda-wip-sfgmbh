@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import de.sfgmbh.applayer.core.definitions.IntfAppObservable;
 import de.sfgmbh.datalayer.core.daos.DataHandlerChair;
 import de.sfgmbh.datalayer.core.daos.DataHandlerCourse;
+import de.sfgmbh.datalayer.core.daos.DataHandlerRoom;
+import de.sfgmbh.datalayer.core.daos.DataHandlerRoomAllocation;
 import de.sfgmbh.datalayer.core.daos.DataHandlerUser;
 import de.sfgmbh.datalayer.core.definitions.IntfDataObserver;
 
@@ -16,6 +18,8 @@ public class DataModel implements IntfAppObservable {
 	public DataHandlerChair dataHandlerChair = new DataHandlerChair();
 	public DataHandlerUser dataHandlerUser = new DataHandlerUser();
 	public DataHandlerCourse dataHandlerCourse = new DataHandlerCourse();
+	public DataHandlerRoom dataHandlerRoom = new DataHandlerRoom();
+	public DataHandlerRoomAllocation dataHandlerRoomAllocation = new DataHandlerRoomAllocation();
 	
 	private DataModel() {} // class may only call itself via declaration
 	

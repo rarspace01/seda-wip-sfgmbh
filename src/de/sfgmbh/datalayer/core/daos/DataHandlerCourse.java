@@ -28,20 +28,7 @@ public class DataHandlerCourse implements IntfDataFilter, IntfDataObservable {
 					SqlStatement);
 
 			while (resultSet.next()) {
-
-				returnCourse = new Course();
-
-				returnCourse.setCourseId_(resultSet.getInt("courseid"));
-				returnCourse.setLecturer_(
-						DataModel.getInstance().dataHandlerUser.get(resultSet.getInt("lecturerid")));
-				returnCourse.setCourseAcronym_(resultSet.getString("courseacronym"));
-				returnCourse.setCourseName_(resultSet.getString("coursename"));
-				returnCourse.setSws_(resultSet.getFloat("sws"));
-				returnCourse.setCourseKind_(resultSet.getString("coursekind"));
-				returnCourse.setExpectedAttendees_(resultSet.getInt("expectedattendees"));
-				returnCourse.setCourseDescription_(resultSet.getString("coursedescription"));
-				returnCourse.setLecturerEnabled_(resultSet.getBoolean("lecturerenabled"));
-				
+				returnCourse = this.makeCourse(resultSet);
 				listChair.add(returnCourse);
 				returnCourse = null;
 			}
@@ -57,10 +44,61 @@ public class DataHandlerCourse implements IntfDataFilter, IntfDataObservable {
 		return listChair;
 	}
 
+	public Course get(int id) {
+		
+		try {
+			DataManagerPostgreSql.getInstance().prepare("SELECT * FROM public.course WHERE courseid = ?");
+			DataManagerPostgreSql.getInstance().pstmt.setInt(1, id);
+			ResultSet rs = DataManagerPostgreSql.getInstance().selectPstmt();
+			while (rs.next()) {
+				return this.makeCourse(rs);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			DataModel.getInstance().dataExcaptions.setNewException(("Es ist ein SQL-Fehler (DataHandlerCourse-07) aufgetreten:<br /><br />" + e.toString()), "Datenbank-Fehler!");
+		} catch (Exception e) {
+			e.printStackTrace();
+			DataModel.getInstance().dataExcaptions.setNewException(("Es ist ein unbekannter Fehler (DataHandlerCourse-08) in der Datenhaltung aufgetreten:<br /><br />" + e.toString()), "Fehler!");
+		}
+		
+		return null;
+	}
+	
 	@Override
 	public List<Course> getByFilter(String filterName, String filterValue) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+	
+	/**
+	 * Forms a course object out of a given result set
+	 * @param ResultSet rs
+	 * @return a course object
+	 */
+	private Course makeCourse(ResultSet rs) {
+		Course returnCourse = new Course();
+		
+		try {
+			returnCourse.setCourseId_(rs.getInt("courseid"));
+			returnCourse.setLecturer_(
+					DataModel.getInstance().dataHandlerUser.get(rs.getInt("lecturerid")));
+			returnCourse.setCourseAcronym_(rs.getString("courseacronym"));
+			returnCourse.setCourseName_(rs.getString("coursename"));
+			returnCourse.setSws_(rs.getFloat("sws"));
+			returnCourse.setCourseKind_(rs.getString("coursekind"));
+			returnCourse.setExpectedAttendees_(rs.getInt("expectedattendees"));
+			returnCourse.setCourseDescription_(rs.getString("coursedescription"));
+			returnCourse.setLecturerEnabled_(rs.getBoolean("lecturerenabled"));
+		} catch (SQLException e) {
+			e.printStackTrace();
+			DataModel.getInstance().dataExcaptions.setNewException(("Es ist ein SQL-Fehler (DataHandlerCourse-04) aufgetreten:<br /><br />" + e.toString()), "Datenbank-Fehler!");
+		} catch (Exception e) {
+			e.printStackTrace();
+			DataModel.getInstance().dataExcaptions.setNewException(("Es ist ein unbekannter Fehler (DataHandlerCourse-05) in der Datenhaltung aufgetreten:<br /><br />" + e.toString()), "Fehler!");
+		}
+		
+		return returnCourse;
 	}
 
 	/**
