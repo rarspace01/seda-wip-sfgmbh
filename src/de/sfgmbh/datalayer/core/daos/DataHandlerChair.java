@@ -20,7 +20,6 @@ public class DataHandlerChair implements IntfDataChair, IntfDataFilter, IntfData
 	@Override
 	public List<Chair> getAll() {
 		List<Chair> listChair = new ArrayList<Chair>();
-		Chair returnChair = null;
 
 		String SqlStatement = "SELECT * FROM public.chair";
 
@@ -30,19 +29,7 @@ public class DataHandlerChair implements IntfDataChair, IntfDataFilter, IntfData
 					SqlStatement);
 
 			while (resultSet.next()) {
-
-				returnChair = new Chair();
-
-				returnChair.setChairId_(resultSet.getInt("chairid"));
-				returnChair.setChairName_(resultSet.getString("chairname"));
-				returnChair.setChairOwner_(
-						DataModel.getInstance().dataHandlerUser.get(resultSet.getInt("chairowner")));
-				returnChair.setBuildingId_(resultSet.getInt("buildingid"));
-				returnChair.setChairLevel_(resultSet.getString("chairlevel"));
-				returnChair.setFaculty_(resultSet.getString("faculty"));
-
-				listChair.add(returnChair);
-				returnChair = null;
+				listChair.add(this.makeChair(resultSet));
 			}
 
 		} catch (SQLException e) {
@@ -90,6 +77,33 @@ public class DataHandlerChair implements IntfDataChair, IntfDataFilter, IntfData
 	public List<Chair> getByFilter(String filterName, String filterValue) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+	
+	/**
+	 * Forms a Chair object out of a given result set
+	 * @param ResultSet rs
+	 * @return a Chair object
+	 */
+	private Chair makeChair(ResultSet rs) {
+		Chair returnChair = new Chair();
+		
+		try {
+			returnChair.setChairId_(rs.getInt("chairid"));
+			returnChair.setChairName_(rs.getString("chairname"));
+			returnChair.setChairOwner_(
+					DataModel.getInstance().dataHandlerUser.get(rs.getInt("chairowner")));
+			returnChair.setBuildingId_(rs.getInt("buildingid"));
+			returnChair.setChairLevel_(rs.getString("chairlevel"));
+			returnChair.setFaculty_(rs.getString("faculty"));
+		} catch (SQLException e) {
+			e.printStackTrace();
+			DataModel.getInstance().dataExcaptions.setNewException(("Es ist ein SQL-Fehler (DataHandlerChair-04) aufgetreten:<br /><br />" + e.toString()), "Datenbank-Fehler!");
+		} catch (Exception e) {
+			e.printStackTrace();
+			DataModel.getInstance().dataExcaptions.setNewException(("Es ist ein unbekannter Fehler (DataHandlerChair-05) in der Datenhaltung aufgetreten:<br /><br />" + e.toString()), "Fehler!");
+		}
+		
+		return returnChair;
 	}
 
 	/**
