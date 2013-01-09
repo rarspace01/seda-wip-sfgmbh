@@ -1,4 +1,4 @@
-package de.sfgmbh.datalayer.core.repositories;
+package de.sfgmbh.datalayer.core.daos;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -7,10 +7,11 @@ import java.util.List;
 
 import de.sfgmbh.applayer.core.model.Room;
 import de.sfgmbh.datalayer.core.definitions.IntfDataFilter;
+import de.sfgmbh.datalayer.core.definitions.IntfDataObservable;
 import de.sfgmbh.datalayer.core.definitions.IntfDataRoom;
 import de.sfgmbh.datalayer.io.DataManagerPostgreSql;
 
-public class DataHandlerRoom implements IntfDataRoom, IntfDataFilter {
+public class DataHandlerRoom implements IntfDataRoom, IntfDataFilter, IntfDataObservable {
 
 	@Override
 	public List<Room> getAll() {
@@ -243,6 +244,24 @@ public class DataHandlerRoom implements IntfDataRoom, IntfDataFilter {
 		}
 
 		return listRoom;
+	}
+
+	@Override
+	public void update() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void register(Object observer) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void unregister(Object observer) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }
