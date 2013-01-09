@@ -5,45 +5,83 @@ public class Chair {
 	private int chairId_;
 	private String chairName_;
 	private User chairOwner_;
-	private String mainChair_;
-	private String mainLevel_;
-	private int buildingid_;
-	public int getChairID_() {
+	private int buildingId_;
+	private String chairLevel_;
+	private String faculty_;
+	
+	/**
+	 * @return the chairId_
+	 */
+	public int getChairId_() {
 		return chairId_;
 	}
+	/**
+	 * @param chairId_ the chairId_ to set
+	 */
 	public void setChairId_(int chairId_) {
 		this.chairId_ = chairId_;
 	}
+	/**
+	 * @return the chairName_
+	 */
 	public String getChairName_() {
 		return chairName_;
 	}
+	/**
+	 * @param chairName_ the chairName_ to set
+	 */
 	public void setChairName_(String chairName_) {
 		this.chairName_ = chairName_;
 	}
+	/**
+	 * @return the chairOwner_
+	 */
 	public User getChairOwner_() {
 		return chairOwner_;
 	}
+	/**
+	 * @param chairOwner_ the chairOwner_ to set
+	 */
 	public void setChairOwner_(User chairOwner_) {
 		this.chairOwner_ = chairOwner_;
 	}
-	public String getMainChair_() {
-		return mainChair_;
+	/**
+	 * @return the buildingId_
+	 */
+	public int getBuildingId_() {
+		return buildingId_;
 	}
-	public void setMainChair_(String mainChair_) {
-		this.mainChair_ = mainChair_;
+	/**
+	 * @param buildingId_ the buildingId_ to set
+	 */
+	public void setBuildingId_(int buildingId_) {
+		this.buildingId_ = buildingId_;
 	}
-	public String getMainLevel_() {
-		return mainLevel_;
+	/**
+	 * @return the chairLevel_
+	 */
+	public String getChairLevel_() {
+		return chairLevel_;
 	}
-	public void setMainLevel_(String mainLevel_) {
-		this.mainLevel_ = mainLevel_;
+	/**
+	 * @param chairLevel_ the chairLevel_ to set
+	 */
+	public void setChairLevel_(String chairLevel_) {
+		this.chairLevel_ = chairLevel_;
 	}
-	public int getBuildingid_() {
-		return buildingid_;
+	/**
+	 * @return the faculty_
+	 */
+	public String getFaculty_() {
+		return faculty_;
 	}
-	public void setBuildingid_(int buildingid_) {
-		this.buildingid_ = buildingid_;
+	/**
+	 * @param faculty_ the faculty_ to set
+	 */
+	public void setFaculty_(String faculty_) {
+		this.faculty_ = faculty_;
 	}
+	
 	
 	
 	

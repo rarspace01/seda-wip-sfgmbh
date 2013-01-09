@@ -9,9 +9,13 @@ import de.sfgmbh.applayer.core.model.Chair;
 import de.sfgmbh.datalayer.core.definitions.IntfDataChair;
 import de.sfgmbh.datalayer.core.definitions.IntfDataFilter;
 import de.sfgmbh.datalayer.core.definitions.IntfDataObservable;
+import de.sfgmbh.datalayer.core.definitions.IntfDataObserver;
+import de.sfgmbh.datalayer.core.model.DataModel;
 import de.sfgmbh.datalayer.io.DataManagerPostgreSql;
 
 public class DataHandlerChair implements IntfDataChair, IntfDataFilter, IntfDataObservable {
+	
+	private ArrayList<Object> observer_ = new ArrayList<Object>();
 
 	@Override
 	public List<Chair> getAll() {
@@ -31,16 +35,22 @@ public class DataHandlerChair implements IntfDataChair, IntfDataFilter, IntfData
 
 				returnChair.setChairId_(resultSet.getInt("chairid"));
 				returnChair.setChairName_(resultSet.getString("chairname"));
-				//returnChair.set
+				returnChair.setChairOwner_(
+						DataModel.getInstance().dataHandlerUser.get(resultSet.getInt("chairowner")));
+				returnChair.setBuildingId_(resultSet.getInt("buildingid"));
+				returnChair.setChairLevel_(resultSet.getString("chairlevel"));
+				returnChair.setFaculty_(resultSet.getString("faculty"));
 
 				listChair.add(returnChair);
 				returnChair = null;
-
 			}
 
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
+			DataModel.getInstance().dataExcaptions.setNewException(("Es ist ein SQL-Fehler (DataHandlerChair-02) aufgetreten:<br /><br />" + e.toString()), "Datenbank-Fehler!");
+		} catch (Exception e) {
+			e.printStackTrace();
+			DataModel.getInstance().dataExcaptions.setNewException(("Es ist ein unbekannter Fehler (DataHandlerChair-03) in der Datenhaltung aufgetreten:<br /><br />" + e.toString()), "Fehler!");
 		}
 
 		return listChair;
@@ -82,22 +92,38 @@ public class DataHandlerChair implements IntfDataChair, IntfDataFilter, IntfData
 		return null;
 	}
 
+	/**
+	 * 
+	 */
 	@Override
 	public void update() {
-		// TODO Auto-generated method stub
-		
+		for (Object o : observer_) {
+			if (o instanceof IntfDataObserver) {
+				((IntfDataObserver) o).change();
+			}
+		}
 	}
-
+	
+	/**
+	 * 
+	 * @param observer
+	 */
 	@Override
 	public void register(Object observer) {
-		// TODO Auto-generated method stub
-		
+		if (observer instanceof IntfDataObserver) {
+			observer_.add(observer);
+		} else {
+			DataModel.getInstance().dataExcaptions.setNewException("Das Objekt implementiert nicht das Observer-Interface und kann daher nicht hinzugefügt werden!<br />Fehler: DataHandlerChair-01", "Fehler!");
+		}
 	}
-
+	
+	/**
+	 * 
+	 * @param observer
+	 */
 	@Override
 	public void unregister(Object observer) {
-		// TODO Auto-generated method stub
-		
+		observer_.remove(observer);
 	}
 
 }

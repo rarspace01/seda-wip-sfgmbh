@@ -1,32 +1,37 @@
 package de.sfgmbh.applayer.core.model;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import de.sfgmbh.applayer.core.definitions.IntfAppObservable;
 import de.sfgmbh.applayer.core.definitions.IntfAppObserver;
+import de.sfgmbh.datalayer.core.definitions.IntfDataObserver;
+import de.sfgmbh.datalayer.core.model.DataModel;
 
-public class AppModel implements IntfAppObservable {
+public class RepositoryChair implements IntfAppObservable, IntfDataObserver {
 	
-	private static AppModel uniqueInstance_ = new AppModel(); // declare on first access through JVM (thread-safe)
 	private ArrayList<Object> observer_ = new ArrayList<Object>();
-	public AppExceptions appExcaptions = new AppExceptions();
-	public RepositoryChair repositoryChair = new RepositoryChair();
-	public RepositoryUser repositoryUser = new RepositoryUser();
-	public RepositoryCourse repositoryCourse = new RepositoryCourse();
-	
-	private AppModel() {} // class may only call itself via declaration
 	
 	/**
-	 * Returns the singleton instance
-	 * @return
+	 * Register this chair repository as observer in the data model
 	 */
-	public static AppModel getInstance() {
-		return uniqueInstance_;
+	public RepositoryChair() {
+		DataModel.getInstance().dataHandlerChair.register(this);
 	}
 	
 	/**
-	 * 
+	 * Return all chairs
+	 * @return a list of all chairs
 	 */
+	public List<Chair> getAll() {
+		return DataModel.getInstance().dataHandlerChair.getAll();
+	}
+
+	@Override
+	public void change() {
+		this.update();
+	}
+
 	@Override
 	public void update() {
 		for (Object o : observer_) {
@@ -45,9 +50,8 @@ public class AppModel implements IntfAppObservable {
 		if (observer instanceof IntfAppObserver) {
 			observer_.add(observer);
 		} else {
-			this.appExcaptions.setNewException("Das Objekt implementiert nicht das Observer-Interface und kann daher nicht hinzugefügt werden!", "Fehler!");
+			AppModel.getInstance().appExcaptions.setNewException("Das Objekt implementiert nicht das Observer-Interface und kann daher nicht hinzugefügt werden!<br />Fehler: RepositoryChair-01", "Fehler!");
 		}
-		
 	}
 	
 	/**
