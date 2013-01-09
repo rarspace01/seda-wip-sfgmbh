@@ -6,7 +6,9 @@ import javax.swing.UIManager;
 import javax.swing.UIManager.LookAndFeelInfo;
 
 import de.sfgmbh.applayer.core.controller.ServiceManager;
+import de.sfgmbh.applayer.core.model.AppModel;
 import de.sfgmbh.comlayer.core.views.BaseTab;
+import de.sfgmbh.comlayer.core.views.InfoDialog;
 
 
 
@@ -39,6 +41,10 @@ public class Bootstrap {
 				} catch (Exception e) {
 				    // If Nimbus is not available, you can set the GUI to another look and feel.
 				}
+				
+				// Register a mother info dialog
+				InfoDialog infoDialog = new InfoDialog();
+				AppModel.getInstance().appExcaptions.register(infoDialog);
 				
 				try {
 					BaseTab frame = serviceManager.getCoreBaseTab();

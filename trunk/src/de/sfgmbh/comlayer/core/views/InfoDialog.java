@@ -1,18 +1,20 @@
 package de.sfgmbh.comlayer.core.views;
 
-import javax.swing.JDialog;
-import javax.swing.JButton;
-import javax.swing.JTextPane;
-
-import de.sfgmbh.comlayer.core.controller.InfoDialogBtnOk;
-
 import java.awt.Dimension;
 import java.awt.SystemColor;
-import net.miginfocom.swing.MigLayout;
-import javax.swing.JLabel;
-import javax.swing.ImageIcon;
 
-public class InfoDialog extends JDialog {
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JDialog;
+import javax.swing.JLabel;
+import javax.swing.JTextPane;
+
+import net.miginfocom.swing.MigLayout;
+import de.sfgmbh.applayer.core.definitions.IntfAppObserver;
+import de.sfgmbh.applayer.core.model.AppModel;
+import de.sfgmbh.comlayer.core.controller.InfoDialogBtnOk;
+
+public class InfoDialog extends JDialog implements IntfAppObserver {
 
 	private static final long serialVersionUID = 1L;
 	private JTextPane txtpnInfoDialogText;
@@ -24,21 +26,22 @@ public class InfoDialog extends JDialog {
 	 */
 	public InfoDialog() {
 		createContents();
-		
 	}
 	public InfoDialog(String info) {
+		this.setDialog(info);
+	}
+	public InfoDialog(String info, String title) {
+		this.setDialog(info, title);
+	}
+	
+	public void setDialog(String info) {
 		this.getTxtpnInfoWindowText().setText("<div style='font-family: Calibri, monospace; text-align: left;'>" + info + "</div>");
 		createContents();
 	}
-	public InfoDialog(String info, String title) {
-		if (info != null) {
-			this.getTxtpnInfoWindowText().setText("<div style='font-family: Calibri,monospace; text-align: left;'>" + info + "</div>");
-		}
-		if (title != null) {
-			createContents(title);
-		} else {
-			createContents();
-		}
+	
+	public void setDialog(String info, String title) {
+		this.getTxtpnInfoWindowText().setText("<div style='font-family: Calibri,monospace; text-align: left;'>" + info + "</div>");
+		createContents(title);
 	}
 	
 	private void createContents() {
@@ -74,6 +77,8 @@ public class InfoDialog extends JDialog {
 		}
 		return txtpnInfoDialogText;
 	}
+	
+	
 	public JButton getBtnOk() {
 		if (btnOk == null) {
 			btnOk = new JButton("OK");
@@ -90,5 +95,19 @@ public class InfoDialog extends JDialog {
 			lblNewLabel.setMaximumSize(new Dimension(100, 100));
 		}
 		return lblNewLabel;
+	}
+	
+	@Override
+	public void change() {
+		String msg = AppModel.getInstance().appExcaptions.getExceptionMsg_();
+		String title = AppModel.getInstance().appExcaptions.getExceptionTitle_();
+		
+		if (title != null) {
+			InfoDialog span = new InfoDialog(msg, title);
+			span.setVisible(true);
+		} else {
+			InfoDialog span = new InfoDialog(msg);
+			span.setVisible(true);
+		}
 	}
 }
