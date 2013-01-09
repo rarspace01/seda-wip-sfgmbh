@@ -8,10 +8,14 @@ import java.util.List;
 import de.sfgmbh.applayer.core.model.Room;
 import de.sfgmbh.datalayer.core.definitions.IntfDataFilter;
 import de.sfgmbh.datalayer.core.definitions.IntfDataObservable;
+import de.sfgmbh.datalayer.core.definitions.IntfDataObserver;
 import de.sfgmbh.datalayer.core.definitions.IntfDataRoom;
+import de.sfgmbh.datalayer.core.model.DataModel;
 import de.sfgmbh.datalayer.io.DataManagerPostgreSql;
 
 public class DataHandlerRoom implements IntfDataRoom, IntfDataFilter, IntfDataObservable {
+	
+	private ArrayList<Object> observer_ = new ArrayList<Object>();
 
 	@Override
 	public List<Room> getAll() {
@@ -246,22 +250,38 @@ public class DataHandlerRoom implements IntfDataRoom, IntfDataFilter, IntfDataOb
 		return listRoom;
 	}
 
+	/**
+	 * 
+	 */
 	@Override
 	public void update() {
-		// TODO Auto-generated method stub
-		
+		for (Object o : observer_) {
+			if (o instanceof IntfDataObserver) {
+				((IntfDataObserver) o).change();
+			}
+		}
 	}
-
+	
+	/**
+	 * 
+	 * @param observer
+	 */
 	@Override
 	public void register(Object observer) {
-		// TODO Auto-generated method stub
-		
+		if (observer instanceof IntfDataObserver) {
+			observer_.add(observer);
+		} else {
+			DataModel.getInstance().dataExcaptions.setNewException("Das Objekt implementiert nicht das Observer-Interface und kann daher nicht hinzugefügt werden!<br />Fehler: DataHandlerRoom-01", "Fehler!");
+		}
 	}
-
+	
+	/**
+	 * 
+	 * @param observer
+	 */
 	@Override
 	public void unregister(Object observer) {
-		// TODO Auto-generated method stub
-		
+		observer_.remove(observer);
 	}
 
 }
