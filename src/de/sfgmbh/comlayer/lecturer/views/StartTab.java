@@ -18,12 +18,10 @@ import javax.swing.border.TitledBorder;
 import net.miginfocom.swing.MigLayout;
 import de.sfgmbh.comlayer.core.views.BaseTab;
 import de.sfgmbh.comlayer.lecturer.controller.StartTabBtnsControl;
-import de.sfgmbh.comlayer.lecturer.controller.StartTabBtnsNav;
 import de.sfgmbh.comlayer.lecturer.controller.StartTabCmbboxFilter;
 import de.sfgmbh.comlayer.lecturer.model.StartTabCmbboxModelFilter;
 import de.sfgmbh.comlayer.lecturer.model.StartTabTableBottom;
 import de.sfgmbh.comlayer.lecturer.model.StartTabTableTop;
-import javax.swing.SwingConstants;
 
 public class StartTab extends JPanel {
 
@@ -45,7 +43,7 @@ public class StartTab extends JPanel {
 	private JButton btnDelete;
 	private JComboBox<String> comboBox;
 	private JLabel lblStatus;
-	private JButton btnLivetickerEdit;
+//	private JButton btnLivetickerEdit;
 	private JPanel tablePanel;
 	private JTable roomrequestTable;
 	private JTextPane txtpnBajksbfwebfskbjfsbksbksdbkgdbfkgbdkrgbekrbgf;

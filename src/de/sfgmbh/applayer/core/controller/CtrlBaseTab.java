@@ -1,7 +1,7 @@
 package de.sfgmbh.applayer.core.controller;
 
 import de.sfgmbh.applayer.core.model.User;
-import de.sfgmbh.datalayer.core.repositories.DataHandlerUser;
+import de.sfgmbh.datalayer.core.daos.DataHandlerUser;
 
 public class CtrlBaseTab {
 	

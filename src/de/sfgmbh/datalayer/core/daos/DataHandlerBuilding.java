@@ -1,11 +1,12 @@
-package de.sfgmbh.datalayer.core.repositories;
+package de.sfgmbh.datalayer.core.daos;
 
 import java.util.List;
 
 import de.sfgmbh.applayer.core.model.Building;
 import de.sfgmbh.datalayer.core.definitions.IntfDataBuilding;
+import de.sfgmbh.datalayer.core.definitions.IntfDataObservable;
 
-public class DataHandlerBuilding implements IntfDataBuilding{
+public class DataHandlerBuilding implements IntfDataBuilding, IntfDataObservable{
 
 	@Override
 	public List<Building> getAll() {
@@ -41,6 +42,24 @@ public class DataHandlerBuilding implements IntfDataBuilding{
 	public int save(Building toBeSavedBuilding) {
 		// TODO Auto-generated method stub
 		return 0;
+	}
+
+	@Override
+	public void update() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void register(Object observer) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void unregister(Object observer) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

@@ -1,26 +1,17 @@
-package de.sfgmbh.applayer.core.model;
+package de.sfgmbh.datalayer.core.model;
 
 import java.util.ArrayList;
 
-import de.sfgmbh.applayer.core.definitions.IntfAppObservable;
-import de.sfgmbh.applayer.core.definitions.IntfAppObserver;
+import de.sfgmbh.datalayer.core.definitions.IntfDataObservable;
 import de.sfgmbh.datalayer.core.definitions.IntfDataObserver;
-import de.sfgmbh.datalayer.core.model.DataModel;
 
-public class AppExceptions implements IntfAppObservable, IntfDataObserver {
-
+public class DataExceptions implements IntfDataObservable {
+	
 	private ArrayList<Object> observer_ = new ArrayList<Object>();
 	private String exceptionMsg_;
 	private String exceptionTitle_;
 	private String exceptionVariante_;
 	private boolean new_;
-	
-	/**
-	 * Register this class as observer of data layer exceptions
-	 */
-	public AppExceptions() {
-		DataModel.getInstance().dataExcaptions.register(this);
-	}
 	
 	/**
 	 * @return the exceptionMsg_
@@ -91,8 +82,8 @@ public class AppExceptions implements IntfAppObservable, IntfDataObserver {
 	@Override
 	public void update() {
 		for (Object o : observer_) {
-			if (o instanceof IntfAppObserver) {
-				((IntfAppObserver) o).change();
+			if (o instanceof IntfDataObserver) {
+				((IntfDataObserver) o).change();
 			}
 		}
 	}
@@ -103,7 +94,7 @@ public class AppExceptions implements IntfAppObservable, IntfDataObserver {
 	 */
 	@Override
 	public void register(Object observer) {
-		if (observer instanceof IntfAppObserver) {
+		if (observer instanceof IntfDataObserver) {
 			observer_.add(observer);
 		} else {
 			this.setNewException("Das Objekt implementiert nicht das Observer-Interface und kann daher nicht hinzugefügt werden!", "Fehler!");
@@ -118,19 +109,5 @@ public class AppExceptions implements IntfAppObservable, IntfDataObserver {
 	@Override
 	public void unregister(Object observer) {
 		observer_.remove(observer);
-	}
-
-	@Override
-	public void change() {
-		String msg = DataModel.getInstance().dataExcaptions.getExceptionMsg_();
-		String title = DataModel.getInstance().dataExcaptions.getExceptionTitle_();
-		// String variant = DataModel.getInstance().dataExcaptions.getExceptionVariante_(); 
-		
-		if (title != null) {
-			this.setNewException(msg, title);
-		} else {
-			this.setNewException(msg);
-		}
-		
 	}
 }

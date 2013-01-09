@@ -1,4 +1,4 @@
-package de.sfgmbh.datalayer.core.repositories;
+package de.sfgmbh.datalayer.core.daos;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -8,9 +8,10 @@ import java.util.List;
 import de.sfgmbh.applayer.core.model.Chair;
 import de.sfgmbh.datalayer.core.definitions.IntfDataChair;
 import de.sfgmbh.datalayer.core.definitions.IntfDataFilter;
+import de.sfgmbh.datalayer.core.definitions.IntfDataObservable;
 import de.sfgmbh.datalayer.io.DataManagerPostgreSql;
 
-public class DataHandlerChair implements IntfDataChair, IntfDataFilter{
+public class DataHandlerChair implements IntfDataChair, IntfDataFilter, IntfDataObservable {
 
 	@Override
 	public List<Chair> getAll() {
@@ -76,9 +77,27 @@ public class DataHandlerChair implements IntfDataChair, IntfDataFilter{
 	}
 
 	@Override
-	public List getByFilter(String filterName, String filterValue) {
+	public List<Chair> getByFilter(String filterName, String filterValue) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public void update() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void register(Object observer) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void unregister(Object observer) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

@@ -6,8 +6,8 @@ import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 import java.util.HashMap;
 
+import de.sfgmbh.datalayer.core.daos.DataHandlerUser;
 import de.sfgmbh.datalayer.core.definitions.IntfDataRetrievable;
-import de.sfgmbh.datalayer.core.repositories.DataHandlerUser;
 
 public class User implements IntfDataRetrievable {
 

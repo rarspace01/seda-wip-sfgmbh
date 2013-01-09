@@ -5,8 +5,8 @@ import java.util.List;
 import de.sfgmbh.applayer.core.controller.CtrlBaseTab;
 import de.sfgmbh.applayer.core.model.Room;
 import de.sfgmbh.applayer.core.model.User;
-import de.sfgmbh.datalayer.core.repositories.DataHandlerRoom;
-import de.sfgmbh.datalayer.core.repositories.DataHandlerUser;
+import de.sfgmbh.datalayer.core.daos.DataHandlerRoom;
+import de.sfgmbh.datalayer.core.daos.DataHandlerUser;
 
 public class DataLayerTests {
 
