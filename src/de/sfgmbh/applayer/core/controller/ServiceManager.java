@@ -37,7 +37,7 @@ public class ServiceManager {
 	
 	public static ServiceManager getInstance() {
 		if (uniqueInstance_ == null) {
-			new ServiceManager();
+			uniqueInstance_ = new ServiceManager();
 		}
 		return uniqueInstance_;
 	}

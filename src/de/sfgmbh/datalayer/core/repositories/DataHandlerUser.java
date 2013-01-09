@@ -5,6 +5,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import de.sfgmbh.applayer.core.model.AppModel;
 import de.sfgmbh.applayer.core.model.User;
 import de.sfgmbh.datalayer.core.definitions.IntfDataUser;
 import de.sfgmbh.datalayer.io.DataManagerPostgreSql;
@@ -15,8 +16,6 @@ import de.sfgmbh.datalayer.io.DataManagerPostgreSql;
  *
  */
 public class DataHandlerUser implements IntfDataUser{
-	
-	//private DataManagerPostgreSql dm = DataManagerPostgreSql.getInstance();
 
 	@Override
 	public List<User> getAll() {
@@ -50,8 +49,11 @@ public class DataHandlerUser implements IntfDataUser{
 			}
 
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
+			AppModel.getInstance().appExcaptions.setNewException(("Es ist ein SQL-Fehler (DataHandlerUser-01) aufgetreten:<br /><br />" + e.toString()), "Datenbank-Fehler!");
+		} catch (Exception e) {
+			e.printStackTrace();
+			AppModel.getInstance().appExcaptions.setNewException(("Es ist ein unbekannter Fehler (DataHandlerUser-02) in der Datenhaltung aufgetreten:<br /><br />" + e.toString()), "Fehler!");
 		}
 
 		return listUser;
@@ -89,7 +91,10 @@ public class DataHandlerUser implements IntfDataUser{
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
-			
+			AppModel.getInstance().appExcaptions.setNewException(("Es ist ein SQL-Fehler (DataHandlerUser-03) aufgetreten:<br /><br />" + e.toString()), "Datenbank-Fehler!");
+		} catch (Exception e) {
+			e.printStackTrace();
+			AppModel.getInstance().appExcaptions.setNewException(("Es ist ein unbekannter Fehler (DataHandlerUser-04) in der Datenhaltung aufgetreten:<br /><br />" + e.toString()), "Fehler!");
 		}
 		
 		return null;
@@ -130,6 +135,10 @@ public class DataHandlerUser implements IntfDataUser{
 					
 				} catch (SQLException e) {
 					e.printStackTrace();
+					AppModel.getInstance().appExcaptions.setNewException(("Es ist ein SQL-Fehler (DataHandlerUser-05) aufgetreten:<br /><br />" + e.toString()), "Datenbank-Fehler!");
+				} catch (Exception e) {
+					e.printStackTrace();
+					AppModel.getInstance().appExcaptions.setNewException(("Es ist ein unbekannter Fehler (DataHandlerUser-06) in der Datenhaltung aufgetreten:<br /><br />" + e.toString()), "Fehler!");
 				}
 		} else {
 			try {
@@ -150,6 +159,10 @@ public class DataHandlerUser implements IntfDataUser{
 				
 			} catch (SQLException e) {
 				e.printStackTrace();
+				AppModel.getInstance().appExcaptions.setNewException(("Es ist ein SQL-Fehler (DataHandlerUser-07) aufgetreten:<br /><br />" + e.toString()), "Datenbank-Fehler!");
+			} catch (Exception e) {
+				e.printStackTrace();
+				AppModel.getInstance().appExcaptions.setNewException(("Es ist ein unbekannter Fehler (DataHandlerUser-08) in der Datenhaltung aufgetreten:<br /><br />" + e.toString()), "Fehler!");
 			}
 		}
 			

@@ -7,6 +7,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import de.sfgmbh.applayer.core.model.AppModel;
+
 /**
  * Class is used for the PostgreSQL DB connection
  * 
@@ -31,11 +33,12 @@ public class DataManagerPostgreSql {
 			stmt = conn.createStatement();
 
 		} catch (SQLException e) {
+			e.printStackTrace();
+			AppModel.getInstance().appExcaptions.setNewException(("Es ist ein SQL-Fehler (DataManagerPostgreSql-01) aufgetreten:<br /><br />" + e.toString()), "Datenbank-Fehler!");
 
-			e.printStackTrace();
 		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
+			AppModel.getInstance().appExcaptions.setNewException(("Es ist ein unbekannter Fehler (DataManagerPostgreSql-02) in der Datenhaltung aufgetreten:<br /><br />" + e.toString()), "Fehler!");
 		}
 		uniqueInstance_ = this;
 	}
@@ -69,6 +72,7 @@ public class DataManagerPostgreSql {
 
 		} catch (SQLException e) {
 			e.printStackTrace();
+			AppModel.getInstance().appExcaptions.setNewException(("Es ist ein SQL-Fehler (DataManagerPostgreSql-03) aufgetreten:<br /><br />" + e.toString()), "Datenbank-Fehler!");
 		}
 		return rs;
 	}
@@ -91,6 +95,7 @@ public class DataManagerPostgreSql {
 
 		} catch (SQLException e) {
 			e.printStackTrace();
+			AppModel.getInstance().appExcaptions.setNewException(("Es ist ein SQL-Fehler (DataManagerPostgreSql-04) aufgetreten:<br /><br />" + e.toString()), "Datenbank-Fehler!");
 		}
 		return i;
 	}
@@ -105,7 +110,8 @@ public class DataManagerPostgreSql {
 		try {
 			this.pstmt = conn.prepareStatement(SqlString);
 		} catch (Exception e) {
-			System.out.println(e);
+			e.printStackTrace();
+			AppModel.getInstance().appExcaptions.setNewException(("Es ist ein unbekannter Fehler (DataManagerPostgreSql-05) in der Datenhaltung aufgetreten:<br /><br />" + e.toString()), "Fehler!");
 		}
 		
 		return this.pstmt;
@@ -121,6 +127,7 @@ public class DataManagerPostgreSql {
 			rs = this.pstmt.executeQuery();
 		} catch (SQLException e) {
 			e.printStackTrace();
+			AppModel.getInstance().appExcaptions.setNewException(("Es ist ein SQL-Fehler (DataManagerPostgreSql-06) aufgetreten:<br /><br />" + e.toString()), "Datenbank-Fehler!");
 		}
 		
 		return rs;
@@ -134,6 +141,7 @@ public class DataManagerPostgreSql {
 			i = this.pstmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
+			AppModel.getInstance().appExcaptions.setNewException(("Es ist ein SQL-Fehler (DataManagerPostgreSql-07) aufgetreten:<br /><br />" + e.toString()), "Datenbank-Fehler!");
 		}
 		
 		return i;
