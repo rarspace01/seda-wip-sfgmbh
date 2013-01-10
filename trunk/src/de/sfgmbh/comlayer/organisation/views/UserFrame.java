@@ -13,6 +13,7 @@ import javax.swing.JButton;
 
 import de.sfgmbh.comlayer.organisation.controller.UserFrameWin;
 import de.sfgmbh.comlayer.organisation.controller.UserFrameBtns;
+import java.awt.Toolkit;
 
 public class UserFrame extends JFrame {
 
@@ -27,6 +28,10 @@ public class UserFrame extends JFrame {
 	 */
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public UserFrame() {
+		initialize();
+	}
+	private void initialize() {
+		setIconImage(Toolkit.getDefaultToolkit().getImage(UserFrame.class.getResource("/de/sfgmbh/comlayer/core/views/HUT_klein.png")));
 		setTitle("Nutzer hinzuf\u00FCgen");
 		setBounds(100, 100, 266, 294);
 		contentPane = new JPanel();

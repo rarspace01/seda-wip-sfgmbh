@@ -14,6 +14,7 @@ import javax.swing.border.EmptyBorder;
 
 import de.sfgmbh.comlayer.organisation.controller.RoomFrameBtns;
 import de.sfgmbh.comlayer.organisation.controller.RoomFrameWin;
+import java.awt.Toolkit;
 
 public class RoomFrame extends JFrame {
 
@@ -37,6 +38,7 @@ public class RoomFrame extends JFrame {
 		initialize();
 	}
 	private void initialize() {
+		setIconImage(Toolkit.getDefaultToolkit().getImage(RoomFrame.class.getResource("/de/sfgmbh/comlayer/core/views/HUT_klein.png")));
 		setTitle("Raum Info");
 		setBounds(100, 100, 266, 400);
 		contentPane = new JPanel();

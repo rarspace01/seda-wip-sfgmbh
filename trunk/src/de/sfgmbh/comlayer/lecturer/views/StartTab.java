@@ -54,7 +54,7 @@ public class StartTab extends JPanel {
 	 */
 	public StartTab() {
 		setMaximumSize(new Dimension(10, 32767));
-		setLayout(new MigLayout("", "[140px:n:140px][][grow][grow][grow][grow][100px:n:100px,grow]", "[][grow]"));
+		setLayout(new MigLayout("", "[140px:n:140px][][grow][grow][grow][grow][100px:100px:100px]", "[][385.00,grow]"));
 		
 		JLabel lblLehrveranstaltungen = new JLabel("Lehrveranstaltungen:");
 		lblLehrveranstaltungen.setFont(new Font("Tahoma", Font.BOLD, 12));
@@ -73,14 +73,14 @@ public class StartTab extends JPanel {
 		topSidePanel = new JPanel();
 		topSidePanel.setLayout(null);
 		topSidePanel.setBorder(new TitledBorder(null, "", TitledBorder.TRAILING, TitledBorder.ABOVE_TOP, null, null));
-		topSidePanel.setBounds(0, 0, 130, 390);
+		topSidePanel.setBounds(0, 0, 140, 424);
 		sidePanel.add(topSidePanel);
 		
 		txtpnBajksbfwebfskbjfsbksbksdbkgdbfkgbdkrgbekrbgf = new JTextPane();
 		txtpnBajksbfwebfskbjfsbksbksdbkgdbfkgbdkrgbekrbgf.setBackground(UIManager.getColor("Button.background"));
 		txtpnBajksbfwebfskbjfsbksbksdbkgdbfkgbdkrgbekrbgf.setContentType("text/plain\r\n");
 		txtpnBajksbfwebfskbjfsbksbksdbkgdbfkgbdkrgbekrbgf.setText("LiveTickerNews:\r\n\r\nFehler: Es wurden keine Lehrveranstaltungen gefunden werden, die in 10 Minuten beginnen. \r\n\r\nFehler: Es wurden keine Meldungen von Dozenten oder der Hausverwaltung gefunden. \r\n\r\nFehler: Es besteht keine Verbindung zur Datenbank.");
-		txtpnBajksbfwebfskbjfsbksbksdbkgdbfkgbdkrgbekrbgf.setBounds(10, 0, 110, 379);
+		txtpnBajksbfwebfskbjfsbksbksdbkgdbfkgbdkrgbekrbgf.setBounds(10, 11, 120, 402);
 		topSidePanel.add(txtpnBajksbfwebfskbjfsbksbksdbkgdbfkgbdkrgbekrbgf);
 		
 		tablePanel = new JPanel();
@@ -222,13 +222,13 @@ public class StartTab extends JPanel {
 		
 		JButton btnPublish = new JButton("freigeben");
 		btnPublish.addActionListener(new StartTabBtnsControl("publish"));
-		btnPublish.setBounds(0, 194, 100, 23);
+		btnPublish.setBounds(0, 194, 88, 23);
 		buttonPanel.add(btnPublish);
 		
 		//Ist hier die Schreibweise gem‰ﬂ der java code conventions?mit RoomRequest?
-		btnRoomRequest = new JButton("Raumanfrage");
+		btnRoomRequest = new JButton("Anfrage");
 		btnRoomRequest.addActionListener(new StartTabBtnsControl("roomrequest"));
-		btnRoomRequest.setBounds(0, 160, 100, 23);
+		btnRoomRequest.setBounds(0, 160, 88, 23);
 		buttonPanel.add(btnRoomRequest);
 		
 		JPanel panel = new JPanel();

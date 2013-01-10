@@ -11,6 +11,7 @@ import javax.swing.JButton;
 
 import de.sfgmbh.comlayer.organisation.controller.ProfessorshipFrameWin;
 import de.sfgmbh.comlayer.organisation.controller.ProfessorshipFrameBtns;
+import java.awt.Toolkit;
 
 public class ProfessorshipFrame extends JFrame {
 
@@ -30,6 +31,7 @@ public class ProfessorshipFrame extends JFrame {
 		initialize();
 	}
 	private void initialize() {
+		setIconImage(Toolkit.getDefaultToolkit().getImage(ProfessorshipFrame.class.getResource("/de/sfgmbh/comlayer/core/views/HUT_klein.png")));
 		setTitle("Lehrst\u00FChle hinzuf\u00FCgen/bearbeiten");
 		setBounds(100, 100, 266, 370);
 		contentPane = new JPanel();
