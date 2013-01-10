@@ -20,6 +20,7 @@ public class User implements IntfDataRetrievable {
 	private String fName_;
 	private String lName_;
 	private long lastLogin_;
+	private boolean disabled_;
 	
 	public User() {
 		userId_=-1;
@@ -95,6 +96,14 @@ public class User implements IntfDataRetrievable {
 
 	public void setLastLogin_(long lastLogin_) {
 		this.lastLogin_ = lastLogin_;
+	}
+	
+	public boolean isDisabled_() {
+		return disabled_;
+	}
+
+	public void setDisabled_(boolean disabled_) {
+		this.disabled_ = disabled_;
 	}
 
 	public User(HashMap<String, Object> dataExchange) {
@@ -172,7 +181,10 @@ public class User implements IntfDataRetrievable {
 		return returnData;
 	}
 	
-	// Set hash for a plain text password string salted by a random string
+	/**
+	 * Set hash for a plain text password string salted by a random string
+	 * @param pw
+	 */
 	public void setPwHashAndSalt (String pw) {
 		
 		SecureRandom rand = new SecureRandom();
@@ -186,7 +198,11 @@ public class User implements IntfDataRetrievable {
 		}
 	}
 	
-	// Check if a plain text password string together with the users salt matches its hash
+	/**
+	 * Check if a plain text password string together with the users salt matches its hash
+	 * @param pw
+	 * @return true if the submitted plain text password is correct
+	 */
 	public boolean checkPw (String pw) {
 		
 		String checkPhrase = this.salt_ + pw;
@@ -199,7 +215,11 @@ public class User implements IntfDataRetrievable {
 		return false;
 	}
 	
-	// Get the SHA-256 hash for any string
+	/**
+	 * Get the SHA-256 hash for any string
+	 * @param string
+	 * @return the SHA-256 hash value for the submitted string
+	 */
 	private String getSha256 (String string) {
 		
 		MessageDigest md ;
@@ -222,7 +242,9 @@ public class User implements IntfDataRetrievable {
 		return null;
 	}
 	
-	// Save this user object in the DB (this will update a database entry if there is already one and create one if there is none)
+	/**
+	 * Save this user object in the DB (this will update a database entry if there is already one and create one if there is none)
+	 */
 	public void save() {
 		DataHandlerUser dhu = new DataHandlerUser();
 		dhu.save(this);

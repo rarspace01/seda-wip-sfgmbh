@@ -121,6 +121,9 @@ public class DataHandlerUser implements IntfDataUser, IntfDataObservable {
 		
 	}
 
+	/**
+	 * Saves a new user in the DB if the user doesn't exist already and updates an existing user in the DB otherwise
+	 */
 	@Override
 	public void save(User user) {
 		
@@ -130,8 +133,8 @@ public class DataHandlerUser implements IntfDataUser, IntfDataObservable {
 					DataManagerPostgreSql dm=DataManagerPostgreSql.getInstance();
 					
 					dm.prepare("INSERT INTO public.user"
-							+ "(login, pass, salt, mail, class, fname, lname, lastlogin)"
-							+ "VALUES (?,?,?,?,?,?,?,?)");
+							+ "(login, pass, salt, mail, class, fname, lname, lastlogin, disabled)"
+							+ "VALUES (?,?,?,?,?,?,?,?,?)");
 					dm.pstmt.setString(1, user.getLogin_());
 					dm.pstmt.setString(2, user.getPass_());
 					dm.pstmt.setString(3, user.getSalt_());
@@ -140,6 +143,7 @@ public class DataHandlerUser implements IntfDataUser, IntfDataObservable {
 					dm.pstmt.setString(6, user.getfName_());
 					dm.pstmt.setString(7, user.getlName_());
 					dm.pstmt.setLong(8, user.getLastLogin_());
+					dm.pstmt.setBoolean(9, user.isDisabled_());
 					dm.executePstmt();
 					
 				} catch (SQLException e) {
@@ -153,7 +157,7 @@ public class DataHandlerUser implements IntfDataUser, IntfDataObservable {
 			try {
 				DataManagerPostgreSql dm=DataManagerPostgreSql.getInstance();
 				dm.prepare("UPDATE public.user SET "
-						+ "login = ?, pass = ?, salt = ?, mail = ?, class = ?, fname = ?, lname = ?, lastlogin = ?"
+						+ "login = ?, pass = ?, salt = ?, mail = ?, class = ?, fname = ?, lname = ?, lastlogin = ?, disabled = ?"
 						+ "WHERE userid = ?");
 				dm.pstmt.setString(1, user.getLogin_());
 				dm.pstmt.setString(2, user.getPass_());
@@ -163,7 +167,8 @@ public class DataHandlerUser implements IntfDataUser, IntfDataObservable {
 				dm.pstmt.setString(6, user.getfName_());
 				dm.pstmt.setString(7, user.getlName_());
 				dm.pstmt.setLong(8, user.getLastLogin_());
-				dm.pstmt.setInt(9, user.getUserId_());
+				dm.pstmt.setBoolean(9, user.isDisabled_());
+				dm.pstmt.setInt(10, user.getUserId_());
 				dm.executePstmt();
 				
 			} catch (SQLException e) {
@@ -195,6 +200,7 @@ public class DataHandlerUser implements IntfDataUser, IntfDataObservable {
 			returnUser.setfName_(rs.getString("fname"));
 			returnUser.setlName_(rs.getString("lname"));
 			returnUser.setLastLogin_(rs.getLong("lastlogin"));
+			returnUser.setDisabled_(rs.getBoolean("disabled"));
 		} catch (SQLException e) {
 			e.printStackTrace();
 			DataModel.getInstance().dataExcaptions.setNewException(("Es ist ein SQL-Fehler (DataHandlerUser-13) aufgetreten:<br /><br />" + e.toString()), "Datenbank-Fehler!");

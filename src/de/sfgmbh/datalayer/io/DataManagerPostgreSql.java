@@ -34,11 +34,11 @@ public class DataManagerPostgreSql {
 
 		} catch (SQLException e) {
 			e.printStackTrace();
-			DataModel.getInstance().dataExcaptions.setNewException(("Es ist ein SQL-Fehler (DataManagerPostgreSql-01) aufgetreten:<br /><br />" + e.toString()), "Datenbank-Fehler!");
+			DataModel.getInstance().dataExcaptions.setNewException(("Bei der Verbindung mit dem Datenbank-Server ist ein Fehler aufgetreten.<br /><br />DataManagerPostgreSql-01:<br />" + e.toString()), "Datenbank-Fehler!");
 
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
-			DataModel.getInstance().dataExcaptions.setNewException(("Es ist ein unbekannter Fehler (DataManagerPostgreSql-02) in der Datenhaltung aufgetreten:<br /><br />" + e.toString()), "Fehler!");
+			DataModel.getInstance().dataExcaptions.setNewException(("Es ist ein unbekannter Fehler in der Datenhaltung aufgetreten.<br /><br />DataManagerPostgreSql-02:<br />" + e.toString()), "Fehler!");
 		}
 		uniqueInstance_ = this;
 	}
