@@ -48,8 +48,8 @@ public class StartTab extends JPanel {
 	private JTable roomrequestTable;
 	private JTextPane txtpnBajksbfwebfskbjfsbksbksdbkgdbfkgbdkrgbekrbgf;
 	private JButton btnFailureprompt;
-	private JPanel panel_1;
-	private JLabel label_3;
+	private JPanel uniIconPanel;
+	private JLabel lbluniIcon;
 
 	/**
 	 * Create the panel.
@@ -60,8 +60,10 @@ public class StartTab extends JPanel {
 		
 		JLabel lblLehrveranstaltungen = new JLabel("Lehrveranstaltungen:");
 		lblLehrveranstaltungen.setFont(new Font("Tahoma", Font.BOLD, 12));
-		add(lblLehrveranstaltungen, "cell 1 0");
-		add(getPanel_1(), "cell 6 0,alignx center");
+		JPanel uniIconPanel = new JPanel();
+		add(lblLehrveranstaltungen, "cell 1 0,aligny bottom");
+		add(uniIconPanel, "cell 6 0,alignx center");
+		
 		
 		sidePanel = new JPanel();
 		sidePanel.setMinimumSize(new Dimension(140, 10));
@@ -82,19 +84,7 @@ public class StartTab extends JPanel {
 		txtpnBajksbfwebfskbjfsbksbksdbkgdbfkgbdkrgbekrbgf.setText("LiveTickerNews:\r\n\r\nFehler: Es wurden keine Lehrveranstaltungen gefunden werden, die in 10 Minuten beginnen. \r\n\r\nFehler: Es wurden keine Meldungen von Dozenten oder der Hausverwaltung gefunden. \r\n\r\nFehler: Es besteht keine Verbindung zur Datenbank.");
 		txtpnBajksbfwebfskbjfsbksbksdbkgdbfkgbdkrgbekrbgf.setBounds(10, 11, 110, 453);
 		topSidePanel.add(txtpnBajksbfwebfskbjfsbksbksdbkgdbfkgbdkrgbekrbgf);
-		/*
-		JButton btnTimetable = new JButton("Stundenplan");
-		btnTimetable.addActionListener(new StartTabBtnsNav("timetable"));
-		bottomSidePanel.add(btnTimetable, "cell 0 0");
 		
-		JButton btnProfessorshiptimetable = new JButton("Lehrstuhlplan");
-		btnProfessorshiptimetable.addActionListener(new StartTabBtnsNav("professorshiptimetable"));
-		bottomSidePanel.add(btnProfessorshiptimetable, "cell 0 1");
-		
-		btnLivetickerEdit = new JButton("LiveTicker");
-		btnLivetickerEdit.addActionListener(new StartTabBtnsNav("liveticker"));
-		bottomSidePanel.add(btnLivetickerEdit, "cell 0 2");
-		*/
 		tablePanel = new JPanel();
 		add(tablePanel, "cell 1 1 5 1,grow");
 		tablePanel.setLayout(new MigLayout("", "[grow][grow][grow][grow][grow]", "[][][150px:n:200px,grow][][][][100px:n:200px,grow][]"));
@@ -252,22 +242,13 @@ public class StartTab extends JPanel {
 		btnZurckziehen.addActionListener(new StartTabBtnsControl("back"));
 		btnZurckziehen.setBounds(0, 260, 100, 23);
 		buttonPanel.add(btnZurckziehen);
-	}
-	private JPanel getPanel_1() {
-		if (panel_1 == null) {
-			panel_1 = new JPanel();
-			panel_1.add(getLabel_3());
-		}
-		return panel_1;
-	}
-	private JLabel getLabel_3() {
-		if (label_3 == null) {
-			label_3 = new JLabel("");
-			label_3.setIcon(new ImageIcon(BaseTab.class.getResource("/de/sfgmbh/comlayer/core/views/UniBA_logo.png")));
-			label_3.setMaximumSize(new Dimension(50,50));
+		
+		JLabel lbluniIcon = new JLabel("");
+		uniIconPanel.add(lbluniIcon);
+		lbluniIcon.setIcon(new ImageIcon(BaseTab.class.getResource("/de/sfgmbh/comlayer/core/views/UniBA_logo.png")));
+		lbluniIcon.setMaximumSize(new Dimension(50,50));
 					
 
-		}
-		return label_3;
+		
 	}
 }
