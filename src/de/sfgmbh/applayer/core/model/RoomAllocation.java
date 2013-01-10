@@ -143,6 +143,19 @@ public class RoomAllocation implements IntfDataRetrievable{
 	public void setComment_(String comment_) {
 		this.comment_ = comment_;
 	}
+	
+	/**
+	 * Check if this allocation is published (apprvoed by the organ staff and published by the lecturer)
+	 * @return true if this allocation is published
+	 */
+	public boolean isPublic() {
+		
+		if (this.course_.isLecturerEnabled_() && this.approved_) {
+			return true;
+		}
+		
+		return false;
+	}
 
 	@Override
 	public Object getData() {

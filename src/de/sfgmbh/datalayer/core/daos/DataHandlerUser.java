@@ -68,8 +68,23 @@ public class DataHandlerUser implements IntfDataUser, IntfDataObservable {
 	}
 
 	@Override
-	public User get(int UserId) {
-		// TODO Auto-generated method stub
+	public User get(int id) {
+		try {
+			DataManagerPostgreSql.getInstance().prepare("SELECT * FROM public.user WHERE userid = ?");
+			DataManagerPostgreSql.getInstance().pstmt.setInt(1, id);
+			ResultSet rs = DataManagerPostgreSql.getInstance().selectPstmt();
+			while (rs.next()) {
+				return this.makeUser(rs);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			DataModel.getInstance().dataExcaptions.setNewException(("Es ist ein SQL-Fehler aufgetreten.<br /><br />Fehler DataHandlerUser-15:<br />" + e.toString()), "Datenbank-Fehler!");
+		} catch (Exception e) {
+			e.printStackTrace();
+			DataModel.getInstance().dataExcaptions.setNewException(("Es ist ein unbekannter Fehler in der Datenhaltung aufgetreten:<br /><br />Fehler DataHandlerUser-16:<br />" + e.toString()), "Fehler!");
+		}
+		
 		return null;
 	}
 	
@@ -85,10 +100,10 @@ public class DataHandlerUser implements IntfDataUser, IntfDataObservable {
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
-			DataModel.getInstance().dataExcaptions.setNewException(("Es ist ein SQL-Fehler (DataHandlerUser-10) aufgetreten:<br /><br />" + e.toString()), "Datenbank-Fehler!");
+			DataModel.getInstance().dataExcaptions.setNewException(("Es ist ein SQL-Fehler aufgetreten:<br /><br />Fehler DataHandlerUser-10:<br />" + e.toString()), "Datenbank-Fehler!");
 		} catch (Exception e) {
 			e.printStackTrace();
-			DataModel.getInstance().dataExcaptions.setNewException(("Es ist ein unbekannter Fehler (DataHandlerUser-11) in der Datenhaltung aufgetreten:<br /><br />" + e.toString()), "Fehler!");
+			DataModel.getInstance().dataExcaptions.setNewException(("Es ist ein unbekannter Fehler in der Datenhaltung aufgetreten:<br /><br />Fehler DataHandlerUser-11:<br />" + e.toString()), "Fehler!");
 		}
 		
 		return null;

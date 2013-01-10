@@ -29,16 +29,13 @@ import de.sfgmbh.comlayer.timetable.views.PublicTimetableTab;
 
 public class ServiceManager {
 	
-	private static ServiceManager uniqueInstance_ = null;
+	private static ServiceManager uniqueInstance_ = new ServiceManager();
 	
 	public ServiceManager() {
 		uniqueInstance_ = this;
 	}
 	
 	public static ServiceManager getInstance() {
-		if (uniqueInstance_ == null) {
-			uniqueInstance_ = new ServiceManager();
-		}
 		return uniqueInstance_;
 	}
 

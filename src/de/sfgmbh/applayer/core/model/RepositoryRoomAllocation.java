@@ -1,6 +1,7 @@
 package de.sfgmbh.applayer.core.model;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import de.sfgmbh.applayer.core.definitions.IntfAppObservable;
@@ -13,7 +14,7 @@ public class RepositoryRoomAllocation implements IntfAppObservable, IntfDataObse
 	private ArrayList<Object> observer_ = new ArrayList<Object>();
 	
 	/**
-	 * Register this chair repository as observer in the data model
+	 * Register this room allocation repository as observer in the data model
 	 */
 	public RepositoryRoomAllocation() {
 		DataModel.getInstance().dataHandlerRoomAllocation.register(this);
@@ -25,6 +26,14 @@ public class RepositoryRoomAllocation implements IntfAppObservable, IntfDataObse
 	 */
 	public List<RoomAllocation> getAll() {
 		return DataModel.getInstance().dataHandlerRoomAllocation.getAll();
+	}
+	
+	/**
+	 * Return filtered courses
+	 * @return a list of filtered courses
+	 */
+	public List<RoomAllocation> getByFilter(HashMap<String, String> filter) {
+		return DataModel.getInstance().dataHandlerRoomAllocation.getByFilter(filter);
 	}
 
 	@Override

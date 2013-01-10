@@ -3,6 +3,7 @@ package de.sfgmbh.datalayer.core.daos;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import de.sfgmbh.applayer.core.model.Room;
@@ -166,11 +167,15 @@ public class DataHandlerRoom implements IntfDataRoom, IntfDataFilter, IntfDataOb
 
 
 	@Override
-	public List<Room> getByFilter(String filterName, String filterValue) {
+	public List<Room> getByFilter(HashMap<String, String> filter) {
 		List<Room> listRoom = new ArrayList<Room>();
 		
-		String SqlStatement = "SELECT * FROM public.room WHERE " + filterName
+		String SqlStatement = "SELECT * FROM public.room"; // placeholder until the statement below uses HashMap
+		
+		/**
+		String SqlStatement = "SELECT * FROM public.room WHERE " + filter
 				+ "='" + filterValue + "'";
+			*/ // this needs to be adjusted to use the HashMap filter
 
 		try {
 
