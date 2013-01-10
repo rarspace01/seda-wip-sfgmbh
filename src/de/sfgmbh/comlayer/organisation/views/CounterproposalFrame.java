@@ -13,6 +13,7 @@ import javax.swing.border.EmptyBorder;
 
 import de.sfgmbh.comlayer.organisation.controller.CounterproposalFrameBtns;
 import de.sfgmbh.comlayer.organisation.controller.CounterproposalFrameWin;
+import java.awt.Toolkit;
 
 public class CounterproposalFrame extends JFrame {
 
@@ -29,6 +30,7 @@ public class CounterproposalFrame extends JFrame {
 		initialize();
 	}
 	private void initialize() {
+		setIconImage(Toolkit.getDefaultToolkit().getImage(CounterproposalFrame.class.getResource("/de/sfgmbh/comlayer/core/views/HUT_klein.png")));
 		setTitle("Konfliktl\u00F6sung");
 		setBounds(100, 100, 320, 410);
 		contentPane = new JPanel();
