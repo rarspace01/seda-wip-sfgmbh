@@ -1,19 +1,19 @@
 package de.sfgmbh.comlayer.organisation.views;
 
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-import javax.swing.JLabel;
-
 import java.awt.Font;
-import javax.swing.JTextField;
-import javax.swing.JButton;
-
-import de.sfgmbh.comlayer.organisation.controller.ProfessorshipFrameWin;
-import de.sfgmbh.comlayer.organisation.controller.ProfessorshipFrameBtns;
 import java.awt.Toolkit;
 
-public class ProfessorshipFrame extends JFrame {
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+import javax.swing.border.EmptyBorder;
+
+import de.sfgmbh.comlayer.organisation.controller.ProfessorshipFrameBtns;
+import de.sfgmbh.comlayer.organisation.controller.ProfessorshipFrameWin;
+
+public class ProfessorshipEditFrame extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
@@ -27,12 +27,12 @@ public class ProfessorshipFrame extends JFrame {
 	 * Create the frame.
 	 */
 	@SuppressWarnings({ })
-	public ProfessorshipFrame() {
+	public ProfessorshipEditFrame() {
 		initialize();
 	}
 	private void initialize() {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(ProfessorshipFrame.class.getResource("/de/sfgmbh/comlayer/core/views/HUT_klein.png")));
-		setTitle("Lehrst\u00FChle hinzuf\u00FCgen");
+		setTitle("Lehrst\u00FChle bearbeiten");
 		setBounds(100, 100, 282, 370);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));

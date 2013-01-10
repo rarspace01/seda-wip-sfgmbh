@@ -17,12 +17,15 @@ import de.sfgmbh.comlayer.organisation.model.RoomTabTable;
 import de.sfgmbh.comlayer.organisation.model.RoomtableTable;
 import de.sfgmbh.comlayer.organisation.model.UserTabTable;
 import de.sfgmbh.comlayer.organisation.views.CounterproposalFrame;
+import de.sfgmbh.comlayer.organisation.views.ProfessorshipEditFrame;
 import de.sfgmbh.comlayer.organisation.views.ProfessorshipFrame;
 import de.sfgmbh.comlayer.organisation.views.ProfessorshipTab;
 import de.sfgmbh.comlayer.organisation.views.RequestTab;
+import de.sfgmbh.comlayer.organisation.views.RoomEditFrame;
 import de.sfgmbh.comlayer.organisation.views.RoomFrame;
 import de.sfgmbh.comlayer.organisation.views.RoomTab;
 import de.sfgmbh.comlayer.organisation.views.RoomtableTab;
+import de.sfgmbh.comlayer.organisation.views.UserEditFrame;
 import de.sfgmbh.comlayer.organisation.views.UserFrame;
 import de.sfgmbh.comlayer.organisation.views.UserTab;
 import de.sfgmbh.comlayer.timetable.views.PublicTimetableTab;
@@ -90,8 +93,11 @@ public class ServiceManager {
 	protected ProfessorshipTab professorshipTab;
 	protected RequestTab requestTab;
 	protected RoomFrame roomFrame;
+	protected RoomEditFrame roomEditFrame;
 	protected UserFrame userFrame;
+	protected UserEditFrame userEditFrame;
 	protected ProfessorshipFrame professorshipFrame;
+	protected ProfessorshipEditFrame professorshipEditFrame;
 	protected CounterproposalFrame counterproposalFrame;
 	protected RequestTabTable requestTabTable;
 	protected UserTabTable userTabTable;
@@ -166,17 +172,35 @@ public class ServiceManager {
 		}
 		return this.roomFrame;
 	}
+	public RoomEditFrame getOrgaRoomEditFrame() {
+		if (this.roomEditFrame == null) {
+			this.roomEditFrame = new RoomEditFrame();
+		}
+		return this.roomEditFrame;
+	}
 	public UserFrame getOrgaUserFrame() {
 		if (this.userFrame == null) {
 			this.userFrame = new UserFrame();
 		}
 		return this.userFrame;
 	}
+	public UserEditFrame getOrgaUserEditFrame() {
+		if (this.userEditFrame == null) {
+			this.userEditFrame = new UserEditFrame();
+		}
+		return this.userEditFrame;
+	}
 	public ProfessorshipFrame getOrgaProfessorshipFrame() {
 		if (this.professorshipFrame == null) {
 			this.professorshipFrame = new ProfessorshipFrame();
 		}
 		return this.professorshipFrame;
+	}
+	public ProfessorshipEditFrame getOrgaProfessorshipEditFrame() {
+		if (this.professorshipEditFrame == null) {
+			this.professorshipEditFrame = new ProfessorshipEditFrame();
+		}
+		return this.professorshipEditFrame;
 	}
 	public CounterproposalFrame getOrgaCounterproposalFrame() {
 		if (this.counterproposalFrame == null) {
