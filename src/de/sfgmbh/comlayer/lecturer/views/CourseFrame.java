@@ -13,6 +13,7 @@ import javax.swing.border.EmptyBorder;
 import net.miginfocom.swing.MigLayout;
 import de.sfgmbh.comlayer.lecturer.controller.CourseFrameWin;
 import de.sfgmbh.comlayer.lecturer.controller.CourseFrameBtns;
+import java.awt.Toolkit;
 
 public class CourseFrame extends JFrame {
 
@@ -27,6 +28,10 @@ public class CourseFrame extends JFrame {
 	 */
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public CourseFrame() {
+		initialize();
+	}
+	private void initialize() {
+		setIconImage(Toolkit.getDefaultToolkit().getImage(CourseFrame.class.getResource("/de/sfgmbh/comlayer/core/views/HUT_klein.png")));
 		setTitle("Lehrveranstaltungen hinzuf\u00FCgen");
 		setBounds(100, 100, 367, 326);
 		contentPane = new JPanel();

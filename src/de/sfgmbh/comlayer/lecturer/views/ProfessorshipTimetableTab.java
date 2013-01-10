@@ -48,14 +48,14 @@ public class ProfessorshipTimetableTab extends JPanel {
 		add(lblWochenplanFrDen);
 		add(getPanel());
 		
-		JPanel UniIconpanel = new JPanel();
-		UniIconpanel.setBounds(787, 11, 70, 61);
-		add(UniIconpanel);
+		JPanel uniIconPanel = new JPanel();
+		uniIconPanel.setBounds(787, 11, 70, 61);
+		add(uniIconPanel);
 		
-		JLabel uniIconJLbl = new JLabel("");
-		uniIconJLbl.setIcon(new ImageIcon(BaseTab.class.getResource("/de/sfgmbh/comlayer/core/views/UniBA_logo.png")));
-		uniIconJLbl.setMaximumSize(new Dimension(50,50));
-		UniIconpanel.add(uniIconJLbl);
+		JLabel lblUniIcon = new JLabel("");
+		lblUniIcon.setIcon(new ImageIcon(BaseTab.class.getResource("/de/sfgmbh/comlayer/core/views/UniBA_logo.png")));
+		lblUniIcon.setMaximumSize(new Dimension(50,50));
+		uniIconPanel.add(lblUniIcon);
 	}
 	
 	public JPanel getPanel() {

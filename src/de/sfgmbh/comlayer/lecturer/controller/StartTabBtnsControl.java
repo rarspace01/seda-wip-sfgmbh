@@ -30,8 +30,9 @@ public class StartTabBtnsControl implements ActionListener {
 		
 		// Bearbeiten button is pressed
 		if (this.ctrlAction.equals("edit")){
-			this.getInfoWindow("<strong>Fehlermeldung:</strong> <br>Sie haben keine Lehveranstaltung selektiert! <br> " +
-					"Wenn Sie keine Fehlermeldung erhalten, gelangen sofort zu einer Bearbeiten-Maske wie beim Hinzufügen von Lehrveranstaltung.").setVisible(true);
+			Bootstrap.serviceManager.getLecturerCourseEditFrame().setVisible(true);
+			//this.getInfoWindow("<strong>Fehlermeldung:</strong> <br>Sie haben keine Lehveranstaltung selektiert! <br> " +
+			//		"Wenn Sie keine Fehlermeldung erhalten, gelangen sofort zu einer Bearbeiten-Maske wie beim Hinzufügen von Lehrveranstaltung.").setVisible(true);
 		}
 		
 		// Löschen button is pressed

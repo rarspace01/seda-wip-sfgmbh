@@ -48,8 +48,6 @@ public class StartTab extends JPanel {
 	private JTable roomrequestTable;
 	private JTextPane txtpnBajksbfwebfskbjfsbksbksdbkgdbfkgbdkrgbekrbgf;
 	private JButton btnFailureprompt;
-	private JPanel uniIconPanel;
-	private JLabel lbluniIcon;
 
 	/**
 	 * Create the panel.
