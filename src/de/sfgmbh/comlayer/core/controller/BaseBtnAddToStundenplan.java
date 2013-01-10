@@ -3,6 +3,7 @@ package de.sfgmbh.comlayer.core.controller;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import de.sfgmbh.applayer.core.controller.ServiceManager;
 import de.sfgmbh.comlayer.core.views.InfoDialog;
 import de.sfgmbh.init.Bootstrap;
 
@@ -25,6 +26,10 @@ public class BaseBtnAddToStundenplan implements ActionListener {
 		if (this.navAction.equals("plus")) {
 					this.getInfoWindow("<strong>Fehlermeldung:</strong><br> Es konnte keine Übersicht Ihrer Veranstaltungen angezeigt werden. Sie haben keine Lehrveranstaltung ausgewählt!").setVisible(true);	
 		}
+		//Test if hidden objects can be accessed (this my be removed)
+		int test = ServiceManager.getInstance().getCoreBaseTab().getOrganisationTable().getSelectedRow();
+		System.out.println(ServiceManager.getInstance().getCoreBaseTableModel().getValueAt(test, 9).toString());
+		//Go to the timetable tab
 		Bootstrap.serviceManager.getCoreBaseTab().mainTabbedContainerPane.setVisible(true);
 		Bootstrap.serviceManager.getCoreBaseTab().mainTabbedContainerPane.removeAll();
 		Bootstrap.serviceManager.getCoreBaseTab().mainTabbedContainerPane.addTab("Start", null, Bootstrap.serviceManager.getCoreBaseTab().startScreenPanel, null);
