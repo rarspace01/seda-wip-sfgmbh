@@ -14,6 +14,7 @@ public class AppModel implements IntfAppObservable {
 	public RepositoryUser repositoryUser = new RepositoryUser();
 	public RepositoryCourse repositoryCourse = new RepositoryCourse();
 	public RepositoryRoom repositoryRoom = new RepositoryRoom();
+	public RepositoryRoomAllocation repositoryRoomAllocation = new RepositoryRoomAllocation();
 	
 	private AppModel() {} // class may only call itself via declaration
 	

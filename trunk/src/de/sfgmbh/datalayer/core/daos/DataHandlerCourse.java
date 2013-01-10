@@ -3,6 +3,7 @@ package de.sfgmbh.datalayer.core.daos;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import de.sfgmbh.applayer.core.model.Course;
@@ -66,7 +67,7 @@ public class DataHandlerCourse implements IntfDataFilter, IntfDataObservable {
 	}
 	
 	@Override
-	public List<Course> getByFilter(String filterName, String filterValue) {
+	public List<Course> getByFilter(HashMap<String, String> filter) {
 		// TODO Auto-generated method stub
 		return null;
 	}

@@ -47,14 +47,14 @@ public class BaseTab extends JFrame{
 	public JLayeredPane contentPane;
 	public JTabbedPane mainTabbedContainerPane;
 	public JPanel startScreenPanel;
-	private JComboBox<String> comboBoxVeranstaltungFilter;
+	public JComboBox<String> comboBoxLehrstuhlFilter;
+	public JComboBox<String> comboBoxDozentFilter;
+	public JComboBox<String> comboBoxSemesterFilter;
+	public JComboBox<String> comboBoxVeranstaltungFilter;
 	private JLabel lblLehrveranstaltung;
 	private JLabel lblLehrstuhl;
 	private JLabel lblDozent;
 	private JLabel lblLoggedIn;
-	private JComboBox<String> comboBoxLehrstuhlFilter;
-	private JComboBox<String> comboBoxDozentFilter;
-	private JComboBox<String> comboBoxSemesterFilter;
 	private JLabel lblSemester;
 	private JTable organisationTable;
 	private JScrollPane mainTableScrollPane;

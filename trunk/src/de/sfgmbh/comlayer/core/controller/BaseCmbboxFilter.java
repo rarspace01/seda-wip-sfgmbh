@@ -5,8 +5,8 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
+import de.sfgmbh.applayer.core.controller.ServiceManager;
 import de.sfgmbh.comlayer.core.views.InfoDialog;
-import de.sfgmbh.init.Bootstrap;
 
 
 
@@ -35,12 +35,7 @@ public class BaseCmbboxFilter implements KeyListener, ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		if (Bootstrap.serviceManager.getCoreBaseTableModel().getRowCount() >= 3) {
-			Bootstrap.serviceManager.getCoreBaseTableModel().removeRow(0);
-			Bootstrap.serviceManager.getCoreBaseTableModel().removeRow(1);
-		} else {
-			this.getInfoWindow().setVisible(true);
-		}
+		ServiceManager.getInstance().getCoreBaseTableModel().change();
 	}
 	
 	public InfoDialog getInfoWindow() {

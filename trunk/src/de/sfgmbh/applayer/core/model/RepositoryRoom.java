@@ -13,7 +13,7 @@ public class RepositoryRoom implements IntfAppObservable, IntfDataObserver {
 	private ArrayList<Object> observer_ = new ArrayList<Object>();
 	
 	/**
-	 * Register this chair repository as observer in the data model
+	 * Register this room repository as observer in the data model
 	 */
 	public RepositoryRoom() {
 		DataModel.getInstance().dataHandlerRoom.register(this);

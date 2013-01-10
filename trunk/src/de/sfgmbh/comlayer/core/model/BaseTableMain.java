@@ -1,19 +1,68 @@
 package de.sfgmbh.comlayer.core.model;
 
-import javax.swing.table.*;
+import java.util.HashMap;
 
-public class BaseTableMain extends DefaultTableModel {
+import javax.swing.table.DefaultTableModel;
+
+import de.sfgmbh.applayer.core.controller.ServiceManager;
+import de.sfgmbh.applayer.core.definitions.IntfAppObserver;
+import de.sfgmbh.applayer.core.model.AppModel;
+import de.sfgmbh.applayer.core.model.RoomAllocation;
+import de.sfgmbh.comlayer.core.controller.ViewHelper;
+
+public class BaseTableMain extends DefaultTableModel implements IntfAppObserver {
 
 	private static final long serialVersionUID = 1L;
-	private Object[][] preFill = {
-			{"WS1213", "\u00DC", "SEDA-WIP-B", "WI-Projekt", "Benker", "Mo", "10 - 12", "WP3/03.002", "2"},
-			{"WS1314", "VL", "ISDL-ISS1-M", "Standards und Netzwerke", "Weitzel", "Mi", "18 - 20", "WP3/05.004", "4"},
-			{null, null, null, null, null, null, null, null, null},
-		};
-	private String[] preFillHeader = {"Sem.", "Art", "Bez.", "Name", "Dozent", "Tag", "Uhrzeit", "Raum", "SWS"};
-	
+	private String[] header = {"Sem.", "Art", "Bez.", "Name", "Dozent", "Tag", "Uhrzeit", "Raum", "SWS"};
 	
 	public BaseTableMain() {
-		this.setDataVector(preFill, preFillHeader);
+		AppModel.getInstance().repositoryRoomAllocation.register(this);
+		this.setColumnIdentifiers(header);
+		this.change("init");
+	}
+
+	public void change(String variant) {
+		ViewHelper vh = new ViewHelper();
+		HashMap<String, String> filter = new HashMap<String, String>();
+		
+		this.setRowCount(0);
+		
+		if (variant.equals("init")) {
+			filter.put("chair", "<alle>");
+			filter.put("course", "<alle>");
+			filter.put("lecturer", "<alle>");
+			filter.put("semester", "<alle>");
+		} else {
+			filter.put("chair", ServiceManager.getInstance().getCoreBaseTab().comboBoxLehrstuhlFilter.getSelectedItem().toString());
+			filter.put("course", ServiceManager.getInstance().getCoreBaseTab().comboBoxVeranstaltungFilter.getSelectedItem().toString());
+			filter.put("lecturer", ServiceManager.getInstance().getCoreBaseTab().comboBoxDozentFilter.getSelectedItem().toString());
+			filter.put("semester", ServiceManager.getInstance().getCoreBaseTab().comboBoxSemesterFilter.getSelectedItem().toString());
+		}
+		
+		for (RoomAllocation ra : AppModel.getInstance().repositoryRoomAllocation.getByFilter(filter)){
+			if (ra.isPublic()) {
+				try {
+					Object[] row = {
+							ra.getSemester_(), 
+							ra.getCourse_().getCourseKind_(), 
+							ra.getCourse_().getCourseAcronym_(), 
+							ra.getCourse_().getCourseName_(), 
+							ra.getCourse_().getLecturer_().getlName_(), 
+							vh.getDay(ra.getDay_()),
+							vh.getTime(ra.getTime_()), 
+							ra.getRoom_().getRoomNumber_(), 
+							ra.getCourse_().getSws_()
+							};
+					this.addRow(row);
+				} catch (Exception e) {
+					AppModel.getInstance().appExcaptions.setNewException("Ein unbekannter Fehler ist aufgetreten! <br /><br />Fehler BaseTableMain-01:<br />" + e.toString(), "Fehler!");
+				}
+			}
+		}
+	}
+	
+	@Override
+	public void change() {
+		this.change("update");
 	}
 }

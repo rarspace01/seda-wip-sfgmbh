@@ -3,6 +3,7 @@ package de.sfgmbh.datalayer.core.daos;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import de.sfgmbh.applayer.core.model.Chair;
@@ -74,7 +75,7 @@ public class DataHandlerChair implements IntfDataChair, IntfDataFilter, IntfData
 	}
 
 	@Override
-	public List<Chair> getByFilter(String filterName, String filterValue) {
+	public List<Chair> getByFilter(HashMap<String, String> filter) {
 		// TODO Auto-generated method stub
 		return null;
 	}
