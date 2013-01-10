@@ -54,7 +54,7 @@ public class StartTab extends JPanel {
 	 */
 	public StartTab() {
 		setMaximumSize(new Dimension(10, 32767));
-		setLayout(new MigLayout("", "[140px:n:140px,grow][][grow][grow][grow][grow][100px:n:100px,grow]", "[][grow]"));
+		setLayout(new MigLayout("", "[140px:n:140px][][grow][grow][grow][grow][100px:n:100px,grow]", "[][grow]"));
 		
 		JLabel lblLehrveranstaltungen = new JLabel("Lehrveranstaltungen:");
 		lblLehrveranstaltungen.setFont(new Font("Tahoma", Font.BOLD, 12));
@@ -73,14 +73,14 @@ public class StartTab extends JPanel {
 		topSidePanel = new JPanel();
 		topSidePanel.setLayout(null);
 		topSidePanel.setBorder(new TitledBorder(null, "", TitledBorder.TRAILING, TitledBorder.ABOVE_TOP, null, null));
-		topSidePanel.setBounds(0, 6, 130, 464);
+		topSidePanel.setBounds(0, 0, 130, 390);
 		sidePanel.add(topSidePanel);
 		
 		txtpnBajksbfwebfskbjfsbksbksdbkgdbfkgbdkrgbekrbgf = new JTextPane();
 		txtpnBajksbfwebfskbjfsbksbksdbkgdbfkgbdkrgbekrbgf.setBackground(UIManager.getColor("Button.background"));
 		txtpnBajksbfwebfskbjfsbksbksdbkgdbfkgbdkrgbekrbgf.setContentType("text/plain\r\n");
 		txtpnBajksbfwebfskbjfsbksbksdbkgdbfkgbdkrgbekrbgf.setText("LiveTickerNews:\r\n\r\nFehler: Es wurden keine Lehrveranstaltungen gefunden werden, die in 10 Minuten beginnen. \r\n\r\nFehler: Es wurden keine Meldungen von Dozenten oder der Hausverwaltung gefunden. \r\n\r\nFehler: Es besteht keine Verbindung zur Datenbank.");
-		txtpnBajksbfwebfskbjfsbksbksdbkgdbfkgbdkrgbekrbgf.setBounds(10, 11, 110, 453);
+		txtpnBajksbfwebfskbjfsbksbksdbkgdbfkgbdkrgbekrbgf.setBounds(10, 0, 110, 379);
 		topSidePanel.add(txtpnBajksbfwebfskbjfsbksbksdbkgdbfkgbdkrgbekrbgf);
 		
 		tablePanel = new JPanel();
