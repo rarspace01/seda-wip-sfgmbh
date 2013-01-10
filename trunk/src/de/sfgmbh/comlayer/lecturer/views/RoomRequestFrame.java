@@ -15,6 +15,7 @@ import javax.swing.border.EmptyBorder;
 import net.miginfocom.swing.MigLayout;
 import de.sfgmbh.comlayer.lecturer.controller.CourseFrameWin;
 import de.sfgmbh.comlayer.lecturer.controller.RoomRequestFrameBtns;
+import java.awt.Toolkit;
 
 public class RoomRequestFrame extends JFrame {
 
@@ -26,6 +27,10 @@ public class RoomRequestFrame extends JFrame {
 	 */
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public RoomRequestFrame() {
+		initialize();
+	}
+	private void initialize() {
+		setIconImage(Toolkit.getDefaultToolkit().getImage(RoomRequestFrame.class.getResource("/de/sfgmbh/comlayer/core/views/HUT_klein.png")));
 		setTitle("Raumanfrage senden");
 		setBounds(100, 100, 475, 533);
 		contentPane = new JPanel();
