@@ -13,7 +13,7 @@ import de.sfgmbh.comlayer.core.controller.ViewHelper;
 public class BaseTableMain extends DefaultTableModel implements IntfAppObserver {
 
 	private static final long serialVersionUID = 1L;
-	private String[] header = {"Sem.", "Art", "Bez.", "Name", "Dozent", "Tag", "Uhrzeit", "Raum", "SWS"};
+	private String[] header = {"Sem.", "Art", "Bez.", "Name", "Dozent", "Tag", "Uhrzeit", "Raum", "SWS", "Hidden"};
 	
 	public BaseTableMain() {
 		AppModel.getInstance().repositoryRoomAllocation.register(this);
@@ -51,9 +51,11 @@ public class BaseTableMain extends DefaultTableModel implements IntfAppObserver 
 							vh.getDay(ra.getDay_()),
 							vh.getTime(ra.getTime_()), 
 							ra.getRoom_().getRoomNumber_(), 
-							ra.getCourse_().getSws_()
+							ra.getCourse_().getSws_(),
+							ra
 							};
 					this.addRow(row);
+
 				} catch (Exception e) {
 					AppModel.getInstance().appExcaptions.setNewException("Ein unbekannter Fehler ist aufgetreten! <br /><br />Fehler BaseTableMain-01:<br />" + e.toString(), "Fehler!");
 				}

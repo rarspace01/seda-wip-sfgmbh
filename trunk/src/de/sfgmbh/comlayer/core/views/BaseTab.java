@@ -185,11 +185,7 @@ public class BaseTab extends JFrame{
 		mainTableScrollPane = new JScrollPane();
 		startScreenPanel.add(mainTableScrollPane, "cell 2 2 4 1,grow");
 		
-		organisationTable = new JTable();
-		mainTableScrollPane.setViewportView(organisationTable);
-		organisationTable.setBackground(SystemColor.activeCaption);
-		organisationTable.setShowVerticalLines(false);
-		organisationTable.setModel(Bootstrap.serviceManager.getCoreBaseTableModel());
+		mainTableScrollPane.setViewportView(getOrganisationTable());
 		
 		JPanel buttonPanel = new JPanel();
 		buttonPanel.setMinimumSize(new Dimension(80, 10));
@@ -205,45 +201,57 @@ public class BaseTab extends JFrame{
 		btnFehlermeldung = new JButton("Fehlermeldung");
 		btnFehlermeldung.addActionListener(new BaseBtnFailureprompt("error"));
 		startScreenPanel.add(btnFehlermeldung, "cell 2 3");
-		
-		organisationTable.getColumnModel().getColumn(0).setResizable(false);
-		organisationTable.getColumnModel().getColumn(0).setPreferredWidth(50);
-		organisationTable.getColumnModel().getColumn(0).setMinWidth(50);
-		organisationTable.getColumnModel().getColumn(0).setMaxWidth(50);
-		organisationTable.getColumnModel().getColumn(1).setResizable(false);
-		organisationTable.getColumnModel().getColumn(1).setPreferredWidth(25);
-		organisationTable.getColumnModel().getColumn(1).setMinWidth(25);
-		organisationTable.getColumnModel().getColumn(1).setMaxWidth(25);
-		organisationTable.getColumnModel().getColumn(2).setResizable(false);
-		organisationTable.getColumnModel().getColumn(2).setMinWidth(75);
-		organisationTable.getColumnModel().getColumn(2).setMaxWidth(75);
-		organisationTable.getColumnModel().getColumn(3).setPreferredWidth(80);
-		organisationTable.getColumnModel().getColumn(3).setMinWidth(80);
-		organisationTable.getColumnModel().getColumn(3).setMaxWidth(200);
-		organisationTable.getColumnModel().getColumn(4).setPreferredWidth(70);
-		organisationTable.getColumnModel().getColumn(4).setMinWidth(70);
-		organisationTable.getColumnModel().getColumn(4).setMaxWidth(200);
-		organisationTable.getColumnModel().getColumn(5).setResizable(false);
-		organisationTable.getColumnModel().getColumn(5).setPreferredWidth(30);
-		organisationTable.getColumnModel().getColumn(5).setMinWidth(30);
-		organisationTable.getColumnModel().getColumn(5).setMaxWidth(30);
-		organisationTable.getColumnModel().getColumn(6).setResizable(false);
-		organisationTable.getColumnModel().getColumn(6).setPreferredWidth(60);
-		organisationTable.getColumnModel().getColumn(6).setMinWidth(60);
-		organisationTable.getColumnModel().getColumn(6).setMaxWidth(60);
-		organisationTable.getColumnModel().getColumn(7).setResizable(false);
-		organisationTable.getColumnModel().getColumn(7).setPreferredWidth(70);
-		organisationTable.getColumnModel().getColumn(7).setMinWidth(70);
-		organisationTable.getColumnModel().getColumn(7).setMaxWidth(70);
-		organisationTable.getColumnModel().getColumn(8).setResizable(false);
-		organisationTable.getColumnModel().getColumn(8).setPreferredWidth(32);
-		organisationTable.getColumnModel().getColumn(8).setMinWidth(32);
-		organisationTable.getColumnModel().getColumn(8).setMaxWidth(32);
-		DefaultTableCellRenderer center = new DefaultTableCellRenderer();
-		center.setHorizontalAlignment(SwingConstants.CENTER);
-		organisationTable.getColumnModel().getColumn(8).setCellRenderer(center);
-		organisationTable.getColumnModel().getColumn(1).setCellRenderer(center);
-		organisationTable.getColumnModel().getColumn(6).setCellRenderer(center);
+	
+	}
+	
+	public JTable getOrganisationTable() {
+		if (organisationTable == null) {
+			DefaultTableCellRenderer center = new DefaultTableCellRenderer();
+			center.setHorizontalAlignment(SwingConstants.CENTER);
+			
+			organisationTable = new JTable();
+			organisationTable.setBackground(SystemColor.activeCaption);
+			organisationTable.setShowVerticalLines(false);
+			organisationTable.setModel(Bootstrap.serviceManager.getCoreBaseTableModel());
+			organisationTable.getColumnModel().getColumn(0).setResizable(false);
+			organisationTable.getColumnModel().getColumn(0).setPreferredWidth(50);
+			organisationTable.getColumnModel().getColumn(0).setMinWidth(50);
+			organisationTable.getColumnModel().getColumn(0).setMaxWidth(50);
+			organisationTable.getColumnModel().getColumn(1).setResizable(false);
+			organisationTable.getColumnModel().getColumn(1).setPreferredWidth(25);
+			organisationTable.getColumnModel().getColumn(1).setMinWidth(25);
+			organisationTable.getColumnModel().getColumn(1).setMaxWidth(25);
+			organisationTable.getColumnModel().getColumn(2).setResizable(false);
+			organisationTable.getColumnModel().getColumn(2).setMinWidth(75);
+			organisationTable.getColumnModel().getColumn(2).setMaxWidth(75);
+			organisationTable.getColumnModel().getColumn(3).setPreferredWidth(80);
+			organisationTable.getColumnModel().getColumn(3).setMinWidth(80);
+			organisationTable.getColumnModel().getColumn(3).setMaxWidth(200);
+			organisationTable.getColumnModel().getColumn(4).setPreferredWidth(70);
+			organisationTable.getColumnModel().getColumn(4).setMinWidth(70);
+			organisationTable.getColumnModel().getColumn(4).setMaxWidth(200);
+			organisationTable.getColumnModel().getColumn(5).setResizable(false);
+			organisationTable.getColumnModel().getColumn(5).setPreferredWidth(30);
+			organisationTable.getColumnModel().getColumn(5).setMinWidth(30);
+			organisationTable.getColumnModel().getColumn(5).setMaxWidth(30);
+			organisationTable.getColumnModel().getColumn(6).setResizable(false);
+			organisationTable.getColumnModel().getColumn(6).setPreferredWidth(60);
+			organisationTable.getColumnModel().getColumn(6).setMinWidth(60);
+			organisationTable.getColumnModel().getColumn(6).setMaxWidth(60);
+			organisationTable.getColumnModel().getColumn(7).setResizable(false);
+			organisationTable.getColumnModel().getColumn(7).setPreferredWidth(70);
+			organisationTable.getColumnModel().getColumn(7).setMinWidth(70);
+			organisationTable.getColumnModel().getColumn(7).setMaxWidth(70);
+			organisationTable.getColumnModel().getColumn(8).setResizable(false);
+			organisationTable.getColumnModel().getColumn(8).setPreferredWidth(32);
+			organisationTable.getColumnModel().getColumn(8).setMinWidth(32);
+			organisationTable.getColumnModel().getColumn(8).setMaxWidth(32);
+			organisationTable.getColumnModel().getColumn(8).setCellRenderer(center);
+			organisationTable.getColumnModel().getColumn(1).setCellRenderer(center);
+			organisationTable.getColumnModel().getColumn(6).setCellRenderer(center);
+			organisationTable.getColumnModel().removeColumn(organisationTable.getColumn("Hidden"));
+		}
+		return organisationTable;
 	}
 	public JLabel getLblBenutzername() {
 		if (lblBenutzername == null) {
