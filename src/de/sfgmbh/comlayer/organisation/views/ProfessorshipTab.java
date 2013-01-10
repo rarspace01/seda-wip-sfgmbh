@@ -48,8 +48,8 @@ public class ProfessorshipTab extends JPanel {
 	}
 	private void initialize() {
 		setMinimumSize(new Dimension(100, 10));
-		setMaximumSize(new Dimension(100, 32767));
-		setLayout(new MigLayout("", "[140px:140px:140px,grow][10px:10px:10px][grow][grow][grow][grow][grow]", "[grow][][grow][]"));
+		setMaximumSize(new Dimension(100, 50));
+		setLayout(new MigLayout("", "[140px:140px:140px][10px:10px:10px][grow][grow][grow][grow][100px:100px:100px]", "[][][grow][bottom]"));
 		
 		JLabel lblLehrstuhlverwaltung = new JLabel("Lehrstuhlverwaltung");
 		lblLehrstuhlverwaltung.setFont(new Font("SansSerif", Font.BOLD, 13));
@@ -63,7 +63,10 @@ public class ProfessorshipTab extends JPanel {
 		
 		uniIconPanel = new JPanel();
 		add(uniIconPanel, "cell 6 0,alignx center,growy");
-		uniIconPanel.add(getUniIconJLbl());
+		lblUniIcon = new JLabel();
+		lblUniIcon.setIcon(new ImageIcon(BaseTab.class.getResource("/de/sfgmbh/comlayer/core/views/UniBA_logo.png")));
+		lblUniIcon.setMaximumSize(new Dimension(50,50));
+		uniIconPanel.add(lblUniIcon);
 		textFieldProfessorshipname.setText("<alle>");
 		textFieldProfessorshipname.setColumns(10);
 		add(textFieldProfessorshipname, "cell 2 1,growx");
@@ -77,13 +80,13 @@ public class ProfessorshipTab extends JPanel {
 		leftTopPanel = new JPanel();
 		leftTopPanel.setLayout(null);
 		leftTopPanel.setBorder(new TitledBorder(null, "", TitledBorder.TRAILING, TitledBorder.ABOVE_TOP, null, null));
-		leftTopPanel.setBounds(0, 6, 140, 432);
+		leftTopPanel.setBounds(0, 0, 140, 393);
 		leftPanel.add(leftTopPanel);
 		
 		tickerMsgPos1 = new JTextPane();
 		tickerMsgPos1.setText("LiveTickerNews:\r\n\r\nFehler: Es wurden keine Lehrveranstaltungen gefunden werden, die in 10 Minuten beginnen. \r\n\r\nFehler: Es wurden keine Meldungen von Dozenten oder der Hausverwaltung gefunden. \r\n\r\nFehler: Es besteht keine Verbindung zur Datenbank.\r\n");
 		tickerMsgPos1.setBackground(UIManager.getColor("Button.background"));
-		tickerMsgPos1.setBounds(6, 11, 124, 421);
+		tickerMsgPos1.setBounds(6, 11, 124, 365);
 		leftTopPanel.add(tickerMsgPos1);
 		
 		organisationTableScrollPane = new JScrollPane();
@@ -122,12 +125,5 @@ public class ProfessorshipTab extends JPanel {
 		add(btnFailureprompt, "cell 2 3");
 		
 	}
-	private JLabel getUniIconJLbl() {
-		if (lblUniIcon == null) {
-			lblUniIcon = new JLabel("");
-			lblUniIcon.setIcon(new ImageIcon(BaseTab.class.getResource("/de/sfgmbh/comlayer/core/views/UniBA_logo.png")));
-			lblUniIcon.setMaximumSize(new Dimension(50,50));
-		}
-		return lblUniIcon;
-	}
+	
 }
