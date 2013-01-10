@@ -31,8 +31,8 @@ public class ProfessorshipTabBtnsControl implements ActionListener {
 		
 		// Lehrstuhl bearbeiten Button is pressed
 		if (this.navAction.equals("edit")) {
-			//Bootstrap.serviceManager.getOrgaProfessorshipFrame().setVisible(true);
-			this.getInfoWindow("<b>Fehlermeldung:</b><br> Sie haben keinen Lehrstuhl selektiert!<br> Wenn Sie keine Fehlermeldung erscheint gelangen Sie sofort zu einer Bearbeiten-Maske, welche allerdings noch nicht implementiert ist.").setVisible(true);
+			Bootstrap.serviceManager.getOrgaProfessorshipFrame().setVisible(true);
+			//this.getInfoWindow("<b>Fehlermeldung:</b><br> Sie haben keinen Lehrstuhl selektiert!<br> Wenn Sie keine Fehlermeldung erscheint gelangen Sie sofort zu einer Bearbeiten-Maske, welche allerdings noch nicht implementiert ist.").setVisible(true);
 		}
 		
 		// Lehrstuhl löschen Button is pressed

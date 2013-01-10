@@ -4,6 +4,7 @@ import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.awt.Toolkit;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -14,9 +15,8 @@ import javax.swing.border.EmptyBorder;
 
 import de.sfgmbh.comlayer.organisation.controller.RoomFrameBtns;
 import de.sfgmbh.comlayer.organisation.controller.RoomFrameWin;
-import java.awt.Toolkit;
 
-public class RoomFrame extends JFrame {
+public class RoomEditFrame extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
@@ -34,12 +34,12 @@ public class RoomFrame extends JFrame {
 	 * Create the frame.
 	 */
 	@SuppressWarnings({ })
-	public RoomFrame() {
+	public RoomEditFrame() {
 		initialize();
 	}
 	private void initialize() {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(RoomFrame.class.getResource("/de/sfgmbh/comlayer/core/views/HUT_klein.png")));
-		setTitle("Rauminfo erstellen");
+		setTitle("Rauminfo bearbeiten");
 		setBounds(100, 100, 266, 400);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
