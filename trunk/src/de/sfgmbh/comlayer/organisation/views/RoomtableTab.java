@@ -18,8 +18,6 @@ public class RoomtableTab extends JPanel {
 
 	private static final long serialVersionUID = 1L;
 	private JTable StundenplanTable;
-	private JPanel panel;
-	private JLabel uniIconJLbl;
 	public RoomtableTab() {
 		initialize();
 	}
@@ -30,6 +28,10 @@ public class RoomtableTab extends JPanel {
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(31, 69, 830, 392);
 		add(scrollPane);
+		
+		JPanel uniIconPanel = new JPanel();
+		uniIconPanel.setBounds(792, 0, 69, 68);
+		add(uniIconPanel);
 		
 		StundenplanTable = new JTable();
 		
@@ -62,23 +64,14 @@ public class RoomtableTab extends JPanel {
 		StundenplanTable.getColumnModel().getColumn(4).setMaxWidth(145);
 		StundenplanTable.getColumnModel().getColumn(5).setMinWidth(50);
 		StundenplanTable.getColumnModel().getColumn(5).setMaxWidth(145);
-		add(getPanel());
-	}
-	private JPanel getPanel() {
-		if (panel == null) {
-			panel = new JPanel();
-			panel.setBounds(792, 0, 69, 68);
-			panel.add(getLabel());
-		}
-		return panel;
-	}
-	private JLabel getLabel() {
-		if (uniIconJLbl == null) {
-			uniIconJLbl = new JLabel("");
-			uniIconJLbl.setIcon(new ImageIcon(BaseTab.class.getResource("/de/sfgmbh/comlayer/core/views/UniBA_logo.png")));
-			uniIconJLbl.setMaximumSize(new Dimension(50,50));
 		
-		}
-		return uniIconJLbl;
+		JLabel lblUniIcon = new JLabel();
+		lblUniIcon.setIcon(new ImageIcon(BaseTab.class.getResource("/de/sfgmbh/comlayer/core/views/UniBA_logo.png")));
+		lblUniIcon.setMaximumSize(new Dimension(50,50));
+		uniIconPanel.add(lblUniIcon);
 	}
+	
+		
+	
+	
 }

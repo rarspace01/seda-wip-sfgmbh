@@ -56,7 +56,7 @@ public class RequestTab extends JPanel {
 	private void initialize() {
 		setMinimumSize(new Dimension(100, 10));
 		setMaximumSize(new Dimension(100, 32767));
-		setLayout(new MigLayout("", "[140px:140px:140px,grow][10px:10px:10px][grow][grow][grow][grow][grow]", "[grow][][grow][]"));
+		setLayout(new MigLayout("", "[140px:140px:140px][10px:10px:10px][grow][grow][grow][grow][100px:100px:100px]", "[][][419.00,grow][]"));
 		
 		JLabel lblRaumverwaltung = new JLabel("Raumanfragen");
 		lblRaumverwaltung.setFont(new Font("SansSerif", Font.BOLD, 13));
@@ -79,7 +79,11 @@ public class RequestTab extends JPanel {
 		
 		uniIconPanel = new JPanel();
 		add(uniIconPanel, "cell 6 0,alignx center,growy");	
-		uniIconPanel.add(getUniIconJLbl());
+		lblUniIcon = new JLabel();
+		lblUniIcon.setIcon(new ImageIcon(BaseTab.class.getResource("/de/sfgmbh/comlayer/core/views/UniBA_logo.png")));
+		lblUniIcon.setMaximumSize(new Dimension(50,50));
+		uniIconPanel.add(lblUniIcon);
+		
 		comboBoxLecturer.setModel(new DefaultComboBoxModel<String>(new String[] {"<alle>"}));
 		comboBoxLecturer.setEditable(true);
 		comboBoxLecturer.setAutoscrolls(true);
@@ -115,13 +119,13 @@ public class RequestTab extends JPanel {
 		leftTopPanel = new JPanel();
 		leftTopPanel.setLayout(null);
 		leftTopPanel.setBorder(new TitledBorder(null, "", TitledBorder.TRAILING, TitledBorder.ABOVE_TOP, null, null));
-		leftTopPanel.setBounds(0, 6, 140, 428);
+		leftTopPanel.setBounds(0, 6, 140, 385);
 		leftPanel.add(leftTopPanel);
 		
 		tickerMsgPos1 = new JTextPane();
 		tickerMsgPos1.setBackground(UIManager.getColor("Button.background"));
 		tickerMsgPos1.setText("LiveTickerNews:\r\n\r\nFehler: Es wurden keine Lehrveranstaltungen gefunden werden, die in 10 Minuten beginnen.\r\n\r\nFehler: Es wurden keine Meldungen von Dozenten oder der Hausverwaltung gefunden. \r\n\r\nFehler: Es besteht keine Verbindung zur Datenbank.\r\n");
-		tickerMsgPos1.setBounds(6, 11, 124, 417);
+		tickerMsgPos1.setBounds(6, 11, 124, 368);
 		leftTopPanel.add(tickerMsgPos1);
 		
 		organisationTableScrollPane = new JScrollPane();
@@ -149,24 +153,17 @@ public class RequestTab extends JPanel {
 		btnAblehnen.addActionListener(new RequestTabBtnsControl("ablehnen"));
 		buttonPanel.add(btnAblehnen);
 		
-		JButton btnGegenvorschlag = new JButton("Konfliktl\u00F6sung");
+		JButton btnGegenvorschlag = new JButton("l\u00F6sen");
 		btnGegenvorschlag.setMinimumSize(new Dimension(90, 23));
 		btnGegenvorschlag.setMaximumSize(new Dimension(90, 23));
 		btnGegenvorschlag.setPreferredSize(new Dimension(50, 23));
 		btnGegenvorschlag.addActionListener(new RequestTabBtnsControl("Konflikt"));
-		btnGegenvorschlag.setBounds(6, 79, 99, 23);
+		btnGegenvorschlag.setBounds(6, 79, 88, 23);
 		buttonPanel.add(btnGegenvorschlag);
 		
 		btnFailureprompt = new JButton("Ausloggen");
 		add(btnFailureprompt, "cell 2 3");
 		btnFailureprompt.addActionListener(new RequestTabBtnsControl("Fehlermeldung"));
 	}
-	private JLabel getUniIconJLbl() {
-		if (lblUniIcon == null) {
-			lblUniIcon = new JLabel("");
-			lblUniIcon.setIcon(new ImageIcon(BaseTab.class.getResource("/de/sfgmbh/comlayer/core/views/UniBA_logo.png")));
-			lblUniIcon.setMaximumSize(new Dimension(50,50));
-		}
-		return lblUniIcon;
-	}
+	
 }
