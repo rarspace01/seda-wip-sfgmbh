@@ -49,7 +49,7 @@ public class BaseBtnLogin implements ActionListener {
 				User checkUser = ctrlBaseTab.login(user, pwd);
 				
 				if (checkUser == null) {
-					this.getInfoWindow("<strong> Fehlermeldung: </strong><br>Der eingegebene Benutzername oder das eingegebene Passwort ist inkorrekt! <p>Bitte versuche es noch einmal.</p>").setVisible(true);
+					// currently here happens nothing
 				} else if (checkUser.getClass_().equals("orga")) {
 					this.callOrga();
 					Bootstrap.serviceManager.getCoreBaseTab().getPanelLogin().setVisible(false);

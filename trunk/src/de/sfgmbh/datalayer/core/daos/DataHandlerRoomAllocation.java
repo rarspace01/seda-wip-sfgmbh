@@ -48,7 +48,7 @@ public class DataHandlerRoomAllocation implements IntfDataObservable, IntfDataFi
 		
 		try {
 			DataManagerPostgreSql dm = DataManagerPostgreSql.getInstance();
-			dm.prepare("SELECT roomallocation.roomallocationid, roomallocation.courseid, roomallocation.roomid, roomallocation.semester, roomallocation.day, roomallocation.time, roomallocation.approved, roomallocation.orgamessage, roomallocation.comment " +
+			dm.prepare("SELECT roomallocation.* " +
 						"FROM public.roomallocation, public.room, public.course, public.user, public.chair, public.lecturer " +
 						"WHERE roomallocation.courseid = course.courseid " +
 						"AND course.lecturerid = public.user.userid " +
@@ -91,10 +91,10 @@ public class DataHandlerRoomAllocation implements IntfDataObservable, IntfDataFi
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
-			DataModel.getInstance().dataExcaptions.setNewException(("Es ist ein SQL-Fehler aufgetreten.<br /><br />Fehler DataHandlerUser-15:<br />" + e.toString()), "Datenbank-Fehler!");
+			DataModel.getInstance().dataExcaptions.setNewException(("Es ist ein SQL-Fehler aufgetreten.<br /><br />Fehler DataHandlerRoomAllocation-15:<br />" + e.toString()), "Datenbank-Fehler!");
 		} catch (Exception e) {
 			e.printStackTrace();
-			DataModel.getInstance().dataExcaptions.setNewException(("Es ist ein unbekannter Fehler in der Datenhaltung aufgetreten:<br /><br />Fehler DataHandlerUser-16:<br />" + e.toString()), "Fehler!");
+			DataModel.getInstance().dataExcaptions.setNewException(("Es ist ein unbekannter Fehler in der Datenhaltung aufgetreten:<br /><br />Fehler DataHandlerRoomAllocation-16:<br />" + e.toString()), "Fehler!");
 		}
 		return listRoomAllocation;
 	}
