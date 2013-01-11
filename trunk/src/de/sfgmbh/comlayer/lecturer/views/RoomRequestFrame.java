@@ -25,7 +25,6 @@ public class RoomRequestFrame extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public RoomRequestFrame() {
 		initialize();
 	}
@@ -41,7 +40,7 @@ public class RoomRequestFrame extends JFrame {
 		JTextPane txtpnFehlermeldungsieHaben = new JTextPane();
 		txtpnFehlermeldungsieHaben.setBackground(UIManager.getColor("Button.background"));
 		txtpnFehlermeldungsieHaben.setContentType("text/html");
-		txtpnFehlermeldungsieHaben.setText("<div font face='Tahoma'><strong>Fehlermeldung1:</strong><br>Sie haben keine Lehrveranstaltung selektiert!<br> <strong>Fehlermeldung2:</strong> <br> Für die Lehrveranstaltung wurde schon eine Raumanfrage erstellt! <br><br> Wenn keine Fehlermeldung erscheint k\u00F6nnen Sie eine Raumanfrage erstellen:</div>");
+		txtpnFehlermeldungsieHaben.setText("<div font face='Tahoma'><strong>Fehlermeldung1:</strong><br>Sie haben keine Lehrveranstaltung selektiert!<br> <strong>Fehlermeldung2:</strong> <br> Fï¿½r die Lehrveranstaltung wurde schon eine Raumanfrage erstellt! <br><br> Wenn keine Fehlermeldung erscheint k\u00F6nnen Sie eine Raumanfrage erstellen:</div>");
 		contentPane.add(txtpnFehlermeldungsieHaben, "cell 1 0 4 1,grow");
 		
 		JLabel lblNewLabel_3 = new JLabel("Veranstaltung: SEDA-WIP-B");
@@ -54,20 +53,20 @@ public class RoomRequestFrame extends JFrame {
 		JLabel lblStockwer = new JLabel("Raum:");
 		contentPane.add(lblStockwer, "cell 1 4");
 		
-		JComboBox comboBox_2 = new JComboBox();
+		JComboBox<String> comboBox_2 = new JComboBox<String>();
 		comboBox_2.setEditable(true);
 		contentPane.add(comboBox_2, "cell 3 4,growx");
 		
 		JLabel lblGewnschteRaum = new JLabel("Tag:");
 		contentPane.add(lblGewnschteRaum, "cell 1 5");
 		
-		JComboBox comboBox_3 = new JComboBox();
+		JComboBox<String> comboBox_3 = new JComboBox<String>();
 		contentPane.add(comboBox_3, "cell 3 5,growx");
 		
 		JLabel lblZeit = new JLabel("Zeit:");
 		contentPane.add(lblZeit, "cell 1 6");
 		
-		JComboBox comboBox = new JComboBox();
+		JComboBox<String> comboBox = new JComboBox<String>();
 		contentPane.add(comboBox, "cell 3 6,growx");
 		
 		JLabel lblNewLabel_1 = new JLabel("Oder lassen Sie sich einen Raum anhand von Kriterien vorschlagen:");
@@ -76,78 +75,78 @@ public class RoomRequestFrame extends JFrame {
 		JLabel label_4 = new JLabel("Tag:");
 		contentPane.add(label_4, "cell 1 9");
 		
-		JComboBox comboBox_1 = new JComboBox();
-		comboBox_1.setModel(new DefaultComboBoxModel(new String[] {"Di."}));
+		JComboBox<String> comboBox_1 = new JComboBox<String>();
+		comboBox_1.setModel(new DefaultComboBoxModel<String>(new String[] {"Di."}));
 		contentPane.add(comboBox_1, "cell 3 9,growx");
 		
 		JLabel label_5 = new JLabel("Zeit:");
 		contentPane.add(label_5, "cell 1 10");
 		
-		JComboBox comboBox_11 = new JComboBox();
-		comboBox_11.setModel(new DefaultComboBoxModel(new String[] {"<egal>"}));
+		JComboBox<String> comboBox_11 = new JComboBox<String>();
+		comboBox_11.setModel(new DefaultComboBoxModel<String>(new String[] {"<egal>"}));
 		contentPane.add(comboBox_11, "cell 3 10,growx");
 		
 		JLabel lblGebude = new JLabel("Geb\u00E4ude:");
 		contentPane.add(lblGebude, "cell 1 11");
 		
-		JComboBox comboBox_12 = new JComboBox();
-		comboBox_12.setModel(new DefaultComboBoxModel(new String[] {"Erba 1"}));
+		JComboBox<String> comboBox_12 = new JComboBox<String>();
+		comboBox_12.setModel(new DefaultComboBoxModel<String>(new String[] {"Erba 1"}));
 		contentPane.add(comboBox_12, "cell 3 11,growx");
 		
 		JLabel lblPltze = new JLabel("Pl\u00E4tze:");
 		contentPane.add(lblPltze, "cell 1 12");
 		
-		JComboBox comboBox_4 = new JComboBox();
+		JComboBox<String> comboBox_4 = new JComboBox<String>();
 		comboBox_4.setEditable(true);
-		comboBox_4.setModel(new DefaultComboBoxModel(new String[] {"30"}));
+		comboBox_4.setModel(new DefaultComboBoxModel<String>(new String[] {"30"}));
 		contentPane.add(comboBox_4, "cell 3 12,growx");
 		
 		JLabel lblPcarbeitspltze = new JLabel("PC-Arbeitspl\u00E4tze:");
 		contentPane.add(lblPcarbeitspltze, "cell 1 13");
 		
-		JComboBox comboBox_5 = new JComboBox();
+		JComboBox<String> comboBox_5 = new JComboBox<String>();
 		comboBox_5.setEditable(true);
-		comboBox_5.setModel(new DefaultComboBoxModel(new String[] {"<egal>"}));
+		comboBox_5.setModel(new DefaultComboBoxModel<String>(new String[] {"<egal>"}));
 		contentPane.add(comboBox_5, "cell 3 13,growx");
 		
 		JLabel lblBeamer = new JLabel("Beamer:");
 		contentPane.add(lblBeamer, "cell 1 14");
 		
-		JComboBox comboBox_6 = new JComboBox();
+		JComboBox<String> comboBox_6 = new JComboBox<String>();
 		comboBox_6.setEditable(true);
-		comboBox_6.setModel(new DefaultComboBoxModel(new String[] {"<egal>"}));
+		comboBox_6.setModel(new DefaultComboBoxModel<String>(new String[] {"<egal>"}));
 		contentPane.add(comboBox_6, "cell 3 14,growx");
 		
 		JLabel lblVisualizer = new JLabel("Visualizer:");
 		contentPane.add(lblVisualizer, "cell 1 15");
 		
-		JComboBox comboBox_7 = new JComboBox();
+		JComboBox<String> comboBox_7 = new JComboBox<String>();
 		comboBox_7.setEditable(true);
-		comboBox_7.setModel(new DefaultComboBoxModel(new String[] {"<egal>"}));
+		comboBox_7.setModel(new DefaultComboBoxModel<String>(new String[] {"<egal>"}));
 		contentPane.add(comboBox_7, "cell 3 15,growx");
 		
 		JLabel lblOverhead = new JLabel("Overhead:");
 		contentPane.add(lblOverhead, "cell 1 16");
 		
-		JComboBox comboBox_8 = new JComboBox();
+		JComboBox<String> comboBox_8 = new JComboBox<String>();
 		comboBox_8.setEditable(true);
-		comboBox_8.setModel(new DefaultComboBoxModel(new String[] {"<egal>"}));
+		comboBox_8.setModel(new DefaultComboBoxModel<String>(new String[] {"<egal>"}));
 		contentPane.add(comboBox_8, "cell 3 16,growx");
 		
 		JLabel lblTafeln = new JLabel("Tafeln:");
 		contentPane.add(lblTafeln, "cell 1 17");
 		
-		JComboBox comboBox_9 = new JComboBox();
+		JComboBox<String> comboBox_9 = new JComboBox<String>();
 		comboBox_9.setEditable(true);
-		comboBox_9.setModel(new DefaultComboBoxModel(new String[] {"<egal>"}));
+		comboBox_9.setModel(new DefaultComboBoxModel<String>(new String[] {"<egal>"}));
 		contentPane.add(comboBox_9, "cell 3 17,growx");
 		
 		JLabel lblWhiteboards = new JLabel("Whiteboards:");
 		contentPane.add(lblWhiteboards, "cell 1 18");
 		
-		JComboBox comboBox_10 = new JComboBox();
+		JComboBox<String> comboBox_10 = new JComboBox<String>();
 		comboBox_10.setEditable(true);
-		comboBox_10.setModel(new DefaultComboBoxModel(new String[] {"<egal>"}));
+		comboBox_10.setModel(new DefaultComboBoxModel<String>(new String[] {"<egal>"}));
 		contentPane.add(comboBox_10, "cell 3 18,growx");
 		
 		JButton btnAbbrechen = new JButton("Abbrechen");

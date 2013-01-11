@@ -26,7 +26,6 @@ public class CourseFrame extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public CourseFrame() {
 		initialize();
 	}
@@ -42,17 +41,17 @@ public class CourseFrame extends JFrame {
 		JLabel lblStockwer = new JLabel("Lehrstuhl:");
 		contentPane.add(lblStockwer, "cell 1 1");
 		
-		JComboBox comboBox_2 = new JComboBox();
+		JComboBox<String> comboBox_2 = new JComboBox<String>();
 		comboBox_2.setEditable(true);
-		comboBox_2.setModel(new DefaultComboBoxModel(new String[] {"SEDA", "ISDL", "IIS"}));
+		comboBox_2.setModel(new DefaultComboBoxModel<String>(new String[] {"SEDA", "ISDL", "IIS"}));
 		contentPane.add(comboBox_2, "cell 3 1,growx");
 		
 		JLabel lblGewnschteRaum = new JLabel("Dozent:");
 		contentPane.add(lblGewnschteRaum, "cell 1 2");
 		
-		JComboBox comboBox_3 = new JComboBox();
+		JComboBox<String> comboBox_3 = new JComboBox<String>();
 		comboBox_3.setEditable(true);
-		comboBox_3.setModel(new DefaultComboBoxModel(new String[] {"Wolf", "Benker", "Sinz"}));
+		comboBox_3.setModel(new DefaultComboBoxModel<String>(new String[] {"Wolf", "Benker", "Sinz"}));
 		contentPane.add(comboBox_3, "cell 3 2,growx");
 		
 		JLabel lblPltze = new JLabel("Bezeichnung:");
@@ -65,22 +64,22 @@ public class CourseFrame extends JFrame {
 		JLabel lblArt = new JLabel("Art:");
 		contentPane.add(lblArt, "cell 1 4");
 		
-		JComboBox comboBox_1 = new JComboBox();
-		comboBox_1.setModel(new DefaultComboBoxModel(new String[] {"\u00DCbung"}));
+		JComboBox<String> comboBox_1 = new JComboBox<String>();
+		comboBox_1.setModel(new DefaultComboBoxModel<String>(new String[] {"\u00DCbung"}));
 		contentPane.add(comboBox_1, "cell 3 4,growx");
 		
 		JLabel lblSemester = new JLabel("Semester:");
 		contentPane.add(lblSemester, "cell 1 5");
 		
-		JComboBox comboBox = new JComboBox();
-		comboBox.setModel(new DefaultComboBoxModel(new String[] {"WS1213"}));
+		JComboBox<String> comboBox = new JComboBox<String>();
+		comboBox.setModel(new DefaultComboBoxModel<String>(new String[] {"WS1213"}));
 		contentPane.add(comboBox, "cell 3 5,growx");
 		
 		JLabel lblTafeln = new JLabel("SWS:");
 		contentPane.add(lblTafeln, "cell 1 6");
 		
-		JComboBox comboBox_9 = new JComboBox();
-		comboBox_9.setModel(new DefaultComboBoxModel(new String[] {"2", "4", "6", "8"}));
+		JComboBox<String> comboBox_9 = new JComboBox<String>();
+		comboBox_9.setModel(new DefaultComboBoxModel<String>(new String[] {"2", "4", "6", "8"}));
 		contentPane.add(comboBox_9, "cell 3 6,growx");
 		
 		JLabel lblWhiteboards = new JLabel("Erw. Teilnehmer:");

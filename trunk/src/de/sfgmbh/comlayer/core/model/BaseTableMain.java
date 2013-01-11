@@ -55,7 +55,7 @@ public class BaseTableMain extends DefaultTableModel implements IntfAppObserver 
 							ra
 							};
 					this.addRow(row);
-
+	
 				} catch (Exception e) {
 					AppModel.getInstance().appExcaptions.setNewException("Ein unbekannter Fehler ist aufgetreten! <br /><br />Fehler BaseTableMain-01:<br />" + e.toString(), "Fehler!");
 				}
