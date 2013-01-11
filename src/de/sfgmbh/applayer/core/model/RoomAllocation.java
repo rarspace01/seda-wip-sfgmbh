@@ -10,7 +10,7 @@ public class RoomAllocation implements IntfDataRetrievable{
 	private String semester_;
 	private int day_;
 	private int time_;
-	private boolean approved_;
+	private String approved_;
 	private String orgaMessage_;
 	private String comment_;
 	
@@ -105,15 +105,21 @@ public class RoomAllocation implements IntfDataRetrievable{
 	/**
 	 * @return the approved_
 	 */
-	public boolean isApproved_() {
+	public String getApproved_() {
 		return approved_;
 	}
 
 	/**
 	 * @param approved_ the approved_ to set
 	 */
-	public void setApproved_(boolean approved_) {
-		this.approved_ = approved_;
+	public void setApproved_(String approved_) {
+		if (approved_.equals("accepted"))
+			this.approved_ = "accepted";
+		else if (approved_.equals("denied")) {
+			this.approved_ = "denied";
+		} else {
+			this.approved_ = "waiting";
+		}
 	}
 
 	/**
@@ -150,7 +156,7 @@ public class RoomAllocation implements IntfDataRetrievable{
 	 */
 	public boolean isPublic() {
 		
-		if (this.course_.isLecturerEnabled_() && this.approved_) {
+		if (this.course_.isLecturerEnabled_() && this.approved_.equals("accepted")) {
 			return true;
 		}
 		
