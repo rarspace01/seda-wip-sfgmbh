@@ -47,6 +47,7 @@ public class BaseTab extends JFrame{
 	public JLayeredPane contentPane;
 	public JTabbedPane mainTabbedContainerPane;
 	public JPanel startScreenPanel;
+	public JPanel roomPanel;
 	private JComboBox<String> comboBoxChairFilter;
 	private JComboBox<String> comboBoxLecturerFilter;
 	private JComboBox<String> comboBoxSemesterFilter;
@@ -73,6 +74,7 @@ public class BaseTab extends JFrame{
 	private JButton btnFehlermeldung;
 	private JButton btnLogout;
 	private JLabel lblNewLabel;
+	
 	
 
 	/**
@@ -102,6 +104,9 @@ public class BaseTab extends JFrame{
 		contentPane.add(startScreenPanel, "name_5256771068822");
 		startScreenPanel.setLayout(new MigLayout("", "[grow][][grow][grow][grow][grow][grow]", "[][][grow][]"));
 		startScreenPanel.add(getRdbtnLehrveranstaltungen(), "cell 0 0,aligny bottom");
+		
+		roomPanel = new JPanel();
+		contentPane.add(roomPanel, "name_1043142180087");
 		
 		lblLehrveranstaltung = new JLabel("Lehrveranstaltung:");
 		startScreenPanel.add(lblLehrveranstaltung, "cell 2 0,alignx left,aligny bottom");
@@ -201,7 +206,7 @@ public class BaseTab extends JFrame{
 		btnFehlermeldung = new JButton("Fehlermeldung");
 		btnFehlermeldung.addActionListener(new BaseBtnFailureprompt("error"));
 		startScreenPanel.add(btnFehlermeldung, "cell 2 3");
-	
+		
 	}
 	
 	public JTable getOrganisationTable() {
@@ -299,7 +304,7 @@ public class BaseTab extends JFrame{
 	public JRadioButton getRdbtnRaume() {
 		if (rdbtnRaume == null) {
 			rdbtnRaume = new JRadioButton("R\u00E4ume");
-			rdbtnRaume.addActionListener(new BaseRdbtnTopLeft());
+			rdbtnRaume.addActionListener(new BaseRdbtnTopLeft("room"));
 			buttonGroup.add(rdbtnRaume);
 			rdbtnRaume.setMargin(new Insets(0, 0, 0, 0));
 		}
