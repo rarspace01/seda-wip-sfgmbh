@@ -20,7 +20,7 @@ public class BaseRdbtnTopLeft implements ActionListener {
 	public BaseRdbtnTopLeft(String action){
 		this.ctrlAction = action;
 	}
-	
+
 	@Override
 	public void actionPerformed(ActionEvent e) {
 
