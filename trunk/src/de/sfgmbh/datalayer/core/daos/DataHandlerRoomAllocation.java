@@ -16,6 +16,7 @@ import de.sfgmbh.datalayer.io.DataManagerPostgreSql;
 public class DataHandlerRoomAllocation implements IntfDataObservable, IntfDataFilter {
 
 	private ArrayList<Object> observer_ = new ArrayList<Object>();
+	private DataManagerPostgreSql filterDm = null;
 	
 	public List<RoomAllocation> getAll() {
 		List<RoomAllocation> listRoomAllocation = new ArrayList<RoomAllocation>();
@@ -47,44 +48,49 @@ public class DataHandlerRoomAllocation implements IntfDataObservable, IntfDataFi
 		List<RoomAllocation> listRoomAllocation = new ArrayList<RoomAllocation>();
 		
 		try {
-			DataManagerPostgreSql dm = DataManagerPostgreSql.getInstance();
-			dm.prepare("SELECT roomallocation.* " +
+			if (filterDm == null) { 
+				filterDm = new DataManagerPostgreSql(); 
+				filterDm.prepare(
+						"SELECT public.roomallocation.* " +
 						"FROM public.roomallocation, public.room, public.course, public.user, public.chair, public.lecturer " +
-						"WHERE roomallocation.courseid = course.courseid " +
-						"AND course.lecturerid = public.user.userid " +
-						"AND course.lecturerid = lecturer.userid " +
-						"AND chair.chairid = lecturer.chairid " +
-						"AND roomallocation.roomid = room.roomid " +
+						"WHERE public.roomallocation.courseid = public.course.courseid " +
+						"AND public.course.lecturerid = public.user.userid " +
+						"AND public.course.lecturerid = public.lecturer.userid " +
+						"AND public.chair.chairid = public.lecturer.chairid " +
+						"AND public.roomallocation.roomid = public.room.roomid " +
 						"AND (public.user.lname LIKE ? OR public.user.fname LIKE ? ) " +
-						"AND chair.chairname LIKE ? " +
-						"AND (course.courseacronym LIKE ? OR course.coursename LIKE ? ) " +
-						"AND roomallocation.semester LIKE ? ");
+						"AND (public.chair.chairname LIKE ? OR public.chair.chairacronym LIKE ? ) " +
+						"AND (public.course.courseacronym LIKE ? OR public.course.coursename LIKE ? ) " +
+						"AND public.roomallocation.semester LIKE ? ");
+			}
 			if (filter.containsKey("lecturer") && filter.get("lecturer") != null && filter.get("lecturer") != "" && filter.get("lecturer") != "<alle>") {
-				dm.pstmt.setString(1, "%" + filter.get("lecturer") + "%");
-				dm.pstmt.setString(2, "%" + filter.get("lecturer") + "%");
+				filterDm.pstmt.setString(1, "%" + filter.get("lecturer") + "%");
+				filterDm.pstmt.setString(2, "%" + filter.get("lecturer") + "%");
 			} else {
-				dm.pstmt.setString(1, "%");
-				dm.pstmt.setString(2, "%");
+				filterDm.pstmt.setString(1, "%");
+				filterDm.pstmt.setString(2, "%");
 			}
 			if (filter.containsKey("chair") && filter.get("chair") != null && filter.get("chair") != "" && filter.get("chair") != "<alle>") {
-				dm.pstmt.setString(3, "%" + filter.get("chair") + "%");
+				filterDm.pstmt.setString(3, "%" + filter.get("chair") + "%");
+				filterDm.pstmt.setString(4, "%" + filter.get("chair") + "%");
 			} else {
-				dm.pstmt.setString(3, "%");
+				filterDm.pstmt.setString(3, "%");
+				filterDm.pstmt.setString(4, "%");
 			}
 			if (filter.containsKey("course") && filter.get("course") != null && filter.get("course") != "" && filter.get("course") != "<alle>") {
-				dm.pstmt.setString(4, "%" + filter.get("course") + "%");
-				dm.pstmt.setString(5, "%" + filter.get("course") + "%");
+				filterDm.pstmt.setString(5, "%" + filter.get("course") + "%");
+				filterDm.pstmt.setString(6, "%" + filter.get("course") + "%");
 			} else {
-				dm.pstmt.setString(4, "%");
-				dm.pstmt.setString(5, "%");
+				filterDm.pstmt.setString(5, "%");
+				filterDm.pstmt.setString(6, "%");
 			}
 			if (filter.containsKey("semester") && filter.get("semester") != null && filter.get("semester") != "" && filter.get("semester") != "<alle>") {
-				dm.pstmt.setString(6, "%" + filter.get("semester") + "%");
+				filterDm.pstmt.setString(7, "%" + filter.get("semester") + "%");
 			} else {
-				dm.pstmt.setString(6, "%");
+				filterDm.pstmt.setString(7, "%");
 			}
 			
-			ResultSet rs = dm.selectPstmt();
+			ResultSet rs = filterDm.selectPstmt();
 			while (rs.next()) {
 				listRoomAllocation.add(this.makeRoomAllocation(rs));
 			}

@@ -24,7 +24,7 @@ public class DataManagerPostgreSql {
 	private Statement stmt;
 	public PreparedStatement pstmt;
 
-	private DataManagerPostgreSql() {
+	public DataManagerPostgreSql() {
 		try {
 			Class.forName("org.postgresql.Driver");
 			conn = DriverManager.getConnection("jdbc:postgresql://" +
@@ -40,12 +40,13 @@ public class DataManagerPostgreSql {
 			e.printStackTrace();
 			DataModel.getInstance().dataExcaptions.setNewException(("Es ist ein unbekannter Fehler in der Datenhaltung aufgetreten.<br /><br />DataManagerPostgreSql-02:<br />" + e.toString()), "Fehler!");
 		}
-		uniqueInstance_ = this;
+		// For testing purpose deactivated - if nothing bad happens it can stay this way; if not remember to set the constructor back to private
+		// uniqueInstance_ = this;
 	}
 
 	public static DataManagerPostgreSql getInstance() {
 		if (uniqueInstance_ == null) {
-			new DataManagerPostgreSql();
+			uniqueInstance_ = new DataManagerPostgreSql();
 		}
 		return uniqueInstance_;
 	}

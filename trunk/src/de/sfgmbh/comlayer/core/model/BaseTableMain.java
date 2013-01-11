@@ -33,10 +33,10 @@ public class BaseTableMain extends DefaultTableModel implements IntfAppObserver 
 			filter.put("lecturer", "<alle>");
 			filter.put("semester", "<alle>");
 		} else {
-			filter.put("chair", ServiceManager.getInstance().getCoreBaseTab().comboBoxLehrstuhlFilter.getSelectedItem().toString());
-			filter.put("course", ServiceManager.getInstance().getCoreBaseTab().comboBoxVeranstaltungFilter.getSelectedItem().toString());
-			filter.put("lecturer", ServiceManager.getInstance().getCoreBaseTab().comboBoxDozentFilter.getSelectedItem().toString());
-			filter.put("semester", ServiceManager.getInstance().getCoreBaseTab().comboBoxSemesterFilter.getSelectedItem().toString());
+			filter.put("chair", ServiceManager.getInstance().getCoreBaseTab().getComboBoxChariFilter().getSelectedItem().toString());
+			filter.put("course", ServiceManager.getInstance().getCoreBaseTab().getComboBoxOrgaFilter().getSelectedItem().toString());
+			filter.put("lecturer", ServiceManager.getInstance().getCoreBaseTab().getComboBoxLecturerFilter().getSelectedItem().toString());
+			filter.put("semester", ServiceManager.getInstance().getCoreBaseTab().getComboBoxSemesterFilter().getSelectedItem().toString());
 		}
 		
 		for (RoomAllocation ra : AppModel.getInstance().repositoryRoomAllocation.getByFilter(filter)){

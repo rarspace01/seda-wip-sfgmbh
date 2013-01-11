@@ -8,6 +8,7 @@ import java.util.HashMap;
 
 import de.sfgmbh.datalayer.core.daos.DataHandlerUser;
 import de.sfgmbh.datalayer.core.definitions.IntfDataRetrievable;
+import de.sfgmbh.datalayer.core.model.DataModel;
 
 public class User implements IntfDataRetrievable {
 
@@ -240,6 +241,14 @@ public class User implements IntfDataRetrievable {
 		}
 		
 		return null;
+	}
+	
+	/**
+	 * Get the chair of user if he is a lecturer
+	 * @return the chair of user if he is a lecturer and otherwise null
+	 */
+	public Chair getChair() {
+		return DataModel.getInstance().dataHandlerChair.getForUser(this.getUserId_());
 	}
 	
 	/**

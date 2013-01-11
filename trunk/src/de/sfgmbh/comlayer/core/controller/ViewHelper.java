@@ -6,7 +6,7 @@ public class ViewHelper {
 
 	/**
 	 * Returns a formated day string for a given integer (valid integer: 1 to 7)
-	 * @param day d
+	 * @param d
 	 * @return a formated day string
 	 */
 	public String getDay(int d) {
@@ -25,14 +25,14 @@ public class ViewHelper {
 		} else if (d == 7) {
 			return "So.";
 		} else {
-			AppModel.getInstance().appExcaptions.setNewException("Ein Tag mit einem nicht unterstützen Format konnte nicht angezeigt werden.", "Achtung!");
+			AppModel.getInstance().appExcaptions.setNewException("Ein Tag mit einem nicht unterstï¿½tzen Format konnte nicht angezeigt werden.", "Achtung!");
 			return null;
 		}
 	}
 	
 	/**
 	 * Returns a formated time string for a given integer (valid integer: 1 to 7)
-	 * @param time t
+	 * @param t
 	 * @return a formated time string
 	 */
 	public String getTime(int t) {
@@ -51,7 +51,36 @@ public class ViewHelper {
 		} else if (t == 7) {
 			return "20:00 - 22:00";
 		} else {
-			AppModel.getInstance().appExcaptions.setNewException("Eine Zeit mit einem nicht unterstützen Format konnte nicht angezeigt werden.", "Achtung!");
+			AppModel.getInstance().appExcaptions.setNewException("Eine Zeit mit einem nicht unterstï¿½tzen Format konnte nicht angezeigt werden.", "Achtung!");
+			return null;
+		}
+	}
+	
+	/**
+	 * Returns a formated boolean string for a given boolean value
+	 * @param b
+	 * @return a formated boolean string
+	 */
+	public String getBoolean(boolean b) {
+		if(b){
+			return "ja";
+		} else {
+			return "nein";
+		}
+	}
+	
+	/**
+	 * Returns the German value for a given user class
+	 * @param uc
+	 * @return the German value for a given user class
+	 */
+	public String getUserClass(String uc) {
+		if (uc.equals("orga")) {
+			return "Verwaltung";
+		} else if (uc.equals("lecturer")) {
+			return "Dozenten";
+		} else {
+			AppModel.getInstance().appExcaptions.setNewException("Eine unbekannte Nutzerklasse wurde verwendet.", "Achtung!");
 			return null;
 		}
 	}

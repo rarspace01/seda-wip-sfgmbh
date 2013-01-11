@@ -1,18 +1,81 @@
 package de.sfgmbh.comlayer.organisation.model;
 
-import javax.swing.table.*;
+import java.util.HashMap;
 
-public class UserTabTable extends DefaultTableModel {
+import javax.swing.table.DefaultTableModel;
+
+import de.sfgmbh.applayer.core.controller.ServiceManager;
+import de.sfgmbh.applayer.core.definitions.IntfAppObserver;
+import de.sfgmbh.applayer.core.model.AppModel;
+import de.sfgmbh.applayer.core.model.User;
+import de.sfgmbh.comlayer.core.controller.ViewHelper;
+
+public class UserTabTable extends DefaultTableModel implements IntfAppObserver {
 
 	private static final long serialVersionUID = 1L;
-	private Object[][] preFill = {
-			{"ba001", "test1@uni-bamberg.de", "Dozent", "SEDA", "01.01.1999"},
-			{"ba002", "test2@uni-bamberg.de", "Verwaltung", null, "01.01.1999"},
-		};
-	private String[] preFillHeader = {"Kennung", "E-Mail", "Benutzerklasse", "Lehrstuhl", "Letzer Login"};
+	private String[] header = {"Kennung", "E-Mail", "Benutzerklasse", "Lehrstuhl", "Letzer Login", "deaktiviert", "Hidden"};
 	
 	
 	public UserTabTable() {
-		this.setDataVector(preFill, preFillHeader);
+		AppModel.getInstance().repositoryUser.register(this);
+		this.setColumnIdentifiers(header);
+		this.change("init");
+	}
+
+	public void change(String variant) {
+		HashMap<String, String> filter = new HashMap<String, String>();
+		ViewHelper vh = new ViewHelper();
+		
+		this.setRowCount(0);
+		
+		if (variant.equals("init")) {
+			filter.put("userclass", "<alle>");
+			filter.put("chair", "<alle>");
+			filter.put("user", "<alle>");
+			filter.put("email", "<alle>");
+		} else {
+			String textMail = ServiceManager.getInstance().getOrgaUserTab().getTextFieldMail().getText();
+			String textUserLogin = ServiceManager.getInstance().getOrgaUserTab().getTextFieldUserLogin().getText();
+			filter.put("userclass", ServiceManager.getInstance().getOrgaUserTab().getComboBoxUserclass().getSelectedItem().toString());
+			filter.put("chair", ServiceManager.getInstance().getOrgaUserTab().getComboBoxChair().getSelectedItem().toString());
+			filter.put("user", textUserLogin);
+			filter.put("email", textMail);
+			
+		}
+		
+		for (User user : AppModel.getInstance().repositoryUser.getByFilter(filter)){
+			
+			// Chair if user is lecturer
+			String chair = null;
+			if (user.getChair() != null) {
+				chair = user.getChair().getChairName_();
+			}
+			
+			// Get a date from the unix time stamp
+			java.util.Date date = new java.util.Date((long) user.getLastLogin_() * 1000);
+			
+			// Build the row...
+			try {
+				Object[] row = {
+						user.getLogin_(),
+						user.getMail_(),
+						vh.getUserClass(user.getClass_()),
+						chair,
+						date.toString(),
+						vh.getBoolean(user.isDisabled_()),
+						user
+						};
+				this.addRow(row);
+
+			} catch (Exception e) {
+				AppModel.getInstance().appExcaptions.setNewException("Ein unbekannter Fehler ist aufgetreten! <br /><br />Fehler BaseTableMain-01:<br />" + e.toString(), "Fehler!");
+			}
+		}
+	}
+	
+	@Override
+	public void change() {
+		this.change("update");
+		
 	}
 }

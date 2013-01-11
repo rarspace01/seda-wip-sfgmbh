@@ -1,6 +1,7 @@
 package de.sfgmbh.applayer.core.model;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import de.sfgmbh.applayer.core.definitions.IntfAppObservable;
@@ -33,6 +34,14 @@ public class RepositoryUser implements IntfAppObservable, IntfDataObserver {
 	 */
 	public List<User> getAllLecturer() {
 		return DataModel.getInstance().dataHandlerUser.getAllLecturer();
+	}
+	
+	/**
+	 * Return filtered users
+	 * @return a list of filtered users
+	 */
+	public List<User> getByFilter(HashMap<String, String> filter) {
+		return DataModel.getInstance().dataHandlerUser.getByFilter(filter);
 	}
 
 	@Override

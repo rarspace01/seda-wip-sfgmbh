@@ -4,7 +4,6 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.SystemColor;
 
-import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -16,25 +15,28 @@ import javax.swing.JTextField;
 import javax.swing.JTextPane;
 import javax.swing.UIManager;
 import javax.swing.border.TitledBorder;
+
 import net.miginfocom.swing.MigLayout;
+import de.sfgmbh.comlayer.core.model.CmbboxFilterChair;
+import de.sfgmbh.comlayer.core.model.CmbboxFilterUserClass;
 import de.sfgmbh.comlayer.core.views.BaseTab;
-import de.sfgmbh.comlayer.organisation.controller.CmbboxFilter;
 import de.sfgmbh.comlayer.organisation.controller.RoomTabBtnsControl;
 import de.sfgmbh.comlayer.organisation.controller.UserTabBtnsControl;
+import de.sfgmbh.comlayer.organisation.controller.UserTabCmbboxFilter;
 import de.sfgmbh.init.Bootstrap;
 
 public class UserTab extends JPanel {
 
 	private static final long serialVersionUID = 1L;
-	private JTable raumverwaltungTable;
-	private JTextField textFieldSeats;
-	private JTextField textFieldPCSeats;
+	private JTable roomOrgaTable;
+	private JTextField textFieldUserLogin;
+	private JTextField textFieldMail;
 	private JLabel lblUserclass;
 	private JLabel lblLecturer;
 	private JLabel lblAuthentification;
 	private JLabel lblEmail;
 	private JComboBox<String> comboBoxUserclass;
-	private JComboBox<String> comboBoxLevel;
+	private JComboBox<String> comboBoxChair;
 	private JPanel leftPanel;
 	private JPanel leftTopPanel;
 	private JScrollPane organisationTableScrollPane;
@@ -76,8 +78,8 @@ public class UserTab extends JPanel {
 		add(lblEmail, "cell 5 0,aligny bottom");
 		
 		comboBoxUserclass = new JComboBox<String>();
-		comboBoxUserclass.setModel(new DefaultComboBoxModel<String>(new String[] {"<alle>", "Dozenten", "Verwaltung", "Studenten"}));
-		comboBoxUserclass.addActionListener(new CmbboxFilter());
+		comboBoxUserclass.setModel(new CmbboxFilterUserClass());
+		comboBoxUserclass.addActionListener(new UserTabCmbboxFilter());
 		
 		uniIconPanel = new JPanel();
 		add(uniIconPanel, "cell 6 0,alignx center,growy");
@@ -89,24 +91,22 @@ public class UserTab extends JPanel {
 		comboBoxUserclass.setAutoscrolls(true);
 		add(comboBoxUserclass, "cell 2 1,growx");
 		
-		comboBoxLevel = new JComboBox<String>();
-		comboBoxLevel.setModel(new DefaultComboBoxModel<String>(new String[] {"<alle>"}));
-		comboBoxLevel.addActionListener(new CmbboxFilter());
-		comboBoxLevel.setEditable(true);
-		comboBoxLevel.setAutoscrolls(true);
-		add(comboBoxLevel, "cell 3 1,growx");
+		comboBoxChair = new JComboBox<String>();
+		comboBoxChair.setModel(new CmbboxFilterChair());
+		comboBoxChair.addActionListener(new UserTabCmbboxFilter());
+		comboBoxChair.setEditable(true);
+		comboBoxChair.setAutoscrolls(true);
+		add(comboBoxChair, "cell 3 1,growx");
 		
-		textFieldSeats = new JTextField();
-		textFieldSeats.setText("<alle>");
-		textFieldSeats.addActionListener(new CmbboxFilter());
-		add(textFieldSeats, "cell 4 1,growx");
-		textFieldSeats.setColumns(10);
+		textFieldUserLogin = new JTextField();
+		textFieldUserLogin.addActionListener(new UserTabCmbboxFilter());
+		add(textFieldUserLogin, "cell 4 1,growx");
+		textFieldUserLogin.setColumns(10);
 		
-		textFieldPCSeats = new JTextField();
-		textFieldPCSeats.setText("<alle>");
-		textFieldPCSeats.addActionListener(new CmbboxFilter());
-		textFieldPCSeats.setColumns(10);
-		add(textFieldPCSeats, "cell 5 1,growx");
+		textFieldMail = new JTextField();
+		textFieldMail.addActionListener(new UserTabCmbboxFilter());
+		textFieldMail.setColumns(10);
+		add(textFieldMail, "cell 5 1,growx");
 		
 		leftPanel = new JPanel();
 		leftPanel.setLayout(null);
@@ -129,11 +129,12 @@ public class UserTab extends JPanel {
 		organisationTableScrollPane = new JScrollPane();
 		add(organisationTableScrollPane, "flowx,cell 2 2 4 1,grow");
 		
-		raumverwaltungTable = new JTable();
-		raumverwaltungTable.setModel(Bootstrap.serviceManager.getOrgaUserTableModel());
-		raumverwaltungTable.setShowVerticalLines(false);
-		raumverwaltungTable.setBackground(SystemColor.activeCaption);
-		organisationTableScrollPane.setViewportView(raumverwaltungTable);
+		roomOrgaTable = new JTable();
+		roomOrgaTable.setModel(Bootstrap.serviceManager.getOrgaUserTableModel());
+		roomOrgaTable.setShowVerticalLines(false);
+		roomOrgaTable.setBackground(SystemColor.activeCaption);
+		roomOrgaTable.getColumnModel().removeColumn(roomOrgaTable.getColumn("Hidden"));
+		organisationTableScrollPane.setViewportView(roomOrgaTable);
 		
 		buttonPanel = new JPanel();
 		buttonPanel.setLayout(null);
@@ -160,5 +161,37 @@ public class UserTab extends JPanel {
 		btnFailureprompt.addActionListener(new RoomTabBtnsControl("Fehlermeldung"));
 		add(btnFailureprompt, "cell 2 3");
 	}
+	
+	/**
+	 * @return the roomOrgaTable
+	 */
+	public JTable getRoomOrgaTable() {
+		return roomOrgaTable;
+	}
+	/**
+	 * @return the textFieldUserLogin
+	 */
+	public JTextField getTextFieldUserLogin() {
+		return textFieldUserLogin;
+	}
+	/**
+	 * @return the textFieldMail
+	 */
+	public JTextField getTextFieldMail() {
+		return textFieldMail;
+	}
+	/**
+	 * @return the comboBoxUserclass
+	 */
+	public JComboBox<String> getComboBoxUserclass() {
+		return comboBoxUserclass;
+	}
+	/**
+	 * @return the comboBoxChair
+	 */
+	public JComboBox<String> getComboBoxChair() {
+		return comboBoxChair;
+	}
+	
 	
 }
