@@ -47,10 +47,10 @@ public class BaseTab extends JFrame{
 	public JLayeredPane contentPane;
 	public JTabbedPane mainTabbedContainerPane;
 	public JPanel startScreenPanel;
-	public JComboBox<String> comboBoxLehrstuhlFilter;
-	public JComboBox<String> comboBoxDozentFilter;
-	public JComboBox<String> comboBoxSemesterFilter;
-	public JComboBox<String> comboBoxVeranstaltungFilter;
+	private JComboBox<String> comboBoxChairFilter;
+	private JComboBox<String> comboBoxLecturerFilter;
+	private JComboBox<String> comboBoxSemesterFilter;
+	private JComboBox<String> comboBoxOrgaFilter;
 	private JLabel lblLehrveranstaltung;
 	private JLabel lblLehrstuhl;
 	private JLabel lblDozent;
@@ -115,31 +115,31 @@ public class BaseTab extends JFrame{
 		lblSemester = new JLabel("Semester:");
 		startScreenPanel.add(lblSemester, "cell 5 0,aligny bottom");
 		
-		comboBoxVeranstaltungFilter = new JComboBox<String>();
-		comboBoxVeranstaltungFilter.addKeyListener(new BaseCmbboxFilter());
-		comboBoxVeranstaltungFilter.addActionListener(new BaseCmbboxFilter());
+		comboBoxOrgaFilter = new JComboBox<String>();
+		comboBoxOrgaFilter.addKeyListener(new BaseCmbboxFilter());
+		comboBoxOrgaFilter.addActionListener(new BaseCmbboxFilter());
 		startScreenPanel.add(getLblNewLabel(), "cell 6 0,alignx center");
 		startScreenPanel.add(getRdbtnRaume(), "cell 0 1");
-		comboBoxVeranstaltungFilter.setAutoscrolls(true);
-		comboBoxVeranstaltungFilter.setEditable(true);
-		comboBoxVeranstaltungFilter.setModel(new CmbboxFilterCourse());
-		startScreenPanel.add(comboBoxVeranstaltungFilter, "cell 2 1,growx");
+		comboBoxOrgaFilter.setAutoscrolls(true);
+		comboBoxOrgaFilter.setEditable(true);
+		comboBoxOrgaFilter.setModel(new CmbboxFilterCourse());
+		startScreenPanel.add(comboBoxOrgaFilter, "cell 2 1,growx");
 		
-		comboBoxLehrstuhlFilter = new JComboBox<String>();
-		comboBoxLehrstuhlFilter.setModel(new CmbboxFilterChair());
-		comboBoxLehrstuhlFilter.addKeyListener(new BaseCmbboxFilter());
-		comboBoxLehrstuhlFilter.addActionListener(new BaseCmbboxFilter());
-		comboBoxLehrstuhlFilter.setEditable(true);
-		comboBoxLehrstuhlFilter.setAutoscrolls(true);
-		startScreenPanel.add(comboBoxLehrstuhlFilter, "cell 3 1,growx");
+		comboBoxChairFilter = new JComboBox<String>();
+		comboBoxChairFilter.setModel(new CmbboxFilterChair());
+		comboBoxChairFilter.addKeyListener(new BaseCmbboxFilter());
+		comboBoxChairFilter.addActionListener(new BaseCmbboxFilter());
+		comboBoxChairFilter.setEditable(true);
+		comboBoxChairFilter.setAutoscrolls(true);
+		startScreenPanel.add(comboBoxChairFilter, "cell 3 1,growx");
 		
-		comboBoxDozentFilter = new JComboBox<String>();
-		comboBoxDozentFilter.setModel(new CmbboxFilterLecturer());
-		comboBoxDozentFilter.addKeyListener(new BaseCmbboxFilter());
-		comboBoxDozentFilter.addActionListener(new BaseCmbboxFilter());
-		comboBoxDozentFilter.setEditable(true);
-		comboBoxDozentFilter.setAutoscrolls(true);
-		startScreenPanel.add(comboBoxDozentFilter, "cell 4 1,growx");
+		comboBoxLecturerFilter = new JComboBox<String>();
+		comboBoxLecturerFilter.setModel(new CmbboxFilterLecturer());
+		comboBoxLecturerFilter.addKeyListener(new BaseCmbboxFilter());
+		comboBoxLecturerFilter.addActionListener(new BaseCmbboxFilter());
+		comboBoxLecturerFilter.setEditable(true);
+		comboBoxLecturerFilter.setAutoscrolls(true);
+		startScreenPanel.add(comboBoxLecturerFilter, "cell 4 1,growx");
 		
 		comboBoxSemesterFilter = new JComboBox<String>();
 		comboBoxSemesterFilter.setModel(new CmbboxFilterSemester());
@@ -339,6 +339,30 @@ public class BaseTab extends JFrame{
 			panelLogout.setVisible(false);
 		}
 		return panelLogout;
+	}
+	/**
+	 * @return the comboBoxLehrstuhlFilter
+	 */
+	public JComboBox<String> getComboBoxChariFilter() {
+		return comboBoxChairFilter;
+	}
+	/**
+	 * @return the comboBoxDozentFilter
+	 */
+	public JComboBox<String> getComboBoxLecturerFilter() {
+		return comboBoxLecturerFilter;
+	}
+	/**
+	 * @return the comboBoxSemesterFilter
+	 */
+	public JComboBox<String> getComboBoxSemesterFilter() {
+		return comboBoxSemesterFilter;
+	}
+	/**
+	 * @return the comboBoxVeranstaltungFilter
+	 */
+	public JComboBox<String> getComboBoxOrgaFilter() {
+		return comboBoxOrgaFilter;
 	}
 	
 	

@@ -49,6 +49,34 @@ public class DataHandlerChair implements IntfDataChair, IntfDataFilter, IntfData
 		// TODO Auto-generated method stub
 		return null;
 	}
+	
+	/**
+	 * Get the chair of a user
+	 * @param userId
+	 * @return a Chair if the submitted user (id) can be associated with one, otherwise returns null
+	 */
+	public Chair getForUser(int userId) {
+		try {
+			DataManagerPostgreSql.getInstance().prepare("SELECT public.chair.* " +
+					"FROM public.chair, public.lecturer " +
+					"WHERE public.lecturer.chairid = public.chair.chairid " +
+					"AND public.lecturer.userid = ? ");
+			DataManagerPostgreSql.getInstance().pstmt.setInt(1, userId);
+			ResultSet rs = DataManagerPostgreSql.getInstance().selectPstmt();
+			while (rs.next()) {
+				return this.makeChair(rs);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			DataModel.getInstance().dataExcaptions.setNewException(("Es ist ein SQL-Fehler aufgetreten.<br /><br />Fehler DataHandlerChair-06:<br />" + e.toString()), "Datenbank-Fehler!");
+		} catch (Exception e) {
+			e.printStackTrace();
+			DataModel.getInstance().dataExcaptions.setNewException(("Es ist ein unbekannter Fehler in der Datenhaltung aufgetreten:<br /><br />Fehler DataHandlerChair-07:<br />" + e.toString()), "Fehler!");
+		}
+		
+		return null;
+	}
 
 	@Override
 	public List<Chair> search(String searchQry) {
@@ -96,6 +124,7 @@ public class DataHandlerChair implements IntfDataChair, IntfDataFilter, IntfData
 			returnChair.setBuildingId_(rs.getInt("buildingid"));
 			returnChair.setChairLevel_(rs.getString("chairlevel"));
 			returnChair.setFaculty_(rs.getString("faculty"));
+			returnChair.setAcronym_(rs.getString("chairacronym"));
 		} catch (SQLException e) {
 			e.printStackTrace();
 			DataModel.getInstance().dataExcaptions.setNewException(("Es ist ein SQL-Fehler (DataHandlerChair-04) aufgetreten:<br /><br />" + e.toString()), "Datenbank-Fehler!");

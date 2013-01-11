@@ -3,18 +3,22 @@ package de.sfgmbh.datalayer.core.daos;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import de.sfgmbh.applayer.core.model.User;
+import de.sfgmbh.datalayer.core.definitions.IntfDataFilter;
 import de.sfgmbh.datalayer.core.definitions.IntfDataObservable;
 import de.sfgmbh.datalayer.core.definitions.IntfDataObserver;
 import de.sfgmbh.datalayer.core.definitions.IntfDataUser;
 import de.sfgmbh.datalayer.core.model.DataModel;
 import de.sfgmbh.datalayer.io.DataManagerPostgreSql;
 
-public class DataHandlerUser implements IntfDataUser, IntfDataObservable {
+public class DataHandlerUser implements IntfDataUser, IntfDataObservable, IntfDataFilter {
 
 	private ArrayList<Object> observer_ = new ArrayList<Object>();
+	private DataManagerPostgreSql filterDm = null;
+	private DataManagerPostgreSql filterWithChairDm = null;
 	
 	@Override
 	public List<User> getAll() {
@@ -67,6 +71,116 @@ public class DataHandlerUser implements IntfDataUser, IntfDataObservable {
 		return listUser;
 	}
 
+	@Override
+	public List<User> getByFilter(HashMap<String, String> filter) {
+		List<User> listUser = new ArrayList<User>();
+		
+		// Convert some filter values
+		if (filter.containsKey("userclass") && filter.get("userclass").equals("Dozenten")) {
+			filter.put("userclass", "lecturer");
+		}
+		if (filter.containsKey("userclass") && filter.get("userclass").equals("Verwaltung")) {
+			filter.put("userclass", "orga");
+		}
+		
+		try {
+			
+			ResultSet rs = null;
+			
+			// Check for chair filter as we need another sql statement in that case
+			if (filter.containsKey("chair") && filter.get("chair") != null && filter.get("chair") != "" && filter.get("chair") != "<alle>") {
+				
+				if (filterWithChairDm == null) { 
+					filterWithChairDm = new DataManagerPostgreSql(); 
+					filterWithChairDm.prepare(
+							"SELECT public.user.* " +
+							"FROM public.user, public.chair, public.lecturer " +
+							"WHERE public.chair.chairid = public.lecturer.chairid " +
+							"AND public.user.userid = public.lecturer.userid " +
+							"AND (public.user.lname LIKE ? OR public.user.fname LIKE ? OR public.user.login LIKE ? ) " +
+							"AND (public.chair.chairname LIKE ? OR public.chair.chairacronym LIKE ? ) " +
+							"AND public.user.class LIKE ? " +
+							"AND public.user.mail LIKE ? ");
+				}
+				
+				if (filter.containsKey("user") && filter.get("user") != null && filter.get("user") != "" && filter.get("user") != "<alle>") {
+					filterWithChairDm.pstmt.setString(1, "%" + filter.get("user") + "%");
+					filterWithChairDm.pstmt.setString(2, "%" + filter.get("user") + "%");
+					filterWithChairDm.pstmt.setString(3, "%" + filter.get("user") + "%");
+				} else {
+					filterWithChairDm.pstmt.setString(1, "%");
+					filterWithChairDm.pstmt.setString(2, "%");
+					filterWithChairDm.pstmt.setString(3, "%");
+				}
+				if (filter.containsKey("chair") && filter.get("chair") != null && filter.get("chair") != "" && filter.get("chair") != "<alle>") {
+					filterWithChairDm.pstmt.setString(4, "%" + filter.get("chair") + "%");
+					filterWithChairDm.pstmt.setString(5, "%" + filter.get("chair") + "%");
+				} else {
+					filterWithChairDm.pstmt.setString(4, "%");
+					filterWithChairDm.pstmt.setString(5, "%");
+				}
+				if ( filter.containsKey("userclass") && filter.get("userclass") != null && filter.get("userclass") != "" && filter.get("userclass") != "<alle>") {
+					filterWithChairDm.pstmt.setString(6, "%" + filter.get("userclass") + "%");
+				} else {
+					filterWithChairDm.pstmt.setString(6, "%");
+				}
+				if (filter.containsKey("email") && filter.get("email") != null && filter.get("email") != "" && filter.get("email") != "<alle>") {
+					filterWithChairDm.pstmt.setString(7, "%" + filter.get("email") + "%");
+				} else {
+					filterWithChairDm.pstmt.setString(7, "%");
+				}
+
+				rs = filterWithChairDm.selectPstmt();
+				
+			} else {
+			
+				if (filterDm == null) { 
+					filterDm = new DataManagerPostgreSql(); 
+					filterDm.prepare(
+							"SELECT public.user.* " +
+							"FROM public.user " +
+							"WHERE (public.user.lname LIKE ? OR public.user.fname LIKE ? OR public.user.login LIKE ? ) " +
+							"AND public.user.class LIKE ? " +
+							"AND public.user.mail LIKE ? ");
+				}
+				
+				if (filter.containsKey("user") && filter.get("user") != null && filter.get("user") != "" && filter.get("user") != "<alle>") {
+					filterDm.pstmt.setString(1, "%" + filter.get("user") + "%");
+					filterDm.pstmt.setString(2, "%" + filter.get("user") + "%");
+					filterDm.pstmt.setString(3, "%" + filter.get("user") + "%");
+				} else {
+					filterDm.pstmt.setString(1, "%");
+					filterDm.pstmt.setString(2, "%");
+					filterDm.pstmt.setString(3, "%");
+				}
+				if ( filter.containsKey("userclass") && filter.get("userclass") != null && filter.get("userclass") != "" && filter.get("userclass") != "<alle>") {
+					filterDm.pstmt.setString(4, "%" + filter.get("userclass") + "%");
+				} else {
+					filterDm.pstmt.setString(4, "%");
+				}
+				if (filter.containsKey("email") && filter.get("email") != null && filter.get("email") != "" && filter.get("email") != "<alle>") {
+					filterDm.pstmt.setString(5, "%" + filter.get("email") + "%");
+				} else {
+					filterDm.pstmt.setString(5, "%");
+				}
+				
+				rs = filterDm.selectPstmt();
+			}
+			
+			while (rs.next()) {
+				listUser.add(this.makeUser(rs));
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			DataModel.getInstance().dataExcaptions.setNewException(("Es ist ein SQL-Fehler aufgetreten.<br /><br />Fehler DataHandlerRoomAllocation-17:<br />" + e.toString()), "Datenbank-Fehler!");
+		} catch (Exception e) {
+			e.printStackTrace();
+			DataModel.getInstance().dataExcaptions.setNewException(("Es ist ein unbekannter Fehler in der Datenhaltung aufgetreten:<br /><br />Fehler DataHandlerRoomAllocation-18:<br />" + e.toString()), "Fehler!");
+		}
+		return listUser;
+	}
+	
 	@Override
 	public User get(int id) {
 		try {
@@ -184,7 +298,7 @@ public class DataHandlerUser implements IntfDataUser, IntfDataObservable {
 	
 	/**
 	 * Forms a User object out of a given result set
-	 * @param ResultSet rs
+	 * @param rs
 	 * @return a User object
 	 */
 	private User makeUser(ResultSet rs) {
@@ -233,7 +347,7 @@ public class DataHandlerUser implements IntfDataUser, IntfDataObservable {
 		if (observer instanceof IntfDataObserver) {
 			observer_.add(observer);
 		} else {
-			DataModel.getInstance().dataExcaptions.setNewException("Das Objekt implementiert nicht das Observer-Interface und kann daher nicht hinzugefügt werden!<br />Fehler: DataHandlerUser-12", "Fehler!");
+			DataModel.getInstance().dataExcaptions.setNewException("Das Objekt implementiert nicht das Observer-Interface und kann daher nicht hinzugefï¿½gt werden!<br />Fehler: DataHandlerUser-12", "Fehler!");
 		}
 	}
 	
@@ -245,6 +359,5 @@ public class DataHandlerUser implements IntfDataUser, IntfDataObservable {
 	public void unregister(Object observer) {
 		observer_.remove(observer);
 	}
-
 
 }

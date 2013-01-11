@@ -8,6 +8,7 @@ public class Chair {
 	private int buildingId_;
 	private String chairLevel_;
 	private String faculty_;
+	private String acronym_;
 	
 	/**
 	 * @return the chairId_
@@ -80,6 +81,18 @@ public class Chair {
 	 */
 	public void setFaculty_(String faculty_) {
 		this.faculty_ = faculty_;
+	}
+	/**
+	 * @return the acronym_
+	 */
+	public String getAcronym_() {
+		return acronym_;
+	}
+	/**
+	 * @param acronym_ the acronym_ to set
+	 */
+	public void setAcronym_(String acronym_) {
+		this.acronym_ = acronym_;
 	}
 	
 	
