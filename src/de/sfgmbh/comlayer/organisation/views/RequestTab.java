@@ -12,6 +12,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.JTextField;
 import javax.swing.JTextPane;
 import javax.swing.UIManager;
 import javax.swing.border.TitledBorder;
@@ -22,8 +23,8 @@ import de.sfgmbh.comlayer.core.model.CmbboxFilterChair;
 import de.sfgmbh.comlayer.core.model.CmbboxFilterLecturer;
 import de.sfgmbh.comlayer.core.model.CmbboxFilterSemester;
 import de.sfgmbh.comlayer.core.views.BaseTab;
-import de.sfgmbh.comlayer.organisation.controller.CmbboxFilter;
 import de.sfgmbh.comlayer.organisation.controller.RequestTabBtnsControl;
+import de.sfgmbh.comlayer.organisation.controller.RequestTabCmbboxFilter;
 import de.sfgmbh.init.Bootstrap;
 
 public class RequestTab extends JPanel {
@@ -47,6 +48,10 @@ public class RequestTab extends JPanel {
 	private JButton btnFailureprompt;
 	private JPanel uniIconPanel;
 	private JLabel lblUniIcon;
+	private JPanel filterTop;
+	private JPanel filterBottom;
+	private JLabel lblRoom;
+	private JTextField txtRoom;
 
 	/**
 	 * Create the frame.
@@ -68,17 +73,12 @@ public class RequestTab extends JPanel {
 		lblLecturer = new JLabel("Dozent:");
 		add(lblLecturer, "cell 2 0,aligny bottom");
 		
-		lblProfessorship = new JLabel("Lehrstuhl:");
-		add(lblProfessorship, "cell 3 0,aligny bottom");
-		
-		lblStatus = new JLabel("Freigabestatus:");
-		add(lblStatus, "cell 4 0,aligny bottom");
+		comboBoxLecturer = new JComboBox<String>();
+		comboBoxLecturer.addActionListener(new RequestTabCmbboxFilter());
 		
 		lblPCSeats = new JLabel("Semester:");
-		add(lblPCSeats, "cell 5 0,aligny bottom");
-		
-		comboBoxLecturer = new JComboBox<String>();
-		comboBoxLecturer.addActionListener(new CmbboxFilter());
+		add(lblPCSeats, "cell 4 0,aligny bottom");
+		add(getLblRoom(), "cell 5 0,aligny bottom");
 		
 		uniIconPanel = new JPanel();
 		add(uniIconPanel, "cell 6 0,alignx center,growy");	
@@ -90,28 +90,16 @@ public class RequestTab extends JPanel {
 		comboBoxLecturer.setModel(new CmbboxFilterLecturer());
 		comboBoxLecturer.setEditable(true);
 		comboBoxLecturer.setAutoscrolls(true);
-		add(comboBoxLecturer, "cell 2 1,growx");
-		
-		comboBoxChair = new JComboBox<String>();
-		comboBoxChair.addActionListener(new CmbboxFilter());
-		comboBoxChair.setModel(new CmbboxFilterChair());
-		comboBoxChair.setEditable(true);
-		comboBoxChair.setAutoscrolls(true);
-		add(comboBoxChair, "cell 3 1,growx");
-		
-		comboBoxStatus = new JComboBox<String>();
-		comboBoxStatus.addActionListener(new CmbboxFilter());
-		comboBoxStatus.setModel(new CmbboxFilterAllocationStatus());
-		comboBoxStatus.setEditable(true);
-		comboBoxStatus.setAutoscrolls(true);
-		add(comboBoxStatus, "cell 4 1,growx");
+		add(comboBoxLecturer, "cell 2 1,growx,aligny center");
+		add(getFilterBottom(), "cell 3 1,alignx left,aligny center");
 		
 		comboBoxSemester = new JComboBox<String>();
-		comboBoxSemester.addActionListener(new CmbboxFilter());
+		comboBoxSemester.addActionListener(new RequestTabCmbboxFilter());
 		comboBoxSemester.setModel(new CmbboxFilterSemester());
 		comboBoxSemester.setEditable(true);
 		comboBoxSemester.setAutoscrolls(true);
-		add(comboBoxSemester, "cell 5 1,growx");
+		add(comboBoxSemester, "cell 4 1,growx");
+		add(getTxtRoom(), "cell 5 1,growx");
 		
 		leftPanel = new JPanel();
 		leftPanel.setLayout(null);
@@ -138,6 +126,7 @@ public class RequestTab extends JPanel {
 		roomAllocationTable.setModel(Bootstrap.serviceManager.getOrgaRequestTableModel());
 		roomAllocationTable.setShowVerticalLines(false);
 		roomAllocationTable.setBackground(SystemColor.activeCaption);
+		roomAllocationTable.getColumnModel().removeColumn(roomAllocationTable.getColumn("Hidden"));
 		organisationTableScrollPane.setViewportView(roomAllocationTable);
 		
 		buttonPanel = new JPanel();
@@ -166,6 +155,7 @@ public class RequestTab extends JPanel {
 		
 		btnFailureprompt = new JButton("Ausloggen");
 		add(btnFailureprompt, "cell 2 3");
+		add(getFilterTop(), "cell 3 0,alignx left,aligny bottom");
 		btnFailureprompt.addActionListener(new RequestTabBtnsControl("Fehlermeldung"));
 	}
 	/**
@@ -197,5 +187,56 @@ public class RequestTab extends JPanel {
 	 */
 	public JTable getRoomAllocationTable() {
 		return roomAllocationTable;
+	}
+	public JPanel getFilterTop() {
+		if (filterTop == null) {
+			filterTop = new JPanel();
+			filterTop.setLayout(new MigLayout("insets 0", "[200px:200px:200px][100px:100px]", "[]"));
+			
+			lblProfessorship = new JLabel("Lehrstuhl:");
+			filterTop.add(lblProfessorship, "cell 0 0");
+			
+			lblStatus = new JLabel("Freigabestatus:");
+			filterTop.add(lblStatus, "cell 1 0");
+		}
+		return filterTop;
+	}
+	public JPanel getFilterBottom() {
+		if (filterBottom == null) {
+			filterBottom = new JPanel();
+			filterBottom.setBorder(null);
+			filterBottom.setAlignmentX(0.0f);
+			filterBottom.setLayout(new MigLayout("insets 0", "[200px:200px:200px][100px:100px:100px]", ""));
+			
+			comboBoxChair = new JComboBox<String>();
+			comboBoxChair.setMaximumSize(new Dimension(200, 50));
+			filterBottom.add(comboBoxChair, "cell 0 0,aligny center");
+			comboBoxChair.addActionListener(new RequestTabCmbboxFilter());
+			comboBoxChair.setModel(new CmbboxFilterChair());
+			comboBoxChair.setEditable(true);
+			comboBoxChair.setAutoscrolls(true);
+			
+			comboBoxStatus = new JComboBox<String>();
+			filterBottom.add(comboBoxStatus, "cell 1 0,aligny center");
+			comboBoxStatus.addActionListener(new RequestTabCmbboxFilter());
+			comboBoxStatus.setModel(new CmbboxFilterAllocationStatus());
+			comboBoxStatus.setEditable(true);
+			comboBoxStatus.setAutoscrolls(true);
+		}
+		return filterBottom;
+	}
+	public JLabel getLblRoom() {
+		if (lblRoom == null) {
+			lblRoom = new JLabel("Raum:");
+		}
+		return lblRoom;
+	}
+	public JTextField getTxtRoom() {
+		if (txtRoom == null) {
+			txtRoom = new JTextField();
+			txtRoom.setColumns(10);
+			txtRoom.addActionListener(new RequestTabCmbboxFilter());
+		}
+		return txtRoom;
 	}
 }

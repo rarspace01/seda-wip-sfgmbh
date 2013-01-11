@@ -47,6 +47,18 @@ public class DataHandlerRoomAllocation implements IntfDataObservable, IntfDataFi
 	public List<RoomAllocation> getByFilter(HashMap<String, String> filter) {
 		List<RoomAllocation> listRoomAllocation = new ArrayList<RoomAllocation>();
 		
+		// Translate some filter values when needed
+		if (filter.containsKey("status") && filter.get("status").equals("wartend")) {
+			filter.put("status", "waiting");
+		}
+		if (filter.containsKey("status") && filter.get("status").equals("freigegeben")) {
+			filter.put("status", "accepted");
+		}
+		if (filter.containsKey("status") && filter.get("status").equals("abgelehnt")) {
+			filter.put("status", "denied");
+		}
+		
+		
 		try {
 			if (filterDm == null) { 
 				filterDm = new DataManagerPostgreSql(); 
@@ -61,7 +73,10 @@ public class DataHandlerRoomAllocation implements IntfDataObservable, IntfDataFi
 						"AND (public.user.lname LIKE ? OR public.user.fname LIKE ? ) " +
 						"AND (public.chair.chairname LIKE ? OR public.chair.chairacronym LIKE ? ) " +
 						"AND (public.course.courseacronym LIKE ? OR public.course.coursename LIKE ? ) " +
-						"AND public.roomallocation.semester LIKE ? ");
+						"AND public.roomallocation.semester LIKE ? " +
+						"AND public.roomallocation.approved LIKE ? " +
+						"AND public.room.roomnumber LIKE ? ");
+				
 			}
 			if (filter.containsKey("lecturer") && filter.get("lecturer") != null && filter.get("lecturer") != "" && filter.get("lecturer") != "<alle>") {
 				filterDm.pstmt.setString(1, "%" + filter.get("lecturer") + "%");
@@ -88,6 +103,16 @@ public class DataHandlerRoomAllocation implements IntfDataObservable, IntfDataFi
 				filterDm.pstmt.setString(7, "%" + filter.get("semester") + "%");
 			} else {
 				filterDm.pstmt.setString(7, "%");
+			}
+			if (filter.containsKey("status") && filter.get("status") != null && filter.get("status") != "" && filter.get("status") != "<alle>") {
+				filterDm.pstmt.setString(8, "%" + filter.get("status") + "%");
+			} else {
+				filterDm.pstmt.setString(8, "%");
+			}
+			if (filter.containsKey("room") && filter.get("room") != null && filter.get("room") != "" && filter.get("room") != "<alle>") {
+				filterDm.pstmt.setString(9, "%" + filter.get("room") + "%");
+			} else {
+				filterDm.pstmt.setString(9, "%");
 			}
 			
 			ResultSet rs = filterDm.selectPstmt();

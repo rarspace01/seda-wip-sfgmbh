@@ -13,7 +13,7 @@ import de.sfgmbh.comlayer.core.controller.ViewHelper;
 public class RequestTabTable extends DefaultTableModel implements IntfAppObserver {
 
 	private static final long serialVersionUID = 1L;
-	private String[] header = {"Dozent", "Lehrstuhl", "Tag", "Zeit", "Raum", "Semester", "Status"};
+	private String[] header = {"Dozent", "Lehrstuhl", "Tag", "Zeit", "Raum", "Semester", "Status", "Hidden"};
 	
 	public RequestTabTable() {
 		AppModel.getInstance().repositoryRoomAllocation.register(this);
@@ -32,33 +32,32 @@ public class RequestTabTable extends DefaultTableModel implements IntfAppObserve
 			filter.put("status", "<alle>");
 			filter.put("lecturer", "<alle>");
 			filter.put("semester", "<alle>");
+			filter.put("room", "<alle>");
 		} else {
 			filter.put("chair", ServiceManager.getInstance().getOrgaRquestTab().getComboBoxChair().getSelectedItem().toString());
 			filter.put("status", ServiceManager.getInstance().getOrgaRquestTab().getComboBoxStatus().getSelectedItem().toString());
 			filter.put("lecturer", ServiceManager.getInstance().getOrgaRquestTab().getComboBoxLecturer().getSelectedItem().toString());
 			filter.put("semester", ServiceManager.getInstance().getOrgaRquestTab().getComboBoxSemester().getSelectedItem().toString());
+			filter.put("room", ServiceManager.getInstance().getOrgaRquestTab().getTxtRoom().getText());
 		}
 		
 		for (RoomAllocation ra : AppModel.getInstance().repositoryRoomAllocation.getByFilter(filter)){
-			if (ra.isPublic()) {
-				try {
-					Object[] row = {
-							ra.getSemester_(), 
-							ra.getCourse_().getCourseKind_(), 
-							ra.getCourse_().getCourseAcronym_(), 
-							ra.getCourse_().getCourseName_(), 
-							ra.getCourse_().getLecturer_().getlName_(), 
-							vh.getDay(ra.getDay_()),
-							vh.getTime(ra.getTime_()), 
-							ra.getRoom_().getRoomNumber_(), 
-							ra.getCourse_().getSws_(),
-							ra
-							};
-					this.addRow(row);
+			
+			try {
+				Object[] row = {
+						ra.getCourse_().getLecturer_().getlName_(),
+						ra.getCourse_().getLecturer_().getChair().getAcronym_(),
+						vh.getDay(ra.getDay_()),
+						vh.getTime(ra.getTime_()),
+						ra.getRoom_().getRoomNumber_(),
+						ra.getSemester_(),
+						vh.getAllocationStatus(ra.getApproved_()),
+						ra
+						};
+				this.addRow(row);
 
-				} catch (Exception e) {
-					AppModel.getInstance().appExcaptions.setNewException("Ein unbekannter Fehler ist aufgetreten! <br /><br />Fehler BaseTableMain-01:<br />" + e.toString(), "Fehler!");
-				}
+			} catch (Exception e) {
+				AppModel.getInstance().appExcaptions.setNewException("Ein unbekannter Fehler ist aufgetreten! <br /><br />Fehler RequestTabTable-01:<br />" + e.toString(), "Fehler!");
 			}
 		}
 	}

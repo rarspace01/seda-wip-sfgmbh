@@ -26,7 +26,6 @@ public class UserFrame extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public UserFrame() {
 		initialize();
 	}
@@ -82,13 +81,13 @@ public class UserFrame extends JFrame {
 		txtEmail.setBounds(115, 40, 116, 20);
 		contentPane.add(txtEmail);
 		
-		JComboBox comboBoxNutzerklasse = new JComboBox();
+		JComboBox<String> comboBoxNutzerklasse = new JComboBox<String>();
 		comboBoxNutzerklasse.setFont(new Font("SansSerif", Font.PLAIN, 12));
-		comboBoxNutzerklasse.setModel(new DefaultComboBoxModel(new String[] {"Verwaltung", "Dozent", "Student"}));
+		comboBoxNutzerklasse.setModel(new DefaultComboBoxModel<String>(new String[] {"Verwaltung", "Dozent", "Student"}));
 		comboBoxNutzerklasse.setBounds(115, 94, 116, 20);
 		contentPane.add(comboBoxNutzerklasse);
 		
-		JComboBox comboBoxLehrstuhl = new JComboBox();
+		JComboBox<String> comboBoxLehrstuhl = new JComboBox<String>();
 		comboBoxLehrstuhl.setEditable(true);
 		comboBoxLehrstuhl.setFont(new Font("SansSerif", Font.PLAIN, 12));
 		comboBoxLehrstuhl.setBounds(115, 125, 116, 20);
