@@ -84,4 +84,22 @@ public class ViewHelper {
 			return null;
 		}
 	}
+	
+	/**
+	 * Returns the formated string for a status
+	 * @param s
+	 * @return the formated string for a status
+	 */
+	public String getAllocationStatus(String s) {
+		if (s.equals("waiting")) {
+			return "wartend";
+		} else if (s.equals("accepted")) {
+			return "freigegeben";
+		} else if (s.equals("denied")) {
+			return "abgelehnt";
+		} else {
+			AppModel.getInstance().appExcaptions.setNewException("Eine unbekannter Status wurde verwendet.", "Achtung!");
+			return null;
+		}
+	}
 }

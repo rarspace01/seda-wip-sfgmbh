@@ -124,7 +124,7 @@ public class DataHandlerRoomAllocation implements IntfDataObservable, IntfDataFi
 			returnRoomAllocation.setSemester_(rs.getString("semester"));
 			returnRoomAllocation.setDay_(rs.getInt("day"));
 			returnRoomAllocation.setTime_(rs.getInt("time"));
-			returnRoomAllocation.setApproved_(rs.getBoolean("approved"));
+			returnRoomAllocation.setApproved_(rs.getString("approved"));
 			returnRoomAllocation.setOrgaMessage_(rs.getString("orgamessage"));
 			returnRoomAllocation.setComment_(rs.getString("comment"));
 		} catch (SQLException e) {
@@ -159,7 +159,7 @@ public class DataHandlerRoomAllocation implements IntfDataObservable, IntfDataFi
 		if (observer instanceof IntfDataObserver) {
 			observer_.add(observer);
 		} else {
-			DataModel.getInstance().dataExcaptions.setNewException("Das Objekt implementiert nicht das Observer-Interface und kann daher nicht hinzugefügt werden!<br />Fehler: DataHandlerRoomAllocation-12", "Fehler!");
+			DataModel.getInstance().dataExcaptions.setNewException("Das Objekt implementiert nicht das Observer-Interface und kann daher nicht hinzugefï¿½gt werden!<br />Fehler: DataHandlerRoomAllocation-12", "Fehler!");
 		}
 	}
 	
