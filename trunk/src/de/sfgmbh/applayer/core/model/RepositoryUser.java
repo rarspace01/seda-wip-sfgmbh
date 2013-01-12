@@ -43,6 +43,14 @@ public class RepositoryUser implements IntfAppObservable, IntfDataObserver {
 	public List<User> getByFilter(HashMap<String, String> filter) {
 		return DataModel.getInstance().dataHandlerUser.getByFilter(filter);
 	}
+	
+	/**
+	 * Save this user object in the DB (this will update a database entry if there is already one and create one if there is none)
+	 */
+	public void save(User user) {
+		DataModel.getInstance().dataHandlerUser.save(user);
+		return;
+	}
 
 	@Override
 	public void change() {
@@ -67,7 +75,7 @@ public class RepositoryUser implements IntfAppObservable, IntfDataObserver {
 		if (observer instanceof IntfAppObserver) {
 			observer_.add(observer);
 		} else {
-			AppModel.getInstance().appExcaptions.setNewException("Das Objekt implementiert nicht das Observer-Interface und kann daher nicht hinzugefügt werden!<br />Fehler: RepositoryUser-01", "Fehler!");
+			AppModel.getInstance().appExcaptions.setNewException("Das Objekt implementiert nicht das Observer-Interface und kann daher nicht hinzugefï¿½gt werden!<br />Fehler: RepositoryUser-01", "Fehler!");
 		}
 	}
 	

@@ -3,47 +3,56 @@ package de.sfgmbh.comlayer.organisation.controller;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import de.sfgmbh.applayer.core.controller.ServiceManager;
+import de.sfgmbh.applayer.core.model.AppModel;
+import de.sfgmbh.applayer.core.model.RoomAllocation;
+import de.sfgmbh.applayer.organisation.controller.CtrlRoomAllocation;
 import de.sfgmbh.comlayer.core.views.InfoDialog;
 import de.sfgmbh.init.Bootstrap;
-
-
 
 public class RequestTabBtnsControl implements ActionListener {
 	
 	private String navAction;
+	private CtrlRoomAllocation ctrlRoomAllocation;
 	protected InfoDialog infoWindow;
 	
 	
 	public RequestTabBtnsControl() {
 		this.navAction = "default";
+		this.ctrlRoomAllocation = new CtrlRoomAllocation();
 	}
 	public RequestTabBtnsControl(String action) {
 		this.navAction = action;
+		this.ctrlRoomAllocation = new CtrlRoomAllocation();
 	}
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		
-		// Konfliktlösen Button is pressed
-		if (this.navAction.equals("Konflikt")) {
+		// Konfliktlï¿½sen Button is pressed
+		if (this.navAction.equals("solve")) {
 			Bootstrap.serviceManager.getOrgaCounterproposalFrame().setVisible(true);
 		}
 		
+		
 		// Ablehnen Button is pressed
-		if (this.navAction.equals("ablehnen")) {
-			this.getInfoWindow("<b>Fehlermeldung:</b><br>Die Lehrveranstaltung konnte nicht freigegeben werden:<br>Sie haben keine Lehrveranstaltung selektiert!").setVisible(true);
+		if (this.navAction.equals("accept")) {
+			int row = ServiceManager.getInstance().getOrgaRquestTab().getRoomAllocationTable().getSelectedRow();
+			if (row == -1) {
+				AppModel.getInstance().appExcaptions.setNewException("Sie mÃ¼ssen zunÃ¤chst eine Spalte auswÃ¤hlen.", "Achtung!");
+			}
+			try {
+				RoomAllocation selectedRa = (RoomAllocation) ServiceManager.getInstance().getOrgaRequestTableModel().getValueAt(row, 8);
+				ctrlRoomAllocation.acceptRoomAllocation(selectedRa);
+			} catch (Exception ex) {
+				AppModel.getInstance().appExcaptions.setNewException("Ein unerwarteter Fehler ist aufgetreten.<br /><br >" + ex.toString(), "Fehler!");
+			}
 		}
 		
 		// Fehlermeldung Button is pressed
-		if (this.navAction.equals("Fehlermeldung")) {
-			this.getInfoWindow("<b>Fehlermeldung:</b><br> Es konnte keine Datenverbindung hergestellt werden. Somit können keine Anfragen angezeigt werden.</b>").setVisible(true);
+		if (this.navAction.equals("error")) {
+			this.getInfoWindow("<b>Fehlermeldung:</b><br> Es konnte keine Datenverbindung hergestellt werden. Somit kï¿½nnen keine Anfragen angezeigt werden.</b>").setVisible(true);
 		}
-		
-		// Freigeben Button is pressed
-		if (this.navAction.equals("publish")) {
-			this.getInfoWindow("<b>Fehlermeldung:</b><br>Die Lehrveranstaltung konnte nicht freigegeben werden:<br>Sie haben keine Lehrveranstaltung selektiert!").setVisible(true);
-		}
-		
 	}
 	
 	// Manage InfoWindow instance
