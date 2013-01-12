@@ -21,7 +21,7 @@ public class RoomFrame extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JTextField txtLevel;
-	private JTextField txtRoomName;
+	private JTextField txtRoomNumber;
 	private JTextField txtBeamer;
 	private JTextField txtPcSeats;
 	private JTextField txtSeats;
@@ -90,15 +90,15 @@ public class RoomFrame extends JFrame {
 		gbc_lblNutzerkennung.gridy = 2;
 		contentPane.add(lblNutzerkennung, gbc_lblNutzerkennung);
 		
-		txtRoomName = new JTextField();
-		txtRoomName.setFont(new Font("SansSerif", Font.PLAIN, 12));
+		txtRoomNumber = new JTextField();
+		txtRoomNumber.setFont(new Font("SansSerif", Font.PLAIN, 12));
 		GridBagConstraints gbc_txtRoomName = new GridBagConstraints();
 		gbc_txtRoomName.fill = GridBagConstraints.BOTH;
 		gbc_txtRoomName.insets = new Insets(0, 0, 5, 0);
 		gbc_txtRoomName.gridwidth = 2;
 		gbc_txtRoomName.gridx = 1;
 		gbc_txtRoomName.gridy = 2;
-		contentPane.add(txtRoomName, gbc_txtRoomName);
+		contentPane.add(txtRoomNumber, gbc_txtRoomName);
 		
 		JLabel lblNutzerklasse = new JLabel("Pl\u00E4tze:");
 		lblNutzerklasse.setFont(new Font("SansSerif", Font.PLAIN, 12));
@@ -263,4 +263,61 @@ public class RoomFrame extends JFrame {
 		gbc_btnSpeichern.gridy = 11;
 		contentPane.add(btnSpeichern, gbc_btnSpeichern);
 	}
+	
+	public JTextField getTxtLevel() {
+		return txtLevel;
+	}
+	public void setTxtLevel(JTextField txtLevel) {
+		this.txtLevel = txtLevel;
+	}
+	public JTextField getTxtRoomNumber() {
+		return txtRoomNumber;
+	}
+	public void setTxtRoomNumber(JTextField txtRoomNumber) {
+		this.txtRoomNumber = txtRoomNumber;
+	}
+	public JTextField getTxtBeamer() {
+		return txtBeamer;
+	}
+	public void setTxtBeamer(JTextField txtBeamer) {
+		this.txtBeamer = txtBeamer;
+	}
+	public JTextField getTxtPcSeats() {
+		return txtPcSeats;
+	}
+	public void setTxtPcSeats(JTextField txtPcSeats) {
+		this.txtPcSeats = txtPcSeats;
+	}
+	public JTextField getTxtSeats() {
+		return txtSeats;
+	}
+	public void setTxtSeats(JTextField txtSeats) {
+		this.txtSeats = txtSeats;
+	}
+	public JTextField getTxtVisualizer() {
+		return txtVisualizer;
+	}
+	public void setTxtVisualizer(JTextField txtVisualizer) {
+		this.txtVisualizer = txtVisualizer;
+	}
+	public JTextField getTxtOverheads() {
+		return txtOverheads;
+	}
+	public void setTxtOverheads(JTextField txtOverheads) {
+		this.txtOverheads = txtOverheads;
+	}
+	public JTextField getTxtChalkboards() {
+		return txtChalkboards;
+	}
+	public void setTxtChalkboards(JTextField txtChalkboards) {
+		this.txtChalkboards = txtChalkboards;
+	}
+	public JTextField getTxtWhiteboards() {
+		return txtWhiteboards;
+	}
+	public void setTxtWhiteboards(JTextField txtWhiteboards) {
+		this.txtWhiteboards = txtWhiteboards;
+	}
+	
+	
 }

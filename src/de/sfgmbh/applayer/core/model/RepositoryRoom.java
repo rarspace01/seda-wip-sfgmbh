@@ -26,7 +26,11 @@ public class RepositoryRoom implements IntfAppObservable, IntfDataObserver {
 	public List<Room> getAll() {
 		return DataModel.getInstance().dataHandlerRoom.getAll();
 	}
-
+	
+	public void save(Room room){
+		DataModel.getInstance().dataHandlerRoom.save(room);
+	}
+	
 	@Override
 	public void change() {
 		this.update();
@@ -50,7 +54,7 @@ public class RepositoryRoom implements IntfAppObservable, IntfDataObserver {
 		if (observer instanceof IntfAppObserver) {
 			observer_.add(observer);
 		} else {
-			AppModel.getInstance().appExcaptions.setNewException("Das Objekt implementiert nicht das Observer-Interface und kann daher nicht hinzugefügt werden!<br />Fehler: RepositoryChair-01", "Fehler!");
+			AppModel.getInstance().appExcaptions.setNewException("Das Objekt implementiert nicht das Observer-Interface und kann daher nicht hinzugefï¿½gt werden!<br />Fehler: RepositoryChair-01", "Fehler!");
 		}
 	}
 	
@@ -62,5 +66,6 @@ public class RepositoryRoom implements IntfAppObservable, IntfDataObserver {
 	public void unregister(Object observer) {
 		observer_.remove(observer);
 	}
+
 
 }
