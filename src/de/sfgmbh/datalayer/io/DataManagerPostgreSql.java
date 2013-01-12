@@ -63,13 +63,16 @@ public class DataManagerPostgreSql {
 	 */
 	public ResultSet select(String SQLString) throws SQLException {
 		
-		System.out.println("SQL select: ["+SQLString+"]");
-		
 		ResultSet rs = null;
 
 		try {
-
+			
+			long a, b, diff;
+			a = (long) System.currentTimeMillis();
 			rs = stmt.executeQuery(SQLString);
+			b = (long) System.currentTimeMillis();
+			diff = b - a;
+			System.out.println(diff + "ms for SQL select: ["+SQLString+"]");
 
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -86,13 +89,16 @@ public class DataManagerPostgreSql {
 	 */
 	public int execute(String SQLString) throws SQLException {
 		
-		System.out.println("SQL execute: ["+SQLString+"]");
-		
 		int i = -1;
 
 		try {
-
+			
+			long a, b, diff;
+			a = (long) System.currentTimeMillis();
 			i = stmt.executeUpdate(SQLString);
+			b = (long) System.currentTimeMillis();
+			diff = b - a;
+			System.out.println(diff + "ms for SQL execute: ["+SQLString+"]");
 
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -125,7 +131,12 @@ public class DataManagerPostgreSql {
 		ResultSet rs = null;
 		
 		try {
+			long a, b, diff;
+			a = (long) System.currentTimeMillis();
 			rs = this.pstmt.executeQuery();
+			b = (long) System.currentTimeMillis();
+			diff = b - a;
+			System.out.println(diff + "ms for SQL PS select: [" + this.pstmt.toString() +"]");
 		} catch (SQLException e) {
 			e.printStackTrace();
 			DataModel.getInstance().dataExcaptions.setNewException(("Es ist ein SQL-Fehler (DataManagerPostgreSql-06) aufgetreten:<br /><br />" + e.toString()), "Datenbank-Fehler!");
@@ -139,7 +150,12 @@ public class DataManagerPostgreSql {
 		int i = -1;
 		
 		try {
+			long a, b, diff;
+			a = (long) System.currentTimeMillis();
 			i = this.pstmt.executeUpdate();
+			b = (long) System.currentTimeMillis();
+			diff = b - a;
+			System.out.println(diff + "ms for SQL PS execute: [" + this.pstmt.toString() +"]");
 		} catch (SQLException e) {
 			e.printStackTrace();
 			DataModel.getInstance().dataExcaptions.setNewException(("Es ist ein SQL-Fehler (DataManagerPostgreSql-07) aufgetreten:<br /><br />" + e.toString()), "Datenbank-Fehler!");

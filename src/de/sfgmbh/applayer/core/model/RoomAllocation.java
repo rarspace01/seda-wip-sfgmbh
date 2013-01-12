@@ -1,5 +1,7 @@
 package de.sfgmbh.applayer.core.model;
 
+import java.util.List;
+
 import de.sfgmbh.datalayer.core.definitions.IntfDataRetrievable;
 
 public class RoomAllocation implements IntfDataRetrievable{
@@ -13,6 +15,7 @@ public class RoomAllocation implements IntfDataRetrievable{
 	private String approved_;
 	private String orgaMessage_;
 	private String comment_;
+	private List<RoomAllocation> conflictingAllocations_;
 	
 	public RoomAllocation() {
 		this.roomAllocationId_ = -1;
@@ -150,8 +153,33 @@ public class RoomAllocation implements IntfDataRetrievable{
 		this.comment_ = comment_;
 	}
 	
+	
 	/**
-	 * Check if this allocation is published (apprvoed by the organ staff and published by the lecturer)
+	 * @return the conflictingAllocations_
+	 */
+	public List<RoomAllocation> getConflictingAllocations_() {
+		return conflictingAllocations_;
+	}
+
+	/**
+	 * @param conflictingAllocations_ the conflictingAllocations_ to set
+	 */
+	public void setConflictingAllocations_() {
+		if (this.conflictingAllocations_ == null) {
+			List<RoomAllocation> ral = AppModel.getInstance().repositoryRoomAllocation.getConflictingAllocation(this);
+			this.conflictingAllocations_ = ral;
+		}
+	}
+	
+	/**
+	 * Save this room allocation in the DB
+	 */
+	public void save() {
+		AppModel.getInstance().repositoryRoomAllocation.save(this);
+	}
+
+	/**
+	 * Check if this allocation is published (approved by the organ staff and published by the lecturer)
 	 * @return true if this allocation is published
 	 */
 	public boolean isPublic() {
@@ -168,8 +196,5 @@ public class RoomAllocation implements IntfDataRetrievable{
 		// TODO Auto-generated method stub
 		return null;
 	}
-	
-	
-	
-	
+
 }

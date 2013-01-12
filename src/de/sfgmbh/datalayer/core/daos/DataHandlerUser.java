@@ -259,6 +259,8 @@ public class DataHandlerUser implements IntfDataUser, IntfDataObservable, IntfDa
 					dm.pstmt.setLong(8, user.getLastLogin_());
 					dm.pstmt.setBoolean(9, user.isDisabled_());
 					dm.executePstmt();
+					this.update();
+					return;
 					
 				} catch (SQLException e) {
 					e.printStackTrace();
@@ -284,6 +286,8 @@ public class DataHandlerUser implements IntfDataUser, IntfDataObservable, IntfDa
 				dm.pstmt.setBoolean(9, user.isDisabled_());
 				dm.pstmt.setInt(10, user.getUserId_());
 				dm.executePstmt();
+				this.update();
+				return;
 				
 			} catch (SQLException e) {
 				e.printStackTrace();
@@ -293,7 +297,6 @@ public class DataHandlerUser implements IntfDataUser, IntfDataObservable, IntfDa
 				DataModel.getInstance().dataExcaptions.setNewException(("Es ist ein unbekannter Fehler (DataHandlerUser-08) in der Datenhaltung aufgetreten:<br /><br />" + e.toString()), "Fehler!");
 			}
 		}
-			
 	}
 	
 	/**

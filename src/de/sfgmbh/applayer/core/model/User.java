@@ -6,7 +6,6 @@ import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 import java.util.HashMap;
 
-import de.sfgmbh.datalayer.core.daos.DataHandlerUser;
 import de.sfgmbh.datalayer.core.definitions.IntfDataRetrievable;
 import de.sfgmbh.datalayer.core.model.DataModel;
 
@@ -255,8 +254,7 @@ public class User implements IntfDataRetrievable {
 	 * Save this user object in the DB (this will update a database entry if there is already one and create one if there is none)
 	 */
 	public void save() {
-		DataHandlerUser dhu = new DataHandlerUser();
-		dhu.save(this);
+		AppModel.getInstance().repositoryUser.save(this);
 	}
 
 }

@@ -36,6 +36,32 @@ public class RepositoryRoomAllocation implements IntfAppObservable, IntfDataObse
 		return DataModel.getInstance().dataHandlerRoomAllocation.getByFilter(filter);
 	}
 
+	/**
+	 * Checks for conflicting room allocations
+	 * @param ra
+	 * @return a list of all conflicting room allocations
+	 */
+	public List<RoomAllocation> getConflictingAllocation(RoomAllocation ra) {
+		return DataModel.getInstance().dataHandlerRoomAllocation.getConflictingAllocation(ra);
+	}
+	
+	/**
+	 * Get a room allocation by its id
+	 * @param id
+	 * @return a room allocation by its id
+	 */
+	public RoomAllocation get(int id) {
+		return DataModel.getInstance().dataHandlerRoomAllocation.get(id);
+	}
+	
+	/**
+	 * Save this user object in the DB (this will update a database entry if there is already one and create one if there is none)
+	 */
+	public void save(RoomAllocation ra) {
+		DataModel.getInstance().dataHandlerRoomAllocation.save(ra);
+		return;
+	}
+
 	@Override
 	public void change() {
 		this.update();
@@ -59,7 +85,7 @@ public class RepositoryRoomAllocation implements IntfAppObservable, IntfDataObse
 		if (observer instanceof IntfAppObserver) {
 			observer_.add(observer);
 		} else {
-			AppModel.getInstance().appExcaptions.setNewException("Das Objekt implementiert nicht das Observer-Interface und kann daher nicht hinzugefügt werden!<br />Fehler: RepositoryRoomAllocation-01", "Fehler!");
+			AppModel.getInstance().appExcaptions.setNewException("Das Objekt implementiert nicht das Observer-Interface und kann daher nicht hinzugefï¿½gt werden!<br />Fehler: RepositoryRoomAllocation-01", "Fehler!");
 		}
 	}
 	

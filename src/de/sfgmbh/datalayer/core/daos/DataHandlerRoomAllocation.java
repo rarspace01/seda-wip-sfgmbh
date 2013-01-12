@@ -17,6 +17,7 @@ public class DataHandlerRoomAllocation implements IntfDataObservable, IntfDataFi
 
 	private ArrayList<Object> observer_ = new ArrayList<Object>();
 	private DataManagerPostgreSql filterDm = null;
+	private DataManagerPostgreSql conflictingAllocationDm = null;
 	
 	public List<RoomAllocation> getAll() {
 		List<RoomAllocation> listRoomAllocation = new ArrayList<RoomAllocation>();
@@ -29,7 +30,7 @@ public class DataHandlerRoomAllocation implements IntfDataObservable, IntfDataFi
 					SqlStatement);
 
 			while (resultSet.next()) {
-				listRoomAllocation.add(this.makeRoomAllocation(resultSet));
+				listRoomAllocation.add(this.makeRoomAllocation(resultSet, "normal"));
 			}
 
 		} catch (SQLException e) {
@@ -117,9 +118,49 @@ public class DataHandlerRoomAllocation implements IntfDataObservable, IntfDataFi
 			
 			ResultSet rs = filterDm.selectPstmt();
 			while (rs.next()) {
-				listRoomAllocation.add(this.makeRoomAllocation(rs));
+				listRoomAllocation.add(this.makeRoomAllocation(rs, "normal"));
 			}
 			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			DataModel.getInstance().dataExcaptions.setNewException(("Es ist ein SQL-Fehler aufgetreten.<br /><br />Fehler DataHandlerRoomAllocation-17:<br />" + e.toString()), "Datenbank-Fehler!");
+		} catch (Exception e) {
+			e.printStackTrace();
+			DataModel.getInstance().dataExcaptions.setNewException(("Es ist ein unbekannter Fehler in der Datenhaltung aufgetreten:<br /><br />Fehler DataHandlerRoomAllocation-18:<br />" + e.toString()), "Fehler!");
+		}
+		return listRoomAllocation;
+	}
+	
+	/**
+	 * Checks for conflicting room allocations
+	 * @param ra
+	 * @return a list of all conflicting room allocations
+	 */
+	public List<RoomAllocation> getConflictingAllocation(RoomAllocation ra) {
+		List<RoomAllocation> listRoomAllocation = new ArrayList<RoomAllocation>();
+		try {
+			if (conflictingAllocationDm == null) { 
+				conflictingAllocationDm = new DataManagerPostgreSql(); 
+				conflictingAllocationDm.prepare(
+						"SELECT public.roomallocation.* " +
+						"FROM public.roomallocation " +
+						"WHERE public.roomallocation.roomid = ? " +
+						"AND public.roomallocation.day = ? " +
+						"AND public.roomallocation.time = ? " +
+						"AND public.roomallocation.semester LIKE ? " +
+						"AND public.roomallocation.approved NOT LIKE 'denied' " +
+						"ANd public.roomallocation.roomallocationid <> ? ");
+			}
+			conflictingAllocationDm.pstmt.setInt(1, ra.getRoom_().getRoomId_());
+			conflictingAllocationDm.pstmt.setInt(2, ra.getDay_());
+			conflictingAllocationDm.pstmt.setInt(3, ra.getTime_());
+			conflictingAllocationDm.pstmt.setString(4, ra.getSemester_());
+			conflictingAllocationDm.pstmt.setInt(5, ra.getRoomAllocationId_());
+			
+			ResultSet rs = conflictingAllocationDm.selectPstmt();
+			while (rs.next()) {
+				listRoomAllocation.add(this.makeRoomAllocation(rs, "conflictingChildObject"));
+			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 			DataModel.getInstance().dataExcaptions.setNewException(("Es ist ein SQL-Fehler aufgetreten.<br /><br />Fehler DataHandlerRoomAllocation-15:<br />" + e.toString()), "Datenbank-Fehler!");
@@ -131,11 +172,97 @@ public class DataHandlerRoomAllocation implements IntfDataObservable, IntfDataFi
 	}
 	
 	/**
+	 * Get a room allocation by its id
+	 * @param id
+	 * @return a room allocation by its id
+	 */
+	public RoomAllocation get(int id) {
+		try {
+			DataManagerPostgreSql.getInstance().prepare("SELECT * FROM public.roomallocation WHERE roomallocationid = ?");
+			DataManagerPostgreSql.getInstance().pstmt.setInt(1, id);
+			ResultSet rs = DataManagerPostgreSql.getInstance().selectPstmt();
+			while (rs.next()) {
+				return this.makeRoomAllocation(rs, "normal");
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			DataModel.getInstance().dataExcaptions.setNewException(("Es ist ein SQL-Fehler aufgetreten.<br /><br />Fehler DataHandlerRoomAllocation-20:<br />" + e.toString()), "Datenbank-Fehler!");
+		} catch (Exception e) {
+			e.printStackTrace();
+			DataModel.getInstance().dataExcaptions.setNewException(("Es ist ein unbekannter Fehler in der Datenhaltung aufgetreten:<br /><br />Fehler DataHandlerRoomAllocation-21:<br />" + e.toString()), "Fehler!");
+		}
+		
+		return null;
+	}
+	
+	/**
+	* Save a room allocation
+	* @param ra
+	*/
+	public void save(RoomAllocation ra) {
+		if (ra.getRoomAllocationId_() == -1) {
+			try {
+				
+				DataManagerPostgreSql dm=DataManagerPostgreSql.getInstance();
+				
+				dm.prepare("INSERT INTO public.roomallocation"
+						+ "(courseid, roomid, semester, day, time, approved, orgamessage, comment)"
+						+ "VALUES (?,?,?,?,?,?,?,?)");
+				dm.pstmt.setInt(1, ra.getCourse_().getCourseId_());
+				dm.pstmt.setInt(2, ra.getRoom_().getRoomId_());
+				dm.pstmt.setString(3, ra.getSemester_());
+				dm.pstmt.setInt(4, ra.getDay_());
+				dm.pstmt.setInt(5, ra.getTime_());
+				dm.pstmt.setString(6, ra.getApproved_());
+				dm.pstmt.setString(7, ra.getOrgaMessage_());
+				dm.pstmt.setString(8, ra.getComment_());
+				dm.executePstmt();
+				this.update();
+				return;
+				
+			} catch (SQLException e) {
+				e.printStackTrace();
+				DataModel.getInstance().dataExcaptions.setNewException(("Es ist ein SQL-Fehler aufgetreten:<br /><br />Fehler DataHandlerRoomAllocation-22:<br />" + e.toString()), "Datenbank-Fehler!");
+			} catch (Exception e) {
+				e.printStackTrace();
+				DataModel.getInstance().dataExcaptions.setNewException(("Es ist ein unbekannter Fehler in der Datenhaltung aufgetreten:<br /><br />Fehler DataHandlerRoomAllocation-22:<br />" + e.toString()), "Fehler!");
+			}
+		} else {
+			try {
+				DataManagerPostgreSql dm=DataManagerPostgreSql.getInstance();
+				dm.prepare("UPDATE public.roomallocation SET "
+						+ "courseid = ?, roomid = ?, semester = ?, day = ?, time = ?, approved = ?, orgamessage = ?, comment = ? "
+						+ "WHERE roomallocationid = ?");
+				dm.pstmt.setInt(1, ra.getCourse_().getCourseId_());
+				dm.pstmt.setInt(2, ra.getRoom_().getRoomId_());
+				dm.pstmt.setString(3, ra.getSemester_());
+				dm.pstmt.setInt(4, ra.getDay_());
+				dm.pstmt.setInt(5, ra.getTime_());
+				dm.pstmt.setString(6, ra.getApproved_());
+				dm.pstmt.setString(7, ra.getOrgaMessage_());
+				dm.pstmt.setString(8, ra.getComment_());
+				dm.pstmt.setInt(9, ra.getRoomAllocationId_());
+				dm.executePstmt();
+				this.update();
+				return;
+				
+			} catch (SQLException e) {
+				e.printStackTrace();
+				DataModel.getInstance().dataExcaptions.setNewException(("Es ist ein SQL-Fehler aufgetreten:<br /><br />Fehler DataHandlerRoomAllocation-23:<br />" + e.toString()), "Datenbank-Fehler!");
+			} catch (Exception e) {
+				e.printStackTrace();
+				DataModel.getInstance().dataExcaptions.setNewException(("Es ist ein unbekannter Fehler in der Datenhaltung aufgetreten:<br /><br />Fehler DataHandlerRoomAllocation-24:<br />" + e.toString()), "Fehler!");
+			}
+		}
+	}
+	
+	/**
 	 * Forms a RoomAllocation object out of a given result set
 	 * @param ResultSet rs
 	 * @return a RoomAllocation object
 	 */
-	private RoomAllocation makeRoomAllocation(ResultSet rs) {
+	private RoomAllocation makeRoomAllocation(ResultSet rs, String variant) {
 		RoomAllocation returnRoomAllocation = new RoomAllocation();
 		
 		try {
@@ -152,6 +279,12 @@ public class DataHandlerRoomAllocation implements IntfDataObservable, IntfDataFi
 			returnRoomAllocation.setApproved_(rs.getString("approved"));
 			returnRoomAllocation.setOrgaMessage_(rs.getString("orgamessage"));
 			returnRoomAllocation.setComment_(rs.getString("comment"));
+			// Avoid loops
+			if (variant.equals("conflictingChildObject")) {
+				// Currently do nothing
+			} else {
+				returnRoomAllocation.setConflictingAllocations_();
+			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 			DataModel.getInstance().dataExcaptions.setNewException(("Es ist ein SQL-Fehler (DataHandlerRoomAllocation-03) aufgetreten:<br /><br />" + e.toString()), "Datenbank-Fehler!");

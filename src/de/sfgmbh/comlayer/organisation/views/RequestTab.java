@@ -137,26 +137,26 @@ public class RequestTab extends JPanel {
 		
 		btnFreigeben = new JButton("freigeben");
 		btnFreigeben.setBounds(6, 11, 88, 23);
-		btnFreigeben.addActionListener(new RequestTabBtnsControl("publish"));
+		btnFreigeben.addActionListener(new RequestTabBtnsControl("accept"));
 		buttonPanel.add(btnFreigeben);
 		
 		JButton btnAblehnen = new JButton("ablehnen");
 		btnAblehnen.setBounds(6, 45, 88, 23);
-		btnAblehnen.addActionListener(new RequestTabBtnsControl("ablehnen"));
+		btnAblehnen.addActionListener(new RequestTabBtnsControl("deny"));
 		buttonPanel.add(btnAblehnen);
 		
 		JButton btnGegenvorschlag = new JButton("l\u00F6sen");
 		btnGegenvorschlag.setMinimumSize(new Dimension(90, 23));
 		btnGegenvorschlag.setMaximumSize(new Dimension(90, 23));
 		btnGegenvorschlag.setPreferredSize(new Dimension(50, 23));
-		btnGegenvorschlag.addActionListener(new RequestTabBtnsControl("Konflikt"));
+		btnGegenvorschlag.addActionListener(new RequestTabBtnsControl("solve"));
 		btnGegenvorschlag.setBounds(6, 79, 88, 23);
 		buttonPanel.add(btnGegenvorschlag);
 		
 		btnFailureprompt = new JButton("Ausloggen");
 		add(btnFailureprompt, "cell 2 3");
 		add(getFilterTop(), "cell 3 0,alignx left,aligny bottom");
-		btnFailureprompt.addActionListener(new RequestTabBtnsControl("Fehlermeldung"));
+		btnFailureprompt.addActionListener(new RequestTabBtnsControl("error"));
 	}
 	/**
 	 * @return the comboBoxLecturer
