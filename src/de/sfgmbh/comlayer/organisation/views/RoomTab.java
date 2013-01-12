@@ -18,6 +18,8 @@ import javax.swing.UIManager;
 import javax.swing.border.TitledBorder;
 
 import net.miginfocom.swing.MigLayout;
+import de.sfgmbh.applayer.core.model.Room;
+import de.sfgmbh.applayer.organisation.controller.CtrlRoom;
 import de.sfgmbh.comlayer.core.views.BaseTab;
 import de.sfgmbh.comlayer.organisation.controller.CmbboxFilter;
 import de.sfgmbh.comlayer.organisation.controller.RoomTabBtnsControl;
@@ -129,10 +131,15 @@ public class RoomTab extends JPanel {
 		leftTopPanel.add(tickerMsgPos1);
 		
 		organisationTableScrollPane = new JScrollPane();
+		organisationTableScrollPane.setEnabled(false);
 		add(organisationTableScrollPane, "flowx,cell 2 2 4 1,grow");
 		
 		raumverwaltungTable = new JTable();
+		raumverwaltungTable.setEnabled(false);
 		raumverwaltungTable.setModel(Bootstrap.serviceManager.getOrgaRoomTableModel());
+		
+		this.loadRooms();
+		
 		raumverwaltungTable.setShowVerticalLines(false);
 		raumverwaltungTable.setBackground(SystemColor.activeCaption);
 		organisationTableScrollPane.setViewportView(raumverwaltungTable);
@@ -168,4 +175,10 @@ public class RoomTab extends JPanel {
 		add(btnFailureprompt, "cell 2 3");
 	}
 	
+	public void loadRooms(){
+		
+		CtrlRoom ctrlRoom= new CtrlRoom();
+				
+		Bootstrap.serviceManager.getOrgaRoomTableModel().addRooms(ctrlRoom.getAllRooms());
+	}
 }
