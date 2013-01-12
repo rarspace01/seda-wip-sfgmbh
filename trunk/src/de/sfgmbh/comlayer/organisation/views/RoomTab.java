@@ -138,6 +138,8 @@ public class RoomTab extends JPanel {
 		raumverwaltungTable.setEnabled(false);
 		raumverwaltungTable.setModel(Bootstrap.serviceManager.getOrgaRoomTableModel());
 		
+		raumverwaltungTable.getColumnModel().removeColumn(raumverwaltungTable.getColumn("roomid"));
+		
 		this.loadRooms();
 		
 		raumverwaltungTable.setShowVerticalLines(false);

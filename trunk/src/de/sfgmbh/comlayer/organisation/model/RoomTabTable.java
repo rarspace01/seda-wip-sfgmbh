@@ -13,7 +13,7 @@ public class RoomTabTable extends DefaultTableModel {
 //			{"R001", "Erba1", "EG", "55", "55", "1", "0", "0", "0", "2"},
 //			{"R002", "Feki1", "1", "120", "0", "2", "1", "0", "4", "0"},
 //		};
-	private String[] preFillHeader = {"Raum", "Geb\u00E4ude", "Stock", "Pl\u00E4tze", "PC-Pl\u00E4tze", "Beamer", "Visualizer", "Overheads", "Tafeln", "Whiteboards"};
+	private String[] preFillHeader = {"roomid","Raum", "Geb\u00E4ude", "Stock", "Pl\u00E4tze", "PC-Pl\u00E4tze", "Beamer", "Visualizer", "Overheads", "Tafeln", "Whiteboards"};
 	
 	
 	public RoomTabTable() {
@@ -22,7 +22,7 @@ public class RoomTabTable extends DefaultTableModel {
 	
 	public void addRoom(Room room) {
 		
-		Object[] rowVector= {room.getRoomNumber_(),room.getBuildingId_(),room.getLevel_(),room.getSeats_(), room.getPcseats_(), room.getBeamer_(), room.getVisualizer_(), room.getOverheads_(), room.getChalkboards_(), room.getWhiteboards_()};
+		Object[] rowVector= {room.getRoomId_(),room.getRoomNumber_(),room.getBuildingId_(),room.getLevel_(),room.getSeats_(), room.getPcseats_(), room.getBeamer_(), room.getVisualizer_(), room.getOverheads_(), room.getChalkboards_(), room.getWhiteboards_()};
 		
 		this.addRow(rowVector);
 	}
