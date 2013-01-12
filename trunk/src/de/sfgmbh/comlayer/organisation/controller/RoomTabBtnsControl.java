@@ -54,7 +54,7 @@ public class RoomTabBtnsControl implements ActionListener {
 		if (this.navAction.equals("Raumplan")) {
 
 			this.getInfoWindow(
-					"<strong>Fehlermeldung</strong><br> Es konnte keine �bersicht Ihrer Veranstaltungen angezeigt werden. Sie haben keine Lehrveranstaltung ausgew�hlt!")
+					"<strong>Fehlermeldung</strong><br> Es konnte keine Übersicht Ihrer Veranstaltungen angezeigt werden. Sie haben keine Lehrveranstaltung ausgew�hlt!")
 					.setVisible(true);
 			Bootstrap.serviceManager.getCoreBaseTab().mainTabbedContainerPane
 					.setVisible(true);

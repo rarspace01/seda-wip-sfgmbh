@@ -59,15 +59,15 @@ public class RoomFrame extends JFrame {
 		JButton btnAbbrechen = new JButton("Abbrechen");
 		btnAbbrechen.addActionListener(new RoomFrameBtns("cancle"));
 		
-		JLabel lblPasswort = new JLabel("Stockwerk:");
-		lblPasswort.setFont(new Font("SansSerif", Font.PLAIN, 12));
-		GridBagConstraints gbc_lblPasswort = new GridBagConstraints();
-		gbc_lblPasswort.fill = GridBagConstraints.HORIZONTAL;
-		gbc_lblPasswort.insets = new Insets(0, 0, 5, 5);
-		gbc_lblPasswort.gridwidth = 2;
-		gbc_lblPasswort.gridx = 0;
-		gbc_lblPasswort.gridy = 1;
-		contentPane.add(lblPasswort, gbc_lblPasswort);
+		JLabel lblLevel = new JLabel("Stockwerk:");
+		lblLevel.setFont(new Font("SansSerif", Font.PLAIN, 12));
+		GridBagConstraints gbc_lblLevel = new GridBagConstraints();
+		gbc_lblLevel.fill = GridBagConstraints.HORIZONTAL;
+		gbc_lblLevel.insets = new Insets(0, 0, 5, 5);
+		gbc_lblLevel.gridwidth = 2;
+		gbc_lblLevel.gridx = 0;
+		gbc_lblLevel.gridy = 1;
+		contentPane.add(lblLevel, gbc_lblLevel);
 		
 		txtLevel = new JTextField();
 		txtLevel.setFont(new Font("SansSerif", Font.PLAIN, 12));
@@ -79,16 +79,16 @@ public class RoomFrame extends JFrame {
 		gbc_txtLevel.gridy = 1;
 		contentPane.add(txtLevel, gbc_txtLevel);
 		
-		JLabel lblNutzerkennung = new JLabel("Raumnummer:");
-		lblNutzerkennung.setFont(new Font("SansSerif", Font.PLAIN, 12));
-		GridBagConstraints gbc_lblNutzerkennung = new GridBagConstraints();
-		gbc_lblNutzerkennung.anchor = GridBagConstraints.NORTH;
-		gbc_lblNutzerkennung.fill = GridBagConstraints.HORIZONTAL;
-		gbc_lblNutzerkennung.insets = new Insets(0, 0, 5, 5);
-		gbc_lblNutzerkennung.gridwidth = 2;
-		gbc_lblNutzerkennung.gridx = 0;
-		gbc_lblNutzerkennung.gridy = 2;
-		contentPane.add(lblNutzerkennung, gbc_lblNutzerkennung);
+		JLabel lblRoomnumber = new JLabel("Raumnummer:");
+		lblRoomnumber.setFont(new Font("SansSerif", Font.PLAIN, 12));
+		GridBagConstraints gbc_lblRoomnumber = new GridBagConstraints();
+		gbc_lblRoomnumber.anchor = GridBagConstraints.NORTH;
+		gbc_lblRoomnumber.fill = GridBagConstraints.HORIZONTAL;
+		gbc_lblRoomnumber.insets = new Insets(0, 0, 5, 5);
+		gbc_lblRoomnumber.gridwidth = 2;
+		gbc_lblRoomnumber.gridx = 0;
+		gbc_lblRoomnumber.gridy = 2;
+		contentPane.add(lblRoomnumber, gbc_lblRoomnumber);
 		
 		txtRoomNumber = new JTextField();
 		txtRoomNumber.setFont(new Font("SansSerif", Font.PLAIN, 12));
@@ -100,15 +100,15 @@ public class RoomFrame extends JFrame {
 		gbc_txtRoomName.gridy = 2;
 		contentPane.add(txtRoomNumber, gbc_txtRoomName);
 		
-		JLabel lblNutzerklasse = new JLabel("Pl\u00E4tze:");
-		lblNutzerklasse.setFont(new Font("SansSerif", Font.PLAIN, 12));
-		GridBagConstraints gbc_lblNutzerklasse = new GridBagConstraints();
-		gbc_lblNutzerklasse.fill = GridBagConstraints.HORIZONTAL;
-		gbc_lblNutzerklasse.insets = new Insets(0, 0, 5, 5);
-		gbc_lblNutzerklasse.gridwidth = 2;
-		gbc_lblNutzerklasse.gridx = 0;
-		gbc_lblNutzerklasse.gridy = 3;
-		contentPane.add(lblNutzerklasse, gbc_lblNutzerklasse);
+		JLabel lblSeats = new JLabel("Pl\u00E4tze:");
+		lblSeats.setFont(new Font("SansSerif", Font.PLAIN, 12));
+		GridBagConstraints gbc_lblSeats = new GridBagConstraints();
+		gbc_lblSeats.fill = GridBagConstraints.HORIZONTAL;
+		gbc_lblSeats.insets = new Insets(0, 0, 5, 5);
+		gbc_lblSeats.gridwidth = 2;
+		gbc_lblSeats.gridx = 0;
+		gbc_lblSeats.gridy = 3;
+		contentPane.add(lblSeats, gbc_lblSeats);
 		
 		txtSeats = new JTextField();
 		txtSeats.setText("0");
@@ -121,15 +121,15 @@ public class RoomFrame extends JFrame {
 		gbc_txtSeats.gridy = 3;
 		contentPane.add(txtSeats, gbc_txtSeats);
 		
-		JLabel lblLehrstuhl = new JLabel("PC-Pl\u00E4tze:");
-		lblLehrstuhl.setFont(new Font("SansSerif", Font.PLAIN, 12));
-		GridBagConstraints gbc_lblLehrstuhl = new GridBagConstraints();
-		gbc_lblLehrstuhl.fill = GridBagConstraints.HORIZONTAL;
-		gbc_lblLehrstuhl.insets = new Insets(0, 0, 5, 5);
-		gbc_lblLehrstuhl.gridwidth = 2;
-		gbc_lblLehrstuhl.gridx = 0;
-		gbc_lblLehrstuhl.gridy = 4;
-		contentPane.add(lblLehrstuhl, gbc_lblLehrstuhl);
+		JLabel lblPcSeats = new JLabel("PC-Pl\u00E4tze:");
+		lblPcSeats.setFont(new Font("SansSerif", Font.PLAIN, 12));
+		GridBagConstraints gbc_lblPcSeats = new GridBagConstraints();
+		gbc_lblPcSeats.fill = GridBagConstraints.HORIZONTAL;
+		gbc_lblPcSeats.insets = new Insets(0, 0, 5, 5);
+		gbc_lblPcSeats.gridwidth = 2;
+		gbc_lblPcSeats.gridx = 0;
+		gbc_lblPcSeats.gridy = 4;
+		contentPane.add(lblPcSeats, gbc_lblPcSeats);
 		
 		txtPcSeats = new JTextField();
 		txtPcSeats.setText("0");
