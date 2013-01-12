@@ -20,15 +20,15 @@ public class RoomFrame extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-	private JTextField txtNutzerkennung;
-	private JTextField txtPasswort;
-	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField textField_2;
-	private JTextField textField_3;
-	private JTextField textField_4;
-	private JTextField textField_5;
-	private JTextField textField_6;
+	private JTextField txtLevel;
+	private JTextField txtRoomName;
+	private JTextField txtBeamer;
+	private JTextField txtPcSeats;
+	private JTextField txtSeats;
+	private JTextField txtVisualizer;
+	private JTextField txtOverheads;
+	private JTextField txtChalkboards;
+	private JTextField txtWhiteboards;
 
 	/**
 	 * Create the frame.
@@ -69,15 +69,15 @@ public class RoomFrame extends JFrame {
 		gbc_lblPasswort.gridy = 1;
 		contentPane.add(lblPasswort, gbc_lblPasswort);
 		
-		txtNutzerkennung = new JTextField();
-		txtNutzerkennung.setFont(new Font("SansSerif", Font.PLAIN, 12));
-		GridBagConstraints gbc_txtNutzerkennung = new GridBagConstraints();
-		gbc_txtNutzerkennung.fill = GridBagConstraints.BOTH;
-		gbc_txtNutzerkennung.insets = new Insets(0, 0, 5, 0);
-		gbc_txtNutzerkennung.gridwidth = 2;
-		gbc_txtNutzerkennung.gridx = 1;
-		gbc_txtNutzerkennung.gridy = 1;
-		contentPane.add(txtNutzerkennung, gbc_txtNutzerkennung);
+		txtLevel = new JTextField();
+		txtLevel.setFont(new Font("SansSerif", Font.PLAIN, 12));
+		GridBagConstraints gbc_txtLevel = new GridBagConstraints();
+		gbc_txtLevel.fill = GridBagConstraints.BOTH;
+		gbc_txtLevel.insets = new Insets(0, 0, 5, 0);
+		gbc_txtLevel.gridwidth = 2;
+		gbc_txtLevel.gridx = 1;
+		gbc_txtLevel.gridy = 1;
+		contentPane.add(txtLevel, gbc_txtLevel);
 		
 		JLabel lblNutzerkennung = new JLabel("Raumnummer:");
 		lblNutzerkennung.setFont(new Font("SansSerif", Font.PLAIN, 12));
@@ -90,15 +90,15 @@ public class RoomFrame extends JFrame {
 		gbc_lblNutzerkennung.gridy = 2;
 		contentPane.add(lblNutzerkennung, gbc_lblNutzerkennung);
 		
-		txtPasswort = new JTextField();
-		txtPasswort.setFont(new Font("SansSerif", Font.PLAIN, 12));
-		GridBagConstraints gbc_txtPasswort = new GridBagConstraints();
-		gbc_txtPasswort.fill = GridBagConstraints.BOTH;
-		gbc_txtPasswort.insets = new Insets(0, 0, 5, 0);
-		gbc_txtPasswort.gridwidth = 2;
-		gbc_txtPasswort.gridx = 1;
-		gbc_txtPasswort.gridy = 2;
-		contentPane.add(txtPasswort, gbc_txtPasswort);
+		txtRoomName = new JTextField();
+		txtRoomName.setFont(new Font("SansSerif", Font.PLAIN, 12));
+		GridBagConstraints gbc_txtRoomName = new GridBagConstraints();
+		gbc_txtRoomName.fill = GridBagConstraints.BOTH;
+		gbc_txtRoomName.insets = new Insets(0, 0, 5, 0);
+		gbc_txtRoomName.gridwidth = 2;
+		gbc_txtRoomName.gridx = 1;
+		gbc_txtRoomName.gridy = 2;
+		contentPane.add(txtRoomName, gbc_txtRoomName);
 		
 		JLabel lblNutzerklasse = new JLabel("Pl\u00E4tze:");
 		lblNutzerklasse.setFont(new Font("SansSerif", Font.PLAIN, 12));
@@ -110,16 +110,16 @@ public class RoomFrame extends JFrame {
 		gbc_lblNutzerklasse.gridy = 3;
 		contentPane.add(lblNutzerklasse, gbc_lblNutzerklasse);
 		
-		textField_2 = new JTextField();
-		textField_2.setText("0");
-		textField_2.setFont(new Font("SansSerif", Font.PLAIN, 12));
-		GridBagConstraints gbc_textField_2 = new GridBagConstraints();
-		gbc_textField_2.fill = GridBagConstraints.BOTH;
-		gbc_textField_2.insets = new Insets(0, 0, 5, 0);
-		gbc_textField_2.gridwidth = 2;
-		gbc_textField_2.gridx = 1;
-		gbc_textField_2.gridy = 3;
-		contentPane.add(textField_2, gbc_textField_2);
+		txtSeats = new JTextField();
+		txtSeats.setText("0");
+		txtSeats.setFont(new Font("SansSerif", Font.PLAIN, 12));
+		GridBagConstraints gbc_txtSeats = new GridBagConstraints();
+		gbc_txtSeats.fill = GridBagConstraints.BOTH;
+		gbc_txtSeats.insets = new Insets(0, 0, 5, 0);
+		gbc_txtSeats.gridwidth = 2;
+		gbc_txtSeats.gridx = 1;
+		gbc_txtSeats.gridy = 3;
+		contentPane.add(txtSeats, gbc_txtSeats);
 		
 		JLabel lblLehrstuhl = new JLabel("PC-Pl\u00E4tze:");
 		lblLehrstuhl.setFont(new Font("SansSerif", Font.PLAIN, 12));
@@ -131,16 +131,16 @@ public class RoomFrame extends JFrame {
 		gbc_lblLehrstuhl.gridy = 4;
 		contentPane.add(lblLehrstuhl, gbc_lblLehrstuhl);
 		
-		textField_1 = new JTextField();
-		textField_1.setText("0");
-		textField_1.setFont(new Font("SansSerif", Font.PLAIN, 12));
-		GridBagConstraints gbc_textField_1 = new GridBagConstraints();
-		gbc_textField_1.fill = GridBagConstraints.BOTH;
-		gbc_textField_1.insets = new Insets(0, 0, 5, 0);
-		gbc_textField_1.gridwidth = 2;
-		gbc_textField_1.gridx = 1;
-		gbc_textField_1.gridy = 4;
-		contentPane.add(textField_1, gbc_textField_1);
+		txtPcSeats = new JTextField();
+		txtPcSeats.setText("0");
+		txtPcSeats.setFont(new Font("SansSerif", Font.PLAIN, 12));
+		GridBagConstraints gbc_txtPcSeats = new GridBagConstraints();
+		gbc_txtPcSeats.fill = GridBagConstraints.BOTH;
+		gbc_txtPcSeats.insets = new Insets(0, 0, 5, 0);
+		gbc_txtPcSeats.gridwidth = 2;
+		gbc_txtPcSeats.gridx = 1;
+		gbc_txtPcSeats.gridy = 4;
+		contentPane.add(txtPcSeats, gbc_txtPcSeats);
 		
 		JLabel lblBeamer = new JLabel("Beamer:");
 		lblBeamer.setFont(new Font("SansSerif", Font.PLAIN, 12));
@@ -152,16 +152,16 @@ public class RoomFrame extends JFrame {
 		gbc_lblBeamer.gridy = 5;
 		contentPane.add(lblBeamer, gbc_lblBeamer);
 		
-		textField = new JTextField();
-		textField.setText("0");
-		textField.setFont(new Font("SansSerif", Font.PLAIN, 12));
-		GridBagConstraints gbc_textField = new GridBagConstraints();
-		gbc_textField.fill = GridBagConstraints.BOTH;
-		gbc_textField.insets = new Insets(0, 0, 5, 0);
-		gbc_textField.gridwidth = 2;
-		gbc_textField.gridx = 1;
-		gbc_textField.gridy = 5;
-		contentPane.add(textField, gbc_textField);
+		txtBeamer = new JTextField();
+		txtBeamer.setText("0");
+		txtBeamer.setFont(new Font("SansSerif", Font.PLAIN, 12));
+		GridBagConstraints gbc_txtBeamer = new GridBagConstraints();
+		gbc_txtBeamer.fill = GridBagConstraints.BOTH;
+		gbc_txtBeamer.insets = new Insets(0, 0, 5, 0);
+		gbc_txtBeamer.gridwidth = 2;
+		gbc_txtBeamer.gridx = 1;
+		gbc_txtBeamer.gridy = 5;
+		contentPane.add(txtBeamer, gbc_txtBeamer);
 		
 		JLabel lblVisualizer = new JLabel("Visualizer:");
 		lblVisualizer.setFont(new Font("SansSerif", Font.PLAIN, 12));
@@ -174,16 +174,16 @@ public class RoomFrame extends JFrame {
 		gbc_lblVisualizer.gridy = 6;
 		contentPane.add(lblVisualizer, gbc_lblVisualizer);
 		
-		textField_3 = new JTextField();
-		textField_3.setText("0");
-		textField_3.setFont(new Font("SansSerif", Font.PLAIN, 12));
-		GridBagConstraints gbc_textField_3 = new GridBagConstraints();
-		gbc_textField_3.fill = GridBagConstraints.BOTH;
-		gbc_textField_3.insets = new Insets(0, 0, 5, 0);
-		gbc_textField_3.gridwidth = 2;
-		gbc_textField_3.gridx = 1;
-		gbc_textField_3.gridy = 6;
-		contentPane.add(textField_3, gbc_textField_3);
+		txtVisualizer = new JTextField();
+		txtVisualizer.setText("0");
+		txtVisualizer.setFont(new Font("SansSerif", Font.PLAIN, 12));
+		GridBagConstraints gbc_txtVisualizer = new GridBagConstraints();
+		gbc_txtVisualizer.fill = GridBagConstraints.BOTH;
+		gbc_txtVisualizer.insets = new Insets(0, 0, 5, 0);
+		gbc_txtVisualizer.gridwidth = 2;
+		gbc_txtVisualizer.gridx = 1;
+		gbc_txtVisualizer.gridy = 6;
+		contentPane.add(txtVisualizer, gbc_txtVisualizer);
 		
 		JLabel lblOverheads = new JLabel("Overheads:");
 		lblOverheads.setFont(new Font("SansSerif", Font.PLAIN, 12));
@@ -196,16 +196,16 @@ public class RoomFrame extends JFrame {
 		gbc_lblOverheads.gridy = 7;
 		contentPane.add(lblOverheads, gbc_lblOverheads);
 		
-		textField_4 = new JTextField();
-		textField_4.setText("0");
-		textField_4.setFont(new Font("SansSerif", Font.PLAIN, 12));
-		GridBagConstraints gbc_textField_4 = new GridBagConstraints();
-		gbc_textField_4.fill = GridBagConstraints.BOTH;
-		gbc_textField_4.insets = new Insets(0, 0, 5, 0);
-		gbc_textField_4.gridwidth = 2;
-		gbc_textField_4.gridx = 1;
-		gbc_textField_4.gridy = 7;
-		contentPane.add(textField_4, gbc_textField_4);
+		txtOverheads = new JTextField();
+		txtOverheads.setText("0");
+		txtOverheads.setFont(new Font("SansSerif", Font.PLAIN, 12));
+		GridBagConstraints gbc_txtOverheads = new GridBagConstraints();
+		gbc_txtOverheads.fill = GridBagConstraints.BOTH;
+		gbc_txtOverheads.insets = new Insets(0, 0, 5, 0);
+		gbc_txtOverheads.gridwidth = 2;
+		gbc_txtOverheads.gridx = 1;
+		gbc_txtOverheads.gridy = 7;
+		contentPane.add(txtOverheads, gbc_txtOverheads);
 		
 		JLabel lblTafeln = new JLabel("Tafeln:");
 		lblTafeln.setFont(new Font("SansSerif", Font.PLAIN, 12));
@@ -218,16 +218,16 @@ public class RoomFrame extends JFrame {
 		gbc_lblTafeln.gridy = 8;
 		contentPane.add(lblTafeln, gbc_lblTafeln);
 		
-		textField_5 = new JTextField();
-		textField_5.setText("0");
-		textField_5.setFont(new Font("SansSerif", Font.PLAIN, 12));
-		GridBagConstraints gbc_textField_5 = new GridBagConstraints();
-		gbc_textField_5.fill = GridBagConstraints.BOTH;
-		gbc_textField_5.insets = new Insets(0, 0, 5, 0);
-		gbc_textField_5.gridwidth = 2;
-		gbc_textField_5.gridx = 1;
-		gbc_textField_5.gridy = 8;
-		contentPane.add(textField_5, gbc_textField_5);
+		txtChalkboards = new JTextField();
+		txtChalkboards.setText("0");
+		txtChalkboards.setFont(new Font("SansSerif", Font.PLAIN, 12));
+		GridBagConstraints gbc_txtChalkboards = new GridBagConstraints();
+		gbc_txtChalkboards.fill = GridBagConstraints.BOTH;
+		gbc_txtChalkboards.insets = new Insets(0, 0, 5, 0);
+		gbc_txtChalkboards.gridwidth = 2;
+		gbc_txtChalkboards.gridx = 1;
+		gbc_txtChalkboards.gridy = 8;
+		contentPane.add(txtChalkboards, gbc_txtChalkboards);
 		
 		JLabel lblWhiteboards = new JLabel("Whiteboards:");
 		lblWhiteboards.setFont(new Font("SansSerif", Font.PLAIN, 12));
@@ -240,16 +240,16 @@ public class RoomFrame extends JFrame {
 		gbc_lblWhiteboards.gridy = 9;
 		contentPane.add(lblWhiteboards, gbc_lblWhiteboards);
 		
-		textField_6 = new JTextField();
-		textField_6.setText("0");
-		textField_6.setFont(new Font("SansSerif", Font.PLAIN, 12));
-		GridBagConstraints gbc_textField_6 = new GridBagConstraints();
-		gbc_textField_6.fill = GridBagConstraints.BOTH;
-		gbc_textField_6.insets = new Insets(0, 0, 5, 0);
-		gbc_textField_6.gridwidth = 2;
-		gbc_textField_6.gridx = 1;
-		gbc_textField_6.gridy = 9;
-		contentPane.add(textField_6, gbc_textField_6);
+		txtWhiteboards = new JTextField();
+		txtWhiteboards.setText("0");
+		txtWhiteboards.setFont(new Font("SansSerif", Font.PLAIN, 12));
+		GridBagConstraints gbc_txtWhiteboards = new GridBagConstraints();
+		gbc_txtWhiteboards.fill = GridBagConstraints.BOTH;
+		gbc_txtWhiteboards.insets = new Insets(0, 0, 5, 0);
+		gbc_txtWhiteboards.gridwidth = 2;
+		gbc_txtWhiteboards.gridx = 1;
+		gbc_txtWhiteboards.gridy = 9;
+		contentPane.add(txtWhiteboards, gbc_txtWhiteboards);
 		GridBagConstraints gbc_btnAbbrechen = new GridBagConstraints();
 		gbc_btnAbbrechen.anchor = GridBagConstraints.EAST;
 		gbc_btnAbbrechen.fill = GridBagConstraints.VERTICAL;
