@@ -188,7 +188,6 @@ public class BaseTab extends JFrame{
 		startScreenPanel.add(mainTableScrollPane, "cell 2 2 4 1,grow");
 		
 		mainTableScrollPane.setViewportView(getOrganisationTable());
-		mainTableScrollPane.setColumnHeaderView(getRoomTable());
 		
 		JPanel buttonPanel = new JPanel();
 		buttonPanel.setMinimumSize(new Dimension(80, 10));
@@ -259,6 +258,65 @@ public class BaseTab extends JFrame{
 		}
 		return organisationTable;
 	}
+	
+	public JTable getRoomTable() {
+		if (roomTable == null) {
+			DefaultTableCellRenderer center = new DefaultTableCellRenderer();
+			center.setHorizontalAlignment(SwingConstants.CENTER);	
+		
+		roomTable = new JTable();
+		roomTable.setShowVerticalLines(false);
+		roomTable.setModel(Bootstrap.serviceManager.getCoreRoomTableModel());
+		roomTable.setBackground(SystemColor.activeCaption);
+		mainTableScrollPane.setViewportView(roomTable);
+		roomTable.getColumnModel().getColumn(0).setResizable(false);
+		roomTable.getColumnModel().getColumn(0).setPreferredWidth(75);
+		roomTable.getColumnModel().getColumn(0).setMinWidth(75);
+		roomTable.getColumnModel().getColumn(0).setMaxWidth(75);
+		roomTable.getColumnModel().getColumn(1).setResizable(false);
+		roomTable.getColumnModel().getColumn(1).setPreferredWidth(75);
+		roomTable.getColumnModel().getColumn(1).setMinWidth(75);
+		roomTable.getColumnModel().getColumn(1).setMaxWidth(75);
+		roomTable.getColumnModel().getColumn(2).setResizable(false);
+		roomTable.getColumnModel().getColumn(2).setMinWidth(75);
+		roomTable.getColumnModel().getColumn(2).setMaxWidth(75);
+		roomTable.getColumnModel().getColumn(3).setPreferredWidth(50);
+		roomTable.getColumnModel().getColumn(3).setMinWidth(50);
+		roomTable.getColumnModel().getColumn(3).setMaxWidth(50);
+		roomTable.getColumnModel().getColumn(4).setPreferredWidth(75);
+		roomTable.getColumnModel().getColumn(4).setMinWidth(75);
+		roomTable.getColumnModel().getColumn(4).setMaxWidth(75);
+		roomTable.getColumnModel().getColumn(5).setResizable(false);
+		roomTable.getColumnModel().getColumn(5).setPreferredWidth(50);
+		roomTable.getColumnModel().getColumn(5).setMinWidth(50);
+		roomTable.getColumnModel().getColumn(5).setMaxWidth(50);
+		roomTable.getColumnModel().getColumn(6).setResizable(false);
+		roomTable.getColumnModel().getColumn(6).setPreferredWidth(60);
+		roomTable.getColumnModel().getColumn(6).setMinWidth(60);
+		roomTable.getColumnModel().getColumn(6).setMaxWidth(60);
+		roomTable.getColumnModel().getColumn(7).setResizable(false);
+		roomTable.getColumnModel().getColumn(7).setPreferredWidth(70);
+		roomTable.getColumnModel().getColumn(7).setMinWidth(70);
+		roomTable.getColumnModel().getColumn(7).setMaxWidth(70);
+		roomTable.getColumnModel().getColumn(8).setResizable(false);
+		roomTable.getColumnModel().getColumn(8).setPreferredWidth(75);
+		roomTable.getColumnModel().getColumn(8).setMinWidth(75);
+		roomTable.getColumnModel().getColumn(8).setMaxWidth(75);
+		roomTable.getColumnModel().getColumn(9).setPreferredWidth(75);
+		roomTable.getColumnModel().getColumn(9).setMinWidth(75);
+		roomTable.getColumnModel().getColumn(9).setMaxWidth(75);
+		/*roomTable.getColumnModel().getColumn(8).setCellRenderer(center);
+		roomTable.getColumnModel().getColumn(1).setCellRenderer(center);
+		roomTable.getColumnModel().getColumn(6).setCellRenderer(center);
+		roomTable.getColumnModel().removeColumn(roomTable.getColumn("Hidden"));*/
+		
+		}
+		return roomTable;
+	}
+	
+	public void setOrganisationTable(JTable organisationTable) {
+		this.organisationTable = organisationTable;
+	}
 	public JLabel getLblBenutzername() {
 		if (lblBenutzername == null) {
 			lblBenutzername = new JLabel("Benutzername:");
@@ -295,7 +353,7 @@ public class BaseTab extends JFrame{
 	public JRadioButton getRdbtnLehrveranstaltungen() {
 		if (rdbtnLehrveranstaltungen == null) {
 			rdbtnLehrveranstaltungen = new JRadioButton("Lehrveranstaltungen");
-			rdbtnLehrveranstaltungen.addActionListener(new BaseRdbtnTopLeft());
+			rdbtnLehrveranstaltungen.addActionListener(new BaseRdbtnTopLeft("course"));
 			buttonGroup.add(rdbtnLehrveranstaltungen);
 			rdbtnLehrveranstaltungen.setSelected(true);
 			rdbtnLehrveranstaltungen.setMargin(new Insets(0, 0, 0, 0));
@@ -369,15 +427,5 @@ public class BaseTab extends JFrame{
 	 */
 	public JComboBox<String> getComboBoxOrgaFilter() {
 		return comboBoxOrgaFilter;
-	}
-	public JTable getRoomTable() {
-		if (roomTable == null) {
-			roomTable = new JTable();
-			roomTable.setModel(Bootstrap.serviceManager.getCoreRoomTableModel());
-			roomTable.setShowVerticalLines(false);
-			roomTable.setVisible(false);
-			roomTable.setBackground(SystemColor.activeCaption);
-		}
-		return roomTable;
 	}
 }

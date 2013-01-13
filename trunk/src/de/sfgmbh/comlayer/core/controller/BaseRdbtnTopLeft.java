@@ -29,12 +29,13 @@ public class BaseRdbtnTopLeft implements ActionListener {
 			Bootstrap.serviceManager.getCoreBaseTab().getRoomTable().setVisible(true);
 			Bootstrap.serviceManager.getCoreBaseTab().getOrganisationTable().setVisible(false);
 			Bootstrap.serviceManager.getCoreBaseTab().getMainTableScrollPane().setViewportView(Bootstrap.serviceManager.getCoreBaseTab().getRoomTable());
-			/*
-			Bootstrap.serviceManager.getCoreBaseTab().mainTabbedContainerPane.removeAll();
-			Bootstrap.serviceManager.getCoreBaseTab().mainTabbedContainerPane.setVisible(false);
-			Bootstrap.serviceManager.getCoreBaseTab().contentPane.add(Bootstrap.serviceManager.getCoreBaseTab().roomPanel, "name_5256771068822");
-			Bootstrap.serviceManager.getCoreBaseTab().roomPanel.setVisible(true);
-			*/
+		}
+		
+		//course-JRadioButton is pressed
+		if (this.ctrlAction.equals("course")){
+			Bootstrap.serviceManager.getCoreBaseTab().getOrganisationTable().setVisible(true);
+			Bootstrap.serviceManager.getCoreBaseTab().getRoomTable().setVisible(false);
+			Bootstrap.serviceManager.getCoreBaseTab().getMainTableScrollPane().setViewportView(Bootstrap.serviceManager.getCoreBaseTab().getOrganisationTable());	
 		}
 	}
 }

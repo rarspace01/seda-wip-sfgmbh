@@ -13,7 +13,7 @@ import de.sfgmbh.comlayer.core.controller.ViewHelper;
 public class RoomTableMain extends DefaultTableModel implements IntfAppObserver {
 
 	private static final long serialVersionUID = 1L;
-	private String[] header = {"TestTestTest", "Art", "Bez.", "Name", "Dozent", "Tag", "Uhrzeit", "Raum", "SWS", "Hidden"};
+	private String[] header = {"Raum", "Gebäude", "Stock.", "Plätze", "PC-Plätze", "Beamer", "Visualizer", "Overheads", "Tafeln", "Whiteboards", "Hidden"};
 	
 	public RoomTableMain() {
 		AppModel.getInstance().repositoryRoomAllocation.register(this);
@@ -43,15 +43,16 @@ public class RoomTableMain extends DefaultTableModel implements IntfAppObserver 
 			if (ra.isPublic()) {
 				try {
 					Object[] row = {
-							"test", 
-							ra.getCourse_().getCourseKind_(), 
-							ra.getCourse_().getCourseAcronym_(), 
-							ra.getCourse_().getCourseName_(), 
-							ra.getCourse_().getLecturer_().getlName_(), 
+							"WE5/03.004", 
+							"Erba", 
+							"3", 
+							"55", 
 							vh.getDay(ra.getDay_()),
-							vh.getTime(ra.getTime_()), 
-							ra.getRoom_().getRoomNumber_(), 
-							ra.getCourse_().getSws_(),
+							"2",
+							"0", 
+							"0", 
+							"0",
+							"1",
 							ra
 							};
 					this.addRow(row);
