@@ -199,7 +199,7 @@ public class DataHandlerRoom implements IntfDataRoom, IntfDataFilter, IntfDataOb
 	 * @param ResultSet rs
 	 * @return a Room object
 	 */
-	private Room makeRoom(ResultSet rs) {
+	public Room makeRoom(ResultSet rs) {
 		Room returnRoom = new Room();
 		
 		try {
@@ -246,7 +246,7 @@ public class DataHandlerRoom implements IntfDataRoom, IntfDataFilter, IntfDataOb
 		if (observer instanceof IntfDataObserver) {
 			observer_.add(observer);
 		} else {
-			DataModel.getInstance().dataExcaptions.setNewException("Das Objekt implementiert nicht das Observer-Interface und kann daher nicht hinzugefügt werden!<br />Fehler: DataHandlerRoom-01", "Fehler!");
+			DataModel.getInstance().dataExcaptions.setNewException("Das Objekt implementiert nicht das Observer-Interface und kann daher nicht hinzugefï¿½gt werden!<br />Fehler: DataHandlerRoom-01", "Fehler!");
 		}
 	}
 	

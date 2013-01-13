@@ -24,7 +24,10 @@ public class DataHandlerUser implements IntfDataUser, IntfDataObservable, IntfDa
 	public List<User> getAll() {
 		List<User> listUser = new ArrayList<User>();
 
-		String SqlStatement = "SELECT * FROM public.user";
+		String SqlStatement = 	"SELECT public.user.*, public.chair.* " +
+								"FROM public.user LEFT JOIN public.lecturer INNER JOIN public.chair " +
+									"ON public.chair.chairid = public.lecturer.chairid " +
+									"ON public.user.userid = public.lecturer.userid ";
 
 		try {
 
@@ -49,7 +52,11 @@ public class DataHandlerUser implements IntfDataUser, IntfDataObservable, IntfDa
 	public List<User> getAllLecturer() {
 		List<User> listUser = new ArrayList<User>();
 
-		String SqlStatement = "SELECT * FROM public.user WHERE class = 'lecturer' ";
+		String SqlStatement = 	"SELECT public.user.*, public.chair.* " +
+								"FROM public.user LEFT JOIN public.lecturer INNER JOIN public.chair " +
+									"ON public.chair.chairid = public.lecturer.chairid " +
+									"ON public.user.userid = public.lecturer.userid " +
+								"WHERE public.user.class = 'lecturer' ";
 
 		try {
 
@@ -93,7 +100,7 @@ public class DataHandlerUser implements IntfDataUser, IntfDataObservable, IntfDa
 				if (filterWithChairDm == null) { 
 					filterWithChairDm = new DataManagerPostgreSql(); 
 					filterWithChairDm.prepare(
-							"SELECT public.user.* " +
+							"SELECT public.user.*, public.chair.* " +
 							"FROM public.user, public.chair, public.lecturer " +
 							"WHERE public.chair.chairid = public.lecturer.chairid " +
 							"AND public.user.userid = public.lecturer.userid " +
@@ -137,8 +144,10 @@ public class DataHandlerUser implements IntfDataUser, IntfDataObservable, IntfDa
 				if (filterDm == null) { 
 					filterDm = new DataManagerPostgreSql(); 
 					filterDm.prepare(
-							"SELECT public.user.* " +
-							"FROM public.user " +
+							"SELECT public.user.*, public.chair.* " +
+							"FROM public.user LEFT JOIN public.lecturer INNER JOIN public.chair " +
+								"ON public.chair.chairid = public.lecturer.chairid " +
+								"ON public.user.userid = public.lecturer.userid " +
 							"WHERE (public.user.lname LIKE ? OR public.user.fname LIKE ? OR public.user.login LIKE ? ) " +
 							"AND public.user.class LIKE ? " +
 							"AND public.user.mail LIKE ? ");
@@ -184,7 +193,11 @@ public class DataHandlerUser implements IntfDataUser, IntfDataObservable, IntfDa
 	@Override
 	public User get(int id) {
 		try {
-			DataManagerPostgreSql.getInstance().prepare("SELECT * FROM public.user WHERE userid = ?");
+			DataManagerPostgreSql.getInstance().prepare("SELECT public.user.*, public.chair.* " +
+														"FROM public.user LEFT JOIN public.lecturer INNER JOIN public.chair " +
+															"ON public.chair.chairid = public.lecturer.chairid " +
+															"ON public.user.userid = public.lecturer.userid " +
+														"WHERE public.user.userid = ?");
 			DataManagerPostgreSql.getInstance().pstmt.setInt(1, id);
 			ResultSet rs = DataManagerPostgreSql.getInstance().selectPstmt();
 			while (rs.next()) {
@@ -205,7 +218,11 @@ public class DataHandlerUser implements IntfDataUser, IntfDataObservable, IntfDa
 	public User getByLogin(String login) {
 		
 		try {
-			DataManagerPostgreSql.getInstance().prepare("SELECT * FROM public.user WHERE login = ?");
+			DataManagerPostgreSql.getInstance().prepare("SELECT public.user.*, public.chair.* " +
+														"FROM public.user LEFT JOIN public.lecturer INNER JOIN public.chair " +
+															"ON public.chair.chairid = public.lecturer.chairid " +
+															"ON public.user.userid = public.lecturer.userid " +
+														"WHERE public.user.login = ?");
 			DataManagerPostgreSql.getInstance().pstmt.setString(1, login);
 			ResultSet rs = DataManagerPostgreSql.getInstance().selectPstmt();
 			while (rs.next()) {
@@ -304,7 +321,7 @@ public class DataHandlerUser implements IntfDataUser, IntfDataObservable, IntfDa
 	 * @param rs
 	 * @return a User object
 	 */
-	private User makeUser(ResultSet rs) {
+	public User makeUser(ResultSet rs) {
 		User returnUser = new User();
 		
 		try {
@@ -318,6 +335,9 @@ public class DataHandlerUser implements IntfDataUser, IntfDataObservable, IntfDa
 			returnUser.setlName_(rs.getString("lname"));
 			returnUser.setLastLogin_(rs.getLong("lastlogin"));
 			returnUser.setDisabled_(rs.getBoolean("disabled"));
+			if (rs.getInt("chairid") > 0) {
+				returnUser.setChair_(DataModel.getInstance().dataHandlerChair.makeChair(rs));
+			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 			DataModel.getInstance().dataExcaptions.setNewException(("Es ist ein SQL-Fehler (DataHandlerUser-13) aufgetreten:<br /><br />" + e.toString()), "Datenbank-Fehler!");

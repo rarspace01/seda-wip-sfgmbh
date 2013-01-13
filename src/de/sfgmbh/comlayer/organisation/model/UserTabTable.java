@@ -47,8 +47,8 @@ public class UserTabTable extends DefaultTableModel implements IntfAppObserver {
 			
 			// Chair if user is lecturer
 			String chair = null;
-			if (user.getChair() != null) {
-				chair = user.getChair().getChairName_();
+			if (user.getChair_() != null) {
+				chair = user.getChair_().getChairName_();
 			}
 			
 			// Get a date from the unix time stamp

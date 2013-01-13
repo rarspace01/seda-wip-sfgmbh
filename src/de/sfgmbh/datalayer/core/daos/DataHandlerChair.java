@@ -113,14 +113,15 @@ public class DataHandlerChair implements IntfDataChair, IntfDataFilter, IntfData
 	 * @param ResultSet rs
 	 * @return a Chair object
 	 */
-	private Chair makeChair(ResultSet rs) {
+	public Chair makeChair(ResultSet rs) {
 		Chair returnChair = new Chair();
 		
 		try {
 			returnChair.setChairId_(rs.getInt("chairid"));
 			returnChair.setChairName_(rs.getString("chairname"));
-			returnChair.setChairOwner_(
-					DataModel.getInstance().dataHandlerUser.get(rs.getInt("chairowner")));
+			// returnChair.setChairOwner_(
+					// Currently deactivated
+					// DataModel.getInstance().dataHandlerUser.get(rs.getInt("chairowner")));
 			returnChair.setBuildingId_(rs.getInt("buildingid"));
 			returnChair.setChairLevel_(rs.getString("chairlevel"));
 			returnChair.setFaculty_(rs.getString("faculty"));
@@ -157,7 +158,7 @@ public class DataHandlerChair implements IntfDataChair, IntfDataFilter, IntfData
 		if (observer instanceof IntfDataObserver) {
 			observer_.add(observer);
 		} else {
-			DataModel.getInstance().dataExcaptions.setNewException("Das Objekt implementiert nicht das Observer-Interface und kann daher nicht hinzugefügt werden!<br />Fehler: DataHandlerChair-01", "Fehler!");
+			DataModel.getInstance().dataExcaptions.setNewException("Das Objekt implementiert nicht das Observer-Interface und kann daher nicht hinzugefï¿½gt werden!<br />Fehler: DataHandlerChair-01", "Fehler!");
 		}
 	}
 	
