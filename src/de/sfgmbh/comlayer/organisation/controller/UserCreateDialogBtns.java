@@ -39,7 +39,7 @@ public class UserCreateDialogBtns implements ActionListener {
 			try {
 				newUser.setLogin_(Bootstrap.serviceManager.getOrgaUserCreateDialog().getTxtLogin().getText());
 				newUser.setMail_(Bootstrap.serviceManager.getOrgaUserCreateDialog().getTxtEmail().getText());
-				if (Bootstrap.serviceManager.getOrgaUserCreateDialog().getTxtPasswort().getText().length() < 1) {
+				if (Bootstrap.serviceManager.getOrgaUserCreateDialog().getTxtPasswort().getText().length() < 6) {
 					AppModel.getInstance().appExcaptions.setNewException("Das Passwort muss mindestens 6 Zeichen lang sein!", "Fehler!" );
 				} else {
 					newUser.setPwHashAndSalt(Bootstrap.serviceManager.getOrgaUserCreateDialog().getTxtPasswort().getText());
