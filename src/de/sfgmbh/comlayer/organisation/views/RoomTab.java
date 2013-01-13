@@ -18,7 +18,6 @@ import javax.swing.UIManager;
 import javax.swing.border.TitledBorder;
 
 import net.miginfocom.swing.MigLayout;
-import de.sfgmbh.applayer.core.model.Room;
 import de.sfgmbh.applayer.organisation.controller.CtrlRoom;
 import de.sfgmbh.comlayer.core.views.BaseTab;
 import de.sfgmbh.comlayer.organisation.controller.CmbboxFilter;

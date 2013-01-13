@@ -1,6 +1,7 @@
 package de.sfgmbh.applayer.core.controller;
 
 import de.sfgmbh.comlayer.core.model.BaseTableMain;
+import de.sfgmbh.comlayer.core.model.RoomTableMain;
 import de.sfgmbh.comlayer.core.views.BaseTab;
 import de.sfgmbh.comlayer.core.views.InfoDialog;
 import de.sfgmbh.comlayer.lecturer.model.ProfessorshipTimetableTabTable;
@@ -53,6 +54,7 @@ public class ServiceManager {
 	protected BaseTab baseTab;
 	protected InfoDialog infoDialog;
 	protected BaseTableMain baseTableMain;
+	protected RoomTableMain roomTableMain;
 	
 	public BaseTab getCoreBaseTab() {
 		if (this.baseTab == null) {
@@ -71,6 +73,13 @@ public class ServiceManager {
 			this.baseTableMain = new BaseTableMain();
 		}
 		return this.baseTableMain;
+	}
+	
+	public RoomTableMain getCoreRoomTableModel(){
+		if (this.roomTableMain == null) {
+			this.roomTableMain = new RoomTableMain();
+		}
+		return this.roomTableMain;
 	}
 	
 	/**

@@ -26,10 +26,15 @@ public class BaseRdbtnTopLeft implements ActionListener {
 
 		//room-JRadioButton is pressed
 		if (this.ctrlAction.equals("room")){
+			Bootstrap.serviceManager.getCoreBaseTab().getRoomTable().setVisible(true);
+			Bootstrap.serviceManager.getCoreBaseTab().getOrganisationTable().setVisible(false);
+			Bootstrap.serviceManager.getCoreBaseTab().getMainTableScrollPane().setViewportView(Bootstrap.serviceManager.getCoreBaseTab().getRoomTable());
+			/*
 			Bootstrap.serviceManager.getCoreBaseTab().mainTabbedContainerPane.removeAll();
 			Bootstrap.serviceManager.getCoreBaseTab().mainTabbedContainerPane.setVisible(false);
 			Bootstrap.serviceManager.getCoreBaseTab().contentPane.add(Bootstrap.serviceManager.getCoreBaseTab().roomPanel, "name_5256771068822");
 			Bootstrap.serviceManager.getCoreBaseTab().roomPanel.setVisible(true);
+			*/
 		}
 	}
 }
