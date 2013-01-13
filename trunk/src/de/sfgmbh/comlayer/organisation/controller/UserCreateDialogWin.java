@@ -5,7 +5,7 @@ import java.awt.event.WindowListener;
 import de.sfgmbh.init.Bootstrap;
 
 
-public class UserFrameWin implements WindowListener {
+public class UserCreateDialogWin implements WindowListener {
 
 	@Override
 	public void windowActivated(WindowEvent arg0) {
@@ -15,7 +15,7 @@ public class UserFrameWin implements WindowListener {
 
 	@Override
 	public void windowClosed(WindowEvent arg0) {
-		Bootstrap.serviceManager.getOrgaUserFrame().setVisible(false);
+		Bootstrap.serviceManager.getOrgaUserCreateDialog().dispose();
 		
 	}
 

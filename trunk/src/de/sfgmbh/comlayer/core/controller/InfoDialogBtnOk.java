@@ -14,6 +14,6 @@ public class InfoDialogBtnOk implements ActionListener {
 	}
 	
 	public void actionPerformed(ActionEvent e) {
-		infoWinwod.setVisible(false);
+		infoWinwod.dispose();
 	}
 }

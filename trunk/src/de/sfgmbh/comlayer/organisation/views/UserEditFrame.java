@@ -12,8 +12,8 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
-import de.sfgmbh.comlayer.organisation.controller.UserFrameBtns;
-import de.sfgmbh.comlayer.organisation.controller.UserFrameWin;
+import de.sfgmbh.comlayer.organisation.controller.UserCreateDialogBtns;
+import de.sfgmbh.comlayer.organisation.controller.UserCreateDialogWin;
 
 public class UserEditFrame extends JFrame {
 
@@ -30,7 +30,7 @@ public class UserEditFrame extends JFrame {
 		initialize();
 	}
 	private void initialize() {
-		setIconImage(Toolkit.getDefaultToolkit().getImage(UserFrame.class.getResource("/de/sfgmbh/comlayer/core/views/HUT_klein.png")));
+		setIconImage(Toolkit.getDefaultToolkit().getImage(UserCreateDialog.class.getResource("/de/sfgmbh/comlayer/core/views/HUT_klein.png")));
 		setTitle("Nutzer bearbeiten");
 		setBounds(100, 100, 266, 294);
 		contentPane = new JPanel();
@@ -95,14 +95,14 @@ public class UserEditFrame extends JFrame {
 		
 		JButton btnSpeichern = new JButton("Speichern");
 		btnSpeichern.setBounds(141, 179, 90, 28);
-		btnSpeichern.addActionListener(new UserFrameBtns("save"));
+		btnSpeichern.addActionListener(new UserCreateDialogBtns("save"));
 		contentPane.add(btnSpeichern);
 		
 		JButton btnAbbrechen = new JButton("Abbrechen");
 		btnAbbrechen.setBounds(40, 179, 90, 28);
-		btnAbbrechen.addActionListener(new UserFrameBtns("cancle"));
+		btnAbbrechen.addActionListener(new UserCreateDialogBtns("cancle"));
 		contentPane.add(btnAbbrechen);
 		
-		addWindowListener(new UserFrameWin());
+		addWindowListener(new UserCreateDialogWin());
 	}
 }
