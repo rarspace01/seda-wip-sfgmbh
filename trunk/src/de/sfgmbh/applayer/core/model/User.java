@@ -7,7 +7,6 @@ import java.security.SecureRandom;
 import java.util.HashMap;
 
 import de.sfgmbh.datalayer.core.definitions.IntfDataRetrievable;
-import de.sfgmbh.datalayer.core.model.DataModel;
 
 public class User implements IntfDataRetrievable {
 
@@ -21,6 +20,7 @@ public class User implements IntfDataRetrievable {
 	private String lName_;
 	private long lastLogin_;
 	private boolean disabled_;
+	private Chair chair_;
 	
 	public User() {
 		userId_=-1;
@@ -104,6 +104,14 @@ public class User implements IntfDataRetrievable {
 
 	public void setDisabled_(boolean disabled_) {
 		this.disabled_ = disabled_;
+	}
+	
+	public Chair getChair_() {
+		return chair_;
+	}
+	
+	public void setChair_(Chair chair_) {
+		this.chair_ = chair_;
 	}
 
 	public User(HashMap<String, Object> dataExchange) {
@@ -240,14 +248,6 @@ public class User implements IntfDataRetrievable {
 		}
 		
 		return null;
-	}
-	
-	/**
-	 * Get the chair of user if he is a lecturer
-	 * @return the chair of user if he is a lecturer and otherwise null
-	 */
-	public Chair getChair() {
-		return DataModel.getInstance().dataHandlerChair.getForUser(this.getUserId_());
 	}
 	
 	/**

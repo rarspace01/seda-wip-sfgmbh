@@ -22,7 +22,13 @@ public class DataHandlerRoomAllocation implements IntfDataObservable, IntfDataFi
 	public List<RoomAllocation> getAll() {
 		List<RoomAllocation> listRoomAllocation = new ArrayList<RoomAllocation>();
 
-		String SqlStatement = "SELECT * FROM public.roomallocation";
+		String SqlStatement = "SELECT public.roomallocation.*, public.course.*, public.user.*, public.room.*, public.chair.* " +
+								"FROM public.roomallocation, public.room, public.course, public.user, public.chair, public.lecturer " +
+								"WHERE public.roomallocation.courseid = public.course.courseid " +
+								"AND public.course.lecturerid = public.user.userid " +
+								"AND public.course.lecturerid = public.lecturer.userid " +
+								"AND public.chair.chairid = public.lecturer.chairid " +
+								"AND public.roomallocation.roomid = public.room.roomid ";
 
 		try {
 
@@ -64,7 +70,7 @@ public class DataHandlerRoomAllocation implements IntfDataObservable, IntfDataFi
 			if (filterDm == null) { 
 				filterDm = new DataManagerPostgreSql(); 
 				filterDm.prepare(
-						"SELECT public.roomallocation.* " +
+						"SELECT public.roomallocation.*, public.course.*, public.user.*, public.room.*, public.chair.* " +
 						"FROM public.roomallocation, public.room, public.course, public.user, public.chair, public.lecturer " +
 						"WHERE public.roomallocation.courseid = public.course.courseid " +
 						"AND public.course.lecturerid = public.user.userid " +
@@ -142,9 +148,14 @@ public class DataHandlerRoomAllocation implements IntfDataObservable, IntfDataFi
 			if (conflictingAllocationDm == null) { 
 				conflictingAllocationDm = new DataManagerPostgreSql(); 
 				conflictingAllocationDm.prepare(
-						"SELECT public.roomallocation.* " +
-						"FROM public.roomallocation " +
-						"WHERE public.roomallocation.roomid = ? " +
+						"SELECT public.roomallocation.*, public.course.*, public.user.*, public.room.*, public.chair.* " +
+						"FROM public.roomallocation, public.room, public.course, public.user, public.chair, public.lecturer " +
+						"WHERE public.roomallocation.courseid = public.course.courseid " +
+						"AND public.course.lecturerid = public.user.userid " +
+						"AND public.course.lecturerid = public.lecturer.userid " +
+						"AND public.chair.chairid = public.lecturer.chairid " +
+						"AND public.roomallocation.roomid = public.room.roomid " +
+						"AND public.roomallocation.roomid = ? " +
 						"AND public.roomallocation.day = ? " +
 						"AND public.roomallocation.time = ? " +
 						"AND public.roomallocation.semester LIKE ? " +
@@ -178,7 +189,14 @@ public class DataHandlerRoomAllocation implements IntfDataObservable, IntfDataFi
 	 */
 	public RoomAllocation get(int id) {
 		try {
-			DataManagerPostgreSql.getInstance().prepare("SELECT * FROM public.roomallocation WHERE roomallocationid = ?");
+			DataManagerPostgreSql.getInstance().prepare("SELECT public.roomallocation.*, public.course.*, public.user.*, public.room.*, public.chair.* " +
+														"FROM public.roomallocation, public.room, public.course, public.user, public.chair, public.lecturer " +
+														"WHERE public.roomallocation.courseid = public.course.courseid " +
+														"AND public.course.lecturerid = public.user.userid " +
+														"AND public.course.lecturerid = public.lecturer.userid " +
+														"AND public.chair.chairid = public.lecturer.chairid " +
+														"AND public.roomallocation.roomid = public.room.roomid " +
+														"AND roomallocationid = ?");
 			DataManagerPostgreSql.getInstance().pstmt.setInt(1, id);
 			ResultSet rs = DataManagerPostgreSql.getInstance().selectPstmt();
 			while (rs.next()) {
@@ -270,9 +288,9 @@ public class DataHandlerRoomAllocation implements IntfDataObservable, IntfDataFi
 
 			returnRoomAllocation.setRoomAllocationId_(rs.getInt("roomallocationid"));
 			returnRoomAllocation.setCourse_(
-					DataModel.getInstance().dataHandlerCourse.get(rs.getInt("courseid")));
+					DataModel.getInstance().dataHandlerCourse.makeCourse(rs));
 			returnRoomAllocation.setRoom_(
-					DataModel.getInstance().dataHandlerRoom.get(rs.getInt("roomid")));
+					DataModel.getInstance().dataHandlerRoom.makeRoom(rs));
 			returnRoomAllocation.setSemester_(rs.getString("semester"));
 			returnRoomAllocation.setDay_(rs.getInt("day"));
 			returnRoomAllocation.setTime_(rs.getInt("time"));
@@ -317,7 +335,7 @@ public class DataHandlerRoomAllocation implements IntfDataObservable, IntfDataFi
 		if (observer instanceof IntfDataObserver) {
 			observer_.add(observer);
 		} else {
-			DataModel.getInstance().dataExcaptions.setNewException("Das Objekt implementiert nicht das Observer-Interface und kann daher nicht hinzugef�gt werden!<br />Fehler: DataHandlerRoomAllocation-12", "Fehler!");
+			DataModel.getInstance().dataExcaptions.setNewException("Das Objekt implementiert nicht das Observer-Interface und kann daher nicht hinzugefügt werden!<br />Fehler: DataHandlerRoomAllocation-12", "Fehler!");
 		}
 	}
 	

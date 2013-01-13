@@ -21,7 +21,11 @@ public class DataHandlerCourse implements IntfDataFilter, IntfDataObservable {
 		List<Course> listChair = new ArrayList<Course>();
 		Course returnCourse = null;
 
-		String SqlStatement = "SELECT * FROM public.course";
+		String SqlStatement = "SELECT public.course.*, public.user.*, public.chair.* " +
+								"FROM public.course, public.user, public.chair, public.lecturer " +
+								"WHERE public.course.lecturerid = public.user.userid " +
+								"AND public.course.lecturerid = public.lecturer.userid " +
+								"AND public.chair.chairid = public.lecturer.chairid ";
 
 		try {
 
@@ -48,7 +52,12 @@ public class DataHandlerCourse implements IntfDataFilter, IntfDataObservable {
 	public Course get(int id) {
 		
 		try {
-			DataManagerPostgreSql.getInstance().prepare("SELECT * FROM public.course WHERE courseid = ?");
+			DataManagerPostgreSql.getInstance().prepare("SELECT public.course.*, public.user.*, public.chair.* " +
+														"FROM public.course, public.user, public.chair, public.lecturer " +
+														"WHERE public.course.lecturerid = public.user.userid " +
+														"AND public.course.lecturerid = public.lecturer.userid " +
+														"AND public.chair.chairid = public.lecturer.chairid " +
+														"AND courseid = ? ");
 			DataManagerPostgreSql.getInstance().pstmt.setInt(1, id);
 			ResultSet rs = DataManagerPostgreSql.getInstance().selectPstmt();
 			while (rs.next()) {
@@ -77,13 +86,13 @@ public class DataHandlerCourse implements IntfDataFilter, IntfDataObservable {
 	 * @param ResultSet rs
 	 * @return a course object
 	 */
-	private Course makeCourse(ResultSet rs) {
+	public Course makeCourse(ResultSet rs) {
 		Course returnCourse = new Course();
 		
 		try {
 			returnCourse.setCourseId_(rs.getInt("courseid"));
 			returnCourse.setLecturer_(
-					DataModel.getInstance().dataHandlerUser.get(rs.getInt("lecturerid")));
+					DataModel.getInstance().dataHandlerUser.makeUser(rs));
 			returnCourse.setCourseAcronym_(rs.getString("courseacronym"));
 			returnCourse.setCourseName_(rs.getString("coursename"));
 			returnCourse.setSws_(rs.getFloat("sws"));
@@ -123,7 +132,7 @@ public class DataHandlerCourse implements IntfDataFilter, IntfDataObservable {
 		if (observer instanceof IntfDataObserver) {
 			observer_.add(observer);
 		} else {
-			DataModel.getInstance().dataExcaptions.setNewException("Das Objekt implementiert nicht das Observer-Interface und kann daher nicht hinzugefügt werden!<br />Fehler: DataHandlerCourse-01", "Fehler!");
+			DataModel.getInstance().dataExcaptions.setNewException("Das Objekt implementiert nicht das Observer-Interface und kann daher nicht hinzugefï¿½gt werden!<br />Fehler: DataHandlerCourse-01", "Fehler!");
 		}
 	}
 	
