@@ -46,10 +46,13 @@ public class RepositoryUser implements IntfAppObservable, IntfDataObserver {
 	
 	/**
 	 * Save this user object in the DB (this will update a database entry if there is already one and create one if there is none)
+	 * @return true on success
 	 */
-	public void save(User user) {
-		DataModel.getInstance().dataHandlerUser.save(user);
-		return;
+	public boolean save(User user) {
+		if (DataModel.getInstance().dataHandlerUser.save(user)) {
+			return true;
+		}
+		return false;
 	}
 
 	@Override

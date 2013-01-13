@@ -256,7 +256,7 @@ public class DataHandlerUser implements IntfDataUser, IntfDataObservable, IntfDa
 	 * Saves a new user in the DB if the user doesn't exist already and updates an existing user in the DB otherwise
 	 */
 	@Override
-	public void save(User user) {
+	public boolean save(User user) {
 		
 		if (user.getUserId_() == -1) {
 				try {
@@ -276,15 +276,25 @@ public class DataHandlerUser implements IntfDataUser, IntfDataObservable, IntfDa
 					dm.pstmt.setLong(8, user.getLastLogin_());
 					dm.pstmt.setBoolean(9, user.isDisabled_());
 					dm.executePstmt();
+					if (user.getChair_() != null) {
+						User newUser = this.getByLogin(user.getLogin_());
+						dm.prepare("INSERT INTO public.lecturer"
+								+ "(userid, chairid)"
+								+ "VALUES (?,?)");
+						dm.pstmt.setInt(1, newUser.getUserId_());
+						dm.pstmt.setInt(2, user.getChair_().getChairId_());
+						dm.executePstmt();
+					}
 					this.update();
-					return;
-					
+					return true;
 				} catch (SQLException e) {
 					e.printStackTrace();
 					DataModel.getInstance().dataExcaptions.setNewException(("Es ist ein SQL-Fehler (DataHandlerUser-05) aufgetreten:<br /><br />" + e.toString()), "Datenbank-Fehler!");
+					return false;
 				} catch (Exception e) {
 					e.printStackTrace();
 					DataModel.getInstance().dataExcaptions.setNewException(("Es ist ein unbekannter Fehler (DataHandlerUser-06) in der Datenhaltung aufgetreten:<br /><br />" + e.toString()), "Fehler!");
+					return false;
 				}
 		} else {
 			try {
@@ -304,15 +314,17 @@ public class DataHandlerUser implements IntfDataUser, IntfDataObservable, IntfDa
 				dm.pstmt.setInt(10, user.getUserId_());
 				dm.executePstmt();
 				this.update();
-				return;
-				
+				return true;
 			} catch (SQLException e) {
 				e.printStackTrace();
 				DataModel.getInstance().dataExcaptions.setNewException(("Es ist ein SQL-Fehler (DataHandlerUser-07) aufgetreten:<br /><br />" + e.toString()), "Datenbank-Fehler!");
+				return false;
 			} catch (Exception e) {
 				e.printStackTrace();
 				DataModel.getInstance().dataExcaptions.setNewException(("Es ist ein unbekannter Fehler (DataHandlerUser-08) in der Datenhaltung aufgetreten:<br /><br />" + e.toString()), "Fehler!");
+				return false;
 			}
+			
 		}
 	}
 	

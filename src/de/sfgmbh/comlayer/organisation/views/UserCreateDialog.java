@@ -3,7 +3,6 @@ package de.sfgmbh.comlayer.organisation.views;
 import java.awt.Font;
 import java.awt.Toolkit;
 
-import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
@@ -12,6 +11,8 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
+import de.sfgmbh.comlayer.core.model.CmbboxFilterChairAcronym;
+import de.sfgmbh.comlayer.core.model.CmbboxFilterUserClass;
 import de.sfgmbh.comlayer.organisation.controller.UserCreateDialogBtns;
 import de.sfgmbh.comlayer.organisation.controller.UserCreateDialogWin;
 
@@ -22,6 +23,12 @@ public class UserCreateDialog extends JDialog {
 	private JTextField txtNutzerkennung;
 	private JTextField txtPasswort;
 	private JTextField txtEmail;
+	private JComboBox<String> comboBoxNutzerklasse;
+	private JComboBox<String> comboBoxLehrstuhl;
+	private JLabel lblFirstName;
+	private JTextField txtFirstName;
+	private JTextField txtLastName;
+	private JLabel lblLastName;
 
 	/**
 	 * Create the frame.
@@ -34,7 +41,7 @@ public class UserCreateDialog extends JDialog {
 	private void initialize() {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(UserCreateDialog.class.getResource("/de/sfgmbh/comlayer/core/views/HUT_klein.png")));
 		setTitle("Nutzer hinzuf\u00FCgen");
-		setBounds(100, 100, 266, 294);
+		setBounds(100, 100, 266, 309);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -42,7 +49,7 @@ public class UserCreateDialog extends JDialog {
 		
 		JLabel lblNutzerkennung = new JLabel("Nutzerkennung:");
 		lblNutzerkennung.setFont(new Font("SansSerif", Font.PLAIN, 12));
-		lblNutzerkennung.setBounds(12, 11, 120, 14);
+		lblNutzerkennung.setBounds(12, 14, 120, 14);
 		contentPane.add(lblNutzerkennung);
 		
 		JLabel lblEmail = new JLabel("E-Mail:");
@@ -52,29 +59,29 @@ public class UserCreateDialog extends JDialog {
 		
 		JLabel lblPasswort = new JLabel("Passwort:");
 		lblPasswort.setFont(new Font("SansSerif", Font.PLAIN, 12));
-		lblPasswort.setBounds(12, 69, 120, 14);
+		lblPasswort.setBounds(12, 123, 120, 14);
 		contentPane.add(lblPasswort);
 		
 		JLabel lblNutzerklasse = new JLabel("Nutzerklasse:");
 		lblNutzerklasse.setFont(new Font("SansSerif", Font.PLAIN, 12));
-		lblNutzerklasse.setBounds(12, 96, 120, 14);
+		lblNutzerklasse.setBounds(12, 152, 120, 14);
 		contentPane.add(lblNutzerklasse);
 		
 		JLabel lblLehrstuhl = new JLabel("Lehrstuhl:");
 		lblLehrstuhl.setFont(new Font("SansSerif", Font.PLAIN, 12));
-		lblLehrstuhl.setBounds(12, 127, 120, 14);
+		lblLehrstuhl.setBounds(12, 181, 120, 14);
 		contentPane.add(lblLehrstuhl);
 		
 		txtNutzerkennung = new JTextField();
 		txtNutzerkennung.setFont(new Font("SansSerif", Font.PLAIN, 12));
-		txtNutzerkennung.setBounds(115, 9, 116, 20);
+		txtNutzerkennung.setBounds(115, 11, 116, 20);
 		contentPane.add(txtNutzerkennung);
 		txtNutzerkennung.setColumns(10);
 		
 		txtPasswort = new JTextField();
 		txtPasswort.setFont(new Font("SansSerif", Font.PLAIN, 12));
 		txtPasswort.setColumns(10);
-		txtPasswort.setBounds(115, 67, 116, 20);
+		txtPasswort.setBounds(115, 121, 116, 20);
 		contentPane.add(txtPasswort);
 		
 		txtEmail = new JTextField();
@@ -83,28 +90,97 @@ public class UserCreateDialog extends JDialog {
 		txtEmail.setBounds(115, 40, 116, 20);
 		contentPane.add(txtEmail);
 		
-		JComboBox<String> comboBoxNutzerklasse = new JComboBox<String>();
+		comboBoxNutzerklasse = new JComboBox<String>();
 		comboBoxNutzerklasse.setFont(new Font("SansSerif", Font.PLAIN, 12));
-		comboBoxNutzerklasse.setModel(new DefaultComboBoxModel<String>(new String[] {"Verwaltung", "Dozent", "Student"}));
-		comboBoxNutzerklasse.setBounds(115, 94, 116, 20);
+		comboBoxNutzerklasse.setModel(new CmbboxFilterUserClass("blank"));
+		comboBoxNutzerklasse.setBounds(115, 150, 116, 20);
 		contentPane.add(comboBoxNutzerklasse);
 		
-		JComboBox<String> comboBoxLehrstuhl = new JComboBox<String>();
+		comboBoxLehrstuhl = new JComboBox<String>();
 		comboBoxLehrstuhl.setEditable(true);
 		comboBoxLehrstuhl.setFont(new Font("SansSerif", Font.PLAIN, 12));
-		comboBoxLehrstuhl.setBounds(115, 125, 116, 20);
+		comboBoxLehrstuhl.setModel(new CmbboxFilterChairAcronym("blank"));
+		comboBoxLehrstuhl.setBounds(115, 179, 116, 20);
 		contentPane.add(comboBoxLehrstuhl);
 		
 		JButton btnSpeichern = new JButton("Speichern");
-		btnSpeichern.setBounds(141, 179, 90, 28);
+		btnSpeichern.setBounds(141, 233, 90, 28);
 		btnSpeichern.addActionListener(new UserCreateDialogBtns("save"));
 		contentPane.add(btnSpeichern);
 		
 		JButton btnAbbrechen = new JButton("Abbrechen");
-		btnAbbrechen.setBounds(40, 179, 90, 28);
+		btnAbbrechen.setBounds(42, 233, 90, 28);
 		btnAbbrechen.addActionListener(new UserCreateDialogBtns("cancle"));
 		contentPane.add(btnAbbrechen);
+		contentPane.add(getLblFirstName());
+		contentPane.add(getTxtFirstName());
+		contentPane.add(getTxtLastName());
+		contentPane.add(getLblLastName());
 		
 		addWindowListener(new UserCreateDialogWin());
+	}
+	/**
+	 * @return the txtNutzerkennung
+	 */
+	public JTextField getTxtLogin() {
+		return txtNutzerkennung;
+	}
+	/**
+	 * @return the txtPasswort
+	 */
+	public JTextField getTxtPasswort() {
+		return txtPasswort;
+	}
+	/**
+	 * @return the txtEmail
+	 */
+	public JTextField getTxtEmail() {
+		return txtEmail;
+	}
+	/**
+	 * @return the comboBoxNutzerklasse
+	 */
+	public JComboBox<String> getComboBoxUserClass() {
+		return comboBoxNutzerklasse;
+	}
+	/**
+	 * @return the comboBoxLehrstuhl
+	 */
+	public JComboBox<String> getComboBoxLehrstuhl() {
+		return comboBoxLehrstuhl;
+	}
+	public JLabel getLblFirstName() {
+		if (lblFirstName == null) {
+			lblFirstName = new JLabel("Vorname:");
+			lblFirstName.setFont(new Font("SansSerif", Font.PLAIN, 12));
+			lblFirstName.setBounds(12, 69, 120, 14);
+		}
+		return lblFirstName;
+	}
+	public JTextField getTxtFirstName() {
+		if (txtFirstName == null) {
+			txtFirstName = new JTextField();
+			txtFirstName.setFont(new Font("SansSerif", Font.PLAIN, 12));
+			txtFirstName.setColumns(10);
+			txtFirstName.setBounds(115, 67, 116, 20);
+		}
+		return txtFirstName;
+	}
+	public JTextField getTxtLastName() {
+		if (txtLastName == null) {
+			txtLastName = new JTextField();
+			txtLastName.setFont(new Font("SansSerif", Font.PLAIN, 12));
+			txtLastName.setColumns(10);
+			txtLastName.setBounds(115, 94, 116, 20);
+		}
+		return txtLastName;
+	}
+	public JLabel getLblLastName() {
+		if (lblLastName == null) {
+			lblLastName = new JLabel("Nachname:");
+			lblLastName.setFont(new Font("SansSerif", Font.PLAIN, 12));
+			lblLastName.setBounds(12, 96, 120, 14);
+		}
+		return lblLastName;
 	}
 }

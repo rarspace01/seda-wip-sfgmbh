@@ -5,6 +5,7 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 import java.util.HashMap;
+import java.util.regex.Pattern;
 
 import de.sfgmbh.datalayer.core.definitions.IntfDataRetrievable;
 
@@ -71,7 +72,13 @@ public class User implements IntfDataRetrievable {
 	}
 
 	public void setClass_(String class_) {
-		this.class_ = class_;
+		if (class_.equals("Verwaltung") || class_.equals("orga")) {
+			this.class_ = "orga";
+		} else if (class_.equals("Dozenten") || class_.equals("Dozent") || class_.equals("lecturer")) {
+			this.class_ = "lecturer";
+		} else if (class_.equals("Studenten") || class_.equals("Student") || class_.equals("stud")) {
+			this.class_ = "stud";
+		}
 	}
 
 	public String getfName_() {
@@ -253,8 +260,54 @@ public class User implements IntfDataRetrievable {
 	/**
 	 * Save this user object in the DB (this will update a database entry if there is already one and create one if there is none)
 	 */
-	public void save() {
-		AppModel.getInstance().repositoryUser.save(this);
+	public boolean save() {
+		if (AppModel.getInstance().repositoryUser.save(this)) {
+			return true;
+		}
+		return false;
+	}
+	
+	/**
+	 * Validates the user object, calls an info dialog when one check fails and returns true if all checks are passed
+	 * @return true if all check attributes are valid user attributes
+	 */
+	public boolean validate() {
+		Pattern validEmail = Pattern.compile("^[A-Za-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[A-Za-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[A-Za-z0-9](?:[A-Za-z0-9-]*[A-Za-z0-9])?\\.)+[A-Za-z0-9](?:[A-Za-z0-9-]*[A-Za-z0-9])?$");
+		
+		if (this.userId_ < -1 ) {
+			AppModel.getInstance().appExcaptions.setNewException("Das ist keine gülite Benutzer ID", "Fehler!");
+			return false;
+		}
+		if (this.login_.length() > 32 && this.login_.length() < 3) {
+			AppModel.getInstance().appExcaptions.setNewException("Die Benutzerkennung muss zwischen 3 und 6 Zeichen lang sein!", "Fehler!");
+			return false;
+		}
+		if (this.mail_.length() > 64 ) {
+			AppModel.getInstance().appExcaptions.setNewException("Die E-Mail Adresse darf maximal 64 Zeichen lang sein!", "Fehler!");
+			return false;
+		}
+		if (!validEmail.matcher(this.mail_).matches()) {
+			AppModel.getInstance().appExcaptions.setNewException("Die E-Mail Adresse ist ungültig!", "Fehler!");
+			return false;
+		}
+		if (this.fName_.length() > 64 ) {
+			AppModel.getInstance().appExcaptions.setNewException("Der Vorname darf maximal 64 Zeichen lang sein!", "Fehler!");
+			return false;
+		}
+		if (this.lName_.length() > 64 ) {
+			AppModel.getInstance().appExcaptions.setNewException("Der Nachname darf maximal 64 Zeichen lang sein!", "Fehler!");
+			return false;
+		}
+		if (!this.class_.equals("orga") && !this.class_.equals("lecturer") && !this.class_.equals("stud") ) {
+			AppModel.getInstance().appExcaptions.setNewException("Der Benutzer ist einer ungültigen Benutzerklasse zugeordnet!", "Fehler!");
+			return false;
+		}
+		if (this.class_.equals("lecturer") && this.chair_ == null) {
+			AppModel.getInstance().appExcaptions.setNewException("Einem Dozenten muss ein Lehrstuhl zugeordnet werden!", "Fehler!");
+			return false;
+		}
+		
+		return true;
 	}
 
 }
