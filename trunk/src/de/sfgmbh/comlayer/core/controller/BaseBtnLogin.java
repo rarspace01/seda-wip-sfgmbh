@@ -32,34 +32,20 @@ public class BaseBtnLogin implements ActionListener {
 			String pwd = new String(Bootstrap.serviceManager.getCoreBaseTab().getPwdPasswort().getPassword());
 			String user = Bootstrap.serviceManager.getCoreBaseTab().getTxtBenutzername().getText();
 			
-			if (pwd.equals("Doz") && user.equals("Doz")) {
-				
-				this.callLecturer();
-				
-			} else if (pwd.equals("Verw") && user.equals("Verw")) {
-				
-				this.callOrga();
-				
-			} else if (pwd.equals("Stud") && user.equals("Stud")) {
-				
-				this.getInfoWindow("Das Studentenprofil ist ein Wunschkriterium, das vermutlich nicht in der ersten Version implementiert wird.").setVisible(true);
+			User checkUser = ctrlBaseTab.login(user, pwd);
 			
-			} else {
-				
-				User checkUser = ctrlBaseTab.login(user, pwd);
-				
-				if (checkUser == null) {
-					// currently here happens nothing
-				} else if (checkUser.getClass_().equals("orga")) {
-					this.callOrga();
-					Bootstrap.serviceManager.getCoreBaseTab().getPanelLogin().setVisible(false);
-					Bootstrap.serviceManager.getCoreBaseTab().getPanelLogout().setVisible(true);
-				} else if (checkUser.getClass_().equals("lecturer")) {
-					this.callLecturer();
-					Bootstrap.serviceManager.getCoreBaseTab().getPanelLogin().setVisible(false);
-					Bootstrap.serviceManager.getCoreBaseTab().getPanelLogout().setVisible(true);
-				}
+			if (checkUser == null) {
+				// currently here happens nothing
+			} else if (checkUser.getClass_().equals("orga")) {
+				this.callOrga();
+				Bootstrap.serviceManager.getCoreBaseTab().getPanelLogin().setVisible(false);
+				Bootstrap.serviceManager.getCoreBaseTab().getPanelLogout().setVisible(true);
+			} else if (checkUser.getClass_().equals("lecturer")) {
+				this.callLecturer();
+				Bootstrap.serviceManager.getCoreBaseTab().getPanelLogin().setVisible(false);
+				Bootstrap.serviceManager.getCoreBaseTab().getPanelLogout().setVisible(true);
 			}
+			
 		} else if (this.version.equals("logout")){
 			ctrlBaseTab.logout();
 			Bootstrap.serviceManager.getCoreBaseTab().mainTabbedContainerPane.removeAll();

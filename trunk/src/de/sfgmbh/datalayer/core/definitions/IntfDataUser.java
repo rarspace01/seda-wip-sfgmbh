@@ -44,8 +44,8 @@ public interface IntfDataUser {
 	 * 
 	 * @param toBeSavedUser
 	 *            - object of type User to be saved in DB
-	 * @return - int for error handling
+	 * @return true on success
 	 */
-	public void save(User toBeSavedUser);
+	public boolean save(User toBeSavedUser);
 	
 }

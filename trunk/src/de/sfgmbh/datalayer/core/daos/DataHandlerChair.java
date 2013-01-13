@@ -77,6 +77,33 @@ public class DataHandlerChair implements IntfDataChair, IntfDataFilter, IntfData
 		
 		return null;
 	}
+	
+	/**
+	 * Get the chair based on its acronym
+	 * @param acronym
+	 * @return a chair if the submitted acronym can be associated with one, otherwise returns null
+	 */
+	public Chair getForAcronym(String acronym) {
+		try {
+			DataManagerPostgreSql.getInstance().prepare("SELECT public.chair.* " +
+					"FROM public.chair " +
+					"WHERE public.chair.chairacronym = ? ");
+			DataManagerPostgreSql.getInstance().pstmt.setString(1, acronym);
+			ResultSet rs = DataManagerPostgreSql.getInstance().selectPstmt();
+			while (rs.next()) {
+				return this.makeChair(rs);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			DataModel.getInstance().dataExcaptions.setNewException(("Es ist ein SQL-Fehler aufgetreten.<br /><br />Fehler DataHandlerChair-08:<br />" + e.toString()), "Datenbank-Fehler!");
+		} catch (Exception e) {
+			e.printStackTrace();
+			DataModel.getInstance().dataExcaptions.setNewException(("Es ist ein unbekannter Fehler in der Datenhaltung aufgetreten:<br /><br />Fehler DataHandlerChair-09:<br />" + e.toString()), "Fehler!");
+		}
+		
+		return null;
+	}
 
 	@Override
 	public List<Chair> search(String searchQry) {

@@ -26,6 +26,15 @@ public class RepositoryChair implements IntfAppObservable, IntfDataObserver {
 	public List<Chair> getAll() {
 		return DataModel.getInstance().dataHandlerChair.getAll();
 	}
+	
+	/**
+	 * Get the chair based on its acronym
+	 * @param acronym
+	 * @return a chair if the submitted acronym can be associated with one, otherwise returns null
+	 */
+	public Chair getForAcronym(String acronym) {
+		return DataModel.getInstance().dataHandlerChair.getForAcronym(acronym);
+	}
 
 	@Override
 	public void change() {
@@ -50,7 +59,7 @@ public class RepositoryChair implements IntfAppObservable, IntfDataObserver {
 		if (observer instanceof IntfAppObserver) {
 			observer_.add(observer);
 		} else {
-			AppModel.getInstance().appExcaptions.setNewException("Das Objekt implementiert nicht das Observer-Interface und kann daher nicht hinzugefügt werden!<br />Fehler: RepositoryChair-01", "Fehler!");
+			AppModel.getInstance().appExcaptions.setNewException("Das Objekt implementiert nicht das Observer-Interface und kann daher nicht hinzugefï¿½gt werden!<br />Fehler: RepositoryChair-01", "Fehler!");
 		}
 	}
 	
