@@ -27,7 +27,7 @@ import de.sfgmbh.comlayer.organisation.views.RoomFrame;
 import de.sfgmbh.comlayer.organisation.views.RoomTab;
 import de.sfgmbh.comlayer.organisation.views.RoomtableTab;
 import de.sfgmbh.comlayer.organisation.views.UserEditFrame;
-import de.sfgmbh.comlayer.organisation.views.UserFrame;
+import de.sfgmbh.comlayer.organisation.views.UserCreateDialog;
 import de.sfgmbh.comlayer.organisation.views.UserTab;
 import de.sfgmbh.comlayer.timetable.views.PublicTimetableTab;
 
@@ -103,7 +103,7 @@ public class ServiceManager {
 	protected RequestTab requestTab;
 	protected RoomFrame roomFrame;
 	protected RoomEditFrame roomEditFrame;
-	protected UserFrame userFrame;
+	protected UserCreateDialog userFrame;
 	protected UserEditFrame userEditFrame;
 	protected ProfessorshipFrame professorshipFrame;
 	protected ProfessorshipEditFrame professorshipEditFrame;
@@ -187,9 +187,9 @@ public class ServiceManager {
 		}
 		return this.roomEditFrame;
 	}
-	public UserFrame getOrgaUserFrame() {
+	public UserCreateDialog getOrgaUserCreateDialog() {
 		if (this.userFrame == null) {
-			this.userFrame = new UserFrame();
+			this.userFrame = new UserCreateDialog();
 		}
 		return this.userFrame;
 	}

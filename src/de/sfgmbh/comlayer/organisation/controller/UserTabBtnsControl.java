@@ -24,9 +24,9 @@ public class UserTabBtnsControl implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		
-		// Benutzer hinzufügen Button is pressed
+		// Benutzer hinzufï¿½gen Button is pressed
 		if (this.navAction.equals("hinz")) {
-			Bootstrap.serviceManager.getOrgaUserFrame().setVisible(true);
+			Bootstrap.serviceManager.getOrgaUserCreateDialog().setVisible(true);
 		}
 		
 		// Benutzer bearbeiten Button is pressed
@@ -36,14 +36,14 @@ public class UserTabBtnsControl implements ActionListener {
 			//		" sofort zu einer Bearbeiten-Maske, welche allerdings noch nicht implementiert ist.").setVisible(true);
 		}
 		
-		// Benutzer löschen Button is pressed
+		// Benutzer lï¿½schen Button is pressed
 		if (this.navAction.equals("loschen")) {
 			this.getInfoWindow("<b>Fehlermeldung:</b><br>Sie haben keinen Nutzer selektiert!").setVisible(true);
 		}
 		
 		// Fehlermeldung Button is pressed
 		if (this.navAction.equals("Fehlermeldung")) {
-			this.getInfoWindow("<b>Fehlermeldung:</b><br>Es besteht keine Verbindung zur Datenbank. Daher können keine Nutzer angezeigt werden.").setVisible(true);
+			this.getInfoWindow("<b>Fehlermeldung:</b><br>Es besteht keine Verbindung zur Datenbank. Daher kï¿½nnen keine Nutzer angezeigt werden.").setVisible(true);
 		}
 	}
 	
