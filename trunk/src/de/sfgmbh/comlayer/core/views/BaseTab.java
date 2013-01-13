@@ -47,7 +47,6 @@ public class BaseTab extends JFrame{
 	public JLayeredPane contentPane;
 	public JTabbedPane mainTabbedContainerPane;
 	public JPanel startScreenPanel;
-	public JPanel roomPanel;
 	private JComboBox<String> comboBoxChairFilter;
 	private JComboBox<String> comboBoxLecturerFilter;
 	private JComboBox<String> comboBoxSemesterFilter;
@@ -74,6 +73,7 @@ public class BaseTab extends JFrame{
 	private JButton btnFehlermeldung;
 	private JButton btnLogout;
 	private JLabel lblNewLabel;
+	private JTable roomTable;
 	
 	
 
@@ -103,10 +103,6 @@ public class BaseTab extends JFrame{
 		contentPane.setLayer(startScreenPanel, 1);
 		contentPane.add(startScreenPanel, "name_5256771068822");
 		startScreenPanel.setLayout(new MigLayout("", "[grow][][grow][grow][grow][grow][grow]", "[][][grow][]"));
-		startScreenPanel.add(getRdbtnLehrveranstaltungen(), "cell 0 0,aligny bottom");
-		
-		roomPanel = new JPanel();
-		contentPane.add(roomPanel, "name_1043142180087");
 		
 		lblLehrveranstaltung = new JLabel("Lehrveranstaltung:");
 		startScreenPanel.add(lblLehrveranstaltung, "cell 2 0,alignx left,aligny bottom");
@@ -124,6 +120,7 @@ public class BaseTab extends JFrame{
 		comboBoxOrgaFilter.addKeyListener(new BaseCmbboxFilter());
 		comboBoxOrgaFilter.addActionListener(new BaseCmbboxFilter());
 		startScreenPanel.add(getLblNewLabel(), "cell 6 0,alignx center");
+		startScreenPanel.add(getRdbtnLehrveranstaltungen(), "cell 0 0,aligny bottom");
 		startScreenPanel.add(getRdbtnRaume(), "cell 0 1");
 		comboBoxOrgaFilter.setAutoscrolls(true);
 		comboBoxOrgaFilter.setEditable(true);
@@ -191,6 +188,7 @@ public class BaseTab extends JFrame{
 		startScreenPanel.add(mainTableScrollPane, "cell 2 2 4 1,grow");
 		
 		mainTableScrollPane.setViewportView(getOrganisationTable());
+		mainTableScrollPane.setColumnHeaderView(getRoomTable());
 		
 		JPanel buttonPanel = new JPanel();
 		buttonPanel.setMinimumSize(new Dimension(80, 10));
@@ -209,6 +207,9 @@ public class BaseTab extends JFrame{
 		
 	}
 	
+	public JScrollPane getMainTableScrollPane() {
+		return mainTableScrollPane;
+	}
 	public JTable getOrganisationTable() {
 		if (organisationTable == null) {
 			DefaultTableCellRenderer center = new DefaultTableCellRenderer();
@@ -369,6 +370,14 @@ public class BaseTab extends JFrame{
 	public JComboBox<String> getComboBoxOrgaFilter() {
 		return comboBoxOrgaFilter;
 	}
-	
-	
+	public JTable getRoomTable() {
+		if (roomTable == null) {
+			roomTable = new JTable();
+			roomTable.setModel(Bootstrap.serviceManager.getCoreRoomTableModel());
+			roomTable.setShowVerticalLines(false);
+			roomTable.setVisible(false);
+			roomTable.setBackground(SystemColor.activeCaption);
+		}
+		return roomTable;
+	}
 }
