@@ -5,6 +5,7 @@ import de.sfgmbh.comlayer.core.model.RoomTableMain;
 import de.sfgmbh.comlayer.core.views.BaseTab;
 import de.sfgmbh.comlayer.core.views.InfoDialog;
 import de.sfgmbh.comlayer.lecturer.model.ProfessorshipTimetableTabTable;
+import de.sfgmbh.comlayer.lecturer.model.StartTabTableTop;
 import de.sfgmbh.comlayer.lecturer.model.TimetableTabTable;
 import de.sfgmbh.comlayer.lecturer.views.CourseEditFrame;
 import de.sfgmbh.comlayer.lecturer.views.CourseFrame;
@@ -26,8 +27,8 @@ import de.sfgmbh.comlayer.organisation.views.RoomEditFrame;
 import de.sfgmbh.comlayer.organisation.views.RoomFrame;
 import de.sfgmbh.comlayer.organisation.views.RoomTab;
 import de.sfgmbh.comlayer.organisation.views.RoomtableTab;
-import de.sfgmbh.comlayer.organisation.views.UserEditFrame;
 import de.sfgmbh.comlayer.organisation.views.UserCreateDialog;
+import de.sfgmbh.comlayer.organisation.views.UserEditFrame;
 import de.sfgmbh.comlayer.organisation.views.UserTab;
 import de.sfgmbh.comlayer.timetable.views.PublicTimetableTab;
 
@@ -222,6 +223,7 @@ public class ServiceManager {
 	* Module: Lecturer
 	*/
 	protected StartTab startTab;
+	protected StartTabTableTop startTabTableTop;
 	protected CourseFrame courseFrame;
 	protected CourseEditFrame courseEditFrame;
 	protected RoomRequestFrame roomRquestFrame;
@@ -235,6 +237,12 @@ public class ServiceManager {
 			this.startTab = new StartTab();
 		}
 		return this.startTab;
+	}
+	public StartTabTableTop getLecturerStartTabTableTop() {
+		if (this.startTabTableTop == null) {
+			this.startTabTableTop = new StartTabTableTop();
+		}
+		return this.startTabTableTop;
 	}
 	public CourseFrame getLecturerCourseFrame() {
 		if (this.courseFrame == null) {

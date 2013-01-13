@@ -16,9 +16,10 @@ import de.sfgmbh.datalayer.io.DataManagerPostgreSql;
 public class DataHandlerCourse implements IntfDataFilter, IntfDataObservable {
 	
 	private ArrayList<Object> observer_ = new ArrayList<Object>();
+	private DataManagerPostgreSql filterDm = null;
 
 	public List<Course> getAll() {
-		List<Course> listChair = new ArrayList<Course>();
+		List<Course> listCourse = new ArrayList<Course>();
 		Course returnCourse = null;
 
 		String SqlStatement = "SELECT public.course.*, public.user.*, public.chair.* " +
@@ -34,7 +35,7 @@ public class DataHandlerCourse implements IntfDataFilter, IntfDataObservable {
 
 			while (resultSet.next()) {
 				returnCourse = this.makeCourse(resultSet);
-				listChair.add(returnCourse);
+				listCourse.add(returnCourse);
 				returnCourse = null;
 			}
 
@@ -46,9 +47,61 @@ public class DataHandlerCourse implements IntfDataFilter, IntfDataObservable {
 			DataModel.getInstance().dataExcaptions.setNewException(("Es ist ein unbekannter Fehler (DataHandlerCourse-03) in der Datenhaltung aufgetreten:<br /><br />" + e.toString()), "Fehler!");
 		}
 
-		return listChair;
+		return listCourse;
 	}
-
+	
+	@Override
+	public List<Course> getByFilter(HashMap<String, String> filter) {
+		List<Course> listCourse = new ArrayList<Course>();
+		
+		try {
+			if (filterDm == null) { 
+				filterDm = new DataManagerPostgreSql(); 
+					filterDm.prepare("SELECT public.course.*, public.user.*, public.chair.* " +
+									"FROM public.course, public.user, public.chair, public.lecturer " +
+									"WHERE public.course.lecturerid = public.user.userid " +
+									"AND public.course.lecturerid = public.lecturer.userid " +
+									"AND public.chair.chairid = public.lecturer.chairid " +
+									"AND public.user.login LIKE ? " +
+									"AND (public.chair.chairacronym LIKE ? OR public.chair.chairname LIKE ?) " +
+									"AND (Public.user.fname LIKE ? OR public.user.lname LIKE ?) ");
+			}
+			if (filter.containsKey("login") && filter.get("login") != null && filter.get("login") != "" && filter.get("login") != "<alle>") {
+				filterDm.pstmt.setString(1, filter.get("login"));
+			} else {
+				filterDm.pstmt.setString(1, "%");
+			}
+			if (filter.containsKey("chair") && filter.get("chair") != null && filter.get("chair") != "" && filter.get("chair") != "<alle>") {
+				filterDm.pstmt.setString(2, "%" + filter.get("chair") + "%");
+				filterDm.pstmt.setString(3, "%" + filter.get("chair") + "%");
+			} else {
+				filterDm.pstmt.setString(2, "%");
+				filterDm.pstmt.setString(3, "%");
+			}
+			if (filter.containsKey("lecturer") && filter.get("lecturer") != null && filter.get("lecturer") != "" && filter.get("lecturer") != "<alle>") {
+				filterDm.pstmt.setString(4, "%" + filter.get("lecturer") + "%");
+				filterDm.pstmt.setString(5, "%" + filter.get("lecturer") + "%");
+			} else {
+				filterDm.pstmt.setString(4, "%");
+				filterDm.pstmt.setString(5, "%");
+			}
+			
+			ResultSet rs = filterDm.selectPstmt();
+			while (rs.next()) {
+				listCourse.add(makeCourse(rs));
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			DataModel.getInstance().dataExcaptions.setNewException(("Es ist ein SQL-Fehler (DataHandlerCourse-09) aufgetreten:<br /><br />" + e.toString()), "Datenbank-Fehler!");
+		} catch (Exception e) {
+			e.printStackTrace();
+			DataModel.getInstance().dataExcaptions.setNewException(("Es ist ein unbekannter Fehler (DataHandlerCourse-10) in der Datenhaltung aufgetreten:<br /><br />" + e.toString()), "Fehler!");
+		}
+		
+		return listCourse;
+	}
+	
 	public Course get(int id) {
 		
 		try {
@@ -72,12 +125,6 @@ public class DataHandlerCourse implements IntfDataFilter, IntfDataObservable {
 			DataModel.getInstance().dataExcaptions.setNewException(("Es ist ein unbekannter Fehler (DataHandlerCourse-08) in der Datenhaltung aufgetreten:<br /><br />" + e.toString()), "Fehler!");
 		}
 		
-		return null;
-	}
-	
-	@Override
-	public List<Course> getByFilter(HashMap<String, String> filter) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 	

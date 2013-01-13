@@ -5,12 +5,10 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
-import de.sfgmbh.comlayer.core.views.InfoDialog;
+import de.sfgmbh.applayer.core.controller.ServiceManager;
 
 
 public class StartTabCmbboxFilter implements KeyListener, ActionListener {
-	
-	protected InfoDialog infoWindow;
 	
 	@Override
 	public void keyTyped(KeyEvent arg0) {
@@ -31,14 +29,7 @@ public class StartTabCmbboxFilter implements KeyListener, ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		this.getInfoWindow().setVisible(true);
-	}
-	
-	public InfoDialog getInfoWindow() {
-		if (this.infoWindow == null) {
-			this.infoWindow = new InfoDialog("Filterfunktionen sind hier noch nicht implementiert");
-		}
-		return this.infoWindow;
+		ServiceManager.getInstance().getLecturerStartTabTableTop().change();
 	}
 	
 }

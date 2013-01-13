@@ -1,6 +1,7 @@
 package de.sfgmbh.applayer.core.model;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import de.sfgmbh.applayer.core.definitions.IntfAppObservable;
@@ -26,6 +27,15 @@ public class RepositoryCourse implements IntfAppObservable, IntfDataObserver {
 	public List<Course> getAll() {
 		return DataModel.getInstance().dataHandlerCourse.getAll();
 	}
+	
+	/**
+	 * Get course objects based on a filter
+	 * @param filter
+	 * @return course objects based on a filter
+	 */
+	public List<Course> getByFilter(HashMap<String, String> filter) {
+		return DataModel.getInstance().dataHandlerCourse.getByFilter(filter);
+	}
 
 	@Override
 	public void change() {
@@ -50,7 +60,7 @@ public class RepositoryCourse implements IntfAppObservable, IntfDataObserver {
 		if (observer instanceof IntfAppObserver) {
 			observer_.add(observer);
 		} else {
-			AppModel.getInstance().appExcaptions.setNewException("Das Objekt implementiert nicht das Observer-Interface und kann daher nicht hinzugefügt werden!<br />Fehler: RepositoryChair-01", "Fehler!");
+			AppModel.getInstance().appExcaptions.setNewException("Das Objekt implementiert nicht das Observer-Interface und kann daher nicht hinzugefï¿½gt werden!<br />Fehler: RepositoryChair-01", "Fehler!");
 		}
 	}
 	
