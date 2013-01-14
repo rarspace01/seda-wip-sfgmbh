@@ -50,7 +50,7 @@ public class DataHandlerRoom implements IntfDataRoom, IntfDataFilter, IntfDataOb
 		
 		try {
 			DataManagerPostgreSql.getInstance().prepare("SELECT * FROM public.room WHERE roomid = ?");
-			DataManagerPostgreSql.getInstance().pstmt.setInt(1, id);
+			DataManagerPostgreSql.getInstance().getPreparedStatement().setInt(1, id);
 			ResultSet rs = DataManagerPostgreSql.getInstance().selectPstmt();
 			while (rs.next()) {
 				return this.makeRoom(rs);

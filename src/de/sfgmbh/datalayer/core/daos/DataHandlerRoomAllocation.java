@@ -87,45 +87,45 @@ public class DataHandlerRoomAllocation implements IntfDataObservable, IntfDataFi
 				
 			}
 			if (filter.containsKey("lecturer") && filter.get("lecturer") != null && filter.get("lecturer") != "" && filter.get("lecturer") != "<alle>") {
-				filterDm.pstmt.setString(1, "%" + filter.get("lecturer") + "%");
-				filterDm.pstmt.setString(2, "%" + filter.get("lecturer") + "%");
+				filterDm.getPreparedStatement().setString(1, "%" + filter.get("lecturer") + "%");
+				filterDm.getPreparedStatement().setString(2, "%" + filter.get("lecturer") + "%");
 			} else {
-				filterDm.pstmt.setString(1, "%");
-				filterDm.pstmt.setString(2, "%");
+				filterDm.getPreparedStatement().setString(1, "%");
+				filterDm.getPreparedStatement().setString(2, "%");
 			}
 			if (filter.containsKey("chair") && filter.get("chair") != null && filter.get("chair") != "" && filter.get("chair") != "<alle>") {
-				filterDm.pstmt.setString(3, "%" + filter.get("chair") + "%");
-				filterDm.pstmt.setString(4, "%" + filter.get("chair") + "%");
+				filterDm.getPreparedStatement().setString(3, "%" + filter.get("chair") + "%");
+				filterDm.getPreparedStatement().setString(4, "%" + filter.get("chair") + "%");
 			} else {
-				filterDm.pstmt.setString(3, "%");
-				filterDm.pstmt.setString(4, "%");
+				filterDm.getPreparedStatement().setString(3, "%");
+				filterDm.getPreparedStatement().setString(4, "%");
 			}
 			if (filter.containsKey("course") && filter.get("course") != null && filter.get("course") != "" && filter.get("course") != "<alle>") {
-				filterDm.pstmt.setString(5, "%" + filter.get("course") + "%");
-				filterDm.pstmt.setString(6, "%" + filter.get("course") + "%");
+				filterDm.getPreparedStatement().setString(5, "%" + filter.get("course") + "%");
+				filterDm.getPreparedStatement().setString(6, "%" + filter.get("course") + "%");
 			} else {
-				filterDm.pstmt.setString(5, "%");
-				filterDm.pstmt.setString(6, "%");
+				filterDm.getPreparedStatement().setString(5, "%");
+				filterDm.getPreparedStatement().setString(6, "%");
 			}
 			if (filter.containsKey("semester") && filter.get("semester") != null && filter.get("semester") != "" && filter.get("semester") != "<alle>") {
-				filterDm.pstmt.setString(7, "%" + filter.get("semester") + "%");
+				filterDm.getPreparedStatement().setString(7, "%" + filter.get("semester") + "%");
 			} else {
-				filterDm.pstmt.setString(7, "%");
+				filterDm.getPreparedStatement().setString(7, "%");
 			}
 			if (filter.containsKey("status") && filter.get("status") != null && filter.get("status") != "" && filter.get("status") != "<alle>") {
-				filterDm.pstmt.setString(8, "%" + filter.get("status") + "%");
+				filterDm.getPreparedStatement().setString(8, "%" + filter.get("status") + "%");
 			} else {
-				filterDm.pstmt.setString(8, "%");
+				filterDm.getPreparedStatement().setString(8, "%");
 			}
 			if (filter.containsKey("room") && filter.get("room") != null && filter.get("room") != "" && filter.get("room") != "<alle>") {
-				filterDm.pstmt.setString(9, "%" + filter.get("room") + "%");
+				filterDm.getPreparedStatement().setString(9, "%" + filter.get("room") + "%");
 			} else {
-				filterDm.pstmt.setString(9, "%");
+				filterDm.getPreparedStatement().setString(9, "%");
 			}
 			if (filter.containsKey("login") && filter.get("login") != null && filter.get("login") != "" && filter.get("login") != "<alle>") {
-				filterDm.pstmt.setString(10, filter.get("login"));
+				filterDm.getPreparedStatement().setString(10, filter.get("login"));
 			} else {
-				filterDm.pstmt.setString(10, "%");
+				filterDm.getPreparedStatement().setString(10, "%");
 			}
 			
 			ResultSet rs = filterDm.selectPstmt();
@@ -168,11 +168,11 @@ public class DataHandlerRoomAllocation implements IntfDataObservable, IntfDataFi
 						"AND public.roomallocation.approved NOT LIKE 'denied' " +
 						"ANd public.roomallocation.roomallocationid <> ? ");
 			}
-			conflictingAllocationDm.pstmt.setInt(1, ra.getRoom_().getRoomId_());
-			conflictingAllocationDm.pstmt.setInt(2, ra.getDay_());
-			conflictingAllocationDm.pstmt.setInt(3, ra.getTime_());
-			conflictingAllocationDm.pstmt.setString(4, ra.getSemester_());
-			conflictingAllocationDm.pstmt.setInt(5, ra.getRoomAllocationId_());
+			conflictingAllocationDm.getPreparedStatement().setInt(1, ra.getRoom_().getRoomId_());
+			conflictingAllocationDm.getPreparedStatement().setInt(2, ra.getDay_());
+			conflictingAllocationDm.getPreparedStatement().setInt(3, ra.getTime_());
+			conflictingAllocationDm.getPreparedStatement().setString(4, ra.getSemester_());
+			conflictingAllocationDm.getPreparedStatement().setInt(5, ra.getRoomAllocationId_());
 			
 			ResultSet rs = conflictingAllocationDm.selectPstmt();
 			while (rs.next()) {
@@ -203,7 +203,7 @@ public class DataHandlerRoomAllocation implements IntfDataObservable, IntfDataFi
 														"AND public.chair.chairid = public.lecturer.chairid " +
 														"AND public.roomallocation.roomid = public.room.roomid " +
 														"AND roomallocationid = ?");
-			DataManagerPostgreSql.getInstance().pstmt.setInt(1, id);
+			DataManagerPostgreSql.getInstance().getPreparedStatement().setInt(1, id);
 			ResultSet rs = DataManagerPostgreSql.getInstance().selectPstmt();
 			while (rs.next()) {
 				return this.makeRoomAllocation(rs, "normal");
@@ -233,14 +233,14 @@ public class DataHandlerRoomAllocation implements IntfDataObservable, IntfDataFi
 				dm.prepare("INSERT INTO public.roomallocation"
 						+ "(courseid, roomid, semester, day, time, approved, orgamessage, comment)"
 						+ "VALUES (?,?,?,?,?,?,?,?)");
-				dm.pstmt.setInt(1, ra.getCourse_().getCourseId_());
-				dm.pstmt.setInt(2, ra.getRoom_().getRoomId_());
-				dm.pstmt.setString(3, ra.getSemester_());
-				dm.pstmt.setInt(4, ra.getDay_());
-				dm.pstmt.setInt(5, ra.getTime_());
-				dm.pstmt.setString(6, ra.getApproved_());
-				dm.pstmt.setString(7, ra.getOrgaMessage_());
-				dm.pstmt.setString(8, ra.getComment_());
+				dm.getPreparedStatement().setInt(1, ra.getCourse_().getCourseId_());
+				dm.getPreparedStatement().setInt(2, ra.getRoom_().getRoomId_());
+				dm.getPreparedStatement().setString(3, ra.getSemester_());
+				dm.getPreparedStatement().setInt(4, ra.getDay_());
+				dm.getPreparedStatement().setInt(5, ra.getTime_());
+				dm.getPreparedStatement().setString(6, ra.getApproved_());
+				dm.getPreparedStatement().setString(7, ra.getOrgaMessage_());
+				dm.getPreparedStatement().setString(8, ra.getComment_());
 				dm.executePstmt();
 				this.update();
 				return;
@@ -258,15 +258,15 @@ public class DataHandlerRoomAllocation implements IntfDataObservable, IntfDataFi
 				dm.prepare("UPDATE public.roomallocation SET "
 						+ "courseid = ?, roomid = ?, semester = ?, day = ?, time = ?, approved = ?, orgamessage = ?, comment = ? "
 						+ "WHERE roomallocationid = ?");
-				dm.pstmt.setInt(1, ra.getCourse_().getCourseId_());
-				dm.pstmt.setInt(2, ra.getRoom_().getRoomId_());
-				dm.pstmt.setString(3, ra.getSemester_());
-				dm.pstmt.setInt(4, ra.getDay_());
-				dm.pstmt.setInt(5, ra.getTime_());
-				dm.pstmt.setString(6, ra.getApproved_());
-				dm.pstmt.setString(7, ra.getOrgaMessage_());
-				dm.pstmt.setString(8, ra.getComment_());
-				dm.pstmt.setInt(9, ra.getRoomAllocationId_());
+				dm.getPreparedStatement().setInt(1, ra.getCourse_().getCourseId_());
+				dm.getPreparedStatement().setInt(2, ra.getRoom_().getRoomId_());
+				dm.getPreparedStatement().setString(3, ra.getSemester_());
+				dm.getPreparedStatement().setInt(4, ra.getDay_());
+				dm.getPreparedStatement().setInt(5, ra.getTime_());
+				dm.getPreparedStatement().setString(6, ra.getApproved_());
+				dm.getPreparedStatement().setString(7, ra.getOrgaMessage_());
+				dm.getPreparedStatement().setString(8, ra.getComment_());
+				dm.getPreparedStatement().setInt(9, ra.getRoomAllocationId_());
 				dm.executePstmt();
 				this.update();
 				return;

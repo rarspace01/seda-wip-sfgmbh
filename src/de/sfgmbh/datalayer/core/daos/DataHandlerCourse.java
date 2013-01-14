@@ -67,23 +67,23 @@ public class DataHandlerCourse implements IntfDataFilter, IntfDataObservable {
 									"AND (Public.user.fname LIKE ? OR public.user.lname LIKE ?) ");
 			}
 			if (filter.containsKey("login") && filter.get("login") != null && filter.get("login") != "" && filter.get("login") != "<alle>") {
-				filterDm.pstmt.setString(1, filter.get("login"));
+				filterDm.getPreparedStatement().setString(1, filter.get("login"));
 			} else {
-				filterDm.pstmt.setString(1, "%");
+				filterDm.getPreparedStatement().setString(1, "%");
 			}
 			if (filter.containsKey("chair") && filter.get("chair") != null && filter.get("chair") != "" && filter.get("chair") != "<alle>") {
-				filterDm.pstmt.setString(2, "%" + filter.get("chair") + "%");
-				filterDm.pstmt.setString(3, "%" + filter.get("chair") + "%");
+				filterDm.getPreparedStatement().setString(2, "%" + filter.get("chair") + "%");
+				filterDm.getPreparedStatement().setString(3, "%" + filter.get("chair") + "%");
 			} else {
-				filterDm.pstmt.setString(2, "%");
-				filterDm.pstmt.setString(3, "%");
+				filterDm.getPreparedStatement().setString(2, "%");
+				filterDm.getPreparedStatement().setString(3, "%");
 			}
 			if (filter.containsKey("lecturer") && filter.get("lecturer") != null && filter.get("lecturer") != "" && filter.get("lecturer") != "<alle>") {
-				filterDm.pstmt.setString(4, "%" + filter.get("lecturer") + "%");
-				filterDm.pstmt.setString(5, "%" + filter.get("lecturer") + "%");
+				filterDm.getPreparedStatement().setString(4, "%" + filter.get("lecturer") + "%");
+				filterDm.getPreparedStatement().setString(5, "%" + filter.get("lecturer") + "%");
 			} else {
-				filterDm.pstmt.setString(4, "%");
-				filterDm.pstmt.setString(5, "%");
+				filterDm.getPreparedStatement().setString(4, "%");
+				filterDm.getPreparedStatement().setString(5, "%");
 			}
 			
 			ResultSet rs = filterDm.selectPstmt();
@@ -111,7 +111,7 @@ public class DataHandlerCourse implements IntfDataFilter, IntfDataObservable {
 														"AND public.course.lecturerid = public.lecturer.userid " +
 														"AND public.chair.chairid = public.lecturer.chairid " +
 														"AND courseid = ? ");
-			DataManagerPostgreSql.getInstance().pstmt.setInt(1, id);
+			DataManagerPostgreSql.getInstance().getPreparedStatement().setInt(1, id);
 			ResultSet rs = DataManagerPostgreSql.getInstance().selectPstmt();
 			while (rs.next()) {
 				return this.makeCourse(rs);

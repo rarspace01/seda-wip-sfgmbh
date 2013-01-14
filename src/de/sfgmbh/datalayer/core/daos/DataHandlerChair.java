@@ -61,7 +61,7 @@ public class DataHandlerChair implements IntfDataChair, IntfDataFilter, IntfData
 					"FROM public.chair, public.lecturer " +
 					"WHERE public.lecturer.chairid = public.chair.chairid " +
 					"AND public.lecturer.userid = ? ");
-			DataManagerPostgreSql.getInstance().pstmt.setInt(1, userId);
+			DataManagerPostgreSql.getInstance().getPreparedStatement().setInt(1, userId);
 			ResultSet rs = DataManagerPostgreSql.getInstance().selectPstmt();
 			while (rs.next()) {
 				return this.makeChair(rs);
@@ -88,7 +88,7 @@ public class DataHandlerChair implements IntfDataChair, IntfDataFilter, IntfData
 			DataManagerPostgreSql.getInstance().prepare("SELECT public.chair.* " +
 					"FROM public.chair " +
 					"WHERE public.chair.chairacronym = ? ");
-			DataManagerPostgreSql.getInstance().pstmt.setString(1, acronym);
+			DataManagerPostgreSql.getInstance().getPreparedStatement().setString(1, acronym);
 			ResultSet rs = DataManagerPostgreSql.getInstance().selectPstmt();
 			while (rs.next()) {
 				return this.makeChair(rs);
