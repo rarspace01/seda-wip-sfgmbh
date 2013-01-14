@@ -32,36 +32,53 @@ public class RoomTabBtnsControl implements ActionListener {
 		// Raum bearbeiten Button is pressed
 		if (this.navAction.equals("edit")) {
 
-			//get selected Room from DB	
-			int getTableId=ViewManager.getInstance().getOrgaRoomTab().getRaumverwaltungTable().getSelectedRow();
-			int getId=Integer.parseInt(ViewManager.getInstance().getOrgaRoomTableModel().getValueAt(getTableId, 0).toString());
+			if(ViewManager.getInstance().getOrgaRoomTab().getRaumverwaltungTable().getSelectedRow()>=0){
 			
-			Room selectedRoom=AppModel.getInstance().getRepositoryRoom().getRoomById(getId);
-
-			//load values from room object to gui
-			ViewManager.getInstance().getOrgaRoomFrame().getTxtroomid().setText(""+selectedRoom.getRoomId_());
+				//get selected Room from DB	
+				int getTableId=ViewManager.getInstance().getOrgaRoomTab().getRaumverwaltungTable().getSelectedRow();
+				int getId=Integer.parseInt(ViewManager.getInstance().getOrgaRoomTableModel().getValueAt(getTableId, 0).toString());
+				
+				Room selectedRoom=AppModel.getInstance().getRepositoryRoom().getRoomById(getId);
+	
+				//load values from room object to gui
+				ViewManager.getInstance().getOrgaRoomFrame().getTxtroomid().setText(""+selectedRoom.getRoomId_());
+				
+				ViewManager.getInstance().getOrgaRoomFrame().getTxtRoomNumber().setText(selectedRoom.getRoomNumber_());
+				ViewManager.getInstance().getOrgaRoomFrame().getTxtLevel().setText(selectedRoom.getLevel_());
+				ViewManager.getInstance().getOrgaRoomFrame().getTxtSeats().setText(""+selectedRoom.getSeats_());
+				ViewManager.getInstance().getOrgaRoomFrame().getTxtPcSeats().setText(""+selectedRoom.getPcseats_());
+				ViewManager.getInstance().getOrgaRoomFrame().getTxtBeamer().setText(""+selectedRoom.getBeamer_());
+				ViewManager.getInstance().getOrgaRoomFrame().getTxtChalkboards().setText(""+selectedRoom.getChalkboards_());
+				ViewManager.getInstance().getOrgaRoomFrame().getTxtOverheads().setText(""+selectedRoom.getOverheads_());
+				ViewManager.getInstance().getOrgaRoomFrame().getTxtVisualizer().setText(""+selectedRoom.getVisualizer_());
+				ViewManager.getInstance().getOrgaRoomFrame().getTxtWhiteboards().setText(""+selectedRoom.getWhiteboards_());
+				
+				
+				//set Room Edit Frame visible
+				ViewManager.getInstance().getOrgaRoomFrame().setVisible(true);
 			
-			ViewManager.getInstance().getOrgaRoomFrame().getTxtRoomNumber().setText(selectedRoom.getRoomNumber_());
-			ViewManager.getInstance().getOrgaRoomFrame().getTxtLevel().setText(selectedRoom.getLevel_());
-			ViewManager.getInstance().getOrgaRoomFrame().getTxtSeats().setText(""+selectedRoom.getSeats_());
-			ViewManager.getInstance().getOrgaRoomFrame().getTxtPcSeats().setText(""+selectedRoom.getPcseats_());
-			ViewManager.getInstance().getOrgaRoomFrame().getTxtBeamer().setText(""+selectedRoom.getBeamer_());
-			ViewManager.getInstance().getOrgaRoomFrame().getTxtChalkboards().setText(""+selectedRoom.getChalkboards_());
-			ViewManager.getInstance().getOrgaRoomFrame().getTxtOverheads().setText(""+selectedRoom.getOverheads_());
-			ViewManager.getInstance().getOrgaRoomFrame().getTxtVisualizer().setText(""+selectedRoom.getVisualizer_());
-			ViewManager.getInstance().getOrgaRoomFrame().getTxtWhiteboards().setText(""+selectedRoom.getWhiteboards_());
-			
-			
-			//set Room Edit Frame visible
-			ViewManager.getInstance().getOrgaRoomFrame().setVisible(true);
+			}
 			
 		}
 
 		// Raum l�schen Button is pressed
 		if (this.navAction.equals("loschen")) {
-			this.getInfoWindow(
-					"<b>Fehlermeldung:</b><br>Der Raum konnte nicht gel�scht werden:<br>Sie haben keinen Raum selektiert.")
-					.setVisible(true);
+			
+				if(ViewManager.getInstance().getOrgaRoomTab().getRaumverwaltungTable().getSelectedRow()>=0){
+				
+				//get selected Room from DB	
+				int getTableId=ViewManager.getInstance().getOrgaRoomTab().getRaumverwaltungTable().getSelectedRow();
+				int getId=Integer.parseInt(ViewManager.getInstance().getOrgaRoomTableModel().getValueAt(getTableId, 0).toString());
+				
+				Room selectedRoom=AppModel.getInstance().getRepositoryRoom().getRoomById(getId);
+				
+				AppModel.getInstance().getRepositoryRoom().delete(selectedRoom);
+				
+				/*
+				this.getInfoWindow(
+						"<b>Fehlermeldung:</b><br>Der Raum konnte nicht gel�scht werden:<br>Sie haben keinen Raum selektiert.")
+						.setVisible(true);*/
+				}
 		}
 
 		// Fehlermeldung Button is pressed
