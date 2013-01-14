@@ -11,14 +11,14 @@ public class CmbboxFilterLecturer extends DefaultComboBoxModel<String> implement
 	private static final long serialVersionUID = 1L;
 	
 	public CmbboxFilterLecturer() {
-		AppModel.getInstance().repositoryUser.register(this);
+		AppModel.getInstance().getRepositoryUser().register(this);
 		this.change();
 	}
 
 	@Override
 	public void change() {
 		this.addElement("<alle>");
-		for (User user : AppModel.getInstance().repositoryUser.getAllLecturer()){
+		for (User user : AppModel.getInstance().getRepositoryUser().getAllLecturer()){
 			this.addElement(user.getlName_());
 		}
 	}

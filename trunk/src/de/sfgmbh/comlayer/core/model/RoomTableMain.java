@@ -16,7 +16,7 @@ public class RoomTableMain extends DefaultTableModel implements IntfAppObserver 
 	private String[] header = {"Raum", "Gebäude", "Stock.", "Plätze", "PC-Plätze", "Beamer", "Visualizer", "Overheads", "Tafeln", "Whiteboards", "Hidden"};
 	
 	public RoomTableMain() {
-		AppModel.getInstance().repositoryRoomAllocation.register(this);
+		AppModel.getInstance().getRepositoryRoomAllocation().register(this);
 		this.setColumnIdentifiers(header);
 		this.change("init");
 	}
@@ -39,7 +39,7 @@ public class RoomTableMain extends DefaultTableModel implements IntfAppObserver 
 			filter.put("semester", ViewManager.getInstance().getCoreBaseTab().getComboBoxSemesterFilter().getSelectedItem().toString());
 		}
 		
-		for (RoomAllocation ra : AppModel.getInstance().repositoryRoomAllocation.getByFilter(filter)){
+		for (RoomAllocation ra : AppModel.getInstance().getRepositoryRoomAllocation().getByFilter(filter)){
 			if (ra.isPublic()) {
 				try {
 					Object[] row = {
@@ -58,7 +58,7 @@ public class RoomTableMain extends DefaultTableModel implements IntfAppObserver 
 					this.addRow(row);
 	
 				} catch (Exception e) {
-					AppModel.getInstance().appExcaptions.setNewException("Ein unbekannter Fehler ist aufgetreten! <br /><br />Fehler BaseTableMain-01:<br />" + e.toString(), "Fehler!");
+					AppModel.getInstance().getExceptionHandler().setNewException("Ein unbekannter Fehler ist aufgetreten! <br /><br />Fehler BaseTableMain-01:<br />" + e.toString(), "Fehler!");
 				}
 			}
 		}

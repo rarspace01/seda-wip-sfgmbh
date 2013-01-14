@@ -11,14 +11,14 @@ public class CmbboxFilterChair extends DefaultComboBoxModel<String> implements I
 	private static final long serialVersionUID = 1L;
 	
 	public CmbboxFilterChair() {
-		AppModel.getInstance().repositoryChair.register(this);
+		AppModel.getInstance().getRepositoryChair().register(this);
 		this.change();
 	}
 
 	@Override
 	public void change() {
 		this.addElement("<alle>");
-		for (Chair chair : AppModel.getInstance().repositoryChair.getAll()){
+		for (Chair chair : AppModel.getInstance().getRepositoryChair().getAll()){
 			this.addElement(chair.getChairName_());
 		}
 	}

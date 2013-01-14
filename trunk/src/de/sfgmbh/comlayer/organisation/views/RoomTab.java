@@ -140,7 +140,7 @@ public class RoomTab extends JPanel {
 		raumverwaltungTable.setModel(ViewManager.getInstance().getOrgaRoomTableModel());
 		
 		//register tablemodel on repository
-		AppModel.getInstance().repositoryRoom.register(ViewManager.getInstance().getOrgaRoomTableModel());
+		AppModel.getInstance().getRepositoryRoom().register(ViewManager.getInstance().getOrgaRoomTableModel());
 		
 		raumverwaltungTable.getColumnModel().removeColumn(raumverwaltungTable.getColumn("roomid"));
 		

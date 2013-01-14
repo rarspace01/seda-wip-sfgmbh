@@ -11,14 +11,14 @@ public class CmbboxFilterCourse extends DefaultComboBoxModel<String> implements 
 	private static final long serialVersionUID = 1L;
 	
 	public CmbboxFilterCourse() {
-		AppModel.getInstance().repositoryCourse.register(this);
+		AppModel.getInstance().getRepositoryCourse().register(this);
 		this.change();
 	}
 
 	@Override
 	public void change() {
 		this.addElement("<alle>");
-		for (Course course : AppModel.getInstance().repositoryCourse.getAll()){
+		for (Course course : AppModel.getInstance().getRepositoryCourse().getAll()){
 			this.addElement(course.getCourseAcronym_());
 		}
 	}

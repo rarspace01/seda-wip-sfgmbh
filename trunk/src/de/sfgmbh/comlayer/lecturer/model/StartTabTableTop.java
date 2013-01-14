@@ -19,7 +19,7 @@ public class StartTabTableTop extends DefaultTableModel implements IntfAppObserv
 	private String[] header = {"Bezeichnung", "Art", "Dozent", "SWS", "Erw. Teilnehmer", "öffentlich", "Hidden"};
 	
 	public StartTabTableTop() {
-		AppModel.getInstance().repositoryCourse.register(this);
+		AppModel.getInstance().getRepositoryCourse().register(this);
 		this.setColumnIdentifiers(header);
 		this.change("init");
 	}
@@ -43,7 +43,7 @@ public class StartTabTableTop extends DefaultTableModel implements IntfAppObserv
 				filter.put("lecturer", ViewManager.getInstance().getLecturerStartTab().getComboLecturer().getSelectedItem().toString());
 			}
 			
-			for (Course course : AppModel.getInstance().repositoryCourse.getByFilter(filter)){
+			for (Course course : AppModel.getInstance().getRepositoryCourse().getByFilter(filter)){
 				try {
 					Object[] row = {
 							course.getCourseAcronym_(), 
@@ -57,7 +57,7 @@ public class StartTabTableTop extends DefaultTableModel implements IntfAppObserv
 					this.addRow(row);
 	
 				} catch (Exception e) {
-					AppModel.getInstance().appExcaptions.setNewException("Ein unbekannter Fehler ist aufgetreten! <br /><br />Fehler:<br />" + e.toString(), "Fehler!");
+					AppModel.getInstance().getExceptionHandler().setNewException("Ein unbekannter Fehler ist aufgetreten! <br /><br />Fehler:<br />" + e.toString(), "Fehler!");
 				}
 				
 			}

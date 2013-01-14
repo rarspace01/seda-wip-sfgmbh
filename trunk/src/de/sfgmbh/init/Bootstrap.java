@@ -40,7 +40,7 @@ public class Bootstrap {
 				
 				// Register a mother info dialog
 				InfoDialog infoDialog = new InfoDialog();
-				AppModel.getInstance().appExcaptions.register(infoDialog);
+				AppModel.getInstance().getExceptionHandler().register(infoDialog);
 				
 				//check DB connection
 				if(hasDbConnection()){

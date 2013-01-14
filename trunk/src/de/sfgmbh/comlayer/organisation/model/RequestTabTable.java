@@ -16,7 +16,7 @@ public class RequestTabTable extends DefaultTableModel implements IntfAppObserve
 	private String[] header = {"Dozent", "Lehrstuhl", "Tag", "Zeit", "Raum", "Semester", "Status","Konflikt", "Hidden"};
 	
 	public RequestTabTable() {
-		AppModel.getInstance().repositoryRoomAllocation.register(this);
+		AppModel.getInstance().getRepositoryRoomAllocation().register(this);
 		this.setColumnIdentifiers(header);
 		this.change("init");
 	}
@@ -45,7 +45,7 @@ public class RequestTabTable extends DefaultTableModel implements IntfAppObserve
 		long a, b, diff;
 		a = (long) System.currentTimeMillis();
 		
-		for (RoomAllocation ra : AppModel.getInstance().repositoryRoomAllocation.getByFilter(filter)){
+		for (RoomAllocation ra : AppModel.getInstance().getRepositoryRoomAllocation().getByFilter(filter)){
 			
 			String conflict = "-";
 			if (ra.getConflictingAllocations_() != null && !ra.getConflictingAllocations_().isEmpty()) {
@@ -67,7 +67,7 @@ public class RequestTabTable extends DefaultTableModel implements IntfAppObserve
 				this.addRow(row);
 				
 			} catch (Exception e) {
-				AppModel.getInstance().appExcaptions.setNewException("Ein unbekannter Fehler ist aufgetreten! <br /><br />Fehler RequestTabTable-01:<br />" + e.toString(), "Fehler!");
+				AppModel.getInstance().getExceptionHandler().setNewException("Ein unbekannter Fehler ist aufgetreten! <br /><br />Fehler RequestTabTable-01:<br />" + e.toString(), "Fehler!");
 			}
 		}
 		b = (long) System.currentTimeMillis();

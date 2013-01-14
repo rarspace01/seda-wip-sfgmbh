@@ -59,7 +59,7 @@ public class RepositoryRoom implements IntfAppObservable, IntfDataObserver {
 		if (observer instanceof IntfAppObserver) {
 			observer_.add(observer);
 		} else {
-			AppModel.getInstance().appExcaptions.setNewException("Das Objekt implementiert nicht das Observer-Interface und kann daher nicht hinzugef�gt werden!<br />Fehler: RepositoryChair-01", "Fehler!");
+			AppModel.getInstance().getExceptionHandler().setNewException("Das Objekt implementiert nicht das Observer-Interface und kann daher nicht hinzugef�gt werden!<br />Fehler: RepositoryChair-01", "Fehler!");
 		}
 	}
 	

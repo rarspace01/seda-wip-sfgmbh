@@ -17,7 +17,7 @@ public class UserTabTable extends DefaultTableModel implements IntfAppObserver {
 	
 	
 	public UserTabTable() {
-		AppModel.getInstance().repositoryUser.register(this);
+		AppModel.getInstance().getRepositoryUser().register(this);
 		this.setColumnIdentifiers(header);
 		this.change("init");
 	}
@@ -43,7 +43,7 @@ public class UserTabTable extends DefaultTableModel implements IntfAppObserver {
 			
 		}
 		
-		for (User user : AppModel.getInstance().repositoryUser.getByFilter(filter)){
+		for (User user : AppModel.getInstance().getRepositoryUser().getByFilter(filter)){
 			
 			// Chair if user is lecturer
 			String chair = null;
@@ -68,7 +68,7 @@ public class UserTabTable extends DefaultTableModel implements IntfAppObserver {
 				this.addRow(row);
 
 			} catch (Exception e) {
-				AppModel.getInstance().appExcaptions.setNewException("Ein unbekannter Fehler ist aufgetreten! <br /><br />Fehler BaseTableMain-01:<br />" + e.toString(), "Fehler!");
+				AppModel.getInstance().getExceptionHandler().setNewException("Ein unbekannter Fehler ist aufgetreten! <br /><br />Fehler BaseTableMain-01:<br />" + e.toString(), "Fehler!");
 			}
 		}
 	}

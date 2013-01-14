@@ -13,13 +13,13 @@ public class CmbboxFilterChairAcronym extends DefaultComboBoxModel<String> imple
 	
 	public CmbboxFilterChairAcronym() {
 		this.variant_ = "normal";
-		AppModel.getInstance().repositoryChair.register(this);
+		AppModel.getInstance().getRepositoryChair().register(this);
 		this.change();
 	}
 	
 	public CmbboxFilterChairAcronym(String variant) {
 		this.variant_ = variant;
-		AppModel.getInstance().repositoryChair.register(this);
+		AppModel.getInstance().getRepositoryChair().register(this);
 		this.change();
 	}
 
@@ -30,7 +30,7 @@ public class CmbboxFilterChairAcronym extends DefaultComboBoxModel<String> imple
 		} else {
 			this.addElement("<keiner>");
 		}
-		for (Chair chair : AppModel.getInstance().repositoryChair.getAll()){
+		for (Chair chair : AppModel.getInstance().getRepositoryChair().getAll()){
 			this.addElement(chair.getAcronym_());
 		}
 	}

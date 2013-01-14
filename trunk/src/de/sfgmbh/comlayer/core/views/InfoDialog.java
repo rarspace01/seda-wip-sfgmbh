@@ -99,8 +99,8 @@ public class InfoDialog extends JDialog implements IntfAppObserver {
 	
 	@Override
 	public void change() {
-		String msg = AppModel.getInstance().appExcaptions.getExceptionMsg_();
-		String title = AppModel.getInstance().appExcaptions.getExceptionTitle_();
+		String msg = AppModel.getInstance().getExceptionHandler().getExceptionMsg_();
+		String title = AppModel.getInstance().getExceptionHandler().getExceptionTitle_();
 		
 		if (title != null) {
 			InfoDialog span = new InfoDialog(msg, title);
