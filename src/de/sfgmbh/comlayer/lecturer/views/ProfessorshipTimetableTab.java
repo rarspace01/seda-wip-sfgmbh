@@ -1,23 +1,20 @@
 package de.sfgmbh.comlayer.lecturer.views;
 
 import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Font;
 
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 
-import javax.swing.JLabel;
-import javax.swing.JButton;
-
+import net.miginfocom.swing.MigLayout;
+import de.sfgmbh.applayer.core.controller.ServiceManager;
 import de.sfgmbh.comlayer.core.views.BaseTab;
 import de.sfgmbh.comlayer.lecturer.controller.ProfessorshipTimetableTabBtn;
-import de.sfgmbh.init.Bootstrap;
-
-
-import java.awt.Font;
-import java.awt.Dimension;
-import net.miginfocom.swing.MigLayout;
 
 public class ProfessorshipTimetableTab extends JPanel {
 
@@ -75,7 +72,7 @@ public class ProfessorshipTimetableTab extends JPanel {
 			
 	
 			LehrstuhlStundenplanTable.setBackground(Color.WHITE);
-			LehrstuhlStundenplanTable.setModel(Bootstrap.serviceManager.getLecturerTimetableTabTable());
+			LehrstuhlStundenplanTable.setModel(ServiceManager.getInstance().getLecturerTimetableTabTable());
 			LehrstuhlStundenplanTable.getColumnModel().getColumn(0).setResizable(false);
 			LehrstuhlStundenplanTable.getColumnModel().getColumn(0).setPreferredWidth(50);
 			LehrstuhlStundenplanTable.getColumnModel().getColumn(0).setMinWidth(50);

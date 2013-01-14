@@ -1,6 +1,7 @@
 package de.sfgmbh.comlayer.organisation.views;
 
 import java.awt.Font;
+import java.awt.Toolkit;
 
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
@@ -13,7 +14,6 @@ import javax.swing.border.EmptyBorder;
 
 import de.sfgmbh.comlayer.organisation.controller.CounterproposalFrameBtns;
 import de.sfgmbh.comlayer.organisation.controller.CounterproposalFrameWin;
-import java.awt.Toolkit;
 
 public class CounterproposalFrame extends JFrame {
 

@@ -17,17 +17,10 @@ import de.sfgmbh.datalayer.io.DataManagerPostgreSql;
 
 public class Bootstrap {
 
-	public static ServiceManager serviceManager;
-
 	/**
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
-		
-		// Call the Service Manager instance
-		if (serviceManager == null){
-			serviceManager = new ServiceManager();
-		}
 			
 		// Start the GUI
 		EventQueue.invokeLater(new Runnable() {
@@ -52,7 +45,7 @@ public class Bootstrap {
 				//check DB connection
 				if(hasDbConnection()){
 					try {
-						BaseTab frame = serviceManager.getCoreBaseTab();
+						BaseTab frame = ServiceManager.getInstance().getCoreBaseTab();
 						frame.setVisible(true);
 					} catch (Exception e) {
 						e.printStackTrace();

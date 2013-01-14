@@ -28,6 +28,7 @@ import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableCellRenderer;
 
 import net.miginfocom.swing.MigLayout;
+import de.sfgmbh.applayer.core.controller.ServiceManager;
 import de.sfgmbh.comlayer.core.controller.BaseBtnAddToStundenplan;
 import de.sfgmbh.comlayer.core.controller.BaseBtnFailureprompt;
 import de.sfgmbh.comlayer.core.controller.BaseBtnLogin;
@@ -37,7 +38,6 @@ import de.sfgmbh.comlayer.core.model.CmbboxFilterChair;
 import de.sfgmbh.comlayer.core.model.CmbboxFilterCourse;
 import de.sfgmbh.comlayer.core.model.CmbboxFilterLecturer;
 import de.sfgmbh.comlayer.core.model.CmbboxFilterSemester;
-import de.sfgmbh.init.Bootstrap;
 
 public class BaseTab extends JFrame{
 
@@ -217,7 +217,7 @@ public class BaseTab extends JFrame{
 			organisationTable = new JTable();
 			organisationTable.setBackground(SystemColor.activeCaption);
 			organisationTable.setShowVerticalLines(false);
-			organisationTable.setModel(Bootstrap.serviceManager.getCoreBaseTableModel());
+			organisationTable.setModel(ServiceManager.getInstance().getCoreBaseTableModel());
 			organisationTable.getColumnModel().getColumn(0).setResizable(false);
 			organisationTable.getColumnModel().getColumn(0).setPreferredWidth(50);
 			organisationTable.getColumnModel().getColumn(0).setMinWidth(50);
@@ -266,7 +266,7 @@ public class BaseTab extends JFrame{
 		
 		roomTable = new JTable();
 		roomTable.setShowVerticalLines(false);
-		roomTable.setModel(Bootstrap.serviceManager.getCoreRoomTableModel());
+		roomTable.setModel(ServiceManager.getInstance().getCoreRoomTableModel());
 		roomTable.setBackground(SystemColor.activeCaption);
 		mainTableScrollPane.setViewportView(roomTable);
 		roomTable.getColumnModel().getColumn(0).setResizable(false);

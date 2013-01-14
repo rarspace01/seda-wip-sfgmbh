@@ -5,7 +5,6 @@ import java.awt.event.ActionListener;
 
 import de.sfgmbh.applayer.core.controller.ServiceManager;
 import de.sfgmbh.comlayer.core.views.InfoDialog;
-import de.sfgmbh.init.Bootstrap;
 
 
 
@@ -24,18 +23,18 @@ public class BaseBtnAddToStundenplan implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		//Add to Stundenplan button is pressed
 		if (this.navAction.equals("plus")) {
-					this.getInfoWindow("<strong>Fehlermeldung:</strong><br> Es konnte keine Übersicht Ihrer Veranstaltungen angezeigt werden. Sie haben keine Lehrveranstaltung ausgewählt!").setVisible(true);	
+					this.getInfoWindow("<strong>Fehlermeldung:</strong><br> Es konnte keine ï¿½bersicht Ihrer Veranstaltungen angezeigt werden. Sie haben keine Lehrveranstaltung ausgewï¿½hlt!").setVisible(true);	
 		}
 		//Test if hidden objects can be accessed (this my be removed)
 		int test = ServiceManager.getInstance().getCoreBaseTab().getOrganisationTable().getSelectedRow();
 		System.out.println(ServiceManager.getInstance().getCoreBaseTableModel().getValueAt(test, 9).toString());
 		//Go to the timetable tab
-		Bootstrap.serviceManager.getCoreBaseTab().mainTabbedContainerPane.setVisible(true);
-		Bootstrap.serviceManager.getCoreBaseTab().mainTabbedContainerPane.removeAll();
-		Bootstrap.serviceManager.getCoreBaseTab().mainTabbedContainerPane.addTab("Start", null, Bootstrap.serviceManager.getCoreBaseTab().startScreenPanel, null);
-		Bootstrap.serviceManager.getCoreBaseTab().mainTabbedContainerPane.addTab("Stundenplan", null, Bootstrap.serviceManager.getPublicTimetableTab(), null);
-		Bootstrap.serviceManager.getCoreBaseTab().startScreenPanel.setVisible(false);
-		Bootstrap.serviceManager.getCoreBaseTab().mainTabbedContainerPane.setSelectedIndex(Bootstrap.serviceManager.getCoreBaseTab().mainTabbedContainerPane.getTabCount()-1);
+		ServiceManager.getInstance().getCoreBaseTab().mainTabbedContainerPane.setVisible(true);
+		ServiceManager.getInstance().getCoreBaseTab().mainTabbedContainerPane.removeAll();
+		ServiceManager.getInstance().getCoreBaseTab().mainTabbedContainerPane.addTab("Start", null, ServiceManager.getInstance().getCoreBaseTab().startScreenPanel, null);
+		ServiceManager.getInstance().getCoreBaseTab().mainTabbedContainerPane.addTab("Stundenplan", null, ServiceManager.getInstance().getPublicTimetableTab(), null);
+		ServiceManager.getInstance().getCoreBaseTab().startScreenPanel.setVisible(false);
+		ServiceManager.getInstance().getCoreBaseTab().mainTabbedContainerPane.setSelectedIndex(ServiceManager.getInstance().getCoreBaseTab().mainTabbedContainerPane.getTabCount()-1);
 	}
 	
 	

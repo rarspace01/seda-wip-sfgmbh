@@ -3,8 +3,8 @@ package de.sfgmbh.comlayer.lecturer.controller;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import de.sfgmbh.applayer.core.controller.ServiceManager;
 import de.sfgmbh.comlayer.core.views.InfoDialog;
-import de.sfgmbh.init.Bootstrap;
 
 
 public class CourseFrameBtns implements ActionListener {
@@ -25,17 +25,17 @@ public class CourseFrameBtns implements ActionListener {
 		
 		// Abbrechen button is pressed
 		if (this.ctrlAction.equals("cancle")){
-			Bootstrap.serviceManager.getLecturerCourseFrame().setVisible(false);
+			ServiceManager.getInstance().getLecturerCourseFrame().setVisible(false);
 		}
 		
 		// Speichern button is pressed
 		if (this.ctrlAction.equals("save")){
 			this.getInfoWindow("<strong>Fehlermeldung:</strong><br> Die Speicherung Ihrer eingegeben Daten wurde abgebrochen:<br> " +
-					"1. Sie haben keinen Lehrstuhl ausgewählt <br> 2. Sie haben keinen Dozenten ausgewählt. <br> 3. Ihre Bezeichnung erhält unerlaubte Zeichen. <br>" +
-					"4. Ihre Beschreibung erhält nicht genug Zeichen, sie muss mindestens 300 Zeichen erhalten. <br>5. Sie haben kein Semester ausgewählt. <br>" +
-					"6. keine erwartete Teilnehmerzahl ausgewählt. <br>7. Die Lehrveranstaltung existiert bereits. <br> Überprüfen Sie die Angaben oder ändern Sie " +
-					"die gewünschte Lehrveranstaltung über die Selektion in der Liste und die Funktion bearbeiten.").setVisible(true); 
-			// Bootstrap.serviceManager.getLecturerCourseFrame().setVisible(false);
+					"1. Sie haben keinen Lehrstuhl ausgewï¿½hlt <br> 2. Sie haben keinen Dozenten ausgewï¿½hlt. <br> 3. Ihre Bezeichnung erhï¿½lt unerlaubte Zeichen. <br>" +
+					"4. Ihre Beschreibung erhï¿½lt nicht genug Zeichen, sie muss mindestens 300 Zeichen erhalten. <br>5. Sie haben kein Semester ausgewï¿½hlt. <br>" +
+					"6. keine erwartete Teilnehmerzahl ausgewï¿½hlt. <br>7. Die Lehrveranstaltung existiert bereits. <br> ï¿½berprï¿½fen Sie die Angaben oder ï¿½ndern Sie " +
+					"die gewï¿½nschte Lehrveranstaltung ï¿½ber die Selektion in der Liste und die Funktion bearbeiten.").setVisible(true); 
+			// ServiceManager.getInstance().getLecturerCourseFrame().setVisible(false);
 		}
 		
 	}

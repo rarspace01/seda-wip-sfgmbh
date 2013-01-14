@@ -11,15 +11,15 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.JTextPane;
+import javax.swing.UIManager;
 import javax.swing.border.TitledBorder;
 
 import net.miginfocom.swing.MigLayout;
+import de.sfgmbh.applayer.core.controller.ServiceManager;
 import de.sfgmbh.comlayer.core.views.BaseTab;
 import de.sfgmbh.comlayer.organisation.controller.CmbboxFilter;
 import de.sfgmbh.comlayer.organisation.controller.ProfessorshipTabBtnsControl;
-import de.sfgmbh.init.Bootstrap;
-import javax.swing.JTextPane;
-import javax.swing.UIManager;
 
 public class ProfessorshipTab extends JPanel {
 
@@ -94,7 +94,7 @@ public class ProfessorshipTab extends JPanel {
 		add(organisationTableScrollPane, "flowx,cell 2 2 4 1,grow");
 		
 		roomTable = new JTable();
-		roomTable.setModel(Bootstrap.serviceManager.getOrgaProfessorshipTableModel());
+		roomTable.setModel(ServiceManager.getInstance().getOrgaProfessorshipTableModel());
 		roomTable.setShowVerticalLines(false);
 		roomTable.setBackground(SystemColor.activeCaption);
 		organisationTableScrollPane.setViewportView(roomTable);

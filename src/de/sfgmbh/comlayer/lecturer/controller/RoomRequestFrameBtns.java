@@ -3,8 +3,8 @@ package de.sfgmbh.comlayer.lecturer.controller;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import de.sfgmbh.applayer.core.controller.ServiceManager;
 import de.sfgmbh.comlayer.core.views.InfoDialog;
-import de.sfgmbh.init.Bootstrap;
 
 
 
@@ -26,16 +26,16 @@ public class RoomRequestFrameBtns implements ActionListener {
 		
 		// Abbrechen button is pressed
 		if (this.ctrlAction.equals("cancle")){
-			Bootstrap.serviceManager.getLecturerRoomRequestFrame().setVisible(false);
+			ServiceManager.getInstance().getLecturerRoomRequestFrame().setVisible(false);
 		}
 		
 		// Los button is pressed; normalerweise sollte das Fenster geschlossen werden, im aktuellen Prototypen Status kommt eine Fehlermeldung
 		if (this.ctrlAction.equals("go")){
-			this.getInfoWindow("<strong>Fehlermeldung1:</strong><br>Ihre Raumanfrage mit Ihrem gewünschten Raum konnte nicht gesendet werden:<br> 1. Sie haben keinen Raum ausgewählt. " +
-					"<br> 2. Sie haben keinen Tag ausgewählt. <br> 3. Sie haben keine Zeit ausgewählt. <br>  <br><strong>Fehlermeldung2:</strong><br>" +
-					" Ihre Raumanfrage mit Ihren gewünschten Kriterien konnte nicht gesendet werden: <br> 1. Sie haben keinen Tag ausgewählt. <br> 2. Sie haben keine Zeit ausgewählt.<br>" +
-					" 3. Sie haben kein Gebäude ausgewählt. <br> 4. Sie haben keine gewünschte Platzanzahl ausgewählt.<br> 5. Die Anzahl der PC-Arbeitsplätze entspricht nicht Ihren Vorgaben zur Platzanzahl.").setVisible(true);
-			//Bootstrap.serviceManager.getLecturerRoomRequestFrame().setVisible(false);
+			this.getInfoWindow("<strong>Fehlermeldung1:</strong><br>Ihre Raumanfrage mit Ihrem gewï¿½nschten Raum konnte nicht gesendet werden:<br> 1. Sie haben keinen Raum ausgewï¿½hlt. " +
+					"<br> 2. Sie haben keinen Tag ausgewï¿½hlt. <br> 3. Sie haben keine Zeit ausgewï¿½hlt. <br>  <br><strong>Fehlermeldung2:</strong><br>" +
+					" Ihre Raumanfrage mit Ihren gewï¿½nschten Kriterien konnte nicht gesendet werden: <br> 1. Sie haben keinen Tag ausgewï¿½hlt. <br> 2. Sie haben keine Zeit ausgewï¿½hlt.<br>" +
+					" 3. Sie haben kein Gebï¿½ude ausgewï¿½hlt. <br> 4. Sie haben keine gewï¿½nschte Platzanzahl ausgewï¿½hlt.<br> 5. Die Anzahl der PC-Arbeitsplï¿½tze entspricht nicht Ihren Vorgaben zur Platzanzahl.").setVisible(true);
+			//ServiceManager.getInstance().getLecturerRoomRequestFrame().setVisible(false);
 		}
 		
 	}
