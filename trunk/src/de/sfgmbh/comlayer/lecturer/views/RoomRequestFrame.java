@@ -1,6 +1,7 @@
 package de.sfgmbh.comlayer.lecturer.views;
 
 import java.awt.Font;
+import java.awt.Toolkit;
 
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
@@ -15,7 +16,6 @@ import javax.swing.border.EmptyBorder;
 import net.miginfocom.swing.MigLayout;
 import de.sfgmbh.comlayer.lecturer.controller.CourseFrameWin;
 import de.sfgmbh.comlayer.lecturer.controller.RoomRequestFrameBtns;
-import java.awt.Toolkit;
 
 public class RoomRequestFrame extends JFrame {
 

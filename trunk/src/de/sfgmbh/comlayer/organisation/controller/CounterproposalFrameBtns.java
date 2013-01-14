@@ -3,8 +3,8 @@ package de.sfgmbh.comlayer.organisation.controller;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import de.sfgmbh.applayer.core.controller.ServiceManager;
 import de.sfgmbh.comlayer.core.views.InfoDialog;
-import de.sfgmbh.init.Bootstrap;
 
 
 public class CounterproposalFrameBtns implements ActionListener {
@@ -25,13 +25,13 @@ public class CounterproposalFrameBtns implements ActionListener {
 		
 		// Abbrechen button is pressed
 		if (this.ctrlAction.equals("cancel")){
-			Bootstrap.serviceManager.getOrgaCounterproposalFrame().setVisible(false);
+			ServiceManager.getInstance().getOrgaCounterproposalFrame().setVisible(false);
 		}
 		
 		// Senden button is pressed
 		if (this.ctrlAction.equals("send")){
-			Bootstrap.serviceManager.getOrgaCounterproposalFrame().setVisible(false);
-			this.getInfoWindow("<b>Fehlermeldung:</b><br>Der Konflikt konnte nicht gelöst werden:<br>1. Sie haben keinen Dozenten ausgewählt.<br>2. Sie haben keine Lehrveranstaltung ausgewählt.<br>3. Sie haben keinen Raum ausgewählt.<br>4. Sie haben keine Zeit ausgewählt.<br>5. Ihre Nachricht an den Dozenten ist zu lang.<br>6. Ihre Nachricht an den Dozenten ist zu kurz.").setVisible(true);
+			ServiceManager.getInstance().getOrgaCounterproposalFrame().setVisible(false);
+			this.getInfoWindow("<b>Fehlermeldung:</b><br>Der Konflikt konnte nicht gelï¿½st werden:<br>1. Sie haben keinen Dozenten ausgewï¿½hlt.<br>2. Sie haben keine Lehrveranstaltung ausgewï¿½hlt.<br>3. Sie haben keinen Raum ausgewï¿½hlt.<br>4. Sie haben keine Zeit ausgewï¿½hlt.<br>5. Ihre Nachricht an den Dozenten ist zu lang.<br>6. Ihre Nachricht an den Dozenten ist zu kurz.").setVisible(true);
 		}
 		
 	}

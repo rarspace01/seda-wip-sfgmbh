@@ -3,11 +3,11 @@ package de.sfgmbh.comlayer.organisation.controller;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import de.sfgmbh.applayer.core.controller.ServiceManager;
 import de.sfgmbh.applayer.core.model.AppModel;
 import de.sfgmbh.applayer.core.model.Chair;
 import de.sfgmbh.applayer.core.model.User;
 import de.sfgmbh.applayer.organisation.controller.CtrlUser;
-import de.sfgmbh.init.Bootstrap;
 
 
 public class UserCreateDialogBtns implements ActionListener {
@@ -29,7 +29,7 @@ public class UserCreateDialogBtns implements ActionListener {
 		
 		// Abbrechen button is pressed
 		if (this.ctrlAction.equals("cancle")){
-			Bootstrap.serviceManager.getOrgaUserCreateDialog().setVisible(false);
+			ServiceManager.getInstance().getOrgaUserCreateDialog().setVisible(false);
 		}
 		
 		// Speichern button is pressed
@@ -37,19 +37,19 @@ public class UserCreateDialogBtns implements ActionListener {
 			
 			User newUser = new User();
 			try {
-				newUser.setLogin_(Bootstrap.serviceManager.getOrgaUserCreateDialog().getTxtLogin().getText());
-				newUser.setMail_(Bootstrap.serviceManager.getOrgaUserCreateDialog().getTxtEmail().getText());
-				if (Bootstrap.serviceManager.getOrgaUserCreateDialog().getTxtPasswort().getText().length() < 6) {
+				newUser.setLogin_(ServiceManager.getInstance().getOrgaUserCreateDialog().getTxtLogin().getText());
+				newUser.setMail_(ServiceManager.getInstance().getOrgaUserCreateDialog().getTxtEmail().getText());
+				if (ServiceManager.getInstance().getOrgaUserCreateDialog().getTxtPasswort().getText().length() < 6) {
 					AppModel.getInstance().appExcaptions.setNewException("Das Passwort muss mindestens 6 Zeichen lang sein!", "Fehler!" );
 				} else {
-					newUser.setPwHashAndSalt(Bootstrap.serviceManager.getOrgaUserCreateDialog().getTxtPasswort().getText());
+					newUser.setPwHashAndSalt(ServiceManager.getInstance().getOrgaUserCreateDialog().getTxtPasswort().getText());
 				}
-				newUser.setfName_(Bootstrap.serviceManager.getOrgaUserCreateDialog().getTxtFirstName().getText());
-				newUser.setlName_(Bootstrap.serviceManager.getOrgaUserCreateDialog().getTxtLastName().getText());
-				newUser.setClass_(Bootstrap.serviceManager.getOrgaUserCreateDialog().getComboBoxUserClass().getSelectedItem().toString());
-				if (!Bootstrap.serviceManager.getOrgaUserCreateDialog().getComboBoxLehrstuhl().getSelectedItem().toString().equals("<keiner>")) {
+				newUser.setfName_(ServiceManager.getInstance().getOrgaUserCreateDialog().getTxtFirstName().getText());
+				newUser.setlName_(ServiceManager.getInstance().getOrgaUserCreateDialog().getTxtLastName().getText());
+				newUser.setClass_(ServiceManager.getInstance().getOrgaUserCreateDialog().getComboBoxUserClass().getSelectedItem().toString());
+				if (!ServiceManager.getInstance().getOrgaUserCreateDialog().getComboBoxLehrstuhl().getSelectedItem().toString().equals("<keiner>")) {
 					Chair newChair = AppModel.getInstance().repositoryChair.getForAcronym(
-							Bootstrap.serviceManager.getOrgaUserCreateDialog().getComboBoxLehrstuhl().getSelectedItem().toString());
+							ServiceManager.getInstance().getOrgaUserCreateDialog().getComboBoxLehrstuhl().getSelectedItem().toString());
 					if (newChair != null) {
 						newUser.setChair_(newChair);
 					} else {
@@ -58,7 +58,7 @@ public class UserCreateDialogBtns implements ActionListener {
 				}
 				if (ctrlUser.createUser(newUser)) {
 					AppModel.getInstance().appExcaptions.setNewException("Der Benutzer wurde im System angelegt!", "Erfolg!" );
-					Bootstrap.serviceManager.getOrgaUserCreateDialog().setVisible(false);
+					ServiceManager.getInstance().getOrgaUserCreateDialog().setVisible(false);
 				}
 			} catch (Exception ex) {
 				AppModel.getInstance().appExcaptions.setNewException("Es ist ein unerwartetes Problem aufgetreten.<br /><br />Fehler:<br />" + ex.toString(), "Fehler!" );

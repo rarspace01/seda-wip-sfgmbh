@@ -8,7 +8,6 @@ import de.sfgmbh.applayer.core.model.AppModel;
 import de.sfgmbh.applayer.core.model.RoomAllocation;
 import de.sfgmbh.applayer.organisation.controller.CtrlRoomAllocation;
 import de.sfgmbh.comlayer.core.views.InfoDialog;
-import de.sfgmbh.init.Bootstrap;
 
 public class RequestTabBtnsControl implements ActionListener {
 	
@@ -31,7 +30,7 @@ public class RequestTabBtnsControl implements ActionListener {
 		
 		// Konfliktl�sen Button is pressed
 		if (this.navAction.equals("solve")) {
-			Bootstrap.serviceManager.getOrgaCounterproposalFrame().setVisible(true);
+			ServiceManager.getInstance().getOrgaCounterproposalFrame().setVisible(true);
 		}
 		
 		

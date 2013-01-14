@@ -1,6 +1,7 @@
 package de.sfgmbh.comlayer.lecturer.views;
 
 import java.awt.Dimension;
+import java.awt.Toolkit;
 
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
@@ -14,7 +15,6 @@ import javax.swing.border.EmptyBorder;
 import net.miginfocom.swing.MigLayout;
 import de.sfgmbh.comlayer.lecturer.controller.CourseFrameBtns;
 import de.sfgmbh.comlayer.lecturer.controller.CourseFrameWin;
-import java.awt.Toolkit;
 
 public class CourseEditFrame extends JFrame {
 

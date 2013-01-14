@@ -18,6 +18,7 @@ import javax.swing.UIManager;
 import javax.swing.border.TitledBorder;
 
 import net.miginfocom.swing.MigLayout;
+import de.sfgmbh.applayer.core.controller.ServiceManager;
 import de.sfgmbh.comlayer.core.model.CmbboxFilterAllocationStatus;
 import de.sfgmbh.comlayer.core.model.CmbboxFilterChair;
 import de.sfgmbh.comlayer.core.model.CmbboxFilterLecturer;
@@ -25,7 +26,6 @@ import de.sfgmbh.comlayer.core.model.CmbboxFilterSemester;
 import de.sfgmbh.comlayer.core.views.BaseTab;
 import de.sfgmbh.comlayer.organisation.controller.RequestTabBtnsControl;
 import de.sfgmbh.comlayer.organisation.controller.RequestTabCmbboxFilter;
-import de.sfgmbh.init.Bootstrap;
 
 public class RequestTab extends JPanel {
 
@@ -123,7 +123,7 @@ public class RequestTab extends JPanel {
 		add(organisationTableScrollPane, "flowx,cell 2 2 4 1,grow");
 		
 		roomAllocationTable = new JTable();
-		roomAllocationTable.setModel(Bootstrap.serviceManager.getOrgaRequestTableModel());
+		roomAllocationTable.setModel(ServiceManager.getInstance().getOrgaRequestTableModel());
 		roomAllocationTable.setShowVerticalLines(false);
 		roomAllocationTable.setBackground(SystemColor.activeCaption);
 		roomAllocationTable.getColumnModel().removeColumn(roomAllocationTable.getColumn("Hidden"));

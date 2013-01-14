@@ -1,17 +1,17 @@
 package de.sfgmbh.comlayer.organisation.views;
 
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-import javax.swing.JLabel;
-
 import java.awt.Font;
-import javax.swing.JTextField;
-import javax.swing.JButton;
-
-import de.sfgmbh.comlayer.organisation.controller.ProfessorshipFrameWin;
-import de.sfgmbh.comlayer.organisation.controller.ProfessorshipFrameBtns;
 import java.awt.Toolkit;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+import javax.swing.border.EmptyBorder;
+
+import de.sfgmbh.comlayer.organisation.controller.ProfessorshipFrameBtns;
+import de.sfgmbh.comlayer.organisation.controller.ProfessorshipFrameWin;
 
 public class ProfessorshipFrame extends JFrame {
 

@@ -5,14 +5,14 @@ import java.awt.Dimension;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 
+import de.sfgmbh.applayer.core.controller.ServiceManager;
 import de.sfgmbh.comlayer.core.views.BaseTab;
 import de.sfgmbh.comlayer.organisation.controller.RoomtableTabBtnPdf;
-import de.sfgmbh.init.Bootstrap;
-import javax.swing.JLabel;
 
 public class RoomtableTab extends JPanel {
 
@@ -39,7 +39,7 @@ public class RoomtableTab extends JPanel {
 		
 	
 		StundenplanTable.setBackground(Color.WHITE);
-		StundenplanTable.setModel(Bootstrap.serviceManager.getOrgaRoomtableTableModel());
+		StundenplanTable.setModel(ServiceManager.getInstance().getOrgaRoomtableTableModel());
 		
 		JButton btnPdfErzeugen = new JButton("PDF erzeugen");
 		btnPdfErzeugen.addActionListener(new RoomtableTabBtnPdf("pdfCreate"));

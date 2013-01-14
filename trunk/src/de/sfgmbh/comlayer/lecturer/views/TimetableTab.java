@@ -7,15 +7,16 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+
 import net.miginfocom.swing.MigLayout;
+import de.sfgmbh.applayer.core.controller.ServiceManager;
 import de.sfgmbh.comlayer.core.views.BaseTab;
 import de.sfgmbh.comlayer.lecturer.controller.ProfessorshipTimetableTabBtn;
 import de.sfgmbh.comlayer.lecturer.controller.ProfessorshipTimetableTabCmbbox;
-import de.sfgmbh.init.Bootstrap;
-import javax.swing.JLabel;
 
 public class TimetableTab extends JPanel {
 	private static final long serialVersionUID = 1L;
@@ -74,7 +75,7 @@ public class TimetableTab extends JPanel {
 			
 	
 			lecturerTimetableTable.setBackground(Color.WHITE);
-			lecturerTimetableTable.setModel(Bootstrap.serviceManager.getLecturerTimetableTabTable());
+			lecturerTimetableTable.setModel(ServiceManager.getInstance().getLecturerTimetableTabTable());
 			lecturerTimetableTable.getColumnModel().getColumn(0).setResizable(false);
 			lecturerTimetableTable.getColumnModel().getColumn(0).setPreferredWidth(50);
 			lecturerTimetableTable.getColumnModel().getColumn(0).setMinWidth(50);

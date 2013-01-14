@@ -1,6 +1,6 @@
 package de.sfgmbh.comlayer.organisation.model;
 
-import javax.swing.table.*;
+import javax.swing.table.DefaultTableModel;
 
 public class ProfessorshipTabTable extends DefaultTableModel {
 

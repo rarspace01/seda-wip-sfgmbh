@@ -2,12 +2,11 @@ package de.sfgmbh.comlayer.organisation.model;
 
 import java.util.List;
 
-import javax.swing.table.*;
+import javax.swing.table.DefaultTableModel;
 
 import de.sfgmbh.applayer.core.definitions.IntfAppObserver;
 import de.sfgmbh.applayer.core.model.Room;
 import de.sfgmbh.applayer.organisation.controller.CtrlRoom;
-import de.sfgmbh.init.Bootstrap;
 
 public class RoomTabTable extends DefaultTableModel implements IntfAppObserver {
 

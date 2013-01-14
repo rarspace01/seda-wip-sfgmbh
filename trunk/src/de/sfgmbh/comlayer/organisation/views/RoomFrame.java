@@ -4,6 +4,7 @@ import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.awt.Toolkit;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -14,7 +15,6 @@ import javax.swing.border.EmptyBorder;
 
 import de.sfgmbh.comlayer.organisation.controller.RoomFrameBtns;
 import de.sfgmbh.comlayer.organisation.controller.RoomFrameWin;
-import java.awt.Toolkit;
 
 public class RoomFrame extends JFrame {
 

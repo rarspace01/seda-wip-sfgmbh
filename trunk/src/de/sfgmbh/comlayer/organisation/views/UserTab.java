@@ -17,13 +17,13 @@ import javax.swing.UIManager;
 import javax.swing.border.TitledBorder;
 
 import net.miginfocom.swing.MigLayout;
+import de.sfgmbh.applayer.core.controller.ServiceManager;
 import de.sfgmbh.comlayer.core.model.CmbboxFilterChair;
 import de.sfgmbh.comlayer.core.model.CmbboxFilterUserClass;
 import de.sfgmbh.comlayer.core.views.BaseTab;
 import de.sfgmbh.comlayer.organisation.controller.RoomTabBtnsControl;
 import de.sfgmbh.comlayer.organisation.controller.UserTabBtnsControl;
 import de.sfgmbh.comlayer.organisation.controller.UserTabCmbboxFilter;
-import de.sfgmbh.init.Bootstrap;
 
 public class UserTab extends JPanel {
 
@@ -130,7 +130,7 @@ public class UserTab extends JPanel {
 		add(organisationTableScrollPane, "flowx,cell 2 2 4 1,grow");
 		
 		roomOrgaTable = new JTable();
-		roomOrgaTable.setModel(Bootstrap.serviceManager.getOrgaUserTableModel());
+		roomOrgaTable.setModel(ServiceManager.getInstance().getOrgaUserTableModel());
 		roomOrgaTable.setShowVerticalLines(false);
 		roomOrgaTable.setBackground(SystemColor.activeCaption);
 		roomOrgaTable.getColumnModel().removeColumn(roomOrgaTable.getColumn("Hidden"));
