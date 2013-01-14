@@ -119,48 +119,50 @@ public class DataHandlerRoom implements IntfDataRoom, IntfDataFilter, IntfDataOb
 	@Override
 	public void save(Room room) {
 
-		String SqlStatement = "INSERT INTO public.room "
-				+ "(roomnumber, buildingid, level, seats, pcseats, beamer, visualizer, overheads, chalkboards, whiteboards) "
-				+ "VALUES ('" + room.getRoomNumber_() + "','"
-				+ room.getBuildingId_() + "','"
-				+ room.getLevel_() + "','" + room.getSeats_()
-				+ "','" + room.getPcseats_() + "','"
-				+ room.getBeamer_() + "','"
-				+ room.getVisualizer_() + "','"
-				+ room.getOverheads_() + "','"
-				+ room.getChalkboards_() + "','"
-				+ room.getWhiteboards_() + "');";
-
-		try {
-
-			DataManagerPostgreSql.getInstance().execute(SqlStatement);
-
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-		
-		String sqlStatement = "UPDATE public.room SET " + "roomnumber ='"
-				+ room.getRoomNumber_() + "', " + "buildingid ='"
-				+ room.getBuildingId_() + "', " + "level ='"
-				+ room.getLevel_() + "', " + "seats ='"
-				+ room.getSeats_() + "', " + "pcseats ='"
-				+ room.getPcseats_() + "', " + "beamer ='"
-				+ room.getBeamer_() + "', " + "visualizer ='"
-				+ room.getVisualizer_() + "', " + "overheads ='"
-				+ room.getOverheads_() + "', " + "chalkboards ='"
-				+ room.getChalkboards_() + "', " + "whiteboards ='"
-				+ room.getWhiteboards_() + "' " + "WHERE roomid='"
-				+ room.getRoomId_() + "';";
-
-		try {
-
-			DataManagerPostgreSql.getInstance().execute(sqlStatement);
-
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		//check if room has already an id
+		if(room.getRoomId_()<0){
+			String SqlStatement = "INSERT INTO public.room "
+					+ "(roomnumber, buildingid, level, seats, pcseats, beamer, visualizer, overheads, chalkboards, whiteboards) "
+					+ "VALUES ('" + room.getRoomNumber_() + "','"
+					+ room.getBuildingId_() + "','"
+					+ room.getLevel_() + "','" + room.getSeats_()
+					+ "','" + room.getPcseats_() + "','"
+					+ room.getBeamer_() + "','"
+					+ room.getVisualizer_() + "','"
+					+ room.getOverheads_() + "','"
+					+ room.getChalkboards_() + "','"
+					+ room.getWhiteboards_() + "');";
+	
+			try {
+	
+				DataManagerPostgreSql.getInstance().execute(SqlStatement);
+	
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}else{
+			String sqlStatement = "UPDATE public.room SET " + "roomnumber ='"
+					+ room.getRoomNumber_() + "', " + "buildingid ='"
+					+ room.getBuildingId_() + "', " + "level ='"
+					+ room.getLevel_() + "', " + "seats ='"
+					+ room.getSeats_() + "', " + "pcseats ='"
+					+ room.getPcseats_() + "', " + "beamer ='"
+					+ room.getBeamer_() + "', " + "visualizer ='"
+					+ room.getVisualizer_() + "', " + "overheads ='"
+					+ room.getOverheads_() + "', " + "chalkboards ='"
+					+ room.getChalkboards_() + "', " + "whiteboards ='"
+					+ room.getWhiteboards_() + "' " + "WHERE roomid='"
+					+ room.getRoomId_() + "';";
+	
+			try {
+	
+				DataManagerPostgreSql.getInstance().execute(sqlStatement);
+	
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 		
 	}

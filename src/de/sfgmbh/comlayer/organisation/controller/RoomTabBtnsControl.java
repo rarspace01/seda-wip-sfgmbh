@@ -32,8 +32,11 @@ public class RoomTabBtnsControl implements ActionListener {
 		// Raum bearbeiten Button is pressed
 		if (this.navAction.equals("edit")) {
 
-			//get selected Room from DB			
-			Room selectedRoom=AppModel.getInstance().getRepositoryRoom().getRoomById(ViewManager.getInstance().getOrgaRoomTab().getRaumverwaltungTable().getSelectedRow());
+			//get selected Room from DB	
+			int getTableId=ViewManager.getInstance().getOrgaRoomTab().getRaumverwaltungTable().getSelectedRow();
+			int getId=Integer.parseInt(ViewManager.getInstance().getOrgaRoomTableModel().getValueAt(getTableId, 0).toString());
+			
+			Room selectedRoom=AppModel.getInstance().getRepositoryRoom().getRoomById(getId);
 
 			//load values from room object to gui
 			ViewManager.getInstance().getOrgaRoomFrame().getTxtroomid().setText(""+selectedRoom.getRoomId_());
