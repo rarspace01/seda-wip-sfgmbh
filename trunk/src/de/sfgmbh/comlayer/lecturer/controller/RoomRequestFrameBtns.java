@@ -3,7 +3,7 @@ package de.sfgmbh.comlayer.lecturer.controller;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import de.sfgmbh.applayer.core.controller.ServiceManager;
+import de.sfgmbh.comlayer.core.controller.ViewManager;
 import de.sfgmbh.comlayer.core.views.InfoDialog;
 
 
@@ -26,7 +26,7 @@ public class RoomRequestFrameBtns implements ActionListener {
 		
 		// Abbrechen button is pressed
 		if (this.ctrlAction.equals("cancle")){
-			ServiceManager.getInstance().getLecturerRoomRequestFrame().setVisible(false);
+			ViewManager.getInstance().getLecturerRoomRequestFrame().setVisible(false);
 		}
 		
 		// Los button is pressed; normalerweise sollte das Fenster geschlossen werden, im aktuellen Prototypen Status kommt eine Fehlermeldung

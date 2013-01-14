@@ -10,7 +10,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 
-import de.sfgmbh.applayer.core.controller.ServiceManager;
+import de.sfgmbh.comlayer.core.controller.ViewManager;
 import de.sfgmbh.comlayer.core.views.BaseTab;
 import de.sfgmbh.comlayer.timetable.controller.BtnPdf;
 
@@ -36,7 +36,7 @@ public class PublicTimetableTab extends JPanel {
 		
 	
 		StundenplanTable.setBackground(Color.WHITE);
-		StundenplanTable.setModel(ServiceManager.getInstance().getLecturerTimetableTabTable());
+		StundenplanTable.setModel(ViewManager.getInstance().getLecturerTimetableTabTable());
 		
 		JButton btnPdfErzeugen = new JButton("PDF erzeugen");
 		btnPdfErzeugen.addActionListener(new BtnPdf("pdfCreate"));

@@ -3,7 +3,7 @@ package de.sfgmbh.comlayer.organisation.controller;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import de.sfgmbh.applayer.core.controller.ServiceManager;
+import de.sfgmbh.comlayer.core.controller.ViewManager;
 import de.sfgmbh.comlayer.core.views.InfoDialog;
 
 
@@ -26,12 +26,12 @@ public class ProfessorshipTabBtnsControl implements ActionListener {
 		
 		// Lehrstuhl hinzuf�gen Button is pressed
 		if (this.navAction.equals("hinz")) {
-			ServiceManager.getInstance().getOrgaProfessorshipFrame().setVisible(true);
+			ViewManager.getInstance().getOrgaProfessorshipFrame().setVisible(true);
 		}
 		
 		// Lehrstuhl bearbeiten Button is pressed
 		if (this.navAction.equals("edit")) {
-			ServiceManager.getInstance().getOrgaProfessorshipFrame().setVisible(true);
+			ViewManager.getInstance().getOrgaProfessorshipFrame().setVisible(true);
 			//this.getInfoWindow("<b>Fehlermeldung:</b><br> Sie haben keinen Lehrstuhl selektiert!<br> Wenn Sie keine Fehlermeldung erscheint gelangen Sie sofort zu einer Bearbeiten-Maske, welche allerdings noch nicht implementiert ist.").setVisible(true);
 		}
 		

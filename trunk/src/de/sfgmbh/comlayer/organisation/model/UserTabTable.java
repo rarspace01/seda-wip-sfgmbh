@@ -4,10 +4,10 @@ import java.util.HashMap;
 
 import javax.swing.table.DefaultTableModel;
 
-import de.sfgmbh.applayer.core.controller.ServiceManager;
 import de.sfgmbh.applayer.core.definitions.IntfAppObserver;
 import de.sfgmbh.applayer.core.model.AppModel;
 import de.sfgmbh.applayer.core.model.User;
+import de.sfgmbh.comlayer.core.controller.ViewManager;
 import de.sfgmbh.comlayer.core.controller.ViewHelper;
 
 public class UserTabTable extends DefaultTableModel implements IntfAppObserver {
@@ -34,10 +34,10 @@ public class UserTabTable extends DefaultTableModel implements IntfAppObserver {
 			filter.put("user", "<alle>");
 			filter.put("email", "<alle>");
 		} else {
-			String textMail = ServiceManager.getInstance().getOrgaUserTab().getTextFieldMail().getText();
-			String textUserLogin = ServiceManager.getInstance().getOrgaUserTab().getTextFieldUserLogin().getText();
-			filter.put("userclass", ServiceManager.getInstance().getOrgaUserTab().getComboBoxUserclass().getSelectedItem().toString());
-			filter.put("chair", ServiceManager.getInstance().getOrgaUserTab().getComboBoxChair().getSelectedItem().toString());
+			String textMail = ViewManager.getInstance().getOrgaUserTab().getTextFieldMail().getText();
+			String textUserLogin = ViewManager.getInstance().getOrgaUserTab().getTextFieldUserLogin().getText();
+			filter.put("userclass", ViewManager.getInstance().getOrgaUserTab().getComboBoxUserclass().getSelectedItem().toString());
+			filter.put("chair", ViewManager.getInstance().getOrgaUserTab().getComboBoxChair().getSelectedItem().toString());
 			filter.put("user", textUserLogin);
 			filter.put("email", textMail);
 			

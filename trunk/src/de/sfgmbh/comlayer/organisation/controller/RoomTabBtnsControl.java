@@ -3,9 +3,9 @@ package de.sfgmbh.comlayer.organisation.controller;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import de.sfgmbh.applayer.core.controller.ServiceManager;
 import de.sfgmbh.applayer.core.model.AppModel;
 import de.sfgmbh.applayer.core.model.Room;
+import de.sfgmbh.comlayer.core.controller.ViewManager;
 import de.sfgmbh.comlayer.core.views.InfoDialog;
 
 public class RoomTabBtnsControl implements ActionListener {
@@ -26,31 +26,31 @@ public class RoomTabBtnsControl implements ActionListener {
 
 		// Raum hinzufügen Button is pressed
 		if (this.navAction.equals("hinz")) {
-			ServiceManager.getInstance().getOrgaRoomFrame().setVisible(true);
+			ViewManager.getInstance().getOrgaRoomFrame().setVisible(true);
 		}
 
 		// Raum bearbeiten Button is pressed
 		if (this.navAction.equals("edit")) {
 
 			//get selected Room from DB			
-			Room selectedRoom=AppModel.getInstance().repositoryRoom.getRoomById(ServiceManager.getInstance().getOrgaRoomTab().getRaumverwaltungTable().getSelectedRow());
+			Room selectedRoom=AppModel.getInstance().repositoryRoom.getRoomById(ViewManager.getInstance().getOrgaRoomTab().getRaumverwaltungTable().getSelectedRow());
 
 			//load values from room object to gui
-			ServiceManager.getInstance().getOrgaRoomFrame().getTxtroomid().setText(""+selectedRoom.getRoomId_());
+			ViewManager.getInstance().getOrgaRoomFrame().getTxtroomid().setText(""+selectedRoom.getRoomId_());
 			
-			ServiceManager.getInstance().getOrgaRoomFrame().getTxtRoomNumber().setText(selectedRoom.getRoomNumber_());
-			ServiceManager.getInstance().getOrgaRoomFrame().getTxtLevel().setText(selectedRoom.getLevel_());
-			ServiceManager.getInstance().getOrgaRoomFrame().getTxtSeats().setText(""+selectedRoom.getSeats_());
-			ServiceManager.getInstance().getOrgaRoomFrame().getTxtPcSeats().setText(""+selectedRoom.getPcseats_());
-			ServiceManager.getInstance().getOrgaRoomFrame().getTxtBeamer().setText(""+selectedRoom.getBeamer_());
-			ServiceManager.getInstance().getOrgaRoomFrame().getTxtChalkboards().setText(""+selectedRoom.getChalkboards_());
-			ServiceManager.getInstance().getOrgaRoomFrame().getTxtOverheads().setText(""+selectedRoom.getOverheads_());
-			ServiceManager.getInstance().getOrgaRoomFrame().getTxtVisualizer().setText(""+selectedRoom.getVisualizer_());
-			ServiceManager.getInstance().getOrgaRoomFrame().getTxtWhiteboards().setText(""+selectedRoom.getWhiteboards_());
+			ViewManager.getInstance().getOrgaRoomFrame().getTxtRoomNumber().setText(selectedRoom.getRoomNumber_());
+			ViewManager.getInstance().getOrgaRoomFrame().getTxtLevel().setText(selectedRoom.getLevel_());
+			ViewManager.getInstance().getOrgaRoomFrame().getTxtSeats().setText(""+selectedRoom.getSeats_());
+			ViewManager.getInstance().getOrgaRoomFrame().getTxtPcSeats().setText(""+selectedRoom.getPcseats_());
+			ViewManager.getInstance().getOrgaRoomFrame().getTxtBeamer().setText(""+selectedRoom.getBeamer_());
+			ViewManager.getInstance().getOrgaRoomFrame().getTxtChalkboards().setText(""+selectedRoom.getChalkboards_());
+			ViewManager.getInstance().getOrgaRoomFrame().getTxtOverheads().setText(""+selectedRoom.getOverheads_());
+			ViewManager.getInstance().getOrgaRoomFrame().getTxtVisualizer().setText(""+selectedRoom.getVisualizer_());
+			ViewManager.getInstance().getOrgaRoomFrame().getTxtWhiteboards().setText(""+selectedRoom.getWhiteboards_());
 			
 			
 			//set Room Edit Frame visible
-			ServiceManager.getInstance().getOrgaRoomFrame().setVisible(true);
+			ViewManager.getInstance().getOrgaRoomFrame().setVisible(true);
 			
 		}
 
@@ -74,14 +74,14 @@ public class RoomTabBtnsControl implements ActionListener {
 			this.getInfoWindow(
 					"<strong>Fehlermeldung</strong><br> Es konnte keine Übersicht Ihrer Veranstaltungen angezeigt werden. Sie haben keine Lehrveranstaltung ausgew�hlt!")
 					.setVisible(true);
-			ServiceManager.getInstance().getCoreBaseTab().mainTabbedContainerPane
+			ViewManager.getInstance().getCoreBaseTab().mainTabbedContainerPane
 					.setVisible(true);
-			ServiceManager.getInstance().getCoreBaseTab().mainTabbedContainerPane
+			ViewManager.getInstance().getCoreBaseTab().mainTabbedContainerPane
 					.addTab("Raumplan", null,
-							ServiceManager.getInstance().getOrgaRoomtableTab(),
+							ViewManager.getInstance().getOrgaRoomtableTab(),
 							null);
-			ServiceManager.getInstance().getCoreBaseTab().mainTabbedContainerPane
-					.setSelectedIndex(ServiceManager.getInstance().getCoreBaseTab().mainTabbedContainerPane
+			ViewManager.getInstance().getCoreBaseTab().mainTabbedContainerPane
+					.setSelectedIndex(ViewManager.getInstance().getCoreBaseTab().mainTabbedContainerPane
 							.getTabCount() - 1);
 
 		}

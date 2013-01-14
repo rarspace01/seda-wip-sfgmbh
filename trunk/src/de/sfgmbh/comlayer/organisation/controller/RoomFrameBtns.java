@@ -3,9 +3,9 @@ package de.sfgmbh.comlayer.organisation.controller;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import de.sfgmbh.applayer.core.controller.ServiceManager;
 import de.sfgmbh.applayer.core.model.Room;
 import de.sfgmbh.applayer.organisation.controller.CtrlRoom;
+import de.sfgmbh.comlayer.core.controller.ViewManager;
 import de.sfgmbh.comlayer.core.views.InfoDialog;
 
 /**
@@ -39,39 +39,39 @@ public class RoomFrameBtns implements ActionListener {
 
 		// Abbrechen button is pressed
 		if (this.ctrlAction.equals("cancle")) {
-			ServiceManager.getInstance().getOrgaRoomFrame().setVisible(false);
+			ViewManager.getInstance().getOrgaRoomFrame().setVisible(false);
 		}
 
 		// Speichern button is pressed
 		if (this.ctrlAction.equals("save")) {
-			ServiceManager.getInstance().getOrgaRoomFrame().setVisible(false);
+			ViewManager.getInstance().getOrgaRoomFrame().setVisible(false);
 
 			// read Values, Create Room object, store to DB
 			Room toBeSavedRoom = new Room(1); // Building ID=1 for Erba
 
-			toBeSavedRoom.setRoomNumber_(ServiceManager.getInstance()
+			toBeSavedRoom.setRoomNumber_(ViewManager.getInstance()
 					.getOrgaRoomFrame().getTxtRoomNumber().getText());
-			toBeSavedRoom.setLevel_(ServiceManager.getInstance().getOrgaRoomFrame()
+			toBeSavedRoom.setLevel_(ViewManager.getInstance().getOrgaRoomFrame()
 					.getTxtLevel().getText());
 
-			toBeSavedRoom.setSeats_(Integer.parseInt(ServiceManager.getInstance()
+			toBeSavedRoom.setSeats_(Integer.parseInt(ViewManager.getInstance()
 					.getOrgaRoomFrame().getTxtSeats().getText()));
-			toBeSavedRoom.setPcseats_(Integer.parseInt(ServiceManager.getInstance()
+			toBeSavedRoom.setPcseats_(Integer.parseInt(ViewManager.getInstance()
 					.getOrgaRoomFrame().getTxtPcSeats().getText()));
 
-			toBeSavedRoom.setBeamer_(Integer.parseInt(ServiceManager.getInstance()
+			toBeSavedRoom.setBeamer_(Integer.parseInt(ViewManager.getInstance()
 					.getOrgaRoomFrame().getTxtBeamer().getText()));
 			toBeSavedRoom.setChalkboards_(Integer
-					.parseInt(ServiceManager.getInstance().getOrgaRoomFrame()
+					.parseInt(ViewManager.getInstance().getOrgaRoomFrame()
 							.getTxtChalkboards().getText()));
 			toBeSavedRoom.setOverheads_(Integer
-					.parseInt(ServiceManager.getInstance().getOrgaRoomFrame()
+					.parseInt(ViewManager.getInstance().getOrgaRoomFrame()
 							.getTxtOverheads().getText()));
 			toBeSavedRoom.setVisualizer_(Integer
-					.parseInt(ServiceManager.getInstance().getOrgaRoomFrame()
+					.parseInt(ViewManager.getInstance().getOrgaRoomFrame()
 							.getTxtVisualizer().getText()));
 			toBeSavedRoom.setWhiteboards_(Integer
-					.parseInt(ServiceManager.getInstance().getOrgaRoomFrame()
+					.parseInt(ViewManager.getInstance().getOrgaRoomFrame()
 							.getTxtVisualizer().getText()));
 
 			this.ctrlRoom.addRoom(toBeSavedRoom);

@@ -22,11 +22,11 @@ public class CtrlBaseTab {
 				
 				// Don't log in when user is disabled
 				if (checkUser.isDisabled_()) {
-					AppModel.getInstance().appExcaptions.setNewException("Ihr Benutzerkonto ist gesperrt.<br />Für genauere Informationen wenden Sie sich bitte an die Verwaltung.", "Fehler!");
+					AppModel.getInstance().appExcaptions.setNewException("Ihr Benutzerkonto ist gesperrt.<br />Fï¿½r genauere Informationen wenden Sie sich bitte an die Verwaltung.", "Fehler!");
 					return null;
 				}
 				
-				ServiceManager.getInstance().getSessionManager().setSession(checkUser);
+				SessionManager.getInstance().setSession(checkUser);
 				checkUser.setLastLogin_((long) System.currentTimeMillis()/1000);
 				checkUser.save();
 				return checkUser;
@@ -41,7 +41,7 @@ public class CtrlBaseTab {
 	 * Logout action
 	 */
 	public void logout() {
-		ServiceManager.getInstance().getSessionManager().clearSession();
+		SessionManager.getInstance().clearSession();
 	}
 
 }

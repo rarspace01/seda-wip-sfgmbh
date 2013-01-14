@@ -3,7 +3,7 @@ package de.sfgmbh.comlayer.lecturer.controller;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import de.sfgmbh.applayer.core.controller.ServiceManager;
+import de.sfgmbh.comlayer.core.controller.ViewManager;
 import de.sfgmbh.comlayer.core.views.InfoDialog;
 
 
@@ -25,12 +25,12 @@ public class StartTabBtnsControl implements ActionListener {
 
 		// Hinzuf�gen button is pressed
 		if (this.ctrlAction.equals("add")){
-			ServiceManager.getInstance().getLecturerCourseFrame().setVisible(true);
+			ViewManager.getInstance().getLecturerCourseFrame().setVisible(true);
 		}
 		
 		// Bearbeiten button is pressed
 		if (this.ctrlAction.equals("edit")){
-			ServiceManager.getInstance().getLecturerCourseEditFrame().setVisible(true);
+			ViewManager.getInstance().getLecturerCourseEditFrame().setVisible(true);
 			//this.getInfoWindow("<strong>Fehlermeldung:</strong> <br>Sie haben keine Lehveranstaltung selektiert! <br> " +
 			//		"Wenn Sie keine Fehlermeldung erhalten, gelangen sofort zu einer Bearbeiten-Maske wie beim Hinzuf�gen von Lehrveranstaltung.").setVisible(true);
 		}
@@ -47,7 +47,7 @@ public class StartTabBtnsControl implements ActionListener {
 		
 		// Raumanfrage button is pressed
 		if (this.ctrlAction.equals("roomrequest")){
-			ServiceManager.getInstance().getLecturerRoomRequestFrame().setVisible(true);
+			ViewManager.getInstance().getLecturerRoomRequestFrame().setVisible(true);
 		}
 		
 		// Zur�ckziehen button is pressed

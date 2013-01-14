@@ -4,10 +4,10 @@ import java.util.HashMap;
 
 import javax.swing.table.DefaultTableModel;
 
-import de.sfgmbh.applayer.core.controller.ServiceManager;
 import de.sfgmbh.applayer.core.definitions.IntfAppObserver;
 import de.sfgmbh.applayer.core.model.AppModel;
 import de.sfgmbh.applayer.core.model.RoomAllocation;
+import de.sfgmbh.comlayer.core.controller.ViewManager;
 import de.sfgmbh.comlayer.core.controller.ViewHelper;
 
 public class RequestTabTable extends DefaultTableModel implements IntfAppObserver {
@@ -34,11 +34,11 @@ public class RequestTabTable extends DefaultTableModel implements IntfAppObserve
 			filter.put("semester", "<alle>");
 			filter.put("room", "<alle>");
 		} else {
-			filter.put("chair", ServiceManager.getInstance().getOrgaRquestTab().getComboBoxChair().getSelectedItem().toString());
-			filter.put("status", ServiceManager.getInstance().getOrgaRquestTab().getComboBoxStatus().getSelectedItem().toString());
-			filter.put("lecturer", ServiceManager.getInstance().getOrgaRquestTab().getComboBoxLecturer().getSelectedItem().toString());
-			filter.put("semester", ServiceManager.getInstance().getOrgaRquestTab().getComboBoxSemester().getSelectedItem().toString());
-			filter.put("room", ServiceManager.getInstance().getOrgaRquestTab().getTxtRoom().getText());
+			filter.put("chair", ViewManager.getInstance().getOrgaRquestTab().getComboBoxChair().getSelectedItem().toString());
+			filter.put("status", ViewManager.getInstance().getOrgaRquestTab().getComboBoxStatus().getSelectedItem().toString());
+			filter.put("lecturer", ViewManager.getInstance().getOrgaRquestTab().getComboBoxLecturer().getSelectedItem().toString());
+			filter.put("semester", ViewManager.getInstance().getOrgaRquestTab().getComboBoxSemester().getSelectedItem().toString());
+			filter.put("room", ViewManager.getInstance().getOrgaRquestTab().getTxtRoom().getText());
 		}
 		
 		// Time tracking

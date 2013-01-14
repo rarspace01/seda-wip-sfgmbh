@@ -3,7 +3,7 @@ package de.sfgmbh.comlayer.organisation.controller;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import de.sfgmbh.applayer.core.controller.ServiceManager;
+import de.sfgmbh.comlayer.core.controller.ViewManager;
 import de.sfgmbh.comlayer.core.views.InfoDialog;
 
 
@@ -26,12 +26,12 @@ public class UserTabBtnsControl implements ActionListener {
 		
 		// Benutzer hinzuf�gen Button is pressed
 		if (this.navAction.equals("hinz")) {
-			ServiceManager.getInstance().getOrgaUserCreateDialog().setVisible(true);
+			ViewManager.getInstance().getOrgaUserCreateDialog().setVisible(true);
 		}
 		
 		// Benutzer bearbeiten Button is pressed
 		if (this.navAction.equals("edit")) {
-			ServiceManager.getInstance().getOrgaUserEditFrame().setVisible(true);
+			ViewManager.getInstance().getOrgaUserEditFrame().setVisible(true);
 			//this.getInfoWindow("<b>Fehlermeldung:</b><br> Sie haben keinen Nutzer selektiert!<br> Wenn Sie keine Fehlermeldung erhalten gelangen Sie" +
 			//		" sofort zu einer Bearbeiten-Maske, welche allerdings noch nicht implementiert ist.").setVisible(true);
 		}

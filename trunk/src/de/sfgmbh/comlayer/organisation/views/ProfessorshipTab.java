@@ -16,7 +16,7 @@ import javax.swing.UIManager;
 import javax.swing.border.TitledBorder;
 
 import net.miginfocom.swing.MigLayout;
-import de.sfgmbh.applayer.core.controller.ServiceManager;
+import de.sfgmbh.comlayer.core.controller.ViewManager;
 import de.sfgmbh.comlayer.core.views.BaseTab;
 import de.sfgmbh.comlayer.organisation.controller.CmbboxFilter;
 import de.sfgmbh.comlayer.organisation.controller.ProfessorshipTabBtnsControl;
@@ -94,7 +94,7 @@ public class ProfessorshipTab extends JPanel {
 		add(organisationTableScrollPane, "flowx,cell 2 2 4 1,grow");
 		
 		roomTable = new JTable();
-		roomTable.setModel(ServiceManager.getInstance().getOrgaProfessorshipTableModel());
+		roomTable.setModel(ViewManager.getInstance().getOrgaProfessorshipTableModel());
 		roomTable.setShowVerticalLines(false);
 		roomTable.setBackground(SystemColor.activeCaption);
 		organisationTableScrollPane.setViewportView(roomTable);
