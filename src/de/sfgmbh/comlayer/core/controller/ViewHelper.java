@@ -25,7 +25,7 @@ public class ViewHelper {
 		} else if (d == 7) {
 			return "So.";
 		} else {
-			AppModel.getInstance().appExcaptions.setNewException("Ein Tag mit einem nicht unterst�tzen Format konnte nicht angezeigt werden.", "Achtung!");
+			AppModel.getInstance().getExceptionHandler().setNewException("Ein Tag mit einem nicht unterst�tzen Format konnte nicht angezeigt werden.", "Achtung!");
 			return null;
 		}
 	}
@@ -51,7 +51,7 @@ public class ViewHelper {
 		} else if (t == 7) {
 			return "20:00 - 22:00";
 		} else {
-			AppModel.getInstance().appExcaptions.setNewException("Eine Zeit mit einem nicht unterst�tzen Format konnte nicht angezeigt werden.", "Achtung!");
+			AppModel.getInstance().getExceptionHandler().setNewException("Eine Zeit mit einem nicht unterst�tzen Format konnte nicht angezeigt werden.", "Achtung!");
 			return null;
 		}
 	}
@@ -80,7 +80,7 @@ public class ViewHelper {
 		} else if (uc.equals("lecturer")) {
 			return "Dozenten";
 		} else {
-			AppModel.getInstance().appExcaptions.setNewException("Eine unbekannte Nutzerklasse wurde verwendet.", "Achtung!");
+			AppModel.getInstance().getExceptionHandler().setNewException("Eine unbekannte Nutzerklasse wurde verwendet.", "Achtung!");
 			return null;
 		}
 	}
@@ -98,7 +98,7 @@ public class ViewHelper {
 		} else if (s.equals("denied")) {
 			return "abgelehnt";
 		} else {
-			AppModel.getInstance().appExcaptions.setNewException("Eine unbekannter Status wurde verwendet.", "Achtung!");
+			AppModel.getInstance().getExceptionHandler().setNewException("Eine unbekannter Status wurde verwendet.", "Achtung!");
 			return null;
 		}
 	}

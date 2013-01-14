@@ -7,7 +7,7 @@ import de.sfgmbh.applayer.core.definitions.IntfAppObserver;
 import de.sfgmbh.datalayer.core.definitions.IntfDataObserver;
 import de.sfgmbh.datalayer.core.model.DataModel;
 
-public class AppExceptions implements IntfAppObservable, IntfDataObserver {
+public class AppException implements IntfAppObservable, IntfDataObserver {
 
 	private ArrayList<Object> observer_ = new ArrayList<Object>();
 	private String exceptionMsg_;
@@ -18,7 +18,7 @@ public class AppExceptions implements IntfAppObservable, IntfDataObserver {
 	/**
 	 * Register this class as observer of data layer exceptions
 	 */
-	public AppExceptions() {
+	public AppException() {
 		DataModel.getInstance().dataExceptions.register(this);
 	}
 	

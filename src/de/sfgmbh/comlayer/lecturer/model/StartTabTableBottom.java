@@ -20,7 +20,7 @@ public class StartTabTableBottom extends DefaultTableModel implements IntfAppObs
 	private String[] header = {"Bezeichnung", "Dozent", "Zeit", "Tag", "Semester", "Raum", "Status", "Hidden"};
 	
 	public StartTabTableBottom() {
-		AppModel.getInstance().repositoryRoomAllocation.register(this);
+		AppModel.getInstance().getRepositoryRoomAllocation().register(this);
 		this.setColumnIdentifiers(header);
 		this.change("init");
 	}
@@ -49,7 +49,7 @@ public class StartTabTableBottom extends DefaultTableModel implements IntfAppObs
 					try {
 						selectedCourse = (Course) ViewManager.getInstance().getLecturerStartTabTableTop().getValueAt(row, 6);
 					} catch (Exception ex) {
-						AppModel.getInstance().appExcaptions.setNewException("Ein unerwarteter Fehler ist aufgetreten.<br /><br >" + ex.toString(), "Fehler!");
+						AppModel.getInstance().getExceptionHandler().setNewException("Ein unerwarteter Fehler ist aufgetreten.<br /><br >" + ex.toString(), "Fehler!");
 					}
 					filter.put("chair", sessionChair.getAcronym_());
 					filter.put("login", selectedCourse.getLecturer_().getLogin_());
@@ -63,7 +63,7 @@ public class StartTabTableBottom extends DefaultTableModel implements IntfAppObs
 				filter.put("course", ViewManager.getInstance().getLecturerStartTab().getComboBoxCourse().getSelectedItem().toString());
 			}
 			
-			for (RoomAllocation ra : AppModel.getInstance().repositoryRoomAllocation.getByFilter(filter)){
+			for (RoomAllocation ra : AppModel.getInstance().getRepositoryRoomAllocation().getByFilter(filter)){
 				try {
 					Object[] row = {
 							ra.getCourse_().getCourseAcronym_(), 
@@ -78,7 +78,7 @@ public class StartTabTableBottom extends DefaultTableModel implements IntfAppObs
 					this.addRow(row);
 	
 				} catch (Exception e) {
-					AppModel.getInstance().appExcaptions.setNewException("Ein unbekannter Fehler ist aufgetreten! <br /><br />Fehler:<br />" + e.toString(), "Fehler!");
+					AppModel.getInstance().getExceptionHandler().setNewException("Ein unbekannter Fehler ist aufgetreten! <br /><br />Fehler:<br />" + e.toString(), "Fehler!");
 				}
 			}
 		}

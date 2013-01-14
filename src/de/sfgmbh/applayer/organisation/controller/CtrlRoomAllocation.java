@@ -10,7 +10,7 @@ public class CtrlRoomAllocation {
 	 * @param ra
 	 */
 	public void acceptRoomAllocation(RoomAllocation ra) {
-		RoomAllocation currentRa = AppModel.getInstance().repositoryRoomAllocation.get(ra.getRoomAllocationId_());
+		RoomAllocation currentRa = AppModel.getInstance().getRepositoryRoomAllocation().get(ra.getRoomAllocationId_());
 		if (!currentRa.getApproved_().equals("accepted")){
 			if (currentRa.getConflictingAllocations_().isEmpty()){
 				currentRa.setApproved_("accepted");
@@ -26,11 +26,11 @@ public class CtrlRoomAllocation {
 					currentRa.setApproved_("accepted");
 					currentRa.save();
 				} else {
-					AppModel.getInstance().appExcaptions.setNewException("Eine andere Raumbelegung auf diesem Zeitslot ist bereits freigegeben.", "Fehler!");
+					AppModel.getInstance().getExceptionHandler().setNewException("Eine andere Raumbelegung auf diesem Zeitslot ist bereits freigegeben.", "Fehler!");
 				}
 			}
 		} else {
-			AppModel.getInstance().appExcaptions.setNewException("Diese Raumbelegung ist bereits freigegeben!", "Fehler!");
+			AppModel.getInstance().getExceptionHandler().setNewException("Diese Raumbelegung ist bereits freigegeben!", "Fehler!");
 		}
 		return;
 	}

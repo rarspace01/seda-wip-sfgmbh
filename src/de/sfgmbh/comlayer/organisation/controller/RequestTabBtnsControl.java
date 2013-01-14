@@ -38,13 +38,13 @@ public class RequestTabBtnsControl implements ActionListener {
 		if (this.navAction.equals("accept")) {
 			int row = ViewManager.getInstance().getOrgaRquestTab().getRoomAllocationTable().getSelectedRow();
 			if (row == -1) {
-				AppModel.getInstance().appExcaptions.setNewException("Sie müssen zunächst eine Spalte auswählen.", "Achtung!");
+				AppModel.getInstance().getExceptionHandler().setNewException("Sie müssen zunächst eine Spalte auswählen.", "Achtung!");
 			}
 			try {
 				RoomAllocation selectedRa = (RoomAllocation) ViewManager.getInstance().getOrgaRequestTableModel().getValueAt(row, 8);
 				ctrlRoomAllocation.acceptRoomAllocation(selectedRa);
 			} catch (Exception ex) {
-				AppModel.getInstance().appExcaptions.setNewException("Ein unerwarteter Fehler ist aufgetreten.<br /><br >" + ex.toString(), "Fehler!");
+				AppModel.getInstance().getExceptionHandler().setNewException("Ein unerwarteter Fehler ist aufgetreten.<br /><br >" + ex.toString(), "Fehler!");
 			}
 		}
 		

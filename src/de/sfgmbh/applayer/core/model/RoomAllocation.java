@@ -166,7 +166,7 @@ public class RoomAllocation implements IntfDataRetrievable{
 	 */
 	public void setConflictingAllocations_() {
 		if (this.conflictingAllocations_ == null) {
-			List<RoomAllocation> ral = AppModel.getInstance().repositoryRoomAllocation.getConflictingAllocation(this);
+			List<RoomAllocation> ral = AppModel.getInstance().getRepositoryRoomAllocation().getConflictingAllocation(this);
 			this.conflictingAllocations_ = ral;
 		}
 	}
@@ -175,7 +175,7 @@ public class RoomAllocation implements IntfDataRetrievable{
 	 * Save this room allocation in the DB
 	 */
 	public void save() {
-		AppModel.getInstance().repositoryRoomAllocation.save(this);
+		AppModel.getInstance().getRepositoryRoomAllocation().save(this);
 	}
 
 	/**

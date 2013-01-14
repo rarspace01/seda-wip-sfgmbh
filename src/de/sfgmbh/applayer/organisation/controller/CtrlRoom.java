@@ -9,12 +9,12 @@ public class CtrlRoom {
 
 	public void addRoom(Room room){
 		
-		AppModel.getInstance().repositoryRoom.save(room);
+		AppModel.getInstance().getRepositoryRoom().save(room);
 		
 	}
 	
 	public List<Room> getAllRooms(){
-		return AppModel.getInstance().repositoryRoom.getAll();
+		return AppModel.getInstance().getRepositoryRoom().getAll();
 	}
 	
 	

@@ -40,7 +40,7 @@ public class UserCreateDialogBtns implements ActionListener {
 				newUser.setLogin_(ViewManager.getInstance().getOrgaUserCreateDialog().getTxtLogin().getText());
 				newUser.setMail_(ViewManager.getInstance().getOrgaUserCreateDialog().getTxtEmail().getText());
 				if (ViewManager.getInstance().getOrgaUserCreateDialog().getTxtPasswort().getText().length() < 6) {
-					AppModel.getInstance().appExcaptions.setNewException("Das Passwort muss mindestens 6 Zeichen lang sein!", "Fehler!" );
+					AppModel.getInstance().getExceptionHandler().setNewException("Das Passwort muss mindestens 6 Zeichen lang sein!", "Fehler!" );
 				} else {
 					newUser.setPwHashAndSalt(ViewManager.getInstance().getOrgaUserCreateDialog().getTxtPasswort().getText());
 				}
@@ -48,20 +48,20 @@ public class UserCreateDialogBtns implements ActionListener {
 				newUser.setlName_(ViewManager.getInstance().getOrgaUserCreateDialog().getTxtLastName().getText());
 				newUser.setClass_(ViewManager.getInstance().getOrgaUserCreateDialog().getComboBoxUserClass().getSelectedItem().toString());
 				if (!ViewManager.getInstance().getOrgaUserCreateDialog().getComboBoxLehrstuhl().getSelectedItem().toString().equals("<keiner>")) {
-					Chair newChair = AppModel.getInstance().repositoryChair.getForAcronym(
+					Chair newChair = AppModel.getInstance().getRepositoryChair().getForAcronym(
 							ViewManager.getInstance().getOrgaUserCreateDialog().getComboBoxLehrstuhl().getSelectedItem().toString());
 					if (newChair != null) {
 						newUser.setChair_(newChair);
 					} else {
-						AppModel.getInstance().appExcaptions.setNewException("Der Lehrstuhl ist ungültig, geben Sie einen gültigen Lehrstuhl ein oder setzen Sie das Feld auf &lt;keiner&gt;, wenn sie keinen Lehrstuhl setzen möchten", "Fehler!" );
+						AppModel.getInstance().getExceptionHandler().setNewException("Der Lehrstuhl ist ungültig, geben Sie einen gültigen Lehrstuhl ein oder setzen Sie das Feld auf &lt;keiner&gt;, wenn sie keinen Lehrstuhl setzen möchten", "Fehler!" );
 					}
 				}
 				if (ctrlUser.createUser(newUser)) {
-					AppModel.getInstance().appExcaptions.setNewException("Der Benutzer wurde im System angelegt!", "Erfolg!" );
+					AppModel.getInstance().getExceptionHandler().setNewException("Der Benutzer wurde im System angelegt!", "Erfolg!" );
 					ViewManager.getInstance().getOrgaUserCreateDialog().setVisible(false);
 				}
 			} catch (Exception ex) {
-				AppModel.getInstance().appExcaptions.setNewException("Es ist ein unerwartetes Problem aufgetreten.<br /><br />Fehler:<br />" + ex.toString(), "Fehler!" );
+				AppModel.getInstance().getExceptionHandler().setNewException("Es ist ein unerwartetes Problem aufgetreten.<br /><br />Fehler:<br />" + ex.toString(), "Fehler!" );
 				ex.printStackTrace();
 			}
 		}

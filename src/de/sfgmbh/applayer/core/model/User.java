@@ -183,7 +183,7 @@ public class User {
 	 * Save this user object in the DB (this will update a database entry if there is already one and create one if there is none)
 	 */
 	public boolean save() {
-		if (AppModel.getInstance().repositoryUser.save(this)) {
+		if (AppModel.getInstance().getRepositoryUser().save(this)) {
 			return true;
 		}
 		return false;
@@ -197,35 +197,35 @@ public class User {
 		Pattern validEmail = Pattern.compile("^[A-Za-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[A-Za-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[A-Za-z0-9](?:[A-Za-z0-9-]*[A-Za-z0-9])?\\.)+[A-Za-z0-9](?:[A-Za-z0-9-]*[A-Za-z0-9])?$");
 		
 		if (this.userId_ < -1 ) {
-			AppModel.getInstance().appExcaptions.setNewException("Das ist keine gülite Benutzer ID", "Fehler!");
+			AppModel.getInstance().getExceptionHandler().setNewException("Das ist keine gülite Benutzer ID", "Fehler!");
 			return false;
 		}
 		if (this.login_.length() > 32 && this.login_.length() < 3) {
-			AppModel.getInstance().appExcaptions.setNewException("Die Benutzerkennung muss zwischen 3 und 6 Zeichen lang sein!", "Fehler!");
+			AppModel.getInstance().getExceptionHandler().setNewException("Die Benutzerkennung muss zwischen 3 und 6 Zeichen lang sein!", "Fehler!");
 			return false;
 		}
 		if (this.mail_.length() > 64 ) {
-			AppModel.getInstance().appExcaptions.setNewException("Die E-Mail Adresse darf maximal 64 Zeichen lang sein!", "Fehler!");
+			AppModel.getInstance().getExceptionHandler().setNewException("Die E-Mail Adresse darf maximal 64 Zeichen lang sein!", "Fehler!");
 			return false;
 		}
 		if (!validEmail.matcher(this.mail_).matches()) {
-			AppModel.getInstance().appExcaptions.setNewException("Die E-Mail Adresse ist ungültig!", "Fehler!");
+			AppModel.getInstance().getExceptionHandler().setNewException("Die E-Mail Adresse ist ungültig!", "Fehler!");
 			return false;
 		}
 		if (this.fName_.length() > 64 ) {
-			AppModel.getInstance().appExcaptions.setNewException("Der Vorname darf maximal 64 Zeichen lang sein!", "Fehler!");
+			AppModel.getInstance().getExceptionHandler().setNewException("Der Vorname darf maximal 64 Zeichen lang sein!", "Fehler!");
 			return false;
 		}
 		if (this.lName_.length() > 64 && this.lName_.length() < 1) {
-			AppModel.getInstance().appExcaptions.setNewException("Der Nachname zwischen 1 und 64 Zeichen lang sein!", "Fehler!");
+			AppModel.getInstance().getExceptionHandler().setNewException("Der Nachname zwischen 1 und 64 Zeichen lang sein!", "Fehler!");
 			return false;
 		}
 		if (!this.class_.equals("orga") && !this.class_.equals("lecturer") && !this.class_.equals("stud") ) {
-			AppModel.getInstance().appExcaptions.setNewException("Der Benutzer ist einer ungültigen Benutzerklasse zugeordnet!", "Fehler!");
+			AppModel.getInstance().getExceptionHandler().setNewException("Der Benutzer ist einer ungültigen Benutzerklasse zugeordnet!", "Fehler!");
 			return false;
 		}
 		if (this.class_.equals("lecturer") && this.chair_ == null) {
-			AppModel.getInstance().appExcaptions.setNewException("Einem Dozenten muss ein Lehrstuhl zugeordnet werden!", "Fehler!");
+			AppModel.getInstance().getExceptionHandler().setNewException("Einem Dozenten muss ein Lehrstuhl zugeordnet werden!", "Fehler!");
 			return false;
 		}
 		
