@@ -216,8 +216,8 @@ public class User {
 			AppModel.getInstance().appExcaptions.setNewException("Der Vorname darf maximal 64 Zeichen lang sein!", "Fehler!");
 			return false;
 		}
-		if (this.lName_.length() > 64 ) {
-			AppModel.getInstance().appExcaptions.setNewException("Der Nachname darf maximal 64 Zeichen lang sein!", "Fehler!");
+		if (this.lName_.length() > 64 && this.lName_.length() < 1) {
+			AppModel.getInstance().appExcaptions.setNewException("Der Nachname zwischen 1 und 64 Zeichen lang sein!", "Fehler!");
 			return false;
 		}
 		if (!this.class_.equals("orga") && !this.class_.equals("lecturer") && !this.class_.equals("stud") ) {

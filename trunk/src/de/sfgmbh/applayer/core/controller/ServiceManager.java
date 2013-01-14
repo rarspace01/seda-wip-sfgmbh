@@ -5,6 +5,7 @@ import de.sfgmbh.comlayer.core.model.RoomTableMain;
 import de.sfgmbh.comlayer.core.views.BaseTab;
 import de.sfgmbh.comlayer.core.views.InfoDialog;
 import de.sfgmbh.comlayer.lecturer.model.ProfessorshipTimetableTabTable;
+import de.sfgmbh.comlayer.lecturer.model.StartTabTableBottom;
 import de.sfgmbh.comlayer.lecturer.model.StartTabTableTop;
 import de.sfgmbh.comlayer.lecturer.model.TimetableTabTable;
 import de.sfgmbh.comlayer.lecturer.views.CourseEditFrame;
@@ -224,6 +225,7 @@ public class ServiceManager {
 	*/
 	protected StartTab startTab;
 	protected StartTabTableTop startTabTableTop;
+	protected StartTabTableBottom startTabTableBottom;
 	protected CourseFrame courseFrame;
 	protected CourseEditFrame courseEditFrame;
 	protected RoomRequestFrame roomRquestFrame;
@@ -243,6 +245,12 @@ public class ServiceManager {
 			this.startTabTableTop = new StartTabTableTop();
 		}
 		return this.startTabTableTop;
+	}
+	public StartTabTableBottom getLecturerStartTabTableBottom() {
+		if (this.startTabTableBottom == null) {
+			this.startTabTableBottom = new StartTabTableBottom();
+		}
+		return this.startTabTableBottom;
 	}
 	public CourseFrame getLecturerCourseFrame() {
 		if (this.courseFrame == null) {

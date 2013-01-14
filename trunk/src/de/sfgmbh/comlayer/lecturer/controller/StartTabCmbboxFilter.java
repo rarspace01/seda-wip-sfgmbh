@@ -30,6 +30,7 @@ public class StartTabCmbboxFilter implements KeyListener, ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		ServiceManager.getInstance().getLecturerStartTabTableTop().change();
+		ServiceManager.getInstance().getLecturerStartTabTableBottom().change();
 	}
 	
 }
