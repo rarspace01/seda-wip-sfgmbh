@@ -160,6 +160,7 @@ public class StartTab extends JPanel {
 		roomrequestTable = new JTable();
 		roomrequestTable.setModel(ServiceManager.getInstance().getLecturerStartTabTableBottom());
 		roomrequestTable.setShowVerticalLines(false);
+		roomrequestTable.getColumnModel().removeColumn(roomrequestTable.getColumn("Hidden"));
 		roomrequestTable.setBackground(SystemColor.activeCaption);
 		raumanfragenScrollPane.setViewportView(roomrequestTable);
 		
