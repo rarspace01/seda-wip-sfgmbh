@@ -4,9 +4,12 @@ import java.util.List;
 
 import javax.swing.table.*;
 
+import de.sfgmbh.applayer.core.definitions.IntfAppObserver;
 import de.sfgmbh.applayer.core.model.Room;
+import de.sfgmbh.applayer.organisation.controller.CtrlRoom;
+import de.sfgmbh.init.Bootstrap;
 
-public class RoomTabTable extends DefaultTableModel {
+public class RoomTabTable extends DefaultTableModel implements IntfAppObserver {
 
 	private static final long serialVersionUID = 1L;
 //	private Object[][] preFill = {
@@ -34,5 +37,26 @@ public class RoomTabTable extends DefaultTableModel {
 		}
 		
 	}
+
+	@Override
+	public void change() {
+		
+		CtrlRoom ctrlRoom= new CtrlRoom();
+		
+		//delete all rows
+		for(int i=this.getRowCount()-1;i>=0;i--){
+			this.removeRow(i);
+		}
+		
+		//get all rooms from db
+		this.addRooms(ctrlRoom.getAllRooms());
+		
+	}
+	
+	//disabling editions from view
+	@Override
+    public boolean isCellEditable(int row, int column) {
+        return false;
+    }
 	
 }

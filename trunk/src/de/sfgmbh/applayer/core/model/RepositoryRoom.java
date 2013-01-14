@@ -29,6 +29,7 @@ public class RepositoryRoom implements IntfAppObservable, IntfDataObserver {
 	
 	public void save(Room room){
 		DataModel.getInstance().dataHandlerRoom.save(room);
+		this.change();
 	}
 	
 	@Override
