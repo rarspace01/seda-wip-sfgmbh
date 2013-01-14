@@ -20,6 +20,7 @@ public class RoomFrame extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
+	private JTextField txtroomid;
 	private JTextField txtLevel;
 	private JTextField txtRoomNumber;
 	private JTextField txtBeamer;
@@ -68,6 +69,8 @@ public class RoomFrame extends JFrame {
 		gbc_lblLevel.gridx = 0;
 		gbc_lblLevel.gridy = 1;
 		contentPane.add(lblLevel, gbc_lblLevel);
+		
+		txtroomid=new JTextField();
 		
 		txtLevel = new JTextField();
 		txtLevel.setFont(new Font("SansSerif", Font.PLAIN, 12));
@@ -318,6 +321,8 @@ public class RoomFrame extends JFrame {
 	public void setTxtWhiteboards(JTextField txtWhiteboards) {
 		this.txtWhiteboards = txtWhiteboards;
 	}
-	
+	public JTextField getTxtroomid() {
+		return txtroomid;
+	}
 	
 }

@@ -14,7 +14,7 @@ public class DataModel implements IntfAppObservable {
 	
 	private static DataModel uniqueInstance_ = new DataModel(); // declare on first access through JVM (thread-safe)
 	private ArrayList<Object> observer_ = new ArrayList<Object>();
-	public DataExceptions dataExcaptions = new DataExceptions();
+	public DataExceptions dataExceptions = new DataExceptions();
 	public DataHandlerChair dataHandlerChair = new DataHandlerChair();
 	public DataHandlerUser dataHandlerUser = new DataHandlerUser();
 	public DataHandlerCourse dataHandlerCourse = new DataHandlerCourse();
@@ -52,7 +52,7 @@ public class DataModel implements IntfAppObservable {
 		if (observer instanceof IntfDataObserver) {
 			observer_.add(observer);
 		} else {
-			this.dataExcaptions.setNewException("Das Objekt implementiert nicht das Observer-Interface und kann daher nicht hinzugefügt werden!", "Fehler!");
+			this.dataExceptions.setNewException("Das Objekt implementiert nicht das Observer-Interface und kann daher nicht hinzugefï¿½gt werden!", "Fehler!");
 		}
 		
 	}

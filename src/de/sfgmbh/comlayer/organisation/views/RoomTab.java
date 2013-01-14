@@ -187,4 +187,9 @@ public class RoomTab extends JPanel {
 				
 		Bootstrap.serviceManager.getOrgaRoomTableModel().addRooms(ctrlRoom.getAllRooms());
 	}
+	
+	public JTable getRaumverwaltungTable() {
+		return raumverwaltungTable;
+	}
+	
 }

@@ -19,7 +19,7 @@ public class AppExceptions implements IntfAppObservable, IntfDataObserver {
 	 * Register this class as observer of data layer exceptions
 	 */
 	public AppExceptions() {
-		DataModel.getInstance().dataExcaptions.register(this);
+		DataModel.getInstance().dataExceptions.register(this);
 	}
 	
 	/**
@@ -106,7 +106,7 @@ public class AppExceptions implements IntfAppObservable, IntfDataObserver {
 		if (observer instanceof IntfAppObserver) {
 			observer_.add(observer);
 		} else {
-			this.setNewException("Das Objekt implementiert nicht das Observer-Interface und kann daher nicht hinzugefügt werden!", "Fehler!");
+			this.setNewException("Das Objekt implementiert nicht das Observer-Interface und kann daher nicht hinzugefï¿½gt werden!", "Fehler!");
 		}
 		
 	}
@@ -122,8 +122,8 @@ public class AppExceptions implements IntfAppObservable, IntfDataObserver {
 
 	@Override
 	public void change() {
-		String msg = DataModel.getInstance().dataExcaptions.getExceptionMsg_();
-		String title = DataModel.getInstance().dataExcaptions.getExceptionTitle_();
+		String msg = DataModel.getInstance().dataExceptions.getExceptionMsg_();
+		String title = DataModel.getInstance().dataExceptions.getExceptionTitle_();
 		// String variant = DataModel.getInstance().dataExcaptions.getExceptionVariante_(); 
 		
 		if (title != null) {
