@@ -104,7 +104,6 @@ public class ViewManager {
 	private ProfessorshipTab professorshipTab;
 	private RequestTab requestTab;
 	private RoomFrame roomFrame;
-	private RoomEditFrame roomEditFrame;
 	private UserCreateDialog userFrame;
 	private UserEditFrame userEditFrame;
 	private ProfessorshipFrame professorshipFrame;
@@ -182,12 +181,6 @@ public class ViewManager {
 			this.roomFrame = new RoomFrame();
 		}
 		return this.roomFrame;
-	}
-	public RoomEditFrame getOrgaRoomEditFrame() {
-		if (this.roomEditFrame == null) {
-			this.roomEditFrame = new RoomEditFrame();
-		}
-		return this.roomEditFrame;
 	}
 	public UserCreateDialog getOrgaUserCreateDialog() {
 		if (this.userFrame == null) {

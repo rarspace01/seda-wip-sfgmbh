@@ -49,6 +49,13 @@ public class RoomFrameBtns implements ActionListener {
 			// read Values, Create Room object, store to DB
 			Room toBeSavedRoom = new Room(1); // Building ID=1 for Erba
 
+			//check if room has already a id, if so store it
+			if(ViewManager.getInstance()
+					.getOrgaRoomFrame().getTxtroomid().getText().length()>0){
+				toBeSavedRoom.setRoomId_(Integer.parseInt(ViewManager.getInstance()
+					.getOrgaRoomFrame().getTxtroomid().getText()));
+			}
+			
 			toBeSavedRoom.setRoomNumber_(ViewManager.getInstance()
 					.getOrgaRoomFrame().getTxtRoomNumber().getText());
 			toBeSavedRoom.setLevel_(ViewManager.getInstance().getOrgaRoomFrame()
