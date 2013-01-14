@@ -16,7 +16,7 @@ public class RepositoryRoom implements IntfAppObservable, IntfDataObserver {
 	 * Register this room repository as observer in the data model
 	 */
 	public RepositoryRoom() {
-		DataModel.getInstance().dataHandlerRoom.register(this);
+		DataModel.getInstance().getDataHandlerRoom().register(this);
 	}
 	
 	/**
@@ -24,15 +24,15 @@ public class RepositoryRoom implements IntfAppObservable, IntfDataObserver {
 	 * @return a list of all courses
 	 */
 	public List<Room> getAll() {
-		return DataModel.getInstance().dataHandlerRoom.getAll();
+		return DataModel.getInstance().getDataHandlerRoom().getAll();
 	}
 	
 	public Room getRoomById(int roomId) {
-		return DataModel.getInstance().dataHandlerRoom.get(roomId);
+		return DataModel.getInstance().getDataHandlerRoom().get(roomId);
 	}
 	
 	public void save(Room room){
-		DataModel.getInstance().dataHandlerRoom.save(room);
+		DataModel.getInstance().getDataHandlerRoom().save(room);
 		this.change();
 	}
 	

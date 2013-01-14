@@ -19,7 +19,7 @@ public class AppException implements IntfAppObservable, IntfDataObserver {
 	 * Register this class as observer of data layer exceptions
 	 */
 	public AppException() {
-		DataModel.getInstance().dataExceptions.register(this);
+		DataModel.getInstance().getExceptionsHandler().register(this);
 	}
 	
 	/**
@@ -122,8 +122,8 @@ public class AppException implements IntfAppObservable, IntfDataObserver {
 
 	@Override
 	public void change() {
-		String msg = DataModel.getInstance().dataExceptions.getExceptionMsg_();
-		String title = DataModel.getInstance().dataExceptions.getExceptionTitle_();
+		String msg = DataModel.getInstance().getExceptionsHandler().getExceptionMsg_();
+		String title = DataModel.getInstance().getExceptionsHandler().getExceptionTitle_();
 		// String variant = DataModel.getInstance().dataExcaptions.getExceptionVariante_(); 
 		
 		if (title != null) {

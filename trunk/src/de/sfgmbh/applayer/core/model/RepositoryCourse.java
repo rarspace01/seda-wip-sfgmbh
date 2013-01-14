@@ -17,7 +17,7 @@ public class RepositoryCourse implements IntfAppObservable, IntfDataObserver {
 	 * Register this course repository as observer in the data model
 	 */
 	public RepositoryCourse() {
-		DataModel.getInstance().dataHandlerCourse.register(this);
+		DataModel.getInstance().getDataHandlerCourse().register(this);
 	}
 	
 	/**
@@ -25,7 +25,7 @@ public class RepositoryCourse implements IntfAppObservable, IntfDataObserver {
 	 * @return a list of all courses
 	 */
 	public List<Course> getAll() {
-		return DataModel.getInstance().dataHandlerCourse.getAll();
+		return DataModel.getInstance().getDataHandlerCourse().getAll();
 	}
 	
 	/**
@@ -34,7 +34,7 @@ public class RepositoryCourse implements IntfAppObservable, IntfDataObserver {
 	 * @return course objects based on a filter
 	 */
 	public List<Course> getByFilter(HashMap<String, String> filter) {
-		return DataModel.getInstance().dataHandlerCourse.getByFilter(filter);
+		return DataModel.getInstance().getDataHandlerCourse().getByFilter(filter);
 	}
 
 	@Override

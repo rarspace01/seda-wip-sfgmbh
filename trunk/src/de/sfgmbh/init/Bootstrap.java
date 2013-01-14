@@ -63,13 +63,13 @@ public class Bootstrap {
 			hasDbConnection=true;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			DataModel.getInstance().dataExceptions.setNewException(("Keine Verbindung zur Datenbank möglich:<br /><br />" + e.toString()), "Verbindungs-Fehler!");
+			DataModel.getInstance().getExceptionsHandler().setNewException(("Keine Verbindung zur Datenbank möglich:<br /><br />" + e.toString()), "Verbindungs-Fehler!");
 			e.printStackTrace();
 		} catch (NullPointerException e){
-			DataModel.getInstance().dataExceptions.setNewException(("Keine Verbindung zur Datenbank möglich:<br /><br />" + e.toString()), "Verbindungs-Fehler!");
+			DataModel.getInstance().getExceptionsHandler().setNewException(("Keine Verbindung zur Datenbank möglich:<br /><br />" + e.toString()), "Verbindungs-Fehler!");
 			e.printStackTrace();
 		} catch (Exception e){
-			DataModel.getInstance().dataExceptions.setNewException(("Keine Verbindung zur Datenbank möglich:<br /><br />" + e.toString()), "Verbindungs-Fehler!");
+			DataModel.getInstance().getExceptionsHandler().setNewException(("Keine Verbindung zur Datenbank möglich:<br /><br />" + e.toString()), "Verbindungs-Fehler!");
 			e.printStackTrace();
 		}
 		return hasDbConnection;

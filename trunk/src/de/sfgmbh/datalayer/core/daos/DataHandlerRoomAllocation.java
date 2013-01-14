@@ -41,10 +41,10 @@ public class DataHandlerRoomAllocation implements IntfDataObservable, IntfDataFi
 
 		} catch (SQLException e) {
 			e.printStackTrace();
-			DataModel.getInstance().dataExceptions.setNewException(("Es ist ein SQL-Fehler (DataHandlerRoomAllocation-01) aufgetreten:<br /><br />" + e.toString()), "Datenbank-Fehler!");
+			DataModel.getInstance().getExceptionsHandler().setNewException(("Es ist ein SQL-Fehler (DataHandlerRoomAllocation-01) aufgetreten:<br /><br />" + e.toString()), "Datenbank-Fehler!");
 		} catch (Exception e) {
 			e.printStackTrace();
-			DataModel.getInstance().dataExceptions.setNewException(("Es ist ein unbekannter Fehler (DataHandlerRoomAllocation-02) in der Datenhaltung aufgetreten:<br /><br />" + e.toString()), "Fehler!");
+			DataModel.getInstance().getExceptionsHandler().setNewException(("Es ist ein unbekannter Fehler (DataHandlerRoomAllocation-02) in der Datenhaltung aufgetreten:<br /><br />" + e.toString()), "Fehler!");
 		}
 
 		return listRoomAllocation;
@@ -135,10 +135,10 @@ public class DataHandlerRoomAllocation implements IntfDataObservable, IntfDataFi
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
-			DataModel.getInstance().dataExceptions.setNewException(("Es ist ein SQL-Fehler aufgetreten.<br /><br />Fehler DataHandlerRoomAllocation-17:<br />" + e.toString()), "Datenbank-Fehler!");
+			DataModel.getInstance().getExceptionsHandler().setNewException(("Es ist ein SQL-Fehler aufgetreten.<br /><br />Fehler DataHandlerRoomAllocation-17:<br />" + e.toString()), "Datenbank-Fehler!");
 		} catch (Exception e) {
 			e.printStackTrace();
-			DataModel.getInstance().dataExceptions.setNewException(("Es ist ein unbekannter Fehler in der Datenhaltung aufgetreten:<br /><br />Fehler DataHandlerRoomAllocation-18:<br />" + e.toString()), "Fehler!");
+			DataModel.getInstance().getExceptionsHandler().setNewException(("Es ist ein unbekannter Fehler in der Datenhaltung aufgetreten:<br /><br />Fehler DataHandlerRoomAllocation-18:<br />" + e.toString()), "Fehler!");
 		}
 		return listRoomAllocation;
 	}
@@ -180,10 +180,10 @@ public class DataHandlerRoomAllocation implements IntfDataObservable, IntfDataFi
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
-			DataModel.getInstance().dataExceptions.setNewException(("Es ist ein SQL-Fehler aufgetreten.<br /><br />Fehler DataHandlerRoomAllocation-15:<br />" + e.toString()), "Datenbank-Fehler!");
+			DataModel.getInstance().getExceptionsHandler().setNewException(("Es ist ein SQL-Fehler aufgetreten.<br /><br />Fehler DataHandlerRoomAllocation-15:<br />" + e.toString()), "Datenbank-Fehler!");
 		} catch (Exception e) {
 			e.printStackTrace();
-			DataModel.getInstance().dataExceptions.setNewException(("Es ist ein unbekannter Fehler in der Datenhaltung aufgetreten:<br /><br />Fehler DataHandlerRoomAllocation-16:<br />" + e.toString()), "Fehler!");
+			DataModel.getInstance().getExceptionsHandler().setNewException(("Es ist ein unbekannter Fehler in der Datenhaltung aufgetreten:<br /><br />Fehler DataHandlerRoomAllocation-16:<br />" + e.toString()), "Fehler!");
 		}
 		return listRoomAllocation;
 	}
@@ -211,10 +211,10 @@ public class DataHandlerRoomAllocation implements IntfDataObservable, IntfDataFi
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
-			DataModel.getInstance().dataExceptions.setNewException(("Es ist ein SQL-Fehler aufgetreten.<br /><br />Fehler DataHandlerRoomAllocation-20:<br />" + e.toString()), "Datenbank-Fehler!");
+			DataModel.getInstance().getExceptionsHandler().setNewException(("Es ist ein SQL-Fehler aufgetreten.<br /><br />Fehler DataHandlerRoomAllocation-20:<br />" + e.toString()), "Datenbank-Fehler!");
 		} catch (Exception e) {
 			e.printStackTrace();
-			DataModel.getInstance().dataExceptions.setNewException(("Es ist ein unbekannter Fehler in der Datenhaltung aufgetreten:<br /><br />Fehler DataHandlerRoomAllocation-21:<br />" + e.toString()), "Fehler!");
+			DataModel.getInstance().getExceptionsHandler().setNewException(("Es ist ein unbekannter Fehler in der Datenhaltung aufgetreten:<br /><br />Fehler DataHandlerRoomAllocation-21:<br />" + e.toString()), "Fehler!");
 		}
 		
 		return null;
@@ -247,10 +247,10 @@ public class DataHandlerRoomAllocation implements IntfDataObservable, IntfDataFi
 				
 			} catch (SQLException e) {
 				e.printStackTrace();
-				DataModel.getInstance().dataExceptions.setNewException(("Es ist ein SQL-Fehler aufgetreten:<br /><br />Fehler DataHandlerRoomAllocation-22:<br />" + e.toString()), "Datenbank-Fehler!");
+				DataModel.getInstance().getExceptionsHandler().setNewException(("Es ist ein SQL-Fehler aufgetreten:<br /><br />Fehler DataHandlerRoomAllocation-22:<br />" + e.toString()), "Datenbank-Fehler!");
 			} catch (Exception e) {
 				e.printStackTrace();
-				DataModel.getInstance().dataExceptions.setNewException(("Es ist ein unbekannter Fehler in der Datenhaltung aufgetreten:<br /><br />Fehler DataHandlerRoomAllocation-22:<br />" + e.toString()), "Fehler!");
+				DataModel.getInstance().getExceptionsHandler().setNewException(("Es ist ein unbekannter Fehler in der Datenhaltung aufgetreten:<br /><br />Fehler DataHandlerRoomAllocation-22:<br />" + e.toString()), "Fehler!");
 			}
 		} else {
 			try {
@@ -273,10 +273,10 @@ public class DataHandlerRoomAllocation implements IntfDataObservable, IntfDataFi
 				
 			} catch (SQLException e) {
 				e.printStackTrace();
-				DataModel.getInstance().dataExceptions.setNewException(("Es ist ein SQL-Fehler aufgetreten:<br /><br />Fehler DataHandlerRoomAllocation-23:<br />" + e.toString()), "Datenbank-Fehler!");
+				DataModel.getInstance().getExceptionsHandler().setNewException(("Es ist ein SQL-Fehler aufgetreten:<br /><br />Fehler DataHandlerRoomAllocation-23:<br />" + e.toString()), "Datenbank-Fehler!");
 			} catch (Exception e) {
 				e.printStackTrace();
-				DataModel.getInstance().dataExceptions.setNewException(("Es ist ein unbekannter Fehler in der Datenhaltung aufgetreten:<br /><br />Fehler DataHandlerRoomAllocation-24:<br />" + e.toString()), "Fehler!");
+				DataModel.getInstance().getExceptionsHandler().setNewException(("Es ist ein unbekannter Fehler in der Datenhaltung aufgetreten:<br /><br />Fehler DataHandlerRoomAllocation-24:<br />" + e.toString()), "Fehler!");
 			}
 		}
 	}
@@ -294,9 +294,9 @@ public class DataHandlerRoomAllocation implements IntfDataObservable, IntfDataFi
 
 			returnRoomAllocation.setRoomAllocationId_(rs.getInt("roomallocationid"));
 			returnRoomAllocation.setCourse_(
-					DataModel.getInstance().dataHandlerCourse.makeCourse(rs));
+					DataModel.getInstance().getDataHandlerCourse().makeCourse(rs));
 			returnRoomAllocation.setRoom_(
-					DataModel.getInstance().dataHandlerRoom.makeRoom(rs));
+					DataModel.getInstance().getDataHandlerRoom().makeRoom(rs));
 			returnRoomAllocation.setSemester_(rs.getString("semester"));
 			returnRoomAllocation.setDay_(rs.getInt("day"));
 			returnRoomAllocation.setTime_(rs.getInt("time"));
@@ -311,10 +311,10 @@ public class DataHandlerRoomAllocation implements IntfDataObservable, IntfDataFi
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
-			DataModel.getInstance().dataExceptions.setNewException(("Es ist ein SQL-Fehler (DataHandlerRoomAllocation-03) aufgetreten:<br /><br />" + e.toString()), "Datenbank-Fehler!");
+			DataModel.getInstance().getExceptionsHandler().setNewException(("Es ist ein SQL-Fehler (DataHandlerRoomAllocation-03) aufgetreten:<br /><br />" + e.toString()), "Datenbank-Fehler!");
 		} catch (Exception e) {
 			e.printStackTrace();
-			DataModel.getInstance().dataExceptions.setNewException(("Es ist ein unbekannter Fehler (DataHandlerRoomAllocation-04) in der Datenhaltung aufgetreten:<br /><br />" + e.toString()), "Fehler!");
+			DataModel.getInstance().getExceptionsHandler().setNewException(("Es ist ein unbekannter Fehler (DataHandlerRoomAllocation-04) in der Datenhaltung aufgetreten:<br /><br />" + e.toString()), "Fehler!");
 		}
 		
 		return returnRoomAllocation;
@@ -341,7 +341,7 @@ public class DataHandlerRoomAllocation implements IntfDataObservable, IntfDataFi
 		if (observer instanceof IntfDataObserver) {
 			observer_.add(observer);
 		} else {
-			DataModel.getInstance().dataExceptions.setNewException("Das Objekt implementiert nicht das Observer-Interface und kann daher nicht hinzugefügt werden!<br />Fehler: DataHandlerRoomAllocation-12", "Fehler!");
+			DataModel.getInstance().getExceptionsHandler().setNewException("Das Objekt implementiert nicht das Observer-Interface und kann daher nicht hinzugefügt werden!<br />Fehler: DataHandlerRoomAllocation-12", "Fehler!");
 		}
 	}
 	

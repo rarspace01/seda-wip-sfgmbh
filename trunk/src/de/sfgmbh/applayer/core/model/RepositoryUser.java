@@ -17,7 +17,7 @@ public class RepositoryUser implements IntfAppObservable, IntfDataObserver {
 	 * Register this user repository as observer in the data model
 	 */
 	public RepositoryUser() {
-		DataModel.getInstance().dataHandlerUser.register(this);
+		DataModel.getInstance().getDataHandlerUser().register(this);
 	}
 	
 	/**
@@ -25,7 +25,7 @@ public class RepositoryUser implements IntfAppObservable, IntfDataObserver {
 	 * @return a list of all users
 	 */
 	public List<User> getAll() {
-		return DataModel.getInstance().dataHandlerUser.getAll();
+		return DataModel.getInstance().getDataHandlerUser().getAll();
 	}
 	
 	/**
@@ -33,7 +33,7 @@ public class RepositoryUser implements IntfAppObservable, IntfDataObserver {
 	 * @return a list of all users of the class lecturer
 	 */
 	public List<User> getAllLecturer() {
-		return DataModel.getInstance().dataHandlerUser.getAllLecturer();
+		return DataModel.getInstance().getDataHandlerUser().getAllLecturer();
 	}
 	
 	/**
@@ -41,7 +41,7 @@ public class RepositoryUser implements IntfAppObservable, IntfDataObserver {
 	 * @return a list of filtered users
 	 */
 	public List<User> getByFilter(HashMap<String, String> filter) {
-		return DataModel.getInstance().dataHandlerUser.getByFilter(filter);
+		return DataModel.getInstance().getDataHandlerUser().getByFilter(filter);
 	}
 	
 	/**
@@ -49,7 +49,7 @@ public class RepositoryUser implements IntfAppObservable, IntfDataObserver {
 	 * @return true on success
 	 */
 	public boolean save(User user) {
-		if (DataModel.getInstance().dataHandlerUser.save(user)) {
+		if (DataModel.getInstance().getDataHandlerUser().save(user)) {
 			return true;
 		}
 		return false;
