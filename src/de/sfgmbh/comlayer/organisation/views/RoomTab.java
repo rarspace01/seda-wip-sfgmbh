@@ -19,9 +19,9 @@ import javax.swing.UIManager;
 import javax.swing.border.TitledBorder;
 
 import net.miginfocom.swing.MigLayout;
-import de.sfgmbh.applayer.core.controller.ServiceManager;
 import de.sfgmbh.applayer.core.model.AppModel;
 import de.sfgmbh.applayer.organisation.controller.CtrlRoom;
+import de.sfgmbh.comlayer.core.controller.ViewManager;
 import de.sfgmbh.comlayer.core.views.BaseTab;
 import de.sfgmbh.comlayer.organisation.controller.CmbboxFilter;
 import de.sfgmbh.comlayer.organisation.controller.RoomTabBtnsControl;
@@ -137,10 +137,10 @@ public class RoomTab extends JPanel {
 		raumverwaltungTable = new JTable();
 		raumverwaltungTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 
-		raumverwaltungTable.setModel(ServiceManager.getInstance().getOrgaRoomTableModel());
+		raumverwaltungTable.setModel(ViewManager.getInstance().getOrgaRoomTableModel());
 		
 		//register tablemodel on repository
-		AppModel.getInstance().repositoryRoom.register(ServiceManager.getInstance().getOrgaRoomTableModel());
+		AppModel.getInstance().repositoryRoom.register(ViewManager.getInstance().getOrgaRoomTableModel());
 		
 		raumverwaltungTable.getColumnModel().removeColumn(raumverwaltungTable.getColumn("roomid"));
 		
@@ -185,7 +185,7 @@ public class RoomTab extends JPanel {
 		
 		CtrlRoom ctrlRoom= new CtrlRoom();
 				
-		ServiceManager.getInstance().getOrgaRoomTableModel().addRooms(ctrlRoom.getAllRooms());
+		ViewManager.getInstance().getOrgaRoomTableModel().addRooms(ctrlRoom.getAllRooms());
 	}
 	
 	public JTable getRaumverwaltungTable() {

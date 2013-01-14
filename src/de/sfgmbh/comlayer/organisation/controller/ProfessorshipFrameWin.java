@@ -2,7 +2,7 @@ package de.sfgmbh.comlayer.organisation.controller;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 
-import de.sfgmbh.applayer.core.controller.ServiceManager;
+import de.sfgmbh.comlayer.core.controller.ViewManager;
 
 
 public class ProfessorshipFrameWin implements WindowListener {
@@ -15,7 +15,7 @@ public class ProfessorshipFrameWin implements WindowListener {
 
 	@Override
 	public void windowClosed(WindowEvent arg0) {
-		ServiceManager.getInstance().getOrgaProfessorshipFrame().setVisible(false);
+		ViewManager.getInstance().getOrgaProfessorshipFrame().setVisible(false);
 		
 	}
 

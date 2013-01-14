@@ -5,7 +5,6 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
-import de.sfgmbh.applayer.core.controller.ServiceManager;
 
 public class BaseCmbboxFilter implements KeyListener, ActionListener {
 
@@ -28,7 +27,7 @@ public class BaseCmbboxFilter implements KeyListener, ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		ServiceManager.getInstance().getCoreBaseTableModel().change();
+		ViewManager.getInstance().getCoreBaseTableModel().change();
 	}
 	
 }

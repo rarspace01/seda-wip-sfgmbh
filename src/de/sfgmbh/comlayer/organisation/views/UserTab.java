@@ -17,7 +17,7 @@ import javax.swing.UIManager;
 import javax.swing.border.TitledBorder;
 
 import net.miginfocom.swing.MigLayout;
-import de.sfgmbh.applayer.core.controller.ServiceManager;
+import de.sfgmbh.comlayer.core.controller.ViewManager;
 import de.sfgmbh.comlayer.core.model.CmbboxFilterChair;
 import de.sfgmbh.comlayer.core.model.CmbboxFilterUserClass;
 import de.sfgmbh.comlayer.core.views.BaseTab;
@@ -130,7 +130,7 @@ public class UserTab extends JPanel {
 		add(organisationTableScrollPane, "flowx,cell 2 2 4 1,grow");
 		
 		roomOrgaTable = new JTable();
-		roomOrgaTable.setModel(ServiceManager.getInstance().getOrgaUserTableModel());
+		roomOrgaTable.setModel(ViewManager.getInstance().getOrgaUserTableModel());
 		roomOrgaTable.setShowVerticalLines(false);
 		roomOrgaTable.setBackground(SystemColor.activeCaption);
 		roomOrgaTable.getColumnModel().removeColumn(roomOrgaTable.getColumn("Hidden"));

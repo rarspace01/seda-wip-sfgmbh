@@ -4,10 +4,10 @@ import java.util.HashMap;
 
 import javax.swing.table.DefaultTableModel;
 
-import de.sfgmbh.applayer.core.controller.ServiceManager;
 import de.sfgmbh.applayer.core.definitions.IntfAppObserver;
 import de.sfgmbh.applayer.core.model.AppModel;
 import de.sfgmbh.applayer.core.model.RoomAllocation;
+import de.sfgmbh.comlayer.core.controller.ViewManager;
 import de.sfgmbh.comlayer.core.controller.ViewHelper;
 
 public class RoomTableMain extends DefaultTableModel implements IntfAppObserver {
@@ -33,10 +33,10 @@ public class RoomTableMain extends DefaultTableModel implements IntfAppObserver 
 			filter.put("lecturer", "<alle>");
 			filter.put("semester", "<alle>");
 		} else {
-			filter.put("chair", ServiceManager.getInstance().getCoreBaseTab().getComboBoxChariFilter().getSelectedItem().toString());
-			filter.put("course", ServiceManager.getInstance().getCoreBaseTab().getComboBoxOrgaFilter().getSelectedItem().toString());
-			filter.put("lecturer", ServiceManager.getInstance().getCoreBaseTab().getComboBoxLecturerFilter().getSelectedItem().toString());
-			filter.put("semester", ServiceManager.getInstance().getCoreBaseTab().getComboBoxSemesterFilter().getSelectedItem().toString());
+			filter.put("chair", ViewManager.getInstance().getCoreBaseTab().getComboBoxChariFilter().getSelectedItem().toString());
+			filter.put("course", ViewManager.getInstance().getCoreBaseTab().getComboBoxOrgaFilter().getSelectedItem().toString());
+			filter.put("lecturer", ViewManager.getInstance().getCoreBaseTab().getComboBoxLecturerFilter().getSelectedItem().toString());
+			filter.put("semester", ViewManager.getInstance().getCoreBaseTab().getComboBoxSemesterFilter().getSelectedItem().toString());
 		}
 		
 		for (RoomAllocation ra : AppModel.getInstance().repositoryRoomAllocation.getByFilter(filter)){

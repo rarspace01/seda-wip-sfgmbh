@@ -13,7 +13,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 
 import net.miginfocom.swing.MigLayout;
-import de.sfgmbh.applayer.core.controller.ServiceManager;
+import de.sfgmbh.comlayer.core.controller.ViewManager;
 import de.sfgmbh.comlayer.core.views.BaseTab;
 import de.sfgmbh.comlayer.lecturer.controller.ProfessorshipTimetableTabBtn;
 import de.sfgmbh.comlayer.lecturer.controller.ProfessorshipTimetableTabCmbbox;
@@ -75,7 +75,7 @@ public class TimetableTab extends JPanel {
 			
 	
 			lecturerTimetableTable.setBackground(Color.WHITE);
-			lecturerTimetableTable.setModel(ServiceManager.getInstance().getLecturerTimetableTabTable());
+			lecturerTimetableTable.setModel(ViewManager.getInstance().getLecturerTimetableTabTable());
 			lecturerTimetableTable.getColumnModel().getColumn(0).setResizable(false);
 			lecturerTimetableTable.getColumnModel().getColumn(0).setPreferredWidth(50);
 			lecturerTimetableTable.getColumnModel().getColumn(0).setMinWidth(50);

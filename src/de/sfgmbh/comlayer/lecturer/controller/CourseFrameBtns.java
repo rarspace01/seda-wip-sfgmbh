@@ -3,7 +3,7 @@ package de.sfgmbh.comlayer.lecturer.controller;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import de.sfgmbh.applayer.core.controller.ServiceManager;
+import de.sfgmbh.comlayer.core.controller.ViewManager;
 import de.sfgmbh.comlayer.core.views.InfoDialog;
 
 
@@ -25,7 +25,7 @@ public class CourseFrameBtns implements ActionListener {
 		
 		// Abbrechen button is pressed
 		if (this.ctrlAction.equals("cancle")){
-			ServiceManager.getInstance().getLecturerCourseFrame().setVisible(false);
+			ViewManager.getInstance().getLecturerCourseFrame().setVisible(false);
 		}
 		
 		// Speichern button is pressed

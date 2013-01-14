@@ -4,13 +4,13 @@ import java.util.HashMap;
 
 import javax.swing.table.DefaultTableModel;
 
-import de.sfgmbh.applayer.core.controller.ServiceManager;
 import de.sfgmbh.applayer.core.controller.SessionManager;
 import de.sfgmbh.applayer.core.definitions.IntfAppObserver;
 import de.sfgmbh.applayer.core.model.AppModel;
 import de.sfgmbh.applayer.core.model.Chair;
 import de.sfgmbh.applayer.core.model.Course;
 import de.sfgmbh.applayer.core.model.User;
+import de.sfgmbh.comlayer.core.controller.ViewManager;
 import de.sfgmbh.comlayer.core.controller.ViewHelper;
 
 public class StartTabTableTop extends DefaultTableModel implements IntfAppObserver {
@@ -40,7 +40,7 @@ public class StartTabTableTop extends DefaultTableModel implements IntfAppObserv
 				filter.put("login", sessionUser.getLogin_());
 			} else {
 				filter.put("chair", sessionChair.getAcronym_());
-				filter.put("lecturer", ServiceManager.getInstance().getLecturerStartTab().getComboLecturer().getSelectedItem().toString());
+				filter.put("lecturer", ViewManager.getInstance().getLecturerStartTab().getComboLecturer().getSelectedItem().toString());
 			}
 			
 			for (Course course : AppModel.getInstance().repositoryCourse.getByFilter(filter)){

@@ -16,7 +16,7 @@ import javax.swing.UIManager;
 import javax.swing.border.TitledBorder;
 
 import net.miginfocom.swing.MigLayout;
-import de.sfgmbh.applayer.core.controller.ServiceManager;
+import de.sfgmbh.comlayer.core.controller.ViewManager;
 import de.sfgmbh.comlayer.core.model.CmbboxFilterAllocationStatus;
 import de.sfgmbh.comlayer.core.model.CmbboxFilterCourse;
 import de.sfgmbh.comlayer.core.model.CmbboxFilterLecturer;
@@ -104,7 +104,7 @@ public class StartTab extends JPanel {
 		
 		tableCourseTop = new JTable();
 		tableCourseTop.addMouseListener(new StartTabTableTop());
-		tableCourseTop.setModel(ServiceManager.getInstance().getLecturerStartTabTableTop());
+		tableCourseTop.setModel(ViewManager.getInstance().getLecturerStartTabTableTop());
 		tableCourseTop.getColumnModel().removeColumn(tableCourseTop.getColumn("Hidden"));
 		tableCourseTop.setShowVerticalLines(false);
 		tableCourseTop.setBackground(SystemColor.activeCaption);
@@ -158,7 +158,7 @@ public class StartTab extends JPanel {
 		tablePanel.add(raumanfragenScrollPane, "cell 0 6 5 1,grow");
 		
 		roomrequestTable = new JTable();
-		roomrequestTable.setModel(ServiceManager.getInstance().getLecturerStartTabTableBottom());
+		roomrequestTable.setModel(ViewManager.getInstance().getLecturerStartTabTableBottom());
 		roomrequestTable.setShowVerticalLines(false);
 		roomrequestTable.getColumnModel().removeColumn(roomrequestTable.getColumn("Hidden"));
 		roomrequestTable.setBackground(SystemColor.activeCaption);

@@ -6,8 +6,8 @@ import java.sql.SQLException;
 import javax.swing.UIManager;
 import javax.swing.UIManager.LookAndFeelInfo;
 
-import de.sfgmbh.applayer.core.controller.ServiceManager;
 import de.sfgmbh.applayer.core.model.AppModel;
+import de.sfgmbh.comlayer.core.controller.ViewManager;
 import de.sfgmbh.comlayer.core.views.BaseTab;
 import de.sfgmbh.comlayer.core.views.InfoDialog;
 import de.sfgmbh.datalayer.core.model.DataModel;
@@ -45,7 +45,7 @@ public class Bootstrap {
 				//check DB connection
 				if(hasDbConnection()){
 					try {
-						BaseTab frame = ServiceManager.getInstance().getCoreBaseTab();
+						BaseTab frame = ViewManager.getInstance().getCoreBaseTab();
 						frame.setVisible(true);
 					} catch (Exception e) {
 						e.printStackTrace();

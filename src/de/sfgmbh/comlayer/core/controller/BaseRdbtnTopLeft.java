@@ -4,7 +4,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import de.sfgmbh.applayer.core.controller.CtrlBaseTab;
-import de.sfgmbh.applayer.core.controller.ServiceManager;
 import de.sfgmbh.comlayer.core.views.InfoDialog;
 
 public class BaseRdbtnTopLeft implements ActionListener {
@@ -26,16 +25,16 @@ public class BaseRdbtnTopLeft implements ActionListener {
 
 		//room-JRadioButton is pressed
 		if (this.ctrlAction.equals("room")){
-			ServiceManager.getInstance().getCoreBaseTab().getRoomTable().setVisible(true);
-			ServiceManager.getInstance().getCoreBaseTab().getOrganisationTable().setVisible(false);
-			ServiceManager.getInstance().getCoreBaseTab().getMainTableScrollPane().setViewportView(ServiceManager.getInstance().getCoreBaseTab().getRoomTable());
+			ViewManager.getInstance().getCoreBaseTab().getRoomTable().setVisible(true);
+			ViewManager.getInstance().getCoreBaseTab().getOrganisationTable().setVisible(false);
+			ViewManager.getInstance().getCoreBaseTab().getMainTableScrollPane().setViewportView(ViewManager.getInstance().getCoreBaseTab().getRoomTable());
 		}
 		
 		//course-JRadioButton is pressed
 		if (this.ctrlAction.equals("course")){
-			ServiceManager.getInstance().getCoreBaseTab().getOrganisationTable().setVisible(true);
-			ServiceManager.getInstance().getCoreBaseTab().getRoomTable().setVisible(false);
-			ServiceManager.getInstance().getCoreBaseTab().getMainTableScrollPane().setViewportView(ServiceManager.getInstance().getCoreBaseTab().getOrganisationTable());	
+			ViewManager.getInstance().getCoreBaseTab().getOrganisationTable().setVisible(true);
+			ViewManager.getInstance().getCoreBaseTab().getRoomTable().setVisible(false);
+			ViewManager.getInstance().getCoreBaseTab().getMainTableScrollPane().setViewportView(ViewManager.getInstance().getCoreBaseTab().getOrganisationTable());	
 		}
 	}
 }

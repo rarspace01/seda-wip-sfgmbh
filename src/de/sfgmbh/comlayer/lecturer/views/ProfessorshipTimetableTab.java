@@ -12,7 +12,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 
 import net.miginfocom.swing.MigLayout;
-import de.sfgmbh.applayer.core.controller.ServiceManager;
+import de.sfgmbh.comlayer.core.controller.ViewManager;
 import de.sfgmbh.comlayer.core.views.BaseTab;
 import de.sfgmbh.comlayer.lecturer.controller.ProfessorshipTimetableTabBtn;
 
@@ -72,7 +72,7 @@ public class ProfessorshipTimetableTab extends JPanel {
 			
 	
 			LehrstuhlStundenplanTable.setBackground(Color.WHITE);
-			LehrstuhlStundenplanTable.setModel(ServiceManager.getInstance().getLecturerTimetableTabTable());
+			LehrstuhlStundenplanTable.setModel(ViewManager.getInstance().getLecturerTimetableTabTable());
 			LehrstuhlStundenplanTable.getColumnModel().getColumn(0).setResizable(false);
 			LehrstuhlStundenplanTable.getColumnModel().getColumn(0).setPreferredWidth(50);
 			LehrstuhlStundenplanTable.getColumnModel().getColumn(0).setMinWidth(50);
