@@ -24,7 +24,6 @@ import de.sfgmbh.comlayer.organisation.views.ProfessorshipEditFrame;
 import de.sfgmbh.comlayer.organisation.views.ProfessorshipFrame;
 import de.sfgmbh.comlayer.organisation.views.ProfessorshipTab;
 import de.sfgmbh.comlayer.organisation.views.RequestTab;
-import de.sfgmbh.comlayer.organisation.views.RoomEditFrame;
 import de.sfgmbh.comlayer.organisation.views.RoomFrame;
 import de.sfgmbh.comlayer.organisation.views.RoomTab;
 import de.sfgmbh.comlayer.organisation.views.RoomtableTab;
