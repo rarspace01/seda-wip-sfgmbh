@@ -27,6 +27,10 @@ public class RepositoryRoom implements IntfAppObservable, IntfDataObserver {
 		return DataModel.getInstance().dataHandlerRoom.getAll();
 	}
 	
+	public Room getRoomById(int roomId) {
+		return DataModel.getInstance().dataHandlerRoom.get(roomId);
+	}
+	
 	public void save(Room room){
 		DataModel.getInstance().dataHandlerRoom.save(room);
 		this.change();

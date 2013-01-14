@@ -3,6 +3,8 @@ package de.sfgmbh.comlayer.organisation.controller;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import de.sfgmbh.applayer.core.model.AppModel;
+import de.sfgmbh.applayer.core.model.Room;
 import de.sfgmbh.comlayer.core.views.InfoDialog;
 import de.sfgmbh.init.Bootstrap;
 
@@ -29,10 +31,27 @@ public class RoomTabBtnsControl implements ActionListener {
 
 		// Raum bearbeiten Button is pressed
 		if (this.navAction.equals("edit")) {
-			Bootstrap.serviceManager.getOrgaRoomEditFrame().setVisible(true);
-			// this.getInfoWindow("<b>Fehlermeldung:</b><br> Sie haben keinen Raum selektiert!<br> Wenn Sie keine Fehlermeldung erhalten gelangen Sie"
-			// +
-			// " sofort zu einer Bearbeiten-Maske, welche allerdings noch nicht implementiert ist.").setVisible(true);
+
+			//get selected Room from DB			
+			Room selectedRoom=AppModel.getInstance().repositoryRoom.getRoomById(Bootstrap.serviceManager.getOrgaRoomTab().getRaumverwaltungTable().getSelectedRow());
+
+			//load values from room object to gui
+			Bootstrap.serviceManager.getOrgaRoomFrame().getTxtroomid().setText(""+selectedRoom.getRoomId_());
+			
+			Bootstrap.serviceManager.getOrgaRoomFrame().getTxtRoomNumber().setText(selectedRoom.getRoomNumber_());
+			Bootstrap.serviceManager.getOrgaRoomFrame().getTxtLevel().setText(selectedRoom.getLevel_());
+			Bootstrap.serviceManager.getOrgaRoomFrame().getTxtSeats().setText(""+selectedRoom.getSeats_());
+			Bootstrap.serviceManager.getOrgaRoomFrame().getTxtPcSeats().setText(""+selectedRoom.getPcseats_());
+			Bootstrap.serviceManager.getOrgaRoomFrame().getTxtBeamer().setText(""+selectedRoom.getBeamer_());
+			Bootstrap.serviceManager.getOrgaRoomFrame().getTxtChalkboards().setText(""+selectedRoom.getChalkboards_());
+			Bootstrap.serviceManager.getOrgaRoomFrame().getTxtOverheads().setText(""+selectedRoom.getOverheads_());
+			Bootstrap.serviceManager.getOrgaRoomFrame().getTxtVisualizer().setText(""+selectedRoom.getVisualizer_());
+			Bootstrap.serviceManager.getOrgaRoomFrame().getTxtWhiteboards().setText(""+selectedRoom.getWhiteboards_());
+			
+			
+			//set Room Edit Frame visible
+			Bootstrap.serviceManager.getOrgaRoomFrame().setVisible(true);
+			
 		}
 
 		// Raum l�schen Button is pressed
