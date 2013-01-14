@@ -111,30 +111,30 @@ public class DataHandlerUser implements IntfDataUser, IntfDataObservable, IntfDa
 				}
 				
 				if (filter.containsKey("user") && filter.get("user") != null && filter.get("user") != "" && filter.get("user") != "<alle>") {
-					filterWithChairDm.pstmt.setString(1, "%" + filter.get("user") + "%");
-					filterWithChairDm.pstmt.setString(2, "%" + filter.get("user") + "%");
-					filterWithChairDm.pstmt.setString(3, "%" + filter.get("user") + "%");
+					filterWithChairDm.getPreparedStatement().setString(1, "%" + filter.get("user") + "%");
+					filterWithChairDm.getPreparedStatement().setString(2, "%" + filter.get("user") + "%");
+					filterWithChairDm.getPreparedStatement().setString(3, "%" + filter.get("user") + "%");
 				} else {
-					filterWithChairDm.pstmt.setString(1, "%");
-					filterWithChairDm.pstmt.setString(2, "%");
-					filterWithChairDm.pstmt.setString(3, "%");
+					filterWithChairDm.getPreparedStatement().setString(1, "%");
+					filterWithChairDm.getPreparedStatement().setString(2, "%");
+					filterWithChairDm.getPreparedStatement().setString(3, "%");
 				}
 				if (filter.containsKey("chair") && filter.get("chair") != null && filter.get("chair") != "" && filter.get("chair") != "<alle>") {
-					filterWithChairDm.pstmt.setString(4, "%" + filter.get("chair") + "%");
-					filterWithChairDm.pstmt.setString(5, "%" + filter.get("chair") + "%");
+					filterWithChairDm.getPreparedStatement().setString(4, "%" + filter.get("chair") + "%");
+					filterWithChairDm.getPreparedStatement().setString(5, "%" + filter.get("chair") + "%");
 				} else {
-					filterWithChairDm.pstmt.setString(4, "%");
-					filterWithChairDm.pstmt.setString(5, "%");
+					filterWithChairDm.getPreparedStatement().setString(4, "%");
+					filterWithChairDm.getPreparedStatement().setString(5, "%");
 				}
 				if ( filter.containsKey("userclass") && filter.get("userclass") != null && filter.get("userclass") != "" && filter.get("userclass") != "<alle>") {
-					filterWithChairDm.pstmt.setString(6, "%" + filter.get("userclass") + "%");
+					filterWithChairDm.getPreparedStatement().setString(6, "%" + filter.get("userclass") + "%");
 				} else {
-					filterWithChairDm.pstmt.setString(6, "%");
+					filterWithChairDm.getPreparedStatement().setString(6, "%");
 				}
 				if (filter.containsKey("email") && filter.get("email") != null && filter.get("email") != "" && filter.get("email") != "<alle>") {
-					filterWithChairDm.pstmt.setString(7, "%" + filter.get("email") + "%");
+					filterWithChairDm.getPreparedStatement().setString(7, "%" + filter.get("email") + "%");
 				} else {
-					filterWithChairDm.pstmt.setString(7, "%");
+					filterWithChairDm.getPreparedStatement().setString(7, "%");
 				}
 
 				rs = filterWithChairDm.selectPstmt();
@@ -154,23 +154,23 @@ public class DataHandlerUser implements IntfDataUser, IntfDataObservable, IntfDa
 				}
 				
 				if (filter.containsKey("user") && filter.get("user") != null && filter.get("user") != "" && filter.get("user") != "<alle>") {
-					filterDm.pstmt.setString(1, "%" + filter.get("user") + "%");
-					filterDm.pstmt.setString(2, "%" + filter.get("user") + "%");
-					filterDm.pstmt.setString(3, "%" + filter.get("user") + "%");
+					filterDm.getPreparedStatement().setString(1, "%" + filter.get("user") + "%");
+					filterDm.getPreparedStatement().setString(2, "%" + filter.get("user") + "%");
+					filterDm.getPreparedStatement().setString(3, "%" + filter.get("user") + "%");
 				} else {
-					filterDm.pstmt.setString(1, "%");
-					filterDm.pstmt.setString(2, "%");
-					filterDm.pstmt.setString(3, "%");
+					filterDm.getPreparedStatement().setString(1, "%");
+					filterDm.getPreparedStatement().setString(2, "%");
+					filterDm.getPreparedStatement().setString(3, "%");
 				}
 				if ( filter.containsKey("userclass") && filter.get("userclass") != null && filter.get("userclass") != "" && filter.get("userclass") != "<alle>") {
-					filterDm.pstmt.setString(4, "%" + filter.get("userclass") + "%");
+					filterDm.getPreparedStatement().setString(4, "%" + filter.get("userclass") + "%");
 				} else {
-					filterDm.pstmt.setString(4, "%");
+					filterDm.getPreparedStatement().setString(4, "%");
 				}
 				if (filter.containsKey("email") && filter.get("email") != null && filter.get("email") != "" && filter.get("email") != "<alle>") {
-					filterDm.pstmt.setString(5, "%" + filter.get("email") + "%");
+					filterDm.getPreparedStatement().setString(5, "%" + filter.get("email") + "%");
 				} else {
-					filterDm.pstmt.setString(5, "%");
+					filterDm.getPreparedStatement().setString(5, "%");
 				}
 				
 				rs = filterDm.selectPstmt();
@@ -198,7 +198,7 @@ public class DataHandlerUser implements IntfDataUser, IntfDataObservable, IntfDa
 															"ON public.chair.chairid = public.lecturer.chairid " +
 															"ON public.user.userid = public.lecturer.userid " +
 														"WHERE public.user.userid = ?");
-			DataManagerPostgreSql.getInstance().pstmt.setInt(1, id);
+			DataManagerPostgreSql.getInstance().getPreparedStatement().setInt(1, id);
 			ResultSet rs = DataManagerPostgreSql.getInstance().selectPstmt();
 			while (rs.next()) {
 				return this.makeUser(rs);
@@ -223,7 +223,7 @@ public class DataHandlerUser implements IntfDataUser, IntfDataObservable, IntfDa
 															"ON public.chair.chairid = public.lecturer.chairid " +
 															"ON public.user.userid = public.lecturer.userid " +
 														"WHERE public.user.login = ?");
-			DataManagerPostgreSql.getInstance().pstmt.setString(1, login);
+			DataManagerPostgreSql.getInstance().getPreparedStatement().setString(1, login);
 			ResultSet rs = DataManagerPostgreSql.getInstance().selectPstmt();
 			while (rs.next()) {
 				return this.makeUser(rs);
@@ -266,23 +266,23 @@ public class DataHandlerUser implements IntfDataUser, IntfDataObservable, IntfDa
 					dm.prepare("INSERT INTO public.user"
 							+ "(login, pass, salt, mail, class, fname, lname, lastlogin, disabled)"
 							+ "VALUES (?,?,?,?,?,?,?,?,?)");
-					dm.pstmt.setString(1, user.getLogin_());
-					dm.pstmt.setString(2, user.getPass_());
-					dm.pstmt.setString(3, user.getSalt_());
-					dm.pstmt.setString(4, user.getMail_());
-					dm.pstmt.setString(5, user.getClass_());
-					dm.pstmt.setString(6, user.getfName_());
-					dm.pstmt.setString(7, user.getlName_());
-					dm.pstmt.setLong(8, user.getLastLogin_());
-					dm.pstmt.setBoolean(9, user.isDisabled_());
+					dm.getPreparedStatement().setString(1, user.getLogin_());
+					dm.getPreparedStatement().setString(2, user.getPass_());
+					dm.getPreparedStatement().setString(3, user.getSalt_());
+					dm.getPreparedStatement().setString(4, user.getMail_());
+					dm.getPreparedStatement().setString(5, user.getClass_());
+					dm.getPreparedStatement().setString(6, user.getfName_());
+					dm.getPreparedStatement().setString(7, user.getlName_());
+					dm.getPreparedStatement().setLong(8, user.getLastLogin_());
+					dm.getPreparedStatement().setBoolean(9, user.isDisabled_());
 					dm.executePstmt();
 					if (user.getChair_() != null) {
 						User newUser = this.getByLogin(user.getLogin_());
 						dm.prepare("INSERT INTO public.lecturer"
 								+ "(userid, chairid)"
 								+ "VALUES (?,?)");
-						dm.pstmt.setInt(1, newUser.getUserId_());
-						dm.pstmt.setInt(2, user.getChair_().getChairId_());
+						dm.getPreparedStatement().setInt(1, newUser.getUserId_());
+						dm.getPreparedStatement().setInt(2, user.getChair_().getChairId_());
 						dm.executePstmt();
 					}
 					this.update();
@@ -302,16 +302,16 @@ public class DataHandlerUser implements IntfDataUser, IntfDataObservable, IntfDa
 				dm.prepare("UPDATE public.user SET "
 						+ "login = ?, pass = ?, salt = ?, mail = ?, class = ?, fname = ?, lname = ?, lastlogin = ?, disabled = ?"
 						+ "WHERE userid = ?");
-				dm.pstmt.setString(1, user.getLogin_());
-				dm.pstmt.setString(2, user.getPass_());
-				dm.pstmt.setString(3, user.getSalt_());
-				dm.pstmt.setString(4, user.getMail_());
-				dm.pstmt.setString(5, user.getClass_());
-				dm.pstmt.setString(6, user.getfName_());
-				dm.pstmt.setString(7, user.getlName_());
-				dm.pstmt.setLong(8, user.getLastLogin_());
-				dm.pstmt.setBoolean(9, user.isDisabled_());
-				dm.pstmt.setInt(10, user.getUserId_());
+				dm.getPreparedStatement().setString(1, user.getLogin_());
+				dm.getPreparedStatement().setString(2, user.getPass_());
+				dm.getPreparedStatement().setString(3, user.getSalt_());
+				dm.getPreparedStatement().setString(4, user.getMail_());
+				dm.getPreparedStatement().setString(5, user.getClass_());
+				dm.getPreparedStatement().setString(6, user.getfName_());
+				dm.getPreparedStatement().setString(7, user.getlName_());
+				dm.getPreparedStatement().setLong(8, user.getLastLogin_());
+				dm.getPreparedStatement().setBoolean(9, user.isDisabled_());
+				dm.getPreparedStatement().setInt(10, user.getUserId_());
 				dm.executePstmt();
 				this.update();
 				return true;

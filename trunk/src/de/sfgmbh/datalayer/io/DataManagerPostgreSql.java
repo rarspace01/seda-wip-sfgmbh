@@ -22,7 +22,7 @@ public class DataManagerPostgreSql {
 
 	private java.sql.Connection conn;
 	private Statement stmt;
-	public PreparedStatement pstmt;
+	private PreparedStatement pstmt;
 
 	public DataManagerPostgreSql() {
 		try {
@@ -54,6 +54,13 @@ public class DataManagerPostgreSql {
 
 	public void dispose() {
 		uniqueInstance_ = null;
+	}
+	
+	/**
+	 * @return the preparedStatement
+	 */
+	public PreparedStatement getPreparedStatement() {
+		return pstmt;
 	}
 
 	/**
@@ -134,10 +141,10 @@ public class DataManagerPostgreSql {
 		try {
 			long a, b, diff;
 			a = (long) System.currentTimeMillis();
-			rs = this.pstmt.executeQuery();
+			rs = this.getPreparedStatement().executeQuery();
 			b = (long) System.currentTimeMillis();
 			diff = b - a;
-			System.out.println(diff + "ms for SQL PS select: [" + this.pstmt.toString() +"]");
+			System.out.println(diff + "ms for SQL PS select: [" + this.getPreparedStatement().toString() +"]");
 		} catch (SQLException e) {
 			e.printStackTrace();
 			DataModel.getInstance().getExceptionsHandler().setNewException(("Es ist ein SQL-Fehler (DataManagerPostgreSql-06) aufgetreten:<br /><br />" + e.toString()), "Datenbank-Fehler!");
@@ -153,10 +160,10 @@ public class DataManagerPostgreSql {
 		try {
 			long a, b, diff;
 			a = (long) System.currentTimeMillis();
-			i = this.pstmt.executeUpdate();
+			i = this.getPreparedStatement().executeUpdate();
 			b = (long) System.currentTimeMillis();
 			diff = b - a;
-			System.out.println(diff + "ms for SQL PS execute: [" + this.pstmt.toString() +"]");
+			System.out.println(diff + "ms for SQL PS execute: [" + this.getPreparedStatement().toString() +"]");
 		} catch (SQLException e) {
 			e.printStackTrace();
 			DataModel.getInstance().getExceptionsHandler().setNewException(("Es ist ein SQL-Fehler (DataManagerPostgreSql-07) aufgetreten:<br /><br />" + e.toString()), "Datenbank-Fehler!");
