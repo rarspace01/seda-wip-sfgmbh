@@ -16,7 +16,7 @@ public class RepositoryChair implements IntfAppObservable, IntfDataObserver {
 	 * Register this chair repository as observer in the data model
 	 */
 	public RepositoryChair() {
-		DataModel.getInstance().dataHandlerChair.register(this);
+		DataModel.getInstance().getDataHandlerChair().register(this);
 	}
 	
 	/**
@@ -24,7 +24,7 @@ public class RepositoryChair implements IntfAppObservable, IntfDataObserver {
 	 * @return a list of all chairs
 	 */
 	public List<Chair> getAll() {
-		return DataModel.getInstance().dataHandlerChair.getAll();
+		return DataModel.getInstance().getDataHandlerChair().getAll();
 	}
 	
 	/**
@@ -33,7 +33,7 @@ public class RepositoryChair implements IntfAppObservable, IntfDataObserver {
 	 * @return a chair if the submitted acronym can be associated with one, otherwise returns null
 	 */
 	public Chair getForAcronym(String acronym) {
-		return DataModel.getInstance().dataHandlerChair.getForAcronym(acronym);
+		return DataModel.getInstance().getDataHandlerChair().getForAcronym(acronym);
 	}
 
 	@Override

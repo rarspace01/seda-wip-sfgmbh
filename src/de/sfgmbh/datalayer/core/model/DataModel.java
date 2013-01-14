@@ -14,12 +14,12 @@ public class DataModel implements IntfAppObservable {
 	
 	private static DataModel uniqueInstance_ = new DataModel(); // declare on first access through JVM (thread-safe)
 	private ArrayList<Object> observer_ = new ArrayList<Object>();
-	public DataExceptions dataExceptions = new DataExceptions();
-	public DataHandlerChair dataHandlerChair = new DataHandlerChair();
-	public DataHandlerUser dataHandlerUser = new DataHandlerUser();
-	public DataHandlerCourse dataHandlerCourse = new DataHandlerCourse();
-	public DataHandlerRoom dataHandlerRoom = new DataHandlerRoom();
-	public DataHandlerRoomAllocation dataHandlerRoomAllocation = new DataHandlerRoomAllocation();
+	private DataExceptions exceptionsHandler_ = new DataExceptions();
+	private DataHandlerChair dataHandlerChair_ = new DataHandlerChair();
+	private DataHandlerUser dataHandlerUser_ = new DataHandlerUser();
+	private DataHandlerCourse dataHandlerCourse_ = new DataHandlerCourse();
+	private DataHandlerRoom dataHandlerRoom_ = new DataHandlerRoom();
+	private DataHandlerRoomAllocation dataHandlerRoomAllocation_ = new DataHandlerRoomAllocation();
 	
 	private DataModel() {} // class may only call itself via declaration
 	
@@ -31,6 +31,50 @@ public class DataModel implements IntfAppObservable {
 		return uniqueInstance_;
 	}
 	
+	
+	
+	/**
+	 * @return the exceptionsHandler
+	 */
+	public DataExceptions getExceptionsHandler() {
+		return exceptionsHandler_;
+	}
+
+	/**
+	 * @return the dataHandlerChair
+	 */
+	public DataHandlerChair getDataHandlerChair() {
+		return dataHandlerChair_;
+	}
+
+	/**
+	 * @return the dataHandlerUser
+	 */
+	public DataHandlerUser getDataHandlerUser() {
+		return dataHandlerUser_;
+	}
+
+	/**
+	 * @return the dataHandlerCourse
+	 */
+	public DataHandlerCourse getDataHandlerCourse() {
+		return dataHandlerCourse_;
+	}
+
+	/**
+	 * @return the dataHandlerRoom
+	 */
+	public DataHandlerRoom getDataHandlerRoom() {
+		return dataHandlerRoom_;
+	}
+
+	/**
+	 * @return the dataHandlerRoomAllocation
+	 */
+	public DataHandlerRoomAllocation getDataHandlerRoomAllocation() {
+		return dataHandlerRoomAllocation_;
+	}
+
 	/**
 	 * 
 	 */
@@ -52,7 +96,7 @@ public class DataModel implements IntfAppObservable {
 		if (observer instanceof IntfDataObserver) {
 			observer_.add(observer);
 		} else {
-			this.dataExceptions.setNewException("Das Objekt implementiert nicht das Observer-Interface und kann daher nicht hinzugef�gt werden!", "Fehler!");
+			this.exceptionsHandler_.setNewException("Das Objekt implementiert nicht das Observer-Interface und kann daher nicht hinzugef�gt werden!", "Fehler!");
 		}
 		
 	}

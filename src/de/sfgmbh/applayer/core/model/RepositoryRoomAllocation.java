@@ -17,7 +17,7 @@ public class RepositoryRoomAllocation implements IntfAppObservable, IntfDataObse
 	 * Register this room allocation repository as observer in the data model
 	 */
 	public RepositoryRoomAllocation() {
-		DataModel.getInstance().dataHandlerRoomAllocation.register(this);
+		DataModel.getInstance().getDataHandlerRoomAllocation().register(this);
 	}
 	
 	/**
@@ -25,7 +25,7 @@ public class RepositoryRoomAllocation implements IntfAppObservable, IntfDataObse
 	 * @return a list of all courses
 	 */
 	public List<RoomAllocation> getAll() {
-		return DataModel.getInstance().dataHandlerRoomAllocation.getAll();
+		return DataModel.getInstance().getDataHandlerRoomAllocation().getAll();
 	}
 	
 	/**
@@ -33,7 +33,7 @@ public class RepositoryRoomAllocation implements IntfAppObservable, IntfDataObse
 	 * @return a list of filtered courses
 	 */
 	public List<RoomAllocation> getByFilter(HashMap<String, String> filter) {
-		return DataModel.getInstance().dataHandlerRoomAllocation.getByFilter(filter);
+		return DataModel.getInstance().getDataHandlerRoomAllocation().getByFilter(filter);
 	}
 
 	/**
@@ -42,7 +42,7 @@ public class RepositoryRoomAllocation implements IntfAppObservable, IntfDataObse
 	 * @return a list of all conflicting room allocations
 	 */
 	public List<RoomAllocation> getConflictingAllocation(RoomAllocation ra) {
-		return DataModel.getInstance().dataHandlerRoomAllocation.getConflictingAllocation(ra);
+		return DataModel.getInstance().getDataHandlerRoomAllocation().getConflictingAllocation(ra);
 	}
 	
 	/**
@@ -51,14 +51,14 @@ public class RepositoryRoomAllocation implements IntfAppObservable, IntfDataObse
 	 * @return a room allocation by its id
 	 */
 	public RoomAllocation get(int id) {
-		return DataModel.getInstance().dataHandlerRoomAllocation.get(id);
+		return DataModel.getInstance().getDataHandlerRoomAllocation().get(id);
 	}
 	
 	/**
 	 * Save this user object in the DB (this will update a database entry if there is already one and create one if there is none)
 	 */
 	public void save(RoomAllocation ra) {
-		DataModel.getInstance().dataHandlerRoomAllocation.save(ra);
+		DataModel.getInstance().getDataHandlerRoomAllocation().save(ra);
 		return;
 	}
 

@@ -53,10 +53,10 @@ public class ViewManager {
 	/**
 	* Module: Core (global area - all other modules have dependencies to this one)
 	*/
-	protected BaseTab baseTab;
-	protected InfoDialog infoDialog;
-	protected BaseTableMain baseTableMain;
-	protected RoomTableMain roomTableMain;
+	private BaseTab baseTab;
+	private InfoDialog infoDialog;
+	private BaseTableMain baseTableMain;
+	private RoomTableMain roomTableMain;
 	
 	public BaseTab getCoreBaseTab() {
 		if (this.baseTab == null) {
@@ -87,7 +87,7 @@ public class ViewManager {
 	/**
 	* Module: Timetable
 	*/
-	protected PublicTimetableTab publicTimetableTab;
+	private PublicTimetableTab publicTimetableTab;
 	
 	public PublicTimetableTab getPublicTimetableTab() {
 		if (this.publicTimetableTab == null) {
@@ -99,23 +99,23 @@ public class ViewManager {
 	/**
 	* Module: Organization
 	*/
-	protected RoomTab roomTab;
-	protected UserTab userTab;
-	protected ProfessorshipTab professorshipTab;
-	protected RequestTab requestTab;
-	protected RoomFrame roomFrame;
-	protected RoomEditFrame roomEditFrame;
-	protected UserCreateDialog userFrame;
-	protected UserEditFrame userEditFrame;
-	protected ProfessorshipFrame professorshipFrame;
-	protected ProfessorshipEditFrame professorshipEditFrame;
-	protected CounterproposalFrame counterproposalFrame;
-	protected RequestTabTable requestTabTable;
-	protected UserTabTable userTabTable;
-	protected RoomTabTable roomTabTable;
-	protected ProfessorshipTabTable professorshipTabTable;
-	protected RoomtableTab roomtableTab;
-	protected RoomtableTable roomtableTable;
+	private RoomTab roomTab;
+	private UserTab userTab;
+	private ProfessorshipTab professorshipTab;
+	private RequestTab requestTab;
+	private RoomFrame roomFrame;
+	private RoomEditFrame roomEditFrame;
+	private UserCreateDialog userFrame;
+	private UserEditFrame userEditFrame;
+	private ProfessorshipFrame professorshipFrame;
+	private ProfessorshipEditFrame professorshipEditFrame;
+	private CounterproposalFrame counterproposalFrame;
+	private RequestTabTable requestTabTable;
+	private UserTabTable userTabTable;
+	private RoomTabTable roomTabTable;
+	private ProfessorshipTabTable professorshipTabTable;
+	private RoomtableTab roomtableTab;
+	private RoomtableTable roomtableTable;
 	
 	public RoomtableTable getOrgaRoomtableTableModel() {
 		if (this.roomtableTable == null) {
@@ -223,16 +223,16 @@ public class ViewManager {
 	/**
 	* Module: Lecturer
 	*/
-	protected StartTab startTab;
-	protected StartTabTableTop startTabTableTop;
-	protected StartTabTableBottom startTabTableBottom;
-	protected CourseFrame courseFrame;
-	protected CourseEditFrame courseEditFrame;
-	protected RoomRequestFrame roomRquestFrame;
-	protected TimetableTabTable timetableTabTable;
-	protected TimetableTab timetableTab;
-	protected ProfessorshipTimetableTabTable professorshipTimetableTabTable;
-	protected ProfessorshipTimetableTab professorshipTimetableTab;
+	private StartTab startTab;
+	private StartTabTableTop startTabTableTop;
+	private StartTabTableBottom startTabTableBottom;
+	private CourseFrame courseFrame;
+	private CourseEditFrame courseEditFrame;
+	private RoomRequestFrame roomRquestFrame;
+	private TimetableTabTable timetableTabTable;
+	private TimetableTab timetableTab;
+	private ProfessorshipTimetableTabTable professorshipTimetableTabTable;
+	private ProfessorshipTimetableTab professorshipTimetableTab;
 	
 	public StartTab getLecturerStartTab() {
 		if (this.startTab == null) {
@@ -298,7 +298,7 @@ public class ViewManager {
 	* Module: Student Profile - will probably not be implemented in the first version of the program
 	*/
 	/**
-	protected StudProfil studProfilGui;
+	private StudProfil studProfilGui;
 	
 	public StudProfil getStudProfil() {
 		if (this.studProfilGui == null) {
