@@ -18,4 +18,8 @@ public class CtrlRoom {
 	}
 	
 	
+	public void delete(Room room){
+		//TODO implement
+	}
+	
 }

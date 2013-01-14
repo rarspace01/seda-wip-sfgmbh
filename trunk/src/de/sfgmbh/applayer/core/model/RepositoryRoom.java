@@ -36,6 +36,11 @@ public class RepositoryRoom implements IntfAppObservable, IntfDataObserver {
 		this.change();
 	}
 	
+	public void delete(Room room){
+		DataModel.getInstance().getDataHandlerRoom().delete(room);
+		this.change();
+	}
+	
 	@Override
 	public void change() {
 		this.update();
