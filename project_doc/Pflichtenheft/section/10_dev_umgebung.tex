@@ -1,0 +1,140 @@
+\section{Entwicklungsumgebung}
+\label{sec:Entwicklungsumgebung}
+
+\subsection*{(Denis Hamann)}
+
+Im Folgenden wird die Umgebung beschrieben, in der die spätere Software entwickelt wird.
+Die Entwicklungsumgebung umfasst Anforderungen an Softwarewerkzeuge, die zur Entwicklung verwendete Hardware, organisatorische
+Randbedingungen. Des weiteren wird auf Schnittstellen der Entwicklungsumgebung eingegangen.
+
+\subsection{Software}
+\label{subsec:devsoftware}
+
+Die Software beschreibt die eingesetzte Software-Umgebung um eine effiziente und effektive Erstellung des Programms sicherzustellen.\\
+
+\begin{tabular}{p{1.5cm}p{14.5cm}}
+
+	 /EU10/	&  Als Betriebssystem kommt Windows 7 (Professional | Ultimate, x64 - 64bit) zum Einsatz. Dieses hat die neusten Updates vorzuweisen und eine gängige aktuelle Antiviren Lösung installiert zu haben.\\[0.25cm]
+
+\end{tabular}
+
+\begin{tabular}{p{1.5cm}p{14.5cm}}
+
+	 /EU20/	&  Als Laufzeitumgebung wird auf die Java Virtual Machine Version 7 von Oracle gesetzt. Hier kommt das Software Development Kit (SDK) in entsprechender Version zum Einsatz.
+Zum Testen des Programms ist das entsprechende Java Runtime Environment in Version 7 vorzuhalten. Es muss sichergestellt werden, dass die entsprechenden Klassenpfade, sowie Systempfade gesetzt sind, sodass der Prozess java als auch javaw im CLI bekannt ist. Darüber hinaus müssen .jar-Dateien mit der JRE verknüpft sein um einen Start der Anwendung per Doppelklick zu gewährleisten. Entsprechende Einstellungen sind notfalls in der Registry vorzunehmen [vgl. Kapitel \ref{subsec:jarreg}].\\[0.25cm]
+
+\end{tabular}
+
+\begin{tabular}{p{1.5cm}p{14.5cm}}
+
+	 /EU30/	&  Als IDE kommt die Eclipse Plattform mit den entsprechenden Java Entwicklungs-Komponenten zum Einsatz. Installierte Addons sind der 'WindowBuilder Pro' [vgl. \url{http://www.eclipse.org/windowbuilder/download.php}] sowie optional das Subclipse Plugin für das Versionsverwaltungstool Subversion.\\[0.25cm]
+
+\end{tabular}
+
+\begin{tabular}{p{1.5cm}p{14.5cm}}
+
+	 /EU40/	&  Für die Versionsverwaltung wird Subversion in der neusten Version (1.7.7) eingesetzt. Auf den einzelnen Entwicklern PCs kommt das Tool Tortoise SVN [\url{http://tortoisesvn.net/downloads.html}]
+Während der Entwicklung wird ein SVN-Server von Google verwendet [\url{http://code.google.com/p/seda-wip-sfgmbh/}]. Die finale Abgabe des Quellcodes erfolgt über das vom Auftraggeber zur Verfügung gestellte-SVN Repository.\footnote{Ein SVN external Attribut wurde in diesem bereits eingerichtet.}\\[0.25cm]
+
+\end{tabular}
+
+\begin{tabular}{p{1.5cm}p{14.5cm}}
+
+	 /EU41/	&  Zum Erstellen der Dokumentation/Benutzerhandbücher wird auf das textverarbeitungsprogramm LaTeX gesetzt.\\[0.25cm]
+
+\end{tabular}
+
+\begin{tabular}{p{1.5cm}p{14.5cm}}
+
+	 /EU42/	&  Für die konkrete Projektplanung kommt MS Project zum Einsatz.\\[0.25cm]
+
+\end{tabular}
+
+\begin{tabular}{p{1.5cm}p{14.5cm}}
+
+	 /EU50/	&  Für den Dateiaustausch innerhalb des Entwicklungsteams wird auf den Cloud-Dienst Dropbox gesetzt.
+Für die interne Kommunikation wird auf Skype gesetzt, da hier bereits entsprechende Konten vorhanden sind. Hangouts von Google+ kommen nicht in Frage, da entsprechende Accounts vorausgesetzt und die Videoübertragungsfunktion primär nicht benötigt werden.\\[0.25cm]
+
+\end{tabular}
+
+
+
+\begin{tabular}{p{1.5cm}p{14.5cm}}
+
+	 /EU60/	&  Analog zur Produktumgebung wird die gleiche Datenbank verwendet, welche in Verbindung mit der Software eingesetzt wird, PostgreSQL in Version 9.2.1.
+Es muss sichergestellt werden, dass die betreffenden PCs welche die neue UnivIS Software verwenden sollen sowie die Entwickler-PCs für die Datenbank freigeschaltet sind (Freigabe der jeweiligen IPs).\\[0.25cm]
+
+\end{tabular}
+
+\begin{tabular}{p{1.5cm}p{14.5cm}}
+
+	 /EU70/	&  Zusätzlich muss sichergestellt werden, dass entsprechende Netzwerk-Einstellungen (Firewalls, Router) eine ordnungsgemäße Verbindung zwischen Anwendungs-PC, Entwicklungs-PCs und Datenbank erlauben.\\[0.25cm]
+
+\end{tabular}
+
+
+\begin{tabular}{p{1.5cm}p{14.5cm}}
+
+	 /EU80/	&  Zur Entwicklung der in Kapitel \ref{subsec:software} beschriebenen Oberfläche des Programm wird wie bereits angedeutet auf Swing gesetzt. Um die GUI schneller zu erstellen und testen wird das Plugin 'WindowBuilder Pro' der Eclipse Foundation verwendet.
+Das Programm wird auf die Swing-Komponenten von Java setzten, daher ist es notwendig sicher zustellen, dass eine entsprechende Shell vorhanden ist.
+Als Oberfläche wird auf die Standard Fensteroberfläche von Windows 7 (shell: explorer.exe) gesetzt. Kiosk-Systeme sind als GUI nicht vorgesehen. \\[0.25cm]
+
+\end{tabular}
+
+
+\subsubsection{Programmierstil}
+
+\begin{tabular}{p{1.5cm}p{14.5cm}}
+
+	 /EU90/	&  Bei der Programmierung ist darauf zu achten, dass die Java Code Conventions eingehalten werden. [\url{http://www.oracle.com/technetwork/java/codeconventions-150003.pdf}].
+Zusätzlich sind alle Klassen entsprechend Javadoc konform zu kommentieren um die Dokumentation entsprechend automatisiert per Ant-Skript durchzuführen.\\[0.25cm]
+
+\end{tabular}
+
+
+\subsection{Hardware}
+\label{subsec:devhardware}
+
+\begin{tabular}{p{1.5cm}p{14.5cm}}
+
+	 /EU100/ & Die Software soll auf IBM-Kompatiblen Computern der Intel x86 Architektur ausgeführt werden.
+Um sicher zu gehen, dass die Anwendung ausreichend schnell ausgeführt wird, werden nachfolgende Systemvoraussetzungen empfohlen:\\
+
+	&CPU: 1Ghz\\
+	&RAM: 1GB\\
+	&HDD: 100MB\\
+	&Peripherie: Maus \& Tastatur\\
+	&\\
+	&Zusätzlich muss sichergestellt werden, dass ein entsprechender Netzwerkanschluss für die Verbindung zum Datenbankserver vorhanden ist.\\[0.25cm]
+
+\end{tabular}
+
+\subsection{Orgware}
+\label{subsec:devorgware}
+
+\begin{tabular}{p{1.5cm}p{14.5cm}}
+
+	 /EU110/	&  Die Voraussetzungen für die Entwicklung wurden bereits in Kapitel \ref{subsec:orgware} beschrieben.
+Darüber hinaus muss sichergestellt werden das ein ständiger Dialog zwischen Auftragsnehmer und Auftragsgeber stattfindet um eventuelle Detailfragen zu klären und entsprechend das Pflichtenheft zu korrigieren.\\[0.25cm]
+
+\end{tabular}
+
+\begin{tabular}{p{1.5cm}p{14.5cm}}
+
+	 /EU120/	&  Des weiteren wird bei der Entwicklung auf das Wasserfallmodell zurückgegriffen. Hierfür verfügen alle Entwickler über entsprechende Kenntnisse. Ablauf und Ergebnisse der Phasen sind Ihnen bekannt. Alle Entwickler weisen entsprechende Kenntnisse über die Entwicklungssoftware und Hardware auf. Sofern Wissenslücken vorhanden sind, werden diese vor Beginn des Projektes entsprechend kompensiert.\\[0.25cm]
+
+\end{tabular}
+
+
+
+
+
+\subsection{Produkt-Schnittstellen}
+
+\begin{tabular}{p{1.5cm}p{14.5cm}}
+
+	 /EU130/	&  Für die Entwicklung der in Kapitel \ref{subsec:productinterface} beschriebenen Datenbankanbindung wird der entsprechende JDBC-Treiber für PostgreSQL verwendet [http://jdbc.postgresql.org/download.html].
+Da die Interaktion zwischen den einzelnen Systemen durch die Datenbank stattfindet und keine spezielle Schnittstelle zwischen der geplanten Software und dem angekündigten Webinterface, sowie der mobilen Nutzung besteht, muss keine zusätzliche Schnittstelle implementiert werden.\\[0.25cm]
+
+\end{tabular}
+

@@ -1,0 +1,229 @@
+%-------------------------------
+\section{Produktfunktionen}
+\label{sec:Produktfunktionen}
+%-------------------------------
+
+\subsection*{(Hannes Stadler)}
+
+%------------
+\subsection{Prozesse mit Dateneingabe}
+%------------
+
+\begin{tabular}{p{1.5cm}p{14.5cm}}
+
+
+	 /F01/	& \textbf{Prozess mit Dateneingabe:} Benutzer-Authentifizierung \\
+				& \textbf{Akteur:} Alle \\
+				& \textbf{Beschreibung:} Alle Benutzer des Systems haben die Möglichkeit sich mittels einer Login-Funktion am System anzumelden. Hierdurch werden Sie einer der möglichen Benutzergruppen zugeordnet. Nicht angemeldete Benutzer gelten als Mitglieder der Benutzergruppe "`Studenten"'. \\
+				& \textbf{Eingabevalidierung:} Nutzer müssen eine gültige Nutzerkennung mit dazu passendem Passwort eingeben. Diese werden von der Verwaltung festgelegt. Es wäre wünschenswert, wenn Studenten sich in naher Zukunft auch am System anmelden könnten [siehe /FW61/] und hierzu ihre übliche Hochschulkennung (baXXXXXX) und Passwort verwenden könnten. Im Falle von falschen Zugangsdaten erhält der Benutzer eine Meldung, die ihn über den Fehlversuch informiert. Es gibt nur eine Meldung, sodass für ihn nicht ersichtlich ist, ob das Passwort oder die Nutzerkennung ungültig ist.\\[0.25cm]
+
+\end{tabular}
+
+
+\begin{tabular}{p{1.5cm}p{14.5cm}}
+		
+	 /F10/	& \textbf{Prozess mit Dateneingabe:} Verwaltung von Raumdaten \\
+				& \textbf{Akteur:} Verwaltung \\
+				& \textbf{Beschreibung:} Mitglieder der Verwaltung können Räume erstellen, bearbeiten und löschen. \\
+				& \textbf{Eingabevalidierung:} Es können beliebig viele Räume erstellt, gelöscht oder bearbeitet werden. Bei der Erstellung darf die Raumnummer (siehe Datenobjekt /D10/) nicht schon im System vorhanden sein (die systeminterne Raum ID ist für Nutzer nicht selbst wählbar, dies gilt auch im Folgenden), anderenfalls wird der Nutzer mit einer Fehlermeldung darauf hingewiesen. Die übrigen Attribute eines Raums [siehe /D10/] werden sofern möglich nach Logik und passender Größe überprüft und bei fehlerhaften Eingaben wird ein Bearbeitungs- oder Erstellvorgang abgebrochen, sowie der Nutzer darauf hingewiesen. So kann eine "`Raumkapazität"' bspw. nur einer ganzzahligen positiven Zahl entsprechen. \\[0.25cm]
+
+\end{tabular}
+
+
+\begin{tabular}{p{1.5cm}p{14.5cm}}
+		
+	 /F20/	& \textbf{Prozess mit Dateneingabe:} Verwalten von Lehrveranstaltungen \\
+				& \textbf{Akteur:} Dozenten \\
+				& \textbf{Beschreibung:} Dozenten können Lehrveranstaltungen, die sie oder andere Mitarbeiter ihres Lehrstuhls in einem Semester halten eintragen, bearbeiten und löschen. (Diese sind nur für angehörige ihres Lehrstuhls sichtbar und bearbeitbar. Für Studenten werden sie erst sichtbar und verwendbar, wenn für sie ein Raum gebucht wurde und dies bestätigt wurde.) \\
+				& \textbf{Eingabevalidierung:} Es können beliebig viele Lehrveranstaltungen erstellt, gelöscht oder bearbeitet werden. Doppelerstellungen sind möglich, falls dies in speziellen Fällen von Dozenten benötigt wird (durch die systeminterne ID ist ein fehlerfreier Systembetrieb gewährleistet). Die übrigen Attribute einer Lehrveranstaltung [siehe /D50/] werden sofern möglich nach Logik und passender Größe überprüft. Bei fehlerhaften Eingaben wird ein Bearbeitungs- oder Erstellvorgang abgebrochen, sowie der Nutzer darauf hingewiesen.\\[0.25cm]
+
+\end{tabular}
+
+
+\begin{tabular}{p{1.5cm}p{14.5cm}}
+	
+	 /FW21/& \textbf{Prozess mit Dateneingabe:} Verwalten von Live-Ticker Meldungen \\
+				& \textbf{Akteur:} Dozenten und Verwaltung \\
+				& \textbf{Beschreibung:} Dozenten und Mitglieder der Verwaltung können Meldungen erstellen, die Studenten im Live-Ticker zu sehen bekommen. Es lässt sich ein Zeitraum eingeben, in dem die Meldung sichtbar ist. Wünschenswert wäre hierbei, dass Studenten über die Authentifizierung personalisierte Meldungen (zu einer Lehrveranstaltung, einem Raum oder einem Lehrstuhl) angezeigt bekommen. \\
+				& \textbf{Eingabevalidierung:} Es sollten beliebig viele Live-Ticker Meldungen erstellt, gelöscht oder bearbeitet werden können. Die übrigen Attribute einer Ticker-Meldung [siehe /DW80/] werden sofern möglich nach Logik und passender Größe überprüft und bei fehlerhaften Eingaben wird ein Bearbeitungs- oder Erstellungsvorgang abgebrochen, sowie der Nutzer darauf hingewiesen.\\[0.25cm]
+
+\end{tabular}
+
+
+\begin{tabular}{p{1.5cm}p{14.5cm}}
+		
+	 /F30/	& \textbf{Prozess mit Dateneingabe:} Anfragen von Räumen \\
+				& \textbf{Akteur:} Dozenten \\
+				& \textbf{Beschreibung:} Dozenten können ihre Lehrveranstaltung für ein Semester zu einer bestimmten Zeit an einem bestimmten Werktag in einem Raum eintragen. Eine Zeiteinheit beträgt dabei 2 Stunden, kann immer nur voll belegt werden und die Zählung der Einheiten geht von 8 Uhr morgens bis 20 Uhr abends (womit ein Tag aus 6 Einheiten besteht). Buchungen müssen seitens der Verwaltung bestätigt werden [siehe /F40/]. \\
+				& \textbf{Eingabevalidierung:} Es sind Anfragen für bereits eingetragene Lehrveranstaltungen möglich. Eine Anfrage umfasst genau eine Zeiteinheit zu einem Raum an einem Tag. Es sind beliebig viele Buchungen für eine Lehrveranstaltung möglich. Eine Buchung darf sich nicht mit einer bereits von der Verwaltung bestätigten Buchung im gleichen Raum zur gleichen Zeit am gleichen Tag überschneiden, sonst wird der Vorgang abgebrochen und dem Nutzer eine entsprechende Fehlermeldung gezeigt. Die übrigen Attribute einer Buchung [siehe /D60/]) werden, sofern vom Dozenten angegeben und generell möglich, nach Logik und passender Größe überprüft und bei fehlerhaften Eingaben wird ein Bearbeitungs- oder Erstellvorgang abgebrochen, sowie der Dozent darauf hingewiesen.\\[0.25cm]
+
+\end{tabular}
+
+
+\begin{tabular}{p{1.5cm}p{14.5cm}}
+		
+	 /F40/ & \textbf{Prozess mit Dateneingabe:} Verwaltung von Raumbelegungen inklusive Konfliktlösung \\
+				& \textbf{Akteur:} Verwaltung \\
+				& \textbf{Beschreibung:} Mitglieder der Verwaltung können die Belegungswünsche zu Räumen seitens der Dozenten bestätigen, abweisen oder umlegen. Im Falle eines Konflikts, bzw. einer Ablehnung können sie dem Dozenten explizite Vorschläge machen (und hierzu Erläuterungen hinterlegen), die noch vor den vom System generierten automatischen Vorschlägen dem Dozenten angezeigt werden. \\
+				& \textbf{Eingabevalidierung:} Es ist nur das zuweisen eines Status, wie schon bei /DW80/ spezifiziert, möglich. Dieser ist vom System vorgegeben, so dass Falscheingaben nicht möglich sind. Im Falle einer Ablehnung kann zusätzlich eine Nachricht übermittelt werden, die bezüglich der Größe validiert wird. Im Fehlerfall wird der Nutzer darauf hingewiesen und der Vorgang abgebrochen.\\[0.25cm]
+
+\end{tabular}
+
+
+\begin{tabular}{p{1.5cm}p{14.5cm}}
+	
+	 /F50/	& \textbf{Prozess mit Dateneingabe:} Verwaltung von Nutzerdaten \\
+				& \textbf{Akteur:} Verwaltung \\
+				& \textbf{Beschreibung:} Mitglieder der Verwaltung können Benutzer (Dozenten und Verwaltungsmitglieder) in das System einpflegen, sie bearbeiten oder löschen. \\
+				& \textbf{Eingabevalidierung:} Das Eintragen und Bearbeiten umfasst die in /D30/ spezifizierten Attribute (außer dem letzten Login und dem Salt, welche automatisch vom System generiert werden, sowie der systeminternen ID). E-Mail und Benutzerkennung dürfen nicht schon im System vorhanden sein, anderenfalls erscheint eine entsprechende Fehlermeldung und der Vorgang wird abgebrochen. Das Passwort wird beim Erstellen und Bearbeiten direkt zur Laufzeit zusammen mit einem benutzerspezifischen zufälligen Wert (dem "`Salt"') in einen SHA512-Hash umgewandelt und nur als solcher persistent gespeichert. Es muss mindestens 8 Zeichen umfassen. Alle Attribute werden sofern möglich nach Logik und passender Größe überprüft und bei fehlerhaften Eingaben wird ein Bearbeitungs- oder Erstellvorgang abgebrochen, sowie der Nutzer darauf hingewiesen.\\[0.25cm]
+
+\end{tabular}
+
+
+\begin{tabular}{p{1.5cm}p{14.5cm}}
+					
+	 /F51/	& \textbf{Prozess mit Dateneingabe:} Verwaltung von Lehrstühlen \\
+				& \textbf{Akteur:} Verwaltung \\
+				& \textbf{Beschreibung:} Mitglieder der Verwaltung können Lehrstühle in das System einpflegen, sie bearbeiten oder löschen. \\
+				& \textbf{Eingabevalidierung:} Das Eintragen und Bearbeiten umfasst die in /D20/ spezifizierten Attribute. Der Lehrstuhlname darf nicht bereits im System vorhanden sein, anderenfalls erscheint eine entsprechende Fehlermeldung und der Vorgang wird abgebrochen. Alle Attribute werden sofern möglich nach Logik und passender Größe überprüft und bei fehlerhaften Eingaben wird ein Bearbeitungs- oder Erstellvorgang abgebrochen, sowie der Nutzer darauf hingewiesen.\\[0.25cm]
+
+\end{tabular}
+
+
+\begin{tabular}{p{1.5cm}p{14.5cm}}
+
+	 /F60/	& \textbf{Prozess mit Dateneingabe:} Sammlung von Lehrveranstaltungen \\
+				& \textbf{Akteur:} Studenten \\
+				& \textbf{Beschreibung:} Studenten können Lehrveranstaltungen sammeln (diese werden nicht persistent im System gespeichert). Überschneidungen (gesammelte Lehrveranstaltungen die zur gleichen Zeit stattfinden) sind grundsätzlich möglich, das System generiert jedoch einen Warnhinweis. \\
+				& \textbf{Eingabevalidierung:} Das System bietet nur die Möglichkeit eine öffentliche Veranstaltung als hinzuzufügen oder diese wieder zu entfernen. Eine vom Benutzer erstellte Eingabe und somit eine Validierung ist nicht von Nöten. Wünschenswert wäre die persistente Speicherung dieser Zuordnungen wie sie durch die Funktion /FW61/ möglich wäre und im Datenobjekt /DW70/ spezifiziert ist.\\[0.25cm]
+
+\end{tabular}
+
+
+\begin{tabular}{p{1.5cm}p{14.5cm}}
+					
+	 /FW61/& \textbf{Prozess mit Dateneingabe:} Profil-Verwaltung (inkl. Speichermöglichkeiten von Sammlungen) \\
+				& \textbf{Akteur:} Studenten \\
+				& \textbf{Beschreibung:} Studenten sollten die Möglichkeit bekommen, ein eigenes Profil anzulegen, welches persistent gespeichert wird und mit welchem ihre Sammlungen dauerhaft verknüpft werden. \\
+				& \textbf{Eingabevalidierung:} Die Profil-Bearbeitung umfasst die Attribute E-Mail, Passwort, Vor- und Nachname des Datenobjekts /D30/ für Studenten. Das Passwort wird dabei wie in /F50/ beschrieben gehasht und muss mindestens 8 Zeichen umfassen. Die E-Mail Adresse darf nicht bereits im System vorhanden sein, anderenfalls erscheint eine entsprechende Fehlermeldung und der Vorgang wird abgebrochen. Alle betreffenden Attribute werden sofern möglich nach Logik und passender Größe überprüft und bei fehlerhaften Eingaben wird ein Bearbeitungs- oder Erstellvorgang abgebrochen, sowie der Nutzer darauf hingewiesen.\\[0.25cm]
+
+\end{tabular}
+
+
+%------------
+\subsection{Listen}
+%------------
+
+
+\begin{tabular}{p{1.5cm}p{14.5cm}}
+
+
+	 /F70/	& \textbf{Liste:} Lehrveranstaltungen eines Lehrstuhls \\
+				& \textbf{Akteur:} Dozenten \\
+				& \textbf{Beschreibung:} Dozenten können sich im System eine Liste von allen Lehrveranstaltungen, die ihrem Lehrstuhl zugeordnet sind anzeigen lassen. Hierbei steht ein Filter zur Verfügung, der nur bestimmte Semester, bestimmte Dozenten und den Veröffentlichungsstatus anzeigt. \\
+				& \textbf{Enthaltene Daten:} Name der Veranstaltung, Dozent, Semester, Tag(e), Zeit(en), gebuchter Raum, Freigabestatus, \textsl{wünschenswert wäre die Anzahl eingeschriebener Studenten} \\[0.25cm]
+
+\end{tabular}
+
+\begin{tabular}{p{1.5cm}p{14.5cm}}
+		
+	 /F80/	& \textbf{Liste:} Räume \\
+				& \textbf{Akteur:} Verwaltung \\
+				& \textbf{Beschreibung:} Mitglieder der Verwaltung können sich im System eine Liste mit allen Räumen anzeigen lassen. Hierbei steht ein Filter zur Verfügung, der es erlaubt nach Stockwerk, Raumnummer, Kapazität und den sonstigen Attributen der Räume zu filtern. \\
+				& \textbf{Enthaltene Daten:} Raumnummer, Stockwerk, Kapazität, PC-Plätze, Overheads, Vizualizern, Beamer, etc. \\[0.25cm]
+
+\end{tabular}
+
+\begin{tabular}{p{1.5cm}p{14.5cm}}
+		
+	 /F81/	& \textbf{Liste:} Raumanfragen \\
+				& \textbf{Akteur:} Verwaltung \\
+				& \textbf{Beschreibung:} Mitglieder der Verwaltung können sich im System eine Liste mit allen Raumanfragen, also noch nicht freigegebenen oder abgelehnten Anfragen anzeigen lassen. Hierbei steht ein Filter zur Verfügung, der es erlaubt nach Semester, Freigabestatus, Tag, Raum oder Lehrstuhl zu filtern. Noch nicht bearbeitete Raumanfragen (weder freigegeben noch abgelehnt) werden an erster Stelle angezeigt. \\
+				& \textbf{Enthaltene Daten:} Name der Veranstaltung, Dozent, Lehrstuhl, Semester, Tag(e), Zeit(en), gebuchter Raum, Freigabestatus, ggf. Verweis auf überschneidende Buchungen, \textsl{wünschenswert wäre die Anzahl eingeschriebener Studenten} \\[0.25cm]
+
+\end{tabular}
+
+\begin{tabular}{p{1.5cm}p{14.5cm}}
+		
+	 /F82/	& \textbf{Liste:} Lehrstühle \\
+				& \textbf{Akteur:} Verwaltung \\
+				& \textbf{Beschreibung:} Mitglieder der Verwaltung können sich im System eine Liste mit allen Lehrstühle anzeigen lassen. Hierbei steht ein Filter zur Verfügung, der es erlaubt nach den Lehrstuhlnamen zu filtern. \\
+				& \textbf{Enthaltene Daten:} Lehrstuhlname, Inhaber, Benutzer ID (des Inhabers) \\[0.25cm]
+
+\end{tabular}
+
+
+\begin{tabular}{p{1.5cm}p{14.5cm}}
+					
+	 /F90/	& \textbf{Liste:} Nutzer (Dozenten, Lehrstühle, Hausverwaltung) \\
+				& \textbf{Akteur:} Verwaltung \\
+				& \textbf{Beschreibung:} Mitglieder der Verwaltung können sich im System eine Liste mit allen Benutzern des Systems anzeigen lassen. Es steht ein Filter zur Verfügung, der es erlaubt nach Vor- oder Nachnamen sowie der Nutzerzugehörigkeit zu filtern.\\
+				& \textbf{Enthaltene Daten:} Nutzerkennung, Vorname, Nachname, Nutzerzugehörigkeit (Lehrstuhl, Verwaltung oder ggf. auch Student), Zahl der Lehrveranstaltungen im aktuellen Semester, Datum des letzten Login \\[0.25cm]
+
+\end{tabular}
+
+
+\begin{tabular}{p{1.5cm}p{14.5cm}}
+	
+	 /F100/& \textbf{Liste:} Lehrveranstaltungen \\
+				& \textbf{Akteur:} Studenten (und andere) \\
+				& \textbf{Beschreibung:} Studenten (aber auch anderen Nutzern) können sich im System eine Liste aller durch die Verwaltung freigegebenen Lehrveranstaltungen anzeigen lassen. Es steht ein Filter zur Verfügung, der es erlaubt nach Semester, Lehrstuhl, Dozent, Name der Veranstaltung, Tag, Zeit und Raum zu filtern.\\
+				& \textbf{Enthaltene Daten:} Name der Veranstaltung, Dozent, Lehrstuhl, Semester, Tag(e), Zeit(en), gebuchter Raum, \textsl{wünschenswert wäre die Anzahlt eingeschriebener Studenten} \\[0.25cm]
+
+\end{tabular}
+
+
+\begin{tabular}{p{1.5cm}p{14.5cm}}
+	
+	 /F110/& \textbf{Liste:} Live-Ticker Meldungen \\
+				& \textbf{Akteur:} Studenten (sowie wünschenswerterweise Verwaltung und Dozenten mit Bearbeitungsfunktionen) \\
+				& \textbf{Beschreibung:} Studenten (aber auch anderen Nutzern) bekommen im System automatisch Live-Ticker Meldungen angezeigt, welche die nächsten (falls möglich den Stundenplänen entsprechenden) Lehrveranstaltungen anzeigen, sowie wünschenswerterweise auch von Dozenten oder Verwaltung zu diesen erstelle Meldungen.\\
+				& \textbf{Enthaltene Daten:} Lehrveranstaltungsname, Raum, Zeit oder Meldungstexte \\[0.25cm]
+
+				
+\end{tabular}
+
+
+%------------
+\subsection{Berichte}
+%------------
+
+
+\begin{tabular}{p{1.5cm}p{14.5cm}}
+
+
+	 /F120/& \textbf{Bericht:} Raumbelegung/Raumplan \\
+				& \textbf{Akteur:} Verwaltung (und wünschenswerterweise andere Nutzer) \\
+				& \textbf{Beschreibung:} Mitglieder der Verwaltung (und wünschenswerterweise auch andere Nutzer) können sich eine Übersicht zur Belegung eines bestimmten Raumes in einem Semester anzeigen lassen, welche als Ansicht im System aufrufbar und als PDF exportierbar bzw. druckbar ist. \\[0.25cm]
+
+\end{tabular}
+
+
+\begin{tabular}{p{1.5cm}p{14.5cm}}
+	
+	 /F130/& \textbf{Bericht:} Stundenplan \\
+				& \textbf{Akteur:} Studenten \\
+				& \textbf{Beschreibung:} Studenten können sich eine Übersicht zu ihrer Sammlung an Lehrveranstaltungen in einem Semester anzeigen lassen. Überschneidungen werden hierbei gesondert hervorgehoben. Die Übersicht (die einem Stundenplan gleich kommt) ist als Ansicht im System aufrufbar und als PDF exportierbar bzw. druckbar. \\[0.25cm]
+
+				
+\end{tabular}
+
+
+\begin{tabular}{p{1.5cm}p{14.5cm}}
+	
+	 /F140/& \textbf{Bericht:} Lehrstuhlveranstaltungen/plan \\
+				& \textbf{Akteur:} Dozenten \\
+				& \textbf{Beschreibung:} Dozenten können sich eine Übersicht generieren, in der sie sehen, wann alle Lehrveranstaltungen ihres Lehrstuhls in einem bestimmten wählbaren Semester sind. Überschneidungen werden hervorgehoben. Wünschenswert wäre, wenn auch Überschneidungen mit Veranstaltungen anderer Lehrstühle markiert werden. Die Übersicht ist als Ansicht im System aufrufbar und als PDF exportierbar bzw. druckbar. \\[0.25cm]
+
+				
+\end{tabular}
+
+
+\begin{tabular}{p{1.5cm}p{14.5cm}}
+	
+	 /F150/& \textbf{Bericht:} Dozentenveranstaltungen/Dozentenwochenplan \\
+				& \textbf{Akteur:} Dozenten \\
+				& \textbf{Beschreibung:} Dozenten können sich einen Wochenplan ihrer zu haltenden Lehrveranstaltungen in einem semester generieren. Überschneidungen werden hervorgehoben. Wünschenswert wäre auch eine Visualisierung von Überschneidungen anderer Dozenten. Die Übersicht ist als Ansicht im System aufrufbar und als PDF exportierbar bzw. druckbar. \\[0.25cm]
+
+				
+\end{tabular}
