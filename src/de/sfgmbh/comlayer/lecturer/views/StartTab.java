@@ -17,12 +17,14 @@ import javax.swing.border.TitledBorder;
 
 import net.miginfocom.swing.MigLayout;
 import de.sfgmbh.applayer.core.controller.ServiceManager;
+import de.sfgmbh.comlayer.core.model.CmbboxFilterAllocationStatus;
+import de.sfgmbh.comlayer.core.model.CmbboxFilterCourse;
 import de.sfgmbh.comlayer.core.model.CmbboxFilterLecturer;
+import de.sfgmbh.comlayer.core.model.CmbboxFilterSemester;
 import de.sfgmbh.comlayer.core.views.BaseTab;
 import de.sfgmbh.comlayer.lecturer.controller.StartTabBtnsControl;
 import de.sfgmbh.comlayer.lecturer.controller.StartTabCmbboxFilter;
-import de.sfgmbh.comlayer.lecturer.model.StartTabCmbboxModelFilter;
-import de.sfgmbh.comlayer.lecturer.model.StartTabTableBottom;
+import de.sfgmbh.comlayer.lecturer.controller.StartTabTableTop;
 
 public class StartTab extends JPanel {
 
@@ -101,6 +103,7 @@ public class StartTab extends JPanel {
 		tablePanel.add(lvOrganisationTableScrollPane, "cell 0 2 5 1,grow");
 		
 		tableCourseTop = new JTable();
+		tableCourseTop.addMouseListener(new StartTabTableTop());
 		tableCourseTop.setModel(ServiceManager.getInstance().getLecturerStartTabTableTop());
 		tableCourseTop.getColumnModel().removeColumn(tableCourseTop.getColumn("Hidden"));
 		tableCourseTop.setShowVerticalLines(false);
@@ -121,7 +124,7 @@ public class StartTab extends JPanel {
 		tablePanel.add(labelSemester, "cell 2 4");
 		
 		comboBoxLecturerBottom = new JComboBox<String>();
-		comboBoxLecturerBottom.setModel(new StartTabCmbboxModelFilter("lecturerbottom"));
+		comboBoxLecturerBottom.setModel(new CmbboxFilterLecturer());
 		comboBoxLecturerBottom.addActionListener(new StartTabCmbboxFilter());
 		
 		lblStatus = new JLabel("Ver\u00F6ffentlichungsstatus:");
@@ -132,21 +135,21 @@ public class StartTab extends JPanel {
 		
 		comboBoxCourse = new JComboBox<String>();
 		comboBoxCourse.addActionListener(new StartTabCmbboxFilter());
-		comboBoxCourse.setModel(new StartTabCmbboxModelFilter("course"));
+		comboBoxCourse.setModel(new CmbboxFilterCourse());
 		comboBoxCourse.setEditable(true);
 		comboBoxCourse.setAutoscrolls(true);
 		tablePanel.add(comboBoxCourse, "cell 1 5,growx");
 		
 		comboBoxSemesterBottom = new JComboBox<String>();
 		comboBoxSemesterBottom.addActionListener(new StartTabCmbboxFilter());
-		comboBoxSemesterBottom.setModel(new StartTabCmbboxModelFilter("semesterbottom"));
+		comboBoxSemesterBottom.setModel(new CmbboxFilterSemester());
 		comboBoxSemesterBottom.setEditable(true);
 		comboBoxSemesterBottom.setAutoscrolls(true);
 		tablePanel.add(comboBoxSemesterBottom, "cell 2 5,growx");
 		
 		comboBoxStatus = new JComboBox<String>();
 		comboBoxStatus.addActionListener(new StartTabCmbboxFilter());
-		comboBoxStatus.setModel(new StartTabCmbboxModelFilter("status"));
+		comboBoxStatus.setModel(new CmbboxFilterAllocationStatus());
 		tablePanel.add(comboBoxStatus, "cell 3 5");
 		comboBoxStatus.setEditable(true);
 		comboBoxStatus.setAutoscrolls(true);
@@ -155,7 +158,7 @@ public class StartTab extends JPanel {
 		tablePanel.add(raumanfragenScrollPane, "cell 0 6 5 1,grow");
 		
 		roomrequestTable = new JTable();
-		roomrequestTable.setModel(new StartTabTableBottom());
+		roomrequestTable.setModel(ServiceManager.getInstance().getLecturerStartTabTableBottom());
 		roomrequestTable.setShowVerticalLines(false);
 		roomrequestTable.setBackground(SystemColor.activeCaption);
 		raumanfragenScrollPane.setViewportView(roomrequestTable);
@@ -201,7 +204,7 @@ public class StartTab extends JPanel {
 		panel.setBounds(0, 248, 100, 1);
 		buttonPanel.add(panel);
 		
-		JButton btnZurckziehen = new JButton("zur\u00FCckziehen");
+		JButton btnZurckziehen = new JButton("zurückziehen");
 		btnZurckziehen.addActionListener(new StartTabBtnsControl("back"));
 		btnZurckziehen.setBounds(0, 260, 100, 23);
 		buttonPanel.add(btnZurckziehen);
@@ -253,5 +256,4 @@ public class StartTab extends JPanel {
 	public JTable getTableCourseTop() {
 		return tableCourseTop;
 	}
-	
 }

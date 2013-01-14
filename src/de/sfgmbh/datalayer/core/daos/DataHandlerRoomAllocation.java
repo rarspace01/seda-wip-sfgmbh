@@ -82,7 +82,8 @@ public class DataHandlerRoomAllocation implements IntfDataObservable, IntfDataFi
 						"AND (public.course.courseacronym LIKE ? OR public.course.coursename LIKE ? ) " +
 						"AND public.roomallocation.semester LIKE ? " +
 						"AND public.roomallocation.approved LIKE ? " +
-						"AND public.room.roomnumber LIKE ? ");
+						"AND public.room.roomnumber LIKE ? " +
+						"AND public.user.login LIKE ? ");
 				
 			}
 			if (filter.containsKey("lecturer") && filter.get("lecturer") != null && filter.get("lecturer") != "" && filter.get("lecturer") != "<alle>") {
@@ -120,6 +121,11 @@ public class DataHandlerRoomAllocation implements IntfDataObservable, IntfDataFi
 				filterDm.pstmt.setString(9, "%" + filter.get("room") + "%");
 			} else {
 				filterDm.pstmt.setString(9, "%");
+			}
+			if (filter.containsKey("login") && filter.get("login") != null && filter.get("login") != "" && filter.get("login") != "<alle>") {
+				filterDm.pstmt.setString(10, filter.get("login"));
+			} else {
+				filterDm.pstmt.setString(10, "%");
 			}
 			
 			ResultSet rs = filterDm.selectPstmt();

@@ -1,18 +1,91 @@
 package de.sfgmbh.comlayer.lecturer.model;
 
-import javax.swing.table.*;
+import java.util.HashMap;
 
-public class StartTabTableBottom extends DefaultTableModel {
+import javax.swing.table.DefaultTableModel;
+
+import de.sfgmbh.applayer.core.controller.ServiceManager;
+import de.sfgmbh.applayer.core.controller.SessionManager;
+import de.sfgmbh.applayer.core.definitions.IntfAppObserver;
+import de.sfgmbh.applayer.core.model.AppModel;
+import de.sfgmbh.applayer.core.model.Chair;
+import de.sfgmbh.applayer.core.model.Course;
+import de.sfgmbh.applayer.core.model.RoomAllocation;
+import de.sfgmbh.applayer.core.model.User;
+import de.sfgmbh.comlayer.core.controller.ViewHelper;
+
+public class StartTabTableBottom extends DefaultTableModel implements IntfAppObserver {
 
 	private static final long serialVersionUID = 1L;
-	private Object[][] preFill = {
-			{"SEDA-WIP-B", "Benker", "WS1213", "Do.", "12:00 - 14:00", "WP3/02.001", "abgelehnt"},
-			{"SEDA-WIP-B", "Benker", "WS1213", "Mo.", "14:00 - 16:00", "WP3/04.002", "wartend"},
-		};
-	private String[] preFillHeader = {"Bezeichnung", "Dozent", "Semester", "Tag", "Zeit", "Raum", "status"};
-	
+	private String[] header = {"Bezeichnung", "Dozent", "Zeit", "Tag", "Semester", "Raum", "Status", "Hidden"};
 	
 	public StartTabTableBottom() {
-		this.setDataVector(preFill, preFillHeader);
+		AppModel.getInstance().repositoryRoomAllocation.register(this);
+		this.setColumnIdentifiers(header);
+		this.change("init");
+	}
+
+	public void change(String variant) {
+		ViewHelper vh = new ViewHelper();
+		HashMap<String, String> filter = new HashMap<String, String>();
+		User sessionUser = SessionManager.getInstance().getSession();
+		
+		if (sessionUser.getChair_() != null) {
+		
+			Chair sessionChair = sessionUser.getChair_();
+		
+			this.setRowCount(0);
+			
+			if (variant.equals("init")) {
+				filter.put("chair", sessionChair.getAcronym_());
+				filter.put("status", "<alle>");
+				filter.put("login", sessionUser.getLogin_());
+				filter.put("semester", "<alle>");
+				filter.put("course", "<alle>");
+			} else if (variant.equals("select")) {
+				int row = ServiceManager.getInstance().getLecturerStartTab().getTableCourseTop().getSelectedRow();
+				if (row != -1) {
+					Course selectedCourse = null;
+					try {
+						selectedCourse = (Course) ServiceManager.getInstance().getLecturerStartTabTableTop().getValueAt(row, 6);
+					} catch (Exception ex) {
+						AppModel.getInstance().appExcaptions.setNewException("Ein unerwarteter Fehler ist aufgetreten.<br /><br >" + ex.toString(), "Fehler!");
+					}
+					filter.put("chair", sessionChair.getAcronym_());
+					filter.put("login", selectedCourse.getLecturer_().getLogin_());
+					filter.put("course", selectedCourse.getCourseAcronym_());
+				}
+			} else {
+				filter.put("chair", sessionChair.getAcronym_());
+				filter.put("status", ServiceManager.getInstance().getLecturerStartTab().getComboBoxStatus().getSelectedItem().toString());
+				filter.put("lecturer", ServiceManager.getInstance().getLecturerStartTab().getComboBoxLecturerBottom().getSelectedItem().toString());
+				filter.put("semester", ServiceManager.getInstance().getLecturerStartTab().getComboBoxSemesterBottom().getSelectedItem().toString());
+				filter.put("course", ServiceManager.getInstance().getLecturerStartTab().getComboBoxCourse().getSelectedItem().toString());
+			}
+			
+			for (RoomAllocation ra : AppModel.getInstance().repositoryRoomAllocation.getByFilter(filter)){
+				try {
+					Object[] row = {
+							ra.getCourse_().getCourseAcronym_(), 
+							ra.getCourse_().getLecturer_().getlName_(), 
+							vh.getTime(ra.getTime_()), 
+							vh.getDay(ra.getDay_()), 
+							ra.getSemester_(), 
+							ra.getRoom_().getRoomNumber_(),
+							vh.getAllocationStatus(ra.getApproved_()),
+							ra
+							};
+					this.addRow(row);
+	
+				} catch (Exception e) {
+					AppModel.getInstance().appExcaptions.setNewException("Ein unbekannter Fehler ist aufgetreten! <br /><br />Fehler:<br />" + e.toString(), "Fehler!");
+				}
+			}
+		}
+	}
+	
+	@Override
+	public void change() {
+		this.change("update");
 	}
 }
