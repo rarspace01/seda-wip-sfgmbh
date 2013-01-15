@@ -48,7 +48,7 @@ import de.sfgmbh.comlayer.core.model.CmbboxFilterSemester;
  * The very first content users see when they start the application
  * 
  * @author mario
- * @authos anna
+ * @author anna
  * @author hannes
  *
  */

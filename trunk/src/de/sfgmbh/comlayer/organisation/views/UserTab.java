@@ -15,6 +15,8 @@ import javax.swing.JTextField;
 import javax.swing.JTextPane;
 import javax.swing.UIManager;
 import javax.swing.border.TitledBorder;
+import javax.swing.table.TableModel;
+import javax.swing.table.TableRowSorter;
 
 import net.miginfocom.swing.MigLayout;
 import de.sfgmbh.comlayer.core.controller.ViewManager;
@@ -25,6 +27,13 @@ import de.sfgmbh.comlayer.organisation.controller.RoomTabBtnsControl;
 import de.sfgmbh.comlayer.organisation.controller.UserTabBtnsControl;
 import de.sfgmbh.comlayer.organisation.controller.UserTabCmbboxFilter;
 
+/**
+ * Tab for the user management
+ * 
+ * @author anna
+ * @author hannes
+ *
+ */
 public class UserTab extends JPanel {
 
 	private static final long serialVersionUID = 1L;
@@ -135,6 +144,12 @@ public class UserTab extends JPanel {
 		roomOrgaTable.setBackground(SystemColor.activeCaption);
 		roomOrgaTable.getColumnModel().removeColumn(roomOrgaTable.getColumn("Hidden"));
 		organisationTableScrollPane.setViewportView(roomOrgaTable);
+		
+		// Enable table sorting for the model
+		TableRowSorter<TableModel> rowSorter = new TableRowSorter<TableModel>();
+		roomOrgaTable.setRowSorter(rowSorter);
+		rowSorter.setModel(ViewManager.getInstance().getOrgaUserTableModel());
+		rowSorter.sort();
 		
 		buttonPanel = new JPanel();
 		buttonPanel.setLayout(null);
