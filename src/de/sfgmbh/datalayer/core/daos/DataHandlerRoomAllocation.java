@@ -13,12 +13,23 @@ import de.sfgmbh.datalayer.core.definitions.IntfDataObserver;
 import de.sfgmbh.datalayer.core.model.DataModel;
 import de.sfgmbh.datalayer.io.DataManagerPostgreSql;
 
+/**
+ * Data handler for room allocations in the data base
+ * 
+ * @author hannes
+ * @author denis
+ *
+ */
 public class DataHandlerRoomAllocation implements IntfDataObservable, IntfDataFilter {
 
 	private ArrayList<Object> observer_ = new ArrayList<Object>();
 	private DataManagerPostgreSql filterDm = null;
 	private DataManagerPostgreSql conflictingAllocationDm = null;
 	
+	/**
+	 * Get all rooms
+	 * @return a list with all rooms
+	 */
 	public List<RoomAllocation> getAll() {
 		List<RoomAllocation> listRoomAllocation = new ArrayList<RoomAllocation>();
 
@@ -83,7 +94,8 @@ public class DataHandlerRoomAllocation implements IntfDataObservable, IntfDataFi
 						"AND public.roomallocation.semester LIKE ? " +
 						"AND public.roomallocation.approved LIKE ? " +
 						"AND public.room.roomnumber LIKE ? " +
-						"AND public.user.login LIKE ? ");
+						"AND public.user.login LIKE ? " +
+						"AND public.room.roomid BETWEEN ? AND ? ");
 				
 			}
 			if (filter.containsKey("lecturer") && filter.get("lecturer") != null && filter.get("lecturer") != "" && filter.get("lecturer") != "<alle>") {
@@ -126,6 +138,13 @@ public class DataHandlerRoomAllocation implements IntfDataObservable, IntfDataFi
 				filterDm.getPreparedStatement().setString(10, filter.get("login"));
 			} else {
 				filterDm.getPreparedStatement().setString(10, "%");
+			}
+			if (filter.containsKey("roomid") && filter.get("roomid") != null && filter.get("roomid") != "" && filter.get("roomid") != "<alle>") {
+				filterDm.getPreparedStatement().setInt(11, Integer.parseInt(filter.get("roomid")));
+				filterDm.getPreparedStatement().setInt(12, Integer.parseInt(filter.get("roomid")));
+			} else {
+				filterDm.getPreparedStatement().setInt(11, 0);
+				filterDm.getPreparedStatement().setInt(12, 2147483647);
 			}
 			
 			ResultSet rs = filterDm.selectPstmt();
