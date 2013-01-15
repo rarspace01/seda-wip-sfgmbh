@@ -8,18 +8,30 @@ import de.sfgmbh.applayer.core.model.User;
 import de.sfgmbh.comlayer.core.views.InfoDialog;
 
 
-
-public class BaseBtnLogin implements ActionListener {
+/**
+ * Action when the login button is clicked or enter is pressed
+ * 
+ * @author hannes
+ *
+ */
+public class BaseLogin implements ActionListener {
 	
 	protected InfoDialog infoWindow;
 	protected CtrlBaseTab ctrlBaseTab;
 	protected String version;
 	
-	public BaseBtnLogin() {
+	/**
+	 * Creates a default BaseBtnLogin object
+	 */
+	public BaseLogin() {
 		this.ctrlBaseTab = new CtrlBaseTab();
 	}
 	
-	public BaseBtnLogin(String version) {
+	/**
+	 * Creates a BaseBtnLogin object based on a submitted variant string
+	 * @param version
+	 */
+	public BaseLogin(String version) {
 		this.version = version;
 		this.ctrlBaseTab = new CtrlBaseTab();
 	}
@@ -49,7 +61,7 @@ public class BaseBtnLogin implements ActionListener {
 			ctrlBaseTab.logout();
 			ViewManager.getInstance().getCoreBaseTab().getMainTabbedContainerPane().removeAll();
 			ViewManager.getInstance().getCoreBaseTab().getMainTabbedContainerPane().setVisible(false);
-			ViewManager.getInstance().getCoreBaseTab().getContentPane().add(ViewManager.getInstance().getCoreBaseTab().getStartScreenPanel(), "name_5256771068822");
+			ViewManager.getInstance().getCoreBaseTab().getContentPane().add(ViewManager.getInstance().getCoreBaseTab().getStartScreenPanel(), "Start");
 			ViewManager.getInstance().getCoreBaseTab().getPwdPasswort().setText("");
 			ViewManager.getInstance().getCoreBaseTab().getTxtBenutzername().setText("");
 			ViewManager.getInstance().getCoreBaseTab().getStartScreenPanel().setVisible(true);
@@ -57,7 +69,10 @@ public class BaseBtnLogin implements ActionListener {
 			ViewManager.getInstance().getCoreBaseTab().getPanelLogout().setVisible(false);
 		}
 	}
-		
+	
+	/**
+	 * Initiates the GUI (tabs, tables, etc.) for the organization 
+	 */
 	public void callOrga() {
 		ViewManager.getInstance().getCoreBaseTab().getMainTabbedContainerPane().setVisible(true);
 		ViewManager.getInstance().getCoreBaseTab().getMainTabbedContainerPane().removeAll();
@@ -70,6 +85,9 @@ public class BaseBtnLogin implements ActionListener {
 		ViewManager.getInstance().getCoreBaseTab().getMainTabbedContainerPane().addTab("Raumverwaltung", null, ViewManager.getInstance().getOrgaRoomTab(), null);
 	}
 	
+	/**
+	 * Initiates the GUI (tabs, tables, etc.) for lecturer
+	 */
 	public void callLecturer() {
 		ViewManager.getInstance().getCoreBaseTab().getMainTabbedContainerPane().setVisible(true);
 		ViewManager.getInstance().getCoreBaseTab().getMainTabbedContainerPane().removeAll();
@@ -79,11 +97,5 @@ public class BaseBtnLogin implements ActionListener {
 		ViewManager.getInstance().getCoreBaseTab().getStartScreenPanel().setVisible(false);
 		ViewManager.getInstance().getCoreBaseTab().getMainTabbedContainerPane().addTab("Dozentenstundenplan", null, ViewManager.getInstance().getLecturerTimetableTab(), null);
 		ViewManager.getInstance().getCoreBaseTab().getMainTabbedContainerPane().addTab("Lehrstuhlplan", null, ViewManager.getInstance().getLecturerProfessorshipTimetableTab(), null);
-	}
-	
-	public InfoDialog getInfoWindow(String msg) {
-
-		this.infoWindow = new InfoDialog(msg);
-		return this.infoWindow;
 	}
 }

@@ -32,7 +32,7 @@ import javax.swing.table.TableRowSorter;
 import net.miginfocom.swing.MigLayout;
 import de.sfgmbh.comlayer.core.controller.BaseBtnAddToStundenplan;
 import de.sfgmbh.comlayer.core.controller.BaseBtnFailureprompt;
-import de.sfgmbh.comlayer.core.controller.BaseBtnLogin;
+import de.sfgmbh.comlayer.core.controller.BaseLogin;
 import de.sfgmbh.comlayer.core.controller.BaseCmbboxFilter;
 import de.sfgmbh.comlayer.core.controller.BaseRdbtnTopLeft;
 import de.sfgmbh.comlayer.core.controller.ViewManager;
@@ -450,14 +450,14 @@ public class BaseTab extends JFrame{
 	public JButton getBtnNewButton() {
 		if (btnNewButton == null) {
 			btnNewButton = new JButton("Einloggen");
-			btnNewButton.addActionListener(new BaseBtnLogin());
+			btnNewButton.addActionListener(new BaseLogin());
 		}
 		return btnNewButton;
 	}
 	public JButton getBtnLogout() {
 		if (btnLogout == null) {
 			btnLogout = new JButton("Logout");
-			btnLogout.addActionListener(new BaseBtnLogin("logout"));
+			btnLogout.addActionListener(new BaseLogin("logout"));
 		}
 		return btnLogout;
 	}
@@ -471,6 +471,7 @@ public class BaseTab extends JFrame{
 	public JPasswordField getPwdPasswort() {
 		if (pwdPasswort == null) {
 			pwdPasswort = new JPasswordField();
+			pwdPasswort.addActionListener(new BaseLogin());
 		}
 		return pwdPasswort;
 	}
