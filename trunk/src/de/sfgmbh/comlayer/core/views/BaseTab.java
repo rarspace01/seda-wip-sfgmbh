@@ -105,10 +105,10 @@ public class BaseTab extends JFrame{
 		startScreenPanel.setLayout(new MigLayout("", "[grow][][grow][grow][grow][grow][grow]", "[][][grow][]"));
 		
 		lblLehrveranstaltung = new JLabel("Lehrveranstaltung:");
-		startScreenPanel.add(lblLehrveranstaltung, "cell 2 0,alignx left,aligny bottom");
+		startScreenPanel.add(lblLehrveranstaltung, "flowx,cell 2 0,alignx left,aligny bottom");
 		
 		lblLehrstuhl = new JLabel("Lehrstuhl:");
-		startScreenPanel.add(lblLehrstuhl, "cell 3 0,aligny bottom");
+		startScreenPanel.add(lblLehrstuhl, "flowx,cell 3 0,aligny bottom");
 		
 		lblDozent = new JLabel("Dozent:");
 		startScreenPanel.add(lblDozent, "cell 4 0,aligny bottom");
