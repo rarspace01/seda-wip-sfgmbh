@@ -34,9 +34,12 @@ import de.sfgmbh.comlayer.core.controller.BaseBtnLogin;
 import de.sfgmbh.comlayer.core.controller.BaseCmbboxFilter;
 import de.sfgmbh.comlayer.core.controller.BaseRdbtnTopLeft;
 import de.sfgmbh.comlayer.core.controller.ViewManager;
+import de.sfgmbh.comlayer.core.model.CmbboxFilterBuildingid;
 import de.sfgmbh.comlayer.core.model.CmbboxFilterChair;
 import de.sfgmbh.comlayer.core.model.CmbboxFilterCourse;
 import de.sfgmbh.comlayer.core.model.CmbboxFilterLecturer;
+import de.sfgmbh.comlayer.core.model.CmbboxFilterLevel;
+import de.sfgmbh.comlayer.core.model.CmbboxFilterRoomnumber;
 import de.sfgmbh.comlayer.core.model.CmbboxFilterSemester;
 
 public class BaseTab extends JFrame{
@@ -51,11 +54,17 @@ public class BaseTab extends JFrame{
 	private JComboBox<String> comboBoxLecturerFilter;
 	private JComboBox<String> comboBoxSemesterFilter;
 	private JComboBox<String> comboBoxOrgaFilter;
+	private JComboBox<String> comboBoxRoomnumberFilter;
+	private JComboBox<String> comboBoxBuildingidFilter;
+	private JComboBox<String> comboBoxLevelFilter;
 	private JLabel lblLehrveranstaltung;
 	private JLabel lblLehrstuhl;
 	private JLabel lblDozent;
 	private JLabel lblLoggedIn;
 	private JLabel lblSemester;
+	private JLabel lblRoomnumber;
+	private JLabel lblBuildingid;
+	private JLabel lblLevel;
 	private JTable organisationTable;
 	private JScrollPane mainTableScrollPane;
 	private JPanel tickerJPanel;
@@ -74,6 +83,7 @@ public class BaseTab extends JFrame{
 	private JButton btnLogout;
 	private JLabel lblNewLabel;
 	private JTable roomTable;
+	private JPanel mainFilterPanel;
 	
 	
 
@@ -102,54 +112,25 @@ public class BaseTab extends JFrame{
 		startScreenPanel.setMaximumSize(new Dimension(10, 32767));
 		contentPane.setLayer(startScreenPanel, 1);
 		contentPane.add(startScreenPanel, "name_5256771068822");
-		startScreenPanel.setLayout(new MigLayout("", "[grow][][grow][grow][grow][grow][grow]", "[][][grow][]"));
+		startScreenPanel.setLayout(new MigLayout("", "[grow][grow][grow]", "[][][grow][]"));
 		
-		lblLehrveranstaltung = new JLabel("Lehrveranstaltung:");
-		startScreenPanel.add(lblLehrveranstaltung, "flowx,cell 2 0,alignx left,aligny bottom");
+		mainFilterPanel = new JPanel();
+		startScreenPanel.add(mainFilterPanel, "cell 1 0 1 2,grow");
+		mainFilterPanel.setLayout(new MigLayout("", "[grow][grow][grow][grow]", "[][]"));
+			
+		mainFilterPanel.add(getLblLehrveranstaltung(), "cell 0 0,aligny bottom");
+		mainFilterPanel.add(getLblLehrstuhl(), "cell 1 0,aligny bottom");
+		mainFilterPanel.add(getLblDozent(), "cell 2 0,aligny bottom");
+		mainFilterPanel.add(getLblSemester(), "cell 3 0,aligny bottom");
+
+		mainFilterPanel.add(getComboBoxChairFilter(), "cell 0 1,growx");
+		mainFilterPanel.add(getComboBoxOrgaFilter(), "cell 1 1,growx");
+		mainFilterPanel.add(getComboBoxLecturerFilter(), "cell 2 1,growx");
+		mainFilterPanel.add(getComboBoxSemesterFilter(), "cell 3 1,growx");
 		
-		lblLehrstuhl = new JLabel("Lehrstuhl:");
-		startScreenPanel.add(lblLehrstuhl, "flowx,cell 3 0,aligny bottom");
-		
-		lblDozent = new JLabel("Dozent:");
-		startScreenPanel.add(lblDozent, "cell 4 0,aligny bottom");
-		
-		lblSemester = new JLabel("Semester:");
-		startScreenPanel.add(lblSemester, "cell 5 0,aligny bottom");
-		
-		comboBoxOrgaFilter = new JComboBox<String>();
-		comboBoxOrgaFilter.addKeyListener(new BaseCmbboxFilter());
-		comboBoxOrgaFilter.addActionListener(new BaseCmbboxFilter());
-		startScreenPanel.add(getLblNewLabel(), "cell 6 0,alignx center");
+		startScreenPanel.add(getLblNewLabel(), "cell 2 0,alignx center");
 		startScreenPanel.add(getRdbtnLehrveranstaltungen(), "cell 0 0,aligny bottom");
 		startScreenPanel.add(getRdbtnRaume(), "cell 0 1");
-		comboBoxOrgaFilter.setAutoscrolls(true);
-		comboBoxOrgaFilter.setEditable(true);
-		comboBoxOrgaFilter.setModel(new CmbboxFilterCourse());
-		startScreenPanel.add(comboBoxOrgaFilter, "cell 2 1,growx");
-		
-		comboBoxChairFilter = new JComboBox<String>();
-		comboBoxChairFilter.setModel(new CmbboxFilterChair());
-		comboBoxChairFilter.addKeyListener(new BaseCmbboxFilter());
-		comboBoxChairFilter.addActionListener(new BaseCmbboxFilter());
-		comboBoxChairFilter.setEditable(true);
-		comboBoxChairFilter.setAutoscrolls(true);
-		startScreenPanel.add(comboBoxChairFilter, "cell 3 1,growx");
-		
-		comboBoxLecturerFilter = new JComboBox<String>();
-		comboBoxLecturerFilter.setModel(new CmbboxFilterLecturer());
-		comboBoxLecturerFilter.addKeyListener(new BaseCmbboxFilter());
-		comboBoxLecturerFilter.addActionListener(new BaseCmbboxFilter());
-		comboBoxLecturerFilter.setEditable(true);
-		comboBoxLecturerFilter.setAutoscrolls(true);
-		startScreenPanel.add(comboBoxLecturerFilter, "cell 4 1,growx");
-		
-		comboBoxSemesterFilter = new JComboBox<String>();
-		comboBoxSemesterFilter.setModel(new CmbboxFilterSemester());
-		comboBoxSemesterFilter.addKeyListener(new BaseCmbboxFilter());
-		comboBoxSemesterFilter.addActionListener(new BaseCmbboxFilter());
-		comboBoxSemesterFilter.setEditable(true);
-		comboBoxSemesterFilter.setAutoscrolls(true);
-		startScreenPanel.add(comboBoxSemesterFilter, "cell 5 1,growx");
 		
 		tickerJPanel = new JPanel();
 		tickerJPanel.setMinimumSize(new Dimension(140, 10));
@@ -185,14 +166,14 @@ public class BaseTab extends JFrame{
 		tickerJPanel.add(getPanelLogout());
 		
 		mainTableScrollPane = new JScrollPane();
-		startScreenPanel.add(mainTableScrollPane, "cell 2 2 4 1,grow");
+		startScreenPanel.add(mainTableScrollPane, "cell 1 2,grow");
 		
 		mainTableScrollPane.setViewportView(getOrganisationTable());
 		
 		JPanel buttonPanel = new JPanel();
 		buttonPanel.setMinimumSize(new Dimension(80, 10));
 		buttonPanel.setMaximumSize(new Dimension(100, 32767));
-		startScreenPanel.add(buttonPanel, "cell 6 2,grow");
+		startScreenPanel.add(buttonPanel, "cell 2 2,grow");
 		buttonPanel.setLayout(null);
 		
 		JButton btnAddToStundenplan = new JButton("+");
@@ -202,13 +183,136 @@ public class BaseTab extends JFrame{
 		
 		btnFehlermeldung = new JButton("Fehlermeldung");
 		btnFehlermeldung.addActionListener(new BaseBtnFailureprompt("error"));
-		startScreenPanel.add(btnFehlermeldung, "cell 2 3");
+		startScreenPanel.add(btnFehlermeldung, "cell 1 3");
+			
 		
+	}
+
+	public JPanel getStartScreenPanel() {
+		return startScreenPanel;
+	}
+	public JLabel getLblLehrveranstaltung() {
+		lblLehrveranstaltung = new JLabel("Lehrveranstaltung:");
+		return lblLehrveranstaltung;
+	}	
+	
+	public JLabel getLblLehrstuhl() {
+		lblLehrstuhl = new JLabel("Lehrstuhl:");
+		return lblLehrstuhl;
+	}
+	
+	public JLabel getLblDozent() {
+		lblDozent = new JLabel("Dozent:");
+		return lblDozent;
+	}
+	
+	public JLabel getLblSemester() {
+		lblSemester = new JLabel("Semester:");
+		return lblSemester;
+	}
+	
+	public JLabel getLblRoomnumber() {
+		lblRoomnumber = new JLabel("Raum:");
+		return lblRoomnumber;
+	}
+	
+	public JLabel getLblBuildingid() {
+		lblBuildingid = new JLabel("Gebäude");
+		return lblBuildingid;
+	}
+	
+	public JLabel getLblLevel() {
+		lblLevel = new JLabel("Stockwerk:");
+		return lblLevel;
 	}
 	
 	public JScrollPane getMainTableScrollPane() {
 		return mainTableScrollPane;
 	}
+	
+	public JPanel getMainFilterPanel() {
+		return mainFilterPanel;
+	}
+	
+	public JComboBox<String> getComboBoxOrgaFilter() {
+		comboBoxOrgaFilter = new JComboBox<String>();
+		comboBoxOrgaFilter.addKeyListener(new BaseCmbboxFilter());
+		comboBoxOrgaFilter.addActionListener(new BaseCmbboxFilter());
+		comboBoxOrgaFilter.setAutoscrolls(true);
+		comboBoxOrgaFilter.setEditable(true);
+		comboBoxOrgaFilter.setModel(new CmbboxFilterCourse());
+		
+		return comboBoxOrgaFilter;
+	}
+		
+	public JComboBox<String> getComboBoxChairFilter() {
+		comboBoxChairFilter = new JComboBox<String>();
+		comboBoxChairFilter.setModel(new CmbboxFilterChair());
+		comboBoxChairFilter.addKeyListener(new BaseCmbboxFilter());
+		comboBoxChairFilter.addActionListener(new BaseCmbboxFilter());
+		comboBoxChairFilter.setEditable(true);
+		comboBoxChairFilter.setAutoscrolls(true);
+			
+		return comboBoxChairFilter;
+	}
+		
+	public JComboBox<String> getComboBoxLecturerFilter() {
+		comboBoxLecturerFilter = new JComboBox<String>();
+		comboBoxLecturerFilter.setModel(new CmbboxFilterLecturer());
+		comboBoxLecturerFilter.addKeyListener(new BaseCmbboxFilter());
+		comboBoxLecturerFilter.addActionListener(new BaseCmbboxFilter());
+		comboBoxLecturerFilter.setEditable(true);
+		comboBoxLecturerFilter.setAutoscrolls(true);
+			
+		return comboBoxLecturerFilter;
+	}
+		
+	public JComboBox<String> getComboBoxSemesterFilter() {
+		comboBoxSemesterFilter = new JComboBox<String>();
+		comboBoxSemesterFilter.setModel(new CmbboxFilterSemester());
+		comboBoxSemesterFilter.addKeyListener(new BaseCmbboxFilter());
+		comboBoxSemesterFilter.addActionListener(new BaseCmbboxFilter());
+		comboBoxSemesterFilter.setEditable(true);
+		comboBoxSemesterFilter.setAutoscrolls(true);
+			
+		return comboBoxSemesterFilter;
+	}
+	
+	public JComboBox<String> getComboBoxRoomnumberFilter() {
+		comboBoxRoomnumberFilter = new JComboBox<String>();
+		comboBoxRoomnumberFilter.setModel(new CmbboxFilterRoomnumber());
+		comboBoxRoomnumberFilter.addKeyListener(new BaseCmbboxFilter());
+		comboBoxRoomnumberFilter.addActionListener(new BaseCmbboxFilter());
+		comboBoxRoomnumberFilter.setEditable(true);
+		comboBoxRoomnumberFilter.setAutoscrolls(true);
+			
+		return comboBoxRoomnumberFilter;
+		
+		
+	}
+	
+	public JComboBox<String> getComboBoxBuildingidFilter() {
+		comboBoxBuildingidFilter = new JComboBox<String>();
+		comboBoxBuildingidFilter.setModel(new CmbboxFilterBuildingid());
+		comboBoxBuildingidFilter.addKeyListener(new BaseCmbboxFilter());
+		comboBoxBuildingidFilter.addActionListener(new BaseCmbboxFilter());
+		comboBoxBuildingidFilter.setEditable(true);
+		comboBoxBuildingidFilter.setAutoscrolls(true);
+			
+		return comboBoxBuildingidFilter;
+	}
+	
+	public JComboBox<String> getComboBoxLevelFilter() {
+		comboBoxLevelFilter = new JComboBox<String>();
+		comboBoxLevelFilter.setModel(new CmbboxFilterLevel());
+		comboBoxLevelFilter.addKeyListener(new BaseCmbboxFilter());
+		comboBoxLevelFilter.addActionListener(new BaseCmbboxFilter());
+		comboBoxLevelFilter.setEditable(true);
+		comboBoxLevelFilter.setAutoscrolls(true);
+			
+		return comboBoxLevelFilter;
+	}
+		
 	public JTable getOrganisationTable() {
 		if (organisationTable == null) {
 			DefaultTableCellRenderer center = new DefaultTableCellRenderer();
@@ -404,28 +508,5 @@ public class BaseTab extends JFrame{
 		}
 		return panelLogout;
 	}
-	/**
-	 * @return the comboBoxLehrstuhlFilter
-	 */
-	public JComboBox<String> getComboBoxChariFilter() {
-		return comboBoxChairFilter;
-	}
-	/**
-	 * @return the comboBoxDozentFilter
-	 */
-	public JComboBox<String> getComboBoxLecturerFilter() {
-		return comboBoxLecturerFilter;
-	}
-	/**
-	 * @return the comboBoxSemesterFilter
-	 */
-	public JComboBox<String> getComboBoxSemesterFilter() {
-		return comboBoxSemesterFilter;
-	}
-	/**
-	 * @return the comboBoxVeranstaltungFilter
-	 */
-	public JComboBox<String> getComboBoxOrgaFilter() {
-		return comboBoxOrgaFilter;
-	}
+
 }
