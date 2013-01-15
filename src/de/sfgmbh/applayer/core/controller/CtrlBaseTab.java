@@ -4,12 +4,19 @@ import de.sfgmbh.applayer.core.model.AppModel;
 import de.sfgmbh.applayer.core.model.User;
 import de.sfgmbh.datalayer.core.daos.DataHandlerUser;
 
+/**
+ * BaseTab Controller
+ * 
+ * @author hannes
+ *
+ */
 public class CtrlBaseTab {
 	
 	/**
-	 * Login action
+	 * Login function to log a user in and eventually personalize the application for him
+	 * 
 	 * @param login
-	 * @param pw
+	 * @param password
 	 * @return the user object if login credentials are correct (and the user is not disabled) and otherwise null
 	 */
 	public User login(String login, String pw) {
@@ -29,6 +36,11 @@ public class CtrlBaseTab {
 				SessionManager.getInstance().setSession(checkUser);
 				checkUser.setLastLogin_((long) System.currentTimeMillis()/1000);
 				checkUser.save();
+				
+				// When a lecturer logged in pre-set combo box values
+				// Check if there is a logged in lecturer and if yes per-set the filter accordingly
+				//ViewManagercomboLecturer.setSelectedItem("test");
+				
 				return checkUser;
 			}
 		}
