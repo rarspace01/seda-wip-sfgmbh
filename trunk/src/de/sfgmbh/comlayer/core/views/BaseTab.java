@@ -108,7 +108,7 @@ public class BaseTab extends JFrame{
 	}
 	private void createContents() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 900, 648);
+		setBounds(100, 100, 1002, 648);
 		contentPane = new JLayeredPane();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -189,6 +189,7 @@ public class BaseTab extends JFrame{
 		startScreenPanel.add(buttonPanel, "cell 2 2,grow");
 		buttonPanel.setLayout(null);
 		
+		//buttonPanel.add(getBtnAddToStundenplan);
 		JButton btnAddToStundenplan = new JButton("+");
 		btnAddToStundenplan.addActionListener(new BaseBtnAddToStundenplan("plus"));
 		btnAddToStundenplan.setBounds(0, 29, 41, 23);

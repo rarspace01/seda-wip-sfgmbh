@@ -1,6 +1,7 @@
 package de.sfgmbh.applayer.core.model;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import de.sfgmbh.applayer.core.definitions.IntfAppObservable;
@@ -11,6 +12,10 @@ import de.sfgmbh.datalayer.core.model.DataModel;
 public class RepositoryRoom implements IntfAppObservable, IntfDataObserver {
 	
 	private ArrayList<Object> observer_ = new ArrayList<Object>();
+	
+	public List<Room> getByFilter(HashMap<String, String> filter) {
+		return DataModel.getInstance().getDataHandlerRoom().getByFilter(filter);
+	}	
 	
 	/**
 	 * Register this room repository as observer in the data model

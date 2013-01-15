@@ -6,9 +6,8 @@ import javax.swing.table.DefaultTableModel;
 
 import de.sfgmbh.applayer.core.definitions.IntfAppObserver;
 import de.sfgmbh.applayer.core.model.AppModel;
-import de.sfgmbh.applayer.core.model.RoomAllocation;
+import de.sfgmbh.applayer.core.model.Room;
 import de.sfgmbh.comlayer.core.controller.ViewManager;
-import de.sfgmbh.comlayer.core.controller.ViewHelper;
 
 public class RoomTableMain extends DefaultTableModel implements IntfAppObserver {
 
@@ -22,45 +21,42 @@ public class RoomTableMain extends DefaultTableModel implements IntfAppObserver 
 	}
 
 	public void change(String variant) {
-		ViewHelper vh = new ViewHelper();
 		HashMap<String, String> filter = new HashMap<String, String>();
 		
 		this.setRowCount(0);
 		
 		if (variant.equals("init")) {
-			filter.put("chair", "<alle>");
-			filter.put("course", "<alle>");
-			filter.put("lecturer", "<alle>");
-			filter.put("semester", "<alle>");
+			filter.put("room", "<alle>");
+			filter.put("buildingId", "<alle>");
+			filter.put("level", "<alle>");
 		} else {
-			filter.put("chair", ViewManager.getInstance().getCoreBaseTab().getComboBoxChairFilter().getSelectedItem().toString());
-			filter.put("course", ViewManager.getInstance().getCoreBaseTab().getComboBoxOrgaFilter().getSelectedItem().toString());
-			filter.put("lecturer", ViewManager.getInstance().getCoreBaseTab().getComboBoxLecturerFilter().getSelectedItem().toString());
-			filter.put("semester", ViewManager.getInstance().getCoreBaseTab().getComboBoxSemesterFilter().getSelectedItem().toString());
+			filter.put("room", ViewManager.getInstance().getCoreBaseTab().getComboBoxRoomnumberFilter().getSelectedItem().toString());
+			filter.put("buildingId", ViewManager.getInstance().getCoreBaseTab().getComboBoxBuildingidFilter().getSelectedItem().toString());
+			filter.put("level", ViewManager.getInstance().getCoreBaseTab().getComboBoxLevelFilter().getSelectedItem().toString());
 		}
 		
-		for (RoomAllocation ra : AppModel.getInstance().getRepositoryRoomAllocation().getByFilter(filter)){
-			if (ra.isPublic()) {
+		for (Room room : AppModel.getInstance().getRepositoryRoom().getByFilter(filter)){
+			//if (room.isPublic()) {
 				try {
 					Object[] row = {
-							"WE5/03.004", 
-							"Erba", 
-							"3", 
-							"55", 
-							vh.getDay(ra.getDay_()),
-							"2",
-							"0", 
-							"0", 
-							"0",
-							"1",
-							ra
+							room.getRoomNumber_(), 
+							room.getBuildingId_(),
+							room.getLevel_(),
+							room.getSeats_(),
+							room.getPcseats_(),
+							room.getBeamer_(),
+							room.getVisualizer_(),
+							room.getOverheads_(),
+							room.getChalkboards_(),
+							room.getWhiteboards_(),
+							room,
 							};
 					this.addRow(row);
 	
 				} catch (Exception e) {
 					AppModel.getInstance().getExceptionHandler().setNewException("Ein unbekannter Fehler ist aufgetreten! <br /><br />Fehler BaseTableMain-01:<br />" + e.toString(), "Fehler!");
 				}
-			}
+			//}
 		}
 	}
 	
