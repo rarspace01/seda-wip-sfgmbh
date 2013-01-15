@@ -4,16 +4,28 @@ import javax.swing.DefaultComboBoxModel;
 
 import de.sfgmbh.applayer.core.definitions.IntfAppObserver;
 
+/**
+ * Model for user class combo boxes
+ * 
+ * @author hannes
+ *
+ */
 public class CmbboxFilterUserClass extends DefaultComboBoxModel<String> implements IntfAppObserver {
 
 	private static final long serialVersionUID = 1L;
 	private String variant_;
 	
+	/**
+	 * Create the model object
+	 */
 	public CmbboxFilterUserClass() {
 		this.variant_ = "normal";
 		this.change();
 	}
 	
+	/**
+	 * Create the model object based on a variant string
+	 */
 	public CmbboxFilterUserClass(String variant) {
 		this.variant_ = variant;
 		this.change();

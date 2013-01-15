@@ -28,7 +28,9 @@ public class CmbboxFilterLecturer extends DefaultComboBoxModel<String> implement
 	@Override
 	public void change() {
 		
-		// Build and clean up the model on change - do not use removeAllElements() as it can cause null pointer exceptions when an observer model has null elements at any time
+		// Build and clean up the model on change - do not use
+		// removeAllElements() as it can cause null pointer exceptions when an
+		// observer model has null elements at any time
 		int initalSize = this.getSize();
 		this.addElement("<alle>");
 		for (User user : AppModel.getInstance().getRepositoryUser().getAllLecturer()){
@@ -37,8 +39,9 @@ public class CmbboxFilterLecturer extends DefaultComboBoxModel<String> implement
 		for (int i = 0; initalSize > i; i++) {
 			this.removeElementAt(i+1);
 		}
-		
-		// Set the selected lecturer to the currently logged in lecturer if there is a lecturer logged in - otherwise set it to "<alle>"
+
+		// Set the selected lecturer to the currently logged in lecturer if
+		// there is a lecturer logged in - otherwise set it to "<alle>"
 		User currentUser = SessionManager.getInstance().getSession();
 		if (currentUser != null) {
 			if (currentUser.getClass_().equals("lecturer")) {

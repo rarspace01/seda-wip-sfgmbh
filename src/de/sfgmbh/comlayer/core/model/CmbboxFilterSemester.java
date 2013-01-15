@@ -4,10 +4,19 @@ import javax.swing.DefaultComboBoxModel;
 
 import de.sfgmbh.applayer.core.definitions.IntfAppObserver;
 
+/**
+ * Model for semester combo boxes
+ * 
+ * @author hannes
+ *
+ */
 public class CmbboxFilterSemester extends DefaultComboBoxModel<String> implements IntfAppObserver {
 
 	private static final long serialVersionUID = 1L;
 	
+	/**
+	 * Create the model object
+	 */
 	public CmbboxFilterSemester() {
 		this.change();
 	}
