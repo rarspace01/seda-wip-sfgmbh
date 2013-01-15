@@ -21,6 +21,11 @@ import de.sfgmbh.comlayer.core.views.BaseTab;
 import de.sfgmbh.comlayer.organisation.controller.CmbboxFilter;
 import de.sfgmbh.comlayer.organisation.controller.ProfessorshipTabBtnsControl;
 
+/**
+ * 
+ * @author AnnaTerra
+ *
+ */
 public class ProfessorshipTab extends JPanel {
 
 	private static final long serialVersionUID = 1L;
@@ -124,6 +129,12 @@ public class ProfessorshipTab extends JPanel {
 		btnFailureprompt.addActionListener(new ProfessorshipTabBtnsControl("Fehlermeldung"));
 		add(btnFailureprompt, "cell 2 3");
 		
+	}
+	/**
+	 * @return the textFieldProfessorshipname
+	 */
+	public JTextField getTextFieldProfessorshipname() {
+		return textFieldProfessorshipname;
 	}
 	
 }
