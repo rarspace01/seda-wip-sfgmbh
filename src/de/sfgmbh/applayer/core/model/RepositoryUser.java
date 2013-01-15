@@ -90,5 +90,23 @@ public class RepositoryUser implements IntfAppObservable, IntfDataObserver {
 	public void unregister(Object observer) {
 		observer_.remove(observer);
 	}
+	
+	/**
+	 * Get a user by its id
+	 * @param userId
+	 * @return the user for the id or null if it doesn't exist
+	 */
+	public User get(int userId_) {
+		return DataModel.getInstance().getDataHandlerUser().get(userId_);
+	}
+
+	/**
+	 * Delete a user from the model if possible
+	 * @param userToDelete
+	 * @return true on success
+	 */
+	public boolean delete(User delUser) {
+		return DataModel.getInstance().getDataHandlerUser().delete(delUser);
+	}
 
 }

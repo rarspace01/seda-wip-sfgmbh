@@ -37,7 +37,11 @@ public class CmbboxFilterLecturer extends DefaultComboBoxModel<String> implement
 			this.addElement(user.getlName_());
 		}
 		for (int i = 0; initalSize > i; i++) {
-			this.removeElementAt(i+1);
+			try {
+				this.removeElementAt(i+1);
+			} catch (Exception e) {
+				// Be quiet and just go on, that's no big deal!
+			}
 		}
 
 		// Set the selected lecturer to the currently logged in lecturer if

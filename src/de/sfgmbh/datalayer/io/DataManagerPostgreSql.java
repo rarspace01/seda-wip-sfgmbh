@@ -12,9 +12,8 @@ import de.sfgmbh.datalayer.core.model.DataModel;
 /**
  * Class is used for the PostgreSQL DB connection
  * 
- * @author denishamann
- *         
- * @version 0.2
+ * @author denis
+ * @author hannes
  * 
  */
 public class DataManagerPostgreSql {
@@ -23,7 +22,10 @@ public class DataManagerPostgreSql {
 	private java.sql.Connection conn;
 	private Statement stmt;
 	private PreparedStatement pstmt;
-
+	
+	/**
+	 * Create the data manager object
+	 */
 	public DataManagerPostgreSql() {
 		try {
 			Class.forName("org.postgresql.Driver");
@@ -45,6 +47,10 @@ public class DataManagerPostgreSql {
 		// uniqueInstance_ = this;
 	}
 
+	/**
+	 * Get a singleton data manger object
+	 * @return always the same data manager object
+	 */
 	public static DataManagerPostgreSql getInstance() {
 		if (uniqueInstance_ == null) {
 			uniqueInstance_ = new DataManagerPostgreSql();
@@ -52,11 +58,15 @@ public class DataManagerPostgreSql {
 		return uniqueInstance_;
 	}
 
+	/**
+	 * Dispatch the singleton data manger object
+	 */
 	public void dispose() {
 		uniqueInstance_ = null;
 	}
 	
 	/**
+	 * Get the prepared statement object which is used by selectPstmt() or executePstmt() in this class to query the data base with prepared statements
 	 * @return the preparedStatement
 	 */
 	public PreparedStatement getPreparedStatement() {
@@ -115,15 +125,23 @@ public class DataManagerPostgreSql {
 		return i;
 	}
 
+	/**
+	 * Get the SQL connection object used to establish the connection to the database
+	 * @return the connection object
+	 */
 	public Connection getConnection() {
 		return conn;
 	}
 	
-	// Prepare statement
-	public PreparedStatement prepare(String SqlString) {
+	/**
+	 * Prepare the data manager with a prepared statement that is about to be executed either by selectPstmt() or executePstmt()
+	 * @param prepareSqlString
+	 * @return the prepared statement object
+	 */
+	public PreparedStatement prepare(String prepareSqlString) {
 		
 		try {
-			this.pstmt = conn.prepareStatement(SqlString);
+			this.pstmt = conn.prepareStatement(prepareSqlString);
 		} catch (Exception e) {
 			e.printStackTrace();
 			DataModel.getInstance().getExceptionsHandler().setNewException(("Es ist ein unbekannter Fehler (DataManagerPostgreSql-05) in der Datenhaltung aufgetreten:<br /><br />" + e.toString()), "Fehler!");
@@ -133,7 +151,11 @@ public class DataManagerPostgreSql {
 		
 	}
 	
-	// Execute prepared statement
+	/**
+	 * Execute a select operation with the prepared statement object
+	 * @return a result set
+	 * @throws SQLException
+	 */
 	public ResultSet selectPstmt()  throws SQLException {
 		
 		ResultSet rs = null;
@@ -153,23 +175,27 @@ public class DataManagerPostgreSql {
 		return rs;
 	}
 	
-	public int executePstmt()  throws SQLException {
-		
-		int i = -1;
+	/**
+	 * Execute a update or delete operation with the prepared statement object
+	 * @return true on success
+	 * @throws SQLException
+	 */
+	public boolean executePstmt()  throws SQLException {
 		
 		try {
 			long a, b, diff;
 			a = (long) System.currentTimeMillis();
-			i = this.getPreparedStatement().executeUpdate();
+			this.getPreparedStatement().executeUpdate();
 			b = (long) System.currentTimeMillis();
 			diff = b - a;
 			System.out.println(diff + "ms for SQL PS execute: [" + this.getPreparedStatement().toString() +"]");
 		} catch (SQLException e) {
 			e.printStackTrace();
 			DataModel.getInstance().getExceptionsHandler().setNewException(("Es ist ein SQL-Fehler (DataManagerPostgreSql-07) aufgetreten:<br /><br />" + e.toString()), "Datenbank-Fehler!");
+			return false;
 		}
 		
-		return i;
+		return true;
 	}
 
 }

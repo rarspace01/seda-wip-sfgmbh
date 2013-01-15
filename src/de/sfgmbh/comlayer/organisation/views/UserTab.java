@@ -37,7 +37,7 @@ import de.sfgmbh.comlayer.organisation.controller.UserTabCmbboxFilter;
 public class UserTab extends JPanel {
 
 	private static final long serialVersionUID = 1L;
-	private JTable roomOrgaTable;
+	private JTable userOrgaTable;
 	private JTextField textFieldUserLogin;
 	private JTextField textFieldMail;
 	private JLabel lblUserclass;
@@ -48,7 +48,7 @@ public class UserTab extends JPanel {
 	private JComboBox<String> comboBoxChair;
 	private JPanel leftPanel;
 	private JPanel leftTopPanel;
-	private JScrollPane organisationTableScrollPane;
+	private JScrollPane userTableScrollPane;
 	private JPanel buttonPanel;
 	private JButton btnEdit;
 	private JButton btnDelete;
@@ -135,19 +135,19 @@ public class UserTab extends JPanel {
 		tickerMsgPos1.setBounds(10, 11, 120, 361);
 		leftTopPanel.add(tickerMsgPos1);
 		
-		organisationTableScrollPane = new JScrollPane();
-		add(organisationTableScrollPane, "flowx,cell 2 2 4 1,grow");
+		userTableScrollPane = new JScrollPane();
+		add(userTableScrollPane, "flowx,cell 2 2 4 1,grow");
 		
-		roomOrgaTable = new JTable();
-		roomOrgaTable.setModel(ViewManager.getInstance().getOrgaUserTableModel());
-		roomOrgaTable.setShowVerticalLines(false);
-		roomOrgaTable.setBackground(SystemColor.activeCaption);
-		roomOrgaTable.getColumnModel().removeColumn(roomOrgaTable.getColumn("Hidden"));
-		organisationTableScrollPane.setViewportView(roomOrgaTable);
+		userOrgaTable = new JTable();
+		userOrgaTable.setModel(ViewManager.getInstance().getOrgaUserTableModel());
+		userOrgaTable.setShowVerticalLines(false);
+		userOrgaTable.setBackground(SystemColor.activeCaption);
+		userOrgaTable.getColumnModel().removeColumn(userOrgaTable.getColumn("Hidden"));
+		userTableScrollPane.setViewportView(userOrgaTable);
 		
 		// Enable table sorting for the model
 		TableRowSorter<TableModel> rowSorter = new TableRowSorter<TableModel>();
-		roomOrgaTable.setRowSorter(rowSorter);
+		userOrgaTable.setRowSorter(rowSorter);
 		rowSorter.setModel(ViewManager.getInstance().getOrgaUserTableModel());
 		rowSorter.sort();
 		
@@ -158,7 +158,7 @@ public class UserTab extends JPanel {
 		add(buttonPanel, "cell 6 2,grow");
 		
 		btnEdit = new JButton("hinzuf\u00FCgen");
-		btnEdit.addActionListener(new UserTabBtnsControl("hinz"));
+		btnEdit.addActionListener(new UserTabBtnsControl("add"));
 		btnEdit.setBounds(6, 11, 88, 23);
 		buttonPanel.add(btnEdit);
 		
@@ -168,12 +168,12 @@ public class UserTab extends JPanel {
 		buttonPanel.add(btnBearbeiten);
 		
 		btnDelete = new JButton("l\u00F6schen");
-		btnDelete.addActionListener(new UserTabBtnsControl("loschen"));
+		btnDelete.addActionListener(new UserTabBtnsControl("delete"));
 		btnDelete.setBounds(6, 79, 88, 23);
 		buttonPanel.add(btnDelete);
 		
 		btnFailureprompt = new JButton("Ausloggen");
-		btnFailureprompt.addActionListener(new RoomTabBtnsControl("Fehlermeldung"));
+		btnFailureprompt.addActionListener(new RoomTabBtnsControl("error"));
 		add(btnFailureprompt, "cell 2 3");
 	}
 	
@@ -181,7 +181,7 @@ public class UserTab extends JPanel {
 	 * @return the roomOrgaTable
 	 */
 	public JTable getRoomOrgaTable() {
-		return roomOrgaTable;
+		return userOrgaTable;
 	}
 	/**
 	 * @return the textFieldUserLogin
@@ -206,6 +206,12 @@ public class UserTab extends JPanel {
 	 */
 	public JComboBox<String> getComboBoxChair() {
 		return comboBoxChair;
+	}
+	/**
+	 * @return the userOrgaTable
+	 */
+	public JTable getUserOrgaTable() {
+		return userOrgaTable;
 	}
 	
 	

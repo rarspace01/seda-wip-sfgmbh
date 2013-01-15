@@ -116,7 +116,7 @@ public class QuestionDialog extends JDialog implements IntfComDialogObserver, In
 	private JButton getBtnYes() {
 		if (btnYes == null) {
 			btnYes = new JButton("Ja");
-			btnNo.addActionListener(new QuestionDialogBtns(this, "yes"));
+			btnYes.addActionListener(new QuestionDialogBtns(this, "yes"));
 			btnYes.setPreferredSize(new Dimension(75, 23));
 		}
 		return btnYes;
@@ -146,17 +146,11 @@ public class QuestionDialog extends JDialog implements IntfComDialogObserver, In
 		} else {
 			AppModel.getInstance().getExceptionHandler().setNewException("Ein Objekt das selbst nicht das Observer-Interface implementiert konnte nicht als Observer registriert werden", "Fehler!");
 		}
-		
-		
 	}
 
 	@Override
 	public void update(String answer) {
-		try {
 			((IntfComDialogObserver) this.currentObserver_).answered(answer);
-		} catch (Exception e) {
-			AppModel.getInstance().getExceptionHandler().setNewException(e.toString(), "Fehler!");
-		}
 	}
 
 	@Override

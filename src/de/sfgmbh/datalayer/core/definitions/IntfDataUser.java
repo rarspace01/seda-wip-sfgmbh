@@ -36,9 +36,9 @@ public interface IntfDataUser {
 	 * 
 	 * @param toBeDeletedUser
 	 *            - the object which should be remove from the database
-	 * @return
+	 * @return true on success
 	 */
-	public void delete(User toBeDeletedUser);
+	public boolean delete(User toBeDeletedUser);
 
 	/**
 	 * 

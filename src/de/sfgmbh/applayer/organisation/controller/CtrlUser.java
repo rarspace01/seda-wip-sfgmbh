@@ -1,7 +1,14 @@
 package de.sfgmbh.applayer.organisation.controller;
 
+import de.sfgmbh.applayer.core.model.AppModel;
 import de.sfgmbh.applayer.core.model.User;
 
+/**
+ * Controller for user management
+ * 
+ * @author hannes
+ *
+ */
 public class CtrlUser {
 	
 	/**
@@ -19,6 +26,22 @@ public class CtrlUser {
 		} else {
 			return false;
 		}
+	}
+
+	/**
+	 * Delete a user if possible
+	 * @param user
+	 * @return true on success
+	 */
+	public boolean delete(User user) {
+		// Check if the users exists in the data base
+		User delUser = AppModel.getInstance().getRepositoryUser().get(user.getUserId_());
+		
+		if (delUser != null) {
+			return AppModel.getInstance().getRepositoryUser().delete(delUser);
+		}
+		
+		return false;
 	}
 
 }
