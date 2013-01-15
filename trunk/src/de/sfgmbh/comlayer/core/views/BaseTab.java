@@ -36,7 +36,7 @@ import de.sfgmbh.comlayer.core.controller.BaseLogin;
 import de.sfgmbh.comlayer.core.controller.BaseCmbboxFilter;
 import de.sfgmbh.comlayer.core.controller.BaseRdbtnTopLeft;
 import de.sfgmbh.comlayer.core.controller.ViewManager;
-import de.sfgmbh.comlayer.core.model.CmbboxFilterBuildingid;
+import de.sfgmbh.comlayer.core.model.CmbboxFilterRoomplaces;
 import de.sfgmbh.comlayer.core.model.CmbboxFilterChair;
 import de.sfgmbh.comlayer.core.model.CmbboxFilterCourse;
 import de.sfgmbh.comlayer.core.model.CmbboxFilterLecturer;
@@ -78,6 +78,7 @@ public class BaseTab extends JFrame{
 	private JTable organisationTable;
 	private JScrollPane mainTableScrollPane;
 	private JPanel tickerJPanel;
+	private JPanel buttonPanel;
 	private JTextPane tickerMsgPos1;
 	private JPanel panelLogin;
 	private JPanel panelLogout;
@@ -85,6 +86,7 @@ public class BaseTab extends JFrame{
 	private JLabel lblPasswort;
 	private JLabel lblBenutzername;
 	private JButton btnNewButton;
+	private JButton btnAddToStundenplan;
 	private JTextField txtBenutzername;
 	private JPasswordField pwdPasswort;
 	private JRadioButton rdbtnLehrveranstaltungen;
@@ -189,11 +191,8 @@ public class BaseTab extends JFrame{
 		startScreenPanel.add(buttonPanel, "cell 2 2,grow");
 		buttonPanel.setLayout(null);
 		
-		//buttonPanel.add(getBtnAddToStundenplan);
-		JButton btnAddToStundenplan = new JButton("+");
-		btnAddToStundenplan.addActionListener(new BaseBtnAddToStundenplan("plus"));
-		btnAddToStundenplan.setBounds(0, 29, 41, 23);
-		buttonPanel.add(btnAddToStundenplan);
+		buttonPanel.add(getBtnAddToStudenplan());
+
 		
 		btnFehlermeldung = new JButton("Fehlermeldung");
 		btnFehlermeldung.addActionListener(new BaseBtnFailureprompt("error"));
@@ -318,7 +317,7 @@ public class BaseTab extends JFrame{
 	public JComboBox<String> getComboBoxBuildingidFilter() {
 		if (comboBoxBuildingidFilter == null) {
 			comboBoxBuildingidFilter = new JComboBox<String>();
-			comboBoxBuildingidFilter.setModel(new CmbboxFilterBuildingid());
+			comboBoxBuildingidFilter.setModel(new CmbboxFilterRoomplaces());
 			comboBoxBuildingidFilter.addKeyListener(new BaseCmbboxFilter());
 			comboBoxBuildingidFilter.addActionListener(new BaseCmbboxFilter());
 			comboBoxBuildingidFilter.setEditable(true);
@@ -339,6 +338,14 @@ public class BaseTab extends JFrame{
 		}
 			
 		return comboBoxLevelFilter;
+	}
+	
+	public JButton getBtnAddToStudenplan() {
+		btnAddToStundenplan = new JButton("+");
+		btnAddToStundenplan.addActionListener(new BaseBtnAddToStundenplan("plus"));
+		btnAddToStundenplan.setBounds(0, 29, 41, 23);
+
+		return btnAddToStundenplan;
 	}
 		
 	public JTable getOrganisationTable() {
@@ -556,5 +563,9 @@ public class BaseTab extends JFrame{
 	public JLayeredPane getContentPane() {
 		return contentPane;
 	}
-
+	
+	public JPanel getButtonPanel() {
+		return buttonPanel;
+	}
+	
 }

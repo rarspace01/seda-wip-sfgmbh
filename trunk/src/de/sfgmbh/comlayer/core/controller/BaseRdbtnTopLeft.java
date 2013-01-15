@@ -38,6 +38,7 @@ public class BaseRdbtnTopLeft implements ActionListener {
 			ViewManager.getInstance().getCoreBaseTab().getMainFilterPanel().add(ViewManager.getInstance().getCoreBaseTab().getComboBoxBuildingidFilter(), "cell 1 1,aligny bottom");
 			ViewManager.getInstance().getCoreBaseTab().getMainFilterPanel().add(ViewManager.getInstance().getCoreBaseTab().getComboBoxLevelFilter(), "cell 2 1,aligny bottom");
 			ViewManager.getInstance().getCoreBaseTab().getMainFilterPanel().setVisible(true);
+			ViewManager.getInstance().getCoreBaseTab().getBtnAddToStudenplan().setVisible(false);
 		}
 		
 		//course-JRadioButton is pressed
@@ -56,7 +57,6 @@ public class BaseRdbtnTopLeft implements ActionListener {
 			ViewManager.getInstance().getCoreBaseTab().getMainFilterPanel().add(ViewManager.getInstance().getCoreBaseTab().getComboBoxChairFilter(), "cell 1 1,aligny bottom");
 			ViewManager.getInstance().getCoreBaseTab().getMainFilterPanel().add(ViewManager.getInstance().getCoreBaseTab().getComboBoxLecturerFilter(), "cell 2 1,aligny bottom");
 			ViewManager.getInstance().getCoreBaseTab().getMainFilterPanel().add(ViewManager.getInstance().getCoreBaseTab().getComboBoxSemesterFilter(), "cell 3 1,aligny bottom");
-			ViewManager.getInstance().getCoreBaseTab().getMainFilterPanel().setVisible(true);
 		}
 	}
 }
