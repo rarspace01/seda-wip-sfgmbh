@@ -56,10 +56,6 @@ public class QuestionDialogBtns implements ActionListener, IntfComDialogObservab
 
 	@Override
 	public void update(String answer) {
-		try {
 			((IntfComDialogObserver) this.currentObserver_).answered(answer);
-		} catch (Exception e) {
-			AppModel.getInstance().getExceptionHandler().setNewException(e.toString(), "Fehler!");
-		}
 	}
 }

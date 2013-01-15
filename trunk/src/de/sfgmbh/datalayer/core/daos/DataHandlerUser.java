@@ -14,6 +14,13 @@ import de.sfgmbh.datalayer.core.definitions.IntfDataUser;
 import de.sfgmbh.datalayer.core.model.DataModel;
 import de.sfgmbh.datalayer.io.DataManagerPostgreSql;
 
+/**
+ * Data handler for users in the data base
+ * 
+ * @author hannes
+ * @author denis
+ *
+ */
 public class DataHandlerUser implements IntfDataUser, IntfDataObservable, IntfDataFilter {
 
 	private ArrayList<Object> observer_ = new ArrayList<Object>();
@@ -247,9 +254,53 @@ public class DataHandlerUser implements IntfDataUser, IntfDataObservable, IntfDa
 	}
 
 	@Override
-	public void delete(User toBeDeletedUser) {
-		// TODO Auto-generated method stub
-		
+	public boolean delete(User toBeDeletedUser) {
+		if (toBeDeletedUser != null) {
+			boolean returnState = true;
+			
+			// Check if lecturer and delete the constrain first in that case
+			if (toBeDeletedUser.getClass_().equals("lecturer")) {
+				try {
+					DataManagerPostgreSql dm=DataManagerPostgreSql.getInstance();
+					
+					dm.prepare("DELETE FROM public.lecturer "
+							+ "WHERE public.lecturer.userid = ?");
+					dm.getPreparedStatement().setInt(1, toBeDeletedUser.getUserId_());
+					returnState = dm.executePstmt();
+				} catch (SQLException e) {
+					returnState = false;
+					e.printStackTrace();
+					DataModel.getInstance().getExceptionsHandler().setNewException(("Es ist ein SQL-Fehler in der Klasse DataHandlerUser aufgetreten:<br /><br />" + e.toString()), "Datenbank-Fehler!");
+				} catch (Exception e) {
+					returnState = false;
+					e.printStackTrace();
+					DataModel.getInstance().getExceptionsHandler().setNewException(("Es ist ein unbekannter Fehler in der Klasse DataHandlerUser in der Datenhaltung aufgetreten:<br /><br />" + e.toString()), "Fehler!");
+				}
+			}
+			
+			// Now proceed with the deletion in the user table if the first delete was a success
+			if (returnState) {
+				try {
+					DataManagerPostgreSql dm=DataManagerPostgreSql.getInstance();
+					
+					dm.prepare("DELETE FROM public.user "
+							+ "WHERE public.user.userid = ?");
+					dm.getPreparedStatement().setInt(1, toBeDeletedUser.getUserId_());
+					returnState = dm.executePstmt();
+					this.update();
+				} catch (SQLException e) {
+					returnState = false;
+					e.printStackTrace();
+					DataModel.getInstance().getExceptionsHandler().setNewException(("Es ist ein SQL-Fehler in der Klasse DataHandlerUser aufgetreten:<br /><br />" + e.toString()), "Datenbank-Fehler!");
+				} catch (Exception e) {
+					returnState = false;
+					e.printStackTrace();
+					DataModel.getInstance().getExceptionsHandler().setNewException(("Es ist ein unbekannter Fehler in der Klasse DataHandlerUser in der Datenhaltung aufgetreten:<br /><br />" + e.toString()), "Fehler!");
+				}
+			}
+			return returnState;
+		}
+		return false;
 	}
 
 	/**
@@ -259,6 +310,7 @@ public class DataHandlerUser implements IntfDataUser, IntfDataObservable, IntfDa
 	public boolean save(User user) {
 		
 		if (user.getUserId_() == -1) {
+			boolean returnState = true;
 				try {
 					
 					DataManagerPostgreSql dm=DataManagerPostgreSql.getInstance();
@@ -283,20 +335,21 @@ public class DataHandlerUser implements IntfDataUser, IntfDataObservable, IntfDa
 								+ "VALUES (?,?)");
 						dm.getPreparedStatement().setInt(1, newUser.getUserId_());
 						dm.getPreparedStatement().setInt(2, user.getChair_().getChairId_());
-						dm.executePstmt();
+						returnState = dm.executePstmt();
 					}
 					this.update();
-					return true;
 				} catch (SQLException e) {
 					e.printStackTrace();
 					DataModel.getInstance().getExceptionsHandler().setNewException(("Es ist ein SQL-Fehler (DataHandlerUser-05) aufgetreten:<br /><br />" + e.toString()), "Datenbank-Fehler!");
-					return false;
+					returnState =  false;
 				} catch (Exception e) {
 					e.printStackTrace();
 					DataModel.getInstance().getExceptionsHandler().setNewException(("Es ist ein unbekannter Fehler (DataHandlerUser-06) in der Datenhaltung aufgetreten:<br /><br />" + e.toString()), "Fehler!");
-					return false;
+					returnState =  false;
 				}
+				return returnState;
 		} else {
+			boolean returnState = true;
 			try {
 				DataManagerPostgreSql dm=DataManagerPostgreSql.getInstance();
 				dm.prepare("UPDATE public.user SET "
@@ -312,18 +365,18 @@ public class DataHandlerUser implements IntfDataUser, IntfDataObservable, IntfDa
 				dm.getPreparedStatement().setLong(8, user.getLastLogin_());
 				dm.getPreparedStatement().setBoolean(9, user.isDisabled_());
 				dm.getPreparedStatement().setInt(10, user.getUserId_());
-				dm.executePstmt();
+				returnState = dm.executePstmt();
 				this.update();
-				return true;
 			} catch (SQLException e) {
 				e.printStackTrace();
 				DataModel.getInstance().getExceptionsHandler().setNewException(("Es ist ein SQL-Fehler (DataHandlerUser-07) aufgetreten:<br /><br />" + e.toString()), "Datenbank-Fehler!");
-				return false;
+				returnState = false;
 			} catch (Exception e) {
 				e.printStackTrace();
 				DataModel.getInstance().getExceptionsHandler().setNewException(("Es ist ein unbekannter Fehler (DataHandlerUser-08) in der Datenhaltung aufgetreten:<br /><br />" + e.toString()), "Fehler!");
-				return false;
+				returnState = false;
 			}
+			return returnState;
 			
 		}
 	}
