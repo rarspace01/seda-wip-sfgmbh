@@ -17,6 +17,7 @@ import de.sfgmbh.datalayer.io.DataManagerPostgreSql;
 public class DataHandlerRoom implements IntfDataRoom, IntfDataFilter, IntfDataObservable {
 	
 	private ArrayList<Object> observer_ = new ArrayList<Object>();
+	private DataManagerPostgreSql filterDm;
 
 	@Override
 	public List<Room> getAll() {
@@ -172,25 +173,45 @@ public class DataHandlerRoom implements IntfDataRoom, IntfDataFilter, IntfDataOb
 	public List<Room> getByFilter(HashMap<String, String> filter) {
 		List<Room> listRoom = new ArrayList<Room>();
 		
-		String SqlStatement = "SELECT * FROM public.room"; // placeholder until the statement below uses HashMap
-		
-		/**
-		String SqlStatement = "SELECT * FROM public.room WHERE " + filter
-				+ "='" + filterValue + "'";
-			*/ // this needs to be adjusted to use the HashMap filter
 
 		try {
-
-			ResultSet resultSet = DataManagerPostgreSql.getInstance().select(
-					SqlStatement);
-
-			while (resultSet.next()) {
-				listRoom.add(this.makeRoom(resultSet));
+			if (filterDm == null) { 
+				filterDm = new DataManagerPostgreSql(); 
+				filterDm.prepare(
+						"SELECT public.room.* " +
+						"FROM public.room " +
+						"WHERE public.room.roomnumber LIKE ? " +
+						"AND public.room.seats >= ? " +
+						"AND public.room.level LIKE ? ");
+				
 			}
-
+			if (filter.containsKey("room") && filter.get("room") != null && filter.get("room") != "" && filter.get("room") != "<alle>") {
+				filterDm.getPreparedStatement().setString(1, "%" + filter.get("room") + "%");
+			} else {
+				filterDm.getPreparedStatement().setString(1, "%");
+			}
+			if (filter.containsKey("seats") && filter.get("seats") != null && filter.get("seats") != "" && filter.get("seats") != "<alle>") {
+				filterDm.getPreparedStatement().setInt(2, Integer.parseInt(filter.get("seats")));
+			} else {
+				filterDm.getPreparedStatement().setInt(2, 0);
+			}
+			if (filter.containsKey("course") && filter.get("level") != null && filter.get("level") != "" && filter.get("level") != "<alle>") {
+				filterDm.getPreparedStatement().setString(3, "%" + filter.get("level") + "%");
+			} else {
+				filterDm.getPreparedStatement().setString(3, "%");
+			}
+		
+			ResultSet rs = filterDm.selectPstmt();
+			while (rs.next()) {
+				listRoom.add(this.makeRoom(rs));
+			}
+			
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
+			DataModel.getInstance().getExceptionsHandler().setNewException(("Es ist ein SQL-Fehler aufgetreten.<br /><br />Fehler DataHandlerRoom-17:<br />" + e.toString()), "Datenbank-Fehler!");
+		} catch (Exception e) {
+			e.printStackTrace();
+			DataModel.getInstance().getExceptionsHandler().setNewException(("Es ist ein unbekannter Fehler in der Datenhaltung aufgetreten:<br /><br />Fehler DataHandlerRoom-18:<br />" + e.toString()), "Fehler!");
 		}
 
 		return listRoom;

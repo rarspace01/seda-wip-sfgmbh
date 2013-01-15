@@ -65,7 +65,7 @@ public class BaseTab extends JFrame{
 	private JComboBox<String> comboBoxSemesterFilter;
 	private JComboBox<String> comboBoxOrgaFilter;
 	private JComboBox<String> comboBoxRoomnumberFilter;
-	private JComboBox<String> comboBoxBuildingidFilter;
+	private JComboBox<String> comboBoxRoomplacesFilter;
 	private JComboBox<String> comboBoxLevelFilter;
 	private JLabel lblLehrveranstaltung;
 	private JLabel lblLehrstuhl;
@@ -73,7 +73,7 @@ public class BaseTab extends JFrame{
 	private JLabel lblLoggedIn;
 	private JLabel lblSemester;
 	private JLabel lblRoomnumber;
-	private JLabel lblBuildingid;
+	private JLabel lblRoomplaces;
 	private JLabel lblLevel;
 	private JTable organisationTable;
 	private JScrollPane mainTableScrollPane;
@@ -229,9 +229,9 @@ public class BaseTab extends JFrame{
 		return lblRoomnumber;
 	}
 	
-	public JLabel getLblBuildingid() {
-		lblBuildingid = new JLabel("Gebäude");
-		return lblBuildingid;
+	public JLabel getLblRoomplaces() {
+		lblRoomplaces = new JLabel("Sitzplätze");
+		return lblRoomplaces;
 	}
 	
 	public JLabel getLblLevel() {
@@ -314,17 +314,17 @@ public class BaseTab extends JFrame{
 		
 	}
 	
-	public JComboBox<String> getComboBoxBuildingidFilter() {
-		if (comboBoxBuildingidFilter == null) {
-			comboBoxBuildingidFilter = new JComboBox<String>();
-			comboBoxBuildingidFilter.setModel(new CmbboxFilterRoomplaces());
-			comboBoxBuildingidFilter.addKeyListener(new BaseCmbboxFilter());
-			comboBoxBuildingidFilter.addActionListener(new BaseCmbboxFilter());
-			comboBoxBuildingidFilter.setEditable(true);
-			comboBoxBuildingidFilter.setAutoscrolls(true);
+	public JComboBox<String> getComboBoxRoomplacesFilter() {
+		if (comboBoxRoomplacesFilter == null) {
+			comboBoxRoomplacesFilter = new JComboBox<String>();
+			comboBoxRoomplacesFilter.setModel(new CmbboxFilterRoomplaces());
+			comboBoxRoomplacesFilter.addKeyListener(new BaseCmbboxFilter());
+			comboBoxRoomplacesFilter.addActionListener(new BaseCmbboxFilter());
+			comboBoxRoomplacesFilter.setEditable(true);
+			comboBoxRoomplacesFilter.setAutoscrolls(true);
 		}
 			
-		return comboBoxBuildingidFilter;
+		return comboBoxRoomplacesFilter;
 	}
 	
 	public JComboBox<String> getComboBoxLevelFilter() {

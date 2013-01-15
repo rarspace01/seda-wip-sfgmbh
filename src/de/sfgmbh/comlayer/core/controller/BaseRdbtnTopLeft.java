@@ -32,10 +32,10 @@ public class BaseRdbtnTopLeft implements ActionListener {
 			ViewManager.getInstance().getCoreBaseTab().getMainFilterPanel().setVisible(false);
 			ViewManager.getInstance().getCoreBaseTab().getMainFilterPanel().removeAll();
 			ViewManager.getInstance().getCoreBaseTab().getMainFilterPanel().add(ViewManager.getInstance().getCoreBaseTab().getLblRoomnumber(), "cell 0 0,aligny bottom");
-			ViewManager.getInstance().getCoreBaseTab().getMainFilterPanel().add(ViewManager.getInstance().getCoreBaseTab().getLblBuildingid(), "cell 1 0,aligny bottom");
+			ViewManager.getInstance().getCoreBaseTab().getMainFilterPanel().add(ViewManager.getInstance().getCoreBaseTab().getLblRoomplaces(), "cell 1 0,aligny bottom");
 			ViewManager.getInstance().getCoreBaseTab().getMainFilterPanel().add(ViewManager.getInstance().getCoreBaseTab().getLblLevel(), "cell 2 0,aligny bottom");
 			ViewManager.getInstance().getCoreBaseTab().getMainFilterPanel().add(ViewManager.getInstance().getCoreBaseTab().getComboBoxRoomnumberFilter(), "cell 0 1,aligny bottom");
-			ViewManager.getInstance().getCoreBaseTab().getMainFilterPanel().add(ViewManager.getInstance().getCoreBaseTab().getComboBoxBuildingidFilter(), "cell 1 1,aligny bottom");
+			ViewManager.getInstance().getCoreBaseTab().getMainFilterPanel().add(ViewManager.getInstance().getCoreBaseTab().getComboBoxRoomplacesFilter(), "cell 1 1,aligny bottom");
 			ViewManager.getInstance().getCoreBaseTab().getMainFilterPanel().add(ViewManager.getInstance().getCoreBaseTab().getComboBoxLevelFilter(), "cell 2 1,aligny bottom");
 			ViewManager.getInstance().getCoreBaseTab().getMainFilterPanel().setVisible(true);
 			ViewManager.getInstance().getCoreBaseTab().getBtnAddToStudenplan().setVisible(false);
