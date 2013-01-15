@@ -6,6 +6,12 @@ import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 import java.util.regex.Pattern;
 
+/**
+ * Model for users
+ * 
+ * @author hannes
+ *
+ */
 public class User {
 
 	private int userId_;
@@ -19,9 +25,15 @@ public class User {
 	private long lastLogin_;
 	private boolean disabled_;
 	private Chair chair_;
+	private int newPasswordLength_;
+	private boolean newPassword_;
 	
+	/**
+	 * Create a new user object
+	 */
 	public User() {
-		userId_=-1;
+		userId_ = -1;
+		newPassword_ = false;
 	}
 
 	public int getUserId_() {
@@ -37,7 +49,7 @@ public class User {
 	}
 
 	public void setLogin_(String login_) {
-		this.login_ = login_;
+		this.login_ = this.cleanString(login_);
 	}
 
 	public String getPass_() {
@@ -83,7 +95,7 @@ public class User {
 	}
 
 	public void setfName_(String fName_) {
-		this.fName_ = fName_;
+		this.fName_ = this.cleanString(fName_);
 	}
 
 	public String getlName_() {
@@ -91,7 +103,7 @@ public class User {
 	}
 
 	public void setlName_(String lName_) {
-		this.lName_ = lName_;
+		this.lName_ = this.cleanString(lName_);
 	}
 
 	public long getLastLogin_() {
@@ -120,7 +132,7 @@ public class User {
 
 	/**
 	 * Set hash for a plain text password string salted by a random string
-	 * @param pw
+	 * @param password
 	 */
 	public void setPwHashAndSalt (String pw) {
 		
@@ -133,11 +145,14 @@ public class User {
 		if (hashed != null) {
 			this.pass_ = hashed;
 		}
+		
+		this.newPasswordLength_ = pw.length();
+		this.newPassword_ = true;
 	}
 	
 	/**
 	 * Check if a plain text password string together with the users salt matches its hash
-	 * @param pw
+	 * @param password
 	 * @return true if the submitted plain text password is correct
 	 */
 	public boolean checkPw (String pw) {
@@ -152,11 +167,6 @@ public class User {
 		return false;
 	}
 	
-	/**
-	 * Get the SHA-256 hash for any string
-	 * @param string
-	 * @return the SHA-256 hash value for the submitted string
-	 */
 	private String getSha256 (String string) {
 		
 		MessageDigest md ;
@@ -179,6 +189,17 @@ public class User {
 		return null;
 	}
 	
+	private String cleanString(String string) {
+		String cleanString = string.trim();
+		if (cleanString.startsWith("\"") || cleanString.startsWith("'")) {
+			cleanString = cleanString.substring(1, cleanString.length());
+		}
+		if (cleanString.endsWith("\"") || cleanString.endsWith("'")) {
+			cleanString = cleanString.substring(0, cleanString.length() - 1);
+		}
+		return cleanString;
+	}
+	
 	/**
 	 * Save this user object in the DB (this will update a database entry if there is already one and create one if there is none)
 	 */
@@ -194,42 +215,53 @@ public class User {
 	 * @return true if all check attributes are valid user attributes
 	 */
 	public boolean validate() {
+		boolean check = true;
+		String message = "";
 		Pattern validEmail = Pattern.compile("^[A-Za-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[A-Za-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[A-Za-z0-9](?:[A-Za-z0-9-]*[A-Za-z0-9])?\\.)+[A-Za-z0-9](?:[A-Za-z0-9-]*[A-Za-z0-9])?$");
 		
 		if (this.userId_ < -1 ) {
-			AppModel.getInstance().getExceptionHandler().setNewException("Das ist keine gülite Benutzer ID", "Fehler!");
-			return false;
+			message = message + "Der Benutzer hat keine gültige Benutzer ID<br/>";
+			check = false;
 		}
-		if (this.login_.length() > 32 && this.login_.length() < 3) {
-			AppModel.getInstance().getExceptionHandler().setNewException("Die Benutzerkennung muss zwischen 3 und 6 Zeichen lang sein!", "Fehler!");
-			return false;
+		if (this.login_.length() > 32 || this.login_.length() < 3) {
+			message = message + "Die Benutzerkennung muss zwischen 3 und 32 Zeichen lang sein!<br />";
+			check = false;
 		}
 		if (this.mail_.length() > 64 ) {
-			AppModel.getInstance().getExceptionHandler().setNewException("Die E-Mail Adresse darf maximal 64 Zeichen lang sein!", "Fehler!");
-			return false;
+			message = message + "Die E-Mail Adresse darf maximal 64 Zeichen lang sein!<br />";
+			check = false;
 		}
 		if (!validEmail.matcher(this.mail_).matches()) {
-			AppModel.getInstance().getExceptionHandler().setNewException("Die E-Mail Adresse ist ungültig!", "Fehler!");
-			return false;
+			message = message + "Die E-Mail Adresse ist ungültig!<br />";
+			check = false;
 		}
 		if (this.fName_.length() > 64 ) {
-			AppModel.getInstance().getExceptionHandler().setNewException("Der Vorname darf maximal 64 Zeichen lang sein!", "Fehler!");
-			return false;
+			message = message + "Der Vorname darf maximal 64 Zeichen lang sein!<br />";
+			check = false;
 		}
-		if (this.lName_.length() > 64 && this.lName_.length() < 1) {
-			AppModel.getInstance().getExceptionHandler().setNewException("Der Nachname zwischen 1 und 64 Zeichen lang sein!", "Fehler!");
-			return false;
+		if (this.lName_.length() > 64 || this.lName_.length() < 1) {
+			message = message + "Der Nachname zwischen 1 und 64 Zeichen lang sein!<br />";
+			check = false;
 		}
 		if (!this.class_.equals("orga") && !this.class_.equals("lecturer") && !this.class_.equals("stud") ) {
-			AppModel.getInstance().getExceptionHandler().setNewException("Der Benutzer ist einer ungültigen Benutzerklasse zugeordnet!", "Fehler!");
-			return false;
+			message = message + "Der Benutzer ist einer ungültigen Benutzerklasse zugeordnet!<br />";
+			check = false;
 		}
 		if (this.class_.equals("lecturer") && this.chair_ == null) {
-			AppModel.getInstance().getExceptionHandler().setNewException("Einem Dozenten muss ein Lehrstuhl zugeordnet werden!", "Fehler!");
-			return false;
+			message = message + "Einem Dozenten muss ein Lehrstuhl zugeordnet werden!<br />";
+			check = false;
+		}
+		if (this.newPassword_ && this.newPasswordLength_ < 6) {
+			message = message + "Ein neues Passwort muss mindestens 6 Zeichen lang sein!<br />";
+			check = false;
 		}
 		
-		return true;
+		if (check) {
+			return true;
+		} else {
+			AppModel.getInstance().getExceptionHandler().setNewException(message, "Fehler!");
+			return false;
+		}
 	}
 
 }

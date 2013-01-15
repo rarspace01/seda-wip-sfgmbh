@@ -16,6 +16,8 @@ import javax.swing.JTextField;
 import javax.swing.JTextPane;
 import javax.swing.UIManager;
 import javax.swing.border.TitledBorder;
+import javax.swing.table.TableModel;
+import javax.swing.table.TableRowSorter;
 
 import net.miginfocom.swing.MigLayout;
 import de.sfgmbh.comlayer.core.controller.ViewManager;
@@ -135,6 +137,12 @@ public class RequestTab extends JPanel {
 		roomAllocationTable.setBackground(SystemColor.activeCaption);
 		roomAllocationTable.getColumnModel().removeColumn(roomAllocationTable.getColumn("Hidden"));
 		organisationTableScrollPane.setViewportView(roomAllocationTable);
+		
+		// Enable table sorting for the model
+		TableRowSorter<TableModel> rowSorter = new TableRowSorter<TableModel>();
+		roomAllocationTable.setRowSorter(rowSorter);
+		rowSorter.setModel(ViewManager.getInstance().getOrgaRequestTableModel());
+		rowSorter.sort();
 		
 		buttonPanel = new JPanel();
 		buttonPanel.setLayout(null);
