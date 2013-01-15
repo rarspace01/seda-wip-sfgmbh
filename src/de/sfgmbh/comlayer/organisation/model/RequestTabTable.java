@@ -10,17 +10,30 @@ import de.sfgmbh.applayer.core.model.RoomAllocation;
 import de.sfgmbh.comlayer.core.controller.ViewManager;
 import de.sfgmbh.comlayer.core.controller.ViewHelper;
 
+/**
+ * Table model for the room allocation table for the organization
+ * 
+ * @author hannes
+ *
+ */
 public class RequestTabTable extends DefaultTableModel implements IntfAppObserver {
 
 	private static final long serialVersionUID = 1L;
 	private String[] header = {"Dozent", "Lehrstuhl", "Tag", "Zeit", "Raum", "Semester", "Status","Konflikt", "Hidden"};
 	
+	/**
+	 * Creates an initial table model object
+	 */
 	public RequestTabTable() {
 		AppModel.getInstance().getRepositoryRoomAllocation().register(this);
 		this.setColumnIdentifiers(header);
 		this.change("init");
 	}
 	
+	/**
+	 * Performs an action depending on the submitted variant to change and update the table model
+	 * @param variant
+	 */
 	public void change(String variant) {
 		ViewHelper vh = new ViewHelper();
 		HashMap<String, String> filter = new HashMap<String, String>();
@@ -41,7 +54,7 @@ public class RequestTabTable extends DefaultTableModel implements IntfAppObserve
 			filter.put("room", ViewManager.getInstance().getOrgaRquestTab().getTxtRoom().getText());
 		}
 		
-		// Time tracking
+		// Time tracking for debugging - remove in final release
 		long a, b, diff;
 		a = (long) System.currentTimeMillis();
 		
@@ -75,6 +88,11 @@ public class RequestTabTable extends DefaultTableModel implements IntfAppObserve
 		System.out.println(diff + "ms for RequestTabTable build process");
 	}
 
+	@Override
+    public boolean isCellEditable(int row, int column) {
+        return false;
+    }
+	
 	@Override
 	public void change() {
 		this.change("update");
