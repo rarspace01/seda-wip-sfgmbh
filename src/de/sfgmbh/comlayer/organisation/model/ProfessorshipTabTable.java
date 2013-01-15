@@ -1,18 +1,64 @@
 package de.sfgmbh.comlayer.organisation.model;
 
-import javax.swing.table.DefaultTableModel;
+import java.util.HashMap;
 
-public class ProfessorshipTabTable extends DefaultTableModel {
+import javax.swing.table.*;
+
+import de.sfgmbh.comlayer.core.controller.ViewManager;
+import de.sfgmbh.applayer.core.definitions.IntfAppObserver;
+import de.sfgmbh.applayer.core.model.AppModel;
+import de.sfgmbh.applayer.core.model.Chair;
+import de.sfgmbh.comlayer.core.controller.ViewHelper;
+
+/**
+ * 
+ * @author AnnaTerra
+ *
+ */
+public class ProfessorshipTabTable extends DefaultTableModel implements IntfAppObserver {
 
 	private static final long serialVersionUID = 1L;
-	private Object[][] preFill = {
-			{"SEDA", "Sinz", "WIAI"},
-			{"KTR", "Krieger", "WIAI"},
-		};
-	private String[] preFillHeader = {"Lehrstuhlname", "Inhaber", "Fakult\u00E4t"};
 	
+private String[] header = {"Lehrstuhlname", "Lehrstuhlk�rzel", "Inhaber",  "Fakult�t"};
+
+
+public ProfessorshipTabTable() {
+	AppModel.getInstance().getRepositoryChair().register(this);
+	this.setColumnIdentifiers(header);
+	this.change("init");
+}
+
+public void change(String variant) {
+	HashMap<String, String> filter = new HashMap<String, String>();
+	ViewHelper vh = new ViewHelper();
 	
-	public ProfessorshipTabTable() {
-		this.setDataVector(preFill, preFillHeader);
+	this.setRowCount(0);
+	
+	if (variant.equals("init")) {
+	} else {
+		filter.put("chair", ViewManager.getInstance().getOrgaProfessorshipTab().getTextFieldProfessorshipname().getText());
 	}
+	
+	for (Chair chair : AppModel.getInstance().getRepositoryChair().getAll()) {
+		
+		
+		try {
+			Object[] row = {
+					chair.getChairName_(),
+					chair.getAcronym_(),
+					// chair.getChairOwner_(),
+					chair.getFaculty_(),
+					};
+			this.addRow(row);
+
+		} catch (Exception e) {
+			AppModel.getInstance().getExceptionHandler().setNewException("Ein unbekannter Fehler ist aufgetreten! <br /><br />Fehler BaseTableMain-01:<br />" + e.toString(), "Fehler!");
+		}
+	}
+}
+@Override
+public void change() {
+	this.change("update");
+	
+}
 }
