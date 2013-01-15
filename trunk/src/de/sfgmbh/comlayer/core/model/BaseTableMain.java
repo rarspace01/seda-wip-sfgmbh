@@ -33,7 +33,7 @@ public class BaseTableMain extends DefaultTableModel implements IntfAppObserver 
 			filter.put("lecturer", "<alle>");
 			filter.put("semester", "<alle>");
 		} else {
-			filter.put("chair", ViewManager.getInstance().getCoreBaseTab().getComboBoxChariFilter().getSelectedItem().toString());
+			filter.put("chair", ViewManager.getInstance().getCoreBaseTab().getComboBoxChairFilter().getSelectedItem().toString());
 			filter.put("course", ViewManager.getInstance().getCoreBaseTab().getComboBoxOrgaFilter().getSelectedItem().toString());
 			filter.put("lecturer", ViewManager.getInstance().getCoreBaseTab().getComboBoxLecturerFilter().getSelectedItem().toString());
 			filter.put("semester", ViewManager.getInstance().getCoreBaseTab().getComboBoxSemesterFilter().getSelectedItem().toString());
