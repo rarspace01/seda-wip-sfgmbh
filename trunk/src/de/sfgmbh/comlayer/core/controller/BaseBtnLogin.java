@@ -47,38 +47,38 @@ public class BaseBtnLogin implements ActionListener {
 			
 		} else if (this.version.equals("logout")){
 			ctrlBaseTab.logout();
-			ViewManager.getInstance().getCoreBaseTab().mainTabbedContainerPane.removeAll();
-			ViewManager.getInstance().getCoreBaseTab().mainTabbedContainerPane.setVisible(false);
-			ViewManager.getInstance().getCoreBaseTab().contentPane.add(ViewManager.getInstance().getCoreBaseTab().startScreenPanel, "name_5256771068822");
+			ViewManager.getInstance().getCoreBaseTab().getMainTabbedContainerPane().removeAll();
+			ViewManager.getInstance().getCoreBaseTab().getMainTabbedContainerPane().setVisible(false);
+			ViewManager.getInstance().getCoreBaseTab().getContentPane().add(ViewManager.getInstance().getCoreBaseTab().getStartScreenPanel(), "name_5256771068822");
 			ViewManager.getInstance().getCoreBaseTab().getPwdPasswort().setText("");
 			ViewManager.getInstance().getCoreBaseTab().getTxtBenutzername().setText("");
-			ViewManager.getInstance().getCoreBaseTab().startScreenPanel.setVisible(true);
+			ViewManager.getInstance().getCoreBaseTab().getStartScreenPanel().setVisible(true);
 			ViewManager.getInstance().getCoreBaseTab().getPanelLogin().setVisible(true);
 			ViewManager.getInstance().getCoreBaseTab().getPanelLogout().setVisible(false);
 		}
 	}
 		
 	public void callOrga() {
-		ViewManager.getInstance().getCoreBaseTab().mainTabbedContainerPane.setVisible(true);
-		ViewManager.getInstance().getCoreBaseTab().mainTabbedContainerPane.removeAll();
-		ViewManager.getInstance().getCoreBaseTab().mainTabbedContainerPane.addTab("Start", null, ViewManager.getInstance().getCoreBaseTab().startScreenPanel, null);
-		ViewManager.getInstance().getCoreBaseTab().mainTabbedContainerPane.addTab("Raumanfrage-Management", null, ViewManager.getInstance().getOrgaRquestTab(), null);
-		ViewManager.getInstance().getCoreBaseTab().mainTabbedContainerPane.setSelectedIndex(1);
-		ViewManager.getInstance().getCoreBaseTab().startScreenPanel.setVisible(false);
-		ViewManager.getInstance().getCoreBaseTab().mainTabbedContainerPane.addTab("Nutzerverwaltung", null, ViewManager.getInstance().getOrgaUserTab(), null);
-		ViewManager.getInstance().getCoreBaseTab().mainTabbedContainerPane.addTab("Lehrstuhlverwaltung", null, ViewManager.getInstance().getOrgaProfessorshipTab(), null);
-		ViewManager.getInstance().getCoreBaseTab().mainTabbedContainerPane.addTab("Raumverwaltung", null, ViewManager.getInstance().getOrgaRoomTab(), null);
+		ViewManager.getInstance().getCoreBaseTab().getMainTabbedContainerPane().setVisible(true);
+		ViewManager.getInstance().getCoreBaseTab().getMainTabbedContainerPane().removeAll();
+		ViewManager.getInstance().getCoreBaseTab().getMainTabbedContainerPane().addTab("Start", null, ViewManager.getInstance().getCoreBaseTab().getStartScreenPanel(), null);
+		ViewManager.getInstance().getCoreBaseTab().getMainTabbedContainerPane().addTab("Raumanfrage-Management", null, ViewManager.getInstance().getOrgaRquestTab(), null);
+		ViewManager.getInstance().getCoreBaseTab().getMainTabbedContainerPane().setSelectedIndex(1);
+		ViewManager.getInstance().getCoreBaseTab().getStartScreenPanel().setVisible(false);
+		ViewManager.getInstance().getCoreBaseTab().getMainTabbedContainerPane().addTab("Nutzerverwaltung", null, ViewManager.getInstance().getOrgaUserTab(), null);
+		ViewManager.getInstance().getCoreBaseTab().getMainTabbedContainerPane().addTab("Lehrstuhlverwaltung", null, ViewManager.getInstance().getOrgaProfessorshipTab(), null);
+		ViewManager.getInstance().getCoreBaseTab().getMainTabbedContainerPane().addTab("Raumverwaltung", null, ViewManager.getInstance().getOrgaRoomTab(), null);
 	}
 	
 	public void callLecturer() {
-		ViewManager.getInstance().getCoreBaseTab().mainTabbedContainerPane.setVisible(true);
-		ViewManager.getInstance().getCoreBaseTab().mainTabbedContainerPane.removeAll();
-		ViewManager.getInstance().getCoreBaseTab().mainTabbedContainerPane.addTab("Start", null, ViewManager.getInstance().getCoreBaseTab().startScreenPanel, null);
-		ViewManager.getInstance().getCoreBaseTab().mainTabbedContainerPane.addTab("Dozenten Bereich", null, ViewManager.getInstance().getLecturerStartTab(), null);
-		ViewManager.getInstance().getCoreBaseTab().mainTabbedContainerPane.setSelectedIndex(1);
-		ViewManager.getInstance().getCoreBaseTab().startScreenPanel.setVisible(false);
-		ViewManager.getInstance().getCoreBaseTab().mainTabbedContainerPane.addTab("Dozentenstundenplan", null, ViewManager.getInstance().getLecturerTimetableTab(), null);
-		ViewManager.getInstance().getCoreBaseTab().mainTabbedContainerPane.addTab("Lehrstuhlplan", null, ViewManager.getInstance().getLecturerProfessorshipTimetableTab(), null);
+		ViewManager.getInstance().getCoreBaseTab().getMainTabbedContainerPane().setVisible(true);
+		ViewManager.getInstance().getCoreBaseTab().getMainTabbedContainerPane().removeAll();
+		ViewManager.getInstance().getCoreBaseTab().getMainTabbedContainerPane().addTab("Start", null, ViewManager.getInstance().getCoreBaseTab().getStartScreenPanel(), null);
+		ViewManager.getInstance().getCoreBaseTab().getMainTabbedContainerPane().addTab("Dozenten Bereich", null, ViewManager.getInstance().getLecturerStartTab(), null);
+		ViewManager.getInstance().getCoreBaseTab().getMainTabbedContainerPane().setSelectedIndex(1);
+		ViewManager.getInstance().getCoreBaseTab().getStartScreenPanel().setVisible(false);
+		ViewManager.getInstance().getCoreBaseTab().getMainTabbedContainerPane().addTab("Dozentenstundenplan", null, ViewManager.getInstance().getLecturerTimetableTab(), null);
+		ViewManager.getInstance().getCoreBaseTab().getMainTabbedContainerPane().addTab("Lehrstuhlplan", null, ViewManager.getInstance().getLecturerProfessorshipTimetableTab(), null);
 	}
 	
 	public InfoDialog getInfoWindow(String msg) {

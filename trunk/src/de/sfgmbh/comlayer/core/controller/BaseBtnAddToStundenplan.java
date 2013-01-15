@@ -28,12 +28,12 @@ public class BaseBtnAddToStundenplan implements ActionListener {
 		int test = ViewManager.getInstance().getCoreBaseTab().getOrganisationTable().getSelectedRow();
 		System.out.println(ViewManager.getInstance().getCoreBaseTableModel().getValueAt(test, 9).toString());
 		//Go to the timetable tab
-		ViewManager.getInstance().getCoreBaseTab().mainTabbedContainerPane.setVisible(true);
-		ViewManager.getInstance().getCoreBaseTab().mainTabbedContainerPane.removeAll();
-		ViewManager.getInstance().getCoreBaseTab().mainTabbedContainerPane.addTab("Start", null, ViewManager.getInstance().getCoreBaseTab().startScreenPanel, null);
-		ViewManager.getInstance().getCoreBaseTab().mainTabbedContainerPane.addTab("Stundenplan", null, ViewManager.getInstance().getPublicTimetableTab(), null);
-		ViewManager.getInstance().getCoreBaseTab().startScreenPanel.setVisible(false);
-		ViewManager.getInstance().getCoreBaseTab().mainTabbedContainerPane.setSelectedIndex(ViewManager.getInstance().getCoreBaseTab().mainTabbedContainerPane.getTabCount()-1);
+		ViewManager.getInstance().getCoreBaseTab().getMainTabbedContainerPane().setVisible(true);
+		ViewManager.getInstance().getCoreBaseTab().getMainTabbedContainerPane().removeAll();
+		ViewManager.getInstance().getCoreBaseTab().getMainTabbedContainerPane().addTab("Start", null, ViewManager.getInstance().getCoreBaseTab().getStartScreenPanel(), null);
+		ViewManager.getInstance().getCoreBaseTab().getMainTabbedContainerPane().addTab("Stundenplan", null, ViewManager.getInstance().getPublicTimetableTab(), null);
+		ViewManager.getInstance().getCoreBaseTab().getStartScreenPanel().setVisible(false);
+		ViewManager.getInstance().getCoreBaseTab().getMainTabbedContainerPane().setSelectedIndex(ViewManager.getInstance().getCoreBaseTab().getMainTabbedContainerPane().getTabCount()-1);
 	}
 	
 	

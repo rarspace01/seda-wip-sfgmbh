@@ -26,6 +26,8 @@ import javax.swing.UIManager;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.TableModel;
+import javax.swing.table.TableRowSorter;
 
 import net.miginfocom.swing.MigLayout;
 import de.sfgmbh.comlayer.core.controller.BaseBtnAddToStundenplan;
@@ -42,14 +44,23 @@ import de.sfgmbh.comlayer.core.model.CmbboxFilterLevel;
 import de.sfgmbh.comlayer.core.model.CmbboxFilterRoomnumber;
 import de.sfgmbh.comlayer.core.model.CmbboxFilterSemester;
 
+/**
+ * The very first content users see when they start the application
+ * Most of the code here is auto generated code from window builder
+ * 
+ * @author mario
+ * @authos anna
+ * @author hannes
+ *
+ */
 public class BaseTab extends JFrame{
 
 	private static final long serialVersionUID = 1L;
 	
-	// GUI components
-	public JLayeredPane contentPane;
-	public JTabbedPane mainTabbedContainerPane;
-	public JPanel startScreenPanel;
+
+	private JLayeredPane contentPane;
+	private JTabbedPane mainTabbedContainerPane;
+	private JPanel startScreenPanel;
 	private JComboBox<String> comboBoxChairFilter;
 	private JComboBox<String> comboBoxLecturerFilter;
 	private JComboBox<String> comboBoxSemesterFilter;
@@ -362,6 +373,12 @@ public class BaseTab extends JFrame{
 			organisationTable.getColumnModel().getColumn(1).setCellRenderer(center);
 			organisationTable.getColumnModel().getColumn(6).setCellRenderer(center);
 			organisationTable.getColumnModel().removeColumn(organisationTable.getColumn("Hidden"));
+			
+			// Enable table sorting for the model
+			TableRowSorter<TableModel> rowSorter = new TableRowSorter<TableModel>();
+			organisationTable.setRowSorter(rowSorter);
+			rowSorter.setModel(ViewManager.getInstance().getCoreBaseTableModel());
+			rowSorter.sort();
 		}
 		return organisationTable;
 	}
@@ -510,6 +527,19 @@ public class BaseTab extends JFrame{
 			panelLogout.setVisible(false);
 		}
 		return panelLogout;
+	}
+	
+	/**
+	 * @return the mainTabbedContainerPane
+	 */
+	public JTabbedPane getMainTabbedContainerPane() {
+		return mainTabbedContainerPane;
+	}
+	/**
+	 * @return the contentPane
+	 */
+	public JLayeredPane getContentPane() {
+		return contentPane;
 	}
 
 }
