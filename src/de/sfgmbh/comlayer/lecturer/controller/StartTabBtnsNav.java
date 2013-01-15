@@ -30,15 +30,15 @@ public class StartTabBtnsNav implements ActionListener {
 		if (this.navAction.equals("timetable")) {
 			this.getInfoWindow("<strong>Fehlermeldung 1:</strong><br> Es konnte kein Dozentenstundenplan erstellt werden, da kein Dozent dem Lehrstuhl zugeordnet ist.<br><br>" +
 					"<strong>Fehlermeldung 2:</strong><br>Es konnte kein Dozentenstundenplan erstellt werden, da noch keine Lehrveranstaltungen exisiteren.").setVisible(true);
-			ViewManager.getInstance().getCoreBaseTab().mainTabbedContainerPane.addTab("Dozentenstundenplan", null, ViewManager.getInstance().getLecturerTimetableTab(), null);
-			ViewManager.getInstance().getCoreBaseTab().mainTabbedContainerPane.setSelectedIndex(ViewManager.getInstance().getCoreBaseTab().mainTabbedContainerPane.getTabCount()-1);
+			ViewManager.getInstance().getCoreBaseTab().getMainTabbedContainerPane().addTab("Dozentenstundenplan", null, ViewManager.getInstance().getLecturerTimetableTab(), null);
+			ViewManager.getInstance().getCoreBaseTab().getMainTabbedContainerPane().setSelectedIndex(ViewManager.getInstance().getCoreBaseTab().getMainTabbedContainerPane().getTabCount()-1);
 		}
 		
 		// Lehrstuhlplan button is pressed
 		if (this.navAction.equals("professorshiptimetable")) {
 			this.getInfoWindow("<strong>Fehlermeldung:</strong><br>Es konnte kein Lehrstuhlplan erstellt werden, da noch keine Lehrveranstaltungen exisiteren.").setVisible(true);
-			ViewManager.getInstance().getCoreBaseTab().mainTabbedContainerPane.addTab("Lehrstuhlplan", null, ViewManager.getInstance().getLecturerProfessorshipTimetableTab(), null);
-			ViewManager.getInstance().getCoreBaseTab().mainTabbedContainerPane.setSelectedIndex(ViewManager.getInstance().getCoreBaseTab().mainTabbedContainerPane.getTabCount()-1);
+			ViewManager.getInstance().getCoreBaseTab().getMainTabbedContainerPane().addTab("Lehrstuhlplan", null, ViewManager.getInstance().getLecturerProfessorshipTimetableTab(), null);
+			ViewManager.getInstance().getCoreBaseTab().getMainTabbedContainerPane().setSelectedIndex(ViewManager.getInstance().getCoreBaseTab().getMainTabbedContainerPane().getTabCount()-1);
 		}
 		
 		// LiveTicker button is pressed

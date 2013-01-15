@@ -28,20 +28,20 @@ public class BtnsNav implements ActionListener {
 		
 		// Nutzerverwaltungs Button is pressed
 		if (this.navAction.equals("Nutzerverw")) {
-			ViewManager.getInstance().getCoreBaseTab().mainTabbedContainerPane.addTab("Nutzerverwaltung", null, ViewManager.getInstance().getOrgaUserTab(), null);
-			ViewManager.getInstance().getCoreBaseTab().mainTabbedContainerPane.setSelectedIndex(ViewManager.getInstance().getCoreBaseTab().mainTabbedContainerPane.getTabCount()-1);
+			ViewManager.getInstance().getCoreBaseTab().getMainTabbedContainerPane().addTab("Nutzerverwaltung", null, ViewManager.getInstance().getOrgaUserTab(), null);
+			ViewManager.getInstance().getCoreBaseTab().getMainTabbedContainerPane().setSelectedIndex(ViewManager.getInstance().getCoreBaseTab().getMainTabbedContainerPane().getTabCount()-1);
 		}
 		
 		// Lehrstuhlverwaltung Button is pressed
 		if (this.navAction.equals("Lehrstuhlverw")) {
-			ViewManager.getInstance().getCoreBaseTab().mainTabbedContainerPane.addTab("Lehrstuhlverwaltung", null, ViewManager.getInstance().getOrgaProfessorshipTab(), null);
-			ViewManager.getInstance().getCoreBaseTab().mainTabbedContainerPane.setSelectedIndex(ViewManager.getInstance().getCoreBaseTab().mainTabbedContainerPane.getTabCount()-1);
+			ViewManager.getInstance().getCoreBaseTab().getMainTabbedContainerPane().addTab("Lehrstuhlverwaltung", null, ViewManager.getInstance().getOrgaProfessorshipTab(), null);
+			ViewManager.getInstance().getCoreBaseTab().getMainTabbedContainerPane().setSelectedIndex(ViewManager.getInstance().getCoreBaseTab().getMainTabbedContainerPane().getTabCount()-1);
 		}
 		
 		// Raumverwaltung Button is pressed
 		if (this.navAction.equals("Raumverw")) {
-			ViewManager.getInstance().getCoreBaseTab().mainTabbedContainerPane.addTab("Raumverwaltung", null, ViewManager.getInstance().getOrgaRoomTab(), null);
-			ViewManager.getInstance().getCoreBaseTab().mainTabbedContainerPane.setSelectedIndex(ViewManager.getInstance().getCoreBaseTab().mainTabbedContainerPane.getTabCount()-1);
+			ViewManager.getInstance().getCoreBaseTab().getMainTabbedContainerPane().addTab("Raumverwaltung", null, ViewManager.getInstance().getOrgaRoomTab(), null);
+			ViewManager.getInstance().getCoreBaseTab().getMainTabbedContainerPane().setSelectedIndex(ViewManager.getInstance().getCoreBaseTab().getMainTabbedContainerPane().getTabCount()-1);
 		}
 		
 		// LiveTicker Button is pressed
@@ -51,8 +51,8 @@ public class BtnsNav implements ActionListener {
 		
 		// Anfrageverwaltung Button is pressed
 		if (this.navAction.equals("Anfrageverw")) {
-			ViewManager.getInstance().getCoreBaseTab().mainTabbedContainerPane.addTab("Raumanfrage-Management", null, ViewManager.getInstance().getOrgaRquestTab(), null);
-			ViewManager.getInstance().getCoreBaseTab().mainTabbedContainerPane.setSelectedIndex(ViewManager.getInstance().getCoreBaseTab().mainTabbedContainerPane.getTabCount()-1);
+			ViewManager.getInstance().getCoreBaseTab().getMainTabbedContainerPane().addTab("Raumanfrage-Management", null, ViewManager.getInstance().getOrgaRquestTab(), null);
+			ViewManager.getInstance().getCoreBaseTab().getMainTabbedContainerPane().setSelectedIndex(ViewManager.getInstance().getCoreBaseTab().getMainTabbedContainerPane().getTabCount()-1);
 		}
 	}
 	

@@ -94,14 +94,14 @@ public class RoomTabBtnsControl implements ActionListener {
 			this.getInfoWindow(
 					"<strong>Fehlermeldung</strong><br> Es konnte keine Übersicht Ihrer Veranstaltungen angezeigt werden. Sie haben keine Lehrveranstaltung ausgew�hlt!")
 					.setVisible(true);
-			ViewManager.getInstance().getCoreBaseTab().mainTabbedContainerPane
+			ViewManager.getInstance().getCoreBaseTab().getMainTabbedContainerPane()
 					.setVisible(true);
-			ViewManager.getInstance().getCoreBaseTab().mainTabbedContainerPane
+			ViewManager.getInstance().getCoreBaseTab().getMainTabbedContainerPane()
 					.addTab("Raumplan", null,
 							ViewManager.getInstance().getOrgaRoomtableTab(),
 							null);
-			ViewManager.getInstance().getCoreBaseTab().mainTabbedContainerPane
-					.setSelectedIndex(ViewManager.getInstance().getCoreBaseTab().mainTabbedContainerPane
+			ViewManager.getInstance().getCoreBaseTab().getMainTabbedContainerPane()
+					.setSelectedIndex(ViewManager.getInstance().getCoreBaseTab().getMainTabbedContainerPane()
 							.getTabCount() - 1);
 
 		}
