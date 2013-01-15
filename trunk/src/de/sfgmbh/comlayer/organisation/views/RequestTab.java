@@ -27,6 +27,13 @@ import de.sfgmbh.comlayer.core.views.BaseTab;
 import de.sfgmbh.comlayer.organisation.controller.RequestTabBtnsControl;
 import de.sfgmbh.comlayer.organisation.controller.RequestTabCmbboxFilter;
 
+/**
+ * Tab for the room request management
+ * 
+ * @author anna
+ * @author hannes
+ *
+ */
 public class RequestTab extends JPanel {
 
 	private static final long serialVersionUID = 1L;

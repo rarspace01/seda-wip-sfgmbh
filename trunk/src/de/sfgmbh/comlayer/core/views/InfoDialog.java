@@ -14,6 +14,12 @@ import de.sfgmbh.applayer.core.definitions.IntfAppObserver;
 import de.sfgmbh.applayer.core.model.AppModel;
 import de.sfgmbh.comlayer.core.controller.InfoDialogBtnOk;
 
+/**
+ * Modal dialog for all kinds of system messages
+ * 
+ * @author hannes
+ *
+ */
 public class InfoDialog extends JDialog implements IntfAppObserver {
 
 	private static final long serialVersionUID = 1L;
@@ -22,24 +28,48 @@ public class InfoDialog extends JDialog implements IntfAppObserver {
 	private JLabel lblNewLabel;
 
 	/**
-	 * Create the frame.
+	 * Create the dialog with default message, title and settings
 	 */
 	public InfoDialog() {
 		createContents();
 	}
-	public InfoDialog(String info) {
-		this.setDialog(info);
-	}
-	public InfoDialog(String info, String title) {
-		this.setDialog(info, title);
+	
+	/**
+	 * Create the dialog with a custom text and a default title and settings
+	 * @param text
+	 */
+	public InfoDialog(String text) {
+		this.setDialog(text);
 	}
 	
-	public void setDialog(String info) {
+	/**
+	 * Create the dialog with a custom text and title and default settings
+	 * @param text
+	 * @param title
+	 */
+	public InfoDialog(String text, String title) {
+		this.setDialog(text, title);
+	}
+	
+	/**
+	 * Create the dialog with a custom text, title and settings
+	 * The settings (like a custom logo or buttons) are set depending on the submitted variant string.
+	 * @param text
+	 * @param title
+	 * @param variant
+	 */
+	public InfoDialog(String text, String title, String variant) {
+		this.setDialog(text, title);
+		// jet to be implemented
+	}
+	
+	
+	private void setDialog(String info) {
 		this.getTxtpnInfoWindowText().setText("<div style='font-family: Calibri, monospace; text-align: left;'>" + info + "</div>");
 		createContents();
 	}
 	
-	public void setDialog(String info, String title) {
+	private void setDialog(String info, String title) {
 		this.getTxtpnInfoWindowText().setText("<div style='font-family: Calibri,monospace; text-align: left;'>" + info + "</div>");
 		createContents(title);
 	}
@@ -66,7 +96,7 @@ public class InfoDialog extends JDialog implements IntfAppObserver {
 		this.setSize(this.getWidth(), (infoHeight));
 	}
 	
-	public JTextPane getTxtpnInfoWindowText() {
+	private JTextPane getTxtpnInfoWindowText() {
 		if (txtpnInfoDialogText == null) {
 			txtpnInfoDialogText = new JTextPane();
 			txtpnInfoDialogText.setEditable(false);
@@ -79,7 +109,7 @@ public class InfoDialog extends JDialog implements IntfAppObserver {
 	}
 	
 	
-	public JButton getBtnOk() {
+	private JButton getBtnOk() {
 		if (btnOk == null) {
 			btnOk = new JButton("OK");
 			btnOk.setPreferredSize(new Dimension(75, 23));
@@ -88,7 +118,7 @@ public class InfoDialog extends JDialog implements IntfAppObserver {
 		return btnOk;
 	}
 	
-	public JLabel getLblNewLabel() {
+	private JLabel getLblNewLabel() {
 		if (lblNewLabel == null) {
 			lblNewLabel = new JLabel("");
 			lblNewLabel.setIcon(new ImageIcon(InfoDialog.class.getResource("/de/sfgmbh/comlayer/core/views/InfoDialogIcon.png")));

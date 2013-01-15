@@ -46,7 +46,6 @@ import de.sfgmbh.comlayer.core.model.CmbboxFilterSemester;
 
 /**
  * The very first content users see when they start the application
- * Most of the code here is auto generated code from window builder
  * 
  * @author mario
  * @authos anna
@@ -249,56 +248,66 @@ public class BaseTab extends JFrame{
 	}
 	
 	public JComboBox<String> getComboBoxOrgaFilter() {
-		comboBoxOrgaFilter = new JComboBox<String>();
-		comboBoxOrgaFilter.addKeyListener(new BaseCmbboxFilter());
-		comboBoxOrgaFilter.addActionListener(new BaseCmbboxFilter());
-		comboBoxOrgaFilter.setAutoscrolls(true);
-		comboBoxOrgaFilter.setEditable(true);
-		comboBoxOrgaFilter.setModel(new CmbboxFilterCourse());
+		if (comboBoxOrgaFilter == null) {
+			comboBoxOrgaFilter = new JComboBox<String>();
+			comboBoxOrgaFilter.addKeyListener(new BaseCmbboxFilter());
+			comboBoxOrgaFilter.addActionListener(new BaseCmbboxFilter());
+			comboBoxOrgaFilter.setAutoscrolls(true);
+			comboBoxOrgaFilter.setEditable(true);
+			comboBoxOrgaFilter.setModel(new CmbboxFilterCourse());
+		}
 		
 		return comboBoxOrgaFilter;
 	}
 		
 	public JComboBox<String> getComboBoxChairFilter() {
-		comboBoxChairFilter = new JComboBox<String>();
-		comboBoxChairFilter.setModel(new CmbboxFilterChair());
-		comboBoxChairFilter.addKeyListener(new BaseCmbboxFilter());
-		comboBoxChairFilter.addActionListener(new BaseCmbboxFilter());
-		comboBoxChairFilter.setEditable(true);
-		comboBoxChairFilter.setAutoscrolls(true);
+		if (comboBoxChairFilter == null){
+			comboBoxChairFilter = new JComboBox<String>();
+			comboBoxChairFilter.setModel(new CmbboxFilterChair());
+			comboBoxChairFilter.addKeyListener(new BaseCmbboxFilter());
+			comboBoxChairFilter.addActionListener(new BaseCmbboxFilter());
+			comboBoxChairFilter.setEditable(true);
+			comboBoxChairFilter.setAutoscrolls(true);
+		}
 			
 		return comboBoxChairFilter;
 	}
 		
 	public JComboBox<String> getComboBoxLecturerFilter() {
-		comboBoxLecturerFilter = new JComboBox<String>();
-		comboBoxLecturerFilter.setModel(new CmbboxFilterLecturer());
-		comboBoxLecturerFilter.addKeyListener(new BaseCmbboxFilter());
-		comboBoxLecturerFilter.addActionListener(new BaseCmbboxFilter());
-		comboBoxLecturerFilter.setEditable(true);
-		comboBoxLecturerFilter.setAutoscrolls(true);
+		if (comboBoxLecturerFilter == null) {
+			comboBoxLecturerFilter = new JComboBox<String>();
+			comboBoxLecturerFilter.setModel(new CmbboxFilterLecturer());
+			comboBoxLecturerFilter.addKeyListener(new BaseCmbboxFilter());
+			comboBoxLecturerFilter.addActionListener(new BaseCmbboxFilter());
+			comboBoxLecturerFilter.setEditable(true);
+			comboBoxLecturerFilter.setAutoscrolls(true);
+		}
 			
 		return comboBoxLecturerFilter;
 	}
 		
 	public JComboBox<String> getComboBoxSemesterFilter() {
-		comboBoxSemesterFilter = new JComboBox<String>();
-		comboBoxSemesterFilter.setModel(new CmbboxFilterSemester());
-		comboBoxSemesterFilter.addKeyListener(new BaseCmbboxFilter());
-		comboBoxSemesterFilter.addActionListener(new BaseCmbboxFilter());
-		comboBoxSemesterFilter.setEditable(true);
-		comboBoxSemesterFilter.setAutoscrolls(true);
+		if (comboBoxSemesterFilter == null) {
+			comboBoxSemesterFilter = new JComboBox<String>();
+			comboBoxSemesterFilter.setModel(new CmbboxFilterSemester());
+			comboBoxSemesterFilter.addKeyListener(new BaseCmbboxFilter());
+			comboBoxSemesterFilter.addActionListener(new BaseCmbboxFilter());
+			comboBoxSemesterFilter.setEditable(true);
+			comboBoxSemesterFilter.setAutoscrolls(true);
+		}
 			
 		return comboBoxSemesterFilter;
 	}
 	
 	public JComboBox<String> getComboBoxRoomnumberFilter() {
-		comboBoxRoomnumberFilter = new JComboBox<String>();
-		comboBoxRoomnumberFilter.setModel(new CmbboxFilterRoomnumber());
-		comboBoxRoomnumberFilter.addKeyListener(new BaseCmbboxFilter());
-		comboBoxRoomnumberFilter.addActionListener(new BaseCmbboxFilter());
-		comboBoxRoomnumberFilter.setEditable(true);
-		comboBoxRoomnumberFilter.setAutoscrolls(true);
+		if (comboBoxRoomnumberFilter == null) {
+			comboBoxRoomnumberFilter = new JComboBox<String>();
+			comboBoxRoomnumberFilter.setModel(new CmbboxFilterRoomnumber());
+			comboBoxRoomnumberFilter.addKeyListener(new BaseCmbboxFilter());
+			comboBoxRoomnumberFilter.addActionListener(new BaseCmbboxFilter());
+			comboBoxRoomnumberFilter.setEditable(true);
+			comboBoxRoomnumberFilter.setAutoscrolls(true);
+		}
 			
 		return comboBoxRoomnumberFilter;
 		
@@ -306,23 +315,27 @@ public class BaseTab extends JFrame{
 	}
 	
 	public JComboBox<String> getComboBoxBuildingidFilter() {
-		comboBoxBuildingidFilter = new JComboBox<String>();
-		comboBoxBuildingidFilter.setModel(new CmbboxFilterBuildingid());
-		comboBoxBuildingidFilter.addKeyListener(new BaseCmbboxFilter());
-		comboBoxBuildingidFilter.addActionListener(new BaseCmbboxFilter());
-		comboBoxBuildingidFilter.setEditable(true);
-		comboBoxBuildingidFilter.setAutoscrolls(true);
+		if (comboBoxBuildingidFilter == null) {
+			comboBoxBuildingidFilter = new JComboBox<String>();
+			comboBoxBuildingidFilter.setModel(new CmbboxFilterBuildingid());
+			comboBoxBuildingidFilter.addKeyListener(new BaseCmbboxFilter());
+			comboBoxBuildingidFilter.addActionListener(new BaseCmbboxFilter());
+			comboBoxBuildingidFilter.setEditable(true);
+			comboBoxBuildingidFilter.setAutoscrolls(true);
+		}
 			
 		return comboBoxBuildingidFilter;
 	}
 	
 	public JComboBox<String> getComboBoxLevelFilter() {
-		comboBoxLevelFilter = new JComboBox<String>();
-		comboBoxLevelFilter.setModel(new CmbboxFilterLevel());
-		comboBoxLevelFilter.addKeyListener(new BaseCmbboxFilter());
-		comboBoxLevelFilter.addActionListener(new BaseCmbboxFilter());
-		comboBoxLevelFilter.setEditable(true);
-		comboBoxLevelFilter.setAutoscrolls(true);
+		if (comboBoxLevelFilter == null) {
+			comboBoxLevelFilter = new JComboBox<String>();
+			comboBoxLevelFilter.setModel(new CmbboxFilterLevel());
+			comboBoxLevelFilter.addKeyListener(new BaseCmbboxFilter());
+			comboBoxLevelFilter.addActionListener(new BaseCmbboxFilter());
+			comboBoxLevelFilter.setEditable(true);
+			comboBoxLevelFilter.setAutoscrolls(true);
+		}
 			
 		return comboBoxLevelFilter;
 	}
