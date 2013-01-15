@@ -1,0 +1,16 @@
+Christian:
+
+Denis:
+
+Hannes:
+
+Mario:
+
+Anna:
+
+
+Aufgaben: 
+Dokumentation erstellen (75 std)
+Tests (74,7 Std)
+Realisierung: Funktionen (168 Std), Datenbankimplementierungen (12,8 Std), Benutzeroberfläche (33,6 Std)
+Architektur 
