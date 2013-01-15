@@ -5,16 +5,17 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
+import de.sfgmbh.comlayer.core.controller.ViewManager;
 import de.sfgmbh.comlayer.core.views.InfoDialog;
 
 
 public class CmbboxFilter implements KeyListener, ActionListener {
 	
-	protected InfoDialog infoWindow;
+	
 	
 	@Override
 	public void keyTyped(KeyEvent arg0) {
-		this.getInfoWindow().setVisible(true);
+		//
 	}
 
 	@Override
@@ -31,14 +32,14 @@ public class CmbboxFilter implements KeyListener, ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		this.getInfoWindow().setVisible(true);
+		ViewManager.getInstance().getOrgaProfessorshipTableModel().change();
 	}
 	
-	public InfoDialog getInfoWindow() {
+	/*public InfoDialog getInfoWindow() {
 		if (this.infoWindow == null) {
 			this.infoWindow = new InfoDialog("Filterfunktionen sind hier noch nicht implementiert");
 		}
 		return this.infoWindow;
 	}
-	
+	*/
 }

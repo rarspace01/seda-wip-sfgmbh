@@ -8,7 +8,7 @@ import de.sfgmbh.comlayer.core.controller.ViewManager;
 import de.sfgmbh.applayer.core.definitions.IntfAppObserver;
 import de.sfgmbh.applayer.core.model.AppModel;
 import de.sfgmbh.applayer.core.model.Chair;
-import de.sfgmbh.comlayer.core.controller.ViewHelper;
+// import de.sfgmbh.comlayer.core.controller.ViewHelper;
 
 /**
  * 
@@ -19,7 +19,7 @@ public class ProfessorshipTabTable extends DefaultTableModel implements IntfAppO
 
 	private static final long serialVersionUID = 1L;
 	
-private String[] header = {"Lehrstuhlname", "Lehrstuhlk�rzel", "Inhaber",  "Fakult�t"};
+private String[] header = {"Lehrstuhlname", "Lehrstuhlkürzel", "Inhaber",  "Fakultät"};
 
 
 public ProfessorshipTabTable() {
@@ -30,7 +30,7 @@ public ProfessorshipTabTable() {
 
 public void change(String variant) {
 	HashMap<String, String> filter = new HashMap<String, String>();
-	ViewHelper vh = new ViewHelper();
+	// ViewHelper vh = new ViewHelper();
 	
 	this.setRowCount(0);
 	
@@ -46,7 +46,7 @@ public void change(String variant) {
 			Object[] row = {
 					chair.getChairName_(),
 					chair.getAcronym_(),
-					// chair.getChairOwner_(),
+					chair.getChairOwner_(),
 					chair.getFaculty_(),
 					};
 			this.addRow(row);
