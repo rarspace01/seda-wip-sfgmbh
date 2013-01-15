@@ -15,7 +15,7 @@ public class RoomTableMain extends DefaultTableModel implements IntfAppObserver 
 	private String[] header = {"Raum", "Gebäude", "Stock.", "Plätze", "PC-Plätze", "Beamer", "Visualizer", "Overheads", "Tafeln", "Whiteboards", "Hidden"};
 	
 	public RoomTableMain() {
-		AppModel.getInstance().getRepositoryRoomAllocation().register(this);
+		AppModel.getInstance().getRepositoryRoom().register(this);
 		this.setColumnIdentifiers(header);
 		this.change("init");
 	}
@@ -27,11 +27,11 @@ public class RoomTableMain extends DefaultTableModel implements IntfAppObserver 
 		
 		if (variant.equals("init")) {
 			filter.put("room", "<alle>");
-			filter.put("buildingId", "<alle>");
+			filter.put("seats", "<alle>");
 			filter.put("level", "<alle>");
 		} else {
 			filter.put("room", ViewManager.getInstance().getCoreBaseTab().getComboBoxRoomnumberFilter().getSelectedItem().toString());
-			filter.put("buildingId", ViewManager.getInstance().getCoreBaseTab().getComboBoxBuildingidFilter().getSelectedItem().toString());
+			filter.put("seats", ViewManager.getInstance().getCoreBaseTab().getComboBoxRoomplacesFilter().getSelectedItem().toString());
 			filter.put("level", ViewManager.getInstance().getCoreBaseTab().getComboBoxLevelFilter().getSelectedItem().toString());
 		}
 		

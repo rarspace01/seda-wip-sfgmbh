@@ -4,12 +4,11 @@ import javax.swing.DefaultComboBoxModel;
 
 import de.sfgmbh.applayer.core.definitions.IntfAppObserver;
 import de.sfgmbh.applayer.core.model.AppModel;
-import de.sfgmbh.applayer.core.model.User;
 
 /**
  * Model for allocation status combo boxes
  * 
- * @author hannes
+ * @author mario
  *
  */
 public class CmbboxFilterRoomplaces extends DefaultComboBoxModel<String> implements IntfAppObserver {
@@ -26,17 +25,10 @@ public class CmbboxFilterRoomplaces extends DefaultComboBoxModel<String> impleme
 
 	@Override
 	public void change() {
-
-		// Build and clean up the model on change - do not use
-		// removeAllElements() as it can cause null pointer exceptions when an
-		// observer model has null elements at any time
-		int initalSize = this.getSize();
-		this.addElement("<alle>");
-		for (User user : AppModel.getInstance().getRepositoryUser().getAllLecturer()){
-			this.addElement(user.getlName_());
-		}
-		for (int i = 0; initalSize > i; i++) {
-			this.removeElementAt(i+1);
+		String[] elements = new String[] {"<alle>", "10", "30", "50", "100"};
+		
+		for (String element : elements) {
+			this.addElement(element);
 		}
 	}
 }

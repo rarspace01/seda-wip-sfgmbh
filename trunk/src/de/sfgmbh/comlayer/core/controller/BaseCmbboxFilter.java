@@ -28,6 +28,7 @@ public class BaseCmbboxFilter implements KeyListener, ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		ViewManager.getInstance().getCoreBaseTableModel().change();
+		ViewManager.getInstance().getCoreRoomTableModel().change();
 	}
 	
 }
