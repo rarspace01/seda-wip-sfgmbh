@@ -2,13 +2,12 @@ package de.sfgmbh.comlayer.organisation.model;
 
 import java.util.HashMap;
 
-import javax.swing.table.*;
+import javax.swing.table.DefaultTableModel;
 
-import de.sfgmbh.comlayer.core.controller.ViewHelper;
-import de.sfgmbh.comlayer.core.controller.ViewManager;
 import de.sfgmbh.applayer.core.definitions.IntfAppObserver;
 import de.sfgmbh.applayer.core.model.AppModel;
 import de.sfgmbh.applayer.core.model.Chair;
+import de.sfgmbh.comlayer.core.controller.ViewManager;
 // import de.sfgmbh.comlayer.core.controller.ViewHelper;
 
 /**
@@ -37,7 +36,6 @@ public ProfessorshipTabTable() {
  */
 public void change(String variant) {
 	HashMap<String, String> filter = new HashMap<String, String>();
-	ViewHelper vh = new ViewHelper();
 	
 	this.setRowCount(0);
 	
