@@ -1,6 +1,7 @@
 package de.sfgmbh.applayer.core.model;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import de.sfgmbh.applayer.core.definitions.IntfAppObservable;
@@ -27,6 +28,14 @@ public class RepositoryChair implements IntfAppObservable, IntfDataObserver {
 		return DataModel.getInstance().getDataHandlerChair().getAll();
 	}
 	
+	/**
+	 * 
+	 * @param filter
+	 * @return a filtered list of chairs
+	 */
+	public List<Chair> getByFilter(HashMap<String, String> filter) {
+		return DataModel.getInstance().getDataHandlerChair().getByFilter(filter);
+	}
 	/**
 	 * Get the chair based on its acronym
 	 * @param acronym

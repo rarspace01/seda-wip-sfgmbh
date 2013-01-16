@@ -13,7 +13,7 @@ import de.sfgmbh.comlayer.core.controller.ViewHelper;
 /**
  * Table model to organize users
  * 
- * @author User
+ * @author hannes
  *
  */
 public class UserTabTable extends DefaultTableModel implements IntfAppObserver {

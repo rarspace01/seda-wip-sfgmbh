@@ -23,7 +23,7 @@ import de.sfgmbh.comlayer.organisation.controller.ProfessorshipTabBtnsControl;
 
 /**
  * 
- * @author AnnaTerra
+ * @author Anna
  *
  */
 public class ProfessorshipTab extends JPanel {

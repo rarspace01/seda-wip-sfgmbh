@@ -4,6 +4,7 @@ import java.util.HashMap;
 
 import javax.swing.table.*;
 
+import de.sfgmbh.comlayer.core.controller.ViewHelper;
 import de.sfgmbh.comlayer.core.controller.ViewManager;
 import de.sfgmbh.applayer.core.definitions.IntfAppObserver;
 import de.sfgmbh.applayer.core.model.AppModel;
@@ -12,7 +13,7 @@ import de.sfgmbh.applayer.core.model.Chair;
 
 /**
  * 
- * @author AnnaTerra
+ * @author anna
  *
  */
 public class ProfessorshipTabTable extends DefaultTableModel implements IntfAppObserver {
@@ -21,25 +22,33 @@ public class ProfessorshipTabTable extends DefaultTableModel implements IntfAppO
 	
 private String[] header = {"Lehrstuhlname", "Lehrstuhlkürzel", "Inhaber",  "Fakultät"};
 
-
+/**
+ * Creates an initial table model object
+ */
 public ProfessorshipTabTable() {
 	AppModel.getInstance().getRepositoryChair().register(this);
 	this.setColumnIdentifiers(header);
 	this.change("init");
 }
 
+/**
+ * Performs an action depending on the submitted variant to change and update the table model
+ * @param variant
+ */
 public void change(String variant) {
 	HashMap<String, String> filter = new HashMap<String, String>();
-	// ViewHelper vh = new ViewHelper();
+	ViewHelper vh = new ViewHelper();
 	
 	this.setRowCount(0);
 	
 	if (variant.equals("init")) {
+		
 	} else {
-		filter.put("chair", ViewManager.getInstance().getOrgaProfessorshipTab().getTextFieldProfessorshipname().getText());
+		String textChair = ViewManager.getInstance().getOrgaProfessorshipTab().getTextFieldProfessorshipname().getText();
+		filter.put("chair", textChair);
 	}
 	
-	for (Chair chair : AppModel.getInstance().getRepositoryChair().getAll()) {
+	for (Chair chair : AppModel.getInstance().getRepositoryChair().getByFilter(filter)) {
 		
 		
 		try {
