@@ -7,7 +7,6 @@ import java.util.HashMap;
 import java.util.List;
 
 import de.sfgmbh.applayer.core.model.Chair;
-import de.sfgmbh.applayer.core.model.User;
 import de.sfgmbh.datalayer.core.definitions.IntfDataChair;
 import de.sfgmbh.datalayer.core.definitions.IntfDataFilter;
 import de.sfgmbh.datalayer.core.definitions.IntfDataObservable;
