@@ -3,17 +3,21 @@ package de.sfgmbh.comlayer.organisation.views;
 import java.awt.Font;
 import java.awt.Toolkit;
 
-import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
+import de.sfgmbh.applayer.core.model.RoomAllocation;
+import de.sfgmbh.comlayer.core.model.CmbboxFilterDay;
+import de.sfgmbh.comlayer.core.model.CmbboxFilterRoomnumber;
+import de.sfgmbh.comlayer.core.model.CmbboxFilterTime;
 import de.sfgmbh.comlayer.organisation.controller.CounterproposalFrameBtns;
-import de.sfgmbh.comlayer.organisation.controller.CounterproposalFrameWin;
+import de.sfgmbh.comlayer.organisation.controller.UserCreateDialogWin;
 
 /**
  * Modal Dialog for a counter proposal
@@ -26,13 +30,27 @@ public class CounterproposalDialog extends JDialog {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-	private JTextField txtGebaude;
-	private JLabel lblmsg;
+	private JTextArea txtrUnterbreitenSieDem;
+	private RoomAllocation proposalAllocation;
+	private JLabel lblRoom;
+	private JTextField textField;
+	private JLabel lblDay;
+	private JLabel lblTime;
+	private JComboBox<String> cmbboxRoom;
+	private JComboBox<String> cmbboxDay;
+	private JComboBox<String> cmbboxTime;
+	private JLabel lblRoomSeats;
+	private JLabel lblStudents;
+	private JLabel lblSelectedStatus;
+	private JLabel lblSelectedRoomSeats;
+	private JLabel lblSelectedStudents;
+	private JLabel label_1;
 
 	/**
 	 * Create the frame.
 	 */
-	public CounterproposalDialog() {
+	public CounterproposalDialog(RoomAllocation ra) {
+		this.proposalAllocation = ra;
 		setModal(true);
 		initialize();
 		setLocationRelativeTo(null);
@@ -46,79 +64,150 @@ public class CounterproposalDialog extends JDialog {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel lblDozent = new JLabel("Dozent:");
-		lblDozent.setFont(new Font("SansSerif", Font.PLAIN, 12));
-		lblDozent.setBounds(10, 93, 120, 14);
-		contentPane.add(lblDozent);
-		
-		JLabel lblEmail = new JLabel("Lehrveranstaltung:");
-		lblEmail.setFont(new Font("SansSerif", Font.PLAIN, 12));
-		lblEmail.setBounds(10, 124, 120, 14);
-		contentPane.add(lblEmail);
-		
-		JLabel lblPasswort = new JLabel("Raum:");
-		lblPasswort.setFont(new Font("SansSerif", Font.PLAIN, 12));
-		lblPasswort.setBounds(10, 151, 120, 14);
-		contentPane.add(lblPasswort);
-		
-		JLabel lblNutzerklasse = new JLabel("Zeit:");
-		lblNutzerklasse.setFont(new Font("SansSerif", Font.PLAIN, 12));
-		lblNutzerklasse.setBounds(10, 178, 120, 14);
-		contentPane.add(lblNutzerklasse);
-		
-		JLabel lblLehrstuhl = new JLabel("Nachricht an Dozent:");
-		lblLehrstuhl.setFont(new Font("SansSerif", Font.PLAIN, 12));
-		lblLehrstuhl.setBounds(10, 209, 120, 14);
-		contentPane.add(lblLehrstuhl);
+		JLabel lblMsg = new JLabel("Nachricht an den Dozenten:");
+		lblMsg.setFont(new Font("SansSerif", Font.PLAIN, 12));
+		lblMsg.setBounds(20, 239, 196, 14);
+		contentPane.add(lblMsg);
 		
 		JButton btnSenden = new JButton("Senden");
-		btnSenden.setBounds(179, 318, 90, 28);
-		btnSenden.addActionListener(new CounterproposalFrameBtns("send"));
+		btnSenden.setBounds(179, 333, 90, 28);
+		btnSenden.addActionListener(new CounterproposalFrameBtns(this, "send"));
 		contentPane.add(btnSenden);
 		
 		JButton btnAbbrechen = new JButton("Abbrechen");
-		btnAbbrechen.addActionListener(new CounterproposalFrameBtns("cancel"));
-		btnAbbrechen.setBounds(67, 318, 90, 28);
+		btnAbbrechen.addActionListener(new CounterproposalFrameBtns(this, "cancel"));
+		btnAbbrechen.setBounds(67, 333, 90, 28);
 		contentPane.add(btnAbbrechen);
+		contentPane.add(getTxtrUnterbreitenSieDem());
+		contentPane.add(getLblRoom());
+		contentPane.add(getTextField());
+		contentPane.add(getLblDay());
+		contentPane.add(getLblTime());
+		contentPane.add(getCmbboxRoom());
+		contentPane.add(getCmbboxDay());
+		contentPane.add(getCmbboxTime());
+		contentPane.add(getLblRoomSeats());
+		contentPane.add(getLblStudents());
+		contentPane.add(getLblSelectedStatus());
+		contentPane.add(getLblSelectedRoomSeats());
+		contentPane.add(getLblSelectedStudents());
+		contentPane.add(getLabel_1());
 		
-		txtGebaude = new JTextField();
-		txtGebaude.setFont(new Font("SansSerif", Font.PLAIN, 12));
-		txtGebaude.setColumns(10);
-		txtGebaude.setBounds(10, 234, 259, 73);
-		contentPane.add(txtGebaude);
-		
-		JComboBox<String> comboBoxDozent = new JComboBox<String>();
-		comboBoxDozent.setModel(new DefaultComboBoxModel<String>(new String[] {"Benker"}));
-		comboBoxDozent.setEditable(true);
-		comboBoxDozent.setBounds(140, 91, 129, 20);
-		contentPane.add(comboBoxDozent);
-		
-		JComboBox<String> comboBoxRaum = new JComboBox<String>();
-		comboBoxRaum.setModel(new DefaultComboBoxModel<String>(new String[] {"05.002"}));
-		comboBoxRaum.setEditable(true);
-		comboBoxRaum.setBounds(140, 149, 129, 20);
-		contentPane.add(comboBoxRaum);
-		
-		JComboBox<String> comboBoxZeit = new JComboBox<String>();
-		comboBoxZeit.setModel(new DefaultComboBoxModel<String>(new String[] {"Mo. 10:00 - 12:00"}));
-		comboBoxZeit.setBounds(140, 176, 129, 20);
-		contentPane.add(comboBoxZeit);
-		
-		JComboBox<String> comboBoxLV = new JComboBox<String>();
-		comboBoxLV.setModel(new DefaultComboBoxModel<String>(new String[] {"WI-Projekt"}));
-		comboBoxLV.setEditable(true);
-		comboBoxLV.setBounds(140, 122, 129, 20);
-		contentPane.add(comboBoxLV);
-		
-		addWindowListener(new CounterproposalFrameWin());
-		contentPane.add(getLblmsg());
+		addWindowListener(new UserCreateDialogWin(this));
 	}
-	private JLabel getLblmsg() {
-		if (lblmsg == null) {
-			lblmsg = new JLabel("<html><b>Fehlermeldung:</b><br>Der Konflikt konnte nicht gel\u00F6st werden:<br>" +
-					"Sie haben keinen Konflikt selektiert.<br>Wenn Sie keine Fehlermeldung erhalten gelangen Sie zur Eingabemaske der Konfliktl\u00F6sung.</html>");
-			lblmsg.setBounds(10, 11, 259, 71);
+	public JTextArea getTxtrUnterbreitenSieDem() {
+		if (txtrUnterbreitenSieDem == null) {
+			txtrUnterbreitenSieDem = new JTextArea();
+			txtrUnterbreitenSieDem.setFont(new Font("SansSerif", Font.PLAIN, 12));
+			txtrUnterbreitenSieDem.setOpaque(false);
+			txtrUnterbreitenSieDem.setEditable(false);
+			txtrUnterbreitenSieDem.setWrapStyleWord(true);
+			txtrUnterbreitenSieDem.setLineWrap(true);
+			txtrUnterbreitenSieDem.setText("Unterbreiten Sie dem Dozenten " +
+					this.proposalAllocation.getCourse_().getLecturer_().getlName_() +
+					" für die Veranstaltung " +
+					this.proposalAllocation.getCourse_().getCourseAcronym_() +
+					" im " +
+					this.proposalAllocation.getSemester_() +
+					" einen Gegenvorschlag, der sofort freigeschalten wird, wenn der Dozent ihn annimmt:");
+			txtrUnterbreitenSieDem.setBounds(10, 11, 284, 73);
 		}
-		return lblmsg;
+		return txtrUnterbreitenSieDem;
+	}
+	public JLabel getLblRoom() {
+		if (lblRoom == null) {
+			lblRoom = new JLabel("Raum:");
+			lblRoom.setBounds(56, 86, 46, 14);
+		}
+		return lblRoom;
+	}
+	public JTextField getTextField() {
+		if (textField == null) {
+			textField = new JTextField();
+			textField.setBounds(20, 264, 249, 58);
+			textField.setColumns(10);
+		}
+		return textField;
+	}
+	public JLabel getLblDay() {
+		if (lblDay == null) {
+			lblDay = new JLabel("Tag:");
+			lblDay.setBounds(56, 111, 46, 14);
+		}
+		return lblDay;
+	}
+	public JLabel getLblTime() {
+		if (lblTime == null) {
+			lblTime = new JLabel("Zeit:");
+			lblTime.setBounds(56, 136, 46, 14);
+		}
+		return lblTime;
+	}
+	public JComboBox<String> getCmbboxRoom() {
+		if (cmbboxRoom == null) {
+			cmbboxRoom = new JComboBox<String>();
+			cmbboxRoom.setModel(new CmbboxFilterRoomnumber("select"));
+			cmbboxRoom.setEditable(true);
+			cmbboxRoom.setBounds(124, 83, 102, 20);
+		}
+		return cmbboxRoom;
+	}
+	public JComboBox<String> getCmbboxDay() {
+		if (cmbboxDay == null) {
+			cmbboxDay = new JComboBox<String>();
+			cmbboxDay.setModel(new CmbboxFilterDay("select"));
+			cmbboxDay.setBounds(124, 108, 102, 20);
+		}
+		return cmbboxDay;
+	}
+	public JComboBox<String> getCmbboxTime() {
+		if (cmbboxTime == null) {
+			cmbboxTime = new JComboBox<String>();
+			cmbboxTime.setModel(new CmbboxFilterTime("select"));
+			cmbboxTime.setBounds(124, 133, 102, 20);
+		}
+		return cmbboxTime;
+	}
+	public JLabel getLblRoomSeats() {
+		if (lblRoomSeats == null) {
+			lblRoomSeats = new JLabel("Plätze des gewählten Raums:");
+			lblRoomSeats.setBounds(20, 171, 146, 14);
+		}
+		return lblRoomSeats;
+	}
+	public JLabel getLblStudents() {
+		if (lblStudents == null) {
+			lblStudents = new JLabel("Erwartete Teilnehmer:");
+			lblStudents.setBounds(20, 186, 137, 14);
+		}
+		return lblStudents;
+	}
+	public JLabel getLblSelectedStatus() {
+		if (lblSelectedStatus == null) {
+			lblSelectedStatus = new JLabel("Belegung zur gewählten Zeit:");
+			lblSelectedStatus.setBounds(20, 201, 170, 14);
+		}
+		return lblSelectedStatus;
+	}
+	public JLabel getLblSelectedRoomSeats() {
+		if (lblSelectedRoomSeats == null) {
+			lblSelectedRoomSeats = new JLabel("n/a");
+			lblSelectedRoomSeats.setBounds(170, 171, 46, 14);
+		}
+		return lblSelectedRoomSeats;
+	}
+	public JLabel getLblSelectedStudents() {
+		if (lblSelectedStudents == null) {
+			lblSelectedStudents = new JLabel(String.valueOf(this.proposalAllocation.getCourse_().getExpectedAttendees_()));
+			lblSelectedStudents.setBounds(170, 186, 46, 14);
+		}
+		return lblSelectedStudents;
+	}
+	public JLabel getLabel_1() {
+		if (label_1 == null) {
+			label_1 = new JLabel("n/a");
+			label_1.setBounds(170, 201, 46, 14);
+		}
+		return label_1;
 	}
 }
