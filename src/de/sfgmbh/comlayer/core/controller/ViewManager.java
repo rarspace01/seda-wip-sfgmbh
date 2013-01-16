@@ -1,5 +1,6 @@
 package de.sfgmbh.comlayer.core.controller;
 
+import de.sfgmbh.applayer.core.model.User;
 import de.sfgmbh.comlayer.core.model.BaseTableMain;
 import de.sfgmbh.comlayer.core.model.RoomTableMain;
 import de.sfgmbh.comlayer.core.views.BaseTab;
@@ -28,7 +29,6 @@ import de.sfgmbh.comlayer.organisation.views.RoomFrame;
 import de.sfgmbh.comlayer.organisation.views.RoomTab;
 import de.sfgmbh.comlayer.organisation.views.RoomtableTab;
 import de.sfgmbh.comlayer.organisation.views.UserCreateDialog;
-import de.sfgmbh.comlayer.organisation.views.UserEditFrame;
 import de.sfgmbh.comlayer.organisation.views.UserTab;
 import de.sfgmbh.comlayer.timetable.views.PublicTimetableTab;
 
@@ -104,7 +104,7 @@ public class ViewManager {
 	private RequestTab requestTab;
 	private RoomFrame roomFrame;
 	private UserCreateDialog userFrame;
-	private UserEditFrame userEditFrame;
+	private UserCreateDialog userEditFrame;
 	private ProfessorshipFrame professorshipFrame;
 	private ProfessorshipEditFrame professorshipEditFrame;
 	private CounterproposalFrame counterproposalFrame;
@@ -187,9 +187,15 @@ public class ViewManager {
 		}
 		return this.userFrame;
 	}
-	public UserEditFrame getOrgaUserEditFrame() {
+	public UserCreateDialog getOrgaUserEditFrame(User user) {
 		if (this.userEditFrame == null) {
-			this.userEditFrame = new UserEditFrame();
+			this.userEditFrame = new UserCreateDialog(user);
+		}
+		return this.userEditFrame;
+	}
+	public UserCreateDialog getOrgaUserEditFrame() {
+		if (this.userEditFrame == null) {
+			this.userEditFrame = new UserCreateDialog(null);
 		}
 		return this.userEditFrame;
 	}

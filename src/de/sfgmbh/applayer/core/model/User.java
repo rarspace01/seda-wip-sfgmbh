@@ -240,7 +240,7 @@ public class User {
 			check = false;
 		}
 		if (this.lName_.length() > 64 || this.lName_.length() < 1) {
-			message = message + "Der Nachname zwischen 1 und 64 Zeichen lang sein!<br />";
+			message = message + "Der Nachname muss zwischen 1 und 64 Zeichen lang sein!<br />";
 			check = false;
 		}
 		if (!this.class_.equals("orga") && !this.class_.equals("lecturer") && !this.class_.equals("stud") ) {

@@ -8,14 +8,14 @@ import de.sfgmbh.applayer.core.model.User;
 import de.sfgmbh.applayer.organisation.controller.CtrlUser;
 import de.sfgmbh.comlayer.core.controller.ViewManager;
 import de.sfgmbh.comlayer.core.definitions.IntfComDialogObserver;
-import de.sfgmbh.comlayer.core.views.InfoDialog;
 import de.sfgmbh.comlayer.core.views.QuestionDialog;
+import de.sfgmbh.comlayer.organisation.views.UserCreateDialog;
 
 
 /**
  * Action listener for the user organization control buttons on the right
  * 
- * @author User
+ * @author hannes
  *
  */
 public class UserTabBtnsControl implements ActionListener, IntfComDialogObserver {
@@ -24,7 +24,7 @@ public class UserTabBtnsControl implements ActionListener, IntfComDialogObserver
 	private boolean deleteUser = false;
 	private User userMarkedForDeletion;
 	private CtrlUser ctrlUser = new CtrlUser();
-	protected InfoDialog infoWindow;
+	
 	
 	/**
 	 * Create the action listener
@@ -46,12 +46,25 @@ public class UserTabBtnsControl implements ActionListener, IntfComDialogObserver
 		
 		// Add button is pressed
 		if (this.navAction.equals("add")) {
-			ViewManager.getInstance().getOrgaUserCreateDialog().setVisible(true);
+			UserCreateDialog newUserDialog = new UserCreateDialog();
+			newUserDialog.setVisible(true);
 		}
 		
 		// Edit button is pressed
 		if (this.navAction.equals("edit")) {
-			ViewManager.getInstance().getOrgaUserEditFrame().setVisible(true);
+			// Get the user
+			int row = ViewManager.getInstance().getOrgaUserTab().getUserOrgaTable().getSelectedRow();
+			if (row == -1) {
+				AppModel.getInstance().getExceptionHandler().setNewException("Sie müssen zunächst einen Benutzer auswählen.", "Achtung!");
+			} else {
+				try {
+					User editUser = (User) ViewManager.getInstance().getOrgaUserTableModel().getValueAt(row, 6);
+					UserCreateDialog editDialog = new UserCreateDialog(editUser);
+					editDialog.setVisible(true);
+				} catch (Exception ex) {
+					AppModel.getInstance().getExceptionHandler().setNewException("Ein unerwarteter Fehler ist aufgetreten.<br /><br >" + ex.toString(), "Fehler!");
+				}
+			}
 		}
 		
 		// Delete button is pressed
@@ -63,28 +76,18 @@ public class UserTabBtnsControl implements ActionListener, IntfComDialogObserver
 			int row = ViewManager.getInstance().getOrgaUserTab().getUserOrgaTable().getSelectedRow();
 			if (row == -1) {
 				AppModel.getInstance().getExceptionHandler().setNewException("Sie müssen zunächst einen Benutzer auswählen.", "Achtung!");
+			} else {
+				try {
+					this.userMarkedForDeletion = (User) ViewManager.getInstance().getOrgaUserTableModel().getValueAt(row, 6);
+				} catch (Exception ex) {
+					AppModel.getInstance().getExceptionHandler().setNewException("Ein unerwarteter Fehler ist aufgetreten.<br /><br >" + ex.toString(), "Fehler!");
+				}
+				
+				QuestionDialog dialog = new QuestionDialog("Wollen Sie den gewählten benutzer wirklich löschen?", "Achtung!");
+				dialog.register(this);
+				dialog.setVisible(true);
 			}
-			try {
-				this.userMarkedForDeletion = (User) ViewManager.getInstance().getOrgaUserTableModel().getValueAt(row, 6);
-			} catch (Exception ex) {
-				AppModel.getInstance().getExceptionHandler().setNewException("Ein unerwarteter Fehler ist aufgetreten.<br /><br >" + ex.toString(), "Fehler!");
-			}
-			
-			QuestionDialog dialog = new QuestionDialog("Wollen Sie den gewählten benutzer wirklich löschen?", "Achtung!");
-			dialog.register(this);
-			dialog.setVisible(true);
 		}
-		
-		// Fehlermeldung Button is pressed
-		if (this.navAction.equals("error")) {
-			this.getInfoWindow("<b>Fehlermeldung:</b><br>Es besteht keine Verbindung zur Datenbank. Daher k�nnen keine Nutzer angezeigt werden.").setVisible(true);
-		}
-	}
-	
-	// Manage InfoWindow instance
-	public InfoDialog getInfoWindow(String msg) {
-		this.infoWindow = new InfoDialog(msg);
-		return this.infoWindow;
 	}
 	
 	@Override
