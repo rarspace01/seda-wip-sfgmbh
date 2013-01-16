@@ -35,7 +35,7 @@ public class ViewHelper {
 	 * @param t
 	 * @return a formated time string
 	 */
-	public String getTime(int t) {
+	public static String getTime(int t) {
 		if (t == 1) {
 			return "8:00 - 10:00";
 		} else if (t == 2) {

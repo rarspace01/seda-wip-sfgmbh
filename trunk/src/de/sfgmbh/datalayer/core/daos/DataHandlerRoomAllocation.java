@@ -39,7 +39,9 @@ public class DataHandlerRoomAllocation implements IntfDataObservable, IntfDataFi
 								"AND public.course.lecturerid = public.user.userid " +
 								"AND public.course.lecturerid = public.lecturer.userid " +
 								"AND public.chair.chairid = public.lecturer.chairid " +
-								"AND public.roomallocation.roomid = public.room.roomid ";
+								"AND public.roomallocation.roomid = public.room.roomid " +
+								"ORDER BY public.roomallocation.day ASC, public.roomallocation.time ASC"
+								;
 
 		try {
 
@@ -95,7 +97,8 @@ public class DataHandlerRoomAllocation implements IntfDataObservable, IntfDataFi
 						"AND public.roomallocation.approved LIKE ? " +
 						"AND public.room.roomnumber LIKE ? " +
 						"AND public.user.login LIKE ? " +
-						"AND public.room.roomid BETWEEN ? AND ? ");
+						"AND public.room.roomid BETWEEN ? AND ? " +
+						"ORDER BY public.roomallocation.day ASC, public.roomallocation.time ASC");
 				
 			}
 			if (filter.containsKey("lecturer") && filter.get("lecturer") != null && filter.get("lecturer") != "" && filter.get("lecturer") != "<alle>") {
@@ -185,7 +188,9 @@ public class DataHandlerRoomAllocation implements IntfDataObservable, IntfDataFi
 						"AND public.roomallocation.time = ? " +
 						"AND public.roomallocation.semester LIKE ? " +
 						"AND public.roomallocation.approved NOT LIKE 'denied' " +
-						"ANd public.roomallocation.roomallocationid <> ? ");
+						"ANd public.roomallocation.roomallocationid <> ? " +
+						"ORDER BY public.roomallocation.day ASC, public.roomallocation.time ASC"
+						);
 			}
 			conflictingAllocationDm.getPreparedStatement().setInt(1, ra.getRoom_().getRoomId_());
 			conflictingAllocationDm.getPreparedStatement().setInt(2, ra.getDay_());
@@ -221,7 +226,8 @@ public class DataHandlerRoomAllocation implements IntfDataObservable, IntfDataFi
 														"AND public.course.lecturerid = public.lecturer.userid " +
 														"AND public.chair.chairid = public.lecturer.chairid " +
 														"AND public.roomallocation.roomid = public.room.roomid " +
-														"AND roomallocationid = ?");
+														"AND roomallocationid = ? " +
+														"ORDER BY public.roomallocation.day ASC, public.roomallocation.time ASC");
 			DataManagerPostgreSql.getInstance().getPreparedStatement().setInt(1, id);
 			ResultSet rs = DataManagerPostgreSql.getInstance().selectPstmt();
 			while (rs.next()) {
