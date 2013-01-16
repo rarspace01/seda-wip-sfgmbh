@@ -12,11 +12,11 @@ import de.sfgmbh.applayer.core.model.User;
 public class CtrlUser {
 	
 	/**
-	 * Create a user if it is a valid user
+	 * Create or edit a user if it is a valid user
 	 * @param user
 	 * @return true if the creation was successful
 	 */
-	public boolean createUser(User user) {
+	public boolean saveUser(User user) {
 		
 		if (user.validate()) {
 			if (user.save()) {

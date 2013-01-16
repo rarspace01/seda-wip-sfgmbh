@@ -366,6 +366,14 @@ public class DataHandlerUser implements IntfDataUser, IntfDataObservable, IntfDa
 				dm.getPreparedStatement().setBoolean(9, user.isDisabled_());
 				dm.getPreparedStatement().setInt(10, user.getUserId_());
 				returnState = dm.executePstmt();
+				if (user.getChair_() != null) {
+					dm.prepare("UPDATE public.lecturer SET "
+							+ "chairid = ? "
+							+ "WHERE userid = ?");
+					dm.getPreparedStatement().setInt(1, user.getChair_().getChairId_());
+					dm.getPreparedStatement().setInt(2, user.getUserId_());
+					returnState = dm.executePstmt();
+				}
 				this.update();
 			} catch (SQLException e) {
 				e.printStackTrace();

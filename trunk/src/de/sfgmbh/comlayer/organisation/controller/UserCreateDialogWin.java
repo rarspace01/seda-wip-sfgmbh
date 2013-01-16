@@ -1,11 +1,16 @@
 package de.sfgmbh.comlayer.organisation.controller;
+import java.awt.Window;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 
-import de.sfgmbh.comlayer.core.controller.ViewManager;
-
 
 public class UserCreateDialogWin implements WindowListener {
+	
+	private Window window;
+	
+	public UserCreateDialogWin (Window window){
+		this.window = window;
+	}
 
 	@Override
 	public void windowActivated(WindowEvent arg0) {
@@ -15,8 +20,7 @@ public class UserCreateDialogWin implements WindowListener {
 
 	@Override
 	public void windowClosed(WindowEvent arg0) {
-		ViewManager.getInstance().getOrgaUserCreateDialog().dispose();
-		
+		this.window.dispose();
 	}
 
 	@Override

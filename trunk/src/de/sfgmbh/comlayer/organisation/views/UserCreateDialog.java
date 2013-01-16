@@ -11,11 +11,20 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
+import de.sfgmbh.applayer.core.model.User;
 import de.sfgmbh.comlayer.core.model.CmbboxFilterChairAcronym;
 import de.sfgmbh.comlayer.core.model.CmbboxFilterUserClass;
 import de.sfgmbh.comlayer.organisation.controller.UserCreateDialogBtns;
 import de.sfgmbh.comlayer.organisation.controller.UserCreateDialogWin;
+import javax.swing.JCheckBox;
 
+/**
+ * Dialog to create (and also edit) users
+ * 
+ * @author anna
+ * @author hannes
+ *
+ */
 public class UserCreateDialog extends JDialog {
 
 	private static final long serialVersionUID = 1L;
@@ -29,6 +38,11 @@ public class UserCreateDialog extends JDialog {
 	private JTextField txtFirstName;
 	private JTextField txtLastName;
 	private JLabel lblLastName;
+	private JLabel lblLehrstuhl;
+	private JLabel lblNutzerklasse;
+	private JLabel lblPasswort;
+	private JCheckBox chckbxUserDisabled;
+	private User editUser;
 
 	/**
 	 * Create the frame.
@@ -37,10 +51,39 @@ public class UserCreateDialog extends JDialog {
 		setModal(true);
 		initialize();
 		setLocationRelativeTo(null);
+		this.setEditUser(null);
 	}
+	
+	/**
+	 * Create the frame in a modified version with a user that shall be edited
+	 * @param userToEdit
+	 */
+	public UserCreateDialog(User userToEdit) {
+		setModal(true);
+		initialize();
+		setLocationRelativeTo(null);
+		this.comboBoxLehrstuhl.setBounds(115, 150, 116, 20);
+		this.lblLehrstuhl.setBounds(12, 152, 120, 14);
+		this.comboBoxNutzerklasse.setVisible(false);
+		this.lblNutzerklasse.setVisible(false);
+		this.lblPasswort.setText("Neues Passwort:");
+		this.getChckbxUserDisabled().setVisible(true);
+		this.setEditUser(userToEdit);
+		this.getTxtLogin().setText(userToEdit.getLogin_());
+		this.getTxtFirstName().setText(userToEdit.getfName_());
+		this.getTxtLastName().setText(userToEdit.getlName_());
+		this.getTxtEmail().setText(userToEdit.getMail_());
+		if (userToEdit.getChair_() != null) {
+			this.getComboBoxLehrstuhl().setSelectedItem(userToEdit.getChair_().getAcronym_());
+		}
+		this.getChckbxUserDisabled().setSelected(userToEdit.isDisabled_());
+		
+	}
+	
+	
 	private void initialize() {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(UserCreateDialog.class.getResource("/de/sfgmbh/comlayer/core/views/HUT_klein.png")));
-		setTitle("Nutzer hinzuf\u00FCgen");
+		setTitle("Nutzer hinzufügen");
 		setBounds(100, 100, 266, 309);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -57,17 +100,17 @@ public class UserCreateDialog extends JDialog {
 		lblEmail.setBounds(12, 42, 120, 14);
 		contentPane.add(lblEmail);
 		
-		JLabel lblPasswort = new JLabel("Passwort:");
+		lblPasswort = new JLabel("Passwort:");
 		lblPasswort.setFont(new Font("SansSerif", Font.PLAIN, 12));
 		lblPasswort.setBounds(12, 123, 120, 14);
 		contentPane.add(lblPasswort);
 		
-		JLabel lblNutzerklasse = new JLabel("Nutzerklasse:");
+		lblNutzerklasse = new JLabel("Nutzerklasse:");
 		lblNutzerklasse.setFont(new Font("SansSerif", Font.PLAIN, 12));
 		lblNutzerklasse.setBounds(12, 152, 120, 14);
 		contentPane.add(lblNutzerklasse);
 		
-		JLabel lblLehrstuhl = new JLabel("Lehrstuhl:");
+		lblLehrstuhl = new JLabel("Lehrstuhl:");
 		lblLehrstuhl.setFont(new Font("SansSerif", Font.PLAIN, 12));
 		lblLehrstuhl.setBounds(12, 181, 120, 14);
 		contentPane.add(lblLehrstuhl);
@@ -105,19 +148,20 @@ public class UserCreateDialog extends JDialog {
 		
 		JButton btnSpeichern = new JButton("Speichern");
 		btnSpeichern.setBounds(141, 233, 90, 28);
-		btnSpeichern.addActionListener(new UserCreateDialogBtns("save"));
+		btnSpeichern.addActionListener(new UserCreateDialogBtns(this, "save"));
 		contentPane.add(btnSpeichern);
 		
 		JButton btnAbbrechen = new JButton("Abbrechen");
 		btnAbbrechen.setBounds(42, 233, 90, 28);
-		btnAbbrechen.addActionListener(new UserCreateDialogBtns("cancle"));
+		btnAbbrechen.addActionListener(new UserCreateDialogBtns(this, "cancle"));
 		contentPane.add(btnAbbrechen);
 		contentPane.add(getLblFirstName());
 		contentPane.add(getTxtFirstName());
 		contentPane.add(getTxtLastName());
 		contentPane.add(getLblLastName());
+		contentPane.add(getChckbxUserDisabled());
 		
-		addWindowListener(new UserCreateDialogWin());
+		addWindowListener(new UserCreateDialogWin(this));
 	}
 	/**
 	 * @return the txtNutzerkennung
@@ -182,5 +226,27 @@ public class UserCreateDialog extends JDialog {
 			lblLastName.setBounds(12, 96, 120, 14);
 		}
 		return lblLastName;
+	}
+	public JCheckBox getChckbxUserDisabled() {
+		if (chckbxUserDisabled == null) {
+			chckbxUserDisabled = new JCheckBox("Benutzer deaktiviert");
+			chckbxUserDisabled.setBounds(61, 178, 151, 23);
+			chckbxUserDisabled.setVisible(false);
+		}
+		return chckbxUserDisabled;
+	}
+
+	/**
+	 * @return the editUser
+	 */
+	public User getEditUser() {
+		return editUser;
+	}
+
+	/**
+	 * @param editUser the editUser to set
+	 */
+	public void setEditUser(User editUser) {
+		this.editUser = editUser;
 	}
 }
