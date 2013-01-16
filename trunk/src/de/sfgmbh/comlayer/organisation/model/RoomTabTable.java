@@ -52,7 +52,10 @@ public class RoomTabTable extends DefaultTableModel implements IntfAppObserver {
 		
 	}
 	
-	//disabling editions from view
+	/**
+	 * disables edits on the table cells
+	 * @author denis
+	 */
 	@Override
     public boolean isCellEditable(int row, int column) {
         return false;
