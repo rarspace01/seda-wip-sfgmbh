@@ -20,7 +20,10 @@ public class RoomtableTable extends DefaultTableModel implements IntfAppObserver
 		this.setDataVector(preFill, preFillHeader);
 	}
 	
-	//disabling editions from view
+	/**
+	 * disables edits on the table cells
+	 * @author denis
+	 */
 	@Override
     public boolean isCellEditable(int row, int column) {
         return false;

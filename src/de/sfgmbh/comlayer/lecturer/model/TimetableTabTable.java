@@ -21,4 +21,14 @@ public class TimetableTabTable extends DefaultTableModel {
 	public TimetableTabTable() {
 		this.setDataVector(preFill, preFillHeader);
 	}
+	
+	/**
+	 * disables edits on the table cells
+	 * 
+	 * @author denis
+	 */
+	@Override
+	public boolean isCellEditable(int row, int column) {
+		return false;
+	}
 }

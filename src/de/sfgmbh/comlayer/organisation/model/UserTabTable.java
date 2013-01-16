@@ -14,12 +14,13 @@ import de.sfgmbh.comlayer.core.controller.ViewHelper;
  * Table model to organize users
  * 
  * @author hannes
- *
+ * 
  */
 public class UserTabTable extends DefaultTableModel implements IntfAppObserver {
 
 	private static final long serialVersionUID = 1L;
-	private String[] header = {"Kennung", "E-Mail", "Benutzerklasse", "Lehrstuhl", "Letzer Login", "deaktiviert", "Hidden"};
+	private String[] header = { "Kennung", "E-Mail", "Benutzerklasse",
+			"Lehrstuhl", "Letzer Login", "deaktiviert", "Hidden" };
 
 	/**
 	 * Creates an initial table model object
@@ -29,70 +30,82 @@ public class UserTabTable extends DefaultTableModel implements IntfAppObserver {
 		this.setColumnIdentifiers(header);
 		this.change("init");
 	}
-	
+
 	/**
-	 * Performs an action depending on the submitted variant to change and update the table model
+	 * Performs an action depending on the submitted variant to change and
+	 * update the table model
+	 * 
 	 * @param variant
 	 */
 	public void change(String variant) {
 		HashMap<String, String> filter = new HashMap<String, String>();
 		ViewHelper vh = new ViewHelper();
-		
+
 		this.setRowCount(0);
-		
+
 		if (variant.equals("init")) {
 			filter.put("userclass", "<alle>");
 			filter.put("chair", "<alle>");
 			filter.put("user", "<alle>");
 			filter.put("email", "<alle>");
 		} else {
-			String textMail = ViewManager.getInstance().getOrgaUserTab().getTextFieldMail().getText();
-			String textUserLogin = ViewManager.getInstance().getOrgaUserTab().getTextFieldUserLogin().getText();
-			filter.put("userclass", ViewManager.getInstance().getOrgaUserTab().getComboBoxUserclass().getSelectedItem().toString());
-			filter.put("chair", ViewManager.getInstance().getOrgaUserTab().getComboBoxChair().getSelectedItem().toString());
+			String textMail = ViewManager.getInstance().getOrgaUserTab()
+					.getTextFieldMail().getText();
+			String textUserLogin = ViewManager.getInstance().getOrgaUserTab()
+					.getTextFieldUserLogin().getText();
+			filter.put("userclass", ViewManager.getInstance().getOrgaUserTab()
+					.getComboBoxUserclass().getSelectedItem().toString());
+			filter.put("chair", ViewManager.getInstance().getOrgaUserTab()
+					.getComboBoxChair().getSelectedItem().toString());
 			filter.put("user", textUserLogin);
 			filter.put("email", textMail);
-			
+
 		}
-		
-		for (User user : AppModel.getInstance().getRepositoryUser().getByFilter(filter)){
-			
+
+		for (User user : AppModel.getInstance().getRepositoryUser()
+				.getByFilter(filter)) {
+
 			// Chair if user is lecturer
 			String chair = null;
 			if (user.getChair_() != null) {
 				chair = user.getChair_().getChairName_();
 			}
-			
+
 			// Get a date from the unix time stamp
-			java.util.Date date = new java.util.Date((long) user.getLastLogin_() * 1000);
-			
+			java.util.Date date = new java.util.Date(
+					(long) user.getLastLogin_() * 1000);
+
 			// Build the row...
 			try {
-				Object[] row = {
-						user.getLogin_(),
-						user.getMail_(),
-						vh.getUserClass(user.getClass_()),
-						chair,
-						date.toString(),
-						vh.getBoolean(user.isDisabled_()),
-						user
-						};
+				Object[] row = { user.getLogin_(), user.getMail_(),
+						vh.getUserClass(user.getClass_()), chair,
+						date.toString(), vh.getBoolean(user.isDisabled_()),
+						user };
 				this.addRow(row);
 
 			} catch (Exception e) {
-				AppModel.getInstance().getExceptionHandler().setNewException("Ein unbekannter Fehler ist aufgetreten! <br /><br />Fehler BaseTableMain-01:<br />" + e.toString(), "Fehler!");
+				AppModel.getInstance()
+						.getExceptionHandler()
+						.setNewException(
+								"Ein unbekannter Fehler ist aufgetreten! <br /><br />Fehler BaseTableMain-01:<br />"
+										+ e.toString(), "Fehler!");
 			}
 		}
 	}
-	
+
+	/**
+	 * disables edits on the table cells
+	 * 
+	 * @author denis
+	 */
 	@Override
-    public boolean isCellEditable(int row, int column) {
-        return false;
-    }
-	
+	public boolean isCellEditable(int row, int column) {
+		return false;
+	}
+
 	@Override
 	public void change() {
 		this.change("update");
-		
+
 	}
 }

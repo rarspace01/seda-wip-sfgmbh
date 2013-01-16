@@ -112,17 +112,17 @@ public class RoomtableTab extends JPanel {
 		
 		
 		
-		for(int i=0;i<ral.size();i++){
-			System.out.println("AllocationDescr:");
-			System.out.println(ral.get(i).getRoomAllocationId_());
-			System.out.println(ral.get(i).getDay_());
-			System.out.println(ral.get(i).getTime_());
-			System.out.println(ral.get(i).getCourse_().getCourseDescription_());
-			System.out.println(ral.get(i).getCourse_().getCourseAcronym_());
-			System.out.println(ral.get(i).getCourse_().getCourseName_());
-			
-			//System.out.println(ral.get(i).get
-		}
+//		for(int i=0;i<ral.size();i++){
+//			System.out.println("AllocationDescr:");
+//			System.out.println(ral.get(i).getRoomAllocationId_());
+//			System.out.println(ral.get(i).getDay_());
+//			System.out.println(ral.get(i).getTime_());
+//			System.out.println(ral.get(i).getCourse_().getCourseDescription_());
+//			System.out.println(ral.get(i).getCourse_().getCourseAcronym_());
+//			System.out.println(ral.get(i).getCourse_().getCourseName_());
+//			
+//			//System.out.println(ral.get(i).get
+//		}
 		
 		
 		

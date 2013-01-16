@@ -11,7 +11,7 @@ public class ProfessorshipTimetableTabTable extends DefaultTableModel {
 					{"12:00-14:00 Uhr", "", "", "ISDL-ISS1-M �bung in WP3/01.004", "",""},
 					{"14:00-16:00 Uhr", "SEDA-EbIS-1 in WP3/04.004", "","", "", ""},
 					{"16:00-18:00 Uhr", "","", "", "", ""},
-					{"18:00-20:00 Uhr", "", "", "", "SEDA-EbIS-1 �bung in WP3/01.004", ""},
+					{"18:00-20:00 Uhr", "", "", "", "SEDA-EbIS-1Übung in WP3/01.004", ""},
 					
 					{null, null, null, null, null, null, null, null, null},
 				};
@@ -20,5 +20,15 @@ public class ProfessorshipTimetableTabTable extends DefaultTableModel {
 	
 	public ProfessorshipTimetableTabTable() {
 		this.setDataVector(preFill, preFillHeader);
+	}
+	
+	/**
+	 * disables edits on the table cells
+	 * 
+	 * @author denis
+	 */
+	@Override
+	public boolean isCellEditable(int row, int column) {
+		return false;
 	}
 }

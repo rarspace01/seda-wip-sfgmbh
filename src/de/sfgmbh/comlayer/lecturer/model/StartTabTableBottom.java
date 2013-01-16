@@ -118,4 +118,14 @@ public class StartTabTableBottom extends DefaultTableModel implements IntfAppObs
 	public void change() {
 		this.change("update");
 	}
+	
+	/**
+	 * disables edits on the table cells
+	 * 
+	 * @author denis
+	 */
+	@Override
+	public boolean isCellEditable(int row, int column) {
+		return false;
+	}
 }
