@@ -7,6 +7,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import de.sfgmbh.applayer.core.model.Chair;
+import de.sfgmbh.applayer.core.model.User;
 import de.sfgmbh.datalayer.core.definitions.IntfDataChair;
 import de.sfgmbh.datalayer.core.definitions.IntfDataFilter;
 import de.sfgmbh.datalayer.core.definitions.IntfDataObservable;
@@ -17,6 +18,7 @@ import de.sfgmbh.datalayer.io.DataManagerPostgreSql;
 public class DataHandlerChair implements IntfDataChair, IntfDataFilter, IntfDataObservable {
 	
 	private ArrayList<Object> observer_ = new ArrayList<Object>();
+	private DataManagerPostgreSql filterDm = null;
 
 	@Override
 	public List<Chair> getAll() {
@@ -131,9 +133,45 @@ public class DataHandlerChair implements IntfDataChair, IntfDataFilter, IntfData
 
 	@Override
 	public List<Chair> getByFilter(HashMap<String, String> filter) {
+		List<Chair> listChair = new ArrayList<Chair>();
 		// TODO Auto-generated method stub
-		return null;
+		try {
+			
+				ResultSet rs = null;
+			
+		if (filterDm == null) { 
+			filterDm = new DataManagerPostgreSql(); 
+			filterDm.prepare(
+					"SELECT public.user.*, public.chair.* " +
+					"FROM public.chair LEFT JOIN public.user " +
+						"ON public.chair.chairowner =  public.user.userid " +
+					"WHERE (public.chair.chairname LIKE ?  OR public.chair.chairacronym LIKE ? ) ");
+		}
+		if (filter.containsKey("chair") && filter.get("chair") != null && filter.get("chair") != "" && filter.get("chair") != "<alle>") {
+			filterDm.getPreparedStatement().setString(1, "%" + filter.get("chair") + "%");
+			filterDm.getPreparedStatement().setString(2, "%" + filter.get("chair") + "%");
+		} else {
+			filterDm.getPreparedStatement().setString(1, "%");
+			filterDm.getPreparedStatement().setString(2, "%");
+		}
+		
+		rs = filterDm.selectPstmt();
+		while (rs.next()) {
+			listChair.add(makeChair(rs));
+		}
+		
+	} catch (SQLException e) {
+		e.printStackTrace();
+		DataModel.getInstance().getExceptionsHandler().setNewException(("Es ist ein SQL-Fehler aufgetreten:<br /><br />" + e.toString()), "Datenbank-Fehler!");
+	} catch (Exception e) {
+		e.printStackTrace();
+		DataModel.getInstance().getExceptionsHandler().setNewException(("Es ist ein unbekannter Fehler in der Datenhaltung aufgetreten:<br /><br />" + e.toString()), "Fehler!");
 	}
+	
+	return listChair;
+}
+		
+	
 	
 	/**
 	 * Forms a Chair object out of a given result set

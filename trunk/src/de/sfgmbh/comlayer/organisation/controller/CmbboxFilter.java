@@ -32,7 +32,7 @@ public class CmbboxFilter implements KeyListener, ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		ViewManager.getInstance().getOrgaProfessorshipTableModel().change();
-	}
+	} 
 	
 	/*public InfoDialog getInfoWindow() {
 		if (this.infoWindow == null) {
