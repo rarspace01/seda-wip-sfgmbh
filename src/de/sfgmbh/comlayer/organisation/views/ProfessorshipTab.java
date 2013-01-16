@@ -64,7 +64,7 @@ public class ProfessorshipTab extends JPanel {
 		add(lblProfessorshipname, "cell 2 0,aligny bottom");
 		
 		textFieldProfessorshipname = new JTextField();
-		textFieldProfessorshipname.addKeyListener(new CmbboxFilter());
+		textFieldProfessorshipname.addActionListener(new CmbboxFilter());
 		
 		uniIconPanel = new JPanel();
 		add(uniIconPanel, "cell 6 0,alignx center,growy");
