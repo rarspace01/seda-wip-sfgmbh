@@ -9,6 +9,7 @@ import de.sfgmbh.applayer.organisation.controller.CtrlRoomAllocation;
 import de.sfgmbh.comlayer.core.controller.ViewManager;
 import de.sfgmbh.comlayer.core.definitions.IntfComDialogObserver;
 import de.sfgmbh.comlayer.core.views.QuestionDialog;
+import de.sfgmbh.comlayer.organisation.views.CounterproposalDialog;
 
 /**
  * Action listener for the buttons on the right in the request tab
@@ -44,7 +45,20 @@ public class RequestTabBtnsControl implements ActionListener, IntfComDialogObser
 		
 		// Solve Button is pressed
 		if (this.navAction.equals("solve")) {
-			ViewManager.getInstance().getOrgaCounterproposalFrame().setVisible(true);
+			int row = ViewManager.getInstance().getOrgaRquestTab().getRoomAllocationTable().getSelectedRow();
+			if (row == -1) {
+				AppModel.getInstance().getExceptionHandler().setNewException("Sie müssen zunächst eine Spalte auswählen.", "Achtung!");
+			} else {
+				try {
+					row = ViewManager.getInstance().getOrgaRquestTab().getRowSorter().convertRowIndexToModel(row);
+					RoomAllocation selectedRa = (RoomAllocation) ViewManager.getInstance().getOrgaRequestTableModel().getValueAt(row, 8);
+					
+					CounterproposalDialog counterproposalDialog = new CounterproposalDialog(selectedRa);
+					counterproposalDialog.setVisible(true);
+				} catch (Exception ex) {
+					AppModel.getInstance().getExceptionHandler().setNewException("Ein unerwarteter Fehler ist aufgetreten.<br /><br >" + ex.toString(), "Fehler!");
+				}
+			}
 		}
 		
 		

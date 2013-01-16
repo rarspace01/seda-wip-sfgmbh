@@ -16,13 +16,25 @@ import de.sfgmbh.applayer.core.model.Room;
 public class CmbboxFilterRoomnumber extends DefaultComboBoxModel<String> implements IntfAppObserver {
 
 	private static final long serialVersionUID = 1L;
+	private String variant;
 	
 	/**
 	 * Create the model object
 	 */
 	public CmbboxFilterRoomnumber() {
+		this.variant = "default";
 		AppModel.getInstance().getRepositoryRoom().register(this);
 		this.change();
+	}
+	
+	/**
+	 * Create the model object based on a variant
+	 * @param variant
+	 */
+	public CmbboxFilterRoomnumber(String variant) {
+		this.variant = variant;
+		this.change();
+		
 	}
 
 	@Override
@@ -32,7 +44,11 @@ public class CmbboxFilterRoomnumber extends DefaultComboBoxModel<String> impleme
 		// removeAllElements() as it can cause null pointer exceptions when an
 		// observer model has null elements at any time
 		int initalSize = this.getSize();
-		this.addElement("<alle>");
+		if (this.variant.equals("default")) {
+			this.addElement("<alle>");
+		} else if (this.variant.equals("select")) {
+			this.addElement("");
+		}
 		for (Room room : AppModel.getInstance().getRepositoryRoom().getAll()){
 			this.addElement(room.getRoomNumber_());
 		}
