@@ -100,7 +100,7 @@ public class UserCreateDialogBtns implements ActionListener {
 				
 				// Try to save the edited or new user
 				if (ctrlUser.saveUser(createUser)) {
-					AppModel.getInstance().getExceptionHandler().setNewException("Der Benutzer wurde gespeichert!", "Erfolg!" );
+					AppModel.getInstance().getExceptionHandler().setNewException("Der Benutzer wurde gespeichert!", "Erfolg!", "success" );
 					this.motherDialog.setVisible(false);
 				}
 			} catch (Exception ex) {
