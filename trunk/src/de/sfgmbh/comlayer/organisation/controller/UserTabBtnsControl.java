@@ -58,6 +58,7 @@ public class UserTabBtnsControl implements ActionListener, IntfComDialogObserver
 				AppModel.getInstance().getExceptionHandler().setNewException("Sie müssen zunächst einen Benutzer auswählen.", "Achtung!");
 			} else {
 				try {
+					row = ViewManager.getInstance().getOrgaUserTab().getRowSorter().convertRowIndexToModel(row);
 					User editUser = (User) ViewManager.getInstance().getOrgaUserTableModel().getValueAt(row, 6);
 					UserCreateDialog editDialog = new UserCreateDialog(editUser);
 					editDialog.setVisible(true);
@@ -78,6 +79,7 @@ public class UserTabBtnsControl implements ActionListener, IntfComDialogObserver
 				AppModel.getInstance().getExceptionHandler().setNewException("Sie müssen zunächst einen Benutzer auswählen.", "Achtung!");
 			} else {
 				try {
+					row = ViewManager.getInstance().getOrgaUserTab().getRowSorter().convertRowIndexToModel(row);
 					this.userMarkedForDeletion = (User) ViewManager.getInstance().getOrgaUserTableModel().getValueAt(row, 6);
 				} catch (Exception ex) {
 					AppModel.getInstance().getExceptionHandler().setNewException("Ein unerwarteter Fehler ist aufgetreten.<br /><br >" + ex.toString(), "Fehler!");

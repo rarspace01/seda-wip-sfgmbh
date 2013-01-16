@@ -56,6 +56,7 @@ public class UserTab extends JPanel {
 	private JButton btnFailureprompt;
 	private JPanel uniIconPanel;
 	private JLabel lblUniIcon;
+	private TableRowSorter<TableModel> rowSorter;
 
 	/**
 	 * Create the frame.
@@ -146,7 +147,7 @@ public class UserTab extends JPanel {
 		userTableScrollPane.setViewportView(userOrgaTable);
 		
 		// Enable table sorting for the model
-		TableRowSorter<TableModel> rowSorter = new TableRowSorter<TableModel>();
+		rowSorter = new TableRowSorter<TableModel>();
 		userOrgaTable.setRowSorter(rowSorter);
 		rowSorter.setModel(ViewManager.getInstance().getOrgaUserTableModel());
 		rowSorter.sort();
@@ -212,6 +213,18 @@ public class UserTab extends JPanel {
 	 */
 	public JTable getUserOrgaTable() {
 		return userOrgaTable;
+	}
+	/**
+	 * @return the rowSorter
+	 */
+	public TableRowSorter<TableModel> getRowSorter() {
+		return rowSorter;
+	}
+	/**
+	 * @param rowSorter the rowSorter to set
+	 */
+	public void setRowSorter(TableRowSorter<TableModel> rowSorter) {
+		this.rowSorter = rowSorter;
 	}
 	
 	

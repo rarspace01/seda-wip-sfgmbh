@@ -54,6 +54,7 @@ public class RequestTabBtnsControl implements ActionListener {
 				AppModel.getInstance().getExceptionHandler().setNewException("Sie müssen zunächst eine Spalte auswählen.", "Achtung!");
 			} else {
 				try {
+					row = ViewManager.getInstance().getOrgaRquestTab().getRowSorter().convertRowIndexToModel(row);
 					RoomAllocation selectedRa = (RoomAllocation) ViewManager.getInstance().getOrgaRequestTableModel().getValueAt(row, 8);
 					ctrlRoomAllocation.acceptRoomAllocation(selectedRa);
 				} catch (Exception ex) {

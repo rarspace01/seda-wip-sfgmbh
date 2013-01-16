@@ -61,6 +61,7 @@ public class RequestTab extends JPanel {
 	private JPanel filterBottom;
 	private JLabel lblRoom;
 	private JTextField txtRoom;
+	private TableRowSorter<TableModel> rowSorter;
 
 	/**
 	 * Create the frame.
@@ -139,7 +140,7 @@ public class RequestTab extends JPanel {
 		organisationTableScrollPane.setViewportView(roomAllocationTable);
 		
 		// Enable table sorting for the model
-		TableRowSorter<TableModel> rowSorter = new TableRowSorter<TableModel>();
+		rowSorter = new TableRowSorter<TableModel>();
 		roomAllocationTable.setRowSorter(rowSorter);
 		rowSorter.setModel(ViewManager.getInstance().getOrgaRequestTableModel());
 		rowSorter.sort();
@@ -253,5 +254,17 @@ public class RequestTab extends JPanel {
 			txtRoom.addActionListener(new RequestTabCmbboxFilter());
 		}
 		return txtRoom;
+	}
+	/**
+	 * @return the rowSorter
+	 */
+	public TableRowSorter<TableModel> getRowSorter() {
+		return rowSorter;
+	}
+	/**
+	 * @param rowSorter the rowSorter to set
+	 */
+	public void setRowSorter(TableRowSorter<TableModel> rowSorter) {
+		this.rowSorter = rowSorter;
 	}
 }
