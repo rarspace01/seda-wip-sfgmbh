@@ -1,6 +1,9 @@
 package de.sfgmbh.applayer.organisation.controller;
 
+import java.util.List;
+
 import de.sfgmbh.applayer.core.model.AppModel;
+import de.sfgmbh.applayer.core.model.Room;
 import de.sfgmbh.applayer.core.model.RoomAllocation;
 
 public class CtrlRoomAllocation {
@@ -35,4 +38,8 @@ public class CtrlRoomAllocation {
 		return;
 	}
 
+	public List<RoomAllocation> getAllRoomAllocations(){
+		return AppModel.getInstance().getRepositoryRoomAllocation().getAll();
+	}
+	
 }

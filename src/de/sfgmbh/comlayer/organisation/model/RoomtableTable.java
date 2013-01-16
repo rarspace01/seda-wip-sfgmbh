@@ -2,24 +2,43 @@ package de.sfgmbh.comlayer.organisation.model;
 
 import javax.swing.table.DefaultTableModel;
 
-public class RoomtableTable extends DefaultTableModel {
+import de.sfgmbh.applayer.core.definitions.IntfAppObserver;
+import de.sfgmbh.applayer.organisation.controller.CtrlRoom;
+import de.sfgmbh.applayer.organisation.controller.CtrlRoomAllocation;
+
+public class RoomtableTable extends DefaultTableModel implements IntfAppObserver {
 
 	private static final long serialVersionUID = 1L;
 	private Object[][] preFill = {
-			{"08:00-10:00 Uhr", "","", "SEDA-WIP-B in WP3/01.004", "", "SEDA-DMS-B in WP3/01.004"},
-			{"10:00-12:00 Uhr", "", "SEDA-WIP-B in WP3/01.004", "", "", "ISDL-ISS1-M in WP3/01.004"},
-			{"12:00-14:00 Uhr", "", "", "ISDL-ISS1-Mübung in WP3/01.004", "",""},
-			{"14:00-16:00 Uhr", "SEDA-EbIS-1 in WP3/04.004", "","", "", ""},
-			{"16:00-18:00 Uhr", "","", "", "", ""},
-			{"18:00-20:00 Uhr", "", "", "", "SEDA-EbIS-1 Übung in WP3/01.004", ""},
 			
-			{null, null, null, null, null, null, null, null, null},
+			
 		};
 	private String[] preFillHeader = {"Uhrzeit", "Montag", "Dienstag", "Mittwoch", "Donnerstag", "Freitag"};
 	
 	
 	public RoomtableTable() {
 		this.setDataVector(preFill, preFillHeader);
+	}
+	
+	//disabling editions from view
+	@Override
+    public boolean isCellEditable(int row, int column) {
+        return false;
+    }
+
+	@Override
+	public void change() {
+		
+		CtrlRoomAllocation ctrlRoomAlCtrlRoom= new CtrlRoomAllocation();
+		
+		//delete all rows
+		for(int i=this.getRowCount()-1;i>=0;i--){
+			this.removeRow(i);
+		}
+		
+		//get all rooms from db
+		//this.addRooms(CtrlRoomAllocation.);
+		
 	}
 }
 

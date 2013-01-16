@@ -2,9 +2,12 @@ package de.sfgmbh.comlayer.organisation.controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.HashMap;
+import java.util.List;
 
 import de.sfgmbh.applayer.core.model.AppModel;
 import de.sfgmbh.applayer.core.model.Room;
+import de.sfgmbh.applayer.core.model.RoomAllocation;
 import de.sfgmbh.comlayer.core.controller.ViewManager;
 import de.sfgmbh.comlayer.core.views.InfoDialog;
 
@@ -90,20 +93,33 @@ public class RoomTabBtnsControl implements ActionListener {
 
 		// Raumplan Button is pressed
 		if (this.navAction.equals("Raumplan")) {
-
-			this.getInfoWindow(
-					"<strong>Fehlermeldung</strong><br> Es konnte keine Übersicht Ihrer Veranstaltungen angezeigt werden. Sie haben keine Lehrveranstaltung ausgew�hlt!")
-					.setVisible(true);
-			ViewManager.getInstance().getCoreBaseTab().getMainTabbedContainerPane()
-					.setVisible(true);
-			ViewManager.getInstance().getCoreBaseTab().getMainTabbedContainerPane()
-					.addTab("Raumplan", null,
-							ViewManager.getInstance().getOrgaRoomtableTab(),
-							null);
-			ViewManager.getInstance().getCoreBaseTab().getMainTabbedContainerPane()
-					.setSelectedIndex(ViewManager.getInstance().getCoreBaseTab().getMainTabbedContainerPane()
-							.getTabCount() - 1);
-
+			
+			System.out.println("Roomplan klicked");
+			
+			if(ViewManager.getInstance().getOrgaRoomTab().getRaumverwaltungTable().getSelectedRow()>=0){
+				
+				//get selected Room from DB	
+				int getTableId=ViewManager.getInstance().getOrgaRoomTab().getRaumverwaltungTable().getSelectedRow();
+				int getId=Integer.parseInt(ViewManager.getInstance().getOrgaRoomTableModel().getValueAt(getTableId, 0).toString());
+				
+				
+				
+				
+//				this.getInfoWindow(
+//						"<strong>Fehlermeldung</strong><br> Es konnte keine Übersicht Ihrer Veranstaltungen angezeigt werden. Sie haben keine Lehrveranstaltung ausgew�hlt!")
+//						.setVisible(true);
+				ViewManager.getInstance().getCoreBaseTab().getMainTabbedContainerPane()
+						.setVisible(true);
+				ViewManager.getInstance().getCoreBaseTab().getMainTabbedContainerPane()
+						.addTab("Raumplan", null,
+								ViewManager.getInstance().getOrgaRoomtableTab(),
+								null);
+				ViewManager.getInstance().getOrgaRoomtableTab().loadRoomTable(getId);
+				ViewManager.getInstance().getCoreBaseTab().getMainTabbedContainerPane()
+						.setSelectedIndex(ViewManager.getInstance().getCoreBaseTab().getMainTabbedContainerPane()
+								.getTabCount() - 1);
+			}
+			
 		}
 
 	}
