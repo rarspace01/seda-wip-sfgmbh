@@ -125,7 +125,7 @@ public class QuestionDialog extends JDialog implements IntfComDialogObserver, In
 	private JLabel getLblNewLabel() {
 		if (lblNewLabel == null) {
 			lblNewLabel = new JLabel("");
-			lblNewLabel.setIcon(new ImageIcon(QuestionDialog.class.getResource("/de/sfgmbh/comlayer/core/views/InfoDialogIcon.png")));
+			lblNewLabel.setIcon(new ImageIcon(QuestionDialog.class.getResource("/de/sfgmbh/comlayer/core/views/Question.png")));
 			lblNewLabel.setMaximumSize(new Dimension(100, 100));
 		}
 		return lblNewLabel;

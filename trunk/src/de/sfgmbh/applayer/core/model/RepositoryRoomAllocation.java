@@ -56,10 +56,10 @@ public class RepositoryRoomAllocation implements IntfAppObservable, IntfDataObse
 	
 	/**
 	 * Save this user object in the DB (this will update a database entry if there is already one and create one if there is none)
+	 * @return true on success
 	 */
-	public void save(RoomAllocation ra) {
-		DataModel.getInstance().getDataHandlerRoomAllocation().save(ra);
-		return;
+	public boolean save(RoomAllocation ra) {
+		return DataModel.getInstance().getDataHandlerRoomAllocation().save(ra);
 	}
 
 	@Override

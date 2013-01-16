@@ -72,7 +72,15 @@ public class AppException implements IntfAppObservable, IntfDataObserver {
 	}
 	
 	/**
-	 * Set a new exception message, title and variant and update all observer
+	 * Set a new exception message, title and variant and update all observer <br><br>
+	 * 
+	 * Valid status strings for the variant are:<br>
+	 * "success" - The look and feel gets customized to indicate success<br>
+	 * "info" - The look and feel gets customized for displaying information<br>
+	 * "error" - The look and feel gets customized to show a problem<br><br>
+	 * 
+	 * "error" is the default look and feel if no or an invalid variant was submitted.
+	 * 
 	 * @param msg
 	 * @param title
 	 * @param variant
@@ -81,7 +89,13 @@ public class AppException implements IntfAppObservable, IntfDataObserver {
 		this.exceptionMsg_ = null;
 		this.exceptionTitle_ = null;
 		this.new_ = false;
-		this.exceptionVariante_ = variant;
+		if (variant.equals("success")) {
+			this.exceptionVariante_ = variant;
+		} else if (variant.equals("info")) {
+			this.exceptionVariante_ = variant;
+		} else {
+			this.exceptionVariante_ = "error";
+		}
 		this.setNewException(msg, title);
 	}
 	

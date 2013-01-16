@@ -6,7 +6,7 @@ public class ViewHelper {
 
 	/**
 	 * Returns a formated day string for a given integer (valid integer: 1 to 7)
-	 * @param d
+	 * @param day
 	 * @return a formated day string
 	 */
 	public String getDay(int d) {
@@ -25,14 +25,14 @@ public class ViewHelper {
 		} else if (d == 7) {
 			return "So.";
 		} else {
-			AppModel.getInstance().getExceptionHandler().setNewException("Ein Tag mit einem nicht unterst�tzen Format konnte nicht angezeigt werden.", "Achtung!");
+			AppModel.getInstance().getExceptionHandler().setNewException("Ein Tag mit einem nicht unterstützen Format konnte nicht angezeigt werden.", "Achtung!");
 			return null;
 		}
 	}
 	
 	/**
 	 * Returns a formated time string for a given integer (valid integer: 1 to 7)
-	 * @param t
+	 * @param time
 	 * @return a formated time string
 	 */
 	public static String getTime(int t) {
@@ -51,14 +51,14 @@ public class ViewHelper {
 		} else if (t == 7) {
 			return "20:00 - 22:00";
 		} else {
-			AppModel.getInstance().getExceptionHandler().setNewException("Eine Zeit mit einem nicht unterst�tzen Format konnte nicht angezeigt werden.", "Achtung!");
+			AppModel.getInstance().getExceptionHandler().setNewException("Eine Zeit mit einem nicht unterstützen Format konnte nicht angezeigt werden.", "Achtung!");
 			return null;
 		}
 	}
 	
 	/**
 	 * Returns a formated boolean string for a given boolean value
-	 * @param b
+	 * @param boolean
 	 * @return a formated boolean string
 	 */
 	public String getBoolean(boolean b) {
@@ -71,7 +71,7 @@ public class ViewHelper {
 	
 	/**
 	 * Returns the German value for a given user class
-	 * @param uc
+	 * @param uuserClass
 	 * @return the German value for a given user class
 	 */
 	public String getUserClass(String uc) {
@@ -87,7 +87,7 @@ public class ViewHelper {
 	
 	/**
 	 * Returns the formated string for a status
-	 * @param s
+	 * @param status
 	 * @return the formated string for a status
 	 */
 	public String getAllocationStatus(String s) {
@@ -97,6 +97,8 @@ public class ViewHelper {
 			return "freigegeben";
 		} else if (s.equals("denied")) {
 			return "abgelehnt";
+		} else if (s.equals("counter")) {
+			return "Gegenvorschlag";
 		} else {
 			AppModel.getInstance().getExceptionHandler().setNewException("Eine unbekannter Status wurde verwendet.", "Achtung!");
 			return null;

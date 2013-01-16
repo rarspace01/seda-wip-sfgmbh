@@ -27,8 +27,8 @@ public class DataHandlerRoomAllocation implements IntfDataObservable, IntfDataFi
 	private DataManagerPostgreSql conflictingAllocationDm = null;
 	
 	/**
-	 * Get all rooms
-	 * @return a list with all rooms
+	 * Get all room allocations
+	 * @return a list with all room allocations
 	 */
 	public List<RoomAllocation> getAll() {
 		List<RoomAllocation> listRoomAllocation = new ArrayList<RoomAllocation>();
@@ -167,7 +167,7 @@ public class DataHandlerRoomAllocation implements IntfDataObservable, IntfDataFi
 	
 	/**
 	 * Checks for conflicting room allocations
-	 * @param ra
+	 * @param roomAllocation
 	 * @return a list of all conflicting room allocations
 	 */
 	public List<RoomAllocation> getConflictingAllocation(RoomAllocation ra) {
@@ -214,7 +214,7 @@ public class DataHandlerRoomAllocation implements IntfDataObservable, IntfDataFi
 	
 	/**
 	 * Get a room allocation by its id
-	 * @param id
+	 * @param roomAllocationId
 	 * @return a room allocation by its id
 	 */
 	public RoomAllocation get(int id) {
@@ -247,9 +247,11 @@ public class DataHandlerRoomAllocation implements IntfDataObservable, IntfDataFi
 	
 	/**
 	* Save a room allocation
-	* @param ra
+	* @param roomAllocation
+	* @return true on success
 	*/
-	public void save(RoomAllocation ra) {
+	public boolean save(RoomAllocation ra) {
+		boolean returnStatus = false;
 		if (ra.getRoomAllocationId_() == -1) {
 			try {
 				
@@ -266,10 +268,8 @@ public class DataHandlerRoomAllocation implements IntfDataObservable, IntfDataFi
 				dm.getPreparedStatement().setString(6, ra.getApproved_());
 				dm.getPreparedStatement().setString(7, ra.getOrgaMessage_());
 				dm.getPreparedStatement().setString(8, ra.getComment_());
-				dm.executePstmt();
+				returnStatus = dm.executePstmt();
 				this.update();
-				return;
-				
 			} catch (SQLException e) {
 				e.printStackTrace();
 				DataModel.getInstance().getExceptionsHandler().setNewException(("Es ist ein SQL-Fehler aufgetreten:<br /><br />Fehler DataHandlerRoomAllocation-22:<br />" + e.toString()), "Datenbank-Fehler!");
@@ -292,10 +292,8 @@ public class DataHandlerRoomAllocation implements IntfDataObservable, IntfDataFi
 				dm.getPreparedStatement().setString(7, ra.getOrgaMessage_());
 				dm.getPreparedStatement().setString(8, ra.getComment_());
 				dm.getPreparedStatement().setInt(9, ra.getRoomAllocationId_());
-				dm.executePstmt();
+				returnStatus = dm.executePstmt();
 				this.update();
-				return;
-				
 			} catch (SQLException e) {
 				e.printStackTrace();
 				DataModel.getInstance().getExceptionsHandler().setNewException(("Es ist ein SQL-Fehler aufgetreten:<br /><br />Fehler DataHandlerRoomAllocation-23:<br />" + e.toString()), "Datenbank-Fehler!");
@@ -304,6 +302,7 @@ public class DataHandlerRoomAllocation implements IntfDataObservable, IntfDataFi
 				DataModel.getInstance().getExceptionsHandler().setNewException(("Es ist ein unbekannter Fehler in der Datenhaltung aufgetreten:<br /><br />Fehler DataHandlerRoomAllocation-24:<br />" + e.toString()), "Fehler!");
 			}
 		}
+		return returnStatus;
 	}
 	
 	/**

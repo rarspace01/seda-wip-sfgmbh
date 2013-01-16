@@ -7,7 +7,8 @@ import de.sfgmbh.applayer.core.model.AppModel;
 import de.sfgmbh.applayer.core.model.RoomAllocation;
 import de.sfgmbh.applayer.organisation.controller.CtrlRoomAllocation;
 import de.sfgmbh.comlayer.core.controller.ViewManager;
-import de.sfgmbh.comlayer.core.views.InfoDialog;
+import de.sfgmbh.comlayer.core.definitions.IntfComDialogObserver;
+import de.sfgmbh.comlayer.core.views.QuestionDialog;
 
 /**
  * Action listener for the buttons on the right in the request tab
@@ -15,11 +16,11 @@ import de.sfgmbh.comlayer.core.views.InfoDialog;
  * @author hannes
  *
  */
-public class RequestTabBtnsControl implements ActionListener {
+public class RequestTabBtnsControl implements ActionListener, IntfComDialogObserver {
 	
 	private String navAction;
 	private CtrlRoomAllocation ctrlRoomAllocation;
-	protected InfoDialog infoWindow;
+	private RoomAllocation revokeAllocation;
 	
 	/**
 	 * Create the action listener
@@ -47,7 +48,7 @@ public class RequestTabBtnsControl implements ActionListener {
 		}
 		
 		
-		// Deny Button is pressed
+		// Accept Button is pressed
 		if (this.navAction.equals("accept")) {
 			int row = ViewManager.getInstance().getOrgaRquestTab().getRoomAllocationTable().getSelectedRow();
 			if (row == -1) {
@@ -63,16 +64,56 @@ public class RequestTabBtnsControl implements ActionListener {
 			}
 		}
 		
-		// Error Button is pressed
-		if (this.navAction.equals("error")) {
-			this.getInfoWindow("<b>Fehlermeldung:</b><br> Es konnte keine Datenverbindung hergestellt werden. Somit k�nnen keine Anfragen angezeigt werden.</b>").setVisible(true);
+		
+		// Deny Button is pressed
+		if (this.navAction.equals("deny")) {
+			int row = ViewManager.getInstance().getOrgaRquestTab().getRoomAllocationTable().getSelectedRow();
+			if (row == -1) {
+				AppModel.getInstance().getExceptionHandler().setNewException("Sie müssen zunächst eine Spalte auswählen.", "Achtung!");
+			} else {
+				try {
+					row = ViewManager.getInstance().getOrgaRquestTab().getRowSorter().convertRowIndexToModel(row);
+					RoomAllocation selectedRa = (RoomAllocation) ViewManager.getInstance().getOrgaRequestTableModel().getValueAt(row, 8);
+					
+					// Check if room allocation is already accepted and warn in that case
+					if (selectedRa.getApproved_().equals("accepted")) {
+						this.revokeAllocation = selectedRa;
+						QuestionDialog dialog = new QuestionDialog("Diese Raumbelegung ist bereits freigeben. <br />Sind Sie sicher, dass Sie die Freigabe zurückziehen wollen? Falls Sie diesen Schritt durchführen, vergewissern Sie sich bitte, dass Sie den Dozenten informieren!<br /><br />Raumbelegung wirklich zurückziehen?", "Achtung!");
+						dialog.register(this);
+						dialog.setVisible(true);
+					} else if (selectedRa.getApproved_().equals("counter")) {
+						this.revokeAllocation = selectedRa;
+						QuestionDialog dialog = new QuestionDialog("Diese Raumbelegung ist als Gegenvorschlag eingetragen. Wollen Sie diesen wirklich zurückziehen?", "Achtung!");
+						dialog.register(this);
+						dialog.setVisible(true);
+					} else {
+						this.denyAllocation(selectedRa);
+					}
+				} catch (Exception ex) {
+					AppModel.getInstance().getExceptionHandler().setNewException("Ein unerwarteter Fehler ist aufgetreten.<br /><br >" + ex.toString(), "Fehler!");
+				}
+			}
 		}
 	}
 	
-	// Manage InfoWindow instance
-	public InfoDialog getInfoWindow(String msg) {
-		this.infoWindow = new InfoDialog(msg);
-		return this.infoWindow;
-		
+	private void denyAllocation (RoomAllocation ra) {
+		if (ra == null) {
+			AppModel.getInstance().getExceptionHandler().setNewException("Die Raumbelegung konnte nicht abgelehnt werden", "Fehler!");
+			return;
+		}
+		ctrlRoomAllocation.denyRoomAllocation(ra);
+	}
+	
+	@Override
+	public void answered(String answer) {
+		if (answer.equals("yes")) {
+			if (this.revokeAllocation != null) {
+				this.denyAllocation(this.revokeAllocation);
+				this.revokeAllocation = null;
+			}
+		} else if (answer.equals("no")) {
+			this.revokeAllocation = null;
+		}
 	}
 }
+
