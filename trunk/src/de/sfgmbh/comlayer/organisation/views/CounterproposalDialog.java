@@ -6,7 +6,7 @@ import java.awt.Toolkit;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
-import javax.swing.JFrame;
+import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
@@ -15,7 +15,14 @@ import javax.swing.border.EmptyBorder;
 import de.sfgmbh.comlayer.organisation.controller.CounterproposalFrameBtns;
 import de.sfgmbh.comlayer.organisation.controller.CounterproposalFrameWin;
 
-public class CounterproposalFrame extends JFrame {
+/**
+ * Modal Dialog for a counter proposal
+ * 
+ * @author anna
+ * @author hannes
+ *
+ */
+public class CounterproposalDialog extends JDialog {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
@@ -25,12 +32,13 @@ public class CounterproposalFrame extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	@SuppressWarnings({ })
-	public CounterproposalFrame() {
+	public CounterproposalDialog() {
+		setModal(true);
 		initialize();
+		setLocationRelativeTo(null);
 	}
 	private void initialize() {
-		setIconImage(Toolkit.getDefaultToolkit().getImage(CounterproposalFrame.class.getResource("/de/sfgmbh/comlayer/core/views/HUT_klein.png")));
+		setIconImage(Toolkit.getDefaultToolkit().getImage(CounterproposalDialog.class.getResource("/de/sfgmbh/comlayer/core/views/HUT_klein.png")));
 		setTitle("Konfliktl\u00F6sung");
 		setBounds(100, 100, 320, 410);
 		contentPane = new JPanel();

@@ -20,7 +20,7 @@ import de.sfgmbh.comlayer.organisation.model.RequestTabTable;
 import de.sfgmbh.comlayer.organisation.model.RoomTabTable;
 import de.sfgmbh.comlayer.organisation.model.RoomtableTable;
 import de.sfgmbh.comlayer.organisation.model.UserTabTable;
-import de.sfgmbh.comlayer.organisation.views.CounterproposalFrame;
+import de.sfgmbh.comlayer.organisation.views.CounterproposalDialog;
 import de.sfgmbh.comlayer.organisation.views.ProfessorshipEditFrame;
 import de.sfgmbh.comlayer.organisation.views.ProfessorshipFrame;
 import de.sfgmbh.comlayer.organisation.views.ProfessorshipTab;
@@ -107,7 +107,7 @@ public class ViewManager {
 	private UserCreateDialog userEditFrame;
 	private ProfessorshipFrame professorshipFrame;
 	private ProfessorshipEditFrame professorshipEditFrame;
-	private CounterproposalFrame counterproposalFrame;
+	private CounterproposalDialog counterproposalFrame;
 	private RequestTabTable requestTabTable;
 	private UserTabTable userTabTable;
 	private RoomTabTable roomTabTable;
@@ -211,9 +211,9 @@ public class ViewManager {
 		}
 		return this.professorshipEditFrame;
 	}
-	public CounterproposalFrame getOrgaCounterproposalFrame() {
+	public CounterproposalDialog getOrgaCounterproposalFrame() {
 		if (this.counterproposalFrame == null) {
-			this.counterproposalFrame = new CounterproposalFrame();
+			this.counterproposalFrame = new CounterproposalDialog();
 		}
 		return this.counterproposalFrame;
 	}
