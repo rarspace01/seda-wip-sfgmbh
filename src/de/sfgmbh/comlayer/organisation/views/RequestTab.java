@@ -161,7 +161,7 @@ public class RequestTab extends JPanel {
 		btnAblehnen.addActionListener(new RequestTabBtnsControl("deny"));
 		buttonPanel.add(btnAblehnen);
 		
-		JButton btnGegenvorschlag = new JButton("l\u00F6sen");
+		JButton btnGegenvorschlag = new JButton("lösen");
 		btnGegenvorschlag.setMinimumSize(new Dimension(90, 23));
 		btnGegenvorschlag.setMaximumSize(new Dimension(90, 23));
 		btnGegenvorschlag.setPreferredSize(new Dimension(50, 23));

@@ -4,6 +4,13 @@ import java.util.List;
 
 import de.sfgmbh.datalayer.core.definitions.IntfDataRetrievable;
 
+/**
+ * Model for room allocations
+ * 
+ * @author denis
+ * @author hannes
+ *
+ */
 public class RoomAllocation implements IntfDataRetrievable{
 
 	private int roomAllocationId_;
@@ -113,13 +120,28 @@ public class RoomAllocation implements IntfDataRetrievable{
 	}
 
 	/**
-	 * @param approved_ the approved_ to set
+	 * Set the approval status of the room allocation Valid status strings are:<br><br>
+	 * 
+	 * "accepted" - The room allocation is approved by the organization<br>
+	 * "denied" - The room allocation is denied by the organization<br>
+	 * "waiting" - The room allocation is not yet reviewed by the organization<br>
+	 * "counter" - The room allocation marks a counter proposal by the organization,<br>
+	 * this should be changed to "accepted" or "denied" automatically as soon as<br>
+	 * the lecturer accepts or denies the proposal. Until then time slot for this room<br>
+	 * allocation may not be taken by other allocations.<br><br>
+	 * 
+	 * "waiting" is the default status which will be set if no other valid status was
+	 * submitted.
+	 * 
+	 * @param status
 	 */
 	public void setApproved_(String approved_) {
-		if (approved_.equals("accepted"))
+		if (approved_.equals("accepted")) {
 			this.approved_ = "accepted";
-		else if (approved_.equals("denied")) {
+		} else if (approved_.equals("denied")) {
 			this.approved_ = "denied";
+		}  else if (approved_.equals("counter")) {
+			this.approved_ = "counter";
 		} else {
 			this.approved_ = "waiting";
 		}
@@ -173,9 +195,10 @@ public class RoomAllocation implements IntfDataRetrievable{
 	
 	/**
 	 * Save this room allocation in the DB
+	 * @return true on success
 	 */
-	public void save() {
-		AppModel.getInstance().getRepositoryRoomAllocation().save(this);
+	public boolean save() {
+		return AppModel.getInstance().getRepositoryRoomAllocation().save(this);
 	}
 
 	/**

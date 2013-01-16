@@ -25,7 +25,7 @@ public class InfoDialog extends JDialog implements IntfAppObserver {
 	private static final long serialVersionUID = 1L;
 	private JTextPane txtpnInfoDialogText;
 	private JButton btnOk;
-	private JLabel lblNewLabel;
+	private JLabel lblIcon;
 
 	/**
 	 * Create the dialog with default message, title and settings
@@ -59,8 +59,7 @@ public class InfoDialog extends JDialog implements IntfAppObserver {
 	 * @param variant
 	 */
 	public InfoDialog(String text, String title, String variant) {
-		this.setDialog(text, title);
-		// jet to be implemented
+		this.setDialog(text, title, variant);
 	}
 	
 	
@@ -74,6 +73,14 @@ public class InfoDialog extends JDialog implements IntfAppObserver {
 		createContents(title);
 	}
 	
+	private void setDialog(String info, String title, String variant) {
+		this.getTxtpnInfoWindowText().setText("<div style='font-family: Calibri,monospace; text-align: left;'>" + info + "</div>");
+		if (variant.equals("success")) {
+			this.getLblIcon().setIcon(new ImageIcon(InfoDialog.class.getResource("/de/sfgmbh/comlayer/core/views/Success.png")));
+		}
+		createContents(title);
+	}
+	
 	private void createContents() {
 		this.createContents("Fehler");
 	}
@@ -82,7 +89,7 @@ public class InfoDialog extends JDialog implements IntfAppObserver {
 		setModal(true);
 		setAlwaysOnTop(true);
 		getContentPane().setLayout(new MigLayout("", "[5px:n][center][5px:n][250px:n:500px,center][10px:n:10px]", "[100px:n:400px,center][40px:n:40px,center]"));
-		getContentPane().add(getLblNewLabel(), "cell 1 0,alignx center,aligny center");
+		getContentPane().add(getLblIcon(), "cell 1 0,alignx center,aligny center");
 		getContentPane().add(getTxtpnInfoWindowText(), "cell 3 0,alignx left,aligny center");
 		getContentPane().add(getBtnOk(), "cell 3 1,alignx right,aligny center");
 		pack();
@@ -118,13 +125,14 @@ public class InfoDialog extends JDialog implements IntfAppObserver {
 		return btnOk;
 	}
 	
-	private JLabel getLblNewLabel() {
-		if (lblNewLabel == null) {
-			lblNewLabel = new JLabel("");
-			lblNewLabel.setIcon(new ImageIcon(InfoDialog.class.getResource("/de/sfgmbh/comlayer/core/views/InfoDialogIcon.png")));
-			lblNewLabel.setMaximumSize(new Dimension(100, 100));
+	private JLabel getLblIcon() {
+		if (lblIcon == null) {
+			lblIcon = new JLabel("");
+			lblIcon.setIcon(new ImageIcon(InfoDialog.class.getResource("/de/sfgmbh/comlayer/core/views/InfoDialogIcon.png")));
+			lblIcon.setMaximumSize(new Dimension(100, 100));
+			lblIcon.setMinimumSize(new Dimension(100, 100));
 		}
-		return lblNewLabel;
+		return lblIcon;
 	}
 	
 	@Override
