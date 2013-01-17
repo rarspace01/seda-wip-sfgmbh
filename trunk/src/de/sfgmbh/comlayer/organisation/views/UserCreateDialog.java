@@ -4,6 +4,7 @@ import java.awt.Font;
 import java.awt.Toolkit;
 
 import javax.swing.JButton;
+import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
@@ -16,7 +17,6 @@ import de.sfgmbh.comlayer.core.model.CmbboxFilterChairAcronym;
 import de.sfgmbh.comlayer.core.model.CmbboxFilterUserClass;
 import de.sfgmbh.comlayer.organisation.controller.UserCreateDialogBtns;
 import de.sfgmbh.comlayer.organisation.controller.UserCreateDialogWin;
-import javax.swing.JCheckBox;
 
 /**
  * Dialog to create (and also edit) users

@@ -8,8 +8,8 @@ import de.sfgmbh.applayer.core.model.Chair;
 import de.sfgmbh.applayer.organisation.controller.CtrlChair;
 import de.sfgmbh.comlayer.core.controller.ViewManager;
 import de.sfgmbh.comlayer.core.definitions.IntfComDialogObserver;
-// import de.sfgmbh.comlayer.core.views.InfoDialog;
 import de.sfgmbh.comlayer.core.views.QuestionDialog;
+// import de.sfgmbh.comlayer.core.views.InfoDialog;
 
 
 /**

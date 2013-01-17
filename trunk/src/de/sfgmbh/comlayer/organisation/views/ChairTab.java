@@ -20,8 +20,8 @@ import javax.swing.table.TableRowSorter;
 import net.miginfocom.swing.MigLayout;
 import de.sfgmbh.comlayer.core.controller.ViewManager;
 import de.sfgmbh.comlayer.core.views.BaseTab;
-import de.sfgmbh.comlayer.organisation.controller.ChairTabCmbboxFilter;
 import de.sfgmbh.comlayer.organisation.controller.ChairTabBtnsControl;
+import de.sfgmbh.comlayer.organisation.controller.ChairTabCmbboxFilter;
 
 /**
  * 
