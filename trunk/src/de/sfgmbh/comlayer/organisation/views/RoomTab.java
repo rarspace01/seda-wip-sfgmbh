@@ -23,7 +23,7 @@ import de.sfgmbh.applayer.core.model.AppModel;
 import de.sfgmbh.applayer.organisation.controller.CtrlRoom;
 import de.sfgmbh.comlayer.core.controller.ViewManager;
 import de.sfgmbh.comlayer.core.views.BaseTab;
-import de.sfgmbh.comlayer.organisation.controller.CmbboxFilter;
+import de.sfgmbh.comlayer.organisation.controller.ChairTabCmbboxFilter;
 import de.sfgmbh.comlayer.organisation.controller.RoomTabBtnsControl;
 
 public class RoomTab extends JPanel {
@@ -81,7 +81,7 @@ public class RoomTab extends JPanel {
 		
 		comboBoxBuilding = new JComboBox<String>();
 		comboBoxBuilding.setModel(new DefaultComboBoxModel<String>(new String[] {"<alle>"}));
-		comboBoxBuilding.addActionListener(new CmbboxFilter());
+		comboBoxBuilding.addActionListener(new ChairTabCmbboxFilter());
 		
 		uniIconPanel = new JPanel();
 		add(uniIconPanel, "cell 6 0,alignx center,growy");
@@ -96,20 +96,20 @@ public class RoomTab extends JPanel {
 		
 		comboBoxLevel = new JComboBox<String>();
 		comboBoxLevel.setModel(new DefaultComboBoxModel<String>(new String[] {"<alle>"}));
-		comboBoxLevel.addActionListener(new CmbboxFilter());
+		comboBoxLevel.addActionListener(new ChairTabCmbboxFilter());
 		comboBoxLevel.setEditable(true);
 		comboBoxLevel.setAutoscrolls(true);
 		add(comboBoxLevel, "cell 3 1,growx");
 		
 		textFieldSeats = new JTextField();
 		textFieldSeats.setText("<alle>");
-		textFieldSeats.addActionListener(new CmbboxFilter());
+		textFieldSeats.addActionListener(new ChairTabCmbboxFilter());
 		add(textFieldSeats, "cell 4 1,growx");
 		textFieldSeats.setColumns(10);
 		
 		textFieldPCSeats = new JTextField();
 		textFieldPCSeats.setText("<alle>");
-		textFieldPCSeats.addActionListener(new CmbboxFilter());
+		textFieldPCSeats.addActionListener(new ChairTabCmbboxFilter());
 		textFieldPCSeats.setColumns(10);
 		add(textFieldPCSeats, "cell 5 1,growx");
 		

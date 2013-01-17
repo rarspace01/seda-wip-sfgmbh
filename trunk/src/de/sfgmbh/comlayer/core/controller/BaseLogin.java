@@ -81,7 +81,7 @@ public class BaseLogin implements ActionListener {
 		ViewManager.getInstance().getCoreBaseTab().getMainTabbedContainerPane().setSelectedIndex(1);
 		ViewManager.getInstance().getCoreBaseTab().getStartScreenPanel().setVisible(false);
 		ViewManager.getInstance().getCoreBaseTab().getMainTabbedContainerPane().addTab("Nutzerverwaltung", null, ViewManager.getInstance().getOrgaUserTab(), null);
-		ViewManager.getInstance().getCoreBaseTab().getMainTabbedContainerPane().addTab("Lehrstuhlverwaltung", null, ViewManager.getInstance().getOrgaProfessorshipTab(), null);
+		ViewManager.getInstance().getCoreBaseTab().getMainTabbedContainerPane().addTab("Lehrstuhlverwaltung", null, ViewManager.getInstance().getOrgaChairTab(), null);
 		ViewManager.getInstance().getCoreBaseTab().getMainTabbedContainerPane().addTab("Raumverwaltung", null, ViewManager.getInstance().getOrgaRoomTab(), null);
 	}
 	
