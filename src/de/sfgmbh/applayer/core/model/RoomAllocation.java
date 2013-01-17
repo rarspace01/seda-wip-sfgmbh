@@ -184,6 +184,7 @@ public class RoomAllocation implements IntfDataRetrievable{
 	}
 
 	/**
+	 * Set conflicting room allocations when this room allocation doesn't already have any conflicting allocations
 	 * @param conflictingAllocations_ the conflictingAllocations_ to set
 	 */
 	public void setConflictingAllocations_() {
@@ -191,6 +192,15 @@ public class RoomAllocation implements IntfDataRetrievable{
 			List<RoomAllocation> ral = AppModel.getInstance().getRepositoryRoomAllocation().getConflictingAllocation(this);
 			this.conflictingAllocations_ = ral;
 		}
+	}
+	
+	/**
+	 * Set conflicting room allocations regardless if there already are any set
+	 * @param conflictingAllocations_ the conflictingAllocations_ to set
+	 */
+	public void setForceConflictingAllocations_() {
+		List<RoomAllocation> ral = AppModel.getInstance().getRepositoryRoomAllocation().getConflictingAllocation(this);
+		this.conflictingAllocations_ = ral;
 	}
 	
 	/**

@@ -282,4 +282,29 @@ public class DataHandlerRoom implements IntfDataRoom, IntfDataFilter, IntfDataOb
 		observer_.remove(observer);
 	}
 
+	/**
+	 * Get a room by its number
+	 * @param roomNumber
+	 * @return a room object
+	 */
+	public Room getByNumber(String roomNumber) {
+		try {
+			DataManagerPostgreSql.getInstance().prepare("SELECT * FROM public.room WHERE roomnumber = ?");
+			DataManagerPostgreSql.getInstance().getPreparedStatement().setString(1, roomNumber);
+			ResultSet rs = DataManagerPostgreSql.getInstance().selectPstmt();
+			while (rs.next()) {
+				return this.makeRoom(rs);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			DataModel.getInstance().getExceptionsHandler().setNewException(("Es ist ein SQL-Fehler aufgetreten:<br /><br />" + e.toString()), "Datenbank-Fehler!");
+		} catch (Exception e) {
+			e.printStackTrace();
+			DataModel.getInstance().getExceptionsHandler().setNewException(("Es ist ein unbekannter Fehler in der Datenhaltung aufgetreten:<br /><br />" + e.toString()), "Fehler!");
+		}
+		
+		return null;
+	}
+
 }
