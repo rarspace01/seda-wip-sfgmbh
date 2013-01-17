@@ -1,6 +1,7 @@
 package de.sfgmbh.comlayer.core.model;
 
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JComboBox;
 
 import de.sfgmbh.applayer.core.definitions.IntfAppObserver;
 import de.sfgmbh.applayer.core.model.AppModel;
@@ -15,28 +16,31 @@ import de.sfgmbh.applayer.core.model.Course;
 public class CmbboxFilterCourse extends DefaultComboBoxModel<String> implements IntfAppObserver {
 
 	private static final long serialVersionUID = 1L;
+	private JComboBox<String> dependentComboBox;
 	
 	/**
 	 * Create the model object
+	 * @param dependentCombobox
 	 */
-	public CmbboxFilterCourse() {
+	public CmbboxFilterCourse(JComboBox<String> dependentComboBox) {
 		AppModel.getInstance().getRepositoryCourse().register(this);
-		this.change();
+		this.dependentComboBox = dependentComboBox;
+		this.build();
 	}
 
-	@Override
-	public void change() {
+	private void build() {
 		
-		// Build and clean up the model on change - do not use
-		// removeAllElements() as it can cause null pointer exceptions when an
-		// observer model has null elements at any time
-		int initalSize = this.getSize();
 		this.addElement("<alle>");
 		for (Course course : AppModel.getInstance().getRepositoryCourse().getAll()){
 			this.addElement(course.getCourseAcronym_());
 		}
-		for (int i = 0; initalSize > i; i++) {
-			this.removeElementAt(i+1);
-		}
+	}
+	
+	@Override
+	public void change() {
+		
+		// Build a new model (which will be up to date automatically) and set it
+		CmbboxFilterCourse newModel = new CmbboxFilterCourse(this.dependentComboBox);
+		this.dependentComboBox.setModel(newModel);
 	}
 }

@@ -3,7 +3,6 @@ package de.sfgmbh.comlayer.organisation.model;
 import javax.swing.table.DefaultTableModel;
 
 import de.sfgmbh.applayer.core.definitions.IntfAppObserver;
-import de.sfgmbh.applayer.organisation.controller.CtrlRoom;
 import de.sfgmbh.applayer.organisation.controller.CtrlRoomAllocation;
 
 public class RoomtableTable extends DefaultTableModel implements IntfAppObserver {

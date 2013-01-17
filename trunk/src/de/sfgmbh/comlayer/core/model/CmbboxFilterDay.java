@@ -2,15 +2,13 @@ package de.sfgmbh.comlayer.core.model;
 
 import javax.swing.DefaultComboBoxModel;
 
-import de.sfgmbh.applayer.core.definitions.IntfAppObserver;
-
 /**
  * Model for day combo boxes
  * 
  * @author hannes
  *
  */
-public class CmbboxFilterDay extends DefaultComboBoxModel<String> implements IntfAppObserver {
+public class CmbboxFilterDay extends DefaultComboBoxModel<String>{
 
 	private static final long serialVersionUID = 1L;
 	private String variant;
@@ -20,7 +18,7 @@ public class CmbboxFilterDay extends DefaultComboBoxModel<String> implements Int
 	 */
 	public CmbboxFilterDay() {
 		this.variant = "default";
-		this.change();
+		this.build();
 	}
 	
 	/**
@@ -29,12 +27,11 @@ public class CmbboxFilterDay extends DefaultComboBoxModel<String> implements Int
 	 */
 	public CmbboxFilterDay(String variant) {
 		this.variant = variant;
-		this.change();
+		this.build();
 		
 	}
 
-	@Override
-	public void change() {
+	private void build() {
 		String[] elements = new String[] {"<alle>", "Montag", "Dienstag", "Mittwoch", "Donnerstag", "Freitag", "Samstag", "Sonntag"};
 		if (this.variant.equals("select")) {
 			elements = new String[] {"Montag", "Dienstag", "Mittwoch", "Donnerstag", "Freitag", "Samstag", "Sonntag"};

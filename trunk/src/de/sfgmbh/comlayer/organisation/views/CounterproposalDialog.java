@@ -182,7 +182,7 @@ public class CounterproposalDialog extends JDialog {
 	public JComboBox<String> getCmbboxRoom() {
 		if (cmbboxRoom == null) {
 			cmbboxRoom = new JComboBox<String>();
-			cmbboxRoom.setModel(new CmbboxFilterRoomnumber("select"));
+			cmbboxRoom.setModel(new CmbboxFilterRoomnumber(cmbboxRoom, "select"));
 			cmbboxRoom.setEditable(true);
 			cmbboxRoom.addActionListener(new CounterproposalFrameBtns(this, "combo"));
 			cmbboxRoom.setBounds(112, 86, 102, 20);

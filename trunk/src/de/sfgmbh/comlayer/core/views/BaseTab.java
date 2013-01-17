@@ -262,7 +262,7 @@ public class BaseTab extends JFrame {
 			comboBoxOrgaFilter.addActionListener(new BaseCmbboxFilter());
 			comboBoxOrgaFilter.setAutoscrolls(true);
 			comboBoxOrgaFilter.setEditable(true);
-			comboBoxOrgaFilter.setModel(new CmbboxFilterCourse());
+			comboBoxOrgaFilter.setModel(new CmbboxFilterCourse(comboBoxOrgaFilter));
 		}
 
 		return comboBoxOrgaFilter;
@@ -271,7 +271,7 @@ public class BaseTab extends JFrame {
 	public JComboBox<String> getComboBoxChairFilter() {
 		if (comboBoxChairFilter == null) {
 			comboBoxChairFilter = new JComboBox<String>();
-			comboBoxChairFilter.setModel(new CmbboxFilterChair());
+			comboBoxChairFilter.setModel(new CmbboxFilterChair(comboBoxChairFilter));
 			comboBoxChairFilter.addKeyListener(new BaseCmbboxFilter());
 			comboBoxChairFilter.addActionListener(new BaseCmbboxFilter());
 			comboBoxChairFilter.setEditable(true);
@@ -284,7 +284,7 @@ public class BaseTab extends JFrame {
 	public JComboBox<String> getComboBoxLecturerFilter() {
 		if (comboBoxLecturerFilter == null) {
 			comboBoxLecturerFilter = new JComboBox<String>();
-			comboBoxLecturerFilter.setModel(new CmbboxFilterLecturer());
+			comboBoxLecturerFilter.setModel(new CmbboxFilterLecturer(comboBoxLecturerFilter));
 			comboBoxLecturerFilter.addKeyListener(new BaseCmbboxFilter());
 			comboBoxLecturerFilter.addActionListener(new BaseCmbboxFilter());
 			comboBoxLecturerFilter.setEditable(true);
@@ -310,7 +310,7 @@ public class BaseTab extends JFrame {
 	public JComboBox<String> getComboBoxRoomnumberFilter() {
 		if (comboBoxRoomnumberFilter == null) {
 			comboBoxRoomnumberFilter = new JComboBox<String>();
-			comboBoxRoomnumberFilter.setModel(new CmbboxFilterRoomnumber());
+			comboBoxRoomnumberFilter.setModel(new CmbboxFilterRoomnumber(comboBoxRoomnumberFilter));
 			comboBoxRoomnumberFilter.addKeyListener(new BaseCmbboxFilter());
 			comboBoxRoomnumberFilter.addActionListener(new BaseCmbboxFilter());
 			comboBoxRoomnumberFilter.setEditable(true);
@@ -367,54 +367,6 @@ public class BaseTab extends JFrame {
 			organisationTable.setModel(ViewManager.getInstance()
 					.getCoreBaseTableModel());
 			organisationTable.getColumnModel().getColumn(0).setResizable(false);
-			/*
-			 * organisationTable.getColumnModel().getColumn(0).setPreferredWidth(
-			 * 50);
-			 * organisationTable.getColumnModel().getColumn(0).setMinWidth(50);
-			 * organisationTable.getColumnModel().getColumn(0).setMaxWidth(50);
-			 * organisationTable
-			 * .getColumnModel().getColumn(1).setResizable(false);
-			 * organisationTable
-			 * .getColumnModel().getColumn(1).setPreferredWidth(25);
-			 * organisationTable.getColumnModel().getColumn(1).setMinWidth(25);
-			 * organisationTable.getColumnModel().getColumn(1).setMaxWidth(25);
-			 * organisationTable
-			 * .getColumnModel().getColumn(2).setResizable(false);
-			 * organisationTable.getColumnModel().getColumn(2).setMinWidth(75);
-			 * organisationTable.getColumnModel().getColumn(2).setMaxWidth(75);
-			 * organisationTable
-			 * .getColumnModel().getColumn(3).setPreferredWidth(80);
-			 * organisationTable.getColumnModel().getColumn(3).setMinWidth(80);
-			 * organisationTable.getColumnModel().getColumn(3).setMaxWidth(200);
-			 * organisationTable
-			 * .getColumnModel().getColumn(4).setPreferredWidth(70);
-			 * organisationTable.getColumnModel().getColumn(4).setMinWidth(70);
-			 * organisationTable.getColumnModel().getColumn(4).setMaxWidth(200);
-			 * organisationTable
-			 * .getColumnModel().getColumn(5).setResizable(false);
-			 * organisationTable
-			 * .getColumnModel().getColumn(5).setPreferredWidth(30);
-			 * organisationTable.getColumnModel().getColumn(5).setMinWidth(30);
-			 * organisationTable.getColumnModel().getColumn(5).setMaxWidth(30);
-			 * organisationTable
-			 * .getColumnModel().getColumn(6).setResizable(false);
-			 * organisationTable
-			 * .getColumnModel().getColumn(6).setPreferredWidth(60);
-			 * organisationTable.getColumnModel().getColumn(6).setMinWidth(60);
-			 * organisationTable.getColumnModel().getColumn(6).setMaxWidth(60);
-			 * organisationTable
-			 * .getColumnModel().getColumn(7).setResizable(false);
-			 * organisationTable
-			 * .getColumnModel().getColumn(7).setPreferredWidth(70);
-			 * organisationTable.getColumnModel().getColumn(7).setMinWidth(70);
-			 * organisationTable.getColumnModel().getColumn(7).setMaxWidth(70);
-			 * organisationTable
-			 * .getColumnModel().getColumn(8).setResizable(false);
-			 * organisationTable
-			 * .getColumnModel().getColumn(8).setPreferredWidth(32);
-			 * organisationTable.getColumnModel().getColumn(8).setMinWidth(32);
-			 * organisationTable.getColumnModel().getColumn(8).setMaxWidth(32);
-			 */
 			organisationTable.getColumnModel().getColumn(8)
 					.setCellRenderer(center);
 			organisationTable.getColumnModel().getColumn(1)
@@ -446,43 +398,6 @@ public class BaseTab extends JFrame {
 			roomTable.setBackground(SystemColor.activeCaption);
 			mainTableScrollPane.setViewportView(roomTable);
 			roomTable.getColumnModel().getColumn(0).setResizable(false);
-			/*
-			 * roomTable.getColumnModel().getColumn(0).setPreferredWidth(75);
-			 * roomTable.getColumnModel().getColumn(0).setMinWidth(75);
-			 * roomTable.getColumnModel().getColumn(0).setMaxWidth(75);
-			 * roomTable.getColumnModel().getColumn(1).setResizable(false);
-			 * roomTable.getColumnModel().getColumn(1).setPreferredWidth(75);
-			 * roomTable.getColumnModel().getColumn(1).setMinWidth(75);
-			 * roomTable.getColumnModel().getColumn(1).setMaxWidth(75);
-			 * roomTable.getColumnModel().getColumn(2).setResizable(false);
-			 * roomTable.getColumnModel().getColumn(2).setMinWidth(75);
-			 * roomTable.getColumnModel().getColumn(2).setMaxWidth(75);
-			 * roomTable.getColumnModel().getColumn(3).setPreferredWidth(50);
-			 * roomTable.getColumnModel().getColumn(3).setMinWidth(50);
-			 * roomTable.getColumnModel().getColumn(3).setMaxWidth(50);
-			 * roomTable.getColumnModel().getColumn(4).setPreferredWidth(75);
-			 * roomTable.getColumnModel().getColumn(4).setMinWidth(75);
-			 * roomTable.getColumnModel().getColumn(4).setMaxWidth(75);
-			 * roomTable.getColumnModel().getColumn(5).setResizable(false);
-			 * roomTable.getColumnModel().getColumn(5).setPreferredWidth(50);
-			 * roomTable.getColumnModel().getColumn(5).setMinWidth(50);
-			 * roomTable.getColumnModel().getColumn(5).setMaxWidth(50);
-			 * roomTable.getColumnModel().getColumn(6).setResizable(false);
-			 * roomTable.getColumnModel().getColumn(6).setPreferredWidth(60);
-			 * roomTable.getColumnModel().getColumn(6).setMinWidth(60);
-			 * roomTable.getColumnModel().getColumn(6).setMaxWidth(60);
-			 * roomTable.getColumnModel().getColumn(7).setResizable(false);
-			 * roomTable.getColumnModel().getColumn(7).setPreferredWidth(70);
-			 * roomTable.getColumnModel().getColumn(7).setMinWidth(70);
-			 * roomTable.getColumnModel().getColumn(7).setMaxWidth(70);
-			 * roomTable.getColumnModel().getColumn(8).setResizable(false);
-			 * roomTable.getColumnModel().getColumn(8).setPreferredWidth(75);
-			 * roomTable.getColumnModel().getColumn(8).setMinWidth(75);
-			 * roomTable.getColumnModel().getColumn(8).setMaxWidth(75);
-			 * roomTable.getColumnModel().getColumn(9).setPreferredWidth(75);
-			 * roomTable.getColumnModel().getColumn(9).setMinWidth(75);
-			 * roomTable.getColumnModel().getColumn(9).setMaxWidth(75);
-			 */
 			roomTable.getColumnModel().getColumn(8).setCellRenderer(center);
 			roomTable.getColumnModel().getColumn(1).setCellRenderer(center);
 			roomTable.getColumnModel().getColumn(6).setCellRenderer(center);

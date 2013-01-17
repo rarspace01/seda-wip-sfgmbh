@@ -97,7 +97,7 @@ public class RequestTab extends JPanel {
 		lblUniIcon.setMaximumSize(new Dimension(50,50));
 		uniIconPanel.add(lblUniIcon);
 		
-		comboBoxLecturer.setModel(new CmbboxFilterLecturer());
+		comboBoxLecturer.setModel(new CmbboxFilterLecturer(comboBoxLecturer));
 		comboBoxLecturer.setEditable(true);
 		comboBoxLecturer.setAutoscrolls(true);
 		add(comboBoxLecturer, "cell 2 1,growx,aligny center");
@@ -228,7 +228,7 @@ public class RequestTab extends JPanel {
 			comboBoxChair.setMaximumSize(new Dimension(200, 50));
 			filterBottom.add(comboBoxChair, "cell 0 0,aligny center");
 			comboBoxChair.addActionListener(new RequestTabCmbboxFilter());
-			comboBoxChair.setModel(new CmbboxFilterChair());
+			comboBoxChair.setModel(new CmbboxFilterChair(comboBoxChair));
 			comboBoxChair.setEditable(true);
 			comboBoxChair.setAutoscrolls(true);
 			

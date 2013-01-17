@@ -2,15 +2,13 @@ package de.sfgmbh.comlayer.core.model;
 
 import javax.swing.DefaultComboBoxModel;
 
-import de.sfgmbh.applayer.core.definitions.IntfAppObserver;
-
 /**
  * Model for user class combo boxes
  * 
  * @author hannes
  *
  */
-public class CmbboxFilterUserClass extends DefaultComboBoxModel<String> implements IntfAppObserver {
+public class CmbboxFilterUserClass extends DefaultComboBoxModel<String> {
 
 	private static final long serialVersionUID = 1L;
 	private String variant_;
@@ -20,7 +18,7 @@ public class CmbboxFilterUserClass extends DefaultComboBoxModel<String> implemen
 	 */
 	public CmbboxFilterUserClass() {
 		this.variant_ = "normal";
-		this.change();
+		this.build();
 	}
 	
 	/**
@@ -28,11 +26,10 @@ public class CmbboxFilterUserClass extends DefaultComboBoxModel<String> implemen
 	 */
 	public CmbboxFilterUserClass(String variant) {
 		this.variant_ = variant;
-		this.change();
+		this.build();
 	}
 
-	@Override
-	public void change() {
+	private void build() {
 		
 		String[] elements;
 		

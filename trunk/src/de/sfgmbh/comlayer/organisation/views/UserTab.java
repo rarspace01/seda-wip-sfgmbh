@@ -102,7 +102,7 @@ public class UserTab extends JPanel {
 		add(comboBoxUserclass, "cell 2 1,growx");
 		
 		comboBoxChair = new JComboBox<String>();
-		comboBoxChair.setModel(new CmbboxFilterChair());
+		comboBoxChair.setModel(new CmbboxFilterChair(comboBoxChair));
 		comboBoxChair.addActionListener(new UserTabCmbboxFilter());
 		comboBoxChair.setEditable(true);
 		comboBoxChair.setAutoscrolls(true);

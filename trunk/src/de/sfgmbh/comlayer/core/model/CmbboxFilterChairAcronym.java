@@ -1,6 +1,7 @@
 package de.sfgmbh.comlayer.core.model;
 
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JComboBox;
 
 import de.sfgmbh.applayer.core.definitions.IntfAppObserver;
 import de.sfgmbh.applayer.core.model.AppModel;
@@ -16,32 +17,32 @@ public class CmbboxFilterChairAcronym extends DefaultComboBoxModel<String> imple
 
 	private static final long serialVersionUID = 1L;
 	private String variant_;
+	private JComboBox<String> dependentComboBox;
 	
 	/**
 	 * Create the model object
+	 * @param dependentCombobox
 	 */
-	public CmbboxFilterChairAcronym() {
+	public CmbboxFilterChairAcronym(JComboBox<String> dependentComboBox) {
 		this.variant_ = "normal";
 		AppModel.getInstance().getRepositoryChair().register(this);
-		this.change();
+		this.dependentComboBox = dependentComboBox;
+		this.build();
 	}
 	
 	/**
 	 * Create the model object based on a submitted variant string
 	 */
-	public CmbboxFilterChairAcronym(String variant) {
+	public CmbboxFilterChairAcronym(JComboBox<String> dependentComboBox, String variant) {
 		this.variant_ = variant;
 		AppModel.getInstance().getRepositoryChair().register(this);
-		this.change();
+		this.dependentComboBox = dependentComboBox;
+		this.build();
 	}
 
-	@Override
-	public void change() {
+	private void build() {
 		
-		// Build and clean up the model on change - do not use
-		// removeAllElements() as it can cause null pointer exceptions when an
-		// observer model has null elements at any time
-		int initalSize = this.getSize();
+		
 		if (!this.variant_.equals("blank")) {
 			this.addElement("<alle>");
 		} else {
@@ -50,8 +51,13 @@ public class CmbboxFilterChairAcronym extends DefaultComboBoxModel<String> imple
 		for (Chair chair : AppModel.getInstance().getRepositoryChair().getAll()){
 			this.addElement(chair.getAcronym_());
 		}
-		for (int i = 0; initalSize > i; i++) {
-			this.removeElementAt(i+1);
-		}
+	}
+	
+	@Override
+	public void change() {
+		
+		// Build a new model (which will be up to date automatically) and set it
+		CmbboxFilterChairAcronym newModel = new CmbboxFilterChairAcronym(this.dependentComboBox);
+		this.dependentComboBox.setModel(newModel);
 	}
 }

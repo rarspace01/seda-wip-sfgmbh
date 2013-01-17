@@ -95,7 +95,7 @@ public class StartTab extends JPanel {
 		comboLecturer = new JComboBox<String>();
 		comboLecturer.addActionListener(new StartTabCmbboxFilter());
 		tablePanel.add(comboLecturer, "cell 0 1,growx");
-		comboLecturer.setModel(new CmbboxFilterLecturer());
+		comboLecturer.setModel(new CmbboxFilterLecturer(comboLecturer));
 		comboLecturer.setEditable(true);
 		comboLecturer.setAutoscrolls(true);
 		
@@ -124,7 +124,7 @@ public class StartTab extends JPanel {
 		tablePanel.add(labelSemester, "cell 2 4");
 		
 		comboBoxLecturerBottom = new JComboBox<String>();
-		comboBoxLecturerBottom.setModel(new CmbboxFilterLecturer());
+		comboBoxLecturerBottom.setModel(new CmbboxFilterLecturer(comboBoxLecturerBottom));
 		comboBoxLecturerBottom.addActionListener(new StartTabCmbboxFilter());
 		
 		lblStatus = new JLabel("Ver\u00F6ffentlichungsstatus:");
@@ -135,7 +135,7 @@ public class StartTab extends JPanel {
 		
 		comboBoxCourse = new JComboBox<String>();
 		comboBoxCourse.addActionListener(new StartTabCmbboxFilter());
-		comboBoxCourse.setModel(new CmbboxFilterCourse());
+		comboBoxCourse.setModel(new CmbboxFilterCourse(comboBoxCourse));
 		comboBoxCourse.setEditable(true);
 		comboBoxCourse.setAutoscrolls(true);
 		tablePanel.add(comboBoxCourse, "cell 1 5,growx");

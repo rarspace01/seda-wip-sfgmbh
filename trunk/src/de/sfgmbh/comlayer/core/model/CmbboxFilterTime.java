@@ -2,15 +2,13 @@ package de.sfgmbh.comlayer.core.model;
 
 import javax.swing.DefaultComboBoxModel;
 
-import de.sfgmbh.applayer.core.definitions.IntfAppObserver;
-
 /**
  * Model for time combo boxes
  * 
  * @author hannes
  *
  */
-public class CmbboxFilterTime extends DefaultComboBoxModel<String> implements IntfAppObserver {
+public class CmbboxFilterTime extends DefaultComboBoxModel<String>{
 
 	private static final long serialVersionUID = 1L;
 	private String variant;
@@ -20,7 +18,7 @@ public class CmbboxFilterTime extends DefaultComboBoxModel<String> implements In
 	 */
 	public CmbboxFilterTime() {
 		this.variant = "default";
-		this.change();
+		this.build();
 	}
 	
 	/**
@@ -29,12 +27,11 @@ public class CmbboxFilterTime extends DefaultComboBoxModel<String> implements In
 	 */
 	public CmbboxFilterTime(String variant) {
 		this.variant = variant;
-		this.change();
+		this.build();
 		
 	}
 
-	@Override
-	public void change() {
+	public void build() {
 		String[] elements = new String[] {"<alle>", "8:00 - 10:00", "10:00 - 12:00", "12:00 - 14:00", "14:00 - 16:00", "16:00 - 18:00", "18:00 - 20:00", "20:00 - 22:00"};
 		if (this.variant.equals("select")) {
 			elements = new String[] {"8:00 - 10:00", "10:00 - 12:00", "12:00 - 14:00", "14:00 - 16:00", "16:00 - 18:00", "18:00 - 20:00", "20:00 - 22:00"};

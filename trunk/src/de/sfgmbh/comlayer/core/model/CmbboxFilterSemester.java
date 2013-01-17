@@ -2,15 +2,13 @@ package de.sfgmbh.comlayer.core.model;
 
 import javax.swing.DefaultComboBoxModel;
 
-import de.sfgmbh.applayer.core.definitions.IntfAppObserver;
-
 /**
  * Model for semester combo boxes
  * 
  * @author hannes
  *
  */
-public class CmbboxFilterSemester extends DefaultComboBoxModel<String> implements IntfAppObserver {
+public class CmbboxFilterSemester extends DefaultComboBoxModel<String>{
 
 	private static final long serialVersionUID = 1L;
 	
@@ -18,11 +16,10 @@ public class CmbboxFilterSemester extends DefaultComboBoxModel<String> implement
 	 * Create the model object
 	 */
 	public CmbboxFilterSemester() {
-		this.change();
+		this.build();
 	}
 
-	@Override
-	public void change() {
+	public void build() {
 		String[] elements = new String[] {"<alle>", "WS 12/13", "SS 13", "WS 13/14", "SS 14"};
 		
 		for (String element : elements) {
