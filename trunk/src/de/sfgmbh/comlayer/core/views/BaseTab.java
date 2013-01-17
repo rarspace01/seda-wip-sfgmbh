@@ -36,7 +36,7 @@ import de.sfgmbh.comlayer.core.controller.BaseLogin;
 import de.sfgmbh.comlayer.core.controller.BaseCmbboxFilter;
 import de.sfgmbh.comlayer.core.controller.BaseRdbtnTopLeft;
 import de.sfgmbh.comlayer.core.controller.ViewManager;
-import de.sfgmbh.comlayer.core.model.CmbboxFilterRoomplaces;
+import de.sfgmbh.comlayer.core.model.CmbboxFilterSeats;
 import de.sfgmbh.comlayer.core.model.CmbboxFilterChair;
 import de.sfgmbh.comlayer.core.model.CmbboxFilterCourse;
 import de.sfgmbh.comlayer.core.model.CmbboxFilterLecturer;
@@ -65,7 +65,7 @@ public class BaseTab extends JFrame{
 	private JComboBox<String> comboBoxSemesterFilter;
 	private JComboBox<String> comboBoxOrgaFilter;
 	private JComboBox<String> comboBoxRoomnumberFilter;
-	private JComboBox<String> comboBoxRoomplacesFilter;
+	private JComboBox<String> comboBoxSeatsFilter;
 	private JComboBox<String> comboBoxLevelFilter;
 	private JLabel lblLehrveranstaltung;
 	private JLabel lblLehrstuhl;
@@ -73,7 +73,7 @@ public class BaseTab extends JFrame{
 	private JLabel lblLoggedIn;
 	private JLabel lblSemester;
 	private JLabel lblRoomnumber;
-	private JLabel lblRoomplaces;
+	private JLabel lblSeats;
 	private JLabel lblLevel;
 	private JTable organisationTable;
 	private JScrollPane mainTableScrollPane;
@@ -230,8 +230,8 @@ public class BaseTab extends JFrame{
 	}
 	
 	public JLabel getLblRoomplaces() {
-		lblRoomplaces = new JLabel("Sitzplätze");
-		return lblRoomplaces;
+		lblSeats = new JLabel("Sitzplätze");
+		return lblSeats;
 	}
 	
 	public JLabel getLblLevel() {
@@ -315,16 +315,16 @@ public class BaseTab extends JFrame{
 	}
 	
 	public JComboBox<String> getComboBoxRoomplacesFilter() {
-		if (comboBoxRoomplacesFilter == null) {
-			comboBoxRoomplacesFilter = new JComboBox<String>();
-			comboBoxRoomplacesFilter.setModel(new CmbboxFilterRoomplaces());
-			comboBoxRoomplacesFilter.addKeyListener(new BaseCmbboxFilter());
-			comboBoxRoomplacesFilter.addActionListener(new BaseCmbboxFilter());
-			comboBoxRoomplacesFilter.setEditable(true);
-			comboBoxRoomplacesFilter.setAutoscrolls(true);
+		if (comboBoxSeatsFilter == null) {
+			comboBoxSeatsFilter = new JComboBox<String>();
+			comboBoxSeatsFilter.setModel(new CmbboxFilterSeats());
+			comboBoxSeatsFilter.addKeyListener(new BaseCmbboxFilter());
+			comboBoxSeatsFilter.addActionListener(new BaseCmbboxFilter());
+			comboBoxSeatsFilter.setEditable(true);
+			comboBoxSeatsFilter.setAutoscrolls(true);
 		}
 			
-		return comboBoxRoomplacesFilter;
+		return comboBoxSeatsFilter;
 	}
 	
 	public JComboBox<String> getComboBoxLevelFilter() {
