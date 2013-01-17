@@ -43,7 +43,7 @@ public interface IntfDataChair {
 	 *            - the object which should be remove from the database
 	 * @return
 	 */
-	public void delete(Chair Chair);
+	public boolean delete(Chair Chair);
 
 	/**
 	 * 

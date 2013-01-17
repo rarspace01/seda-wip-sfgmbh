@@ -3,20 +3,31 @@ package de.sfgmbh.comlayer.organisation.controller;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import de.sfgmbh.applayer.core.model.AppModel;
+import de.sfgmbh.applayer.core.model.Chair;
+import de.sfgmbh.applayer.organisation.controller.CtrlChair;
 import de.sfgmbh.comlayer.core.controller.ViewManager;
-import de.sfgmbh.comlayer.core.views.InfoDialog;
+import de.sfgmbh.comlayer.core.definitions.IntfComDialogObserver;
+// import de.sfgmbh.comlayer.core.views.InfoDialog;
+import de.sfgmbh.comlayer.core.views.QuestionDialog;
 
 
-
-public class ProfessorshipTabBtnsControl implements ActionListener {
+/**
+ * Action Listener for the user organization control buttons on the right
+ * 
+ * @author anna, hannes
+ *
+ */
+public class ProfessorshipTabBtnsControl implements ActionListener, IntfComDialogObserver {
 	
 	private String navAction;
-	protected InfoDialog infoWindow;
+	private boolean deleteChair = false;
+	private Chair chairMarkedForDeletion;
+	private CtrlChair ctrlChair = new CtrlChair();
 	
-	
-	public ProfessorshipTabBtnsControl() {
-		this.navAction = "default";
-	}
+	/**
+	 * Create the action listener based on a submitted action string
+	 */
 	public ProfessorshipTabBtnsControl(String action) {
 		this.navAction = action;
 	}
@@ -24,32 +35,78 @@ public class ProfessorshipTabBtnsControl implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		
-		// Lehrstuhl hinzuf�gen Button is pressed
+		// Add button is pressed - not yet implemented
 		if (this.navAction.equals("hinz")) {
 			ViewManager.getInstance().getOrgaProfessorshipFrame().setVisible(true);
 		}
 		
-		// Lehrstuhl bearbeiten Button is pressed
+		// Edit button is pressed - not yet implemented
 		if (this.navAction.equals("edit")) {
 			ViewManager.getInstance().getOrgaProfessorshipFrame().setVisible(true);
 			//this.getInfoWindow("<b>Fehlermeldung:</b><br> Sie haben keinen Lehrstuhl selektiert!<br> Wenn Sie keine Fehlermeldung erscheint gelangen Sie sofort zu einer Bearbeiten-Maske, welche allerdings noch nicht implementiert ist.").setVisible(true);
 		}
 		
-		// Lehrstuhl l�schen Button is pressed
+		// Delete button is pressed
 		if (this.navAction.equals("loschen")) {
-			this.getInfoWindow("<b>Fehlermeldung:</b><br>Der Lehrstuhl konnte nicht gel�scht werden:<br>Sie haben keinen Lehrstuhl selektiert.").setVisible(true);
-		}
-		
-		// Fehlermeldung button is pressed
-				if (this.navAction.equals("Fehlermeldung")){
-					this.getInfoWindow("<b>Fehlermeldung:</b><br> Es besteht keine Verbindung zur Datenbank, deswegen k�nnen die Lehrst�hle nicht geladen werden").setVisible(true);
+			//set a chair delete variable to be sure the user really pressed the delete button later
+			deleteChair = true;
+			
+			//Get the chair
+			int row = ViewManager.getInstance().getOrgaProfessorshipTab().getProfessorshipOrgaTable().getSelectedRow();
+			if (row == -1) {
+				AppModel.getInstance().getExceptionHandler().setNewException("Sie müssen zunächst einen Benutzer auswählen.", "Achtung!");
+			} else {
+				try {
+					row = ViewManager.getInstance().getOrgaProfessorshipTab().getRowSorter().convertRowIndexToModel(row);
+					this.chairMarkedForDeletion = (Chair) ViewManager.getInstance().getOrgaProfessorshipTableModel().getValueAt(row, 3);
+				} catch (Exception ex) {
+					AppModel.getInstance().getExceptionHandler().setNewException("Ein unerwarteter Fehler ist aufgetreten.<br /><br >" + ex.toString(), "Fehler!");
 				}
+				
+				QuestionDialog dialog = new QuestionDialog("Wollen Sie den gewählten benutzer wirklich löschen?", "Achtung!");
+				dialog.register(this);
+				dialog.setVisible(true);
 		
+			}
+		}
+	}	
+	@Override
+	public void answered(String answer) {
+		if (answer.equals("yes")) {
+			this.deleteChair(this.chairMarkedForDeletion);
+		} else if (answer.equals("no")) {
+			this.deleteChair = false;
+		}
 	}
 	
-	// Manage InfoWindow instance
+	/**
+	 * Delete a chair
+	 * @param cjaor
+	 * @return true if the deletion was successful
+	 */
+	public void deleteChair(Chair chair) {
+		
+		if (this.deleteChair) {
+			this.deleteChair = false;
+			if (ctrlChair.delete(chair)) {
+				AppModel.getInstance().getExceptionHandler().setNewException("Der Benutzer wurde erfolgreich gelöscht!", "Erfolg!", "success");
+			} else {
+				
+			}
+		}
+	}
+		
+		// Fehlermeldung button is pressed
+		//		if (this.navAction.equals("Fehlermeldung")){
+		//			this.getInfoWindow("<b>Fehlermeldung:</b><br> Es besteht keine Verbindung zur Datenbank, deswegen k�nnen die Lehrst�hle nicht geladen werden").setVisible(true);
+		//		}
+		
+	//}
+	
+	/* Manage InfoWindow instance
 	public InfoDialog getInfoWindow(String msg) {
 		this.infoWindow = new InfoDialog(msg);
 		return this.infoWindow;
 	}
+	*/
 }
