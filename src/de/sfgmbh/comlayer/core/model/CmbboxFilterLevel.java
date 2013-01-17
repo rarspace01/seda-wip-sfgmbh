@@ -1,6 +1,7 @@
 package de.sfgmbh.comlayer.core.model;
 
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JComboBox;
 
 import de.sfgmbh.applayer.core.definitions.IntfAppObserver;
 import de.sfgmbh.applayer.core.model.AppModel;
@@ -16,31 +17,19 @@ import de.sfgmbh.applayer.core.model.Room;
 public class CmbboxFilterLevel extends DefaultComboBoxModel<String> implements IntfAppObserver {
 
 	private static final long serialVersionUID = 1L;
+	private JComboBox<String> dependentComboBox;
 	
 	/**
 	 * Create the model object
+	 * @param dependentCombobox
 	 */
-	public CmbboxFilterLevel() {
+	public CmbboxFilterLevel(JComboBox<String> dependentCombox) {
 		AppModel.getInstance().getRepositoryRoom().register(this);
-		this.change();
+		this.dependentComboBox = dependentCombox;
+		this.build();
 	}
 
-	@Override
-	public void change() {
-		
-		// Build and clean up the model on change - do not use
-		// removeAllElements() as it can cause null pointer exceptions when an
-		// observer model has null elements at any time
-		
-		for(int i=0;i<this.getSize();i++){
-			System.out.println(""+i+" - " + this.getElementAt(i));
-		}
-		
-		int initalSize = this.getSize();
-		this.addElement("dummy");
-		for (int i = 0; i<this.getSize()-1; i++) {
-			this.removeElementAt(i);
-		}
+	private void build() {
 		
 		this.addElement("<alle>");
 		for (Room room : AppModel.getInstance().getRepositoryRoom().getAll()){
@@ -48,10 +37,13 @@ public class CmbboxFilterLevel extends DefaultComboBoxModel<String> implements I
 				this.addElement(room.getLevel_());
 			}
 		}
+	}
+	
+	@Override
+	public void change() {
 		
-		if(this.getIndexOf("dummy")>-1){
-		this.removeElementAt(this.getIndexOf("dummy"));
-		}
-		
+		// Build a new model (which will be up to date automatically) and set it
+		CmbboxFilterLevel newModel = new CmbboxFilterLevel(this.dependentComboBox);
+		this.dependentComboBox.setModel(newModel);
 	}
 }
