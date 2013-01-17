@@ -61,7 +61,7 @@ public class RequestTabTable extends DefaultTableModel implements IntfAppObserve
 		for (RoomAllocation ra : AppModel.getInstance().getRepositoryRoomAllocation().getByFilter(filter)){
 			
 			String conflict = "-";
-			if (ra.getConflictingAllocations_() != null && !ra.getConflictingAllocations_().isEmpty()) {
+			if (ra.isConflicting_()) {
 				conflict = "JA!!";
 			}
 			
