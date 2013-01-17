@@ -31,15 +31,27 @@ public class CmbboxFilterLevel extends DefaultComboBoxModel<String> implements I
 		// Build and clean up the model on change - do not use
 		// removeAllElements() as it can cause null pointer exceptions when an
 		// observer model has null elements at any time
+		
+		for(int i=0;i<this.getSize();i++){
+			System.out.println(""+i+" - " + this.getElementAt(i));
+		}
+		
 		int initalSize = this.getSize();
+		this.addElement("dummy");
+		for (int i = 0; i<this.getSize()-1; i++) {
+			this.removeElementAt(i);
+		}
+		
 		this.addElement("<alle>");
 		for (Room room : AppModel.getInstance().getRepositoryRoom().getAll()){
 			if (this.getIndexOf(room.getLevel_()) < 0) {
 				this.addElement(room.getLevel_());
 			}
 		}
-		for (int i = 0; initalSize > i; i++) {
-			this.removeElementAt(i+1);
+		
+		if(this.getIndexOf("dummy")>-1){
+		this.removeElementAt(this.getIndexOf("dummy"));
 		}
+		
 	}
 }
