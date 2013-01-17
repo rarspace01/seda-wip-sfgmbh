@@ -82,5 +82,14 @@ public class RepositoryRoom implements IntfAppObservable, IntfDataObserver {
 		observer_.remove(observer);
 	}
 
+	/**
+	 * Get a room by its number
+	 * @param roomNumber
+	 * @return a room object
+	 */
+	public Room getByNumber(String roomNumber_) {
+		return DataModel.getInstance().getDataHandlerRoom().getByNumber(roomNumber_);
+	}
+
 
 }
