@@ -112,97 +112,161 @@ public class ViewManager {
 	private ChairTabTable chairTabTable;
 	private RoomtableTab roomtableTab;
 	private RoomtableTable roomtableTable;
-	
+	/**
+	 * 
+	 * @return the roomtableTable
+	 */
 	public RoomtableTable getOrgaRoomtableTableModel() {
 		if (this.roomtableTable == null) {
 			this.roomtableTable = new RoomtableTable();
 		}
 		return this.roomtableTable;
 	}
+	/**
+	 * 
+	 * @return the roomtableTab
+	 */
 	public RoomtableTab getOrgaRoomtableTab() {
 		if (this.roomtableTab == null) {
 			this.roomtableTab = new RoomtableTab();
 		}
 		return this.roomtableTab;
 	}
+	/**
+	 * 
+	 * @return the chairTabTable
+	 */
 	public ChairTabTable getOrgaChairTableModel() {
 		if (this.chairTabTable == null) {
 			this.chairTabTable = new ChairTabTable();
 		}
 		return this.chairTabTable;
 	}
+	/**
+	 * 
+	 * @return the roomTabTable
+	 */
 	public RoomTabTable getOrgaRoomTableModel() {
 		if (this.roomTabTable == null) {
 			this.roomTabTable = new RoomTabTable();
 		}
 		return this.roomTabTable;
 	}
+	/**
+	 * 
+	 * @return the userTabTable
+	 */
 	public UserTabTable getOrgaUserTableModel() {
 		if (this.userTabTable == null) {
 			this.userTabTable = new UserTabTable();
 		}
 		return this.userTabTable;
 	}
+	/**
+	 * 
+	 * @return the requestTabTable
+	 */
 	public RequestTabTable getOrgaRequestTableModel() {
 		if (this.requestTabTable == null) {
 			this.requestTabTable = new RequestTabTable();
 		}
 		return this.requestTabTable;
 	}
+	/**
+	 * 
+	 * @return the roomTab
+	 */
 	public RoomTab getOrgaRoomTab() {
 		if (this.roomTab == null) {
 			this.roomTab = new RoomTab();
 		}
 		return this.roomTab;
 	}
+	/**
+	 * 
+	 * @return the userTab
+	 */
 	public UserTab getOrgaUserTab() {
 		if (this.userTab == null) {
 			this.userTab = new UserTab();
 		}
 		return this.userTab;
 	}
+	/**
+	 * 
+	 * @return the requestTab
+	 */
 	public RequestTab getOrgaRquestTab() {
 		if (this.requestTab == null) {
 			this.requestTab = new RequestTab();
 		}
 		return this.requestTab;
 	}
+	/**
+	 * 
+	 * @return the chairTab
+	 */
 	public ChairTab getOrgaChairTab() {
 		if (this.chairTab == null) {
 			this.chairTab = new ChairTab();
 		}
 		return this.chairTab;
 	}
+	/**
+	 * 
+	 * @return roomFrame
+	 */
 	public RoomFrame getOrgaRoomFrame() {
 		if (this.roomFrame == null) {
 			this.roomFrame = new RoomFrame();
 		}
 		return this.roomFrame;
 	}
+	/**
+	 * 
+	 * @return the userFrame
+	 */
 	public UserCreateDialog getOrgaUserCreateDialog() {
 		if (this.userFrame == null) {
 			this.userFrame = new UserCreateDialog();
 		}
 		return this.userFrame;
 	}
+	/**
+	 * 
+	 * @param user
+	 * @return the userEditFrame for a certain user
+	 */
 	public UserCreateDialog getOrgaUserEditFrame(User user) {
 		if (this.userEditFrame == null) {
 			this.userEditFrame = new UserCreateDialog(user);
 		}
 		return this.userEditFrame;
 	}
+	/**
+	 * 
+	 * @return the userEditFrame
+	 */
 	public UserCreateDialog getOrgaUserEditFrame() {
 		if (this.userEditFrame == null) {
 			this.userEditFrame = new UserCreateDialog(null);
 		}
 		return this.userEditFrame;
 	}
+	/**
+	 * 
+	 * @return the ChairFrame
+	 */
 	public ChairFrame getOrgaChairFrame() {
 		if (this.chairFrame == null) {
 			this.chairFrame = new ChairFrame();
 		}
 		return this.chairFrame;
 	}
+	/**
+	 * 
+	 * @return the chairEditFrame
+	 */
 	public ChairEditFrame getOrgaChairEditFrame() {
 		if (this.chairEditFrame == null) {
 			this.chairEditFrame = new ChairEditFrame();

@@ -104,6 +104,7 @@ public class ChairTab extends JPanel {
 		chairOrgaTable = new JTable();
 		chairOrgaTable.setModel(ViewManager.getInstance().getOrgaChairTableModel());
 		chairOrgaTable.setShowVerticalLines(false);
+		chairOrgaTable.getColumnModel().removeColumn(chairOrgaTable.getColumn("Hidden"));
 		chairOrgaTable.setBackground(SystemColor.activeCaption);
 		organisationTableScrollPane.setViewportView(chairOrgaTable);
 		

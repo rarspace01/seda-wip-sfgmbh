@@ -58,7 +58,7 @@ public class ChairTabBtnsControl implements ActionListener, IntfComDialogObserve
 			} else {
 				try {
 					row = ViewManager.getInstance().getOrgaChairTab().getRowSorter().convertRowIndexToModel(row);
-					this.chairMarkedForDeletion = (Chair) ViewManager.getInstance().getOrgaChairTableModel().getValueAt(row, 3);
+					this.chairMarkedForDeletion = (Chair) ViewManager.getInstance().getOrgaChairTableModel().getValueAt(row, 4);
 				} catch (Exception ex) {
 					AppModel.getInstance().getExceptionHandler().setNewException("Ein unerwarteter Fehler ist aufgetreten.<br /><br >" + ex.toString(), "Fehler!");
 				}

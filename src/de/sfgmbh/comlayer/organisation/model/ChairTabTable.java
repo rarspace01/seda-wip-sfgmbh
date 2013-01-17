@@ -22,7 +22,7 @@ public class ChairTabTable extends DefaultTableModel implements
 	private static final long serialVersionUID = 1L;
 
 	private String[] header = { "Lehrstuhlname", "Lehrstuhlkürzel", "Inhaber",
-			"Fakultät" };
+			"Fakultät", "Hidden" };
 
 	/**
 	 * Creates an initial table model object
@@ -58,7 +58,7 @@ public class ChairTabTable extends DefaultTableModel implements
 
 			try {
 				Object[] row = { chair.getChairName_(), chair.getAcronym_(),
-						chair.getChairOwner_(), chair.getFaculty_() };
+						chair.getChairOwner_(), chair.getFaculty_(), chair };
 				this.addRow(row);
 
 			} catch (Exception e) {
