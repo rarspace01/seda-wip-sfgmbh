@@ -62,21 +62,15 @@ public class RepositoryUser implements IntfAppObservable, IntfDataObserver {
 
 	@Override
 	public void update() {
-		// Wait a little bit to avoid ConcurrentModificationException
-		try {
-			Thread.sleep(200);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
 		
-		try {
-			for (Object o : this.observer_) {
-				if (o instanceof IntfAppObserver) {
-					((IntfAppObserver) o).change();
-				}
+		// Create a private observer list to avoid ConcurrentModificationException
+		@SuppressWarnings("unchecked")
+		ArrayList<Object> currentObservers = (ArrayList<Object>) observer_.clone();
+		
+		for (Object o : currentObservers) {
+			if (o instanceof IntfAppObserver) {
+				((IntfAppObserver) o).change();
 			}
-		} catch (Exception e) {
-			// Be quiet and go on if there is still ConcurrentModificationException, it's not such a big deal if one update of an observer is missed
 		}
 	
 	}

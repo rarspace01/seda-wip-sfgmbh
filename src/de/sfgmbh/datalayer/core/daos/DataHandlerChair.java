@@ -332,7 +332,12 @@ public class DataHandlerChair implements IntfDataChair, IntfDataFilter,
 	 */
 	@Override
 	public void update() {
-		for (Object o : observer_) {
+		
+		// Create a private observer list to avoid ConcurrentModificationException
+		@SuppressWarnings("unchecked")
+		ArrayList<Object> currentObservers = (ArrayList<Object>) observer_.clone();
+		
+		for (Object o : currentObservers) {
 			if (o instanceof IntfDataObserver) {
 				((IntfDataObserver) o).change();
 			}

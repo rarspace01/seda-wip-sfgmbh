@@ -32,16 +32,16 @@ import javax.swing.table.TableRowSorter;
 import net.miginfocom.swing.MigLayout;
 import de.sfgmbh.comlayer.core.controller.BaseBtnAddToStundenplan;
 import de.sfgmbh.comlayer.core.controller.BaseBtnFailureprompt;
-import de.sfgmbh.comlayer.core.controller.BaseLogin;
 import de.sfgmbh.comlayer.core.controller.BaseCmbboxFilter;
+import de.sfgmbh.comlayer.core.controller.BaseLogin;
 import de.sfgmbh.comlayer.core.controller.BaseRdbtnTopLeft;
 import de.sfgmbh.comlayer.core.controller.ViewManager;
-import de.sfgmbh.comlayer.core.model.CmbboxFilterSeats;
 import de.sfgmbh.comlayer.core.model.CmbboxFilterChair;
 import de.sfgmbh.comlayer.core.model.CmbboxFilterCourse;
 import de.sfgmbh.comlayer.core.model.CmbboxFilterLecturer;
 import de.sfgmbh.comlayer.core.model.CmbboxFilterLevel;
 import de.sfgmbh.comlayer.core.model.CmbboxFilterRoomnumber;
+import de.sfgmbh.comlayer.core.model.CmbboxFilterSeats;
 import de.sfgmbh.comlayer.core.model.CmbboxFilterSemester;
 
 /**

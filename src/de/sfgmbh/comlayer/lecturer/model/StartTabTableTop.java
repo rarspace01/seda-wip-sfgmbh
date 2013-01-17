@@ -10,8 +10,8 @@ import de.sfgmbh.applayer.core.model.AppModel;
 import de.sfgmbh.applayer.core.model.Chair;
 import de.sfgmbh.applayer.core.model.Course;
 import de.sfgmbh.applayer.core.model.User;
-import de.sfgmbh.comlayer.core.controller.ViewManager;
 import de.sfgmbh.comlayer.core.controller.ViewHelper;
+import de.sfgmbh.comlayer.core.controller.ViewManager;
 
 public class StartTabTableTop extends DefaultTableModel implements IntfAppObserver {
 

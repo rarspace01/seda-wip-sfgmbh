@@ -7,8 +7,8 @@ import javax.swing.table.DefaultTableModel;
 import de.sfgmbh.applayer.core.definitions.IntfAppObserver;
 import de.sfgmbh.applayer.core.model.AppModel;
 import de.sfgmbh.applayer.core.model.User;
-import de.sfgmbh.comlayer.core.controller.ViewManager;
 import de.sfgmbh.comlayer.core.controller.ViewHelper;
+import de.sfgmbh.comlayer.core.controller.ViewManager;
 
 /**
  * Table model to organize users
