@@ -337,7 +337,7 @@ public class BaseTab extends JFrame {
 	public JComboBox<String> getComboBoxLevelFilter() {
 		if (comboBoxLevelFilter == null) {
 			comboBoxLevelFilter = new JComboBox<String>();
-			comboBoxLevelFilter.setModel(new CmbboxFilterLevel());
+			comboBoxLevelFilter.setModel(new CmbboxFilterLevel(comboBoxLevelFilter));
 			comboBoxLevelFilter.addKeyListener(new BaseCmbboxFilter());
 			comboBoxLevelFilter.addActionListener(new BaseCmbboxFilter());
 			comboBoxLevelFilter.setEditable(true);

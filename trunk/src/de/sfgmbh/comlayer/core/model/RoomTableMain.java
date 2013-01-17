@@ -20,7 +20,7 @@ public class RoomTableMain extends DefaultTableModel implements IntfAppObserver 
 		this.change("init");
 	}
 
-	public void change(String variant) {
+	public synchronized void change(String variant) {
 		HashMap<String, String> filter = new HashMap<String, String>();
 		
 		this.setRowCount(0);
