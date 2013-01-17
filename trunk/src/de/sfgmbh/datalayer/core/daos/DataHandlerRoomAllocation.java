@@ -60,7 +60,7 @@ public class DataHandlerRoomAllocation implements IntfDataObservable, IntfDataFi
 			DataModel.getInstance().getExceptionsHandler().setNewException(("Es ist ein unbekannter Fehler (DataHandlerRoomAllocation-02) in der Datenhaltung aufgetreten:<br /><br />" + e.toString()), "Fehler!");
 		}
 
-		return listRoomAllocation;
+		return this.setConflicts(listRoomAllocation);
 	}
 	
 	@Override
@@ -162,11 +162,12 @@ public class DataHandlerRoomAllocation implements IntfDataObservable, IntfDataFi
 			e.printStackTrace();
 			DataModel.getInstance().getExceptionsHandler().setNewException(("Es ist ein unbekannter Fehler in der Datenhaltung aufgetreten:<br /><br />Fehler DataHandlerRoomAllocation-18:<br />" + e.toString()), "Fehler!");
 		}
-		return listRoomAllocation;
+		
+		return this.setConflicts(listRoomAllocation);
 	}
 	
 	/**
-	 * Checks for conflicting room allocations
+	 * Checks for conflicting room allocations for one given room allocation
 	 * @param roomAllocation
 	 * @return a list of all conflicting room allocations
 	 */
@@ -209,7 +210,76 @@ public class DataHandlerRoomAllocation implements IntfDataObservable, IntfDataFi
 			e.printStackTrace();
 			DataModel.getInstance().getExceptionsHandler().setNewException(("Es ist ein unbekannter Fehler in der Datenhaltung aufgetreten:<br /><br />Fehler DataHandlerRoomAllocation-16:<br />" + e.toString()), "Fehler!");
 		}
-		return listRoomAllocation;
+		return this.setConflicts(listRoomAllocation);
+	}
+	
+	/**
+	 * Get a list of all conflicting dates. <br>
+	 * That means courses in the same room, at the same time in the same semester <br>
+	 * @return an ArrayList of HashMaps for each conflicting date. <br>
+	 * 		The HashMap has the following entries: <br>
+	 * 		"roomid" - the affected ID of the room <br>
+	 * 		"time" - the Integer of the affected time <br>
+	 * 		"day" - the Integer of the affected day <br>
+	 * 		"semester" - the String of the affected Semester
+	 */
+	public List<HashMap<String, Object>> getConflictingDates() {
+		List<HashMap<String, Object>> conflictingDates = new ArrayList<HashMap<String, Object>>();
+
+		String SqlStatement = "SELECT COUNT(*), public.roomallocation.roomid, public.roomallocation.time, public.roomallocation.day, public.roomallocation.semester " +
+								"FROM public.roomallocation " +
+								"WHERE public.roomallocation.approved NOT LIKE 'denied' " +
+								"GROUP BY public.roomallocation.roomid, public.roomallocation.time, public.roomallocation.day, public.roomallocation.semester " +
+								"HAVING COUNT(*) > 1 ";
+
+		try {
+
+			ResultSet resultSet = DataManagerPostgreSql.getInstance().select(
+					SqlStatement);
+
+			while (resultSet.next()) {
+				HashMap<String, Object> date = new HashMap<String, Object>();
+				date.put("roomid", resultSet.getInt("roomid"));
+				date.put("time", resultSet.getInt("time"));
+				date.put("day", resultSet.getInt("day"));
+				date.put("semester", resultSet.getString("semester"));
+				conflictingDates.add(date);
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+			DataModel.getInstance().getExceptionsHandler().setNewException(("Es ist ein SQL-Fehler (DataHandlerRoomAllocation-01) aufgetreten:<br /><br />" + e.toString()), "Datenbank-Fehler!");
+		} catch (Exception e) {
+			e.printStackTrace();
+			DataModel.getInstance().getExceptionsHandler().setNewException(("Es ist ein unbekannter Fehler (DataHandlerRoomAllocation-02) in der Datenhaltung aufgetreten:<br /><br />" + e.toString()), "Fehler!");
+		}
+
+		return conflictingDates;
+	}
+	
+	/**
+	 * For a given list of room allocations set their conflicting state appropriate
+	 * @param roomAllocations
+	 * @return a list of room allocations with the correct conflicting state
+	 */
+	public List<RoomAllocation> setConflicts(List<RoomAllocation> roomAllocations) {
+		List<HashMap<String, Object>> conflictingDates = this.getConflictingDates();
+		List<RoomAllocation> setAllocations = new ArrayList<RoomAllocation>();
+		
+		// Iterate over all room allocations and check for each allocation all conflicting dates
+		for (RoomAllocation roomAllocation : roomAllocations) {
+			for (HashMap<String, Object> conflict : conflictingDates) {
+				if (roomAllocation.getRoom_().getRoomId_() == (int) conflict.get("roomid") && 
+						roomAllocation.getDay_() == (int) conflict.get("day") &&
+						roomAllocation.getTime_() == (int) conflict.get("time") &&
+						roomAllocation.getSemester_().equals((String) conflict.get("semester"))) {
+					roomAllocation.setConflicting_(true);
+				}
+			}
+			setAllocations.add(roomAllocation);
+		}
+		
+		return setAllocations;
 	}
 	
 	/**
@@ -231,7 +301,16 @@ public class DataHandlerRoomAllocation implements IntfDataObservable, IntfDataFi
 			DataManagerPostgreSql.getInstance().getPreparedStatement().setInt(1, id);
 			ResultSet rs = DataManagerPostgreSql.getInstance().selectPstmt();
 			while (rs.next()) {
-				return this.makeRoomAllocation(rs, "normal");
+				RoomAllocation roomAllocation = this.makeRoomAllocation(rs, "normal");
+				for (HashMap<String, Object> conflict : this.getConflictingDates()) {
+					if (roomAllocation.getRoom_().getRoomId_() == (int) conflict.get("roomid") && 
+							roomAllocation.getDay_() == (int) conflict.get("day") &&
+							roomAllocation.getTime_() == (int) conflict.get("time") &&
+							roomAllocation.getSemester_().equals((String) conflict.get("semester"))) {
+						roomAllocation.setConflicting_(true);
+					}
+				}
+				return roomAllocation;
 			}
 			
 		} catch (SQLException e) {
@@ -307,7 +386,7 @@ public class DataHandlerRoomAllocation implements IntfDataObservable, IntfDataFi
 	
 	/**
 	 * Forms a RoomAllocation object out of a given result set
-	 * @param ResultSet rs
+	 * @param resultSet
 	 * @return a RoomAllocation object
 	 */
 	private RoomAllocation makeRoomAllocation(ResultSet rs, String variant) {
@@ -327,12 +406,14 @@ public class DataHandlerRoomAllocation implements IntfDataObservable, IntfDataFi
 			returnRoomAllocation.setApproved_(rs.getString("approved"));
 			returnRoomAllocation.setOrgaMessage_(rs.getString("orgamessage"));
 			returnRoomAllocation.setComment_(rs.getString("comment"));
+			/* Do net set conflicting allocations here as it causes a lot of SQL queries when building lists - use setConflicts(List<RoomAllocation> roomAllocations) instead
 			// Avoid loops
 			if (variant.equals("conflictingChildObject")) {
 				// Currently do nothing
 			} else {
 				returnRoomAllocation.setConflictingAllocations_();
 			}
+			*/
 		} catch (SQLException e) {
 			e.printStackTrace();
 			DataModel.getInstance().getExceptionsHandler().setNewException(("Es ist ein SQL-Fehler (DataHandlerRoomAllocation-03) aufgetreten:<br /><br />" + e.toString()), "Datenbank-Fehler!");

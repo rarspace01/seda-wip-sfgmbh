@@ -23,9 +23,11 @@ public class RoomAllocation implements IntfDataRetrievable{
 	private String orgaMessage_;
 	private String comment_;
 	private List<RoomAllocation> conflictingAllocations_;
+	private boolean conflicting_;
 	
 	public RoomAllocation() {
 		this.roomAllocationId_ = -1;
+		this.conflicting_ = false;
 	}
 	
 	/**
@@ -228,6 +230,20 @@ public class RoomAllocation implements IntfDataRetrievable{
 	public Object getData() {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	/**
+	 * @return the conflicting_
+	 */
+	public boolean isConflicting_() {
+		return conflicting_;
+	}
+
+	/**
+	 * @param conflicting_ the conflicting_ to set
+	 */
+	public void setConflicting_(boolean conflicting_) {
+		this.conflicting_ = conflicting_;
 	}
 
 }
