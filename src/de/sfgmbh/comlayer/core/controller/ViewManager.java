@@ -5,24 +5,24 @@ import de.sfgmbh.comlayer.core.model.BaseTableMain;
 import de.sfgmbh.comlayer.core.model.RoomTableMain;
 import de.sfgmbh.comlayer.core.views.BaseTab;
 import de.sfgmbh.comlayer.core.views.InfoDialog;
-import de.sfgmbh.comlayer.lecturer.model.ProfessorshipTimetableTabTable;
+import de.sfgmbh.comlayer.lecturer.model.ChairTimetableTabTable;
 import de.sfgmbh.comlayer.lecturer.model.StartTabTableBottom;
 import de.sfgmbh.comlayer.lecturer.model.StartTabTableTop;
 import de.sfgmbh.comlayer.lecturer.model.TimetableTabTable;
 import de.sfgmbh.comlayer.lecturer.views.CourseEditFrame;
 import de.sfgmbh.comlayer.lecturer.views.CourseFrame;
-import de.sfgmbh.comlayer.lecturer.views.ProfessorshipTimetableTab;
+import de.sfgmbh.comlayer.lecturer.views.ChairTimetableTab;
 import de.sfgmbh.comlayer.lecturer.views.RoomRequestFrame;
 import de.sfgmbh.comlayer.lecturer.views.StartTab;
 import de.sfgmbh.comlayer.lecturer.views.TimetableTab;
-import de.sfgmbh.comlayer.organisation.model.ProfessorshipTabTable;
+import de.sfgmbh.comlayer.organisation.model.ChairTabTable;
 import de.sfgmbh.comlayer.organisation.model.RequestTabTable;
 import de.sfgmbh.comlayer.organisation.model.RoomTabTable;
 import de.sfgmbh.comlayer.organisation.model.RoomtableTable;
 import de.sfgmbh.comlayer.organisation.model.UserTabTable;
-import de.sfgmbh.comlayer.organisation.views.ProfessorshipEditFrame;
-import de.sfgmbh.comlayer.organisation.views.ProfessorshipFrame;
-import de.sfgmbh.comlayer.organisation.views.ProfessorshipTab;
+import de.sfgmbh.comlayer.organisation.views.ChairEditFrame;
+import de.sfgmbh.comlayer.organisation.views.ChairFrame;
+import de.sfgmbh.comlayer.organisation.views.ChairTab;
 import de.sfgmbh.comlayer.organisation.views.RequestTab;
 import de.sfgmbh.comlayer.organisation.views.RoomFrame;
 import de.sfgmbh.comlayer.organisation.views.RoomTab;
@@ -99,17 +99,17 @@ public class ViewManager {
 	*/
 	private RoomTab roomTab;
 	private UserTab userTab;
-	private ProfessorshipTab professorshipTab;
+	private ChairTab chairTab;
 	private RequestTab requestTab;
 	private RoomFrame roomFrame;
 	private UserCreateDialog userFrame;
 	private UserCreateDialog userEditFrame;
-	private ProfessorshipFrame professorshipFrame;
-	private ProfessorshipEditFrame professorshipEditFrame;
+	private ChairFrame chairFrame;
+	private ChairEditFrame chairEditFrame;
 	private RequestTabTable requestTabTable;
 	private UserTabTable userTabTable;
 	private RoomTabTable roomTabTable;
-	private ProfessorshipTabTable professorshipTabTable;
+	private ChairTabTable chairTabTable;
 	private RoomtableTab roomtableTab;
 	private RoomtableTable roomtableTable;
 	
@@ -125,11 +125,11 @@ public class ViewManager {
 		}
 		return this.roomtableTab;
 	}
-	public ProfessorshipTabTable getOrgaProfessorshipTableModel() {
-		if (this.professorshipTabTable == null) {
-			this.professorshipTabTable = new ProfessorshipTabTable();
+	public ChairTabTable getOrgaChairTableModel() {
+		if (this.chairTabTable == null) {
+			this.chairTabTable = new ChairTabTable();
 		}
-		return this.professorshipTabTable;
+		return this.chairTabTable;
 	}
 	public RoomTabTable getOrgaRoomTableModel() {
 		if (this.roomTabTable == null) {
@@ -167,11 +167,11 @@ public class ViewManager {
 		}
 		return this.requestTab;
 	}
-	public ProfessorshipTab getOrgaProfessorshipTab() {
-		if (this.professorshipTab == null) {
-			this.professorshipTab = new ProfessorshipTab();
+	public ChairTab getOrgaChairTab() {
+		if (this.chairTab == null) {
+			this.chairTab = new ChairTab();
 		}
-		return this.professorshipTab;
+		return this.chairTab;
 	}
 	public RoomFrame getOrgaRoomFrame() {
 		if (this.roomFrame == null) {
@@ -197,17 +197,17 @@ public class ViewManager {
 		}
 		return this.userEditFrame;
 	}
-	public ProfessorshipFrame getOrgaProfessorshipFrame() {
-		if (this.professorshipFrame == null) {
-			this.professorshipFrame = new ProfessorshipFrame();
+	public ChairFrame getOrgaProfessorshipFrame() {
+		if (this.chairFrame == null) {
+			this.chairFrame = new ChairFrame();
 		}
-		return this.professorshipFrame;
+		return this.chairFrame;
 	}
-	public ProfessorshipEditFrame getOrgaProfessorshipEditFrame() {
-		if (this.professorshipEditFrame == null) {
-			this.professorshipEditFrame = new ProfessorshipEditFrame();
+	public ChairEditFrame getOrgaProfessorshipEditFrame() {
+		if (this.chairEditFrame == null) {
+			this.chairEditFrame = new ChairEditFrame();
 		}
-		return this.professorshipEditFrame;
+		return this.chairEditFrame;
 	}
 	
 	/**
@@ -221,8 +221,8 @@ public class ViewManager {
 	private RoomRequestFrame roomRquestFrame;
 	private TimetableTabTable timetableTabTable;
 	private TimetableTab timetableTab;
-	private ProfessorshipTimetableTabTable professorshipTimetableTabTable;
-	private ProfessorshipTimetableTab professorshipTimetableTab;
+	private ChairTimetableTabTable chairTimetableTabTable;
+	private ChairTimetableTab chairTimetableTab;
 	
 	public StartTab getLecturerStartTab() {
 		if (this.startTab == null) {
@@ -272,17 +272,17 @@ public class ViewManager {
 		}
 		return this.timetableTab;
 	}
-	public ProfessorshipTimetableTab getLecturerProfessorshipTimetableTab() {
-		if (this.professorshipTimetableTab == null) {
-			this.professorshipTimetableTab = new ProfessorshipTimetableTab();
+	public ChairTimetableTab getLecturerProfessorshipTimetableTab() {
+		if (this.chairTimetableTab == null) {
+			this.chairTimetableTab = new ChairTimetableTab();
 		}
-		return this.professorshipTimetableTab;
+		return this.chairTimetableTab;
 	}
-	public ProfessorshipTimetableTabTable getLecturerProfessorshipTimetableTabTable() {
-		if (this.professorshipTimetableTabTable == null) {
-			this.professorshipTimetableTabTable = new ProfessorshipTimetableTabTable();
+	public ChairTimetableTabTable getLecturerProfessorshipTimetableTabTable() {
+		if (this.chairTimetableTabTable == null) {
+			this.chairTimetableTabTable = new ChairTimetableTabTable();
 		}
-		return this.professorshipTimetableTabTable;
+		return this.chairTimetableTabTable;
 	}
 	/**
 	* Module: Student Profile - will probably not be implemented in the first version of the program

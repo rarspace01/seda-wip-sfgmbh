@@ -16,6 +16,12 @@ import javax.swing.border.EmptyBorder;
 import de.sfgmbh.comlayer.organisation.controller.RoomFrameBtns;
 import de.sfgmbh.comlayer.organisation.controller.RoomFrameWin;
 
+/**
+ * Dialog/Frame to create and edit rooms
+ * 
+ * @author hannes
+ *
+ */
 public class RoomFrame extends JFrame {
 
 	private static final long serialVersionUID = 1L;
@@ -54,11 +60,11 @@ public class RoomFrame extends JFrame {
 		
 		addWindowListener(new RoomFrameWin());
 		
-		JButton btnSpeichern = new JButton("Speichern");
-		btnSpeichern.addActionListener(new RoomFrameBtns("save"));
+		JButton btnSave = new JButton("Speichern");
+		btnSave.addActionListener(new RoomFrameBtns("save"));
 		
-		JButton btnAbbrechen = new JButton("Abbrechen");
-		btnAbbrechen.addActionListener(new RoomFrameBtns("cancle"));
+		JButton btnCancel = new JButton("Abbrechen");
+		btnCancel.addActionListener(new RoomFrameBtns("cancle"));
 		
 		JLabel lblLevel = new JLabel("Stockwerk:");
 		lblLevel.setFont(new Font("SansSerif", Font.PLAIN, 12));
@@ -253,74 +259,149 @@ public class RoomFrame extends JFrame {
 		gbc_txtWhiteboards.gridx = 1;
 		gbc_txtWhiteboards.gridy = 9;
 		contentPane.add(txtWhiteboards, gbc_txtWhiteboards);
-		GridBagConstraints gbc_btnAbbrechen = new GridBagConstraints();
-		gbc_btnAbbrechen.anchor = GridBagConstraints.EAST;
-		gbc_btnAbbrechen.fill = GridBagConstraints.VERTICAL;
-		gbc_btnAbbrechen.insets = new Insets(0, 0, 0, 5);
-		gbc_btnAbbrechen.gridx = 0;
-		gbc_btnAbbrechen.gridy = 11;
-		contentPane.add(btnAbbrechen, gbc_btnAbbrechen);
-		GridBagConstraints gbc_btnSpeichern = new GridBagConstraints();
-		gbc_btnSpeichern.fill = GridBagConstraints.BOTH;
-		gbc_btnSpeichern.gridx = 2;
-		gbc_btnSpeichern.gridy = 11;
-		contentPane.add(btnSpeichern, gbc_btnSpeichern);
+		GridBagConstraints gbc_btnCancel = new GridBagConstraints();
+		gbc_btnCancel.anchor = GridBagConstraints.EAST;
+		gbc_btnCancel.fill = GridBagConstraints.VERTICAL;
+		gbc_btnCancel.insets = new Insets(0, 0, 0, 5);
+		gbc_btnCancel.gridx = 0;
+		gbc_btnCancel.gridy = 11;
+		contentPane.add(btnCancel, gbc_btnCancel);
+		GridBagConstraints gbc_btnSave = new GridBagConstraints();
+		gbc_btnSave.fill = GridBagConstraints.BOTH;
+		gbc_btnSave.gridx = 2;
+		gbc_btnSave.gridy = 11;
+		contentPane.add(btnSave, gbc_btnSave);
 	}
-	
+	/**
+	 * 
+	 * @return the txtLevel
+	 */
 	public JTextField getTxtLevel() {
 		return txtLevel;
 	}
+	/**
+	 * 
+	 * @param the txtLevel to set
+	 */
 	public void setTxtLevel(JTextField txtLevel) {
 		this.txtLevel = txtLevel;
 	}
+	/**
+	 * 
+	 * @return the TxtRoomNumber
+	 */
 	public JTextField getTxtRoomNumber() {
 		return txtRoomNumber;
 	}
+	/**
+	 * 
+	 * @param the txtRoomNumber to set
+	 */
 	public void setTxtRoomNumber(JTextField txtRoomNumber) {
 		this.txtRoomNumber = txtRoomNumber;
 	}
+	/**
+	 * 
+	 * @return the txtBeamer
+	 */
 	public JTextField getTxtBeamer() {
 		return txtBeamer;
 	}
+	/**
+	 * 
+	 * @param the txtBeamer to set
+	 */
 	public void setTxtBeamer(JTextField txtBeamer) {
 		this.txtBeamer = txtBeamer;
 	}
+	/**
+	 * 
+	 * @return the txtPcSeats
+	 */
 	public JTextField getTxtPcSeats() {
 		return txtPcSeats;
 	}
+	/**
+	 * 
+	 * @param the txtPcSeats to set
+	 */
 	public void setTxtPcSeats(JTextField txtPcSeats) {
 		this.txtPcSeats = txtPcSeats;
 	}
+	/**
+	 * 
+	 * @return the txtSeats
+	 */
 	public JTextField getTxtSeats() {
 		return txtSeats;
 	}
+	/**
+	 * 
+	 * @param the txtSeats to set
+	 */
 	public void setTxtSeats(JTextField txtSeats) {
 		this.txtSeats = txtSeats;
 	}
+	/**
+	 * 
+	 * @return the txtVisualizer
+	 */
 	public JTextField getTxtVisualizer() {
 		return txtVisualizer;
 	}
+	/**
+	 * 
+	 * @param the txtVisualizer to set
+	 */
 	public void setTxtVisualizer(JTextField txtVisualizer) {
 		this.txtVisualizer = txtVisualizer;
 	}
+	/**
+	 * 
+	 * @return the txtOverheads
+	 */
 	public JTextField getTxtOverheads() {
 		return txtOverheads;
 	}
+	/**
+	 * 
+	 * @param the txtOverheads to set
+	 */
 	public void setTxtOverheads(JTextField txtOverheads) {
 		this.txtOverheads = txtOverheads;
 	}
+	/**
+	 * 
+	 * @return the txtChalkboards
+	 */
 	public JTextField getTxtChalkboards() {
 		return txtChalkboards;
 	}
+	/**
+	 * 
+	 * @param the txtChalkboards to set
+	 */
 	public void setTxtChalkboards(JTextField txtChalkboards) {
 		this.txtChalkboards = txtChalkboards;
 	}
+	/**
+	 * 
+	 * @return the txtWhiteboards
+	 */
 	public JTextField getTxtWhiteboards() {
 		return txtWhiteboards;
 	}
+	/**
+	 * 
+	 * @param the txtWhiteboards to set
+	 */
 	public void setTxtWhiteboards(JTextField txtWhiteboards) {
 		this.txtWhiteboards = txtWhiteboards;
 	}
+	/**
+	 * 
+	 * @return the txtroomid
+	 */
 	public JTextField getTxtroomid() {
 		return txtroomid;
 	}
