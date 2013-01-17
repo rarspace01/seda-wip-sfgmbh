@@ -37,12 +37,12 @@ public class ChairTabBtnsControl implements ActionListener, IntfComDialogObserve
 		
 		// Add button is pressed - not yet implemented
 		if (this.navAction.equals("hinz")) {
-			ViewManager.getInstance().getOrgaProfessorshipFrame().setVisible(true);
+			ViewManager.getInstance().getOrgaChairFrame().setVisible(true);
 		}
 		
 		// Edit button is pressed - not yet implemented
 		if (this.navAction.equals("edit")) {
-			ViewManager.getInstance().getOrgaProfessorshipFrame().setVisible(true);
+			ViewManager.getInstance().getOrgaChairFrame().setVisible(true);
 			//this.getInfoWindow("<b>Fehlermeldung:</b><br> Sie haben keinen Lehrstuhl selektiert!<br> Wenn Sie keine Fehlermeldung erscheint gelangen Sie sofort zu einer Bearbeiten-Maske, welche allerdings noch nicht implementiert ist.").setVisible(true);
 		}
 		
