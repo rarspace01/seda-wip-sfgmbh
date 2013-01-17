@@ -23,8 +23,9 @@ import de.sfgmbh.comlayer.organisation.controller.RoomtableTabBtnPdf;
 public class RoomtableTab extends JPanel {
 
 	private static final long serialVersionUID = 1L;
-	private JTable StundenplanTable;
+	private JTable stundenplanTable;
 	private int roomId_;
+	private JScrollPane scrollPane_;
 	
 	public RoomtableTab() {
 		initialize();
@@ -33,21 +34,21 @@ public class RoomtableTab extends JPanel {
 		setAutoscrolls(true);
 		setLayout(null);
 		
-		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(31, 69, 830, 392);
-		add(scrollPane);
+		scrollPane_ = new JScrollPane();
+		scrollPane_.setBounds(31, 69, 830, 392);
+		add(scrollPane_);
 		
 		JPanel uniIconPanel = new JPanel();
 		uniIconPanel.setBounds(792, 0, 69, 68);
 		add(uniIconPanel);
 		
-		StundenplanTable = new JTable();
+		stundenplanTable = new JTable();
 		
-		scrollPane.setViewportView(StundenplanTable);
+		scrollPane_.setViewportView(stundenplanTable);
 		
 	
-		StundenplanTable.setBackground(Color.WHITE);
-		StundenplanTable.setModel(ViewManager.getInstance().getOrgaRoomtableTableModel());
+		stundenplanTable.setBackground(Color.WHITE);
+		stundenplanTable.setModel(ViewManager.getInstance().getOrgaRoomtableTableModel());
 		
 		AppModel.getInstance().getRepositoryRoomAllocation().register(ViewManager.getInstance().getOrgaRoomTableModel());
 		
@@ -55,25 +56,25 @@ public class RoomtableTab extends JPanel {
 		btnPdfErzeugen.addActionListener(new RoomtableTabBtnPdf("pdfCreate"));
 		btnPdfErzeugen.setBounds(21, 17, 131, 23);
 		add(btnPdfErzeugen);
-		StundenplanTable.getColumnModel().getColumn(0).setResizable(false);
-		StundenplanTable.getColumnModel().getColumn(0).setPreferredWidth(70);
-		StundenplanTable.getColumnModel().getColumn(0).setMinWidth(50);
-		StundenplanTable.getColumnModel().getColumn(0).setMaxWidth(105);
-		StundenplanTable.getColumnModel().getColumn(1).setResizable(true);
-		StundenplanTable.getColumnModel().getColumn(1).setPreferredWidth(50);
-		StundenplanTable.getColumnModel().getColumn(1).setMinWidth(50);
-		StundenplanTable.getColumnModel().getColumn(1).setMaxWidth(145);
-		StundenplanTable.getColumnModel().getColumn(2).setResizable(true);
-		StundenplanTable.getColumnModel().getColumn(2).setMinWidth(50);
-		StundenplanTable.getColumnModel().getColumn(2).setMaxWidth(145);
-		StundenplanTable.getColumnModel().getColumn(3).setPreferredWidth(50);
-		StundenplanTable.getColumnModel().getColumn(3).setMinWidth(50);
-		StundenplanTable.getColumnModel().getColumn(3).setMaxWidth(145);
-		StundenplanTable.getColumnModel().getColumn(4).setPreferredWidth(50);
-		StundenplanTable.getColumnModel().getColumn(4).setMinWidth(50);
-		StundenplanTable.getColumnModel().getColumn(4).setMaxWidth(145);
-		StundenplanTable.getColumnModel().getColumn(5).setMinWidth(50);
-		StundenplanTable.getColumnModel().getColumn(5).setMaxWidth(145);
+		stundenplanTable.getColumnModel().getColumn(0).setResizable(false);
+		stundenplanTable.getColumnModel().getColumn(0).setPreferredWidth(70);
+		stundenplanTable.getColumnModel().getColumn(0).setMinWidth(50);
+		stundenplanTable.getColumnModel().getColumn(0).setMaxWidth(105);
+		stundenplanTable.getColumnModel().getColumn(1).setResizable(true);
+		stundenplanTable.getColumnModel().getColumn(1).setPreferredWidth(50);
+		stundenplanTable.getColumnModel().getColumn(1).setMinWidth(50);
+		stundenplanTable.getColumnModel().getColumn(1).setMaxWidth(145);
+		stundenplanTable.getColumnModel().getColumn(2).setResizable(true);
+		stundenplanTable.getColumnModel().getColumn(2).setMinWidth(50);
+		stundenplanTable.getColumnModel().getColumn(2).setMaxWidth(145);
+		stundenplanTable.getColumnModel().getColumn(3).setPreferredWidth(50);
+		stundenplanTable.getColumnModel().getColumn(3).setMinWidth(50);
+		stundenplanTable.getColumnModel().getColumn(3).setMaxWidth(145);
+		stundenplanTable.getColumnModel().getColumn(4).setPreferredWidth(50);
+		stundenplanTable.getColumnModel().getColumn(4).setMinWidth(50);
+		stundenplanTable.getColumnModel().getColumn(4).setMaxWidth(145);
+		stundenplanTable.getColumnModel().getColumn(5).setMinWidth(50);
+		stundenplanTable.getColumnModel().getColumn(5).setMaxWidth(145);
 		
 		JLabel lblUniIcon = new JLabel();
 		lblUniIcon.setIcon(new ImageIcon(BaseTab.class.getResource("/de/sfgmbh/comlayer/core/views/UniBA_logo.png")));
@@ -96,35 +97,19 @@ public class RoomtableTab extends JPanel {
 	
 	public void loadRoomTable(int roomId){
 		
+		this.roomId_=roomId;
+		
 		//Room selectedRoom=AppModel.getInstance().getRepositoryRoom().getRoomById(roomId);
 		
 		//clear all rows
 		
-		for(int i=ViewManager.getInstance().getOrgaRoomtableTableModel().getRowCount()-1; i>=0;i--){
-			ViewManager.getInstance().getOrgaRoomtableTableModel().removeRow(i);
-		}
+		ViewManager.getInstance().getOrgaRoomtableTableModel().setRowCount(0);
 		
 		HashMap<String,String> tableFilter = new HashMap<String,String> ();  //setting filter
 		
 		tableFilter.put("roomid", ""+roomId);
 		
 		List<RoomAllocation> ral=AppModel.getInstance().getRepositoryRoomAllocation().getByFilter(tableFilter);
-		
-		
-		
-//		for(int i=0;i<ral.size();i++){
-//			System.out.println("AllocationDescr:");
-//			System.out.println(ral.get(i).getRoomAllocationId_());
-//			System.out.println(ral.get(i).getDay_());
-//			System.out.println(ral.get(i).getTime_());
-//			System.out.println(ral.get(i).getCourse_().getCourseDescription_());
-//			System.out.println(ral.get(i).getCourse_().getCourseAcronym_());
-//			System.out.println(ral.get(i).getCourse_().getCourseName_());
-//			
-//			//System.out.println(ral.get(i).get
-//		}
-		
-		
 		
 		for(int i=1;i<=7;i++){
 			
@@ -143,5 +128,16 @@ public class RoomtableTab extends JPanel {
 		
 	}
 	
+	public JTable getStundenplanTable() {
+		return stundenplanTable;
+	}
+	
+	public JScrollPane getScrollPane_() {
+		return scrollPane_;
+	}
+	
+	public int getRoomId_() {
+		return roomId_;
+	}
 	
 }
