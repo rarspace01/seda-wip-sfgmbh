@@ -46,8 +46,25 @@ public class DataHandlerChair implements IntfDataChair, IntfDataFilter, IntfData
 	}
 
 	@Override
-	public Chair get(int ChairId) {
-		// TODO Auto-generated method stub
+	public Chair get(int id) {
+		try {
+			DataManagerPostgreSql.getInstance().prepare("SELECT public.chair.* " +
+														"FROM  public.chair " +
+														"WHERE public.chair.chairid = ?");
+			DataManagerPostgreSql.getInstance().getPreparedStatement().setInt(1, id);
+			ResultSet rs = DataManagerPostgreSql.getInstance().selectPstmt();
+			while (rs.next()) {
+				return this.makeChair(rs);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			DataModel.getInstance().getExceptionsHandler().setNewException(("Es ist ein SQL-Fehler aufgetreten.<br /><br />Fehler DataHandlerUser-15:<br />" + e.toString()), "Datenbank-Fehler!");
+		} catch (Exception e) {
+			e.printStackTrace();
+			DataModel.getInstance().getExceptionsHandler().setNewException(("Es ist ein unbekannter Fehler in der Datenhaltung aufgetreten:<br /><br />Fehler DataHandlerUser-16:<br />" + e.toString()), "Fehler!");
+		}
+		
 		return null;
 	}
 	
@@ -119,9 +136,34 @@ public class DataHandlerChair implements IntfDataChair, IntfDataFilter, IntfData
 	}
 
 	@Override
-	public void delete(Chair Chair) {
-		// TODO Auto-generated method stub
-		
+	public boolean delete(Chair toBeDeletedChair) {
+		if (toBeDeletedChair != null) {
+			boolean returnState = true;
+			
+						
+			// Now delete the chair
+			if (returnState) {
+				try {      																			
+					DataManagerPostgreSql dm=DataManagerPostgreSql.getInstance();
+					
+					dm.prepare("DELETE FROM public.chair "
+							+ "WHERE public.chair.chairid = ?");
+					dm.getPreparedStatement().setInt(1, toBeDeletedChair.getChairId_());
+					returnState = dm.executePstmt();
+					this.update();
+				} catch (SQLException e) {
+					returnState = false;
+					e.printStackTrace();
+					DataModel.getInstance().getExceptionsHandler().setNewException(("Es ist ein SQL-Fehler in der Klasse DataHandlerUser aufgetreten:<br /><br />" + e.toString()), "Datenbank-Fehler!");
+				} catch (Exception e) {
+					returnState = false;
+					e.printStackTrace();
+					DataModel.getInstance().getExceptionsHandler().setNewException(("Es ist ein unbekannter Fehler in der Klasse DataHandlerUser in der Datenhaltung aufgetreten:<br /><br />" + e.toString()), "Fehler!");
+				}
+			}
+			return returnState;
+		}
+		return false;
 	}
 
 	@Override

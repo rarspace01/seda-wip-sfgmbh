@@ -80,5 +80,22 @@ public class RepositoryChair implements IntfAppObservable, IntfDataObserver {
 	public void unregister(Object observer) {
 		observer_.remove(observer);
 	}
+	/**
+	 * Get a chair by its id
+	 * @param chairId
+	 * @return the user for the id or null if it doesn't exist
+	 */
+	public Chair get(int chairId_) {
+		return DataModel.getInstance().getDataHandlerChair().get(chairId_);
+	}
+
+	/**
+	 * Delete a Chair from the model if possible
+	 * @param chairToDelete
+	 * @return true on success
+	 */
+	public boolean delete(Chair delChair) {
+		return DataModel.getInstance().getDataHandlerChair().delete(delChair);
+	}
 
 }

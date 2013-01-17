@@ -14,6 +14,8 @@ import javax.swing.JTextField;
 import javax.swing.JTextPane;
 import javax.swing.UIManager;
 import javax.swing.border.TitledBorder;
+import javax.swing.table.TableModel;
+import javax.swing.table.TableRowSorter;
 
 import net.miginfocom.swing.MigLayout;
 import de.sfgmbh.comlayer.core.controller.ViewManager;
@@ -30,7 +32,7 @@ public class ProfessorshipTab extends JPanel {
 
 	private static final long serialVersionUID = 1L;
 	private JTextField textFieldProfessorshipname;
-	private JTable roomTable;
+	private JTable professorshipOrgaTable;
 	private JLabel lblProfessorshipname;
 	private JPanel leftPanel;
 	private JPanel leftTopPanel;
@@ -42,6 +44,7 @@ public class ProfessorshipTab extends JPanel {
 	private JButton btnFailureprompt;
 	private JPanel uniIconPanel;
 	private JLabel lblUniIcon;
+	private TableRowSorter<TableModel> rowSorter;
 
 	/**
 	 * Create the frame.
@@ -98,11 +101,17 @@ public class ProfessorshipTab extends JPanel {
 		organisationTableScrollPane.setMinimumSize(new Dimension(400, 25));
 		add(organisationTableScrollPane, "flowx,cell 2 2 4 1,grow");
 		
-		roomTable = new JTable();
-		roomTable.setModel(ViewManager.getInstance().getOrgaProfessorshipTableModel());
-		roomTable.setShowVerticalLines(false);
-		roomTable.setBackground(SystemColor.activeCaption);
-		organisationTableScrollPane.setViewportView(roomTable);
+		professorshipOrgaTable = new JTable();
+		professorshipOrgaTable.setModel(ViewManager.getInstance().getOrgaProfessorshipTableModel());
+		professorshipOrgaTable.setShowVerticalLines(false);
+		professorshipOrgaTable.setBackground(SystemColor.activeCaption);
+		organisationTableScrollPane.setViewportView(professorshipOrgaTable);
+		
+		//Enable table sorting for the model
+		rowSorter = new TableRowSorter<TableModel>();
+		professorshipOrgaTable.setRowSorter(rowSorter);
+		rowSorter.setModel(ViewManager.getInstance().getOrgaUserTableModel());
+		rowSorter.sort();
 		
 		buttonPanel = new JPanel();
 		buttonPanel.setLayout(null);
@@ -136,5 +145,24 @@ public class ProfessorshipTab extends JPanel {
 	public JTextField getTextFieldProfessorshipname() {
 		return textFieldProfessorshipname;
 	}
+	/**
+	 * @return the userOrgaTable
+	 */
+	public JTable getProfessorshipOrgaTable() {
+		return professorshipOrgaTable;
+	}
+	/**
+	 * @return the rowSorter
+	 */
+	public TableRowSorter<TableModel> getRowSorter() {
+		return rowSorter;
+	}
+	/**
+	 * @param rowSorter the rowSorter to set
+	 */
+	public void setRowSorter(TableRowSorter<TableModel> rowSorter) {
+		this.rowSorter = rowSorter;
+	}
+	
 	
 }
