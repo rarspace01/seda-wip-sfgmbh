@@ -321,7 +321,7 @@ public class BaseTab extends JFrame {
 
 	}
 
-	public JComboBox<String> getComboBoxRoomplacesFilter() {
+	public JComboBox<String> getComboBoxSeatsFilter() {
 		if (comboBoxSeatsFilter == null) {
 			comboBoxSeatsFilter = new JComboBox<String>();
 			comboBoxSeatsFilter.setModel(new CmbboxFilterSeats());

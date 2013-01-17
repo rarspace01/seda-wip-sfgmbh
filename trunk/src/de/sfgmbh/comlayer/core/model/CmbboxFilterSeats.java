@@ -25,7 +25,7 @@ public class CmbboxFilterSeats extends DefaultComboBoxModel<String> implements I
 
 	@Override
 	public void change() {
-		String[] elements = new String[] {"<alle>", "10", "30", "50", "100"};
+		String[] elements = new String[] {"<alle>", ">= 10", ">= 30", ">= 50", ">= 100"};
 		
 		for (String element : elements) {
 			this.addElement(element);

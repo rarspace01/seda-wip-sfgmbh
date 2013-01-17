@@ -31,7 +31,7 @@ public class RoomTableMain extends DefaultTableModel implements IntfAppObserver 
 			filter.put("level", "<alle>");
 		} else {
 			filter.put("room", ViewManager.getInstance().getCoreBaseTab().getComboBoxRoomnumberFilter().getSelectedItem().toString());
-			filter.put("seats", ViewManager.getInstance().getCoreBaseTab().getComboBoxRoomplacesFilter().getSelectedItem().toString());
+			filter.put("seats", ViewManager.getInstance().getCoreBaseTab().getComboBoxSeatsFilter().getSelectedItem().toString());
 			filter.put("level", ViewManager.getInstance().getCoreBaseTab().getComboBoxLevelFilter().getSelectedItem().toString());
 		}
 		
