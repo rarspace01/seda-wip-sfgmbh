@@ -37,7 +37,7 @@ public class StartTabBtnsNav implements ActionListener {
 		// Lehrstuhlplan button is pressed
 		if (this.navAction.equals("professorshiptimetable")) {
 			this.getInfoWindow("<strong>Fehlermeldung:</strong><br>Es konnte kein Lehrstuhlplan erstellt werden, da noch keine Lehrveranstaltungen exisiteren.").setVisible(true);
-			ViewManager.getInstance().getCoreBaseTab().getMainTabbedContainerPane().addTab("Lehrstuhlplan", null, ViewManager.getInstance().getLecturerProfessorshipTimetableTab(), null);
+			ViewManager.getInstance().getCoreBaseTab().getMainTabbedContainerPane().addTab("Lehrstuhlplan", null, ViewManager.getInstance().getChairTimetableTab(), null);
 			ViewManager.getInstance().getCoreBaseTab().getMainTabbedContainerPane().setSelectedIndex(ViewManager.getInstance().getCoreBaseTab().getMainTabbedContainerPane().getTabCount()-1);
 		}
 		

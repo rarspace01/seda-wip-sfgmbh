@@ -25,12 +25,12 @@ public class ChairFrameBtns implements ActionListener {
 		
 		// Abbrechen button is pressed
 		if (this.ctrlAction.equals("cancle")){
-			ViewManager.getInstance().getOrgaProfessorshipFrame().setVisible(false);
+			ViewManager.getInstance().getOrgaChairFrame().setVisible(false);
 		}
 		
 		// Speichern button is pressed
 		if (this.ctrlAction.equals("save")){
-			ViewManager.getInstance().getOrgaProfessorshipFrame().setVisible(false);
+			ViewManager.getInstance().getOrgaChairFrame().setVisible(false);
 			this.getInfoWindow("<b>Fehlermeldung:</b><br>Ihr Lehrstuhl konnte nicht hinzugef�gt werden:<br>1. Sie haben keinen Lehrstuhlnamen eingegeben.<br>2. Der Lehrstuhl existiert bereits." +
 					"<br>3. Sie haben keinen Lehrstuhlinhaber eingegeben.<br>4. Der Lehrstuhlinhaber existiert bereits.<br>5. Sie haben kein Hauptgeb�ude eingegeben.<br>6. Sie haben keinen Stock eingegeben.").setVisible(true);		
 		}

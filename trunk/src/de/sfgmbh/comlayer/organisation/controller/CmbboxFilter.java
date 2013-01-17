@@ -31,7 +31,7 @@ public class CmbboxFilter implements KeyListener, ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		ViewManager.getInstance().getOrgaProfessorshipTableModel().change();
+		ViewManager.getInstance().getOrgaChairTableModel().change();
 	} 
 	
 	/*public InfoDialog getInfoWindow() {

@@ -197,13 +197,13 @@ public class ViewManager {
 		}
 		return this.userEditFrame;
 	}
-	public ChairFrame getOrgaProfessorshipFrame() {
+	public ChairFrame getOrgaChairFrame() {
 		if (this.chairFrame == null) {
 			this.chairFrame = new ChairFrame();
 		}
 		return this.chairFrame;
 	}
-	public ChairEditFrame getOrgaProfessorshipEditFrame() {
+	public ChairEditFrame getOrgaChairEditFrame() {
 		if (this.chairEditFrame == null) {
 			this.chairEditFrame = new ChairEditFrame();
 		}
@@ -272,7 +272,7 @@ public class ViewManager {
 		}
 		return this.timetableTab;
 	}
-	public ChairTimetableTab getLecturerProfessorshipTimetableTab() {
+	public ChairTimetableTab getChairTimetableTab() {
 		if (this.chairTimetableTab == null) {
 			this.chairTimetableTab = new ChairTimetableTab();
 		}

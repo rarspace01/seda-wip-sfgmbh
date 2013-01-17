@@ -15,7 +15,7 @@ public class ChairFrameWin implements WindowListener {
 
 	@Override
 	public void windowClosed(WindowEvent arg0) {
-		ViewManager.getInstance().getOrgaProfessorshipFrame().setVisible(false);
+		ViewManager.getInstance().getOrgaChairFrame().setVisible(false);
 		
 	}
 
