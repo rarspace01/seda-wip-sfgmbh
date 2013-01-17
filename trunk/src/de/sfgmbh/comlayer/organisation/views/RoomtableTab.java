@@ -15,10 +15,13 @@ import javax.swing.JTable;
 import de.sfgmbh.applayer.core.model.AppModel;
 import de.sfgmbh.applayer.core.model.Room;
 import de.sfgmbh.applayer.core.model.RoomAllocation;
+import de.sfgmbh.comlayer.core.controller.BaseCmbboxFilter;
 import de.sfgmbh.comlayer.core.controller.ViewHelper;
 import de.sfgmbh.comlayer.core.controller.ViewManager;
+import de.sfgmbh.comlayer.core.model.CmbboxFilterSemester;
 import de.sfgmbh.comlayer.core.views.BaseTab;
 import de.sfgmbh.comlayer.organisation.controller.RoomtableTabBtnPdf;
+import javax.swing.JComboBox;
 
 public class RoomtableTab extends JPanel {
 
@@ -26,6 +29,8 @@ public class RoomtableTab extends JPanel {
 	private JTable stundenplanTable;
 	private int roomId_;
 	private JScrollPane scrollPane_;
+	private JLabel lblSemester;
+	private JComboBox<String> comboBoxSemesterFilter;
 	
 	public RoomtableTab() {
 		initialize();
@@ -81,8 +86,24 @@ public class RoomtableTab extends JPanel {
 		lblUniIcon.setMaximumSize(new Dimension(50,50));
 		uniIconPanel.add(lblUniIcon);
 		
+		lblSemester = new JLabel("Semester:");
+		lblSemester.setBounds(202, 21, 69, 14);
+		
+		comboBoxSemesterFilter = new JComboBox<String>();
+		comboBoxSemesterFilter.setBounds(262, 18, 69, 20);
+		comboBoxSemesterFilter.setModel(new CmbboxFilterSemester());
+		comboBoxSemesterFilter.addKeyListener(new BaseCmbboxFilter());
+		comboBoxSemesterFilter.addActionListener(new BaseCmbboxFilter());
+		comboBoxSemesterFilter.setEditable(true);
+		comboBoxSemesterFilter.setAutoscrolls(true);
+		
+		add(lblSemester);
+		add(comboBoxSemesterFilter);
 	}
 	
+	public JComboBox<String> getComboBoxSemesterFilter() {
+		return comboBoxSemesterFilter;
+	}
 	public String getLectureOnTime(List<RoomAllocation> ral,int day, int time){
 		String textualRepresentation="";
 		

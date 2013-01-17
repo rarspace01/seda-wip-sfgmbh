@@ -26,7 +26,6 @@ public class CmbboxFilterChair extends DefaultComboBoxModel<String> implements I
 
 	@Override
 	public void change() {
-		
 		// Build and clean up the model on change - do not use
 		// removeAllElements() as it can cause null pointer exceptions when an
 		// observer model has null elements at any time
