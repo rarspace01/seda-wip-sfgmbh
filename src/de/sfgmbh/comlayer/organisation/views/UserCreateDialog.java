@@ -142,7 +142,7 @@ public class UserCreateDialog extends JDialog {
 		comboBoxLehrstuhl = new JComboBox<String>();
 		comboBoxLehrstuhl.setEditable(true);
 		comboBoxLehrstuhl.setFont(new Font("SansSerif", Font.PLAIN, 12));
-		comboBoxLehrstuhl.setModel(new CmbboxFilterChairAcronym("blank"));
+		comboBoxLehrstuhl.setModel(new CmbboxFilterChairAcronym(comboBoxLehrstuhl, "blank"));
 		comboBoxLehrstuhl.setBounds(115, 179, 116, 20);
 		contentPane.add(comboBoxLehrstuhl);
 		

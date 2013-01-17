@@ -1,6 +1,7 @@
 package de.sfgmbh.comlayer.core.model;
 
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JComboBox;
 
 import de.sfgmbh.applayer.core.controller.SessionManager;
 import de.sfgmbh.applayer.core.definitions.IntfAppObserver;
@@ -16,32 +17,23 @@ import de.sfgmbh.applayer.core.model.User;
 public class CmbboxFilterLecturer extends DefaultComboBoxModel<String> implements IntfAppObserver {
 
 	private static final long serialVersionUID = 1L;
+	private JComboBox<String> dependentComboBox;
 	
 	/**
 	 * Create the model object
+	 * @param dependentCombobox
 	 */
-	public CmbboxFilterLecturer() {
+	public CmbboxFilterLecturer(JComboBox<String> dependentComboBox) {
 		AppModel.getInstance().getRepositoryUser().register(this);
-		this.change();
+		this.dependentComboBox = dependentComboBox;
+		this.build();
 	}
 
-	@Override
-	public void change() {
+	private void build() {
 		
-		// Build and clean up the model on change - do not use
-		// removeAllElements() as it can cause null pointer exceptions when an
-		// observer model has null elements at any time
-		int initalSize = this.getSize();
 		this.addElement("<alle>");
 		for (User user : AppModel.getInstance().getRepositoryUser().getAllLecturer()){
 			this.addElement(user.getlName_());
-		}
-		for (int i = 0; initalSize > i; i++) {
-			try {
-				this.removeElementAt(i+1);
-			} catch (Exception e) {
-				// Be quiet and just go on, that's no big deal!
-			}
 		}
 
 		// Set the selected lecturer to the currently logged in lecturer if
@@ -56,5 +48,13 @@ public class CmbboxFilterLecturer extends DefaultComboBoxModel<String> implement
 		} else {
 			this.setSelectedItem("<alle>");
 		}
+	}
+	
+	@Override
+	public void change() {
+		
+		// Build a new model (which will be up to date automatically) and set it
+		CmbboxFilterLecturer newModel = new CmbboxFilterLecturer(this.dependentComboBox);
+		this.dependentComboBox.setModel(newModel);
 	}
 }

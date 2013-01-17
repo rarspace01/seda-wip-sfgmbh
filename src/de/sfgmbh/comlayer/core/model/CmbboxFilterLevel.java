@@ -23,9 +23,9 @@ public class CmbboxFilterLevel extends DefaultComboBoxModel<String> implements I
 	 * Create the model object
 	 * @param dependentCombobox
 	 */
-	public CmbboxFilterLevel(JComboBox<String> dependentCombox) {
+	public CmbboxFilterLevel(JComboBox<String> dependentComboBox) {
 		AppModel.getInstance().getRepositoryRoom().register(this);
-		this.dependentComboBox = dependentCombox;
+		this.dependentComboBox = dependentComboBox;
 		this.build();
 	}
 
@@ -33,6 +33,7 @@ public class CmbboxFilterLevel extends DefaultComboBoxModel<String> implements I
 		
 		this.addElement("<alle>");
 		for (Room room : AppModel.getInstance().getRepositoryRoom().getAll()){
+			// Check if already exists as we do not want multi-sets
 			if (this.getIndexOf(room.getLevel_()) < 0) {
 				this.addElement(room.getLevel_());
 			}

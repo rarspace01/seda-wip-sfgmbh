@@ -90,7 +90,7 @@ public class RepositoryUser implements IntfAppObservable, IntfDataObserver {
 		if (observer instanceof IntfAppObserver) {
 			observer_.add(observer);
 		} else {
-			AppModel.getInstance().getExceptionHandler().setNewException("Das Objekt implementiert nicht das Observer-Interface und kann daher nicht hinzugef�gt werden!<br />Fehler: RepositoryUser-01", "Fehler!");
+			AppModel.getInstance().getExceptionHandler().setNewException("Das Objekt implementiert nicht das Observer-Interface und kann daher nicht hinzugefügt werden!<br />Fehler: RepositoryUser-01", "Fehler!");
 		}
 	}
 	
