@@ -94,6 +94,7 @@ public class DataHandlerRoom implements IntfDataRoom, IntfDataFilter, IntfDataOb
 
 	}
 
+	// TODO Implement 
 	@Override
 	public List<Room> filter(String filterQry) {
 		// TODO Auto-generated method stub
