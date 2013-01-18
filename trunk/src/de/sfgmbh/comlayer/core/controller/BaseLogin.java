@@ -77,7 +77,7 @@ public class BaseLogin implements ActionListener {
 		ViewManager.getInstance().getCoreBaseTab().getMainTabbedContainerPane().setVisible(true);
 		ViewManager.getInstance().getCoreBaseTab().getMainTabbedContainerPane().removeAll();
 		ViewManager.getInstance().getCoreBaseTab().getMainTabbedContainerPane().addTab("Start", null, ViewManager.getInstance().getCoreBaseTab().getStartScreenPanel(), null);
-		ViewManager.getInstance().getCoreBaseTab().getMainTabbedContainerPane().addTab("Raumanfrage-Management", null, ViewManager.getInstance().getOrgaRquestTab(), null);
+		ViewManager.getInstance().getCoreBaseTab().getMainTabbedContainerPane().addTab("Raumanfrage-Verwaltung", null, ViewManager.getInstance().getOrgaRquestTab(), null);
 		ViewManager.getInstance().getCoreBaseTab().getMainTabbedContainerPane().setSelectedIndex(1);
 		ViewManager.getInstance().getCoreBaseTab().getStartScreenPanel().setVisible(false);
 		ViewManager.getInstance().getCoreBaseTab().getMainTabbedContainerPane().addTab("Nutzerverwaltung", null, ViewManager.getInstance().getOrgaUserTab(), null);

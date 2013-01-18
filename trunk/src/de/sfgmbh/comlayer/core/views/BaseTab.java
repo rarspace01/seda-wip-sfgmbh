@@ -112,7 +112,7 @@ public class BaseTab extends JFrame {
 
 	private void createContents() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 1002, 648);
+		setBounds(100, 100, 1063, 648);
 		contentPane = new JLayeredPane();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -348,10 +348,10 @@ public class BaseTab extends JFrame {
 	}
 
 	public JButton getBtnAddToStudenplan() {
-		btnAddToStundenplan = new JButton("+");
+		btnAddToStundenplan = new JButton("sammeln");
 		btnAddToStundenplan.addActionListener(new BaseBtnAddToStundenplan(
 				"plus"));
-		btnAddToStundenplan.setBounds(0, 29, 41, 23);
+		btnAddToStundenplan.setBounds(0, 29, 80, 23);
 
 		return btnAddToStundenplan;
 	}

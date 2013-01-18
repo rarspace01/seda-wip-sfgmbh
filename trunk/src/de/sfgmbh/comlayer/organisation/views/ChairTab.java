@@ -121,7 +121,7 @@ public class ChairTab extends JPanel {
 		add(buttonPanel, "cell 6 2,grow");
 		
 		btnAdd = new JButton("hinzuf\u00FCgen");
-		btnAdd.addActionListener(new ChairTabBtnsControl("hinz"));
+		btnAdd.addActionListener(new ChairTabBtnsControl("add"));
 		btnAdd.setBounds(6, 11, 88, 23);
 		buttonPanel.add(btnAdd);
 		
@@ -131,14 +131,10 @@ public class ChairTab extends JPanel {
 		buttonPanel.add(btnBearbeiten);
 		
 		btnDelete = new JButton("l\u00F6schen");
-		btnDelete.addActionListener(new ChairTabBtnsControl("loschen"));
+		btnDelete.addActionListener(new ChairTabBtnsControl("delete"));
 		btnDelete.setBounds(6, 79, 88, 23);
 		buttonPanel.add(btnDelete);
-		
-		btnFailureprompt = new JButton("Ausloggen");
-		btnFailureprompt.addActionListener(new ChairTabBtnsControl("Fehlermeldung"));
-		add(btnFailureprompt, "cell 2 3");
-		
+				
 	}
 	/**
 	 * @return the textFieldChairname

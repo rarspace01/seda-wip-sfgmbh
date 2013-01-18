@@ -169,10 +169,6 @@ public class RequestTab extends JPanel {
 		btnGegenvorschlag.setBounds(6, 79, 88, 23);
 		buttonPanel.add(btnGegenvorschlag);
 		
-		btnFailureprompt = new JButton("Ausloggen");
-		add(btnFailureprompt, "cell 2 3");
-		add(getFilterTop(), "cell 3 0,alignx left,aligny bottom");
-		btnFailureprompt.addActionListener(new RequestTabBtnsControl("error"));
 	}
 	/**
 	 * @return the comboBoxLecturer

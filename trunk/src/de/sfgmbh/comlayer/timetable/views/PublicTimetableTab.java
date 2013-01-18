@@ -13,6 +13,7 @@ import javax.swing.JTable;
 import de.sfgmbh.comlayer.core.controller.ViewManager;
 import de.sfgmbh.comlayer.core.views.BaseTab;
 import de.sfgmbh.comlayer.timetable.controller.BtnPdf;
+import net.miginfocom.swing.MigLayout;
 
 public class PublicTimetableTab extends JPanel {
 
@@ -24,11 +25,18 @@ public class PublicTimetableTab extends JPanel {
 	}
 	private void initialize() {
 		setAutoscrolls(true);
-		setLayout(null);
+		setLayout(new MigLayout("", "[132px][622px][76px][right]", "[40px][19px][402px]"));
+		
+		JPanel panel = new JPanel();
+		add(panel, "cell 3 0,alignx right,aligny top");
+		
+		JLabel uniIconJLbl = new JLabel("");
+		panel.add(uniIconJLbl);
+		uniIconJLbl.setIcon(new ImageIcon(BaseTab.class.getResource("/de/sfgmbh/comlayer/core/views/UniBA_logo.png")));
+		uniIconJLbl.setMaximumSize(new Dimension(50,50));
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(20, 59, 830, 402);
-		add(scrollPane);
+		add(scrollPane, "cell 0 2 3 1,grow");
 		
 		StundenplanTable = new JTable();
 		
@@ -40,8 +48,7 @@ public class PublicTimetableTab extends JPanel {
 		
 		JButton btnPdfErzeugen = new JButton("PDF erzeugen");
 		btnPdfErzeugen.addActionListener(new BtnPdf("pdfCreate"));
-		btnPdfErzeugen.setBounds(21, 17, 131, 23);
-		add(btnPdfErzeugen);
+		add(btnPdfErzeugen, "cell 0 0,growx,aligny bottom");
 		StundenplanTable.getColumnModel().getColumn(0).setResizable(false);
 		StundenplanTable.getColumnModel().getColumn(0).setPreferredWidth(70);
 		StundenplanTable.getColumnModel().getColumn(0).setMinWidth(50);
@@ -61,15 +68,6 @@ public class PublicTimetableTab extends JPanel {
 		StundenplanTable.getColumnModel().getColumn(4).setMaxWidth(145);
 		StundenplanTable.getColumnModel().getColumn(5).setMinWidth(50);
 		StundenplanTable.getColumnModel().getColumn(5).setMaxWidth(145);
-		
-		JPanel panel = new JPanel();
-		panel.setBounds(774, 0, 76, 61);
-		add(panel);
-		
-		JLabel uniIconJLbl = new JLabel("");
-		panel.add(uniIconJLbl);
-		uniIconJLbl.setIcon(new ImageIcon(BaseTab.class.getResource("/de/sfgmbh/comlayer/core/views/UniBA_logo.png")));
-		uniIconJLbl.setMaximumSize(new Dimension(50,50));
 	}
 
 }

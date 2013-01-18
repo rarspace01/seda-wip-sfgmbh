@@ -36,7 +36,7 @@ public class ChairTabBtnsControl implements ActionListener, IntfComDialogObserve
 	public void actionPerformed(ActionEvent e) {
 		
 		// Add button is pressed - not yet implemented
-		if (this.navAction.equals("hinz")) {
+		if (this.navAction.equals("add")) {
 			ViewManager.getInstance().getOrgaChairFrame().setVisible(true);
 		}
 		
@@ -47,7 +47,7 @@ public class ChairTabBtnsControl implements ActionListener, IntfComDialogObserve
 		}
 		
 		// Delete button is pressed
-		if (this.navAction.equals("loschen")) {
+		if (this.navAction.equals("delete")) {
 			//set a chair delete variable to be sure the user really pressed the delete button later
 			deleteChair = true;
 			

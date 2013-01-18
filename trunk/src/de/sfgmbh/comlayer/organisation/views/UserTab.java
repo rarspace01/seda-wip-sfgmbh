@@ -173,9 +173,6 @@ public class UserTab extends JPanel {
 		btnDelete.setBounds(6, 79, 88, 23);
 		buttonPanel.add(btnDelete);
 		
-		btnFailureprompt = new JButton("Ausloggen");
-		btnFailureprompt.addActionListener(new RoomTabBtnsControl("error"));
-		add(btnFailureprompt, "cell 2 3");
 	}
 	
 	/**

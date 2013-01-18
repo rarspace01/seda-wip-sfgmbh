@@ -163,10 +163,6 @@ public class StartTab extends JPanel {
 		roomrequestTable.getColumnModel().removeColumn(roomrequestTable.getColumn("Hidden"));
 		roomrequestTable.setBackground(SystemColor.activeCaption);
 		raumanfragenScrollPane.setViewportView(roomrequestTable);
-		
-		btnFailureprompt = new JButton("Ausloggen");
-		btnFailureprompt.addActionListener(new StartTabBtnsControl("Fehlermeldung"));
-		tablePanel.add(btnFailureprompt, "cell 0 7");
 				
 		buttonPanel = new JPanel();
 		buttonPanel.setLayout(null);

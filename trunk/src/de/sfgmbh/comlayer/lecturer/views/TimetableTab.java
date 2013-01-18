@@ -37,33 +37,29 @@ public class TimetableTab extends JPanel {
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	private void createContents() {
 		setAutoscrolls(true);
-		setLayout(null);
 		
 		JComboBox comboBox = new JComboBox();
 		comboBox.addActionListener(new ProfessorshipTimetableTabCmbbox());
+		setLayout(new MigLayout("", "[124px][23px][112px][501px][94px][right]", "[42px][21px][364px]"));
 		comboBox.setModel(new DefaultComboBoxModel(new String[] {"Dozent", "Wolf", "Benker", "Sinz"}));
-		comboBox.setBounds(20, 20, 124, 20);
-		add(comboBox);
+		add(comboBox, "cell 0 0,growx,aligny bottom");
 		
 		JButton btnPdfErzeugen = new JButton("PDF Erzeugen");
 		btnPdfErzeugen.addActionListener(new ProfessorshipTimetableTabBtn());
-		btnPdfErzeugen.setBounds(167, 19, 112, 23);
-		add(btnPdfErzeugen);
-		add(getPanel());
+		add(btnPdfErzeugen, "cell 2 0,growx,aligny bottom");
 		
 		JPanel uniIconPanel = new JPanel();
-		uniIconPanel.setBounds(780, 0, 76, 67);
-		add(uniIconPanel);
+		add(uniIconPanel, "cell 5 0,alignx right,aligny top");
 		
 		JLabel lblUniIcon = new JLabel("");
 		lblUniIcon.setIcon(new ImageIcon(BaseTab.class.getResource("/de/sfgmbh/comlayer/core/views/UniBA_logo.png")));
 		lblUniIcon.setMaximumSize(new Dimension(50,50));
 		uniIconPanel.add(lblUniIcon);
+		add(getPanel(), "cell 0 2 5 1,grow");
 	}
 	public JPanel getPanel() {
 		if (panel == null) {
 			panel = new JPanel();
-			panel.setBounds(20, 63, 854, 364);
 			panel.setLayout(new MigLayout("", "[830px:n:830px,grow]", "[]"));
 			
 			JScrollPane scrollPane = new JScrollPane();
