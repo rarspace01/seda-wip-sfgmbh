@@ -14,6 +14,8 @@ import javax.swing.JTable;
 import javax.swing.JTextPane;
 import javax.swing.UIManager;
 import javax.swing.border.TitledBorder;
+import javax.swing.table.TableModel;
+import javax.swing.table.TableRowSorter;
 
 import net.miginfocom.swing.MigLayout;
 import de.sfgmbh.comlayer.core.controller.ViewManager;
@@ -42,14 +44,15 @@ public class StartTab extends JPanel {
 	private JButton btnDelete;
 	private JComboBox<String> comboBoxStatus;
 	private JLabel lblStatus;
-//	private JButton btnLivetickerEdit;
 	private JPanel tablePanel;
-	private JTable roomrequestTable;
+	private JTable tableRoomAllocationBottom;
 	private JTextPane txtpnBajksbfwebfskbjfsbksbksdbkgdbfkgbdkrgbekrbgf;
 	private JButton btnFailureprompt;
 	private JComboBox<String> comboBoxLecturerBottom;
 	private JComboBox<String> comboBoxCourse;
 	private JComboBox<String> comboBoxSemesterBottom;
+	private TableRowSorter<TableModel> rowSorterTop;
+	private TableRowSorter<TableModel> rowSorterBottom;
 
 	/**
 	 * Create the panel.
@@ -110,6 +113,12 @@ public class StartTab extends JPanel {
 		tableCourseTop.setBackground(SystemColor.activeCaption);
 		lvOrganisationTableScrollPane.setViewportView(tableCourseTop);
 		
+		// Enable table sorting for the top table model
+		rowSorterTop = new TableRowSorter<TableModel>();
+		tableCourseTop.setRowSorter(rowSorterTop);
+		rowSorterTop.setModel(ViewManager.getInstance().getLecturerStartTabTableTop());
+		rowSorterTop.sort();
+		
 		JLabel lblRaumzuordnungen = new JLabel("Raumzuordnungen:");
 		lblRaumzuordnungen.setFont(new Font("Tahoma", Font.BOLD, 12));
 		tablePanel.add(lblRaumzuordnungen, "cell 0 3");
@@ -157,12 +166,18 @@ public class StartTab extends JPanel {
 		JScrollPane raumanfragenScrollPane = new JScrollPane();
 		tablePanel.add(raumanfragenScrollPane, "cell 0 6 5 1,grow");
 		
-		roomrequestTable = new JTable();
-		roomrequestTable.setModel(ViewManager.getInstance().getLecturerStartTabTableBottom());
-		roomrequestTable.setShowVerticalLines(false);
-		roomrequestTable.getColumnModel().removeColumn(roomrequestTable.getColumn("Hidden"));
-		roomrequestTable.setBackground(SystemColor.activeCaption);
-		raumanfragenScrollPane.setViewportView(roomrequestTable);
+		tableRoomAllocationBottom = new JTable();
+		tableRoomAllocationBottom.setModel(ViewManager.getInstance().getLecturerStartTabTableBottom());
+		tableRoomAllocationBottom.setShowVerticalLines(false);
+		tableRoomAllocationBottom.getColumnModel().removeColumn(tableRoomAllocationBottom.getColumn("Hidden"));
+		tableRoomAllocationBottom.setBackground(SystemColor.activeCaption);
+		raumanfragenScrollPane.setViewportView(tableRoomAllocationBottom);
+		
+		// Enable table sorting for the bottom table model
+		rowSorterBottom = new TableRowSorter<TableModel>();
+		tableRoomAllocationBottom.setRowSorter(rowSorterBottom);
+		rowSorterBottom.setModel(ViewManager.getInstance().getLecturerStartTabTableBottom());
+		rowSorterBottom.sort();
 				
 		buttonPanel = new JPanel();
 		buttonPanel.setLayout(null);
@@ -252,5 +267,26 @@ public class StartTab extends JPanel {
 	 */
 	public JTable getTableCourseTop() {
 		return tableCourseTop;
+	}
+
+	/**
+	 * @return the tableRoomAllocationBottom
+	 */
+	public JTable getTableRoomAllocationBottom() {
+		return tableRoomAllocationBottom;
+	}
+
+	/**
+	 * @return the rowSorterTop
+	 */
+	public TableRowSorter<TableModel> getRowSorterTop() {
+		return rowSorterTop;
+	}
+
+	/**
+	 * @return the rowSorterBottom
+	 */
+	public TableRowSorter<TableModel> getRowSorterBottom() {
+		return rowSorterBottom;
 	}
 }
