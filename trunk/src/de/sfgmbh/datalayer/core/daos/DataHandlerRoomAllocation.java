@@ -63,6 +63,44 @@ public class DataHandlerRoomAllocation implements IntfDataObservable, IntfDataFi
 		return this.setConflicts(listRoomAllocation);
 	}
 	
+	/**
+	 * Get all room allocations which are not already denied 
+	 * @return a list with all open room allocations
+	 */
+	public List<RoomAllocation> getAllOpen() {
+		List<RoomAllocation> listRoomAllocation = new ArrayList<RoomAllocation>();
+
+		String SqlStatement = "SELECT public.roomallocation.*, public.course.*, public.user.*, public.room.*, public.chair.* " +
+								"FROM public.roomallocation, public.room, public.course, public.user, public.chair, public.lecturer " +
+								"WHERE public.roomallocation.courseid = public.course.courseid " +
+								"AND public.course.lecturerid = public.user.userid " +
+								"AND public.course.lecturerid = public.lecturer.userid " +
+								"AND public.chair.chairid = public.lecturer.chairid " +
+								"AND public.roomallocation.roomid = public.room.roomid " +
+								"AND public.roomallocation.approved NOT LIKE 'denied' " +
+								"ORDER BY public.roomallocation.day ASC, public.roomallocation.time ASC"
+								;
+
+		try {
+
+			ResultSet resultSet = DataManagerPostgreSql.getInstance().select(
+					SqlStatement);
+
+			while (resultSet.next()) {
+				listRoomAllocation.add(this.makeRoomAllocation(resultSet, "normal"));
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+			DataModel.getInstance().getExceptionsHandler().setNewException(("Es ist ein SQL-Fehler (DataHandlerRoomAllocation-01) aufgetreten:<br /><br />" + e.toString()), "Datenbank-Fehler!");
+		} catch (Exception e) {
+			e.printStackTrace();
+			DataModel.getInstance().getExceptionsHandler().setNewException(("Es ist ein unbekannter Fehler (DataHandlerRoomAllocation-02) in der Datenhaltung aufgetreten:<br /><br />" + e.toString()), "Fehler!");
+		}
+
+		return this.setConflicts(listRoomAllocation);
+	}
+	
 	@Override
 	public List<RoomAllocation> getByFilter(HashMap<String, String> filter) {
 		List<RoomAllocation> listRoomAllocation = new ArrayList<RoomAllocation>();

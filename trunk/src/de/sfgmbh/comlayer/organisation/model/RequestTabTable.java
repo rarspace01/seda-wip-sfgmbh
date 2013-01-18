@@ -19,7 +19,7 @@ import de.sfgmbh.comlayer.core.controller.ViewManager;
 public class RequestTabTable extends DefaultTableModel implements IntfAppObserver {
 
 	private static final long serialVersionUID = 1L;
-	private String[] header = {"Dozent", "Lehrstuhl", "Tag", "Zeit", "Raum", "Semester", "Status","Konflikt", "Hidden"};
+	private String[] header = {"Dozent", "Veranstaltung", "Tag", "Zeit", "Raum", "Semester", "Status","Konflikt", "Hidden"};
 	
 	/**
 	 * Creates an initial table model object
@@ -68,7 +68,7 @@ public class RequestTabTable extends DefaultTableModel implements IntfAppObserve
 			try {
 				Object[] row = {
 						ra.getCourse_().getLecturer_().getlName_(),
-						ra.getCourse_().getLecturer_().getChair_().getAcronym_(),
+						ra.getCourse_().getCourseAcronym_(),
 						vh.getDay(ra.getDay_()),
 						vh.getTime(ra.getTime_()),
 						ra.getRoom_().getRoomNumber_(),

@@ -1,6 +1,7 @@
 package de.sfgmbh.comlayer.organisation.views;
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Toolkit;
 
@@ -10,6 +11,7 @@ import javax.swing.JDialog;
 import javax.swing.JEditorPane;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.border.EtchedBorder;
 
@@ -21,6 +23,7 @@ import de.sfgmbh.comlayer.core.model.CmbboxFilterRoomnumber;
 import de.sfgmbh.comlayer.core.model.CmbboxFilterTime;
 import de.sfgmbh.comlayer.organisation.controller.CounterproposalFrameBtns;
 import de.sfgmbh.comlayer.organisation.controller.UserCreateDialogWin;
+import javax.swing.ScrollPaneConstants;
 
 /**
  * Modal Dialog for a counter proposal
@@ -48,6 +51,7 @@ public class CounterproposalDialog extends JDialog {
 	private JLabel lblSelectedStudents;
 	private JLabel lblSelectedStatus;
 	private CtrlRoomAllocation ctrlRoomAllocation = new CtrlRoomAllocation();
+	private JScrollPane scrollPane;
 	private JEditorPane editorPane;
 
 	/**
@@ -77,6 +81,7 @@ public class CounterproposalDialog extends JDialog {
 		getCmbboxDay().addActionListener(new CounterproposalFrameBtns(this, "combo"));
 		getCmbboxTime().addActionListener(new CounterproposalFrameBtns(this, "combo"));
 		getCmbboxRoom().addActionListener(new CounterproposalFrameBtns(this, "combo"));
+		getEditorPane().setText(this.proposalAllocation.getOrgaMessage_());
 		getLblSelectedRoomSeats().setText(String.valueOf(this.proposalAllocation.getRoom_().getSeats_()));
 		if (this.proposalAllocation.getConflictingAllocations_().isEmpty()) {
 			getLblSelectedStatus().setText("frei");
@@ -128,6 +133,7 @@ public class CounterproposalDialog extends JDialog {
 		contentPane.add(getLblTime());
 		contentPane.add(getCmbboxRoom());
 		contentPane.add(getCmbboxDay());
+		contentPane.add(getScrollPane());
 		contentPane.add(getCmbboxTime());
 		contentPane.add(getLblRoomSeats());
 		contentPane.add(getLblStudents());
@@ -135,7 +141,6 @@ public class CounterproposalDialog extends JDialog {
 		contentPane.add(getLblSelectedRoomSeats());
 		contentPane.add(getLblSelectedStudents());
 		contentPane.add(getLblSelectedStatus());
-		contentPane.add(getEditorPane());
 		
 		addWindowListener(new UserCreateDialogWin(this));
 	}
@@ -263,11 +268,24 @@ public class CounterproposalDialog extends JDialog {
 	public void setProposalAllocation(RoomAllocation proposalAllocation) {
 		this.proposalAllocation = proposalAllocation;
 	}
+	public JScrollPane getScrollPane() {
+		if (scrollPane == null) {
+			scrollPane = new JScrollPane();
+			scrollPane.setAutoscrolls(true);
+			scrollPane.setBackground(Color.WHITE);
+			scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+			scrollPane.setSize(new Dimension(800, 600));
+			scrollPane.setMinimumSize(new Dimension(800, 600));
+			scrollPane.setMaximumSize(new Dimension(800, 600));
+			scrollPane.setBounds(20, 259, 249, 63);
+			scrollPane.setViewportView(getEditorPane());
+		}
+		return scrollPane;
+	}
 	public JEditorPane getEditorPane() {
 		if (editorPane == null) {
 			editorPane = new JEditorPane();
-			editorPane.setBorder(new EtchedBorder(EtchedBorder.LOWERED, Color.WHITE, Color.BLACK));
-			editorPane.setBounds(20, 259, 249, 63);
+			editorPane.setBorder(null);
 		}
 		return editorPane;
 	}
