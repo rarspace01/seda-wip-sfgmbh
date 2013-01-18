@@ -21,6 +21,7 @@ import de.sfgmbh.comlayer.core.controller.ViewManager;
 import de.sfgmbh.comlayer.core.model.CmbboxFilterSemester;
 import de.sfgmbh.comlayer.core.views.BaseTab;
 import de.sfgmbh.comlayer.organisation.controller.RoomtableTabBtnPdf;
+import net.miginfocom.swing.MigLayout;
 
 public class RoomtableTab extends JPanel {
 
@@ -36,15 +37,18 @@ public class RoomtableTab extends JPanel {
 	}
 	private void initialize() {
 		setAutoscrolls(true);
-		setLayout(null);
-		
-		scrollPane_ = new JScrollPane();
-		scrollPane_.setBounds(31, 69, 830, 392);
-		add(scrollPane_);
+		setLayout(new MigLayout("", "[131px][50px][129px][461px][69px][right]", "[68px][392px]"));
 		
 		JPanel uniIconPanel = new JPanel();
-		uniIconPanel.setBounds(792, 0, 69, 68);
-		add(uniIconPanel);
+		add(uniIconPanel, "cell 5 0,alignx right,aligny top");
+		
+		JLabel lblUniIcon = new JLabel();
+		lblUniIcon.setIcon(new ImageIcon(BaseTab.class.getResource("/de/sfgmbh/comlayer/core/views/UniBA_logo.png")));
+		lblUniIcon.setMaximumSize(new Dimension(50,50));
+		uniIconPanel.add(lblUniIcon);
+		
+		scrollPane_ = new JScrollPane();
+		add(scrollPane_, "cell 0 1 5 1,grow");
 		
 		stundenplanTable = new JTable();
 		
@@ -58,8 +62,7 @@ public class RoomtableTab extends JPanel {
 		
 		JButton btnPdfErzeugen = new JButton("PDF erzeugen");
 		btnPdfErzeugen.addActionListener(new RoomtableTabBtnPdf("pdfCreate"));
-		btnPdfErzeugen.setBounds(21, 17, 131, 23);
-		add(btnPdfErzeugen);
+		add(btnPdfErzeugen, "cell 0 0,growx,aligny center");
 		stundenplanTable.getColumnModel().getColumn(0).setResizable(false);
 		stundenplanTable.getColumnModel().getColumn(0).setPreferredWidth(70);
 		stundenplanTable.getColumnModel().getColumn(0).setMinWidth(50);
@@ -80,24 +83,17 @@ public class RoomtableTab extends JPanel {
 		stundenplanTable.getColumnModel().getColumn(5).setMinWidth(50);
 		stundenplanTable.getColumnModel().getColumn(5).setMaxWidth(145);
 		
-		JLabel lblUniIcon = new JLabel();
-		lblUniIcon.setIcon(new ImageIcon(BaseTab.class.getResource("/de/sfgmbh/comlayer/core/views/UniBA_logo.png")));
-		lblUniIcon.setMaximumSize(new Dimension(50,50));
-		uniIconPanel.add(lblUniIcon);
-		
 		lblSemester = new JLabel("Semester:");
-		lblSemester.setBounds(202, 21, 69, 14);
 		
 		comboBoxSemesterFilter = new JComboBox<String>();
-		comboBoxSemesterFilter.setBounds(262, 18, 69, 20);
 		comboBoxSemesterFilter.setModel(new CmbboxFilterSemester());
 		comboBoxSemesterFilter.addKeyListener(new BaseCmbboxFilter());
 		comboBoxSemesterFilter.addActionListener(new BaseCmbboxFilter());
 		comboBoxSemesterFilter.setEditable(true);
 		comboBoxSemesterFilter.setAutoscrolls(true);
 		
-		add(lblSemester);
-		add(comboBoxSemesterFilter);
+		add(lblSemester, "cell 2 0,alignx left,aligny center");
+		add(comboBoxSemesterFilter, "cell 2 0,alignx right,aligny center");
 	}
 	
 	public JComboBox<String> getComboBoxSemesterFilter() {

@@ -15,6 +15,8 @@ import net.miginfocom.swing.MigLayout;
 import de.sfgmbh.comlayer.core.controller.ViewManager;
 import de.sfgmbh.comlayer.core.views.BaseTab;
 import de.sfgmbh.comlayer.lecturer.controller.ProfessorshipTimetableTabBtn;
+import java.awt.FlowLayout;
+import javax.swing.SwingConstants;
 
 public class ProfessorshipTimetableTab extends JPanel {
 
@@ -32,34 +34,34 @@ public class ProfessorshipTimetableTab extends JPanel {
 	}
 	private void createContents() {
 		setAutoscrolls(true);
-		setLayout(null);
 		
 		JButton btnPdfErzeugen = new JButton("PDF Erzeugen");
 		btnPdfErzeugen.addActionListener(new ProfessorshipTimetableTabBtn());
-		btnPdfErzeugen.setBounds(389, 17, 112, 23);
-		add(btnPdfErzeugen);
+		setLayout(new MigLayout("", "[359px][10px][112px][286px][101px][right]", "[61px][383px]"));
+		add(btnPdfErzeugen, "cell 2 0,growx,aligny center");
 		
 		JLabel lblWochenplanFrDen = new JLabel("<html><h3>Wochenplan f\u00FCr den Lehrstuhl SEDA</h3></html>");
 		lblWochenplanFrDen.setFont(new Font("Arial", Font.PLAIN, 11));
-		lblWochenplanFrDen.setBounds(20, 26, 359, 14);
-		add(lblWochenplanFrDen);
-		add(getPanel());
-		
-		JPanel uniIconPanel = new JPanel();
-		uniIconPanel.setBounds(787, 11, 70, 61);
-		add(uniIconPanel);
+		add(lblWochenplanFrDen, "cell 0 0,growx,aligny center");
 		
 		JLabel lblUniIcon = new JLabel("");
+		lblUniIcon.setVerticalAlignment(SwingConstants.TOP);
+		lblUniIcon.setHorizontalAlignment(SwingConstants.RIGHT);
+		add(lblUniIcon, "cell 5 0,alignx right,aligny top");
 		lblUniIcon.setIcon(new ImageIcon(BaseTab.class.getResource("/de/sfgmbh/comlayer/core/views/UniBA_logo.png")));
 		lblUniIcon.setMaximumSize(new Dimension(50,50));
-		uniIconPanel.add(lblUniIcon);
+		add(getPanel(), "cell 0 1 5 1,grow");
+		
+		JPanel uniIconPanel = new JPanel();
+		FlowLayout flowLayout = (FlowLayout) uniIconPanel.getLayout();
+		flowLayout.setAlignment(FlowLayout.RIGHT);
+		add(uniIconPanel, "flowx,cell 4 0,alignx left,aligny top");
 	}
 	
 	public JPanel getPanel() {
 		if (panel == null) {
 			panel = new JPanel();
-			panel.setBounds(20, 72, 868, 383);
-			panel.setLayout(new MigLayout("", "[830px:n:830px,grow]", "[]"));
+			panel.setLayout(new MigLayout("", "[830px:n:830px]", "[grow]"));
 			
 			JScrollPane scrollPane = new JScrollPane();
 			panel.add(scrollPane, "cell 0 0,growx,aligny top");
