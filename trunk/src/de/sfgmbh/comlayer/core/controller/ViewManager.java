@@ -10,8 +10,6 @@ import de.sfgmbh.comlayer.lecturer.model.StartTabTableBottom;
 import de.sfgmbh.comlayer.lecturer.model.StartTabTableTop;
 import de.sfgmbh.comlayer.lecturer.model.TimetableTabTable;
 import de.sfgmbh.comlayer.lecturer.views.ChairTimetableTab;
-import de.sfgmbh.comlayer.lecturer.views.CourseEditFrame;
-import de.sfgmbh.comlayer.lecturer.views.CourseFrame;
 import de.sfgmbh.comlayer.lecturer.views.RoomRequestFrame;
 import de.sfgmbh.comlayer.lecturer.views.StartTab;
 import de.sfgmbh.comlayer.lecturer.views.TimetableTab;
@@ -280,8 +278,6 @@ public class ViewManager {
 	private StartTab startTab;
 	private StartTabTableTop startTabTableTop;
 	private StartTabTableBottom startTabTableBottom;
-	private CourseFrame courseFrame;
-	private CourseEditFrame courseEditFrame;
 	private RoomRequestFrame roomRquestFrame;
 	private TimetableTabTable timetableTabTable;
 	private TimetableTab timetableTab;
@@ -305,18 +301,6 @@ public class ViewManager {
 			this.startTabTableBottom = new StartTabTableBottom();
 		}
 		return this.startTabTableBottom;
-	}
-	public CourseFrame getLecturerCourseFrame() {
-		if (this.courseFrame == null) {
-			this.courseFrame = new CourseFrame();
-		}
-		return this.courseFrame;
-	}
-	public CourseEditFrame getLecturerCourseEditFrame() {
-		if (this.courseEditFrame == null) {
-			this.courseEditFrame = new CourseEditFrame();
-		}
-		return this.courseEditFrame;
 	}
 	public RoomRequestFrame getLecturerRoomRequestFrame() {
 		if (this.roomRquestFrame == null) {
