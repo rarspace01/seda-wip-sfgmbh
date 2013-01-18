@@ -76,7 +76,7 @@ public class RoomFrame extends JFrame {
 		gbc_lblLevel.gridy = 1;
 		contentPane.add(lblLevel, gbc_lblLevel);
 		
-		txtroomid=new JTextField();
+		txtroomid=new JTextField("-1");
 		
 		txtLevel = new JTextField();
 		txtLevel.setFont(new Font("SansSerif", Font.PLAIN, 12));
