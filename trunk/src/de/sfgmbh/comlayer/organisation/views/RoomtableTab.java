@@ -111,8 +111,19 @@ public class RoomtableTab extends JPanel {
 		
 		return textualRepresentation;
 	}
-	
+
+	public void reloadRoomTable(){
+		loadRoomTable(this.roomId_);
+	}
+
 	public void loadRoomTable(int roomId){
+		
+		System.out.println("Filter on Roomplan: ["+this.getComboBoxSemesterFilter().getSelectedItem().toString()+"]");
+		
+		loadRoomTable(roomId, this.getComboBoxSemesterFilter().getSelectedItem().toString());
+	}
+	
+	public void loadRoomTable(int roomId, String semester){
 		
 		this.roomId_=roomId;
 		
@@ -124,7 +135,8 @@ public class RoomtableTab extends JPanel {
 		
 		HashMap<String,String> tableFilter = new HashMap<String,String> ();  //setting filter
 		
-		tableFilter.put("roomid", ""+roomId);
+		tableFilter.put("roomid", ""+this.roomId_);
+		tableFilter.put("semester", semester);
 		
 		List<RoomAllocation> ral=AppModel.getInstance().getRepositoryRoomAllocation().getByFilter(tableFilter);
 		

@@ -4,6 +4,7 @@ import javax.swing.table.DefaultTableModel;
 
 import de.sfgmbh.applayer.core.definitions.IntfAppObserver;
 import de.sfgmbh.applayer.organisation.controller.CtrlRoomAllocation;
+import de.sfgmbh.comlayer.core.controller.ViewManager;
 
 public class RoomtableTable extends DefaultTableModel implements IntfAppObserver {
 
@@ -39,7 +40,7 @@ public class RoomtableTable extends DefaultTableModel implements IntfAppObserver
 		}
 		
 		//get all rooms from db
-		//this.addRooms(CtrlRoomAllocation.);
+		ViewManager.getInstance().getOrgaRoomtableTab().reloadRoomTable();
 		
 	}
 }
