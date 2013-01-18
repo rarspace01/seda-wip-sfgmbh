@@ -14,7 +14,6 @@ import javax.swing.UIManager;
 import javax.swing.border.EmptyBorder;
 
 import net.miginfocom.swing.MigLayout;
-import de.sfgmbh.comlayer.lecturer.controller.CourseFrameWin;
 import de.sfgmbh.comlayer.lecturer.controller.RoomRequestFrameBtns;
 
 public class RoomRequestFrame extends JFrame {
@@ -156,8 +155,6 @@ public class RoomRequestFrame extends JFrame {
 		JButton btnNewButton = new JButton("Los!");
 		btnNewButton.addActionListener(new RoomRequestFrameBtns("go"));
 		contentPane.add(btnNewButton, "cell 4 20");
-		
-		addWindowListener(new CourseFrameWin());
 	}
 
 }
