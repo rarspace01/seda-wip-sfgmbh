@@ -21,13 +21,17 @@ public class CtrlRoomAllocation {
 	 * @param roomAllocation
 	 */
 	public boolean acceptRoomAllocation(RoomAllocation ra) {
+		// Get the currently up to date room allocation
 		RoomAllocation currentRa = AppModel.getInstance().getRepositoryRoomAllocation().get(ra.getRoomAllocationId_());
+		
+		// Check if it is possible to set it to accepted and do so if yes
 		if (!currentRa.getApproved_().equals("accepted")){
-			if (currentRa.getConflictingAllocations_().isEmpty()){
+			if (!currentRa.isConflicting_()){
 				currentRa.setApproved_("accepted");
 				return currentRa.save();
 			} else {
 				boolean allowSave = false;
+				currentRa.setConflictingAllocations_();
 				for (RoomAllocation conflictRa : currentRa.getConflictingAllocations_()){
 					if (conflictRa.getApproved_().equals("waiting") || conflictRa.getApproved_().equals("denied")) {
 						allowSave = true;
@@ -37,7 +41,7 @@ public class CtrlRoomAllocation {
 					currentRa.setApproved_("accepted");
 					return currentRa.save();
 				} else {
-					AppModel.getInstance().getExceptionHandler().setNewException("Eine andere Raumbelegung auf diesem Zeitslot ist bereits freigegeben.", "Fehler!");
+					AppModel.getInstance().getExceptionHandler().setNewException("Eine andere Raumbelegung auf diesem Zeitslot ist bereits freigegeben oder als Gegenvorschlag eingetragen.", "Fehler!");
 				}
 			}
 		} else {
@@ -77,7 +81,7 @@ public class CtrlRoomAllocation {
 	 * @return a room allocation with a free time slot, null if there are none
 	 */
 	public RoomAllocation suggest(RoomAllocation roomAllocation) {
-		List<RoomAllocation> currentAllocations = AppModel.getInstance().getRepositoryRoomAllocation().getAll();
+		List<RoomAllocation> currentAllocations = AppModel.getInstance().getRepositoryRoomAllocation().getAllOpen();
 		HashMap<String, String> roomFilter = new HashMap<String, String>();
 		roomFilter.put("seats", String.valueOf(roomAllocation.getCourse_().getExpectedAttendees_()));
 		List<Room> matchingRooms = AppModel.getInstance().getRepositoryRoom().getByFilter(roomFilter);
@@ -93,7 +97,7 @@ public class CtrlRoomAllocation {
 					for (RoomAllocation existingRoomAllocation : currentAllocations) {
 						if (existingRoomAllocation.getDay_() == day && 
 								existingRoomAllocation.getTime_() == time && 
-								existingRoomAllocation.getSemester_() == roomAllocation.getSemester_() &&
+								existingRoomAllocation.getSemester_().equals(roomAllocation.getSemester_()) &&
 								existingRoomAllocation.getRoom_().getRoomId_() == room.getRoomId_()) {
 							isFree = false;
 						}
@@ -110,6 +114,39 @@ public class CtrlRoomAllocation {
 			}
 		}
 		return null;
+	}
+	
+	/**
+	 * Create a counter proposal room allocation
+	 * @param roomAllocation
+	 * @return true on success
+	 */
+	public boolean createCounterProposal(RoomAllocation roomAllocation) {
+		if (roomAllocation.getApproved_().equals("denied")) {
+			return false;
+		}
+		
+		roomAllocation.setApproved_("counter");
+		
+		// Check if it should be possible to set this room allocation as counter and do so if yes
+		if (!roomAllocation.isConflicting_()){
+			return roomAllocation.save();
+		} else {
+			boolean allowSave = false;
+			roomAllocation.setConflictingAllocations_();
+			for (RoomAllocation conflictRa : roomAllocation.getConflictingAllocations_()){
+				if (conflictRa.getApproved_().equals("waiting") || conflictRa.getApproved_().equals("denied")) {
+					allowSave = true;
+				}
+			}
+			if (allowSave) {
+				return roomAllocation.save();
+			} else {
+				AppModel.getInstance().getExceptionHandler().setNewException("Eine andere Raumbelegung auf diesem Zeitslot ist bereits freigegeben oder als Gegenvorschlag eingetragen.", "Fehler!");
+			}
+		}
+		
+		return false;
 	}
 	
 }

@@ -21,13 +21,21 @@ public class RepositoryRoomAllocation implements IntfAppObservable, IntfDataObse
 	}
 	
 	/**
-	 * Return all courses
-	 * @return a list of all courses
+	 * Return all room allocations
+	 * @return a list of all room allocations
 	 */
 	public List<RoomAllocation> getAll() {
 		return DataModel.getInstance().getDataHandlerRoomAllocation().getAll();
 	}
 	
+	/**
+	 * Get all room allocations which are not already denied 
+	 * @return a list with all open room allocations
+	 */
+	public List<RoomAllocation> getAllOpen() {
+		return DataModel.getInstance().getDataHandlerRoomAllocation().getAllOpen();
+	}
+		
 	/**
 	 * Return filtered courses
 	 * @return a list of filtered courses

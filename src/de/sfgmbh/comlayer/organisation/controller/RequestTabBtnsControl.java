@@ -3,13 +3,16 @@ package de.sfgmbh.comlayer.organisation.controller;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import de.sfgmbh.applayer.core.model.AppException;
 import de.sfgmbh.applayer.core.model.AppModel;
 import de.sfgmbh.applayer.core.model.RoomAllocation;
 import de.sfgmbh.applayer.organisation.controller.CtrlRoomAllocation;
 import de.sfgmbh.comlayer.core.controller.ViewManager;
 import de.sfgmbh.comlayer.core.definitions.IntfComDialogObserver;
 import de.sfgmbh.comlayer.core.views.QuestionDialog;
+import de.sfgmbh.comlayer.organisation.model.RequestTabTable;
 import de.sfgmbh.comlayer.organisation.views.CounterproposalDialog;
+import de.sfgmbh.comlayer.organisation.views.RequestTab;
 
 /**
  * Action listener for the buttons on the right in the request tab
@@ -22,6 +25,7 @@ public class RequestTabBtnsControl implements ActionListener, IntfComDialogObser
 	private String navAction;
 	private CtrlRoomAllocation ctrlRoomAllocation;
 	private RoomAllocation revokeAllocation;
+	private RoomAllocation solveApprovedAllocation;
 	
 	/**
 	 * Create the action listener
@@ -42,21 +46,37 @@ public class RequestTabBtnsControl implements ActionListener, IntfComDialogObser
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
+		AppException exceptionHandler = AppModel.getInstance().getExceptionHandler();
+		RequestTab requestTab = ViewManager.getInstance().getOrgaRquestTab();
+		RequestTabTable requestTableModel = ViewManager.getInstance().getOrgaRequestTableModel();
 		
 		// Solve Button is pressed
 		if (this.navAction.equals("solve")) {
-			int row = ViewManager.getInstance().getOrgaRquestTab().getRoomAllocationTable().getSelectedRow();
+			int row = requestTab.getRoomAllocationTable().getSelectedRow();
 			if (row == -1) {
-				AppModel.getInstance().getExceptionHandler().setNewException("Sie müssen zunächst eine Spalte auswählen.", "Achtung!");
+				exceptionHandler.setNewException("Sie müssen zunächst eine Spalte auswählen.", "Achtung!");
 			} else {
 				try {
-					row = ViewManager.getInstance().getOrgaRquestTab().getRowSorter().convertRowIndexToModel(row);
-					RoomAllocation selectedRa = (RoomAllocation) ViewManager.getInstance().getOrgaRequestTableModel().getValueAt(row, 8);
+					row = requestTab.getRowSorter().convertRowIndexToModel(row);
+					RoomAllocation selectedRa = (RoomAllocation) requestTableModel.getValueAt(row, 8);
+					
+					if (selectedRa.getApproved_().equals("denied")) {
+						exceptionHandler.setNewException("Zu bereits abgelehnten Raumbelegungen gibt es kein Verfahren für Lösungen bzw. Gegenvorschläge. Hier muss der Dozent eine neue Raumbelegung erstellen.", "Fehler!");
+						return;
+					}
+					
+					if (selectedRa.getApproved_().equals("accepted")) {
+						QuestionDialog dialog = new QuestionDialog("Sie sind im Begriff für eine bereits freigegebene Raumbelegung einen Gegenvorschlag zu erstellen. Dies ist möglich, kommt allerdings einer Verschiebung gleich. Die Raumbelegung wird dann nicht mehr öffentlich angezeigt werden, bis der Dozent den neuen Termin freigibt. <br /><br /> Wollen Sie das wirklich?", "Achtung!");
+						this.solveApprovedAllocation = selectedRa;
+						dialog.register(this);
+						dialog.setVisible(true);
+						return;
+					}
 					
 					CounterproposalDialog counterproposalDialog = new CounterproposalDialog(selectedRa);
 					counterproposalDialog.setVisible(true);
 				} catch (Exception ex) {
-					AppModel.getInstance().getExceptionHandler().setNewException("Ein unerwarteter Fehler ist aufgetreten.<br /><br >" + ex.toString(), "Fehler!");
+					exceptionHandler.setNewException("Ein unerwarteter Fehler ist aufgetreten.<br /><br >" + ex.toString(), "Fehler!");
 				}
 			}
 		}
@@ -64,16 +84,16 @@ public class RequestTabBtnsControl implements ActionListener, IntfComDialogObser
 		
 		// Accept Button is pressed
 		if (this.navAction.equals("accept")) {
-			int row = ViewManager.getInstance().getOrgaRquestTab().getRoomAllocationTable().getSelectedRow();
+			int row = requestTab.getRoomAllocationTable().getSelectedRow();
 			if (row == -1) {
-				AppModel.getInstance().getExceptionHandler().setNewException("Sie müssen zunächst eine Spalte auswählen.", "Achtung!");
+				exceptionHandler.setNewException("Sie müssen zunächst eine Spalte auswählen.", "Achtung!");
 			} else {
 				try {
-					row = ViewManager.getInstance().getOrgaRquestTab().getRowSorter().convertRowIndexToModel(row);
-					RoomAllocation selectedRa = (RoomAllocation) ViewManager.getInstance().getOrgaRequestTableModel().getValueAt(row, 8);
+					row = requestTab.getRowSorter().convertRowIndexToModel(row);
+					RoomAllocation selectedRa = (RoomAllocation) requestTableModel.getValueAt(row, 8);
 					ctrlRoomAllocation.acceptRoomAllocation(selectedRa);
 				} catch (Exception ex) {
-					AppModel.getInstance().getExceptionHandler().setNewException("Ein unerwarteter Fehler ist aufgetreten.<br /><br >" + ex.toString(), "Fehler!");
+					exceptionHandler.setNewException("Ein unerwarteter Fehler ist aufgetreten.<br /><br >" + ex.toString(), "Fehler!");
 				}
 			}
 		}
@@ -81,13 +101,13 @@ public class RequestTabBtnsControl implements ActionListener, IntfComDialogObser
 		
 		// Deny Button is pressed
 		if (this.navAction.equals("deny")) {
-			int row = ViewManager.getInstance().getOrgaRquestTab().getRoomAllocationTable().getSelectedRow();
+			int row = requestTab.getRoomAllocationTable().getSelectedRow();
 			if (row == -1) {
-				AppModel.getInstance().getExceptionHandler().setNewException("Sie müssen zunächst eine Spalte auswählen.", "Achtung!");
+				exceptionHandler.setNewException("Sie müssen zunächst eine Spalte auswählen.", "Achtung!");
 			} else {
 				try {
-					row = ViewManager.getInstance().getOrgaRquestTab().getRowSorter().convertRowIndexToModel(row);
-					RoomAllocation selectedRa = (RoomAllocation) ViewManager.getInstance().getOrgaRequestTableModel().getValueAt(row, 8);
+					row = requestTab.getRowSorter().convertRowIndexToModel(row);
+					RoomAllocation selectedRa = (RoomAllocation) requestTableModel.getValueAt(row, 8);
 					
 					// Check if room allocation is already accepted and warn in that case
 					if (selectedRa.getApproved_().equals("accepted")) {
@@ -104,7 +124,7 @@ public class RequestTabBtnsControl implements ActionListener, IntfComDialogObser
 						this.denyAllocation(selectedRa);
 					}
 				} catch (Exception ex) {
-					AppModel.getInstance().getExceptionHandler().setNewException("Ein unerwarteter Fehler ist aufgetreten.<br /><br >" + ex.toString(), "Fehler!");
+					exceptionHandler.setNewException("Ein unerwarteter Fehler ist aufgetreten.<br /><br >" + ex.toString(), "Fehler!");
 				}
 			}
 		}
@@ -125,8 +145,13 @@ public class RequestTabBtnsControl implements ActionListener, IntfComDialogObser
 				this.denyAllocation(this.revokeAllocation);
 				this.revokeAllocation = null;
 			}
+			if (this.solveApprovedAllocation != null) {
+				CounterproposalDialog counterproposalDialog = new CounterproposalDialog(this.solveApprovedAllocation);
+				counterproposalDialog.setVisible(true);
+			}
 		} else if (answer.equals("no")) {
 			this.revokeAllocation = null;
+			this.solveApprovedAllocation = null;
 		}
 	}
 }

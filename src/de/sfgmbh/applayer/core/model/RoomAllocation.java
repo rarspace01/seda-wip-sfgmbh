@@ -157,9 +157,15 @@ public class RoomAllocation implements IntfDataRetrievable{
 	}
 
 	/**
+	 * Set the organization message. The message will be cut after 10 000 characters.
 	 * @param orgaMessage_ the orgaMessage_ to set
 	 */
 	public void setOrgaMessage_(String orgaMessage_) {
+		if (orgaMessage_ != null) {
+			if (orgaMessage_.length() > 10000) {
+				orgaMessage_ = orgaMessage_.substring(0, 10000);
+			}
+		}
 		this.orgaMessage_ = orgaMessage_;
 	}
 
