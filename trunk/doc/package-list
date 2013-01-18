@@ -3,6 +3,7 @@ de.sfgmbh.applayer.core.definitions
 de.sfgmbh.applayer.core.model
 de.sfgmbh.applayer.organisation.controller
 de.sfgmbh.comlayer.core.controller
+de.sfgmbh.comlayer.core.definitions
 de.sfgmbh.comlayer.core.model
 de.sfgmbh.comlayer.core.views
 de.sfgmbh.comlayer.lecturer.controller
