@@ -18,6 +18,7 @@ public class CmbboxFilterLecturer extends DefaultComboBoxModel<String> implement
 
 	private static final long serialVersionUID = 1L;
 	private JComboBox<String> dependentComboBox;
+	private String variant;
 	
 	/**
 	 * Create the model object
@@ -26,12 +27,27 @@ public class CmbboxFilterLecturer extends DefaultComboBoxModel<String> implement
 	public CmbboxFilterLecturer(JComboBox<String> dependentComboBox) {
 		AppModel.getInstance().getRepositoryUser().register(this);
 		this.dependentComboBox = dependentComboBox;
+		this.variant = "default";
+		this.build();
+	}
+	
+	/**
+	 * Create the model object based on a variant
+	 * @param dependentCombobox
+	 * @param variant
+	 */
+	public CmbboxFilterLecturer(JComboBox<String> dependentComboBox, String variant) {
+		AppModel.getInstance().getRepositoryUser().register(this);
+		this.dependentComboBox = dependentComboBox;
+		this.variant = variant;
 		this.build();
 	}
 
 	private void build() {
 		
-		this.addElement("<alle>");
+		if (!this.variant.equals("select")) {
+			this.addElement("<alle>");
+		}
 		for (User user : AppModel.getInstance().getRepositoryUser().getAllLecturer()){
 			this.addElement(user.getlName_());
 		}
