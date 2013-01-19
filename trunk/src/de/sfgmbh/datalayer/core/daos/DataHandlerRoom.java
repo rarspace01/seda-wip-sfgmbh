@@ -192,7 +192,7 @@ public class DataHandlerRoom implements IntfDataRoom, IntfDataFilter, IntfDataOb
 				filterDm.getPreparedStatement().setString(1, "%");
 			}
 			if (filter.containsKey("seats") && filter.get("seats") != null && filter.get("seats") != "" && filter.get("seats") != "<alle>") {
-				filterDm.getPreparedStatement().setInt(2, Integer.parseInt(filter.get("seats")));
+				filterDm.getPreparedStatement().setInt(2, Integer.parseInt(filter.get("seats").replace(">= ","")));
 			} else {
 				filterDm.getPreparedStatement().setInt(2, 0);
 			}
