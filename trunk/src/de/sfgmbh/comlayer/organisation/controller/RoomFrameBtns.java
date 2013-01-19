@@ -44,6 +44,9 @@ public class RoomFrameBtns implements ActionListener {
 
 		// Speichern button is pressed
 		if (this.ctrlAction.equals("save")) {
+			
+			//TODO check for fileds
+			
 			ViewManager.getInstance().getOrgaRoomFrame().setVisible(false);
 
 			// read Values, Create Room object, store to DB
