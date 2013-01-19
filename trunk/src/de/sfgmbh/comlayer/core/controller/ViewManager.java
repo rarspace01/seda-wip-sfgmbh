@@ -335,7 +335,7 @@ public class ViewManager {
 	/**
 	* Module: Student Profile - will probably not be implemented in the first version of the program
 	*/
-	/**
+	/*
 	private StudProfil studProfilGui;
 	
 	public StudProfil getStudProfil() {
