@@ -43,6 +43,8 @@ import de.sfgmbh.comlayer.core.model.CmbboxFilterLevel;
 import de.sfgmbh.comlayer.core.model.CmbboxFilterRoomnumber;
 import de.sfgmbh.comlayer.core.model.CmbboxFilterSeats;
 import de.sfgmbh.comlayer.core.model.CmbboxFilterSemester;
+import java.awt.Rectangle;
+import java.awt.Component;
 
 /**
  * The very first content users see when they start the application
@@ -140,8 +142,8 @@ public class BaseTab extends JFrame {
 		mainFilterPanel.add(getLblDozent(), "cell 2 0,aligny bottom");
 		mainFilterPanel.add(getLblSemester(), "cell 3 0,aligny bottom");
 
-		mainFilterPanel.add(getComboBoxOrgaFilter(), "cell 0 1,growx");
-		mainFilterPanel.add(getComboBoxChairFilter(), "cell 1 1,growx");
+		mainFilterPanel.add(getComboBoxOrgaFilter(), "cell 0 1,alignx center");
+		mainFilterPanel.add(getComboBoxChairFilter(), "cell 1 1,alignx center");
 		mainFilterPanel.add(getComboBoxLecturerFilter(), "cell 2 1,growx");
 		mainFilterPanel.add(getComboBoxSemesterFilter(), "cell 3 1,growx");
 
@@ -258,6 +260,7 @@ public class BaseTab extends JFrame {
 	public JComboBox<String> getComboBoxOrgaFilter() {
 		if (comboBoxOrgaFilter == null) {
 			comboBoxOrgaFilter = new JComboBox<String>();
+			comboBoxOrgaFilter.setPreferredSize(new Dimension(110, 20));
 			comboBoxOrgaFilter.addKeyListener(new BaseCmbboxFilter());
 			comboBoxOrgaFilter.addActionListener(new BaseCmbboxFilter());
 			comboBoxOrgaFilter.setAutoscrolls(true);
@@ -271,6 +274,7 @@ public class BaseTab extends JFrame {
 	public JComboBox<String> getComboBoxChairFilter() {
 		if (comboBoxChairFilter == null) {
 			comboBoxChairFilter = new JComboBox<String>();
+			comboBoxChairFilter.setPreferredSize(new Dimension(440, 20));
 			comboBoxChairFilter.setModel(new CmbboxFilterChair(comboBoxChairFilter));
 			comboBoxChairFilter.addKeyListener(new BaseCmbboxFilter());
 			comboBoxChairFilter.addActionListener(new BaseCmbboxFilter());
@@ -284,6 +288,7 @@ public class BaseTab extends JFrame {
 	public JComboBox<String> getComboBoxLecturerFilter() {
 		if (comboBoxLecturerFilter == null) {
 			comboBoxLecturerFilter = new JComboBox<String>();
+			comboBoxLecturerFilter.setPreferredSize(new Dimension(110, 20));
 			comboBoxLecturerFilter.setModel(new CmbboxFilterLecturer(comboBoxLecturerFilter));
 			comboBoxLecturerFilter.addKeyListener(new BaseCmbboxFilter());
 			comboBoxLecturerFilter.addActionListener(new BaseCmbboxFilter());
@@ -297,6 +302,7 @@ public class BaseTab extends JFrame {
 	public JComboBox<String> getComboBoxSemesterFilter() {
 		if (comboBoxSemesterFilter == null) {
 			comboBoxSemesterFilter = new JComboBox<String>();
+			comboBoxSemesterFilter.setPreferredSize(new Dimension(110, 20));
 			comboBoxSemesterFilter.setModel(new CmbboxFilterSemester());
 			comboBoxSemesterFilter.addKeyListener(new BaseCmbboxFilter());
 			comboBoxSemesterFilter.addActionListener(new BaseCmbboxFilter());
