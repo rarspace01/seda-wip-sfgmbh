@@ -24,6 +24,18 @@ public class RoomTabBtnsControl implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 
+		//initializing values
+		ViewManager.getInstance().getOrgaRoomFrame().getTxtroomid().setText("");
+		ViewManager.getInstance().getOrgaRoomFrame().getTxtRoomNumber().setText("");
+		ViewManager.getInstance().getOrgaRoomFrame().getTxtLevel().setText("");
+		ViewManager.getInstance().getOrgaRoomFrame().getTxtSeats().setText("");
+		ViewManager.getInstance().getOrgaRoomFrame().getTxtPcSeats().setText("");
+		ViewManager.getInstance().getOrgaRoomFrame().getTxtBeamer().setText("");
+		ViewManager.getInstance().getOrgaRoomFrame().getTxtChalkboards().setText("");
+		ViewManager.getInstance().getOrgaRoomFrame().getTxtOverheads().setText("");
+		ViewManager.getInstance().getOrgaRoomFrame().getTxtVisualizer().setText("");
+		ViewManager.getInstance().getOrgaRoomFrame().getTxtWhiteboards().setText("");
+		
 		// Raum hinzufügen Button is pressed
 		if (this.navAction.equals("hinz")) {
 			ViewManager.getInstance().getOrgaRoomFrame().setVisible(true);
