@@ -6,6 +6,7 @@ import java.io.File;
 
 import javax.swing.JFileChooser;
 
+import de.sfgmbh.applayer.core.model.AppException;
 import de.sfgmbh.applayer.core.model.AppModel;
 import de.sfgmbh.comlayer.core.controller.ViewManager;
 import de.sfgmbh.comlayer.core.views.InfoDialog;
@@ -48,34 +49,36 @@ public class RoomtableTabBtnPdf implements ActionListener {
 			} else {
 					//sofern der user nicht pdf als endung ausgew�hlt hat machen wir es
 				if (!fc.getSelectedFile().getPath().toLowerCase().endsWith(
-						".vcf"))
+						".pdf"))
 					{
 						fc.setSelectedFile(new File(fc.getSelectedFile() + ".pdf"));
 					}
 			
 			}
-						
+			
+			if(!fc.getSelectedFile().getName().contains(".")){
+				System.out.println("no file selected");
+				AppException exceptionHandler = AppModel.getInstance().getExceptionHandler();
+				exceptionHandler.setNewException("Keine Datei Ausgewählt");
+			}else{
+			
 			System.out.println("Selected Path: ["+fc.getSelectedFile().getAbsolutePath()+"]");		
 			
 			//finished pathget
 			
 			//getRoomTItle
 			String roomtitle = AppModel.getInstance().getRepositoryRoom().getRoomById(ViewManager.getInstance().getOrgaRoomtableTab().getRoomId_()).getRoomNumber_();
+			String semester = ViewManager.getInstance().getOrgaRoomtableTab().getComboBoxSemesterFilter().getSelectedItem().toString();
 			
 			DataManagerPDF dmpdf=new DataManagerPDF(fc.getSelectedFile().getAbsolutePath());
 			
-			dmpdf.addContent(roomtitle,ViewManager.getInstance().getOrgaRoomtableTab().getScrollPane_());
+			dmpdf.addContent(roomtitle +" - "+semester,ViewManager.getInstance().getOrgaRoomtableTab().getScrollPane_());
 			
 			dmpdf.close();
 			
 			System.out.println("Created PDF");
 			
-			//getPane
-			
-			//
-			
-//			this.getInfoWindow("<b>Fehlermeldung 1:</b><br> Momentan kann keine PDF erzeugt werden.<b><br><br>Fehlermeldung 2:</b><br> Es wurden keine Daten ausgew�hlt.<br><br><b>Fehlermeldung 3:</b><br> Es wurde kein Dozent ausgew�hlt.<br><br><b>Fehlermeldung 4:</b><br> Die Funktionalit�t momentan nicht ausf�hrbar. Wenden Sie sich bitte an Ihren Systemadministrator!").setVisible(true);
-			
+			}
 		}
 	}
 	
