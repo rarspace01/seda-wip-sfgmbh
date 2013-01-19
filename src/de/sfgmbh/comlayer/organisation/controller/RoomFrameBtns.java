@@ -121,21 +121,7 @@ public class RoomFrameBtns implements ActionListener {
 	
 				this.ctrlRoom.addRoom(toBeSavedRoom);
 			}
-			/*
-			 * this.getInfoWindow(
-			 * "<b>Fehlermeldung:</b><br>Der Raum konnte nicht hinzugef�gt werden:<br>1. Die Raumnummer ist bereits im System vorhanden."
-			 * +
-			 * "<br>2. Einer der von Ihnen eingegebenen Werte ist syntaktisch inkorrekt.<br>3. Der von Ihnen eingetragene Raum existiert nicht im System. "
-			 * +
-			 * "Sollte er doch existieren, kontaktieren Sie bitte die Hausverwaltung."
-			 * ).setVisible(true);
-			 */
 		}
 	}
 
-	// Manage InfoWindow instance
-	public InfoDialog getInfoWindow(String msg) {
-		this.infoWindow = new InfoDialog(msg);
-		return this.infoWindow;
-	}
 }
