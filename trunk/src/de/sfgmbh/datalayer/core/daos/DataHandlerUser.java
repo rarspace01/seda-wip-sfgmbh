@@ -56,6 +56,10 @@ public class DataHandlerUser implements IntfDataUser, IntfDataObservable, IntfDa
 		return listUser;
 	}
 	
+	/**
+	 * Get all users which are lecturers
+	 * @return a list of users which are lecturers
+	 */
 	public List<User> getAllLecturer() {
 		List<User> listUser = new ArrayList<User>();
 
@@ -222,6 +226,11 @@ public class DataHandlerUser implements IntfDataUser, IntfDataObservable, IntfDa
 		return null;
 	}
 	
+	/**
+	 * Get a user by its login
+	 * @param login
+	 * @return a user
+	 */
 	public User getByLogin(String login) {
 		
 		try {
@@ -305,6 +314,8 @@ public class DataHandlerUser implements IntfDataUser, IntfDataObservable, IntfDa
 
 	/**
 	 * Saves a new user in the DB if the user doesn't exist already and updates an existing user in the DB otherwise
+	 * @param user
+	 * @return ture on success
 	 */
 	@Override
 	public boolean save(User user) {

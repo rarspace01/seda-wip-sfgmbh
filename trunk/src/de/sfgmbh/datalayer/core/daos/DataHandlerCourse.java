@@ -13,11 +13,22 @@ import de.sfgmbh.datalayer.core.definitions.IntfDataObserver;
 import de.sfgmbh.datalayer.core.model.DataModel;
 import de.sfgmbh.datalayer.io.DataManagerPostgreSql;
 
+/**
+ * DataHandler for the courses
+ * 
+ * @author denis
+ * @author hannes
+ *
+ */
 public class DataHandlerCourse implements IntfDataFilter, IntfDataObservable {
 	
 	private ArrayList<Object> observer_ = new ArrayList<Object>();
 	private DataManagerPostgreSql filterDm = null;
 
+	/**
+	 * Get all courses
+	 * @return a list of all courses
+	 */
 	public List<Course> getAll() {
 		List<Course> listCourse = new ArrayList<Course>();
 		Course returnCourse = null;
@@ -102,6 +113,11 @@ public class DataHandlerCourse implements IntfDataFilter, IntfDataObservable {
 		return listCourse;
 	}
 	
+	/**
+	 * Get a course by its ID
+	 * @param id
+	 * @return a course
+	 */
 	public Course get(int id) {
 		
 		try {
@@ -195,6 +211,105 @@ public class DataHandlerCourse implements IntfDataFilter, IntfDataObservable {
 	@Override
 	public void unregister(Object observer) {
 		observer_.remove(observer);
+	}
+
+	/**
+	 * Save a course in the DB (this creates a course if its ID is -1 and otherwise updates an existing one)
+	 * @param course
+	 * @return true on success
+	 */
+	public boolean save(Course course) {
+		
+		if (course.getCourseId_() == -1) {
+			boolean returnState = true;
+				try {
+					
+					DataManagerPostgreSql dm=DataManagerPostgreSql.getInstance();
+					
+					dm.prepare("INSERT INTO public.course"
+							+ "(lecturerid, courseacronym, coursename, sws, coursekind, coursedescription, expectedattendees, lecturerenabled)"
+							+ "VALUES (?,?,?,?,?,?,?,?)");
+					dm.getPreparedStatement().setInt(1, course.getLecturer_().getUserId_());
+					dm.getPreparedStatement().setString(2, course.getCourseAcronym_());
+					dm.getPreparedStatement().setString(3, course.getCourseName_());
+					dm.getPreparedStatement().setFloat(4, course.getSws_());
+					dm.getPreparedStatement().setString(5, course.getCourseKind_());
+					dm.getPreparedStatement().setString(6, course.getCourseDescription_());
+					dm.getPreparedStatement().setInt(7, course.getExpectedAttendees_());
+					dm.getPreparedStatement().setBoolean(8, course.isLecturerEnabled_());
+					dm.executePstmt();
+					this.update();
+				} catch (SQLException e) {
+					e.printStackTrace();
+					DataModel.getInstance().getExceptionsHandler().setNewException(("Es ist ein SQL-Fehler aufgetreten:<br /><br />" + e.toString()), "Datenbank-Fehler!");
+					returnState =  false;
+				} catch (Exception e) {
+					e.printStackTrace();
+					DataModel.getInstance().getExceptionsHandler().setNewException(("Es ist ein unbekannter Fehler in der Datenhaltung aufgetreten:<br /><br />" + e.toString()), "Fehler!");
+					returnState =  false;
+				}
+				return returnState;
+		} else {
+			boolean returnState = true;
+			try {
+				DataManagerPostgreSql dm=DataManagerPostgreSql.getInstance();
+				dm.prepare("UPDATE public.course SET "
+						+ "lecturerid = ?, courseacronym = ?, coursename = ?, sws = ?, coursekind = ?, coursedescription = ?, expectedattendees = ?, lecturerenabled = ? "
+						+ "WHERE courseid = ?");
+				dm.getPreparedStatement().setInt(1, course.getLecturer_().getUserId_());
+				dm.getPreparedStatement().setString(2, course.getCourseAcronym_());
+				dm.getPreparedStatement().setString(3, course.getCourseName_());
+				dm.getPreparedStatement().setFloat(4, course.getSws_());
+				dm.getPreparedStatement().setString(5, course.getCourseKind_());
+				dm.getPreparedStatement().setString(6, course.getCourseDescription_());
+				dm.getPreparedStatement().setInt(7, course.getExpectedAttendees_());
+				dm.getPreparedStatement().setBoolean(8, course.isLecturerEnabled_());
+				dm.getPreparedStatement().setInt(9, course.getCourseId_());
+				returnState = dm.executePstmt();
+				this.update();
+			} catch (SQLException e) {
+				e.printStackTrace();
+				DataModel.getInstance().getExceptionsHandler().setNewException(("Es ist ein SQL-Fehler aufgetreten:<br /><br />" + e.toString()), "Datenbank-Fehler!");
+				returnState = false;
+			} catch (Exception e) {
+				e.printStackTrace();
+				DataModel.getInstance().getExceptionsHandler().setNewException(("Es ist ein unbekannter Fehler (in der Datenhaltung aufgetreten:<br /><br />" + e.toString()), "Fehler!");
+				returnState = false;
+			}
+			return returnState;
+			
+		}
+	}
+
+	/**
+	 * Delete a course from the DB
+	 * @param course
+	 * @return true on success
+	 */
+	public boolean delete(Course course) {
+		if (course != null) {
+			boolean returnState = true;
+			
+			try {
+				DataManagerPostgreSql dm=DataManagerPostgreSql.getInstance();
+				
+				dm.prepare("DELETE FROM public.course "
+						+ "WHERE public.course.courseid = ?");
+				dm.getPreparedStatement().setInt(1, course.getCourseId_());
+				returnState = dm.executePstmt();
+				this.update();
+			} catch (SQLException e) {
+				returnState = false;
+				e.printStackTrace();
+				DataModel.getInstance().getExceptionsHandler().setNewException(("Es ist ein SQL-Fehler aufgetreten:<br /><br />" + e.toString()), "Datenbank-Fehler!");
+			} catch (Exception e) {
+				returnState = false;
+				e.printStackTrace();
+				DataModel.getInstance().getExceptionsHandler().setNewException(("Es ist ein unbekannter Fehler in der Datenhaltung aufgetreten:<br /><br />" + e.toString()), "Fehler!");
+			}
+			return returnState;
+		}
+		return false;
 	}
 
 }

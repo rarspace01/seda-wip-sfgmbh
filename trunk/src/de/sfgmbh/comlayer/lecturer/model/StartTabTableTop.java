@@ -13,17 +13,34 @@ import de.sfgmbh.applayer.core.model.User;
 import de.sfgmbh.comlayer.core.controller.ViewHelper;
 import de.sfgmbh.comlayer.core.controller.ViewManager;
 
+/**
+ * Room allocation table model for the top table in the lecturer's start tab
+ * 
+ * @author hannes
+ * @author christian
+ *
+ */
 public class StartTabTableTop extends DefaultTableModel implements IntfAppObserver {
 
 	private static final long serialVersionUID = 1L;
 	private String[] header = {"Bezeichnung", "Art", "Dozent", "SWS", "Erw. Teilnehmer", "öffentlich", "Hidden"};
 	
+	/**
+	 * Creates a default model object and performs a default (initial) change action
+	 */
 	public StartTabTableTop() {
 		AppModel.getInstance().getRepositoryCourse().register(this);
 		this.setColumnIdentifiers(header);
 		this.change("init");
 	}
 
+	/**
+	 * Update the model<br>
+	 * Depending on the variant and certain values which are currently present in the corresponding view components there are certain filters set.
+	 * Based on these filters data is retrieved and the model is (re-)built.
+	 * 
+	 * @param variant
+	 */
 	public void change(String variant) {
 		ViewHelper vh = new ViewHelper();
 		HashMap<String, String> filter = new HashMap<String, String>();

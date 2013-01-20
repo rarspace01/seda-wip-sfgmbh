@@ -183,7 +183,13 @@ public class DataHandlerRoom implements IntfDataRoom, IntfDataFilter, IntfDataOb
 						"FROM public.room " +
 						"WHERE public.room.roomnumber LIKE ? " +
 						"AND public.room.seats >= ? " +
-						"AND public.room.level LIKE ? ");
+						"AND public.room.level LIKE ? " +
+						"AND public.room.pcseats >= ? " +
+						"AND public.room.beamer >= ? " +
+						"AND public.room.visualizer >= ? " +
+						"AND public.room.overheads >= ? " +
+						"AND public.room.chalkboards >= ? " +
+						"AND public.room.whiteboards >= ? ");
 				
 			}
 			if (filter.containsKey("room") && filter.get("room") != null && filter.get("room") != "" && filter.get("room") != "<alle>") {
@@ -200,6 +206,36 @@ public class DataHandlerRoom implements IntfDataRoom, IntfDataFilter, IntfDataOb
 				filterDm.getPreparedStatement().setString(3, "%" + filter.get("level") + "%");
 			} else {
 				filterDm.getPreparedStatement().setString(3, "%");
+			}
+			if (filter.containsKey("pcseats") && filter.get("pcseats") != null && filter.get("pcseats") != "" && filter.get("pcseats") != "<alle>") {
+				filterDm.getPreparedStatement().setInt(4, Integer.parseInt(filter.get("pcseats").replace(">= ","")));
+			} else {
+				filterDm.getPreparedStatement().setInt(4, 0);
+			}
+			if (filter.containsKey("beamer") && filter.get("beamer") != null && filter.get("beamer") != "" && filter.get("beamer") != "<alle>") {
+				filterDm.getPreparedStatement().setInt(5, Integer.parseInt(filter.get("beamer").replace(">= ","")));
+			} else {
+				filterDm.getPreparedStatement().setInt(5, 0);
+			}
+			if (filter.containsKey("visualizer") && filter.get("visualizer") != null && filter.get("visualizer") != "" && filter.get("visualizer") != "<alle>") {
+				filterDm.getPreparedStatement().setInt(6, Integer.parseInt(filter.get("visualizer").replace(">= ","")));
+			} else {
+				filterDm.getPreparedStatement().setInt(6, 0);
+			}
+			if (filter.containsKey("overheads") && filter.get("overheads") != null && filter.get("overheads") != "" && filter.get("overheads") != "<alle>") {
+				filterDm.getPreparedStatement().setInt(7, Integer.parseInt(filter.get("overheads").replace(">= ","")));
+			} else {
+				filterDm.getPreparedStatement().setInt(7, 0);
+			}
+			if (filter.containsKey("chalkboards") && filter.get("chalkboards") != null && filter.get("chalkboards") != "" && filter.get("chalkboards") != "<alle>") {
+				filterDm.getPreparedStatement().setInt(8, Integer.parseInt(filter.get("chalkboards").replace(">= ","")));
+			} else {
+				filterDm.getPreparedStatement().setInt(8, 0);
+			}
+			if (filter.containsKey("whiteboards") && filter.get("whiteboards") != null && filter.get("whiteboards") != "" && filter.get("whiteboards") != "<alle>") {
+				filterDm.getPreparedStatement().setInt(9, Integer.parseInt(filter.get("whiteboards").replace(">= ","")));
+			} else {
+				filterDm.getPreparedStatement().setInt(9, 0);
 			}
 		
 			ResultSet rs = filterDm.selectPstmt();

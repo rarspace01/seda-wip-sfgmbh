@@ -96,10 +96,17 @@ public class Course implements IntfDataRetrievable{
 	}
 
 	/**
+	 * Set the kind of a course.<br>
+	 * Valid course kinds currently are:<br>
+	 * "Vorlesung", "Übung" and "Tutorium" where "Vorlesung" is the default
 	 * @param courseKind_ the courseKind_ to set
 	 */
 	public void setCourseKind_(String courseKind_) {
-		this.courseKind_ = courseKind_;
+		if (courseKind_.equals("Vorlesung") || courseKind_.equals("Übung") || courseKind_.equals("Tutorium")) {
+			this.courseKind_ = courseKind_;
+		} else {
+			this.courseKind_ = "Vorlesung";
+		}
 	}
 
 	/**
@@ -148,6 +155,57 @@ public class Course implements IntfDataRetrievable{
 	public Object getData() {
 		// TODO Auto-generated method stub
 		return null;
+	}
+	
+	/**
+	 * Validates the course object, calls an info dialog when one check fails and returns true if all checks are passed
+	 * @return true if all check attributes are valid
+	 */
+	public boolean validate() {
+		boolean check = true;
+		String message = "";
+		
+		if (this.courseId_ < -1 ) {
+			message = message + "Die Veranstaltung hat keine gültige ID!<br/>";
+			check = false;
+		}
+		if (this.courseAcronym_.length() > 16 || this.courseAcronym_.length() < 2) {
+			message = message + "Die Kennung einer Veranstaltung muss zwischen 2 und 16 Zeichen lang sein!<br />";
+			check = false;
+		}
+		if (this.courseDescription_.length() > 256 ) {
+			message = message + "Die Beschreibung einer Veranstaltung darf 256 Zeichen nicht überschreiten!<br />";
+			check = false;
+		}
+		if (this.courseName_.length() > 64 || this.courseName_.length() < 1) {
+			message = message + "Der ausführliche Name einer Veranstaltung muss zwischen 1 und 64 Zeichen lang sein!<br />";
+			check = false;
+		}
+		if (this.expectedAttendees_ < 0 ) {
+			message = message + "Die erwartete Teilnehmerzahl darf nicht negativ sein!<br />";
+			check = false;
+		}
+		if (this.sws_ < 0 || this.sws_ > 100) {
+			message = message + "Die SWS müssen ziwsch 0 und 100 liegen!<br />";
+			check = false;
+		}
+		
+		if (check) {
+			return true;
+		} else {
+			AppModel.getInstance().getExceptionHandler().setNewException(message, "Fehler!");
+			return false;
+		}
+	}
+	
+	/**
+	 * Save this course object in the DB
+	 */
+	public boolean save() {
+		if (AppModel.getInstance().getRepositoryCourse().save(this)) {
+			return true;
+		}
+		return false;
 	}
 	
 }

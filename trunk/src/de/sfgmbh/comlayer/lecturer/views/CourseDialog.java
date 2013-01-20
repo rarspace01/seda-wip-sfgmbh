@@ -112,7 +112,7 @@ public class CourseDialog extends JDialog {
 			this.getTxtName().setText(this.course.getCourseName_());
 			this.getCmbboxKind().setSelectedItem(this.course.getCourseKind_());
 			this.getCmbboxLecturer().setSelectedItem(this.course.getLecturer_().getlName_());
-			this.getTxtSws().setToolTipText(String.valueOf(this.course.getSws_()));
+			this.getTxtSws().setText(Float.toString(this.course.getSws_()));
 			this.getChckbxPublic().setSelected(this.course.isLecturerEnabled_());
 			this.getTxtAttendees().setText(String.valueOf(this.course.getExpectedAttendees_()));
 			this.getEditDescription().setText(this.course.getCourseDescription_());
@@ -252,5 +252,19 @@ public class CourseDialog extends JDialog {
 			chckbxPublic.setBounds(16, 254, 244, 23);
 		}
 		return chckbxPublic;
+	}
+
+	/**
+	 * @return the course
+	 */
+	public Course getCourse() {
+		return course;
+	}
+
+	/**
+	 * @param course the course to set
+	 */
+	public void setCourse(Course course) {
+		this.course = course;
 	}
 }

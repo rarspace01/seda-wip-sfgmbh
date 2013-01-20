@@ -139,6 +139,9 @@ public class CtrlRoomAllocation {
 					allowSave = true;
 				}
 			}
+			if (roomAllocation.getConflictingAllocations_().isEmpty()) {
+				allowSave = true;
+			}
 			if (allowSave) {
 				return roomAllocation.save();
 			} else {
