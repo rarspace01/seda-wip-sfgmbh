@@ -144,6 +144,10 @@ public class StartTabBtnsControl implements ActionListener, IntfComDialogObserve
 			} else {
 				row = startTab.getRowSorterBottom().convertRowIndexToModel(row);
 				RoomAllocation revokeAllocation = (RoomAllocation) modelTableBottom.getValueAt(row, 7);
+				if (revokeAllocation.getApproved_().equals("denied")) {
+					exceptionHandler.setNewException("Diese Raumbelegung ist bereits zurückgezogen bzw. abgelehnt.", "Achtung!", "info");
+					return;
+				}
 				QuestionDialog dialog = new QuestionDialog("Wollen Sie die gewählte Raumbelegung wirklich zurückziehen?", "Achtung!");
 				this.revokeAllocation = revokeAllocation;
 				dialog.register(this);

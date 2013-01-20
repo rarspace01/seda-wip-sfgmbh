@@ -13,6 +13,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 
+import net.miginfocom.swing.MigLayout;
 import de.sfgmbh.applayer.core.model.AppModel;
 import de.sfgmbh.applayer.core.model.RoomAllocation;
 import de.sfgmbh.comlayer.core.controller.BaseCmbboxFilter;
@@ -21,7 +22,6 @@ import de.sfgmbh.comlayer.core.controller.ViewManager;
 import de.sfgmbh.comlayer.core.model.CmbboxFilterSemester;
 import de.sfgmbh.comlayer.core.views.BaseTab;
 import de.sfgmbh.comlayer.organisation.controller.RoomtableTabBtnPdf;
-import net.miginfocom.swing.MigLayout;
 
 public class RoomtableTab extends JPanel {
 

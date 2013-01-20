@@ -10,7 +10,6 @@ import javax.swing.JLabel;
 import javax.swing.JTextPane;
 
 import net.miginfocom.swing.MigLayout;
-import de.sfgmbh.applayer.core.model.AppModel;
 import de.sfgmbh.comlayer.core.controller.QuestionDialogBtns;
 import de.sfgmbh.comlayer.core.definitions.IntfComDialogObservable;
 import de.sfgmbh.comlayer.core.definitions.IntfComDialogObserver;
@@ -28,7 +27,7 @@ public class QuestionDialog extends JDialog implements IntfComDialogObserver, In
 	private JButton btnYes;
 	private JLabel lblNewLabel;
 	private JButton btnNo;
-	private Object currentObserver_;
+	private IntfComDialogObserver currentObserver_;
 
 	/**
 	 * Create the dialog with default message, title and settings
@@ -140,17 +139,13 @@ public class QuestionDialog extends JDialog implements IntfComDialogObserver, In
 	}
 
 	@Override
-	public void register(Object observer) {
-		if (observer instanceof IntfComDialogObserver){
-			this.currentObserver_ = observer;
-		} else {
-			AppModel.getInstance().getExceptionHandler().setNewException("Ein Objekt das selbst nicht das Observer-Interface implementiert konnte nicht als Observer registriert werden", "Fehler!");
-		}
+	public void register(IntfComDialogObserver observer) {
+		this.currentObserver_ = observer;
 	}
 
 	@Override
 	public void update(String answer) {
-			((IntfComDialogObserver) this.currentObserver_).answered(answer);
+			(this.currentObserver_).answered(answer);
 	}
 
 	@Override

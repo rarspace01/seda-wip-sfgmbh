@@ -12,9 +12,6 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
-import javax.swing.JTextPane;
-import javax.swing.UIManager;
-import javax.swing.border.TitledBorder;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 
@@ -23,7 +20,6 @@ import de.sfgmbh.comlayer.core.controller.ViewManager;
 import de.sfgmbh.comlayer.core.model.CmbboxFilterChair;
 import de.sfgmbh.comlayer.core.model.CmbboxFilterUserClass;
 import de.sfgmbh.comlayer.core.views.BaseTab;
-import de.sfgmbh.comlayer.organisation.controller.RoomTabBtnsControl;
 import de.sfgmbh.comlayer.organisation.controller.UserTabBtnsControl;
 import de.sfgmbh.comlayer.organisation.controller.UserTabCmbboxFilter;
 
@@ -46,14 +42,10 @@ public class UserTab extends JPanel {
 	private JLabel lblEmail;
 	private JComboBox<String> comboBoxUserclass;
 	private JComboBox<String> comboBoxChair;
-	private JPanel leftPanel;
-	private JPanel leftTopPanel;
 	private JScrollPane userTableScrollPane;
 	private JPanel buttonPanel;
 	private JButton btnEdit;
 	private JButton btnDelete;
-	private JTextPane tickerMsgPos1;
-	private JButton btnFailureprompt;
 	private JPanel uniIconPanel;
 	private JLabel lblUniIcon;
 	private TableRowSorter<TableModel> rowSorter;
@@ -118,23 +110,7 @@ public class UserTab extends JPanel {
 		textFieldMail.setColumns(10);
 		add(textFieldMail, "cell 5 1,growx");
 		
-		leftPanel = new JPanel();
-		leftPanel.setLayout(null);
-		leftPanel.setMaximumSize(new Dimension(140, 32767));
-		leftPanel.setBorder(null);
-		add(leftPanel, "cell 0 2,grow");
-		
-		leftTopPanel = new JPanel();
-		leftTopPanel.setLayout(null);
-		leftTopPanel.setBorder(new TitledBorder(null, "", TitledBorder.TRAILING, TitledBorder.ABOVE_TOP, null, null));
-		leftTopPanel.setBounds(0, 6, 140, 383);
-		leftPanel.add(leftTopPanel);
-		
-		tickerMsgPos1 = new JTextPane();
-		tickerMsgPos1.setBackground(UIManager.getColor("Button.background"));
-		tickerMsgPos1.setText("LiveTickerNews:\r\n\r\nFehler: Es wurden keine Lehrveranstaltungen gefunden werden, die in 10 Minuten beginnen.\r\n\r\nFehler: Es wurden keine Meldungen von Dozenten oder der Hausverwaltung gefunden. \r\n\r\nFehler: Es besteht keine Verbindung zur Datenbank.\r\n");
-		tickerMsgPos1.setBounds(10, 11, 120, 361);
-		leftTopPanel.add(tickerMsgPos1);
+		add(ViewManager.getInstance().getCoreLiveTickerPanel(), "cell 0 2,grow");
 		
 		userTableScrollPane = new JScrollPane();
 		add(userTableScrollPane, "flowx,cell 2 2 4 1,grow");
