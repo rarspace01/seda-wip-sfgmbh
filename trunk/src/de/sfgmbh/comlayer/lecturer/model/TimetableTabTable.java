@@ -2,7 +2,10 @@ package de.sfgmbh.comlayer.lecturer.model;
 
 import javax.swing.table.DefaultTableModel;
 
-public class TimetableTabTable extends DefaultTableModel {
+import de.sfgmbh.applayer.core.definitions.IntfAppObserver;
+import de.sfgmbh.comlayer.core.controller.ViewManager;
+
+public class TimetableTabTable extends DefaultTableModel implements IntfAppObserver  {
 
 	private static final long serialVersionUID = 1L;
 	private Object[][] preFill = {
@@ -30,5 +33,12 @@ public class TimetableTabTable extends DefaultTableModel {
 	@Override
 	public boolean isCellEditable(int row, int column) {
 		return false;
+	}
+
+	@Override
+	public void change() {
+
+		ViewManager.getInstance().getLecturerTimetableTab().reloadPlan();
+		
 	}
 }
