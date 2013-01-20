@@ -2,22 +2,38 @@ package de.sfgmbh.applayer.core.controller;
 
 import de.sfgmbh.applayer.core.model.User;
 
+/**
+ * Session manager class which is used to store, retrieve and manage user sessions
+ * 
+ * @author hannes
+ *
+ */
 public class SessionManager {
 	
 	private static SessionManager uniqueInstance_ = new SessionManager();
 	private boolean isLoggedIn;
 	private User user;
 	
+	/**
+	 * Create the session manager singleton
+	 */
 	public SessionManager() {
 		uniqueInstance_ = this;
 		this.isLoggedIn = false;
 		this.user = null;
 	}
 	
+	/**
+	 * Get the session manager
+	 * @return the SessionManager
+	 */
 	public static SessionManager getInstance() {
 		return uniqueInstance_;
 	}
 
+	/**
+	 * Dispose the current session manager
+	 */
 	public void dispose() {
 		uniqueInstance_ = null;
 	}

@@ -5,7 +5,6 @@ import java.awt.Dimension;
 import java.util.HashMap;
 import java.util.List;
 
-import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -23,7 +22,6 @@ import de.sfgmbh.comlayer.core.controller.ViewManager;
 import de.sfgmbh.comlayer.core.model.CmbboxFilterLecturer;
 import de.sfgmbh.comlayer.core.model.CmbboxFilterSemester;
 import de.sfgmbh.comlayer.core.views.BaseTab;
-import de.sfgmbh.comlayer.lecturer.controller.ProfessorshipTimetableTabBtn;
 import de.sfgmbh.comlayer.lecturer.controller.ProfessorshipTimetableTabCmbbox;
 import de.sfgmbh.comlayer.lecturer.controller.TimetableTabBtn;
 
@@ -46,7 +44,6 @@ public class TimetableTab extends JPanel {
 
 		createContents();
 	}
-	@SuppressWarnings({ "rawtypes", "unchecked" })
 	private void createContents() {
 		setAutoscrolls(true);
 		
