@@ -25,6 +25,7 @@ import de.sfgmbh.comlayer.core.model.CmbboxFilterSemester;
 import de.sfgmbh.comlayer.core.views.BaseTab;
 import de.sfgmbh.comlayer.lecturer.controller.ProfessorshipTimetableTabBtn;
 import de.sfgmbh.comlayer.lecturer.controller.ProfessorshipTimetableTabCmbbox;
+import de.sfgmbh.comlayer.lecturer.controller.TimetableTabBtn;
 
 public class TimetableTab extends JPanel {
 	private static final long serialVersionUID = 1L;
@@ -71,7 +72,7 @@ public class TimetableTab extends JPanel {
 		add(comboBoxSemesterFilter_, "cell 2 0,alignx right,aligny bottom");
 		
 		JButton btnPdfErzeugen = new JButton("PDF Erzeugen");
-		btnPdfErzeugen.addActionListener(new ProfessorshipTimetableTabBtn());
+		btnPdfErzeugen.addActionListener(new TimetableTabBtn("createpdf"));
 		add(btnPdfErzeugen, "cell 3 0,alignx left,aligny bottom");
 		
 		JPanel uniIconPanel = new JPanel();
@@ -83,6 +84,8 @@ public class TimetableTab extends JPanel {
 		uniIconPanel.add(lblUniIcon);
 		add(getPanel(), "cell 0 2 5 1,grow");
 	}
+	
+	
 	public JPanel getPanel() {
 		if (panel_ == null) {
 			panel_ = new JPanel();
@@ -180,5 +183,11 @@ public class TimetableTab extends JPanel {
 		}
 		
 	}
+	
+	public JPanel getPanel_() {
+		return panel_;
+	}
+	
+	
 }
 
