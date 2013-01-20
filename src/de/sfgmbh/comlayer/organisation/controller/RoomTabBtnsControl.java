@@ -133,6 +133,12 @@ public class RoomTabBtnsControl implements ActionListener, IntfComDialogObserver
 				ViewManager.getInstance().getCoreBaseTab().getMainTabbedContainerPane()
 						.setSelectedIndex(ViewManager.getInstance().getCoreBaseTab().getMainTabbedContainerPane()
 								.getTabCount() - 1);
+			}else{
+				AppModel.getInstance()
+				.getExceptionHandler()
+				.setNewException(
+						"Bitte wählen sie einen Raum aus",
+						"Fehler!");
 			}
 			
 		}
