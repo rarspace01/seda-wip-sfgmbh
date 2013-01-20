@@ -24,7 +24,7 @@ public class RoomTabTable extends DefaultTableModel implements IntfAppObserver {
 	
 	public void addRoom(Room room) {
 		
-		Object[] rowVector= {room.getRoomId_(),room.getRoomNumber_(),room.getBuildingId_(),room.getLevel_(),room.getSeats_(), room.getPcseats_(), room.getBeamer_(), room.getVisualizer_(), room.getOverheads_(), room.getChalkboards_(), room.getWhiteboards_()};
+		Object[] rowVector= {room.getRoomId_(),room.getRoomNumber_(),"ERBA",room.getLevel_(),room.getSeats_(), room.getPcseats_(), room.getBeamer_(), room.getVisualizer_(), room.getOverheads_(), room.getChalkboards_(), room.getWhiteboards_()};
 		
 		this.addRow(rowVector);
 	}

@@ -33,11 +33,9 @@ public class RoomTab extends JPanel {
 	private JTextField textFieldPCSeats;
 	private JTable raumverwaltungTable;
 	private JLabel lblBuilding;
-	private JLabel lblLevel;
 	private JLabel lblSeats;
 	private JLabel lblPcseats;
 	private JComboBox<String> comboBoxBuilding;
-	private JComboBox<String> comboBoxLevel;
 	private JPanel leftPanel;
 	private JPanel leftTopPanel;
 	private JScrollPane organisationTableScrollPane;
@@ -69,9 +67,6 @@ public class RoomTab extends JPanel {
 		lblBuilding = new JLabel("Stockwerke:");
 		add(lblBuilding, "cell 2 0,aligny bottom");
 
-		lblLevel = new JLabel("R\u00E4ume:");
-		add(lblLevel, "cell 3 0,aligny bottom");
-
 		lblSeats = new JLabel("Pl\u00E4tze:");
 		add(lblSeats, "cell 4 0,aligny bottom");
 
@@ -94,14 +89,6 @@ public class RoomTab extends JPanel {
 		comboBoxBuilding.setEditable(true);
 		comboBoxBuilding.setAutoscrolls(true);
 		add(comboBoxBuilding, "cell 2 1,growx");
-
-		comboBoxLevel = new JComboBox<String>();
-		comboBoxLevel.setModel(new DefaultComboBoxModel<String>(
-				new String[] { "<alle>" }));
-		comboBoxLevel.addActionListener(new ChairTabCmbboxFilter());
-		comboBoxLevel.setEditable(true);
-		comboBoxLevel.setAutoscrolls(true);
-		add(comboBoxLevel, "cell 3 1,growx");
 
 		textFieldSeats = new JTextField();
 		textFieldSeats.setText("<alle>");
