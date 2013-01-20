@@ -10,7 +10,6 @@ import de.sfgmbh.comlayer.lecturer.model.StartTabTableBottom;
 import de.sfgmbh.comlayer.lecturer.model.StartTabTableTop;
 import de.sfgmbh.comlayer.lecturer.model.TimetableTabTable;
 import de.sfgmbh.comlayer.lecturer.views.ChairTimetableTab;
-import de.sfgmbh.comlayer.lecturer.views.RoomRequestFrame;
 import de.sfgmbh.comlayer.lecturer.views.StartTab;
 import de.sfgmbh.comlayer.lecturer.views.TimetableTab;
 import de.sfgmbh.comlayer.organisation.model.ChairTabTable;
@@ -278,7 +277,6 @@ public class ViewManager {
 	private StartTab startTab;
 	private StartTabTableTop startTabTableTop;
 	private StartTabTableBottom startTabTableBottom;
-	private RoomRequestFrame roomRquestFrame;
 	private TimetableTabTable timetableTabTable;
 	private TimetableTab timetableTab;
 	private ChairTimetableTabTable chairTimetableTabTable;
@@ -301,12 +299,6 @@ public class ViewManager {
 			this.startTabTableBottom = new StartTabTableBottom();
 		}
 		return this.startTabTableBottom;
-	}
-	public RoomRequestFrame getLecturerRoomRequestFrame() {
-		if (this.roomRquestFrame == null) {
-			this.roomRquestFrame = new RoomRequestFrame();
-		}
-		return this.roomRquestFrame;
 	}
 	public TimetableTabTable getLecturerTimetableTabTable() {
 		if (this.timetableTabTable == null) {
