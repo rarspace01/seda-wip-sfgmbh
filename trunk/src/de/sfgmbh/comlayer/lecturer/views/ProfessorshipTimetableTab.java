@@ -101,15 +101,15 @@ public class ProfessorshipTimetableTab extends JPanel {
 	
 			lehrstuhlStundenplanTable_.setBackground(Color.WHITE);
 			lehrstuhlStundenplanTable_.setModel(ViewManager.getInstance().getLecturerChairimetableTabTable());
-			lehrstuhlStundenplanTable_.getColumnModel().getColumn(0).setResizable(false);
+			lehrstuhlStundenplanTable_.getColumnModel().getColumn(0).setResizable(true);
 			lehrstuhlStundenplanTable_.getColumnModel().getColumn(0).setPreferredWidth(50);
 			lehrstuhlStundenplanTable_.getColumnModel().getColumn(0).setMinWidth(50);
 			lehrstuhlStundenplanTable_.getColumnModel().getColumn(0).setMaxWidth(105);
-			lehrstuhlStundenplanTable_.getColumnModel().getColumn(1).setResizable(false);
+			lehrstuhlStundenplanTable_.getColumnModel().getColumn(1).setResizable(true);
 			lehrstuhlStundenplanTable_.getColumnModel().getColumn(1).setPreferredWidth(50);
 			lehrstuhlStundenplanTable_.getColumnModel().getColumn(1).setMinWidth(50);
 			lehrstuhlStundenplanTable_.getColumnModel().getColumn(1).setMaxWidth(145);
-			lehrstuhlStundenplanTable_.getColumnModel().getColumn(2).setResizable(false);
+			lehrstuhlStundenplanTable_.getColumnModel().getColumn(2).setResizable(true);
 			lehrstuhlStundenplanTable_.getColumnModel().getColumn(2).setMinWidth(75);
 			lehrstuhlStundenplanTable_.getColumnModel().getColumn(2).setMaxWidth(145);
 			lehrstuhlStundenplanTable_.getColumnModel().getColumn(3).setPreferredWidth(80);
