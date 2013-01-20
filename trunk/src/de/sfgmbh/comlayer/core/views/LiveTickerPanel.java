@@ -1,26 +1,68 @@
 package de.sfgmbh.comlayer.core.views;
 
+import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.RenderingHints;
+import java.util.List;
+
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
-import java.awt.Font;
 import javax.swing.JTextPane;
+import javax.swing.SwingWorker;
+import javax.swing.UIManager;
 import javax.swing.border.CompoundBorder;
 import javax.swing.border.TitledBorder;
-import javax.swing.UIManager;
 
+import de.sfgmbh.applayer.core.controller.CtrlLiveTicker;
+import de.sfgmbh.applayer.core.model.RoomAllocation;
+import de.sfgmbh.comlayer.core.controller.ViewHelper;
+import java.awt.Color;
+
+/**
+ * Panel for the live ticker
+ * 
+ * @author hannes
+ *
+ */
 public class LiveTickerPanel extends JPanel {
 
 	private static final long serialVersionUID = 1L;
 	private JTextArea txtHeader;
 	private JTextPane txtTicker;
+	private CtrlLiveTicker ctrlLiverTicker = new CtrlLiveTicker();
+	private List<RoomAllocation> displayAllocations;
+	private boolean isTooLong;
 	
 	/**
 	 * Create the panel.
 	 */
 	public LiveTickerPanel() {
-
 		createContents();
+		this.refresh();
+		ScrollTicker scrollTicker = new ScrollTicker();
+		scrollTicker.execute();
 	}
+	
+	/**
+	 * Refresh the live ticker with current values
+	 */
+	public void refresh() {
+		this.displayAllocations = this.ctrlLiverTicker.getTickerAllocations();
+		
+		// Set a fix top text message
+		String textToSet = "<strong>Logindaten:</strong><br />" +
+				"Doz // Doz <br />" +
+				"Verw // Verw <br /><br/>";
+		
+		// Get the text for the room allocations
+		String allocationText = this.getRoomAllocationText(this.displayAllocations);
+		
+		// Merge and set text
+		textToSet = textToSet + allocationText;
+		this.setTickerText(textToSet);
+	}
+	
 	private void createContents() {
 		setBorder(new CompoundBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "", TitledBorder.LEADING, TitledBorder.TOP, null, null), null));
 		setLayout(null);
@@ -28,26 +70,118 @@ public class LiveTickerPanel extends JPanel {
 		add(getTxtHeader());
 		add(getTxtTicker());
 	}
+	
 	public JTextArea getTxtHeader() {
 		if (txtHeader == null) {
 			txtHeader = new JTextArea();
-			txtHeader.setOpaque(false);
+			txtHeader.setBorder(new TitledBorder(null, "", TitledBorder.LEFT, TitledBorder.TOP, null, null));
+			txtHeader.setBackground(new Color(240, 240, 240));
 			txtHeader.setFont(new Font("Tahoma", Font.PLAIN, 11));
 			txtHeader.setEditable(false);
 			txtHeader.setText("Infos & nahe Termine:");
-			txtHeader.setBounds(5, 5, 130, 18);
+			txtHeader.setBounds(0, 0, 140, 23);
 		}
 		return txtHeader;
 	}
+	
 	public JTextPane getTxtTicker() {
 		if (txtTicker == null) {
 			txtTicker = new JTextPane();
+			txtTicker.setDragEnabled(true);
 			txtTicker.setOpaque(false);
 			txtTicker.setEditable(false);
 			txtTicker.setContentType("text/html");
 			txtTicker.setBounds(5, 21, 130, 285);
-			txtTicker.setText("<div style=\"font-family: Tahoma, Calibri, monospace; font-size: 11pt;\"><strong>Logindaten:</strong><br>Dozenten:<br>Doz // Doz <br><br>Studenten:<br>Stud // Stud<br><br>Verwaltung:<br>Verw // Verw <br><br> Anderenfalls Fehler!</div>");
+			txtTicker.setText("<div style=\"font-family: Tahoma, Calibri, monospace; font-size: 11pt;\"></div>");
 		}
 		return txtTicker;
+	}
+	
+	/**
+	 * Set a ticker text which may be HTML-formated but doesn't need the initial style (font-family and size is already set)
+	 * @param text/html
+	 */
+	public void setTickerText(String text) {
+		this.getTxtTicker().setText("<div style=\"font-family: Tahoma, Calibri, monospace; font-size: 11pt;\">" +
+				text +
+				"</div>");
+		
+		// Adjust the height
+		Double heightDouble = this.getTxtTicker().getPreferredSize().getHeight();
+		int height = heightDouble.intValue();
+		int x = this.getTxtTicker().getBounds().x;
+		int y = this.getTxtTicker().getBounds().y;
+		int width = this.getTxtTicker().getBounds().width;
+		this.getTxtTicker().setBounds(x, y, width, height);
+		if (height > 285) {
+			this.isTooLong = true;
+		} else {
+			this.isTooLong = false;
+		}
+	}
+	
+	private String getRoomAllocationText (List<RoomAllocation> roomAllocations) {
+		ViewHelper vh = new ViewHelper();
+		String returnString = "";
+		
+		// Build the string for all allocations
+		for (RoomAllocation ra : roomAllocations) {
+			returnString = 
+					returnString + vh.getTime(ra.getTime_()) + " Uhr<br />" +
+					"Raum: " + ra.getRoom_().getRoomNumber_() + "<br />" +
+					"<strong>" + ra.getCourse_().getCourseAcronym_() + "</strong> (" + ra.getCourse_().getCourseKind_() + ")<br /><br />";
+ 		}
+		
+		/*
+		for (int i = 0; i < 10; i++) {
+			returnString = returnString + "Test Test<br><strong>Test</strong><br><br>";
+		}
+		*/
+		
+		return returnString;
+	}
+	
+	private void scroll() {
+		// Get current size and scroll by one
+		if (this.isTooLong) {
+			int x = this.getTxtTicker().getBounds().x;
+			int y = this.getTxtTicker().getBounds().y;
+			int width = this.getTxtTicker().getBounds().width;
+			int height = this.getTxtTicker().getBounds().height;
+			if (-y == height-30) {
+				y = 285;
+			}
+			this.getTxtTicker().setBounds(x, y-1, width, height);
+		}
+	}
+	
+	/**
+	 * Swing worker to scroll in background
+	 *
+	 * @author hannes
+	 */
+	class ScrollTicker extends SwingWorker<Object, Object> {
+		
+		protected Object doInBackground() throws Exception {
+			while (true) {
+				try {
+					Thread.sleep(110);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+				LiveTickerPanel.this.scroll();
+			}
+		}
+	}
+	
+	public class JTextPaneAntiAliasing extends JTextPane {
+		private static final long serialVersionUID = 1L;
+
+		public void paintComponent(Graphics graphics) {
+			Graphics2D graphics2D = (Graphics2D) graphics;
+		    graphics2D.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
+		    graphics2D.setRenderingHint(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);
+		    super.paintComponent(graphics2D);
+		}
 	}
 }
