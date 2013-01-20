@@ -10,7 +10,7 @@ import de.sfgmbh.comlayer.lecturer.model.ChairTimetableTabTable;
 import de.sfgmbh.comlayer.lecturer.model.StartTabTableBottom;
 import de.sfgmbh.comlayer.lecturer.model.StartTabTableTop;
 import de.sfgmbh.comlayer.lecturer.model.TimetableTabTable;
-import de.sfgmbh.comlayer.lecturer.views.ChairTimetableTab;
+import de.sfgmbh.comlayer.lecturer.views.ProfessorshipTimetableTab;
 import de.sfgmbh.comlayer.lecturer.views.StartTab;
 import de.sfgmbh.comlayer.lecturer.views.TimetableTab;
 import de.sfgmbh.comlayer.organisation.model.ChairTabTable;
@@ -288,7 +288,7 @@ public class ViewManager {
 	private TimetableTabTable timetableTabTable;
 	private TimetableTab timetableTab;
 	private ChairTimetableTabTable chairTimetableTabTable;
-	private ChairTimetableTab chairTimetableTab;
+	private ProfessorshipTimetableTab chairTimetableTab;
 	
 	public StartTab getLecturerStartTab() {
 		if (this.startTab == null) {
@@ -320,13 +320,13 @@ public class ViewManager {
 		}
 		return this.timetableTab;
 	}
-	public ChairTimetableTab getChairTimetableTab() {
+	public ProfessorshipTimetableTab getChairTimetableTab() {
 		if (this.chairTimetableTab == null) {
-			this.chairTimetableTab = new ChairTimetableTab();
+			this.chairTimetableTab = new ProfessorshipTimetableTab();
 		}
 		return this.chairTimetableTab;
 	}
-	public ChairTimetableTabTable getLecturerProfessorshipTimetableTabTable() {
+	public ChairTimetableTabTable getLecturerChairimetableTabTable() {
 		if (this.chairTimetableTabTable == null) {
 			this.chairTimetableTabTable = new ChairTimetableTabTable();
 		}

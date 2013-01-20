@@ -136,6 +136,7 @@ public class DataHandlerRoomAllocation implements IntfDataObservable, IntfDataFi
 						"AND public.room.roomnumber LIKE ? " +
 						"AND public.user.login LIKE ? " +
 						"AND public.room.roomid BETWEEN ? AND ? " +
+						"AND public.chair.chairid BETWEEN ? AND ? " +
 						"ORDER BY public.roomallocation.day ASC, public.roomallocation.time ASC");
 				
 			}
@@ -186,6 +187,13 @@ public class DataHandlerRoomAllocation implements IntfDataObservable, IntfDataFi
 			} else {
 				filterDm.getPreparedStatement().setInt(11, 0);
 				filterDm.getPreparedStatement().setInt(12, 2147483647);
+			}
+			if (filter.containsKey("chairid") && filter.get("chairid") != null && filter.get("chairid") != "" && filter.get("chairid") != "<alle>") {
+				filterDm.getPreparedStatement().setInt(13, Integer.parseInt(filter.get("chairid")));
+				filterDm.getPreparedStatement().setInt(14, Integer.parseInt(filter.get("chairid")));
+			} else {
+				filterDm.getPreparedStatement().setInt(13, 0);
+				filterDm.getPreparedStatement().setInt(14, 2147483647);
 			}
 			
 			ResultSet rs = filterDm.selectPstmt();
