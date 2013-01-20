@@ -324,6 +324,9 @@ public class ViewManager {
 		}
 		return this.chairTimetableTabTable;
 	}
+	
+	
+	
 	/**
 	* Module: Student Profile - will probably not be implemented in the first version of the program
 	*/
