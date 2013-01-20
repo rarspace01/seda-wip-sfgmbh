@@ -37,10 +37,6 @@ public class CtrlBaseTab {
 				checkUser.setLastLogin_((long) System.currentTimeMillis()/1000);
 				checkUser.save();
 				
-				// When a lecturer logged in pre-set combo box values
-				// Check if there is a logged in lecturer and if yes per-set the filter accordingly
-				//ViewManagercomboLecturer.setSelectedItem("test");
-				
 				return checkUser;
 			}
 		}

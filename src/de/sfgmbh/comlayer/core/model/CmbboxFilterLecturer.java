@@ -1,5 +1,7 @@
 package de.sfgmbh.comlayer.core.model;
 
+import java.util.ArrayList;
+
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComboBox;
 
@@ -19,6 +21,7 @@ public class CmbboxFilterLecturer extends DefaultComboBoxModel<String> implement
 	private static final long serialVersionUID = 1L;
 	private JComboBox<String> dependentComboBox;
 	private String variant;
+	private ArrayList<User> lecturerForModel = new ArrayList<User>();
 	
 	/**
 	 * Create the model object
@@ -47,9 +50,12 @@ public class CmbboxFilterLecturer extends DefaultComboBoxModel<String> implement
 		
 		if (!this.variant.equals("select")) {
 			this.addElement("<alle>");
+			lecturerForModel.add(0, null);
 		}
 		for (User user : AppModel.getInstance().getRepositoryUser().getAllLecturer()){
 			this.addElement(user.getlName_());
+			int desiredIndex = this.getSize()-1;
+			lecturerForModel.add(desiredIndex, user);
 		}
 
 		// Set the selected lecturer to the currently logged in lecturer if
@@ -72,5 +78,12 @@ public class CmbboxFilterLecturer extends DefaultComboBoxModel<String> implement
 		// Build a new model (which will be up to date automatically) and set it
 		CmbboxFilterLecturer newModel = new CmbboxFilterLecturer(this.dependentComboBox);
 		this.dependentComboBox.setModel(newModel);
+	}
+
+	/**
+	 * @return the lecturerForModel
+	 */
+	public ArrayList<User> getLecturerForModel() {
+		return lecturerForModel;
 	}
 }

@@ -9,6 +9,12 @@ import de.sfgmbh.applayer.core.definitions.IntfAppObserver;
 import de.sfgmbh.datalayer.core.definitions.IntfDataObserver;
 import de.sfgmbh.datalayer.core.model.DataModel;
 
+/**
+ * Repository for the course objects in the model
+ * 
+ * @author hannes
+ *
+ */
 public class RepositoryCourse implements IntfAppObservable, IntfDataObserver {
 	
 	private ArrayList<Object> observer_ = new ArrayList<Object>();
@@ -76,6 +82,24 @@ public class RepositoryCourse implements IntfAppObservable, IntfDataObserver {
 	@Override
 	public void unregister(Object observer) {
 		observer_.remove(observer);
+	}
+
+	/**
+	 * Save a course in the DB
+	 * @param course
+	 * @return true on success
+	 */
+	public boolean save(Course course) {
+		return DataModel.getInstance().getDataHandlerCourse().save(course);
+	}
+
+	/**
+	 * Delete a course from the DB
+	 * @param course
+	 * @return true on success
+	 */
+	public boolean delete(Course course) {
+		return DataModel.getInstance().getDataHandlerCourse().delete(course);
 	}
 
 }

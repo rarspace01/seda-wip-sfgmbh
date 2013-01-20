@@ -18,7 +18,8 @@ import de.sfgmbh.comlayer.core.controller.ViewManager;
 /**
  * Room allocation table model for the bottom table in the lecturer's start tab
  * 
- * @author christian, hannes
+ * @author hannes
+ * @author christian
  *
  */
 public class StartTabTableBottom extends DefaultTableModel implements IntfAppObserver {
@@ -36,7 +37,7 @@ public class StartTabTableBottom extends DefaultTableModel implements IntfAppObs
 	}
 	
 	/**
-	 * Update action for the model
+	 * Update the model<br>
 	 * Depending on the variant and certain values which are currently present in the corresponding view components there are certain filters set.
 	 * Based on these filters data is retrieved and the model is (re-)built.
 	 * 

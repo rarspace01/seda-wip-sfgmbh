@@ -9,9 +9,13 @@ import javax.swing.table.TableModel;
 import de.sfgmbh.applayer.core.model.AppException;
 import de.sfgmbh.applayer.core.model.AppModel;
 import de.sfgmbh.applayer.core.model.Course;
+import de.sfgmbh.applayer.core.model.RoomAllocation;
+import de.sfgmbh.applayer.lecturer.controller.CtrlStartTab;
 import de.sfgmbh.comlayer.core.controller.ViewManager;
-import de.sfgmbh.comlayer.core.views.InfoDialog;
+import de.sfgmbh.comlayer.core.definitions.IntfComDialogObserver;
+import de.sfgmbh.comlayer.core.views.QuestionDialog;
 import de.sfgmbh.comlayer.lecturer.views.CourseDialog;
+import de.sfgmbh.comlayer.lecturer.views.RoomRequestDialog;
 import de.sfgmbh.comlayer.lecturer.views.StartTab;
 
 /**
@@ -21,15 +25,23 @@ import de.sfgmbh.comlayer.lecturer.views.StartTab;
  * @author christian
  *
  */
-public class StartTabBtnsControl implements ActionListener {
+public class StartTabBtnsControl implements ActionListener, IntfComDialogObserver {
 	
 	private String ctrlAction;
-	protected InfoDialog infoWindow;
+	private Course delCourse;
+	private RoomAllocation revokeAllocation;
+	private CtrlStartTab cntrlStartTab = new CtrlStartTab();
 	
-	
+	/**
+	 * Create the action listener
+	 */
 	public StartTabBtnsControl() {
 		this.ctrlAction = "default";
 	}
+	/**
+	 * Create the action listener based on an action string
+	 * @param action
+	 */
 	public StartTabBtnsControl(String action) {
 		this.ctrlAction = action;
 	}
@@ -74,23 +86,91 @@ public class StartTabBtnsControl implements ActionListener {
 		
 		// Delete button is pressed
 		if (this.ctrlAction.equals("delete")){
-
+			// Get course and use it
+			int row = topTable.getSelectedRow();
+			if (row == -1) {
+				exceptionHandler.setNewException("Sie müssen zunächst eine Veranstaltung wählen.", "Achtung!");
+			} else {
+				row = startTab.getRowSorterTop().convertRowIndexToModel(row);
+				Course delCourse = (Course) modelTopTable.getValueAt(row, 6);
+				QuestionDialog dialog = new QuestionDialog("Wollen Sie die gewählte Veranstaltung wirklich löschen?", "Achtung!");
+				this.delCourse = delCourse;
+				dialog.register(this);
+				dialog.setVisible(true);
+				return;
+			}
 		}
 		
 		// Publish button is pressed
 		if (this.ctrlAction.equals("publish")){
-			
+			// Get course and use it
+			int row = topTable.getSelectedRow();
+			if (row == -1) {
+				exceptionHandler.setNewException("Sie müssen zunächst eine Veranstaltung wählen.", "Achtung!");
+			} else {
+				row = startTab.getRowSorterTop().convertRowIndexToModel(row);
+				Course publishCourse = (Course) modelTopTable.getValueAt(row, 6);
+				if (!publishCourse.isLecturerEnabled_()) {
+					publishCourse.setLecturerEnabled_(true);
+					if (this.cntrlStartTab.saveCourse(publishCourse)){
+						exceptionHandler.setNewException("Veranstaltung freigegebn.", "Erfolg!", "success");
+					}
+				} else {
+					exceptionHandler.setNewException("Die Veranstaltung ist bereits freigeben!", "Achtung!", "info");
+				}
+			}
 		}
 		
 		// Request room button is pressed
 		if (this.ctrlAction.equals("roomrequest")){
-			ViewManager.getInstance().getLecturerRoomRequestFrame().setVisible(true);
+			// Get course and use it
+			int row = topTable.getSelectedRow();
+			if (row == -1) {
+				exceptionHandler.setNewException("Sie müssen zunächst eine Veranstaltung wählen.", "Achtung!");
+			} else {
+				row = startTab.getRowSorterTop().convertRowIndexToModel(row);
+				Course requestCourse = (Course) modelTopTable.getValueAt(row, 6);
+				RoomRequestDialog roomRequestDialog = new RoomRequestDialog(requestCourse);
+				roomRequestDialog.setVisible(true);
+			}
 		}
 		
 		// Revoke button is pressed
 		if (this.ctrlAction.equals("back")){
-			
+			// Get the room allocation and use it
+			int row = bottomTable.getSelectedRow();
+			if (row == -1) {
+				exceptionHandler.setNewException("Sie müssen zunächst eine Raumanfrage wählen.", "Achtung!");
+			} else {
+				row = startTab.getRowSorterBottom().convertRowIndexToModel(row);
+				RoomAllocation revokeAllocation = (RoomAllocation) modelTableBottom.getValueAt(row, 7);
+				QuestionDialog dialog = new QuestionDialog("Wollen Sie die gewählte Raumbelegung wirklich zurückziehen?", "Achtung!");
+				this.revokeAllocation = revokeAllocation;
+				dialog.register(this);
+				dialog.setVisible(true);
+				return;
+			}
 		}
 		
 	}
+	
+	@Override
+	public void answered(String answer) {
+		if (answer.equals("yes")) {
+			if (this.delCourse != null) {
+				if (this.cntrlStartTab.deleteCourse(this.delCourse)) {
+					AppModel.getInstance().getExceptionHandler().setNewException("Die Veranstaltung wurde erfolgreich gelöscht.", "Erfolg!", "success");
+				}
+			}
+			if (this.revokeAllocation != null) {
+				if (this.cntrlStartTab.revokeRoomAllocation(this.revokeAllocation)) {
+					AppModel.getInstance().getExceptionHandler().setNewException("Die Raumbelegung wurde zurückgezogen.", "Erfolg!", "success");
+				}
+			}
+		} else if (answer.equals("no")) {
+			this.delCourse = null;
+			this.revokeAllocation = null;
+		}
+	}
+	
 }
