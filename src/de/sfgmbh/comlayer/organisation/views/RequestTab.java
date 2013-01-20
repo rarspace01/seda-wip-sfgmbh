@@ -13,9 +13,6 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
-import javax.swing.JTextPane;
-import javax.swing.UIManager;
-import javax.swing.border.TitledBorder;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 
@@ -46,15 +43,11 @@ public class RequestTab extends JPanel {
 	private JLabel lblPCSeats;
 	private JComboBox<String> comboBoxLecturer;
 	private JComboBox<String> comboBoxChair;
-	private JPanel leftPanel;
-	private JPanel leftTopPanel;
 	private JScrollPane organisationTableScrollPane;
 	private JPanel buttonPanel;
 	private JButton btnFreigeben;
 	private JComboBox<String> comboBoxStatus;
 	private JComboBox<String> comboBoxSemester;
-	private JTextPane tickerMsgPos1;
-	private JButton btnFailureprompt;
 	private JPanel uniIconPanel;
 	private JLabel lblUniIcon;
 	private JPanel filterTop;
@@ -111,23 +104,7 @@ public class RequestTab extends JPanel {
 		add(comboBoxSemester, "cell 4 1,growx");
 		add(getTxtRoom(), "cell 5 1,growx");
 		
-		leftPanel = new JPanel();
-		leftPanel.setLayout(null);
-		leftPanel.setMaximumSize(new Dimension(140, 32767));
-		leftPanel.setBorder(null);
-		add(leftPanel, "cell 0 2,grow");
-		
-		leftTopPanel = new JPanel();
-		leftTopPanel.setLayout(null);
-		leftTopPanel.setBorder(new TitledBorder(null, "", TitledBorder.TRAILING, TitledBorder.ABOVE_TOP, null, null));
-		leftTopPanel.setBounds(0, 6, 140, 385);
-		leftPanel.add(leftTopPanel);
-		
-		tickerMsgPos1 = new JTextPane();
-		tickerMsgPos1.setBackground(UIManager.getColor("Button.background"));
-		tickerMsgPos1.setText("LiveTickerNews:\r\n\r\nFehler: Es wurden keine Lehrveranstaltungen gefunden werden, die in 10 Minuten beginnen.\r\n\r\nFehler: Es wurden keine Meldungen von Dozenten oder der Hausverwaltung gefunden. \r\n\r\nFehler: Es besteht keine Verbindung zur Datenbank.\r\n");
-		tickerMsgPos1.setBounds(6, 11, 124, 368);
-		leftTopPanel.add(tickerMsgPos1);
+		add(ViewManager.getInstance().getCoreLiveTickerPanel(), "cell 0 2,grow");
 		
 		organisationTableScrollPane = new JScrollPane();
 		add(organisationTableScrollPane, "flowx,cell 2 2 4 1,grow");

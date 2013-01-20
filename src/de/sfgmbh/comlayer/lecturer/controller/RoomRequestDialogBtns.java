@@ -79,7 +79,7 @@ public class RoomRequestDialogBtns implements ActionListener {
 				vizualizer = Integer.parseInt(motherDialog.getTxtVisual().getText());
 				chalkboards = Integer.parseInt(motherDialog.getTxtBoard().getText());
 			} catch (Exception ex) {
-				exceptionHandler.setNewException("Bitte stellen Sie sicher, dass Sie alle Felder für einen Vorschlag mit einer gültigen Zahl gefüllt haben. Sollte ihnen ein Wert egal sein, so lassen Sie ihn bitte einfach auf 0 stehen.", "Fehler!", "error");
+				exceptionHandler.setNewException("Bitte stellen Sie sicher, dass Sie alle Felder für einen Vorschlag mit einer gültigen Zahl gefüllt haben. Sollte Ihnen ein Wert egal sein, so lassen Sie ihn bitte einfach auf 0 stehen.", "Fehler!", "error");
 				return;
 			}
 			filter.put("seats", String.valueOf(seats));

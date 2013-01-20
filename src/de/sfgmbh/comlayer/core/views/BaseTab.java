@@ -20,11 +20,8 @@ import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
-import javax.swing.JTextPane;
 import javax.swing.SwingConstants;
-import javax.swing.UIManager;
 import javax.swing.border.EmptyBorder;
-import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
@@ -43,8 +40,6 @@ import de.sfgmbh.comlayer.core.model.CmbboxFilterLevel;
 import de.sfgmbh.comlayer.core.model.CmbboxFilterRoomnumber;
 import de.sfgmbh.comlayer.core.model.CmbboxFilterSeats;
 import de.sfgmbh.comlayer.core.model.CmbboxFilterSemester;
-import java.awt.Rectangle;
-import java.awt.Component;
 
 /**
  * The very first content users see when they start the application
@@ -80,7 +75,6 @@ public class BaseTab extends JFrame {
 	private JScrollPane mainTableScrollPane;
 	private JPanel tickerJPanel;
 	private JPanel buttonPanel;
-	private JTextPane tickerMsgPos1;
 	private JPanel panelLogin;
 	private JPanel panelLogout;
 	private final ButtonGroup buttonGroup = new ButtonGroup();
@@ -159,31 +153,9 @@ public class BaseTab extends JFrame {
 		startScreenPanel.add(tickerJPanel, "cell 0 2,grow");
 		tickerJPanel.setLayout(null);
 
-		JPanel panel = new JPanel();
-		panel.setBorder(new TitledBorder(null, "", TitledBorder.TRAILING,
-				TitledBorder.ABOVE_TOP, null, null));
-		panel.setBounds(0, 6, 140, 313);
-		tickerJPanel.add(panel);
-		panel.setLayout(null);
-
-		JTextPane tickerMsgPos2 = new JTextPane();
-		tickerMsgPos2.setEditable(false);
-		tickerMsgPos2.setBounds(6, 108, 123, 194);
-		panel.add(tickerMsgPos2);
-		tickerMsgPos2.setBackground(UIManager.getColor("Button.background"));
-		tickerMsgPos2.setContentType("text/html");
-		tickerMsgPos2
-				.setText("<div style=\"font-family: Calibri, monospace;\"><strong>Logindaten:</strong><br>Dozenten:<br>Doz // Doz <br><br>Studenten:<br>Stud // Stud<br><br>Verwaltung:<br>Verw // Verw <br><br> Anderenfalls Fehler!</div>");
-
-		tickerMsgPos1 = new JTextPane();
-		tickerMsgPos1.setEditable(false);
-		tickerMsgPos1.setBounds(6, 6, 123, 90);
-		panel.add(tickerMsgPos1);
-		tickerMsgPos1.setBackground(UIManager.getColor("Button.light"));
-		tickerMsgPos1.setContentType("text/html");
-		tickerMsgPos1
-				.setText("<div style=\"font-family: font-family: Calibri, monospace;\"><strong>News:</strong><br> <span style=\"color:red\">Neu!</span> Testlogin jetzt m\u00F6glich!</div>");
-
+		
+		tickerJPanel.add(ViewManager.getInstance().getCoreLiveTickerPanel());
+		
 		tickerJPanel.add(getPanelLogin());
 
 		tickerJPanel.add(getPanelLogout());

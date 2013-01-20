@@ -5,7 +5,6 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JDialog;
 
-import de.sfgmbh.applayer.core.model.AppModel;
 import de.sfgmbh.comlayer.core.definitions.IntfComDialogObservable;
 import de.sfgmbh.comlayer.core.definitions.IntfComDialogObserver;
 
@@ -19,7 +18,7 @@ public class QuestionDialogBtns implements ActionListener, IntfComDialogObservab
 	
 	private JDialog infoWinwod_;
 	private String variant_;
-	private Object currentObserver_;
+	private IntfComDialogObserver currentObserver_;
 	
 	/**
 	 * Create the listener for a specific window and variant
@@ -29,7 +28,7 @@ public class QuestionDialogBtns implements ActionListener, IntfComDialogObservab
 	public QuestionDialogBtns(JDialog transmittedInfoWindow, String variant) {
 		this.infoWinwod_ = transmittedInfoWindow;
 		this.variant_ = variant;
-		this.register(this.infoWinwod_);
+		this.register((IntfComDialogObserver) this.infoWinwod_);
 	}
 	
 	public void actionPerformed(ActionEvent e) {
@@ -44,12 +43,8 @@ public class QuestionDialogBtns implements ActionListener, IntfComDialogObservab
 	}
 
 	@Override
-	public void register(Object observer) {
-		if (observer instanceof IntfComDialogObserver){
+	public void register(IntfComDialogObserver observer) {
 			this.currentObserver_ = observer;
-		} else {
-			AppModel.getInstance().getExceptionHandler().setNewException("Ein Objekt das selbst nicht das Observer-Interface implementiert konnte nicht als Observer registriert werden", "Fehler!");
-		}
 		
 		
 	}

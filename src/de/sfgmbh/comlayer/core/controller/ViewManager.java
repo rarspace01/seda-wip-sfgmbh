@@ -5,6 +5,7 @@ import de.sfgmbh.comlayer.core.model.BaseTableMain;
 import de.sfgmbh.comlayer.core.model.RoomTableMain;
 import de.sfgmbh.comlayer.core.views.BaseTab;
 import de.sfgmbh.comlayer.core.views.InfoDialog;
+import de.sfgmbh.comlayer.core.views.LiveTickerPanel;
 import de.sfgmbh.comlayer.lecturer.model.ChairTimetableTabTable;
 import de.sfgmbh.comlayer.lecturer.model.StartTabTableBottom;
 import de.sfgmbh.comlayer.lecturer.model.StartTabTableTop;
@@ -52,6 +53,7 @@ public class ViewManager {
 	private InfoDialog infoDialog;
 	private BaseTableMain baseTableMain;
 	private RoomTableMain roomTableMain;
+	private LiveTickerPanel liveTickerPanel;
 	
 	public BaseTab getCoreBaseTab() {
 		if (this.baseTab == null) {
@@ -64,6 +66,12 @@ public class ViewManager {
 			this.infoDialog = new InfoDialog();
 		}
 		return this.infoDialog;
+	}
+	public LiveTickerPanel getCoreLiveTickerPanel() {
+		// Always return a new instance as one Swing component my only be registered in one Frame.
+		// Later here needs to be a logic to sync the sliding position of all created instances.
+		this.liveTickerPanel = new LiveTickerPanel();
+		return this.liveTickerPanel;
 	}
 	public BaseTableMain getCoreBaseTableModel(){
 		if (this.baseTableMain == null) {

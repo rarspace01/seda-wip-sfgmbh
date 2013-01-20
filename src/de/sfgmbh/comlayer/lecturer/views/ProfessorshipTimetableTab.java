@@ -2,6 +2,7 @@ package de.sfgmbh.comlayer.lecturer.views;
 
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.Font;
 
 import javax.swing.ImageIcon;
@@ -10,13 +11,12 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.SwingConstants;
 
 import net.miginfocom.swing.MigLayout;
 import de.sfgmbh.comlayer.core.controller.ViewManager;
 import de.sfgmbh.comlayer.core.views.BaseTab;
 import de.sfgmbh.comlayer.lecturer.controller.ProfessorshipTimetableTabBtn;
-import java.awt.FlowLayout;
-import javax.swing.SwingConstants;
 
 public class ProfessorshipTimetableTab extends JPanel {
 

@@ -13,6 +13,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
+import javax.swing.ScrollPaneConstants;
 import javax.swing.border.EtchedBorder;
 
 import de.sfgmbh.applayer.core.model.AppModel;
@@ -23,7 +24,6 @@ import de.sfgmbh.comlayer.core.model.CmbboxFilterRoomnumber;
 import de.sfgmbh.comlayer.core.model.CmbboxFilterTime;
 import de.sfgmbh.comlayer.organisation.controller.CounterproposalFrameBtns;
 import de.sfgmbh.comlayer.organisation.controller.UserCreateDialogWin;
-import javax.swing.ScrollPaneConstants;
 
 /**
  * Modal Dialog for a counter proposal

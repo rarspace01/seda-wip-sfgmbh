@@ -13,10 +13,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
-import javax.swing.JTextPane;
 import javax.swing.ListSelectionModel;
-import javax.swing.UIManager;
-import javax.swing.border.TitledBorder;
 
 import net.miginfocom.swing.MigLayout;
 import de.sfgmbh.applayer.core.model.AppModel;
@@ -36,14 +33,11 @@ public class RoomTab extends JPanel {
 	private JLabel lblSeats;
 	private JLabel lblPcseats;
 	private JComboBox<String> comboBoxBuilding;
-	private JPanel leftPanel;
-	private JPanel leftTopPanel;
 	private JScrollPane organisationTableScrollPane;
 	private JPanel buttonPanel;
 	private JButton btnEdit;
 	private JButton btnDelete;
 	private JButton btnRaumplanDrucken;
-	private JTextPane tickerMsgPos1;
 	private JPanel uniIconPanel;
 	
 	/**
@@ -102,25 +96,7 @@ public class RoomTab extends JPanel {
 		textFieldPCSeats.setColumns(10);
 		add(textFieldPCSeats, "cell 5 1,growx");
 
-		leftPanel = new JPanel();
-		leftPanel.setLayout(null);
-		leftPanel.setMaximumSize(new Dimension(140, 32767));
-		leftPanel.setBorder(null);
-		add(leftPanel, "cell 0 2,grow");
-
-		leftTopPanel = new JPanel();
-		leftTopPanel.setLayout(null);
-		leftTopPanel.setBorder(new TitledBorder(null, "",
-				TitledBorder.TRAILING, TitledBorder.ABOVE_TOP, null, null));
-		leftTopPanel.setBounds(0, 0, 130, 415);
-		leftPanel.add(leftTopPanel);
-
-		tickerMsgPos1 = new JTextPane();
-		tickerMsgPos1.setBackground(UIManager.getColor("Button.background"));
-		tickerMsgPos1
-				.setText("LiveTickerNews:\r\n\r\n\r\nFehler: Es wurden keine Lehrveranstaltungen gefunden werden, die in 10 Minuten beginnen.\r\n\r\nFehler: Es wurden keine Meldungen von Dozenten oder der Hausverwaltung gefunden. \r\n\r\nFehler: Es besteht keine Verbindung zur Datenbank.");
-		tickerMsgPos1.setBounds(10, 11, 110, 387);
-		leftTopPanel.add(tickerMsgPos1);
+		add(ViewManager.getInstance().getCoreLiveTickerPanel(), "cell 0 2,grow");
 
 		organisationTableScrollPane = new JScrollPane();
 		add(organisationTableScrollPane, "flowx,cell 2 2 4 1,grow");

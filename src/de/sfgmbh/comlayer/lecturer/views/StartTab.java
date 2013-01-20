@@ -12,9 +12,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
-import javax.swing.JTextPane;
 import javax.swing.UIManager;
-import javax.swing.border.TitledBorder;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 
@@ -43,8 +41,6 @@ public class StartTab extends JPanel implements IntfComDialogObserver {
 	private JTable tableCourseTop;
 	private JLabel lblLecturer;
 	private JComboBox<String> comboLecturer;
-	private JPanel sidePanel;
-	private JPanel topSidePanel;
 	private JScrollPane lvOrganisationTableScrollPane;
 	private JPanel buttonPanel;
 	private JButton btnAdd;
@@ -55,7 +51,6 @@ public class StartTab extends JPanel implements IntfComDialogObserver {
 	private JLabel lblStatus;
 	private JPanel tablePanel;
 	private JTable tableRoomAllocationBottom;
-	private JTextPane txtpnBajksbfwebfskbjfsbksbksdbkgdbfkgbdkrgbekrbgf;
 	private JComboBox<String> comboBoxLecturerBottom;
 	private JComboBox<String> comboBoxCourse;
 	private JComboBox<String> comboBoxSemesterBottom;
@@ -111,26 +106,7 @@ public class StartTab extends JPanel implements IntfComDialogObserver {
 		add(lblLehrveranstaltungen, "cell 1 0,aligny bottom");
 		add(uniIconPanel, "cell 6 0,alignx center");
 		
-		
-		sidePanel = new JPanel();
-		sidePanel.setMinimumSize(new Dimension(140, 10));
-		sidePanel.setLayout(null);
-		sidePanel.setMaximumSize(new Dimension(140, 32767));
-		sidePanel.setBorder(null);
-		add(sidePanel, "cell 0 1,grow");
-		
-		topSidePanel = new JPanel();
-		topSidePanel.setLayout(null);
-		topSidePanel.setBorder(new TitledBorder(null, "", TitledBorder.TRAILING, TitledBorder.ABOVE_TOP, null, null));
-		topSidePanel.setBounds(0, 0, 140, 424);
-		sidePanel.add(topSidePanel);
-		
-		txtpnBajksbfwebfskbjfsbksbksdbkgdbfkgbdkrgbekrbgf = new JTextPane();
-		txtpnBajksbfwebfskbjfsbksbksdbkgdbfkgbdkrgbekrbgf.setBackground(UIManager.getColor("Button.background"));
-		txtpnBajksbfwebfskbjfsbksbksdbkgdbfkgbdkrgbekrbgf.setContentType("text/plain\r\n");
-		txtpnBajksbfwebfskbjfsbksbksdbkgdbfkgbdkrgbekrbgf.setText("LiveTickerNews:\r\n\r\nFehler: Es wurden keine Lehrveranstaltungen gefunden werden, die in 10 Minuten beginnen. \r\n\r\nFehler: Es wurden keine Meldungen von Dozenten oder der Hausverwaltung gefunden. \r\n\r\nFehler: Es besteht keine Verbindung zur Datenbank.");
-		txtpnBajksbfwebfskbjfsbksbksdbkgdbfkgbdkrgbekrbgf.setBounds(10, 11, 120, 402);
-		topSidePanel.add(txtpnBajksbfwebfskbjfsbksbksdbkgdbfkgbdkrgbekrbgf);
+		add(ViewManager.getInstance().getCoreLiveTickerPanel(), "cell 0 1,grow");
 		
 		tablePanel = new JPanel();
 		add(tablePanel, "cell 1 1 5 1,grow");

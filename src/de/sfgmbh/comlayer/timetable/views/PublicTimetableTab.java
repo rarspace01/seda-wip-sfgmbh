@@ -10,10 +10,10 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 
+import net.miginfocom.swing.MigLayout;
 import de.sfgmbh.comlayer.core.controller.ViewManager;
 import de.sfgmbh.comlayer.core.views.BaseTab;
 import de.sfgmbh.comlayer.timetable.controller.BtnPdf;
-import net.miginfocom.swing.MigLayout;
 
 public class PublicTimetableTab extends JPanel {
 
