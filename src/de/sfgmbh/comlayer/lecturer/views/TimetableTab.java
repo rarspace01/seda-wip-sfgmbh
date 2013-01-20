@@ -141,7 +141,7 @@ public class TimetableTab extends JPanel {
 		for(int i=0;i<ral.size();i++){
 			if(ral.get(i).getDay_()==day && ral.get(i).getTime_()==time){
 				//textualRepresentation=ral.get(i).getCourse_().getCourseName_()+" ("+ral.get(i).getCourse_().getLecturer_().getChair_().getAcronym_()+" - "+ral.get(i).getCourse_().getCourseAcronym_()+")";
-				textualRepresentation=ral.get(i).getCourse_().getLecturer_().getChair_().getAcronym_()+" - "+ral.get(i).getCourse_().getCourseAcronym_();
+				textualRepresentation=ral.get(i).getCourse_().getCourseAcronym_()+" - in - "+ral.get(i).getRoom_().getRoomNumber_();
 			}
 		}
 		
