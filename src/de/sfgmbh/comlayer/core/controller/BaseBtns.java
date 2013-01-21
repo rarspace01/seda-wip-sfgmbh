@@ -66,7 +66,6 @@ public class BaseBtns implements ActionListener {
 						returnList.add(selectedAllocation);
 					}
 					
-					System.out.println("[Com-Layer] Allocs recieved: "+returnList.size());
 					
 					ViewManager.getInstance().getCoreBaseTab().getMainTabbedContainerPane().setVisible(true);
 					if(ViewManager.getInstance().getCoreBaseTab().getMainTabbedContainerPane().getTabCount()==0){
@@ -76,7 +75,7 @@ public class BaseBtns implements ActionListener {
 					/* HIER MUSS DER STUNDENPLAN GERUFEN WERDEN BZW UPGEDATET WERDEN */
 					
 					// Evtl.:
-					ViewManager.getInstance().getCoreTimetableTab().setAllocation(returnList);
+					ViewManager.getInstance().getCoreTimetableTab().addAllocation(returnList);
 					
 					
 					

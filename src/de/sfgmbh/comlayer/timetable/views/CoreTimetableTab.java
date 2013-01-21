@@ -2,6 +2,7 @@ package de.sfgmbh.comlayer.timetable.views;
 
 import java.awt.Color;
 import java.awt.Dimension;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -27,7 +28,7 @@ public class CoreTimetableTab extends JPanel {
 	private int roomId_;
 	private JScrollPane scrollPane_;
 	private JLabel lblSemester;
-	private List<RoomAllocation> roomAllocList_;	
+	private List<RoomAllocation> roomAllocList_=new ArrayList<RoomAllocation>();	
 	private JLabel lblvaluesemester;
 	
 	public CoreTimetableTab() {
@@ -56,7 +57,7 @@ public class CoreTimetableTab extends JPanel {
 		stundenplanTable.setBackground(Color.WHITE);
 		stundenplanTable.setModel(ViewManager.getInstance().getOrgaRoomtableTableModel());
 		
-		AppModel.getInstance().getRepositoryRoomAllocation().register(ViewManager.getInstance().getOrgaRoomTableModel());
+		AppModel.getInstance().getRepositoryRoomAllocation().register(ViewManager.getInstance().getCoreTimetableTabTable());
 		
 		JButton btnPdfErzeugen = new JButton("PDF erzeugen");
 		btnPdfErzeugen.addActionListener(new CoreTimetableTabBtnPdf("pdfCreate"));
@@ -146,8 +147,14 @@ public class CoreTimetableTab extends JPanel {
 		return roomId_;
 	}
 	
-	public void setAllocation(List<RoomAllocation> returnList) {
-		this.roomAllocList_=returnList;
+	public void addAllocation(List<RoomAllocation> roomallocations) {
+		System.out.println("[Com-Layer] Allocs recieved: "+roomallocations.size());
+		
+		System.out.println("[Com-Layer] ID0= "+roomallocations.get(0).getRoomAllocationId_());
+		
+		for(int i=0;i<roomallocations.size();i++){
+			this.roomAllocList_.add(roomallocations.get(i));
+		}
 		reloadRoomTable();
 	}
 	
