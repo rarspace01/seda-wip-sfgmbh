@@ -18,7 +18,6 @@ public class DataHandlerChair implements IntfDataChair, IntfDataFilter,
 		IntfDataObservable {
 
 	private ArrayList<Object> observer_ = new ArrayList<Object>();
-	private DataManagerPostgreSql filterDm = null;
 
 	@Override
 	public List<Chair> getAll() {
@@ -304,6 +303,7 @@ public class DataHandlerChair implements IntfDataChair, IntfDataFilter,
 
 	@Override
 	public List<Chair> getByFilter(HashMap<String, String> filter) {
+		DataManagerPostgreSql filterDm = null;
 		List<Chair> listChair = new ArrayList<Chair>();
 		// TODO Auto-generated method stub
 		try {

@@ -279,7 +279,6 @@ public class DataHandlerUser implements IntfDataUser, IntfDataObservable, IntfDa
 					dm.getPreparedStatement().setInt(1, toBeDeletedUser.getUserId_());
 					returnState = dm.executePstmt();
 					
-					//dm.dispose();
 				} catch (SQLException e) {
 					returnState = false;
 					e.printStackTrace();

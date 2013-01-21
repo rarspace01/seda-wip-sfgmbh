@@ -23,8 +23,6 @@ import de.sfgmbh.datalayer.io.DataManagerPostgreSql;
 public class DataHandlerRoomAllocation implements IntfDataObservable, IntfDataFilter {
 
 	private ArrayList<Object> observer_ = new ArrayList<Object>();
-	private DataManagerPostgreSql filterDm = null;
-	private DataManagerPostgreSql conflictingAllocationDm = null;
 	
 	/**
 	 * Get all room allocations
@@ -103,6 +101,8 @@ public class DataHandlerRoomAllocation implements IntfDataObservable, IntfDataFi
 	
 	@Override
 	public List<RoomAllocation> getByFilter(HashMap<String, String> filter) {
+		DataManagerPostgreSql filterDm = null;
+		DataManagerPostgreSql conflictingAllocationDm = null;
 		List<RoomAllocation> listRoomAllocation = new ArrayList<RoomAllocation>();
 		
 		// Translate some filter values when needed
@@ -226,6 +226,8 @@ public class DataHandlerRoomAllocation implements IntfDataObservable, IntfDataFi
 	 * @return a list of all conflicting room allocations
 	 */
 	public List<RoomAllocation> getConflictingAllocation(RoomAllocation ra) {
+		DataManagerPostgreSql filterDm = null;
+		DataManagerPostgreSql conflictingAllocationDm = null;
 		List<RoomAllocation> listRoomAllocation = new ArrayList<RoomAllocation>();
 		try {
 			if (conflictingAllocationDm == null) { 

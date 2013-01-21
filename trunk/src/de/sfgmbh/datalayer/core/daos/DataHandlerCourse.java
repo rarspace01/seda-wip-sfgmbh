@@ -23,7 +23,6 @@ import de.sfgmbh.datalayer.io.DataManagerPostgreSql;
 public class DataHandlerCourse implements IntfDataFilter, IntfDataObservable {
 	
 	private ArrayList<Object> observer_ = new ArrayList<Object>();
-	private DataManagerPostgreSql filterDm = null;
 
 	/**
 	 * Get all courses
@@ -63,6 +62,7 @@ public class DataHandlerCourse implements IntfDataFilter, IntfDataObservable {
 	
 	@Override
 	public List<Course> getByFilter(HashMap<String, String> filter) {
+		DataManagerPostgreSql filterDm = null;
 		List<Course> listCourse = new ArrayList<Course>();
 		
 		try {
