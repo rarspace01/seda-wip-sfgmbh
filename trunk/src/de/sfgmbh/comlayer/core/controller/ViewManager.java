@@ -2,10 +2,8 @@ package de.sfgmbh.comlayer.core.controller;
 
 import de.sfgmbh.applayer.core.model.User;
 import de.sfgmbh.comlayer.core.model.BaseTableMain;
-import de.sfgmbh.comlayer.core.model.CoreTimetableTabTable;
 import de.sfgmbh.comlayer.core.model.RoomTableMain;
 import de.sfgmbh.comlayer.core.views.BaseTab;
-import de.sfgmbh.comlayer.core.views.CoreTimetableTab;
 import de.sfgmbh.comlayer.core.views.InfoDialog;
 import de.sfgmbh.comlayer.core.views.LiveTickerPanel;
 import de.sfgmbh.comlayer.lecturer.model.ChairTimetableTabTable;
@@ -27,7 +25,8 @@ import de.sfgmbh.comlayer.organisation.views.RoomTab;
 import de.sfgmbh.comlayer.organisation.views.RoomtableTab;
 import de.sfgmbh.comlayer.organisation.views.UserCreateDialog;
 import de.sfgmbh.comlayer.organisation.views.UserTab;
-import de.sfgmbh.comlayer.timetable.views.PublicTimetableTab;
+import de.sfgmbh.comlayer.timetable.model.CoreTimetableTabTable;
+import de.sfgmbh.comlayer.timetable.views.CoreTimetableTab;
 
 
 public class ViewManager {
@@ -87,6 +86,10 @@ public class ViewManager {
 		return this.roomTableMain;
 	}
 	
+	
+	/**
+	* Module: Timetable
+	*/
 	public CoreTimetableTab getCoreTimetableTab() {
 		if (this.coreTimetableTab_ == null) {
 			this.coreTimetableTab_ = new CoreTimetableTab();
@@ -100,18 +103,14 @@ public class ViewManager {
 		}
 		return this.coreTimetableTabTable_;
 	}
-	
-	/**
-	* Module: Timetable
-	*/
-	private PublicTimetableTab publicTimetableTab;
-	
-	public PublicTimetableTab getPublicTimetableTab() {
-		if (this.publicTimetableTab == null) {
-			this.publicTimetableTab = new PublicTimetableTab();
-		}
-		return this.publicTimetableTab;
-	}
+//	private PublicTimetableTab publicTimetableTab;
+//	
+//	public PublicTimetableTab getPublicTimetableTab() {
+//		if (this.publicTimetableTab == null) {
+//			this.publicTimetableTab = new PublicTimetableTab();
+//		}
+//		return this.publicTimetableTab;
+//	}
 	
 	/**
 	* Module: Organization

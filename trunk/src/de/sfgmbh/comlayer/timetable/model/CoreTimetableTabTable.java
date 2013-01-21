@@ -1,4 +1,4 @@
-package de.sfgmbh.comlayer.core.model;
+package de.sfgmbh.comlayer.timetable.model;
 
 import javax.swing.table.DefaultTableModel;
 
