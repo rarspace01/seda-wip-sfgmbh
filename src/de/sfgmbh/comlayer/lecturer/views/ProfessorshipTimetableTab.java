@@ -33,6 +33,7 @@ public class ProfessorshipTimetableTab extends JPanel {
 	private JTable lehrstuhlStundenplanTable_;
 	private JPanel panelProfessorshipPanel_;
 	private JComboBox<String> comboBoxSemesterFilter_;
+	private int maxEntries_=0;
 
 
 	/**
@@ -61,7 +62,7 @@ public class ProfessorshipTimetableTab extends JPanel {
 		add(lblSemester, "flowx,cell 0 1,alignx left,aligny bottom");
 		
 		JButton btnPdfErzeugen = new JButton("PDF Erzeugen");
-		btnPdfErzeugen.addActionListener(new ProfessorshipTimetableTabBtn());
+		btnPdfErzeugen.addActionListener(new ProfessorshipTimetableTabBtn("createpdf"));
 		add(btnPdfErzeugen, "cell 2 1,growx,aligny bottom");
 		
 		panelProfessorshipPanel_=getPanel();
@@ -82,6 +83,8 @@ public class ProfessorshipTimetableTab extends JPanel {
 		comboBoxSemesterFilter_.setAutoscrolls(true);
 		
 		add(comboBoxSemesterFilter_, "cell 0 1,alignx center,aligny bottom");
+		
+		reloadPlan();
 	}
 	
 	public JPanel getPanel() {
@@ -104,11 +107,16 @@ public class ProfessorshipTimetableTab extends JPanel {
 			lehrstuhlStundenplanTable_.setBackground(Color.WHITE);
 			lehrstuhlStundenplanTable_.setModel(ViewManager.getInstance().getLecturerChairimetableTabTable());
 			
-			lehrstuhlStundenplanTable_.setDefaultRenderer(String.class, new LineWrapCellRenderer());
+			lehrstuhlStundenplanTable_.getColumnModel().getColumn(0).setPreferredWidth(50);
+			lehrstuhlStundenplanTable_.getColumnModel().getColumn(1).setPreferredWidth(70);
+			lehrstuhlStundenplanTable_.getColumnModel().getColumn(2).setPreferredWidth(70);
+			lehrstuhlStundenplanTable_.getColumnModel().getColumn(3).setPreferredWidth(70);
+			lehrstuhlStundenplanTable_.getColumnModel().getColumn(4).setPreferredWidth(70);
+			lehrstuhlStundenplanTable_.getColumnModel().getColumn(5).setPreferredWidth(70);
 			
+			lehrstuhlStundenplanTable_.setDefaultRenderer(Object.class, new LineWrapCellRenderer(maxEntries_));
 			
 //			lehrstuhlStundenplanTable_.getColumnModel().getColumn(0).setResizable(true);
-//			lehrstuhlStundenplanTable_.getColumnModel().getColumn(0).setPreferredWidth(50);
 //			lehrstuhlStundenplanTable_.getColumnModel().getColumn(0).setMinWidth(50);
 //			lehrstuhlStundenplanTable_.getColumnModel().getColumn(0).setMaxWidth(105);
 //			lehrstuhlStundenplanTable_.getColumnModel().getColumn(1).setResizable(true);
@@ -131,16 +139,21 @@ public class ProfessorshipTimetableTab extends JPanel {
 	}
 	
 	public String getLectureOnTime(List<RoomAllocation> ral,int day, int time){
-		String textualRepresentation="";
+		String textualRepresentation="<html>";
+		
+		int tempEntries=0;
 		
 		for(int i=0;i<ral.size();i++){
 			if(ral.get(i).getDay_()==day && ral.get(i).getTime_()==time){
 				//textualRepresentation=ral.get(i).getCourse_().getCourseName_()+" ("+ral.get(i).getCourse_().getLecturer_().getChair_().getAcronym_()+" - "+ral.get(i).getCourse_().getCourseAcronym_()+")";
 				textualRepresentation+=ral.get(i).getCourse_().getCourseAcronym_()+" - in - "+ral.get(i).getRoom_().getRoomNumber_()+"<br/>";
+				tempEntries++;
 			}
 		}
-		
-		return textualRepresentation;
+		if(tempEntries>maxEntries_){
+			maxEntries_=tempEntries;
+		}
+		return textualRepresentation+"</html>";
 	}
 	
 	public void reloadPlan(){
@@ -156,9 +169,9 @@ public class ProfessorshipTimetableTab extends JPanel {
 			System.out.println("Semesterfilter: "+this.getComboBoxSemesterFilter().getSelectedItem().toString());
 			
 			
-			
+			if(SessionManager.getInstance().getSession() != null){
 			tableFilter.put("chairid", ""+SessionManager.getInstance().getSession().getChair_().getChairId_());
-			
+			}
 			List<RoomAllocation> ral=AppModel.getInstance().getRepositoryRoomAllocation().getByFilter(tableFilter);
 			
 			for(int i=1;i<=7;i++){
