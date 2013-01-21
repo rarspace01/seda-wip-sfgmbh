@@ -11,8 +11,8 @@ import de.sfgmbh.datalayer.core.daos.DataHandlerUser;
 import de.sfgmbh.datalayer.core.definitions.IntfDataObserver;
 
 public class DataModel implements IntfAppObservable {
-	
-	private static DataModel uniqueInstance_ = new DataModel(); // declare on first access through JVM (thread-safe)
+
+	private static DataModel uniqueInstance_; 
 	private ArrayList<Object> observer_ = new ArrayList<Object>();
 	private DataExceptions exceptionsHandler_ = new DataExceptions();
 	private DataHandlerChair dataHandlerChair_ = new DataHandlerChair();
@@ -20,19 +20,22 @@ public class DataModel implements IntfAppObservable {
 	private DataHandlerCourse dataHandlerCourse_ = new DataHandlerCourse();
 	private DataHandlerRoom dataHandlerRoom_ = new DataHandlerRoom();
 	private DataHandlerRoomAllocation dataHandlerRoomAllocation_ = new DataHandlerRoomAllocation();
-	
-	private DataModel() {} // class may only call itself via declaration
-	
+
+	private DataModel() {
+	}
+
 	/**
 	 * Returns the singleton instance
+	 * 
 	 * @return
 	 */
 	public static DataModel getInstance() {
+		if(uniqueInstance_==null){
+			uniqueInstance_=new DataModel();
+		}
 		return uniqueInstance_;
 	}
-	
-	
-	
+
 	/**
 	 * @return the exceptionsHandler
 	 */
@@ -86,7 +89,7 @@ public class DataModel implements IntfAppObservable {
 			}
 		}
 	}
-	
+
 	/**
 	 * 
 	 * @param observer
@@ -96,11 +99,14 @@ public class DataModel implements IntfAppObservable {
 		if (observer instanceof IntfDataObserver) {
 			observer_.add(observer);
 		} else {
-			this.exceptionsHandler_.setNewException("Das Objekt implementiert nicht das Observer-Interface und kann daher nicht hinzugef�gt werden!", "Fehler!");
+			this.exceptionsHandler_
+					.setNewException(
+							"Das Objekt implementiert nicht das Observer-Interface und kann daher nicht hinzugef�gt werden!",
+							"Fehler!");
 		}
-		
+
 	}
-	
+
 	/**
 	 * 
 	 * @param observer
