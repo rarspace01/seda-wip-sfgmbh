@@ -51,11 +51,11 @@ public class DataManagerConfig {
 	
 	private boolean isValidProperties(Properties props){
 		boolean isValid=false;
-		if(props.getProperty("ip").matches("")&&
-				props.getProperty("port").matches("[0-9]")&&
-				props.getProperty("database").matches("")&&
-				props.getProperty("username").matches("")&&
-				props.getProperty("password").matches("")){
+		if(props.getProperty("ip").matches("\\b(?:\\d{1,3}\\.){3}\\d{1,3}\\b")&&
+				props.getProperty("port").matches("6553[0-5]|655[0-2]\\d|65[0-4]\\d{2}|6[0-4]\\d{3}|5\\d{4}|[0-9]\\d{0,3}")&&
+				props.getProperty("database").length()>0&&
+				props.getProperty("username").length()>0&&
+				props.getProperty("password").length()>0){
 			isValid=true;
 		}
 		return isValid;
