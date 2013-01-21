@@ -24,8 +24,6 @@ import de.sfgmbh.datalayer.io.DataManagerPostgreSql;
 public class DataHandlerUser implements IntfDataUser, IntfDataObservable, IntfDataFilter {
 
 	private ArrayList<Object> observer_ = new ArrayList<Object>();
-	private DataManagerPostgreSql filterDm = null;
-	private DataManagerPostgreSql filterWithChairDm = null;
 	
 	@Override
 	public List<User> getAll() {
@@ -91,6 +89,10 @@ public class DataHandlerUser implements IntfDataUser, IntfDataObservable, IntfDa
 
 	@Override
 	public List<User> getByFilter(HashMap<String, String> filter) {
+		
+		DataManagerPostgreSql filterDm = null;
+		DataManagerPostgreSql filterWithChairDm = null;
+		
 		List<User> listUser = new ArrayList<User>();
 		
 		// Convert some filter values
@@ -109,7 +111,7 @@ public class DataHandlerUser implements IntfDataUser, IntfDataObservable, IntfDa
 			if (filter.containsKey("chair") && filter.get("chair") != null && filter.get("chair") != "" && filter.get("chair") != "<alle>") {
 				
 				if (filterWithChairDm == null) { 
-					filterWithChairDm = new DataManagerPostgreSql(); 
+					filterWithChairDm = DataManagerPostgreSql.getInstance(); 
 					filterWithChairDm.prepare(
 							"SELECT public.user.*, public.chair.* " +
 							"FROM public.user, public.chair, public.lecturer " +
@@ -153,7 +155,7 @@ public class DataHandlerUser implements IntfDataUser, IntfDataObservable, IntfDa
 			} else {
 			
 				if (filterDm == null) { 
-					filterDm = new DataManagerPostgreSql(); 
+					filterDm = DataManagerPostgreSql.getInstance(); 
 					filterDm.prepare(
 							"SELECT public.user.*, public.chair.* " +
 							"FROM public.user LEFT JOIN public.lecturer INNER JOIN public.chair " +
@@ -276,6 +278,8 @@ public class DataHandlerUser implements IntfDataUser, IntfDataObservable, IntfDa
 							+ "WHERE public.lecturer.userid = ?");
 					dm.getPreparedStatement().setInt(1, toBeDeletedUser.getUserId_());
 					returnState = dm.executePstmt();
+					
+					//dm.dispose();
 				} catch (SQLException e) {
 					returnState = false;
 					e.printStackTrace();
