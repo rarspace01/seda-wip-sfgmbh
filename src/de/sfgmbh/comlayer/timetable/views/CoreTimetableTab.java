@@ -1,4 +1,4 @@
-package de.sfgmbh.comlayer.core.views;
+package de.sfgmbh.comlayer.timetable.views;
 
 import java.awt.Color;
 import java.awt.Dimension;

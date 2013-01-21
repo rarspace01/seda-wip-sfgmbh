@@ -48,6 +48,7 @@ public class BaseBtns implements ActionListener {
 	
 		// Add to timetable button is pressed
 		if (this.navAction.equals("timetable")){
+			System.out.println("timetable fired");
 			JTable roomAllocationTable = baseTab.getOrganisationTable();
 			TableModel roomAllocationTableModel = roomAllocationTable.getModel();
 			
@@ -56,6 +57,7 @@ public class BaseBtns implements ActionListener {
 			if (rows.length <= 0) {
 				exceptionHandler.setNewException("Sie müssen zunächst eine Veranstaltung wählen.", "Achtung!");
 			} else {
+				System.out.println("[Com-Layer] Rows selected: "+rows.length);
 				try {
 					List<RoomAllocation> returnList = new ArrayList<RoomAllocation>();
 					for (int row : rows) {
@@ -64,7 +66,7 @@ public class BaseBtns implements ActionListener {
 						returnList.add(selectedAllocation);
 					}
 					
-					System.out.println("timetable fired");
+					System.out.println("[Com-Layer] Allocs recieved: "+returnList.size());
 					
 					ViewManager.getInstance().getCoreBaseTab().getMainTabbedContainerPane().setVisible(true);
 					if(ViewManager.getInstance().getCoreBaseTab().getMainTabbedContainerPane().getTabCount()==0){
@@ -78,9 +80,9 @@ public class BaseBtns implements ActionListener {
 					
 					
 					
-					ViewManager.getInstance().getCoreBaseTab().getMainTabbedContainerPane().addTab("Vorlesungsplan", null, ViewManager.getInstance().getChairTimetableTab(), null);
+					ViewManager.getInstance().getCoreBaseTab().getMainTabbedContainerPane().addTab("Vorlesungsplan", null, ViewManager.getInstance().getCoreTimetableTab(), null);
 					
-					ViewManager.getInstance().getChairTimetableTab().setVisible(true);
+					ViewManager.getInstance().getCoreTimetableTab().setVisible(true);
 					ViewManager.getInstance().getCoreBaseTab().switchToNextTab();
 					
 					// ?? 
