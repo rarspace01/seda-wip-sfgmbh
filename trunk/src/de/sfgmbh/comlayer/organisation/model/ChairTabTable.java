@@ -9,9 +9,8 @@ import de.sfgmbh.applayer.core.model.AppModel;
 import de.sfgmbh.applayer.core.model.Chair;
 import de.sfgmbh.comlayer.core.controller.ViewManager;
 
-// import de.sfgmbh.comlayer.core.controller.ViewHelper;
-
 /**
+ * Table model for the chair table
  * 
  * @author anna
  * 
@@ -55,10 +54,18 @@ public class ChairTabTable extends DefaultTableModel implements
 
 		for (Chair chair : AppModel.getInstance().getRepositoryChair()
 				.getByFilter(filter)) {
-
+			
+			String owner = "";
+			if (chair.getChairOwner_() != null ){
+				owner = chair.getChairOwner_().getlName_();
+			}
 			try {
-				Object[] row = { chair.getChairName_(), chair.getAcronym_(),
-						chair.getChairOwner_(), chair.getFaculty_(), chair };
+				Object[] row = { 
+						chair.getChairName_(), 
+						chair.getAcronym_(),
+						owner, 
+						chair.getFaculty_(),
+						chair };
 				this.addRow(row);
 
 			} catch (Exception e) {

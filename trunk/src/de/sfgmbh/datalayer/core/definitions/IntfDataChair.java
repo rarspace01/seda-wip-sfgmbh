@@ -51,6 +51,6 @@ public interface IntfDataChair {
 	 *            - object of type Chair to be saved in DB
 	 * @return - int for error handling
 	 */
-	public void save(Chair Chair);
+	public boolean save(Chair Chair);
 	
 }

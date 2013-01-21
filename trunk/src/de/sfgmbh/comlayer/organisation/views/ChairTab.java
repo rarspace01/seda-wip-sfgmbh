@@ -67,7 +67,6 @@ public class ChairTab extends JPanel {
 		lblUniIcon.setIcon(new ImageIcon(BaseTab.class.getResource("/de/sfgmbh/comlayer/core/views/UniBA_logo.png")));
 		lblUniIcon.setMaximumSize(new Dimension(50,50));
 		uniIconPanel.add(lblUniIcon);
-		textFieldChairname.setText("<alle>");
 		textFieldChairname.setColumns(10);
 		add(textFieldChairname, "cell 2 1,growx");
 		
@@ -96,7 +95,7 @@ public class ChairTab extends JPanel {
 		buttonPanel.setMaximumSize(new Dimension(100, 32767));
 		add(buttonPanel, "cell 6 2,grow");
 		
-		btnAdd = new JButton("hinzuf\u00FCgen");
+		btnAdd = new JButton("hinzufügen");
 		btnAdd.addActionListener(new ChairTabBtnsControl("add"));
 		btnAdd.setBounds(6, 11, 88, 23);
 		buttonPanel.add(btnAdd);

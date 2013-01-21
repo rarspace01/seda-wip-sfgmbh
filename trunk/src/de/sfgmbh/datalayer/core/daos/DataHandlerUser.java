@@ -401,11 +401,12 @@ public class DataHandlerUser implements IntfDataUser, IntfDataObservable, IntfDa
 	}
 	
 	/**
-	 * Forms a User object out of a given result set
+	 * Forms a User object out of a given result set based on a variant
 	 * @param rs
+	 * @param variant
 	 * @return a User object
 	 */
-	public User makeUser(ResultSet rs) {
+	public User makeUser(ResultSet rs, String variant) {
 		User returnUser = new User();
 		
 		try {
@@ -419,7 +420,7 @@ public class DataHandlerUser implements IntfDataUser, IntfDataObservable, IntfDa
 			returnUser.setlName_(rs.getString("lname"));
 			returnUser.setLastLogin_(rs.getLong("lastlogin"));
 			returnUser.setDisabled_(rs.getBoolean("disabled"));
-			if (rs.getInt("chairid") > 0) {
+			if (rs.getInt("chairid") > 0 && !variant.equals("nochair")) {
 				returnUser.setChair_(DataModel.getInstance().getDataHandlerChair().makeChair(rs));
 			}
 		} catch (SQLException e) {
@@ -431,6 +432,15 @@ public class DataHandlerUser implements IntfDataUser, IntfDataObservable, IntfDa
 		}
 		
 		return returnUser;
+	}
+	
+	/**
+	 * Forms a User object out of a given result set
+	 * @param rs
+	 * @return a User object
+	 */
+	public User makeUser(ResultSet rs) {
+		return this.makeUser(rs, "default");
 	}
 
 	/**

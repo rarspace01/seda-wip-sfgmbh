@@ -59,5 +59,8 @@ public class CmbboxFilterChairAcronym extends DefaultComboBoxModel<String> imple
 		// Build a new model (which will be up to date automatically) and set it
 		CmbboxFilterChairAcronym newModel = new CmbboxFilterChairAcronym(this.dependentComboBox);
 		this.dependentComboBox.setModel(newModel);
+		
+		// Unregister this model as it is no longer used and would cause unwanted additional queries
+		AppModel.getInstance().getRepositoryChair().unregister(this);
 	}
 }

@@ -400,6 +400,7 @@ public class BaseTab extends JFrame {
 	public JButton getBtnNewButton() {
 		if (btnNewButton == null) {
 			btnNewButton = new JButton("Einloggen");
+			btnNewButton.setToolTipText("");
 			btnNewButton.addActionListener(new BaseLogin());
 		}
 		return btnNewButton;

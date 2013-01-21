@@ -10,12 +10,12 @@ import de.sfgmbh.applayer.core.model.Chair;
  *
  */
 public class CtrlChair {
-/*	
+
 	/**
 	 * Create or edit a chair if it is a valid chair
 	 * @param chair
-	 * @return true if the creation was successful
-	 
+	 * @return true on success
+	 */
 	public boolean saveChair(Chair chair) {
 		
 		if (chair.validate()) {
@@ -27,7 +27,6 @@ public class CtrlChair {
 			return false;
 		}
 	}
-	*/
 
 	/**
 	 * Delete a chair if possible
@@ -44,5 +43,4 @@ public class CtrlChair {
 		
 		return false;
 	}
-
 }
