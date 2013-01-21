@@ -1,4 +1,4 @@
-package de.sfgmbh.comlayer.core.controller;
+package de.sfgmbh.comlayer.timetable.controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
