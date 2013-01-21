@@ -27,11 +27,12 @@ public class DataManagerPostgreSql {
 	 * Create the data manager object
 	 */
 	public DataManagerPostgreSql() {
+		DataManagerConfig dbconfig=new DataManagerConfig();
 		try {
 			Class.forName("org.postgresql.Driver");
 			conn = DriverManager.getConnection("jdbc:postgresql://" +
-			"141.13.6.76:5433" + "/" + "WIP-SFGmbH" + "?" + "user=" +
-			"WIP-SFGmbH" + "&password=" + "n1qeiFhp" + "");
+			dbconfig.getIp()+":"+dbconfig.getPort()+ "/" + dbconfig.getDatabase(), 
+			dbconfig.getUsername(),dbconfig.getPassword());
 			stmt = conn.createStatement();
 
 		} catch (SQLException e) {
