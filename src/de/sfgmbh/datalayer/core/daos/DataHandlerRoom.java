@@ -17,7 +17,6 @@ import de.sfgmbh.datalayer.io.DataManagerPostgreSql;
 public class DataHandlerRoom implements IntfDataRoom, IntfDataFilter, IntfDataObservable {
 	
 	private ArrayList<Object> observer_ = new ArrayList<Object>();
-	private DataManagerPostgreSql filterDm;
 
 	@Override
 	public List<Room> getAll() {
@@ -172,6 +171,7 @@ public class DataHandlerRoom implements IntfDataRoom, IntfDataFilter, IntfDataOb
 
 	@Override
 	public List<Room> getByFilter(HashMap<String, String> filter) {
+		DataManagerPostgreSql filterDm = null;
 		List<Room> listRoom = new ArrayList<Room>();
 		
 
