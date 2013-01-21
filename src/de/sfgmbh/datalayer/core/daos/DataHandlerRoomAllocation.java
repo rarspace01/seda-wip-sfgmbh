@@ -119,7 +119,7 @@ public class DataHandlerRoomAllocation implements IntfDataObservable, IntfDataFi
 		
 		try {
 			if (filterDm == null) { 
-				filterDm = new DataManagerPostgreSql(); 
+				filterDm = DataManagerPostgreSql.getInstance(); 
 				filterDm.prepare(
 						"SELECT public.roomallocation.*, public.course.*, public.user.*, public.room.*, public.chair.* " +
 						"FROM public.roomallocation, public.room, public.course, public.user, public.chair, public.lecturer " +
@@ -229,7 +229,7 @@ public class DataHandlerRoomAllocation implements IntfDataObservable, IntfDataFi
 		List<RoomAllocation> listRoomAllocation = new ArrayList<RoomAllocation>();
 		try {
 			if (conflictingAllocationDm == null) { 
-				conflictingAllocationDm = new DataManagerPostgreSql(); 
+				conflictingAllocationDm = DataManagerPostgreSql.getInstance(); 
 				conflictingAllocationDm.prepare(
 						"SELECT public.roomallocation.*, public.course.*, public.user.*, public.room.*, public.chair.* " +
 						"FROM public.roomallocation, public.room, public.course, public.user, public.chair, public.lecturer " +

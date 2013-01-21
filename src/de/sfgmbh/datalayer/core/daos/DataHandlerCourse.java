@@ -67,7 +67,7 @@ public class DataHandlerCourse implements IntfDataFilter, IntfDataObservable {
 		
 		try {
 			if (filterDm == null) { 
-				filterDm = new DataManagerPostgreSql(); 
+				filterDm = DataManagerPostgreSql.getInstance(); 
 					filterDm.prepare("SELECT public.course.*, public.user.*, public.chair.* " +
 									"FROM public.course, public.user, public.chair, public.lecturer " +
 									"WHERE public.course.lecturerid = public.user.userid " +
