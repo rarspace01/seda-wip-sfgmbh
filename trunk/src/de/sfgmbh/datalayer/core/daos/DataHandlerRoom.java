@@ -177,7 +177,7 @@ public class DataHandlerRoom implements IntfDataRoom, IntfDataFilter, IntfDataOb
 
 		try {
 			if (filterDm == null) { 
-				filterDm = new DataManagerPostgreSql(); 
+				filterDm = DataManagerPostgreSql.getInstance(); 
 				filterDm.prepare(
 						"SELECT public.room.* " +
 						"FROM public.room " +
