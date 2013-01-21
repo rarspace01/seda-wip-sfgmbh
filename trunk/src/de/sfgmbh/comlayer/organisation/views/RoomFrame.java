@@ -45,7 +45,7 @@ public class RoomFrame extends JFrame {
 		initialize();
 	}
 	private void initialize() {
-		setIconImage(Toolkit.getDefaultToolkit().getImage(RoomFrame.class.getResource("/de/sfgmbh/comlayer/core/views/HUT_klein.png")));
+		setIconImage(Toolkit.getDefaultToolkit().getImage(RoomFrame.class.getResource("/de/sfgmbh/comlayer/core/images/HUT_klein.png")));
 		setTitle("Rauminfo erstellen");
 		setBounds(100, 100, 266, 400);
 		contentPane = new JPanel();

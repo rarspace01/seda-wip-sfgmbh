@@ -76,7 +76,7 @@ public class InfoDialog extends JDialog implements IntfAppObserver {
 	private void setDialog(String info, String title, String variant) {
 		this.getTxtpnInfoWindowText().setText("<div style='font-family: Calibri,monospace; text-align: left;'>" + info + "</div>");
 		if (variant.equals("success")) {
-			this.getLblIcon().setIcon(new ImageIcon(InfoDialog.class.getResource("/de/sfgmbh/comlayer/core/views/Success.png")));
+			this.getLblIcon().setIcon(new ImageIcon(InfoDialog.class.getResource("/de/sfgmbh/comlayer/core/images/Success.png")));
 		}
 		createContents(title);
 	}
@@ -128,7 +128,7 @@ public class InfoDialog extends JDialog implements IntfAppObserver {
 	private JLabel getLblIcon() {
 		if (lblIcon == null) {
 			lblIcon = new JLabel("");
-			lblIcon.setIcon(new ImageIcon(InfoDialog.class.getResource("/de/sfgmbh/comlayer/core/views/InfoDialogIcon.png")));
+			lblIcon.setIcon(new ImageIcon(InfoDialog.class.getResource("/de/sfgmbh/comlayer/core/images/InfoDialogIcon.png")));
 			lblIcon.setMaximumSize(new Dimension(100, 100));
 			lblIcon.setMinimumSize(new Dimension(100, 100));
 		}

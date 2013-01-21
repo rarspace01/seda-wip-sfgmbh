@@ -76,7 +76,7 @@ public class RoomTab extends JPanel {
 		add(uniIconPanel, "cell 6 0,alignx center,growy");
 		JLabel lblUniIcon = new JLabel();
 		lblUniIcon.setIcon(new ImageIcon(BaseTab.class
-				.getResource("/de/sfgmbh/comlayer/core/views/UniBA_logo.png")));
+				.getResource("/de/sfgmbh/comlayer/core/images/UniBA_logo.png")));
 		lblUniIcon.setMaximumSize(new Dimension(50, 50));
 		uniIconPanel.add(lblUniIcon);
 

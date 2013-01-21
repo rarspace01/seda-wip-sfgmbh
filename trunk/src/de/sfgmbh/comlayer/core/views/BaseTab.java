@@ -101,7 +101,7 @@ public class BaseTab extends JFrame {
 				.getDefaultToolkit()
 				.getImage(
 						BaseTab.class
-								.getResource("/de/sfgmbh/comlayer/core/views/HUT_klein.png")));
+								.getResource("/de/sfgmbh/comlayer/core/images/HUT_klein.png")));
 		setTitle("UnivIS 2.0");
 		createContents();
 	}
@@ -456,7 +456,7 @@ public class BaseTab extends JFrame {
 			lblNewLabel
 					.setIcon(new ImageIcon(
 							BaseTab.class
-									.getResource("/de/sfgmbh/comlayer/core/views/UniBA_logo.png")));
+									.getResource("/de/sfgmbh/comlayer/core/images/UniBA_logo.png")));
 			lblNewLabel.setMaximumSize(new Dimension(50, 50));
 
 		}

@@ -105,7 +105,7 @@ public class CounterproposalDialog extends JDialog {
 	}
 	
 	private void initialize() {
-		setIconImage(Toolkit.getDefaultToolkit().getImage(CounterproposalDialog.class.getResource("/de/sfgmbh/comlayer/core/views/HUT_klein.png")));
+		setIconImage(Toolkit.getDefaultToolkit().getImage(CounterproposalDialog.class.getResource("/de/sfgmbh/comlayer/core/images/HUT_klein.png")));
 		setTitle("Konfliktlösung");
 		setBounds(100, 100, 320, 410);
 		contentPane = new JPanel();

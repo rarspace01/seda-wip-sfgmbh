@@ -55,7 +55,7 @@ public class ProfessorshipTimetableTab extends JPanel {
 		lblUniIcon.setVerticalAlignment(SwingConstants.TOP);
 		lblUniIcon.setHorizontalAlignment(SwingConstants.RIGHT);
 		add(lblUniIcon, "cell 5 0,alignx right,aligny top");
-		lblUniIcon.setIcon(new ImageIcon(BaseTab.class.getResource("/de/sfgmbh/comlayer/core/views/UniBA_logo.png")));
+		lblUniIcon.setIcon(new ImageIcon(BaseTab.class.getResource("/de/sfgmbh/comlayer/core/images/UniBA_logo.png")));
 		lblUniIcon.setMaximumSize(new Dimension(50,50));
 		
 		JLabel lblSemester = new JLabel("Semester:");

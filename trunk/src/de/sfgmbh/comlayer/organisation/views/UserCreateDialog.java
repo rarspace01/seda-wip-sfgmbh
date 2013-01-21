@@ -82,7 +82,7 @@ public class UserCreateDialog extends JDialog {
 	
 	
 	private void initialize() {
-		setIconImage(Toolkit.getDefaultToolkit().getImage(UserCreateDialog.class.getResource("/de/sfgmbh/comlayer/core/views/HUT_klein.png")));
+		setIconImage(Toolkit.getDefaultToolkit().getImage(UserCreateDialog.class.getResource("/de/sfgmbh/comlayer/core/images/HUT_klein.png")));
 		setTitle("Nutzer hinzufügen");
 		setBounds(100, 100, 266, 309);
 		contentPane = new JPanel();
