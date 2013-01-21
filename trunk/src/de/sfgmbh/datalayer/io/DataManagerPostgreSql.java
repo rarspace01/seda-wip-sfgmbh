@@ -26,7 +26,7 @@ public class DataManagerPostgreSql {
 	/**
 	 * Create the data manager object
 	 */
-	public DataManagerPostgreSql() {
+	private DataManagerPostgreSql() {
 		DataManagerConfig dbconfig=new DataManagerConfig();
 		System.out.println("[D-Layer] Creating Connection to: ["+dbconfig.getIp()+":"+dbconfig.getPort()+"]");
 		try {
@@ -139,6 +139,7 @@ public class DataManagerPostgreSql {
 	 * Prepare the data manager with a prepared statement that is about to be executed either by selectPstmt() or executePstmt()
 	 * @param prepareSqlString
 	 * @return the prepared statement object
+	 * 
 	 */
 	public PreparedStatement prepare(String prepareSqlString) {
 		
