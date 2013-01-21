@@ -72,24 +72,10 @@ public class BaseBtns implements ActionListener {
 					ViewManager.getInstance().getCoreBaseTab().getMainTabbedContainerPane().addTab("Start", null, ViewManager.getInstance().getCoreBaseTab().getStartScreenPanel(), null);
 					}
 					
-					/* HIER MUSS DER STUNDENPLAN GERUFEN WERDEN BZW UPGEDATET WERDEN */
-					
-					// Evtl.:
 					ViewManager.getInstance().getCoreTimetableTab().addAllocation(returnList);
-					
-					
-					
 					ViewManager.getInstance().getCoreBaseTab().getMainTabbedContainerPane().addTab("Vorlesungsplan", null, ViewManager.getInstance().getCoreTimetableTab(), null);
-					
 					ViewManager.getInstance().getCoreTimetableTab().setVisible(true);
 					ViewManager.getInstance().getCoreBaseTab().switchToNextTab();
-					
-					// ?? 
-					// Dann würde es evlt Sinn machen dass Timetable Tab nach Core zu refactoren
-					// Evtl macht es auch Sinn das Tab neu zu instanziieren - also da könnte man
-					// ja das gleiche verwenden und nur im ViewManger eine extra Variable und Get-
-					// Funktion anlegen. Sonst würde es ja das Tab überschreiben wenn User einge-
-					// loggt sind. Musst halt mal schauen...
 					
 					
 				} catch (Exception ex) {
