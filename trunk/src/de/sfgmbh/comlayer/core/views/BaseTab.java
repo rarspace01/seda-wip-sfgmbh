@@ -347,8 +347,6 @@ public class BaseTab extends JFrame {
 			organisationTable.getColumnModel().getColumn(0).setResizable(false);
 			organisationTable.getColumnModel().getColumn(8)
 					.setCellRenderer(center);
-			organisationTable.getColumnModel().getColumn(1)
-					.setCellRenderer(center);
 			organisationTable.getColumnModel().getColumn(6)
 					.setCellRenderer(center);
 			organisationTable.getColumnModel().removeColumn(

@@ -1,5 +1,6 @@
 package de.sfgmbh.comlayer.core.views;
 
+import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -17,7 +18,6 @@ import javax.swing.border.TitledBorder;
 import de.sfgmbh.applayer.core.controller.CtrlLiveTicker;
 import de.sfgmbh.applayer.core.model.RoomAllocation;
 import de.sfgmbh.comlayer.core.controller.ViewHelper;
-import java.awt.Color;
 
 /**
  * Panel for the live ticker
@@ -33,6 +33,7 @@ public class LiveTickerPanel extends JPanel {
 	private CtrlLiveTicker ctrlLiverTicker = new CtrlLiveTicker();
 	private List<RoomAllocation> displayAllocations;
 	private boolean isTooLong;
+	private int cycles;
 	
 	/**
 	 * Create the panel.
@@ -40,6 +41,7 @@ public class LiveTickerPanel extends JPanel {
 	public LiveTickerPanel() {
 		createContents();
 		this.refresh();
+		this.cycles = 0;
 		ScrollTicker scrollTicker = new ScrollTicker();
 		scrollTicker.execute();
 	}
@@ -142,14 +144,14 @@ public class LiveTickerPanel extends JPanel {
 	}
 	
 	private void scroll() {
-		// Get current size and scroll by one
+		// Get current size and scroll by one pixel if the text is too long
 		if (this.isTooLong) {
 			int x = this.getTxtTicker().getBounds().x;
 			int y = this.getTxtTicker().getBounds().y;
 			int width = this.getTxtTicker().getBounds().width;
 			int height = this.getTxtTicker().getBounds().height;
 			if (-y == height-30) {
-				y = 285;
+				y = 300;
 			}
 			this.getTxtTicker().setBounds(x, y-1, width, height);
 		}
@@ -170,6 +172,12 @@ public class LiveTickerPanel extends JPanel {
 					e.printStackTrace();
 				}
 				LiveTickerPanel.this.scroll();
+				// refresh the ticker every two minutes (1091 cycles as one cycle takes 110 ms)
+				LiveTickerPanel.this.cycles++;
+				if (LiveTickerPanel.this.cycles > 1091) {
+					LiveTickerPanel.this.cycles = 0;
+					LiveTickerPanel.this.refresh();
+				}
 			}
 		}
 	}
