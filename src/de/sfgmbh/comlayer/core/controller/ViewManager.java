@@ -18,8 +18,6 @@ import de.sfgmbh.comlayer.organisation.model.RequestTabTable;
 import de.sfgmbh.comlayer.organisation.model.RoomTabTable;
 import de.sfgmbh.comlayer.organisation.model.RoomtableTable;
 import de.sfgmbh.comlayer.organisation.model.UserTabTable;
-import de.sfgmbh.comlayer.organisation.views.ChairEditFrame;
-import de.sfgmbh.comlayer.organisation.views.ChairFrame;
 import de.sfgmbh.comlayer.organisation.views.ChairTab;
 import de.sfgmbh.comlayer.organisation.views.RequestTab;
 import de.sfgmbh.comlayer.organisation.views.RoomFrame;
@@ -109,8 +107,6 @@ public class ViewManager {
 	private RoomFrame roomFrame;
 	private UserCreateDialog userFrame;
 	private UserCreateDialog userEditFrame;
-	private ChairFrame chairFrame;
-	private ChairEditFrame chairEditFrame;
 	private RequestTabTable requestTabTable;
 	private UserTabTable userTabTable;
 	private RoomTabTable roomTabTable;
@@ -257,26 +253,6 @@ public class ViewManager {
 			this.userEditFrame = new UserCreateDialog(null);
 		}
 		return this.userEditFrame;
-	}
-	/**
-	 * 
-	 * @return the ChairFrame
-	 */
-	public ChairFrame getOrgaChairFrame() {
-		if (this.chairFrame == null) {
-			this.chairFrame = new ChairFrame();
-		}
-		return this.chairFrame;
-	}
-	/**
-	 * 
-	 * @return the chairEditFrame
-	 */
-	public ChairEditFrame getOrgaChairEditFrame() {
-		if (this.chairEditFrame == null) {
-			this.chairEditFrame = new ChairEditFrame();
-		}
-		return this.chairEditFrame;
 	}
 	
 	/**
