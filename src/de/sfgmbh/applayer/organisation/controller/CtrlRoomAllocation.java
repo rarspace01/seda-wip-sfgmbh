@@ -19,10 +19,17 @@ public class CtrlRoomAllocation {
 	/**
 	 * Accept a room allocation if possible
 	 * @param roomAllocation
+	 * @return true on successful accept
 	 */
 	public boolean acceptRoomAllocation(RoomAllocation ra) {
 		// Get the currently up to date room allocation
 		RoomAllocation currentRa = AppModel.getInstance().getRepositoryRoomAllocation().get(ra.getRoomAllocationId_());
+		
+		// Denied allocations will not get accepted
+		if (currentRa.getApproved_().equals("denied")) {
+			AppModel.getInstance().getExceptionHandler().setNewException("Eine bereits abgelehnte Raumbelegung kann nicht freigegeben werden. Bitten Sie den Dozenten eine erneute Anfrage zu stellen.", "Fehler!");
+			return false;
+		}
 		
 		// Check if it is possible to set it to accepted and do so if yes
 		if (!currentRa.getApproved_().equals("accepted")){
