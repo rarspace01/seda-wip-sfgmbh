@@ -27,8 +27,7 @@ import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 
 import net.miginfocom.swing.MigLayout;
-import de.sfgmbh.comlayer.core.controller.BaseBtnAddToStundenplan;
-import de.sfgmbh.comlayer.core.controller.BaseBtnFailureprompt;
+import de.sfgmbh.comlayer.core.controller.BaseBtns;
 import de.sfgmbh.comlayer.core.controller.BaseCmbboxFilter;
 import de.sfgmbh.comlayer.core.controller.BaseLogin;
 import de.sfgmbh.comlayer.core.controller.BaseRdbtnTopLeft;
@@ -86,11 +85,13 @@ public class BaseTab extends JFrame {
 	private JPasswordField pwdPasswort;
 	private JRadioButton rdbtnLehrveranstaltungen;
 	private JRadioButton rdbtnRaume;
-	private JButton btnFehlermeldung;
 	private JButton btnLogout;
 	private JLabel lblNewLabel;
 	private JTable roomTable;
 	private JPanel mainFilterPanel;
+	private TableRowSorter<TableModel> rowSorterAllocation;
+	private TableRowSorter<TableModel> rowSorterRoom;
+	private JButton btnRoomplan;
 
 	/**
 	 * Create the frame. v.175
@@ -175,10 +176,7 @@ public class BaseTab extends JFrame {
 		buttonPanel.setLayout(null);
 
 		buttonPanel.add(getBtnAddToStudenplan());
-
-		btnFehlermeldung = new JButton("Fehlermeldung");
-		btnFehlermeldung.addActionListener(new BaseBtnFailureprompt("error"));
-		startScreenPanel.add(btnFehlermeldung, "cell 1 3");
+		buttonPanel.add(getBtnRoomplan());
 
 	}
 
@@ -326,9 +324,9 @@ public class BaseTab extends JFrame {
 	}
 
 	public JButton getBtnAddToStudenplan() {
-		btnAddToStundenplan = new JButton("sammeln");
-		btnAddToStundenplan.addActionListener(new BaseBtnAddToStundenplan(
-				"plus"));
+		btnAddToStundenplan = new JButton("Stundenplan");
+		btnAddToStundenplan.addActionListener(new BaseBtns(
+				"timetable"));
 		btnAddToStundenplan.setBounds(0, 29, 80, 23);
 
 		return btnAddToStundenplan;
@@ -353,11 +351,11 @@ public class BaseTab extends JFrame {
 					organisationTable.getColumn("Hidden"));
 
 			// Enable table sorting for the model
-			TableRowSorter<TableModel> rowSorter = new TableRowSorter<TableModel>();
-			organisationTable.setRowSorter(rowSorter);
-			rowSorter.setModel(ViewManager.getInstance()
+			rowSorterAllocation = new TableRowSorter<TableModel>();
+			organisationTable.setRowSorter(rowSorterAllocation);
+			rowSorterAllocation.setModel(ViewManager.getInstance()
 					.getCoreBaseTableModel());
-			rowSorter.sort();
+			rowSorterAllocation.sort();
 		}
 		return organisationTable;
 	}
@@ -379,6 +377,13 @@ public class BaseTab extends JFrame {
 			roomTable.getColumnModel().getColumn(6).setCellRenderer(center);
 			roomTable.getColumnModel().removeColumn(
 					roomTable.getColumn("Hidden"));
+			
+			// Enable table sorting for the model
+			rowSorterRoom = new TableRowSorter<TableModel>();
+			roomTable.setRowSorter(rowSorterRoom);
+			rowSorterRoom.setModel(ViewManager.getInstance()
+					.getCoreRoomTableModel());
+			rowSorterRoom.sort();
 
 		}
 		return roomTable;
@@ -509,4 +514,26 @@ public class BaseTab extends JFrame {
 		return buttonPanel;
 	}
 
+	/**
+	 * @return the rowSorterAllocation
+	 */
+	public TableRowSorter<TableModel> getRowSorterAllocation() {
+		return rowSorterAllocation;
+	}
+
+	/**
+	 * @return the rowSorterRoom
+	 */
+	public TableRowSorter<TableModel> getRowSorterRoom() {
+		return rowSorterRoom;
+	}
+	public JButton getBtnRoomplan() {
+		if (btnRoomplan == null) {
+			btnRoomplan = new JButton("Raumplan");
+			btnRoomplan.setBounds(0, 63, 80, 23);
+			btnRoomplan.addActionListener(new BaseBtns(
+					"roomtable"));
+		}
+		return btnRoomplan;
+	}
 }

@@ -20,21 +20,6 @@ public class BaseBtnFailureprompt implements ActionListener {
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
-	
-		// Fehlermeldung button is pressed
-		if (this.ctrlAction.equals("error")){
-			this.getInfoWindow("<b>Fehlermeldung:</b><br>Es konnte keine Verbindung" +
-				" zur Datenbank aufgebaut werden. Bitte wenden Sie sich an Ihren Systemadministrator.").setVisible(true);
-		}
 		
 	}
-	// Manage InfoWindow instance
-		public InfoDialog getInfoWindow(String msg) {
-			this.infoWindow = new InfoDialog(msg);
-			return this.infoWindow;
-		}
-		public InfoDialog getInfoWindow(String msg, String title) {
-			this.infoWindow = new InfoDialog(msg, title);
-			return this.infoWindow;
-		}
 }
