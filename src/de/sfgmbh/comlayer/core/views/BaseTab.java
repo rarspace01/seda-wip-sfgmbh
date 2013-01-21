@@ -536,4 +536,10 @@ public class BaseTab extends JFrame {
 		}
 		return btnRoomplan;
 	}
+	
+	public void switchToNextTab(){
+		this.getMainTabbedContainerPane()
+		.setSelectedIndex(this.getMainTabbedContainerPane()
+				.getTabCount() - 1);
+	}
 }

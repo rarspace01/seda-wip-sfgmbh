@@ -130,9 +130,7 @@ public class RoomTabBtnsControl implements ActionListener, IntfComDialogObserver
 								ViewManager.getInstance().getOrgaRoomtableTab(),
 								null);
 				ViewManager.getInstance().getOrgaRoomtableTab().loadRoomTable(getId);
-				ViewManager.getInstance().getCoreBaseTab().getMainTabbedContainerPane()
-						.setSelectedIndex(ViewManager.getInstance().getCoreBaseTab().getMainTabbedContainerPane()
-								.getTabCount() - 1);
+				ViewManager.getInstance().getCoreBaseTab().switchToNextTab();
 			}else{
 				AppModel.getInstance()
 				.getExceptionHandler()
