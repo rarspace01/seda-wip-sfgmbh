@@ -19,99 +19,157 @@ import de.sfgmbh.comlayer.core.views.BaseTab;
  * 
  * @author mario
  * @author hannes
- *
+ * 
  */
 public class BaseBtns implements ActionListener {
 	private String navAction;
-	
+
 	/**
 	 * Create the action listener
 	 */
 	public BaseBtns() {
 		this.navAction = "default";
 	}
-	
+
 	/**
 	 * Create the action listener based on an action string
+	 * 
 	 * @param action
 	 */
 	public BaseBtns(String action) {
 		this.navAction = action;
 	}
-	
+
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		BaseTab baseTab = ViewManager.getInstance().getCoreBaseTab();
 		AppException exceptionHandler = AppModel.getInstance()
 				.getExceptionHandler();
-		
-	
+
 		// Add to timetable button is pressed
-		if (this.navAction.equals("timetable")){
+		if (this.navAction.equals("timetable")) {
 			System.out.println("timetable fired");
 			JTable roomAllocationTable = baseTab.getOrganisationTable();
-			TableModel roomAllocationTableModel = roomAllocationTable.getModel();
-			
+			TableModel roomAllocationTableModel = roomAllocationTable
+					.getModel();
+
 			// Get room allocation(s)
 			int rows[] = roomAllocationTable.getSelectedRows();
 			if (rows.length <= 0) {
-				exceptionHandler.setNewException("Sie müssen zunächst eine Veranstaltung wählen.", "Achtung!");
+				exceptionHandler.setNewException(
+						"Sie müssen zunächst eine Veranstaltung wählen.",
+						"Achtung!");
 			} else {
-				System.out.println("[Com-Layer] Rows selected: "+rows.length);
+				System.out.println("[Com-Layer] Rows selected: " + rows.length);
 				try {
 					List<RoomAllocation> returnList = new ArrayList<RoomAllocation>();
 					for (int row : rows) {
-						row = baseTab.getRowSorterAllocation().convertRowIndexToModel(row);
-						RoomAllocation selectedAllocation = (RoomAllocation) roomAllocationTableModel.getValueAt(row, 9);
+						row = baseTab.getRowSorterAllocation()
+								.convertRowIndexToModel(row);
+						RoomAllocation selectedAllocation = (RoomAllocation) roomAllocationTableModel
+								.getValueAt(row, 9);
 						returnList.add(selectedAllocation);
 					}
-					
-					
-					ViewManager.getInstance().getCoreBaseTab().getMainTabbedContainerPane().setVisible(true);
-					if(ViewManager.getInstance().getCoreBaseTab().getMainTabbedContainerPane().getTabCount()==0){
-					ViewManager.getInstance().getCoreBaseTab().getMainTabbedContainerPane().addTab("Start", null, ViewManager.getInstance().getCoreBaseTab().getStartScreenPanel(), null);
+
+					ViewManager.getInstance().getCoreBaseTab()
+							.getMainTabbedContainerPane().setVisible(true);
+					if (ViewManager.getInstance().getCoreBaseTab()
+							.getMainTabbedContainerPane().getTabCount() == 0) {
+						ViewManager
+								.getInstance()
+								.getCoreBaseTab()
+								.getMainTabbedContainerPane()
+								.addTab("Start",
+										null,
+										ViewManager.getInstance()
+												.getCoreBaseTab()
+												.getStartScreenPanel(), null);
 					}
-					
-					ViewManager.getInstance().getCoreTimetableTab().addAllocation(returnList);
-					ViewManager.getInstance().getCoreBaseTab().getMainTabbedContainerPane().addTab("Vorlesungsplan", null, ViewManager.getInstance().getCoreTimetableTab(), null);
-					ViewManager.getInstance().getCoreTimetableTab().setVisible(true);
-					ViewManager.getInstance().getCoreBaseTab().switchToNextTab();
-					
-					
+
+					ViewManager.getInstance().getCoreTimetableTab()
+							.addAllocation(returnList);
+					ViewManager
+							.getInstance()
+							.getCoreBaseTab()
+							.getMainTabbedContainerPane()
+							.addTab("Vorlesungsplan",
+									null,
+									ViewManager.getInstance()
+											.getCoreTimetableTab(), null);
+					ViewManager.getInstance().getCoreTimetableTab()
+							.setVisible(true);
+					ViewManager.getInstance().getCoreBaseTab()
+							.switchToNextTab();
+
 				} catch (Exception ex) {
 					ex.printStackTrace();
-					AppModel.getInstance().getExceptionHandler().setNewException("Ein unerwarteter Fehler ist aufgetreten.<br /><br >" + ex.toString(), "Fehler!");
+					AppModel.getInstance()
+							.getExceptionHandler()
+							.setNewException(
+									"Ein unerwarteter Fehler ist aufgetreten.<br /><br >"
+											+ ex.toString(), "Fehler!");
 				}
 			}
 			return;
 		}
-		
+
 		// Get roomtable button is pressed
-		if (this.navAction.equals("roomtable")){
+		if (this.navAction.equals("roomtable")) {
 			JTable roomTable = baseTab.getRoomTable();
 			TableModel roomTableModel = roomTable.getModel();
-			
-			
+
 			// Get room allocation(s)
 			int row = roomTable.getSelectedRow();
 			if (row == -1) {
-				exceptionHandler.setNewException("Sie müssen zunächst einen Raum wählen.", "Achtung!");
+				exceptionHandler.setNewException(
+						"Sie müssen zunächst einen Raum wählen.", "Achtung!");
 			} else {
 				try {
-					row = baseTab.getRowSorterRoom().convertRowIndexToModel(row);
+					row = baseTab.getRowSorterRoom()
+							.convertRowIndexToModel(row);
 					Room room = (Room) roomTableModel.getValueAt(row, 10);
 
-					/* HIER MUSS DER RAUMPLAN GERUFEN WERDEN BZW UPGEDATET WERDEN */
+					ViewManager.getInstance().getCoreBaseTab()
+							.getMainTabbedContainerPane().setVisible(true);
+					if (ViewManager.getInstance().getCoreBaseTab()
+							.getMainTabbedContainerPane().getTabCount() == 0) {
+						ViewManager
+								.getInstance()
+								.getCoreBaseTab()
+								.getMainTabbedContainerPane()
+								.addTab("Start",
+										null,
+										ViewManager.getInstance()
+												.getCoreBaseTab()
+												.getStartScreenPanel(), null);
+					}
+					int getId = room.getRoomId_();
+
+					ViewManager.getInstance().getCoreBaseTab()
+							.getMainTabbedContainerPane().setVisible(true);
 					
-					// Siehe Kommentar von oben
-					// Wenn du die ID brauchst aber hier halt room.getRoomId_()
+					ViewManager
+							.getInstance()
+							.getCoreBaseTab()
+							.getMainTabbedContainerPane()
+							.addTab("Raumplan",
+									null,
+									ViewManager.getInstance()
+											.getOrgaRoomtableTab(), null);
 					
+					ViewManager.getInstance().getOrgaRoomtableTab()
+							.loadRoomTable(getId);
+					ViewManager.getInstance().getCoreBaseTab()
+							.switchToNextTab();
 
 				} catch (Exception ex) {
-					AppModel.getInstance().getExceptionHandler().setNewException("Ein unerwarteter Fehler ist aufgetreten.<br /><br >" + ex.toString(), "Fehler!");
+					AppModel.getInstance()
+							.getExceptionHandler()
+							.setNewException(
+									"Ein unerwarteter Fehler ist aufgetreten.<br /><br >"
+											+ ex.toString(), "Fehler!");
 				}
 			}
 		}
 	}
 }
-
