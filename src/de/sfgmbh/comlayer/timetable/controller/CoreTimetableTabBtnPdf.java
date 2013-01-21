@@ -71,13 +71,16 @@ public class CoreTimetableTabBtnPdf implements ActionListener {
 			
 			DataManagerPDF dmpdf=new DataManagerPDF(fc.getSelectedFile().getAbsolutePath());
 			
-			dmpdf.addContent("Vorlesungsplan - "+semester,ViewManager.getInstance().getCoreTimetableTab().getScrollPane_());
+			dmpdf.addContent("Vorlesungsplan - Semester: "+semester,ViewManager.getInstance().getCoreTimetableTab().getScrollPane_());
 			
 			dmpdf.close();
 			
 			System.out.println("Created PDF");
 			
 			}
+		}
+		if (this.navAction.equals("reset")) {
+			ViewManager.getInstance().getCoreTimetableTab().resetPlan();
 		}
 	}
 	
