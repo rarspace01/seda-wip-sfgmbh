@@ -42,5 +42,8 @@ public class CmbboxFilterCourse extends DefaultComboBoxModel<String> implements 
 		// Build a new model (which will be up to date automatically) and set it
 		CmbboxFilterCourse newModel = new CmbboxFilterCourse(this.dependentComboBox);
 		this.dependentComboBox.setModel(newModel);
+		
+		// Unregister this model as it is no longer used and would cause unwanted additional queries
+		AppModel.getInstance().getRepositoryCourse().unregister(this);
 	}
 }

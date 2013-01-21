@@ -48,10 +48,16 @@ public class CmbboxFilterLecturer extends DefaultComboBoxModel<String> implement
 
 	private void build() {
 		
-		if (!this.variant.equals("select")) {
+		if (this.variant.equals("select")) {
+			// currently nothing to add here
+		} else if (this.variant.equals("create")) {
+			this.addElement("<keiner>");
+			lecturerForModel.add(0, null);
+		} else {
 			this.addElement("<alle>");
 			lecturerForModel.add(0, null);
 		}
+		
 		for (User user : AppModel.getInstance().getRepositoryUser().getAllLecturer()){
 			this.addElement(user.getlName_());
 			int desiredIndex = this.getSize()-1;
@@ -64,11 +70,7 @@ public class CmbboxFilterLecturer extends DefaultComboBoxModel<String> implement
 		if (currentUser != null) {
 			if (currentUser.getClass_().equals("lecturer")) {
 				this.setSelectedItem(currentUser.getlName_());
-			} else {
-				this.setSelectedItem("<alle>");
-			}
-		} else {
-			this.setSelectedItem("<alle>");
+			} 
 		}
 	}
 	
@@ -78,6 +80,9 @@ public class CmbboxFilterLecturer extends DefaultComboBoxModel<String> implement
 		// Build a new model (which will be up to date automatically) and set it
 		CmbboxFilterLecturer newModel = new CmbboxFilterLecturer(this.dependentComboBox);
 		this.dependentComboBox.setModel(newModel);
+		
+		// Unregister this model as it is no longer used and would cause unwanted additional queries
+		AppModel.getInstance().getRepositoryUser().unregister(this);
 	}
 
 	/**

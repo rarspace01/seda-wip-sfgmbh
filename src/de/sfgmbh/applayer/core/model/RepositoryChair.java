@@ -103,4 +103,12 @@ public class RepositoryChair implements IntfAppObservable, IntfDataObserver {
 		return DataModel.getInstance().getDataHandlerChair().delete(delChair);
 	}
 
+	/**
+	 * Save a chair in the DB
+	 * @return true on success
+	 */
+	public boolean save(Chair chair) {
+		return DataModel.getInstance().getDataHandlerChair().save(chair);
+	}
+
 }
