@@ -7,28 +7,35 @@ import javax.swing.JTextArea;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.TableCellRenderer;
 
-public class LineWrapCellRenderer  extends JTextArea implements TableCellRenderer {
+public class LineWrapCellRenderer extends DefaultTableCellRenderer implements TableCellRenderer
+{
+	
+	private int maxEntries_;
+	
+	public LineWrapCellRenderer(int entries) {
+		this.maxEntries_=entries;
+	}
+	
+  @Override public Component getTableCellRendererComponent(
+    JTable table, Object value,
+    boolean isSelected, boolean hasFocus, int row, int column )
+  {
+  
+		this.setText((String)value);
 
-    @Override
-    public Component getTableCellRendererComponent(
-            JTable table,
-            Object value,
-            boolean isSelected,
-            boolean hasFocus,
-            int row,
-            int column) {
-    	
-    	int fontHeight = this.getFontMetrics(this.getFont()).getHeight();
-    	int textLength = this.getText().length();
-    	int lines = textLength / this.getColumns() +1;//+1, cause we need at least 1 row.           
-    	int height = fontHeight * lines;            
-    	table.setRowHeight(row, height);
-    	
-        this.setText((String)value);
-        this.setWrapStyleWord(true);            
-        this.setLineWrap(true);         
-        return this;
-    }
+        //set the JTextArea to the width of the table column
+        setSize(table.getColumnModel().getColumn(column).getWidth(),getPreferredSize().height);
+ 		if (table.getRowHeight(row) != getPreferredSize().height) {
+ 			//set the height of the table row to the calculated height of the JTextArea
+ 			if(this.maxEntries_>0){
+        	table.setRowHeight(row, getPreferredSize().height* (this.maxEntries_));
+ 			}else{
+ 				table.setRowHeight(row, getPreferredSize().height);	
+ 			}
+   		}
 
-
+		return this;
+	
+	  
+  }
 }
