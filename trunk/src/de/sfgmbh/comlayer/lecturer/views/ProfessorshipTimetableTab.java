@@ -96,30 +96,36 @@ public class ProfessorshipTimetableTab extends JPanel {
 			lehrstuhlStundenplanTable_.setPreferredScrollableViewportSize(new Dimension(750, 400));
 			lehrstuhlStundenplanTable_.setBorder(null);
 			
+			
+			
 			scrollPane.setViewportView(lehrstuhlStundenplanTable_);
 			
 	
 			lehrstuhlStundenplanTable_.setBackground(Color.WHITE);
 			lehrstuhlStundenplanTable_.setModel(ViewManager.getInstance().getLecturerChairimetableTabTable());
-			lehrstuhlStundenplanTable_.getColumnModel().getColumn(0).setResizable(true);
-			lehrstuhlStundenplanTable_.getColumnModel().getColumn(0).setPreferredWidth(50);
-			lehrstuhlStundenplanTable_.getColumnModel().getColumn(0).setMinWidth(50);
-			lehrstuhlStundenplanTable_.getColumnModel().getColumn(0).setMaxWidth(105);
-			lehrstuhlStundenplanTable_.getColumnModel().getColumn(1).setResizable(true);
-			lehrstuhlStundenplanTable_.getColumnModel().getColumn(1).setPreferredWidth(50);
-			lehrstuhlStundenplanTable_.getColumnModel().getColumn(1).setMinWidth(50);
-			lehrstuhlStundenplanTable_.getColumnModel().getColumn(1).setMaxWidth(145);
-			lehrstuhlStundenplanTable_.getColumnModel().getColumn(2).setResizable(true);
-			lehrstuhlStundenplanTable_.getColumnModel().getColumn(2).setMinWidth(75);
-			lehrstuhlStundenplanTable_.getColumnModel().getColumn(2).setMaxWidth(145);
-			lehrstuhlStundenplanTable_.getColumnModel().getColumn(3).setPreferredWidth(80);
-			lehrstuhlStundenplanTable_.getColumnModel().getColumn(3).setMinWidth(80);
-			lehrstuhlStundenplanTable_.getColumnModel().getColumn(3).setMaxWidth(145);
-			lehrstuhlStundenplanTable_.getColumnModel().getColumn(4).setPreferredWidth(70);
-			lehrstuhlStundenplanTable_.getColumnModel().getColumn(4).setMinWidth(70);
-			lehrstuhlStundenplanTable_.getColumnModel().getColumn(4).setMaxWidth(145);
-			lehrstuhlStundenplanTable_.getColumnModel().getColumn(5).setMinWidth(70);
-			lehrstuhlStundenplanTable_.getColumnModel().getColumn(5).setMaxWidth(145);
+			
+			lehrstuhlStundenplanTable_.setDefaultRenderer(String.class, new LineWrapCellRenderer());
+			
+			
+//			lehrstuhlStundenplanTable_.getColumnModel().getColumn(0).setResizable(true);
+//			lehrstuhlStundenplanTable_.getColumnModel().getColumn(0).setPreferredWidth(50);
+//			lehrstuhlStundenplanTable_.getColumnModel().getColumn(0).setMinWidth(50);
+//			lehrstuhlStundenplanTable_.getColumnModel().getColumn(0).setMaxWidth(105);
+//			lehrstuhlStundenplanTable_.getColumnModel().getColumn(1).setResizable(true);
+//			lehrstuhlStundenplanTable_.getColumnModel().getColumn(1).setPreferredWidth(50);
+//			lehrstuhlStundenplanTable_.getColumnModel().getColumn(1).setMinWidth(50);
+//			lehrstuhlStundenplanTable_.getColumnModel().getColumn(1).setMaxWidth(145);
+//			lehrstuhlStundenplanTable_.getColumnModel().getColumn(2).setResizable(true);
+//			lehrstuhlStundenplanTable_.getColumnModel().getColumn(2).setMinWidth(75);
+//			lehrstuhlStundenplanTable_.getColumnModel().getColumn(2).setMaxWidth(145);
+//			lehrstuhlStundenplanTable_.getColumnModel().getColumn(3).setPreferredWidth(80);
+//			lehrstuhlStundenplanTable_.getColumnModel().getColumn(3).setMinWidth(80);
+//			lehrstuhlStundenplanTable_.getColumnModel().getColumn(3).setMaxWidth(145);
+//			lehrstuhlStundenplanTable_.getColumnModel().getColumn(4).setPreferredWidth(70);
+//			lehrstuhlStundenplanTable_.getColumnModel().getColumn(4).setMinWidth(70);
+//			lehrstuhlStundenplanTable_.getColumnModel().getColumn(4).setMaxWidth(145);
+//			lehrstuhlStundenplanTable_.getColumnModel().getColumn(5).setMinWidth(70);
+//			lehrstuhlStundenplanTable_.getColumnModel().getColumn(5).setMaxWidth(145);
 		}
 		return panelProfessorshipPanel_;
 	}
