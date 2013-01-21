@@ -311,7 +311,7 @@ public class DataHandlerChair implements IntfDataChair, IntfDataFilter,
 			ResultSet rs = null;
 
 			if (filterDm == null) {
-				filterDm = new DataManagerPostgreSql();
+				filterDm = DataManagerPostgreSql.getInstance();
 				filterDm.prepare("SELECT public.user.*, public.chair.* "
 						+ "FROM public.chair LEFT JOIN public.user "
 						+ "ON public.chair.chairowner =  public.user.userid "
