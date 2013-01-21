@@ -50,7 +50,7 @@ public class DataManagerPostgreSql {
 
 	/**
 	 * Get a singleton data manger object
-	 * @return always the same data manager object
+	 * @return {@link DataManagerPostgreSql}
 	 */
 	public static DataManagerPostgreSql getInstance() {
 		if (uniqueInstance_ == null) {
