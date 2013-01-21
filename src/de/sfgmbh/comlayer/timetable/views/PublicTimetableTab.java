@@ -32,7 +32,7 @@ public class PublicTimetableTab extends JPanel {
 		
 		JLabel uniIconJLbl = new JLabel("");
 		panel.add(uniIconJLbl);
-		uniIconJLbl.setIcon(new ImageIcon(BaseTab.class.getResource("/de/sfgmbh/comlayer/core/views/UniBA_logo.png")));
+		uniIconJLbl.setIcon(new ImageIcon(BaseTab.class.getResource("/de/sfgmbh/comlayer/core/images/UniBA_logo.png")));
 		uniIconJLbl.setMaximumSize(new Dimension(50,50));
 		
 		JScrollPane scrollPane = new JScrollPane();

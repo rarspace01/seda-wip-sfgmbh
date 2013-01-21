@@ -43,7 +43,7 @@ public class RoomtableTab extends JPanel {
 		add(uniIconPanel, "cell 5 0,alignx right,aligny top");
 		
 		JLabel lblUniIcon = new JLabel();
-		lblUniIcon.setIcon(new ImageIcon(BaseTab.class.getResource("/de/sfgmbh/comlayer/core/views/UniBA_logo.png")));
+		lblUniIcon.setIcon(new ImageIcon(BaseTab.class.getResource("/de/sfgmbh/comlayer/core/images/UniBA_logo.png")));
 		lblUniIcon.setMaximumSize(new Dimension(50,50));
 		uniIconPanel.add(lblUniIcon);
 		

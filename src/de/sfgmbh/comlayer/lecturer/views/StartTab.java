@@ -243,7 +243,7 @@ public class StartTab extends JPanel implements IntfComDialogObserver {
 		
 		JLabel lbluniIcon = new JLabel("");
 		uniIconPanel.add(lbluniIcon);
-		lbluniIcon.setIcon(new ImageIcon(BaseTab.class.getResource("/de/sfgmbh/comlayer/core/views/UniBA_logo.png")));
+		lbluniIcon.setIcon(new ImageIcon(BaseTab.class.getResource("/de/sfgmbh/comlayer/core/images/UniBA_logo.png")));
 		lbluniIcon.setMaximumSize(new Dimension(50,50));
 	}
 
