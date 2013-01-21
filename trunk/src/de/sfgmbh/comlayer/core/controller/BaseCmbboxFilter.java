@@ -32,6 +32,7 @@ public class BaseCmbboxFilter implements KeyListener, ActionListener {
 		ViewManager.getInstance().getOrgaRoomtableTableModel().change();
 		ViewManager.getInstance().getLecturerTimetableTabTable().change();
 		ViewManager.getInstance().getLecturerChairimetableTabTable().change();
+		ViewManager.getInstance().getCoreTimetableTabTable().change();
 	}
 	
 }
