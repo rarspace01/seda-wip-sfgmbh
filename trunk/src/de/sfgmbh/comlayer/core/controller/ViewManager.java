@@ -2,8 +2,10 @@ package de.sfgmbh.comlayer.core.controller;
 
 import de.sfgmbh.applayer.core.model.User;
 import de.sfgmbh.comlayer.core.model.BaseTableMain;
+import de.sfgmbh.comlayer.core.model.CoreTimetableTabTable;
 import de.sfgmbh.comlayer.core.model.RoomTableMain;
 import de.sfgmbh.comlayer.core.views.BaseTab;
+import de.sfgmbh.comlayer.core.views.CoreTimetableTab;
 import de.sfgmbh.comlayer.core.views.InfoDialog;
 import de.sfgmbh.comlayer.core.views.LiveTickerPanel;
 import de.sfgmbh.comlayer.lecturer.model.ChairTimetableTabTable;
@@ -32,18 +34,16 @@ public class ViewManager {
 	
 	private static ViewManager uniqueInstance_ = new ViewManager();
 	
-	public ViewManager() {
-		uniqueInstance_ = this;
+	private ViewManager() {
 	}
 	
 	public static ViewManager getInstance() {
+		if(uniqueInstance_==null){
+			uniqueInstance_=new ViewManager();
+		}
 		return uniqueInstance_;
 	}
 
-	public void dispose() {
-		uniqueInstance_ = null;
-	}
-	
 	/**
 	* Module: Core (global area - all other modules have dependencies to this one)
 	*/
@@ -52,6 +52,8 @@ public class ViewManager {
 	private BaseTableMain baseTableMain;
 	private RoomTableMain roomTableMain;
 	private LiveTickerPanel liveTickerPanel;
+	private CoreTimetableTab coreTimetableTab_; 
+	private CoreTimetableTabTable coreTimetableTabTable_;
 	
 	public BaseTab getCoreBaseTab() {
 		if (this.baseTab == null) {
@@ -83,6 +85,20 @@ public class ViewManager {
 			this.roomTableMain = new RoomTableMain();
 		}
 		return this.roomTableMain;
+	}
+	
+	public CoreTimetableTab getCoreTimetableTab() {
+		if (this.coreTimetableTab_ == null) {
+			this.coreTimetableTab_ = new CoreTimetableTab();
+		}
+		return this.coreTimetableTab_;
+	}
+	
+	public CoreTimetableTabTable getCoreTimetableTabTable() {
+		if (this.coreTimetableTabTable_ == null) {
+			this.coreTimetableTabTable_ = new CoreTimetableTabTable();
+		}
+		return this.coreTimetableTabTable_;
 	}
 	
 	/**
@@ -308,6 +324,8 @@ public class ViewManager {
 		}
 		return this.chairTimetableTabTable;
 	}
+
+
 	
 	
 	

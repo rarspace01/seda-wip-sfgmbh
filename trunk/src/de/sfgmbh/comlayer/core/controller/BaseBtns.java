@@ -64,10 +64,25 @@ public class BaseBtns implements ActionListener {
 						returnList.add(selectedAllocation);
 					}
 					
+					System.out.println("timetable fired");
+					
+					ViewManager.getInstance().getCoreBaseTab().getMainTabbedContainerPane().setVisible(true);
+					if(ViewManager.getInstance().getCoreBaseTab().getMainTabbedContainerPane().getTabCount()==0){
+					ViewManager.getInstance().getCoreBaseTab().getMainTabbedContainerPane().addTab("Start", null, ViewManager.getInstance().getCoreBaseTab().getStartScreenPanel(), null);
+					}
+					
 					/* HIER MUSS DER STUNDENPLAN GERUFEN WERDEN BZW UPGEDATET WERDEN */
 					
 					// Evtl.:
-					// ViewManger.getInstance().getCoreTimetableTab().setAllocation(returnList);
+					ViewManager.getInstance().getCoreTimetableTab().setAllocation(returnList);
+					
+					
+					
+					ViewManager.getInstance().getCoreBaseTab().getMainTabbedContainerPane().addTab("Vorlesungsplan", null, ViewManager.getInstance().getChairTimetableTab(), null);
+					
+					ViewManager.getInstance().getChairTimetableTab().setVisible(true);
+					ViewManager.getInstance().getCoreBaseTab().switchToNextTab();
+					
 					// ?? 
 					// Dann würde es evlt Sinn machen dass Timetable Tab nach Core zu refactoren
 					// Evtl macht es auch Sinn das Tab neu zu instanziieren - also da könnte man
@@ -77,6 +92,7 @@ public class BaseBtns implements ActionListener {
 					
 					
 				} catch (Exception ex) {
+					ex.printStackTrace();
 					AppModel.getInstance().getExceptionHandler().setNewException("Ein unerwarteter Fehler ist aufgetreten.<br /><br >" + ex.toString(), "Fehler!");
 				}
 			}
