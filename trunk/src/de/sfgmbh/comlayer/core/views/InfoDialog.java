@@ -13,6 +13,7 @@ import net.miginfocom.swing.MigLayout;
 import de.sfgmbh.applayer.core.definitions.IntfAppObserver;
 import de.sfgmbh.applayer.core.model.AppModel;
 import de.sfgmbh.comlayer.core.controller.InfoDialogBtnOk;
+import java.awt.Toolkit;
 
 /**
  * Modal dialog for all kinds of system messages
@@ -31,6 +32,7 @@ public class InfoDialog extends JDialog implements IntfAppObserver {
 	 * Create the dialog with default message, title and settings
 	 */
 	public InfoDialog() {
+		setIconImage(Toolkit.getDefaultToolkit().getImage(InfoDialog.class.getResource("/de/sfgmbh/comlayer/core/images/HUT_klein.png")));
 		createContents();
 	}
 	

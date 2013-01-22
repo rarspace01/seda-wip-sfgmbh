@@ -13,6 +13,7 @@ import net.miginfocom.swing.MigLayout;
 import de.sfgmbh.comlayer.core.controller.QuestionDialogBtns;
 import de.sfgmbh.comlayer.core.definitions.IntfComDialogObservable;
 import de.sfgmbh.comlayer.core.definitions.IntfComDialogObserver;
+import java.awt.Toolkit;
 
 /**
  * Modal dialog with more options
@@ -33,6 +34,7 @@ public class QuestionDialog extends JDialog implements IntfComDialogObserver, In
 	 * Create the dialog with default message, title and settings
 	 */
 	public QuestionDialog() {
+		setIconImage(Toolkit.getDefaultToolkit().getImage(QuestionDialog.class.getResource("/de/sfgmbh/comlayer/core/images/HUT_klein.png")));
 		createContents();
 	}
 	

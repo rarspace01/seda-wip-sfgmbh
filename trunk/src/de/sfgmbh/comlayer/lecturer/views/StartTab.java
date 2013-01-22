@@ -209,27 +209,32 @@ public class StartTab extends JPanel implements IntfComDialogObserver {
 		add(buttonPanel, "cell 6 1,grow");
 		
 		btnAdd = new JButton("hinzuf\u00FCgen");
+		btnAdd.setToolTipText("<html>Hier klicken um eine Lehrveranstaltung zu erstellen</html>");
 		btnAdd.addActionListener(new StartTabBtnsControl("add"));
 		btnAdd.setBounds(0, 54, 88, 23);
 		buttonPanel.add(btnAdd);
 		
 		btnEdit = new JButton("bearbeiten");
+		btnEdit.setToolTipText("<html>Selektieren Sie eine Lehrveranstaltung um sie zu bearbeiten</html>");
 		btnEdit.addActionListener(new StartTabBtnsControl("edit"));
 		btnEdit.setBounds(0, 79, 88, 23);
 		buttonPanel.add(btnEdit);
 		
 		btnDelete = new JButton("löschen");
+		btnDelete.setToolTipText("<html>Selektieren Sie eine Lehrveranstaltung um sie zu löschen</html>");
 		btnDelete.addActionListener(new StartTabBtnsControl("delete"));
 		btnDelete.setBounds(0, 106, 88, 23);
 		buttonPanel.add(btnDelete);
 		
 		JButton btnPublish = new JButton("freigeben");
+		btnPublish.setToolTipText("<html>Selektieren Sie eine Lehrveranstaltung um sie frei zu geben</html>");
 		btnPublish.addActionListener(new StartTabBtnsControl("publish"));
 		btnPublish.setBounds(0, 194, 88, 23);
 		buttonPanel.add(btnPublish);
 		
 		//Ist hier die Schreibweise gem�� der java code conventions?mit RoomRequest?
 		btnRoomRequest = new JButton("Anfrage");
+		btnRoomRequest.setToolTipText("<html> Für erstellte Lehrveranstaltungen können Sie <br> eine Raumanfrage an die Verwaltung senden</html>");
 		btnRoomRequest.addActionListener(new StartTabBtnsControl("roomrequest"));
 		btnRoomRequest.setBounds(0, 160, 88, 23);
 		buttonPanel.add(btnRoomRequest);

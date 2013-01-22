@@ -26,7 +26,7 @@ public class RoomFrame extends JDialog {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-	private JTextField txtroomid;
+	private JTextField txtRoomid;
 	private JTextField txtLevel;
 	private JTextField txtRoomNumber;
 	private JTextField txtBeamer;
@@ -78,7 +78,7 @@ public class RoomFrame extends JDialog {
 		gbc_lblLevel.gridy = 1;
 		contentPane.add(lblLevel, gbc_lblLevel);
 		
-		txtroomid=new JTextField("-1");
+		txtRoomid=new JTextField("-1");
 		
 		txtLevel = new JTextField();
 		txtLevel.setFont(new Font("SansSerif", Font.PLAIN, 12));
@@ -402,10 +402,10 @@ public class RoomFrame extends JDialog {
 	}
 	/**
 	 * 
-	 * @return the txtroomid
+	 * @return the txtRoomid
 	 */
 	public JTextField getTxtroomid() {
-		return txtroomid;
+		return txtRoomid;
 	}
 	
 }

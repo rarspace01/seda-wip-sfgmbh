@@ -56,6 +56,7 @@ public class CourseDialog extends JDialog {
 	 * Create the dialog.
 	 */
 	public CourseDialog() {
+		setTitle("Lehrveranstaltung hinzufügen");
 		this.variant = "default";
 		this.course = new Course();
 		this.init();
@@ -76,7 +77,7 @@ public class CourseDialog extends JDialog {
 		if (this.variant.equals("edit")) {
 			setTitle("Veranstaltung bearbeiten");
 		} else {
-			setTitle("Veranstaltung ");
+			setTitle("Veranstaltung hinzufügen");
 		}
 		setIconImage(Toolkit.getDefaultToolkit().getImage(CounterproposalDialog.class.getResource("/de/sfgmbh/comlayer/core/images/HUT_klein.png")));
 		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
@@ -118,7 +119,10 @@ public class CourseDialog extends JDialog {
 			this.getEditDescription().setText(this.course.getCourseDescription_());
 		}
 	}
-	
+	/**
+	 * 
+	 * @return the lblAcronym
+	 */
 	public JLabel getLblAcronym() {
 		if (lblAcronym == null) {
 			lblAcronym = new JLabel("Kurzbezeichnung:");
@@ -126,6 +130,10 @@ public class CourseDialog extends JDialog {
 		}
 		return lblAcronym;
 	}
+	/**
+	 * 
+	 * @return the lblName
+	 */
 	public JLabel getLblName() {
 		if (lblName == null) {
 			lblName = new JLabel("Langer Name:");
@@ -133,6 +141,10 @@ public class CourseDialog extends JDialog {
 		}
 		return lblName;
 	}
+	/**
+	 * 
+	 * @return the lblKind
+	 */
 	public JLabel getLblKind() {
 		if (lblKind == null) {
 			lblKind = new JLabel("Art:");
@@ -140,6 +152,10 @@ public class CourseDialog extends JDialog {
 		}
 		return lblKind;
 	}
+	/**
+	 * 
+	 * @return the lblSws
+	 */
 	public JLabel getLblSws() {
 		if (lblSws == null) {
 			lblSws = new JLabel("SWS:");
@@ -147,6 +163,10 @@ public class CourseDialog extends JDialog {
 		}
 		return lblSws;
 	}
+	/**
+	 * 
+	 * @return the lblAttendees
+	 */
 	public JLabel getLblAttendees() {
 		if (lblAttendees == null) {
 			lblAttendees = new JLabel("Erw. Teilnehmer:");
@@ -154,6 +174,10 @@ public class CourseDialog extends JDialog {
 		}
 		return lblAttendees;
 	}
+	/**
+	 * 
+	 * @return the lblLecturer
+	 */
 	public JLabel getLblLecturer() {
 		if (lblLecturer == null) {
 			lblLecturer = new JLabel("Dozent:");
@@ -161,6 +185,10 @@ public class CourseDialog extends JDialog {
 		}
 		return lblLecturer;
 	}
+	/**
+	 * 
+	 * @return the lblDescription
+	 */
 	public JLabel getLblDescription() {
 		if (lblDescription == null) {
 			lblDescription = new JLabel("Beschreibung:");
@@ -168,6 +196,10 @@ public class CourseDialog extends JDialog {
 		}
 		return lblDescription;
 	}
+	/**
+	 * 
+	 * @return the btnCancel
+	 */
 	public JButton getBtnCancel() {
 		if (btnCancel == null) {
 			btnCancel = new JButton("Abbrechen");
@@ -176,6 +208,10 @@ public class CourseDialog extends JDialog {
 		}
 		return btnCancel;
 	}
+	/**
+	 * 
+	 * @return the btnSave
+	 */
 	public JButton getBtnSave() {
 		if (btnSave == null) {
 			btnSave = new JButton("Speichern");
@@ -184,22 +220,36 @@ public class CourseDialog extends JDialog {
 		}
 		return btnSave;
 	}
+	/**
+	 * 
+	 * @return the txtAcronym
+	 */
 	public JTextField getTxtAcronym() {
 		if (txtAcronym == null) {
 			txtAcronym = new JTextField();
+			txtAcronym.setToolTipText("geben Sie eine gewünschte Kurzbezeichnung ein");
 			txtAcronym.setBounds(138, 19, 106, 20);
 			txtAcronym.setColumns(10);
 		}
 		return txtAcronym;
 	}
+	/**
+	 * 
+	 * @return the txtName
+	 */
 	public JTextField getTxtName() {
 		if (txtName == null) {
 			txtName = new JTextField();
+			txtName.setToolTipText("geben Sie eine gewünschte Bezeichnung ein");
 			txtName.setBounds(138, 44, 106, 20);
 			txtName.setColumns(10);
 		}
 		return txtName;
 	}
+	/**
+	 * 
+	 * @return the cmbboxKind
+	 */
 	public JComboBox<String> getCmbboxKind() {
 		if (cmbboxKind == null) {
 			cmbboxKind = new JComboBox<String>();
@@ -208,30 +258,49 @@ public class CourseDialog extends JDialog {
 		}
 		return cmbboxKind;
 	}
+	/**
+	 * 
+	 * @return the cmbboxLecturer
+	 */
 	public JComboBox<String> getCmbboxLecturer() {
 		if (cmbboxLecturer == null) {
 			cmbboxLecturer = new JComboBox<String>();
+			cmbboxLecturer.setToolTipText("wählen Sie den betreffenden Dozenten für die Lehrveranstaltung aus");
 			cmbboxLecturer.setModel(new CmbboxFilterLecturer(cmbboxLecturer, "select"));
 			cmbboxLecturer.setBounds(138, 144, 106, 20);
 		}
 		return cmbboxLecturer;
 	}
+	/**
+	 * 
+	 * @return the txtSws
+	 */
 	public JTextField getTxtSws() {
 		if (txtSws == null) {
 			txtSws = new JTextField();
+			txtSws.setToolTipText("geben Sie die gesamten Semesterwochenstunden an");
 			txtSws.setBounds(138, 94, 106, 20);
 			txtSws.setColumns(10);
 		}
 		return txtSws;
 	}
+	/**
+	 * 
+	 * @return the txtAttendees
+	 */
 	public JTextField getTxtAttendees() {
 		if (txtAttendees == null) {
 			txtAttendees = new JTextField();
+			txtAttendees.setToolTipText("Geben Sie die erwartete Gesamtanzahl der Teilnehmer ein");
 			txtAttendees.setBounds(138, 119, 106, 20);
 			txtAttendees.setColumns(10);
 		}
 		return txtAttendees;
 	}
+	/**
+	 * 
+	 * @return the scrollPane
+	 */
 	public JScrollPane getScrollPane() {
 		if (scrollPane == null) {
 			scrollPane = new JScrollPane();
@@ -240,12 +309,21 @@ public class CourseDialog extends JDialog {
 		}
 		return scrollPane;
 	}
+	/**
+	 * 
+	 * @return the editDescription
+	 */
 	public JEditorPane getEditDescription() {
 		if (editDescription == null) {
 			editDescription = new JEditorPane();
+			editDescription.setToolTipText("geben Sie für die Studenten eine Beschreibung der Lehrveranstaltung ein");
 		}
 		return editDescription;
 	}
+	/**
+	 * 
+	 * @return the chckbxPublic
+	 */
 	public JCheckBox getChckbxPublic() {
 		if (chckbxPublic == null) {
 			chckbxPublic = new JCheckBox("öffentlich (falls von Verwaltung freigegeben)");
