@@ -76,9 +76,13 @@ public class UserTabTable extends DefaultTableModel implements IntfAppObserver {
 
 			// Build the row...
 			try {
-				Object[] row = { user.getLogin_(), user.getMail_(),
-						ViewHelper.getUserClass(user.getClass_()), chair,
-						date.toString(), ViewHelper.getBoolean(user.isDisabled_()),
+				Object[] row = { 
+						user.getLogin_(), 
+						user.getMail_(),
+						ViewHelper.getUserClass(user.getClass_()), 
+						chair,
+						ViewHelper.getGlobalDateFormat(date), 
+						ViewHelper.getBoolean(user.isDisabled_()),
 						user };
 				this.addRow(row);
 

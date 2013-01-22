@@ -20,7 +20,7 @@ public class CtrlLiveTicker {
 	
 	/**
 	 * Get all allocations which should be displayed in the live ticker.<br>
-	 * This allocations only affect the current day, public allocations and there are at most 10 allocations retrieved (started by the most recent on)
+	 * This allocations only affect the current day, public allocations and there are at most 15 allocations retrieved (started by the most recent on)
 	 * @return a list of room allocations
 	 */
 	public List<RoomAllocation> getTickerAllocations() {
@@ -58,7 +58,7 @@ public class CtrlLiveTicker {
 	    			ra.getTime_() > this.transcodeHour(formatHour)) {
 	    		returnList.add(ra);
 	    		counter++;
-	    		if (counter >= 10) {
+	    		if (counter >= 15) {
 	    			break;
 	    		}
 	    	}

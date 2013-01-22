@@ -115,7 +115,7 @@ public class LiveTickerPanel extends JPanel {
 		int y = this.getTxtTicker().getBounds().y;
 		int width = this.getTxtTicker().getBounds().width;
 		this.getTxtTicker().setBounds(x, y, width, height);
-		if (height > 285) {
+		if (height > 325) {
 			this.isTooLong = true;
 		} else {
 			this.isTooLong = false;
@@ -150,7 +150,8 @@ public class LiveTickerPanel extends JPanel {
 			int width = this.getTxtTicker().getBounds().width;
 			int height = this.getTxtTicker().getBounds().height;
 			if (-y == height-30) {
-				y = 300;
+				// Start from this low with a new scroll up
+				y = 490;
 			}
 			this.getTxtTicker().setBounds(x, y-1, width, height);
 		}
