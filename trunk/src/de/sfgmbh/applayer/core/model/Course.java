@@ -1,8 +1,7 @@
 package de.sfgmbh.applayer.core.model;
 
-import de.sfgmbh.datalayer.core.definitions.IntfDataRetrievable;
 
-public class Course implements IntfDataRetrievable{
+public class Course {
 
 	private int courseId_;
 	private User lecturer_;
@@ -151,12 +150,6 @@ public class Course implements IntfDataRetrievable{
 		this.lecturerEnabled_ = lecturerEnabled_;
 	}
 
-	@Override
-	public Object getData() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	
 	/**
 	 * Validates the course object, calls an info dialog when one check fails and returns true if all checks are passed
 	 * @return true if all check attributes are valid

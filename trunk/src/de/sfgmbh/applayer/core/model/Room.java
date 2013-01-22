@@ -1,8 +1,7 @@
 package de.sfgmbh.applayer.core.model;
 
-import de.sfgmbh.datalayer.core.definitions.IntfDataRetrievable;
 
-public class Room implements IntfDataRetrievable{
+public class Room{
 
 	private int roomId_;
 	private String roomNumber_;
@@ -159,15 +158,5 @@ public class Room implements IntfDataRetrievable{
 	public void setWhiteboards_(int whiteboards_) {
 		this.whiteboards_ = whiteboards_;
 	}
-	
-	
-	@Override
-	public Object getData() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	
-	
-	
 	
 }

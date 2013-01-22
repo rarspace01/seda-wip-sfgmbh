@@ -2,8 +2,6 @@ package de.sfgmbh.applayer.core.model;
 
 import java.util.List;
 
-import de.sfgmbh.datalayer.core.definitions.IntfDataRetrievable;
-
 /**
  * Model for room allocations
  * 
@@ -11,7 +9,7 @@ import de.sfgmbh.datalayer.core.definitions.IntfDataRetrievable;
  * @author hannes
  *
  */
-public class RoomAllocation implements IntfDataRetrievable{
+public class RoomAllocation {
 
 	private int roomAllocationId_;
 	private Course course_;
@@ -230,12 +228,6 @@ public class RoomAllocation implements IntfDataRetrievable{
 		}
 		
 		return false;
-	}
-
-	@Override
-	public Object getData() {
-		// TODO Auto-generated method stub
-		return null;
 	}
 
 	/**
