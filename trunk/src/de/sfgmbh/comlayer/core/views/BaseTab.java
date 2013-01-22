@@ -37,7 +37,6 @@ import de.sfgmbh.comlayer.core.model.CmbboxFilterChair;
 import de.sfgmbh.comlayer.core.model.CmbboxFilterCourse;
 import de.sfgmbh.comlayer.core.model.CmbboxFilterLecturer;
 import de.sfgmbh.comlayer.core.model.CmbboxFilterLevel;
-import de.sfgmbh.comlayer.core.model.CmbboxFilterOrga;
 import de.sfgmbh.comlayer.core.model.CmbboxFilterRoomnumber;
 import de.sfgmbh.comlayer.core.model.CmbboxFilterSeats;
 import de.sfgmbh.comlayer.core.model.CmbboxFilterSemester;
@@ -64,7 +63,7 @@ public class BaseTab extends JFrame {
 	private JComboBox<String> comboBoxSemesterFilter;
 	private CmbboxFilterSemester comboBoxSemesterModel_;
 	private JComboBox<String> comboBoxOrgaFilter;
-	private CmbboxFilterOrga comboBoxOrgaModel_;
+	private CmbboxFilterSemester comboBoxOrgaModel_;
 	private JComboBox<String> comboBoxRoomnumberFilter;
 	private CmbboxFilterRoomnumber comboBoxRoomnumberModel_;
 	private JComboBox<String> comboBoxSeatsFilter;
@@ -239,7 +238,7 @@ public class BaseTab extends JFrame {
 		if (comboBoxOrgaFilter == null) {
 			comboBoxOrgaFilter = new JComboBox<String>();
 			comboBoxOrgaFilter.setPreferredSize(new Dimension(110, 20));
-			comboBoxOrgaModel_=new CmbboxFilterOrga();
+			comboBoxOrgaModel_=new CmbboxFilterSemester();
 			comboBoxOrgaFilter.addKeyListener(new BaseCmbboxFilter("allocations"));
 			comboBoxOrgaFilter.addActionListener(new BaseCmbboxFilter("allocations"));
 			comboBoxOrgaFilter.setAutoscrolls(true);
@@ -357,13 +356,6 @@ public class BaseTab extends JFrame {
 			organisationTable.setModel(ViewManager.getInstance()
 					.getCoreBaseTableModel());
 			
-			comboBoxChairModel_.register(ViewManager.getInstance()
-					.getCoreBaseTableModel());
-			comboBoxLecturerModel_.register(ViewManager.getInstance()
-					.getCoreBaseTableModel());
-			comboBoxOrgaModel_.register(ViewManager.getInstance()
-					.getCoreBaseTableModel());
-			
 			organisationTable.getColumnModel().getColumn(0).setResizable(false);
 			organisationTable.getColumnModel().getColumn(8)
 					.setCellRenderer(center);
@@ -391,9 +383,6 @@ public class BaseTab extends JFrame {
 			roomTable.addMouseListener(new BaseTable(this, "room"));
 			roomTable.setShowVerticalLines(false);
 			roomTable.setModel(ViewManager.getInstance()
-					.getCoreRoomTableModel());
-			
-			this.comboBoxChairModel_.register(ViewManager.getInstance()
 					.getCoreRoomTableModel());
 			
 			roomTable.setBackground(SystemColor.activeCaption);
