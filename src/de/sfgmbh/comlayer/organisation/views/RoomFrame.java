@@ -274,6 +274,20 @@ public class RoomFrame extends JDialog {
 		gbc_btnSave.gridy = 11;
 		contentPane.add(btnSave, gbc_btnSave);
 	}
+	
+	public void reset(){
+		this.getTxtroomid().setText("-1");
+		this.getTxtRoomNumber().setText("");
+		this.getTxtLevel().setText("");
+		this.getTxtSeats().setText("");
+		this.getTxtPcSeats().setText("");
+		this.getTxtBeamer().setText("");
+		this.getTxtChalkboards().setText("");
+		this.getTxtOverheads().setText("");
+		this.getTxtVisualizer().setText("");
+		this.getTxtWhiteboards().setText("");
+	}
+	
 	/**
 	 * 
 	 * @return the txtLevel
