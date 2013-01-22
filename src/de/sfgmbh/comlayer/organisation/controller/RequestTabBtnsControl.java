@@ -26,6 +26,7 @@ public class RequestTabBtnsControl implements ActionListener, IntfComDialogObser
 	private CtrlRoomAllocation ctrlRoomAllocation;
 	private RoomAllocation revokeAllocation;
 	private RoomAllocation solveApprovedAllocation;
+	private boolean cleanRoomAllocations;
 	
 	/**
 	 * Create the action listener
@@ -33,6 +34,7 @@ public class RequestTabBtnsControl implements ActionListener, IntfComDialogObser
 	public RequestTabBtnsControl() {
 		this.navAction = "default";
 		this.ctrlRoomAllocation = new CtrlRoomAllocation();
+		this.cleanRoomAllocations = false;
 	}
 	
 	/**
@@ -42,6 +44,7 @@ public class RequestTabBtnsControl implements ActionListener, IntfComDialogObser
 	public RequestTabBtnsControl(String action) {
 		this.navAction = action;
 		this.ctrlRoomAllocation = new CtrlRoomAllocation();
+		this.cleanRoomAllocations = false;
 	}
 	
 	@Override
@@ -128,6 +131,14 @@ public class RequestTabBtnsControl implements ActionListener, IntfComDialogObser
 				}
 			}
 		}
+		
+		// Clean Button is pressed
+		if (this.navAction.equals("clean")) {
+			QuestionDialog dialog = new QuestionDialog("Mit dieser Aktion löschen Sie alle abgelehnten Raumbelegungen dauerhaft aus der Datenbank. Wollen Sie dies wirklich?", "Achtung!");
+			this.cleanRoomAllocations = true;
+			dialog.register(this);
+			dialog.setVisible(true);
+		}
 	}
 	
 	private void denyAllocation (RoomAllocation ra) {
@@ -149,9 +160,13 @@ public class RequestTabBtnsControl implements ActionListener, IntfComDialogObser
 				CounterproposalDialog counterproposalDialog = new CounterproposalDialog(this.solveApprovedAllocation);
 				counterproposalDialog.setVisible(true);
 			}
+			if (this.cleanRoomAllocations) {
+				ctrlRoomAllocation.cleanRoomAllocations();
+			}
 		} else if (answer.equals("no")) {
 			this.revokeAllocation = null;
 			this.solveApprovedAllocation = null;
+			this.cleanRoomAllocations = false;
 		}
 	}
 }

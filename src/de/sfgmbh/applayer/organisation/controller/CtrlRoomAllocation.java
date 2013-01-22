@@ -158,5 +158,13 @@ public class CtrlRoomAllocation {
 		
 		return false;
 	}
+
+	/**
+	 * Delete all denied allocations
+	 * @return true on success
+	 */
+	public boolean cleanRoomAllocations() {
+		return AppModel.getInstance().getRepositoryRoomAllocation().clean();
+	}
 	
 }
