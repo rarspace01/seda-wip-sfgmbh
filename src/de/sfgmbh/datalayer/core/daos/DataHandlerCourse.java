@@ -55,6 +55,8 @@ public class DataHandlerCourse implements IntfDataFilter, IntfDataObservable {
 		} catch (Exception e) {
 			e.printStackTrace();
 			DataModel.getInstance().getExceptionsHandler().setNewException(("Es ist ein unbekannter Fehler (DataHandlerCourse-03) in der Datenhaltung aufgetreten:<br /><br />" + e.toString()), "Fehler!");
+		}finally{
+			DataManagerPostgreSql.getInstance().dispose();
 		}
 
 		return listCourse;
@@ -108,6 +110,8 @@ public class DataHandlerCourse implements IntfDataFilter, IntfDataObservable {
 		} catch (Exception e) {
 			e.printStackTrace();
 			DataModel.getInstance().getExceptionsHandler().setNewException(("Es ist ein unbekannter Fehler (DataHandlerCourse-10) in der Datenhaltung aufgetreten:<br /><br />" + e.toString()), "Fehler!");
+		}finally{
+			DataManagerPostgreSql.getInstance().dispose();
 		}
 		
 		return listCourse;
@@ -139,6 +143,8 @@ public class DataHandlerCourse implements IntfDataFilter, IntfDataObservable {
 		} catch (Exception e) {
 			e.printStackTrace();
 			DataModel.getInstance().getExceptionsHandler().setNewException(("Es ist ein unbekannter Fehler (DataHandlerCourse-08) in der Datenhaltung aufgetreten:<br /><br />" + e.toString()), "Fehler!");
+		}finally{
+			DataManagerPostgreSql.getInstance().dispose();
 		}
 		
 		return null;
@@ -247,6 +253,8 @@ public class DataHandlerCourse implements IntfDataFilter, IntfDataObservable {
 					e.printStackTrace();
 					DataModel.getInstance().getExceptionsHandler().setNewException(("Es ist ein unbekannter Fehler in der Datenhaltung aufgetreten:<br /><br />" + e.toString()), "Fehler!");
 					returnState =  false;
+				}finally{
+					DataManagerPostgreSql.getInstance().dispose();
 				}
 				return returnState;
 		} else {
@@ -275,6 +283,8 @@ public class DataHandlerCourse implements IntfDataFilter, IntfDataObservable {
 				e.printStackTrace();
 				DataModel.getInstance().getExceptionsHandler().setNewException(("Es ist ein unbekannter Fehler (in der Datenhaltung aufgetreten:<br /><br />" + e.toString()), "Fehler!");
 				returnState = false;
+			}finally{
+				DataManagerPostgreSql.getInstance().dispose();
 			}
 			return returnState;
 			
@@ -306,6 +316,8 @@ public class DataHandlerCourse implements IntfDataFilter, IntfDataObservable {
 				returnState = false;
 				e.printStackTrace();
 				DataModel.getInstance().getExceptionsHandler().setNewException(("Es ist ein unbekannter Fehler in der Datenhaltung aufgetreten:<br /><br />" + e.toString()), "Fehler!");
+			}finally{
+				DataManagerPostgreSql.getInstance().dispose();
 			}
 			return returnState;
 		}

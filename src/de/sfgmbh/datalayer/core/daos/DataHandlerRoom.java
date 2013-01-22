@@ -40,6 +40,8 @@ public class DataHandlerRoom implements IntfDataRoom, IntfDataFilter, IntfDataOb
 		} catch (Exception e) {
 			e.printStackTrace();
 			DataModel.getInstance().getExceptionsHandler().setNewException(("Es ist ein unbekannter Fehler (DataHandlerRoom-07) in der Datenhaltung aufgetreten:<br /><br />" + e.toString()), "Fehler!");
+		}finally{
+			DataManagerPostgreSql.getInstance().dispose();
 		}
 
 		return listRoom;
@@ -62,6 +64,8 @@ public class DataHandlerRoom implements IntfDataRoom, IntfDataFilter, IntfDataOb
 		} catch (Exception e) {
 			e.printStackTrace();
 			DataModel.getInstance().getExceptionsHandler().setNewException(("Es ist ein unbekannter Fehler (DataHandlerRoom-05) in der Datenhaltung aufgetreten:<br /><br />" + e.toString()), "Fehler!");
+		}finally{
+			DataManagerPostgreSql.getInstance().dispose();
 		}
 		
 		return null;
@@ -87,6 +91,8 @@ public class DataHandlerRoom implements IntfDataRoom, IntfDataFilter, IntfDataOb
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		}finally{
+			DataManagerPostgreSql.getInstance().dispose();
 		}
 
 		return listRoom;
@@ -113,6 +119,8 @@ public class DataHandlerRoom implements IntfDataRoom, IntfDataFilter, IntfDataOb
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		}finally{
+			DataManagerPostgreSql.getInstance().dispose();
 		}
 
 	}
@@ -141,6 +149,8 @@ public class DataHandlerRoom implements IntfDataRoom, IntfDataFilter, IntfDataOb
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
+			}finally{
+				DataManagerPostgreSql.getInstance().dispose();
 			}
 		}else{
 			String sqlStatement = "UPDATE public.room SET " + "roomnumber ='"
@@ -163,6 +173,8 @@ public class DataHandlerRoom implements IntfDataRoom, IntfDataFilter, IntfDataOb
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
+			}finally{
+				DataManagerPostgreSql.getInstance().dispose();
 			}
 		}
 		
@@ -249,6 +261,8 @@ public class DataHandlerRoom implements IntfDataRoom, IntfDataFilter, IntfDataOb
 		} catch (Exception e) {
 			e.printStackTrace();
 			DataModel.getInstance().getExceptionsHandler().setNewException(("Es ist ein unbekannter Fehler in der Datenhaltung aufgetreten:<br /><br />Fehler DataHandlerRoom-18:<br />" + e.toString()), "Fehler!");
+		}finally{
+			DataManagerPostgreSql.getInstance().dispose();
 		}
 
 		return listRoom;
@@ -344,6 +358,8 @@ public class DataHandlerRoom implements IntfDataRoom, IntfDataFilter, IntfDataOb
 		} catch (Exception e) {
 			e.printStackTrace();
 			DataModel.getInstance().getExceptionsHandler().setNewException(("Es ist ein unbekannter Fehler in der Datenhaltung aufgetreten:<br /><br />" + e.toString()), "Fehler!");
+		}finally{
+			DataManagerPostgreSql.getInstance().dispose();
 		}
 		
 		return null;

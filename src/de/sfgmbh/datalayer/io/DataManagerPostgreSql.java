@@ -45,8 +45,9 @@ public class DataManagerPostgreSql {
 			e.printStackTrace();
 			DataModel.getInstance().getExceptionsHandler().setNewException(("Es ist ein unbekannter Fehler in der Datenhaltung aufgetreten.<br /><br />DataManagerPostgreSql-02:<br />" + e.toString()), "Fehler!");
 		}
-		// For testing purpose deactivated - if nothing bad happens it can stay this way; if not remember to set the constructor back to private
-		// uniqueInstance_ = this;
+		
+		
+		
 	}
 
 	/**
@@ -64,6 +65,20 @@ public class DataManagerPostgreSql {
 	 * Dispatch the singleton data manger object
 	 */
 	public void dispose() {
+		try {
+			if(this.pstmt!=null){
+			this.pstmt.close();
+			}
+			if(this.stmt!=null){
+			this.stmt.close();
+			}
+			if(this.conn!=null){
+			this.conn.close();
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		uniqueInstance_ = null;
 	}
 	
@@ -98,6 +113,7 @@ public class DataManagerPostgreSql {
 			e.printStackTrace();
 			DataModel.getInstance().getExceptionsHandler().setNewException(("Es ist ein SQL-Fehler (DataManagerPostgreSql-03) aufgetreten:<br /><br />" + e.toString()), "Datenbank-Fehler!");
 		}
+		
 		return rs;
 	}
 
@@ -124,6 +140,7 @@ public class DataManagerPostgreSql {
 			e.printStackTrace();
 			DataModel.getInstance().getExceptionsHandler().setNewException(("Es ist ein SQL-Fehler (DataManagerPostgreSql-04) aufgetreten:<br /><br />" + e.toString()), "Datenbank-Fehler!");
 		}
+		
 		return i;
 	}
 
@@ -131,7 +148,7 @@ public class DataManagerPostgreSql {
 	 * Get the SQL connection object used to establish the connection to the database
 	 * @return the connection object
 	 */
-	public Connection getConnection() {
+	private Connection getConnection() {
 		return conn;
 	}
 	
@@ -151,7 +168,6 @@ public class DataManagerPostgreSql {
 		}
 		
 		return this.pstmt;
-		
 	}
 	
 	/**
@@ -174,6 +190,7 @@ public class DataManagerPostgreSql {
 			e.printStackTrace();
 			DataModel.getInstance().getExceptionsHandler().setNewException(("Es ist ein SQL-Fehler (DataManagerPostgreSql-06) aufgetreten:<br /><br />" + e.toString()), "Datenbank-Fehler!");
 		}
+		
 		
 		return rs;
 	}

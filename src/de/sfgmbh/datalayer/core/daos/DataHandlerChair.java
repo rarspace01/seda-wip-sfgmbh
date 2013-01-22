@@ -37,6 +37,8 @@ public class DataHandlerChair implements IntfDataChair, IntfDataFilter,
 				listChair.add(this.makeChair(resultSet));
 			}
 
+			
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 			DataModel
@@ -53,6 +55,8 @@ public class DataHandlerChair implements IntfDataChair, IntfDataFilter,
 					.setNewException(
 							("Es ist ein unbekannter Fehler in der Datenhaltung aufgetreten:<br /><br />" + e
 									.toString()), "Fehler!");
+		}finally{
+			DataManagerPostgreSql.getInstance().dispose();
 		}
 
 		return listChair;
@@ -89,6 +93,8 @@ public class DataHandlerChair implements IntfDataChair, IntfDataFilter,
 					.setNewException(
 							("Es ist ein unbekannter Fehler in der Datenhaltung aufgetreten:<br /><br />Fehler DataHandlerUser-16:<br />" + e
 									.toString()), "Fehler!");
+		}finally{
+			DataManagerPostgreSql.getInstance().dispose();
 		}
 
 		return null;
@@ -134,6 +140,8 @@ public class DataHandlerChair implements IntfDataChair, IntfDataFilter,
 					.setNewException(
 							("Es ist ein unbekannter Fehler in der Datenhaltung aufgetreten:<br /><br />Fehler DataHandlerChair-07:<br />" + e
 									.toString()), "Fehler!");
+		}finally{
+			DataManagerPostgreSql.getInstance().dispose();
 		}
 
 		return null;
@@ -176,6 +184,8 @@ public class DataHandlerChair implements IntfDataChair, IntfDataFilter,
 					.setNewException(
 							("Es ist ein unbekannter Fehler in der Datenhaltung aufgetreten:<br /><br />Fehler DataHandlerChair-09:<br />" + e
 									.toString()), "Fehler!");
+		}finally{
+			DataManagerPostgreSql.getInstance().dispose();
 		}
 
 		return null;
@@ -228,6 +238,8 @@ public class DataHandlerChair implements IntfDataChair, IntfDataFilter,
 							.setNewException(
 									("Es ist ein unbekannter Fehler in der Klasse DataHandlerUser in der Datenhaltung aufgetreten:<br /><br />" + e
 											.toString()), "Fehler!");
+				}finally{
+					DataManagerPostgreSql.getInstance().dispose();
 				}
 			}
 			return returnState;
@@ -266,6 +278,8 @@ public class DataHandlerChair implements IntfDataChair, IntfDataFilter,
 					e.printStackTrace();
 					DataModel.getInstance().getExceptionsHandler().setNewException(("Es ist ein unbekannter Fehler in der Datenhaltung aufgetreten:<br /><br />" + e.toString()), "Fehler!");
 					returnState =  false;
+				}finally{
+					DataManagerPostgreSql.getInstance().dispose();
 				}
 				return returnState;
 		} else {
@@ -296,6 +310,8 @@ public class DataHandlerChair implements IntfDataChair, IntfDataFilter,
 				e.printStackTrace();
 				DataModel.getInstance().getExceptionsHandler().setNewException(("Es ist ein unbekannter Fehler (in der Datenhaltung aufgetreten:<br /><br />" + e.toString()), "Fehler!");
 				returnState = false;
+			}finally{
+				DataManagerPostgreSql.getInstance().dispose();
 			}
 			return returnState;
 		}
@@ -350,6 +366,8 @@ public class DataHandlerChair implements IntfDataChair, IntfDataFilter,
 					.setNewException(
 							("Es ist ein unbekannter Fehler in der Datenhaltung aufgetreten:<br /><br />" + e
 									.toString()), "Fehler!");
+		}finally{
+			DataManagerPostgreSql.getInstance().dispose();
 		}
 
 		return listChair;

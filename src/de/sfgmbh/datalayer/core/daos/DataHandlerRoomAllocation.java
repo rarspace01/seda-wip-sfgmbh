@@ -56,6 +56,8 @@ public class DataHandlerRoomAllocation implements IntfDataObservable, IntfDataFi
 		} catch (Exception e) {
 			e.printStackTrace();
 			DataModel.getInstance().getExceptionsHandler().setNewException(("Es ist ein unbekannter Fehler (DataHandlerRoomAllocation-02) in der Datenhaltung aufgetreten:<br /><br />" + e.toString()), "Fehler!");
+		}finally{
+			DataManagerPostgreSql.getInstance().dispose();
 		}
 
 		return this.setConflicts(listRoomAllocation);
@@ -94,6 +96,8 @@ public class DataHandlerRoomAllocation implements IntfDataObservable, IntfDataFi
 		} catch (Exception e) {
 			e.printStackTrace();
 			DataModel.getInstance().getExceptionsHandler().setNewException(("Es ist ein unbekannter Fehler (DataHandlerRoomAllocation-02) in der Datenhaltung aufgetreten:<br /><br />" + e.toString()), "Fehler!");
+		}finally{
+			DataManagerPostgreSql.getInstance().dispose();
 		}
 
 		return this.setConflicts(listRoomAllocation);
@@ -215,6 +219,8 @@ public class DataHandlerRoomAllocation implements IntfDataObservable, IntfDataFi
 		} catch (Exception e) {
 			e.printStackTrace();
 			DataModel.getInstance().getExceptionsHandler().setNewException(("Es ist ein unbekannter Fehler in der Datenhaltung aufgetreten:<br /><br />Fehler DataHandlerRoomAllocation-18:<br />" + e.toString()), "Fehler!");
+		}finally{
+			DataManagerPostgreSql.getInstance().dispose();
 		}
 		
 		return this.setConflicts(listRoomAllocation);
@@ -265,6 +271,8 @@ public class DataHandlerRoomAllocation implements IntfDataObservable, IntfDataFi
 		} catch (Exception e) {
 			e.printStackTrace();
 			DataModel.getInstance().getExceptionsHandler().setNewException(("Es ist ein unbekannter Fehler in der Datenhaltung aufgetreten:<br /><br />Fehler DataHandlerRoomAllocation-16:<br />" + e.toString()), "Fehler!");
+		}finally{
+			DataManagerPostgreSql.getInstance().dispose();
 		}
 		return this.setConflicts(listRoomAllocation);
 	}
@@ -308,6 +316,8 @@ public class DataHandlerRoomAllocation implements IntfDataObservable, IntfDataFi
 		} catch (Exception e) {
 			e.printStackTrace();
 			DataModel.getInstance().getExceptionsHandler().setNewException(("Es ist ein unbekannter Fehler (DataHandlerRoomAllocation-02) in der Datenhaltung aufgetreten:<br /><br />" + e.toString()), "Fehler!");
+		}finally{
+			DataManagerPostgreSql.getInstance().dispose();
 		}
 
 		return conflictingDates;
@@ -375,6 +385,8 @@ public class DataHandlerRoomAllocation implements IntfDataObservable, IntfDataFi
 		} catch (Exception e) {
 			e.printStackTrace();
 			DataModel.getInstance().getExceptionsHandler().setNewException(("Es ist ein unbekannter Fehler in der Datenhaltung aufgetreten:<br /><br />Fehler DataHandlerRoomAllocation-21:<br />" + e.toString()), "Fehler!");
+		}finally{
+			DataManagerPostgreSql.getInstance().dispose();
 		}
 		
 		return null;
@@ -411,6 +423,8 @@ public class DataHandlerRoomAllocation implements IntfDataObservable, IntfDataFi
 			} catch (Exception e) {
 				e.printStackTrace();
 				DataModel.getInstance().getExceptionsHandler().setNewException(("Es ist ein unbekannter Fehler in der Datenhaltung aufgetreten:<br /><br />Fehler DataHandlerRoomAllocation-22:<br />" + e.toString()), "Fehler!");
+			}finally{
+				DataManagerPostgreSql.getInstance().dispose();
 			}
 		} else {
 			try {
@@ -435,6 +449,8 @@ public class DataHandlerRoomAllocation implements IntfDataObservable, IntfDataFi
 			} catch (Exception e) {
 				e.printStackTrace();
 				DataModel.getInstance().getExceptionsHandler().setNewException(("Es ist ein unbekannter Fehler in der Datenhaltung aufgetreten:<br /><br />Fehler DataHandlerRoomAllocation-24:<br />" + e.toString()), "Fehler!");
+			}finally{
+				DataManagerPostgreSql.getInstance().dispose();
 			}
 		}
 		return returnStatus;
