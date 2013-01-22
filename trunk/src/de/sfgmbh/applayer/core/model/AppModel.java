@@ -2,12 +2,13 @@ package de.sfgmbh.applayer.core.model;
 
 import java.util.ArrayList;
 
+import de.sfgmbh.applayer.core.definitions.IntfAppModel;
 import de.sfgmbh.applayer.core.definitions.IntfAppObservable;
 import de.sfgmbh.applayer.core.definitions.IntfAppObserver;
 
-public class AppModel implements IntfAppObservable {
+public class AppModel implements IntfAppObservable, IntfAppModel {
 	
-	private static AppModel uniqueInstance_ = new AppModel(); // declare on first access through JVM (thread-safe)
+	private static IntfAppModel uniqueInstance_ = new AppModel(); // declare on first access through JVM (thread-safe)
 	private ArrayList<Object> observer_ = new ArrayList<Object>();
 	private AppException exceptionHandler_ = new AppException();
 	private RepositoryChair repositoryChair_ = new RepositoryChair();
@@ -18,44 +19,50 @@ public class AppModel implements IntfAppObservable {
 	
 	private AppModel() {} // class may only call itself via declaration
 	
-	/**
-	 * @return the exceptionHandler
+	/* (non-Javadoc)
+	 * @see de.sfgmbh.applayer.core.model.IntfAppModel#getExceptionHandler()
 	 */
+	@Override
 	public AppException getExceptionHandler() {
 		return exceptionHandler_;
 	}
 
-	/**
-	 * @return the repositoryChair
+	/* (non-Javadoc)
+	 * @see de.sfgmbh.applayer.core.model.IntfAppModel#getRepositoryChair()
 	 */
+	@Override
 	public RepositoryChair getRepositoryChair() {
 		return repositoryChair_;
 	}
 
-	/**
-	 * @return the repositoryUser
+	/* (non-Javadoc)
+	 * @see de.sfgmbh.applayer.core.model.IntfAppModel#getRepositoryUser()
 	 */
+	@Override
 	public RepositoryUser getRepositoryUser() {
 		return repositoryUser_;
 	}
 
-	/**
-	 * @return the repositoryCourse
+	/* (non-Javadoc)
+	 * @see de.sfgmbh.applayer.core.model.IntfAppModel#getRepositoryCourse()
 	 */
+	@Override
 	public RepositoryCourse getRepositoryCourse() {
 		return repositoryCourse_;
 	}
 
-	/**
-	 * @return the repositoryRoom
+	/* (non-Javadoc)
+	 * @see de.sfgmbh.applayer.core.model.IntfAppModel#getRepositoryRoom()
 	 */
+	@Override
 	public RepositoryRoom getRepositoryRoom() {
 		return repositoryRoom_;
 	}
 
-	/**
-	 * @return the repositoryRoomAllocation
+	/* (non-Javadoc)
+	 * @see de.sfgmbh.applayer.core.model.IntfAppModel#getRepositoryRoomAllocation()
 	 */
+	@Override
 	public RepositoryRoomAllocation getRepositoryRoomAllocation() {
 		return repositoryRoomAllocation_;
 	}
@@ -64,13 +71,10 @@ public class AppModel implements IntfAppObservable {
 	 * Returns the singleton instance
 	 * @return
 	 */
-	public static AppModel getInstance() {
+	public static IntfAppModel getInstance() {
 		return uniqueInstance_;
 	}
 	
-	/**
-	 * 
-	 */
 	@Override
 	public void update() {
 		for (Object o : observer_) {
@@ -80,10 +84,7 @@ public class AppModel implements IntfAppObservable {
 		}
 	}
 	
-	/**
-	 * 
-	 * @param observer
-	 */
+
 	@Override
 	public void register(Object observer) {
 		if (observer instanceof IntfAppObserver) {
@@ -94,10 +95,6 @@ public class AppModel implements IntfAppObservable {
 		
 	}
 	
-	/**
-	 * 
-	 * @param observer
-	 */
 	@Override
 	public void unregister(Object observer) {
 		observer_.remove(observer);

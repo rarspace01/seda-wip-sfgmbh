@@ -7,6 +7,7 @@ import de.sfgmbh.applayer.core.model.AppModel;
 import de.sfgmbh.applayer.core.model.Chair;
 import de.sfgmbh.applayer.core.model.User;
 import de.sfgmbh.applayer.organisation.controller.CtrlUser;
+import de.sfgmbh.applayer.organisation.definitions.IntfCtrlUser;
 import de.sfgmbh.comlayer.organisation.views.UserCreateDialog;
 
 /**
@@ -18,7 +19,7 @@ import de.sfgmbh.comlayer.organisation.views.UserCreateDialog;
 public class UserCreateDialogBtns implements ActionListener {
 	
 	private String ctrlAction;
-	private CtrlUser ctrlUser = new CtrlUser();
+	private IntfCtrlUser ctrlUser = new CtrlUser();
 	private UserCreateDialog motherDialog;
 	
 	

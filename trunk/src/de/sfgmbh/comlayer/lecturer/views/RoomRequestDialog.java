@@ -19,6 +19,7 @@ import de.sfgmbh.applayer.core.model.Course;
 import de.sfgmbh.applayer.core.model.Room;
 import de.sfgmbh.applayer.core.model.RoomAllocation;
 import de.sfgmbh.applayer.lecturer.controller.CtrlStartTab;
+import de.sfgmbh.applayer.lecturer.definitions.IntfCtrlStartTab;
 import de.sfgmbh.comlayer.core.model.CmbboxFilterDay;
 import de.sfgmbh.comlayer.core.model.CmbboxFilterRoomnumber;
 import de.sfgmbh.comlayer.core.model.CmbboxFilterSemester;
@@ -48,7 +49,7 @@ public class RoomRequestDialog extends JDialog {
 	private JComboBox<String> cmbboxTime;
 	private JLabel lblStatus;
 	private JLabel lblSelectedStatus;
-	private CtrlStartTab ctrlStartTab = new CtrlStartTab();
+	private IntfCtrlStartTab ctrlStartTab = new CtrlStartTab();
 	private JTextField txtSeats;
 	private JTextField txtPcs;
 	private JTextField txtBeamer;

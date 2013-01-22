@@ -7,6 +7,7 @@ import de.sfgmbh.applayer.core.model.AppException;
 import de.sfgmbh.applayer.core.model.AppModel;
 import de.sfgmbh.applayer.core.model.RoomAllocation;
 import de.sfgmbh.applayer.organisation.controller.CtrlRoomAllocation;
+import de.sfgmbh.applayer.organisation.definitions.IntfCtrlRoomAllocation;
 import de.sfgmbh.comlayer.core.controller.ViewManager;
 import de.sfgmbh.comlayer.core.definitions.IntfComDialogObserver;
 import de.sfgmbh.comlayer.core.views.QuestionDialog;
@@ -23,7 +24,7 @@ import de.sfgmbh.comlayer.organisation.views.RequestTab;
 public class RequestTabBtnsControl implements ActionListener, IntfComDialogObserver {
 	
 	private String navAction;
-	private CtrlRoomAllocation ctrlRoomAllocation;
+	private IntfCtrlRoomAllocation ctrlRoomAllocation;
 	private RoomAllocation revokeAllocation;
 	private RoomAllocation solveApprovedAllocation;
 	private boolean cleanRoomAllocations;

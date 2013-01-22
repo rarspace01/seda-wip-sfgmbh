@@ -7,6 +7,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
+import de.sfgmbh.applayer.core.definitions.IntfCtrlLiveTicker;
 import de.sfgmbh.applayer.core.model.AppModel;
 import de.sfgmbh.applayer.core.model.RoomAllocation;
 
@@ -16,13 +17,12 @@ import de.sfgmbh.applayer.core.model.RoomAllocation;
  * @author hannes
  *
  */
-public class CtrlLiveTicker {
+public class CtrlLiveTicker implements IntfCtrlLiveTicker {
 	
-	/**
-	 * Get all allocations which should be displayed in the live ticker.<br>
-	 * This allocations only affect the current day, public allocations and there are at most 15 allocations retrieved (started by the most recent on)
-	 * @return a list of room allocations
+	/* (non-Javadoc)
+	 * @see de.sfgmbh.applayer.core.controller.IntfCtrlLiveTicker#getTickerAllocations()
 	 */
+	@Override
 	public List<RoomAllocation> getTickerAllocations() {
 		
 		// Determine the date

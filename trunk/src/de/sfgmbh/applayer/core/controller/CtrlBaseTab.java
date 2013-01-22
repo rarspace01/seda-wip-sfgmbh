@@ -1,5 +1,6 @@
 package de.sfgmbh.applayer.core.controller;
 
+import de.sfgmbh.applayer.core.definitions.IntfCtrlBaseTab;
 import de.sfgmbh.applayer.core.model.AppModel;
 import de.sfgmbh.applayer.core.model.User;
 import de.sfgmbh.datalayer.core.daos.DataHandlerUser;
@@ -10,15 +11,12 @@ import de.sfgmbh.datalayer.core.daos.DataHandlerUser;
  * @author hannes
  *
  */
-public class CtrlBaseTab {
+public class CtrlBaseTab implements IntfCtrlBaseTab {
 	
-	/**
-	 * Login function to log a user in and eventually personalize the application for him
-	 * 
-	 * @param login
-	 * @param password
-	 * @return the user object if login credentials are correct (and the user is not disabled) and otherwise null
+	/* (non-Javadoc)
+	 * @see de.sfgmbh.applayer.core.controller.IntfCtrlBaseTab#login(java.lang.String, java.lang.String)
 	 */
+	@Override
 	public User login(String login, String pw) {
 		
 		DataHandlerUser dhu = new DataHandlerUser();
@@ -45,9 +43,10 @@ public class CtrlBaseTab {
 		return null;
 	}
 	
-	/**
-	 * Logout action
+	/* (non-Javadoc)
+	 * @see de.sfgmbh.applayer.core.controller.IntfCtrlBaseTab#logout()
 	 */
+	@Override
 	public void logout() {
 		SessionManager.getInstance().clearSession();
 	}

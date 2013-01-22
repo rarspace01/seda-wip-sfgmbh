@@ -8,6 +8,7 @@ import de.sfgmbh.applayer.core.model.AppModel;
 import de.sfgmbh.applayer.core.model.Room;
 import de.sfgmbh.applayer.core.model.RoomAllocation;
 import de.sfgmbh.applayer.organisation.controller.CtrlRoomAllocation;
+import de.sfgmbh.applayer.organisation.definitions.IntfCtrlRoomAllocation;
 import de.sfgmbh.comlayer.organisation.views.CounterproposalDialog;
 
 /**
@@ -20,7 +21,7 @@ public class CounterproposalFrameBtns implements ActionListener {
 	
 	private String ctrlAction;
 	private CounterproposalDialog motherDialog;
-	private CtrlRoomAllocation ctrlRoomAllocation;
+	private IntfCtrlRoomAllocation ctrlRoomAllocation;
 	
 	/**
 	 * Create the action listener

@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 import de.sfgmbh.applayer.core.model.AppModel;
 import de.sfgmbh.applayer.core.model.Room;
 import de.sfgmbh.applayer.organisation.controller.CtrlRoom;
+import de.sfgmbh.applayer.organisation.definitions.IntfCtrlRoom;
 import de.sfgmbh.comlayer.core.controller.ViewManager;
 import de.sfgmbh.comlayer.core.views.InfoDialog;
 
@@ -19,7 +20,7 @@ public class RoomFrameBtns implements ActionListener {
 
 	private String ctrlAction;
 	protected InfoDialog infoWindow;
-	protected CtrlRoom ctrlRoom;
+	protected IntfCtrlRoom ctrlRoom;
 
 	public RoomFrameBtns() {
 		this.ctrlAction = "default";

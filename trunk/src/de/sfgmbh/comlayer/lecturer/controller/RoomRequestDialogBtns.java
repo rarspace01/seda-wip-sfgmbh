@@ -9,6 +9,7 @@ import de.sfgmbh.applayer.core.model.AppModel;
 import de.sfgmbh.applayer.core.model.Room;
 import de.sfgmbh.applayer.core.model.RoomAllocation;
 import de.sfgmbh.applayer.lecturer.controller.CtrlStartTab;
+import de.sfgmbh.applayer.lecturer.definitions.IntfCtrlStartTab;
 import de.sfgmbh.comlayer.lecturer.views.RoomRequestDialog;
 
 /**
@@ -21,7 +22,7 @@ public class RoomRequestDialogBtns implements ActionListener {
 	
 	private String ctrlAction;
 	private RoomRequestDialog motherDialog;
-	private CtrlStartTab ctrlStartTab;
+	private IntfCtrlStartTab ctrlStartTab;
 	
 	/**
 	 * Create the action listener

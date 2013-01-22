@@ -16,6 +16,7 @@ import javax.swing.border.CompoundBorder;
 import javax.swing.border.TitledBorder;
 
 import de.sfgmbh.applayer.core.controller.CtrlLiveTicker;
+import de.sfgmbh.applayer.core.definitions.IntfCtrlLiveTicker;
 import de.sfgmbh.applayer.core.model.RoomAllocation;
 import de.sfgmbh.comlayer.core.controller.ViewHelper;
 
@@ -30,7 +31,7 @@ public class LiveTickerPanel extends JPanel {
 	private static final long serialVersionUID = 1L;
 	private JTextArea txtHeader;
 	private JTextPane txtTicker;
-	private CtrlLiveTicker ctrlLiverTicker = new CtrlLiveTicker();
+	private IntfCtrlLiveTicker ctrlLiverTicker = new CtrlLiveTicker();
 	private List<RoomAllocation> displayAllocations;
 	private boolean isTooLong;
 	private int cycles;

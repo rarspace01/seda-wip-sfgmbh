@@ -3,6 +3,7 @@ package tests;
 import java.util.List;
 
 import de.sfgmbh.applayer.core.controller.CtrlBaseTab;
+import de.sfgmbh.applayer.core.definitions.IntfCtrlBaseTab;
 import de.sfgmbh.applayer.core.model.Room;
 import de.sfgmbh.applayer.core.model.User;
 import de.sfgmbh.datalayer.core.daos.DataHandlerRoom;
@@ -13,7 +14,7 @@ public class DataLayerTests {
 	public static void main(String[] args) {
 	
 		DataLayerTests dlt=new DataLayerTests();
-		CtrlBaseTab cbt = new CtrlBaseTab();
+		IntfCtrlBaseTab cbt = new CtrlBaseTab();
 		
 		// dlt.generateNewUser();
 		dlt.getUserLogin();

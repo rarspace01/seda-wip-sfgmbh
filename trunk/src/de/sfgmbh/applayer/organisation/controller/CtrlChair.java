@@ -2,6 +2,7 @@ package de.sfgmbh.applayer.organisation.controller;
 
 import de.sfgmbh.applayer.core.model.AppModel;
 import de.sfgmbh.applayer.core.model.Chair;
+import de.sfgmbh.applayer.organisation.definitions.IntfCtrlChair;
 
 /**
  * Controller for chair management
@@ -9,13 +10,12 @@ import de.sfgmbh.applayer.core.model.Chair;
  * @author anna
  *
  */
-public class CtrlChair {
+public class CtrlChair implements IntfCtrlChair {
 
-	/**
-	 * Create or edit a chair if it is a valid chair
-	 * @param chair
-	 * @return true on success
+	/* (non-Javadoc)
+	 * @see de.sfgmbh.applayer.organisation.controller.IntfCtrlChair#saveChair(de.sfgmbh.applayer.core.model.Chair)
 	 */
+	@Override
 	public boolean saveChair(Chair chair) {
 		
 		if (chair.validate()) {
@@ -28,11 +28,10 @@ public class CtrlChair {
 		}
 	}
 
-	/**
-	 * Delete a chair if possible
-	 * @param chair
-	 * @return true on success
+	/* (non-Javadoc)
+	 * @see de.sfgmbh.applayer.organisation.controller.IntfCtrlChair#delete(de.sfgmbh.applayer.core.model.Chair)
 	 */
+	@Override
 	public boolean delete(Chair chair) {
 		// Check if the users exists in the data base
 		Chair delChair = AppModel.getInstance().getRepositoryChair().get(chair.getChairId_());

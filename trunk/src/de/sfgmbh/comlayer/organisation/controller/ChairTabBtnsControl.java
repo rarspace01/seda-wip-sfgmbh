@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 import de.sfgmbh.applayer.core.model.AppModel;
 import de.sfgmbh.applayer.core.model.Chair;
 import de.sfgmbh.applayer.organisation.controller.CtrlChair;
+import de.sfgmbh.applayer.organisation.definitions.IntfCtrlChair;
 import de.sfgmbh.comlayer.core.controller.ViewManager;
 import de.sfgmbh.comlayer.core.definitions.IntfComDialogObserver;
 import de.sfgmbh.comlayer.core.views.QuestionDialog;
@@ -25,7 +26,7 @@ public class ChairTabBtnsControl implements ActionListener, IntfComDialogObserve
 	private String navAction;
 	private boolean deleteChair = false;
 	private Chair chairMarkedForDeletion;
-	private CtrlChair ctrlChair = new CtrlChair();
+	private IntfCtrlChair ctrlChair = new CtrlChair();
 	
 	/**
 	 * Create the action listener based on a submitted action string

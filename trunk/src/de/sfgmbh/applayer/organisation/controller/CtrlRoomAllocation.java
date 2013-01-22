@@ -6,6 +6,7 @@ import java.util.List;
 import de.sfgmbh.applayer.core.model.AppModel;
 import de.sfgmbh.applayer.core.model.Room;
 import de.sfgmbh.applayer.core.model.RoomAllocation;
+import de.sfgmbh.applayer.organisation.definitions.IntfCtrlRoomAllocation;
 
 /**
  * Controller for the room allocation handling of the organization
@@ -14,13 +15,12 @@ import de.sfgmbh.applayer.core.model.RoomAllocation;
  * @author denis
  *
  */
-public class CtrlRoomAllocation {
+public class CtrlRoomAllocation implements IntfCtrlRoomAllocation {
 	
-	/**
-	 * Accept a room allocation if possible
-	 * @param roomAllocation
-	 * @return true on successful accept
+	/* (non-Javadoc)
+	 * @see de.sfgmbh.applayer.organisation.controller.IntfCtrlRoomAllocation#acceptRoomAllocation(de.sfgmbh.applayer.core.model.RoomAllocation)
 	 */
+	@Override
 	public boolean acceptRoomAllocation(RoomAllocation ra) {
 		// Get the currently up to date room allocation
 		RoomAllocation currentRa = AppModel.getInstance().getRepositoryRoomAllocation().get(ra.getRoomAllocationId_());
@@ -57,20 +57,18 @@ public class CtrlRoomAllocation {
 		return false;
 	}
 
-	/**
-	 * Get all room allocations
-	 * 
-	 * @return a list of all RoomAlloction objects
-	 * @deprecated As no further filtering is done here the method should be used in RepositoryRoomAllocation directly instead.
+	/* (non-Javadoc)
+	 * @see de.sfgmbh.applayer.organisation.controller.IntfCtrlRoomAllocation#getAllRoomAllocations()
 	 */
+	@Override
 	public List<RoomAllocation> getAllRoomAllocations(){
 		return AppModel.getInstance().getRepositoryRoomAllocation().getAll();
 	}
 	
-	/**
-	 * Deny a room allocation if possible
-	 * @param roomAllocation
+	/* (non-Javadoc)
+	 * @see de.sfgmbh.applayer.organisation.controller.IntfCtrlRoomAllocation#denyRoomAllocation(de.sfgmbh.applayer.core.model.RoomAllocation)
 	 */
+	@Override
 	public boolean denyRoomAllocation(RoomAllocation ra) {
 		RoomAllocation currentRa = AppModel.getInstance().getRepositoryRoomAllocation().get(ra.getRoomAllocationId_());
 		if (currentRa.getApproved_().equals("accepted") || currentRa.getApproved_().equals("waiting") || currentRa.getApproved_().equals("counter")){
@@ -82,11 +80,10 @@ public class CtrlRoomAllocation {
 		return false;
 	}
 
-	/**
-	 * Suggest a time slot for a room allocation. Currently set time slot is, expect the semester, ignored. Expected attendees of the course are taken into account.
-	 * @param roomAllocation
-	 * @return a room allocation with a free time slot, null if there are none
+	/* (non-Javadoc)
+	 * @see de.sfgmbh.applayer.organisation.controller.IntfCtrlRoomAllocation#suggest(de.sfgmbh.applayer.core.model.RoomAllocation)
 	 */
+	@Override
 	public RoomAllocation suggest(RoomAllocation roomAllocation) {
 		List<RoomAllocation> currentAllocations = AppModel.getInstance().getRepositoryRoomAllocation().getAllOpen();
 		HashMap<String, String> roomFilter = new HashMap<String, String>();
@@ -123,11 +120,10 @@ public class CtrlRoomAllocation {
 		return null;
 	}
 	
-	/**
-	 * Create a counter proposal room allocation
-	 * @param roomAllocation
-	 * @return true on success
+	/* (non-Javadoc)
+	 * @see de.sfgmbh.applayer.organisation.controller.IntfCtrlRoomAllocation#createCounterProposal(de.sfgmbh.applayer.core.model.RoomAllocation)
 	 */
+	@Override
 	public boolean createCounterProposal(RoomAllocation roomAllocation) {
 		if (roomAllocation.getApproved_().equals("denied")) {
 			return false;
@@ -159,10 +155,10 @@ public class CtrlRoomAllocation {
 		return false;
 	}
 
-	/**
-	 * Delete all denied allocations
-	 * @return true on success
+	/* (non-Javadoc)
+	 * @see de.sfgmbh.applayer.organisation.controller.IntfCtrlRoomAllocation#cleanRoomAllocations()
 	 */
+	@Override
 	public boolean cleanRoomAllocations() {
 		return AppModel.getInstance().getRepositoryRoomAllocation().clean();
 	}

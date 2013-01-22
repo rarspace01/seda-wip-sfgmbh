@@ -575,7 +575,7 @@ public class BaseTab extends JFrame {
 			panelLogout = new JPanel();
 			panelLogout.setBounds(0, 353, 104, 55);
 			panelLogout.setLayout(new MigLayout("", "[140px:140px:140px]", "[][]"));
-			lblLoggedIn = new JLabel("Du bist eingeloggt!");
+			lblLoggedIn = new JLabel("Sie sind eingeloggt!");
 			panelLogout.add(lblLoggedIn, "cell 0 0");
 			panelLogout.add(getBtnLogout(), "cell 0 1,alignx left");
 			panelLogout.setVisible(false);
