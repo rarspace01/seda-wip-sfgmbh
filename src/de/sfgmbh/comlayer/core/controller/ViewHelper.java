@@ -1,5 +1,8 @@
 package de.sfgmbh.comlayer.core.controller;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import de.sfgmbh.applayer.core.model.AppModel;
 
 public class ViewHelper {
@@ -103,5 +106,10 @@ public class ViewHelper {
 			AppModel.getInstance().getExceptionHandler().setNewException("Eine unbekannter Status wurde verwendet.", "Achtung!");
 			return null;
 		}
+	}
+	
+	public static String getGlobalDateFormat(Date d) {
+		String newDate = new SimpleDateFormat("dd.MM.yy 'um' HH:mm:ss").format(d);
+		return newDate;
 	}
 }
