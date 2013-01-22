@@ -3,7 +3,6 @@ package de.sfgmbh.comlayer.timetable.model;
 import javax.swing.table.DefaultTableModel;
 
 import de.sfgmbh.applayer.core.definitions.IntfAppObserver;
-import de.sfgmbh.applayer.organisation.controller.CtrlRoomAllocation;
 import de.sfgmbh.comlayer.core.controller.ViewManager;
 
 public class CoreTimetableTabTable extends DefaultTableModel implements IntfAppObserver {

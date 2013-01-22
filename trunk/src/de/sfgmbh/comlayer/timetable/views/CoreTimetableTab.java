@@ -3,7 +3,6 @@ package de.sfgmbh.comlayer.timetable.views;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 import javax.swing.ImageIcon;
@@ -61,8 +60,6 @@ public class CoreTimetableTab extends JPanel {
 	
 		stundenplanTable.setBackground(Color.WHITE);
 		stundenplanTable.setModel(ViewManager.getInstance().getCoreTimetableTabTable());
-		
-		ViewManager.getInstance().getCoreBaseTab().getComboBoxSemesterModel().register(ViewManager.getInstance().getCoreTimetableTabTable());
 		
 		AppModel.getInstance().getRepositoryRoomAllocation().register(ViewManager.getInstance().getCoreTimetableTabTable());
 		
