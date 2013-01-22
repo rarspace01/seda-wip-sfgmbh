@@ -14,36 +14,19 @@ import de.sfgmbh.applayer.core.model.Room;
 public interface IntfDataRoom {
 
 	/**
-	 * 
+	 * gets all {@link Room}s from the database
 	 * @return List of Room objects which are present in the database
 	 */
 	public List<Room> getAll();
 
 	/**
 	 * 
-	 * @param iRoomId
+	 * @param roomId
 	 *            - room id in the database
-	 * @return Room object
+	 * @return {@link Room} object
 	 */
 	public Room get(int roomId);
 
-	/**
-	 * 
-	 * @param searchQry - Search pattern
-	 * @return Room objects
-	 */
-	public List<Room> search(String searchQry);
-
-	/**
-	 * 
-	 * @param filterQry - filter according to pattern.
-	 * <br/>Patter example: "{@code building=ERBA&level=2.1}"
-	 * <br/>"{@code building=FEKI&level=2&pc_min=10}"  
-	 *            
-	 * @return Room objects
-	 */
-	public List<Room> filter(String filterQry);
-	
 	/**
 	 * 
 	 * @param room

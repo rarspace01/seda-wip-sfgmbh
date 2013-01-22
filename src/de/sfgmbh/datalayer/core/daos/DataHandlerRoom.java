@@ -27,19 +27,22 @@ public class DataHandlerRoom implements IntfDataRoom, IntfDataFilter,
 
 	private ArrayList<Object> observer_ = new ArrayList<Object>();
 
+	/**
+	 * retrieves all rooms from the database
+	 */
 	@Override
 	public List<Room> getAll() {
-		List<Room> listRoom = new ArrayList<Room>();
+		List<Room> listRooms = new ArrayList<Room>();
 
-		String SqlStatement = "SELECT * FROM public.room";
+		String sqlStatement = "SELECT * FROM public.room";
 
 		try {
 
 			ResultSet resultSet = DataManagerPostgreSql.getInstance().select(
-					SqlStatement);
-
+					sqlStatement);
+			// iterate trough all objects, add them to the listRooms
 			while (resultSet.next()) {
-				listRoom.add(this.makeRoom(resultSet));
+				listRooms.add(this.makeRoom(resultSet));
 			}
 
 		} catch (SQLException e) {
@@ -59,25 +62,31 @@ public class DataHandlerRoom implements IntfDataRoom, IntfDataFilter,
 							("Es ist ein unbekannter Fehler (DataHandlerRoom-07) in der Datenhaltung aufgetreten:<br /><br />" + e
 									.toString()), "Fehler!");
 		} finally {
+			// close the connection when we retrieved the data
 			DataManagerPostgreSql.getInstance().dispose();
 		}
 
-		return listRoom;
+		return listRooms;
 	}
 
+	/**
+	 * return a {@link Room} Object from the given roomId
+	 */
 	@Override
-	public Room get(int id) {
-
+	public Room get(int roomId) {
+		Room returnRoom=null; 
+		
 		try {
 			DataManagerPostgreSql.getInstance().prepare(
 					"SELECT * FROM public.room WHERE roomid = ?");
 			DataManagerPostgreSql.getInstance().getPreparedStatement()
-					.setInt(1, id);
+					.setInt(1, roomId);
 			ResultSet rs = DataManagerPostgreSql.getInstance().selectPstmt();
+			//take the first result and save it to the room object
 			while (rs.next()) {
-				return this.makeRoom(rs);
+				returnRoom=this.makeRoom(rs);
 			}
-
+		//exception handling
 		} catch (SQLException e) {
 			e.printStackTrace();
 			DataModel
@@ -95,47 +104,16 @@ public class DataHandlerRoom implements IntfDataRoom, IntfDataFilter,
 							("Es ist ein unbekannter Fehler (DataHandlerRoom-05) in der Datenhaltung aufgetreten:<br /><br />" + e
 									.toString()), "Fehler!");
 		} finally {
+			// close the connection when we retrieved the data
 			DataManagerPostgreSql.getInstance().dispose();
 		}
-
-		return null;
+		
+		return returnRoom;
 	}
 
-	// Needs to changed to prepared statements!
-	@Override
-	public List<Room> search(String searchQry) {
-		List<Room> listRoom = new ArrayList<Room>();
-
-		String SqlStatement = "SELECT * FROM public.room WHERE roomnumber LIKE '%"
-				+ searchQry + "%'";
-
-		try {
-
-			ResultSet resultSet = DataManagerPostgreSql.getInstance().select(
-					SqlStatement);
-
-			while (resultSet.next()) {
-				listRoom.add(this.makeRoom(resultSet));
-			}
-
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} finally {
-			DataManagerPostgreSql.getInstance().dispose();
-		}
-
-		return listRoom;
-
-	}
-
-	// TODO Implement
-	@Override
-	public List<Room> filter(String filterQry) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
+	/**
+	 * deletes a {@link Room} Object in the database
+	 */
 	@Override
 	public void delete(Room room) {
 
@@ -147,18 +125,29 @@ public class DataHandlerRoom implements IntfDataRoom, IntfDataFilter,
 			DataManagerPostgreSql.getInstance().execute(SqlStatement);
 
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
+			DataModel
+			.getInstance()
+			.getExceptionsHandler()
+			.setNewException(
+					("Es ist ein SQL-Fehler (DataHandlerRoom-06) aufgetreten:<br /><br />" + e
+							.toString()), "Datenbank-Fehler!");
 		} finally {
+			// close the connection when we retrieved the data
 			DataManagerPostgreSql.getInstance().dispose();
 		}
 
 	}
 
+	/**
+	 * saves an {@link Room} object in the database
+	 */
 	@Override
 	public void save(Room room) {
 
-		// check if room has already an id
+		/* check if room has already an valid id
+		 * incase of <0 its a new Room and we use an INSERT otherwise we use an UPDATE
+		 */
 		if (room.getRoomId_() < 0) {
 			String SqlStatement = "INSERT INTO public.room "
 					+ "(roomnumber, buildingid, level, seats, pcseats, beamer, visualizer, overheads, chalkboards, whiteboards) "
@@ -174,8 +163,13 @@ public class DataHandlerRoom implements IntfDataRoom, IntfDataFilter,
 				DataManagerPostgreSql.getInstance().execute(SqlStatement);
 
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
+				DataModel
+				.getInstance()
+				.getExceptionsHandler()
+				.setNewException(
+						("Es ist ein SQL-Fehler (DataHandlerRoom-07a) aufgetreten:<br /><br />" + e
+								.toString()), "Datenbank-Fehler!");
 			} finally {
 				DataManagerPostgreSql.getInstance().dispose();
 			}
@@ -197,8 +191,13 @@ public class DataHandlerRoom implements IntfDataRoom, IntfDataFilter,
 				DataManagerPostgreSql.getInstance().execute(sqlStatement);
 
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
+				DataModel
+				.getInstance()
+				.getExceptionsHandler()
+				.setNewException(
+						("Es ist ein SQL-Fehler (DataHandlerRoom-07b) aufgetreten:<br /><br />" + e
+								.toString()), "Datenbank-Fehler!");
 			} finally {
 				DataManagerPostgreSql.getInstance().dispose();
 			}
@@ -206,6 +205,9 @@ public class DataHandlerRoom implements IntfDataRoom, IntfDataFilter,
 
 	}
 
+	/**
+	 * retrieves an {@link List} of {@link Room} objects based on a given {@link HashMap} filter
+	 */
 	@Override
 	public List<Room> getByFilter(HashMap<String, String> filter) {
 		DataManagerPostgreSql filterDm = null;
@@ -226,6 +228,9 @@ public class DataHandlerRoom implements IntfDataRoom, IntfDataFilter,
 						+ "AND public.room.whiteboards >= ? ");
 
 			}
+			/* retireving the filters from the hashmap and settig the values fro the preparedstatement
+			 * we check if <alle> ist set and replace it to specifiy a according wildcard
+			 */
 			if (filter.containsKey("room") && filter.get("room") != null
 					&& filter.get("room") != ""
 					&& filter.get("room") != "<alle>") {
@@ -346,16 +351,17 @@ public class DataHandlerRoom implements IntfDataRoom, IntfDataFilter,
 	}
 
 	/**
-	 * Forms a Room object out of a given result set
+	 * Forms a {@link Room} object out of a given {@link ResultSet}
 	 * 
-	 * @param ResultSet
-	 *            rs
-	 * @return a Room object
+	 * @param {@link ResultSet}
+	 *            
+	 * @return a {@link Room} object
 	 */
 	public Room makeRoom(ResultSet resultSet) {
 		Room returnRoom = new Room();
 
 		try {
+			//setting the values on the temporary Room object
 			returnRoom.setRoomId_(resultSet.getInt("roomid"));
 			returnRoom.setBuildingId_(resultSet.getInt("buildingid"));
 			returnRoom.setBeamer_(resultSet.getInt("beamer"));
@@ -389,15 +395,14 @@ public class DataHandlerRoom implements IntfDataRoom, IntfDataFilter,
 	}
 
 	/**
-	 * notifys all observers on a data change
+	 * notifys all {@link IntfDataObserver} Observers on a data change
 	 */
 	@Override
 	public void update() {
-
 		// Create a private observer list to avoid ConcurrentModificationException
 		@SuppressWarnings("unchecked")
 		ArrayList<IntfDataObserver> currentObservers = (ArrayList<IntfDataObserver>) observer_.clone();
-		
+		//call the change() method on all Observers
 		for (IntfDataObserver observer : currentObservers) {
 			if (observer instanceof IntfDataObserver) {
 				observer.change();
@@ -406,11 +411,12 @@ public class DataHandlerRoom implements IntfDataRoom, IntfDataFilter,
 	}
 
 	/**
-	 * registers an observer at the object
+	 * registers an {@link IntfDataObserver} Observer at the {@link DataHandlerRoom}
 	 * @param observer
 	 */
 	@Override
 	public void register(IntfDataObserver observer) {
+		//checking for implementation
 		if (observer instanceof IntfDataObserver) {
 			observer_.add(observer);
 		} else {
@@ -424,52 +430,12 @@ public class DataHandlerRoom implements IntfDataRoom, IntfDataFilter,
 	}
 
 	/**
-	 * unregisters an {@link Observer} 
+	 * unregisters an {@link IntfDataObserver} Observer at the {@link DataHandlerRoom}
 	 * @param observer
 	 */
 	@Override
 	public void unregister(IntfDataObserver observer) {
 		observer_.remove(observer);
-	}
-
-	/**
-	 * Get a room by its number
-	 * 
-	 * @param roomNumber
-	 * @return a room object
-	 */
-	public Room getByNumber(String roomNumber) {
-		try {
-			DataManagerPostgreSql.getInstance().prepare(
-					"SELECT * FROM public.room WHERE roomnumber = ?");
-			DataManagerPostgreSql.getInstance().getPreparedStatement()
-					.setString(1, roomNumber);
-			ResultSet rs = DataManagerPostgreSql.getInstance().selectPstmt();
-			while (rs.next()) {
-				return this.makeRoom(rs);
-			}
-
-		} catch (SQLException e) {
-			e.printStackTrace();
-			DataModel
-					.getInstance()
-					.getExceptionsHandler()
-					.setNewException(
-							("Es ist ein SQL-Fehler aufgetreten:<br /><br />" + e
-									.toString()), "Datenbank-Fehler!");
-		} catch (Exception e) {
-			e.printStackTrace();
-			DataModel
-					.getInstance()
-					.getExceptionsHandler()
-					.setNewException(
-							("Es ist ein unbekannter Fehler in der Datenhaltung aufgetreten:<br /><br />" + e
-									.toString()), "Fehler!");
-		} finally {
-			DataManagerPostgreSql.getInstance().dispose();
-		}
-
-		return null;
 	}
 
 }
