@@ -111,4 +111,12 @@ public class RepositoryRoomAllocation implements IntfAppObservable, IntfDataObse
 		observer_.remove(observer);
 	}
 
+	/**
+	 * Delete all denied allocations
+	 * @return true on success
+	 */
+	public boolean clean() {
+		return DataModel.getInstance().getDataHandlerRoomAllocation().clean();
+	}
+
 }

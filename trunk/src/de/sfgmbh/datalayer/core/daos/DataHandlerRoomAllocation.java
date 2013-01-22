@@ -539,4 +539,31 @@ public class DataHandlerRoomAllocation implements IntfDataObservable, IntfDataFi
 		observer_.remove(observer);
 	}
 
+	/**
+	 * Delete all denied allocations
+	 * @return true on success
+	 */
+	public boolean clean() {
+		boolean returnState = false;
+		try {
+			DataManagerPostgreSql dm=DataManagerPostgreSql.getInstance();
+			dm.prepare("DELETE FROM  public.roomallocation " +
+						"WHERE public.roomallocation.approved LIKE 'denied' ");
+			dm.executePstmt();
+			returnState = true;
+			this.update();
+		} catch (SQLException e) {
+			returnState = false;
+			e.printStackTrace();
+			DataModel.getInstance().getExceptionsHandler().setNewException(("Es ist ein SQL-Fehler aufgetreten:<br /><br />" + e.toString()), "Datenbank-Fehler!");
+		} catch (Exception e) {
+			returnState = false;
+			e.printStackTrace();
+			DataModel.getInstance().getExceptionsHandler().setNewException(("Es ist ein unbekannter Fehler in der Datenhaltung aufgetreten:<br /><br />" + e.toString()), "Fehler!");
+		}finally{
+			DataManagerPostgreSql.getInstance().dispose();
+		}
+		return returnState;
+	}
+
 }

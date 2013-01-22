@@ -55,6 +55,7 @@ public class RequestTab extends JPanel {
 	private JLabel lblRoom;
 	private JTextField txtRoom;
 	private TableRowSorter<TableModel> rowSorter;
+	private JButton btnClean;
 
 	/**
 	 * Create the frame.
@@ -146,6 +147,7 @@ public class RequestTab extends JPanel {
 		btnGegenvorschlag.addActionListener(new RequestTabBtnsControl("solve"));
 		btnGegenvorschlag.setBounds(6, 79, 88, 23);
 		buttonPanel.add(btnGegenvorschlag);
+		buttonPanel.add(getBtnClean());
 		
 	}
 	/**
@@ -240,5 +242,13 @@ public class RequestTab extends JPanel {
 	 */
 	public void setRowSorter(TableRowSorter<TableModel> rowSorter) {
 		this.rowSorter = rowSorter;
+	}
+	public JButton getBtnClean() {
+		if (btnClean == null) {
+			btnClean = new JButton("aufräumen");
+			btnClean.setBounds(5, 161, 89, 23);
+			btnClean.addActionListener(new RequestTabBtnsControl("clean"));
+		}
+		return btnClean;
 	}
 }
