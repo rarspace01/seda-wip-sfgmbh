@@ -38,7 +38,7 @@ public class DataManagerPostgreSql {
 		} catch (SQLException e) {
 			e.printStackTrace();
 			DataModel.getInstance().getExceptionsHandler().setNewException(("Bei der Verbindung mit dem Datenbank-Server ist ein Fehler aufgetreten.<br /><br />DataManagerPostgreSql-01:<br />" + e.toString() + 
-					"<br /><br />UniVis 2.0 kann ohne Datenbankverbindung nicht arbeiten. Bitte stellen Sie sicher, dass Sie sich zur Datenbank verbinden können (überprüfen Sie z. B. Ihre Internet-, Firewall oder VPN-Einstellungen) und versuchen Sie es erneut."), "Datenbank-Fehler!");
+					"<br /><br />UnivIS 2.0 kann ohne Datenbankverbindung nicht arbeiten. Bitte stellen Sie sicher, dass Sie sich zur Datenbank verbinden können (überprüfen Sie z. B. Ihre Internet-, Firewall oder VPN-Einstellungen) und versuchen Sie es erneut."), "Datenbank-Fehler!");
 			System.exit(0);
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
