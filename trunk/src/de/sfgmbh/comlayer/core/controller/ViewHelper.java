@@ -40,7 +40,7 @@ public class ViewHelper {
 	 */
 	public static String getTime(int t) {
 		if (t == 1) {
-			return "8:00 - 10:00";
+			return "08:00 - 10:00";
 		} else if (t == 2) {
 			return "10:00 - 12:00";
 		} else if (t == 3) {
