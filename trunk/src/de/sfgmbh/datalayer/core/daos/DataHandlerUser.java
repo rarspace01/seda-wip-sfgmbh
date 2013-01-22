@@ -49,6 +49,8 @@ public class DataHandlerUser implements IntfDataUser, IntfDataObservable, IntfDa
 		} catch (Exception e) {
 			e.printStackTrace();
 			DataModel.getInstance().getExceptionsHandler().setNewException(("Es ist ein unbekannter Fehler (DataHandlerUser-02) in der Datenhaltung aufgetreten:<br /><br />" + e.toString()), "Fehler!");
+		}finally{
+			DataManagerPostgreSql.getInstance().dispose();
 		}
 
 		return listUser;
@@ -82,6 +84,8 @@ public class DataHandlerUser implements IntfDataUser, IntfDataObservable, IntfDa
 		} catch (Exception e) {
 			e.printStackTrace();
 			DataModel.getInstance().getExceptionsHandler().setNewException(("Es ist ein unbekannter Fehler (DataHandlerUser-02) in der Datenhaltung aufgetreten:<br /><br />" + e.toString()), "Fehler!");
+		}finally{
+			DataManagerPostgreSql.getInstance().dispose();
 		}
 
 		return listUser;
@@ -199,6 +203,8 @@ public class DataHandlerUser implements IntfDataUser, IntfDataObservable, IntfDa
 		} catch (Exception e) {
 			e.printStackTrace();
 			DataModel.getInstance().getExceptionsHandler().setNewException(("Es ist ein unbekannter Fehler in der Datenhaltung aufgetreten:<br /><br />Fehler DataHandlerRoomAllocation-18:<br />" + e.toString()), "Fehler!");
+		}finally{
+			DataManagerPostgreSql.getInstance().dispose();
 		}
 		return listUser;
 	}
@@ -223,6 +229,8 @@ public class DataHandlerUser implements IntfDataUser, IntfDataObservable, IntfDa
 		} catch (Exception e) {
 			e.printStackTrace();
 			DataModel.getInstance().getExceptionsHandler().setNewException(("Es ist ein unbekannter Fehler in der Datenhaltung aufgetreten:<br /><br />Fehler DataHandlerUser-16:<br />" + e.toString()), "Fehler!");
+		}finally{
+			DataManagerPostgreSql.getInstance().dispose();
 		}
 		
 		return null;
@@ -253,6 +261,8 @@ public class DataHandlerUser implements IntfDataUser, IntfDataObservable, IntfDa
 		} catch (Exception e) {
 			e.printStackTrace();
 			DataModel.getInstance().getExceptionsHandler().setNewException(("Es ist ein unbekannter Fehler in der Datenhaltung aufgetreten:<br /><br />Fehler DataHandlerUser-11:<br />" + e.toString()), "Fehler!");
+		}finally{
+			DataManagerPostgreSql.getInstance().dispose();
 		}
 		
 		return null;
@@ -287,6 +297,8 @@ public class DataHandlerUser implements IntfDataUser, IntfDataObservable, IntfDa
 					returnState = false;
 					e.printStackTrace();
 					DataModel.getInstance().getExceptionsHandler().setNewException(("Es ist ein unbekannter Fehler in der Klasse DataHandlerUser in der Datenhaltung aufgetreten:<br /><br />" + e.toString()), "Fehler!");
+				}finally{
+					DataManagerPostgreSql.getInstance().dispose();
 				}
 			}
 			
@@ -308,6 +320,8 @@ public class DataHandlerUser implements IntfDataUser, IntfDataObservable, IntfDa
 					returnState = false;
 					e.printStackTrace();
 					DataModel.getInstance().getExceptionsHandler().setNewException(("Es ist ein unbekannter Fehler in der Klasse DataHandlerUser in der Datenhaltung aufgetreten:<br /><br />" + e.toString()), "Fehler!");
+				}finally{
+					DataManagerPostgreSql.getInstance().dispose();
 				}
 			}
 			return returnState;
@@ -360,6 +374,8 @@ public class DataHandlerUser implements IntfDataUser, IntfDataObservable, IntfDa
 					e.printStackTrace();
 					DataModel.getInstance().getExceptionsHandler().setNewException(("Es ist ein unbekannter Fehler (DataHandlerUser-06) in der Datenhaltung aufgetreten:<br /><br />" + e.toString()), "Fehler!");
 					returnState =  false;
+				}finally{
+					DataManagerPostgreSql.getInstance().dispose();
 				}
 				return returnState;
 		} else {
@@ -397,6 +413,8 @@ public class DataHandlerUser implements IntfDataUser, IntfDataObservable, IntfDa
 				e.printStackTrace();
 				DataModel.getInstance().getExceptionsHandler().setNewException(("Es ist ein unbekannter Fehler (DataHandlerUser-08) in der Datenhaltung aufgetreten:<br /><br />" + e.toString()), "Fehler!");
 				returnState = false;
+			}finally{
+				DataManagerPostgreSql.getInstance().dispose();
 			}
 			return returnState;
 			
