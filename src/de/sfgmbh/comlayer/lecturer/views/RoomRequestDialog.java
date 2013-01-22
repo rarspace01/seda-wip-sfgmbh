@@ -16,6 +16,7 @@ import javax.swing.border.EtchedBorder;
 
 import de.sfgmbh.applayer.core.model.AppModel;
 import de.sfgmbh.applayer.core.model.Course;
+import de.sfgmbh.applayer.core.model.Room;
 import de.sfgmbh.applayer.core.model.RoomAllocation;
 import de.sfgmbh.applayer.lecturer.controller.CtrlStartTab;
 import de.sfgmbh.comlayer.core.model.CmbboxFilterDay;
@@ -85,6 +86,8 @@ public class RoomRequestDialog extends JDialog {
 		// Create a first new room allocation object (default semester currently hard coded - this should be changed in the following versions)
 		RoomAllocation roomAllocation = new RoomAllocation();
 		roomAllocation.setCourse_(course);
+		// Set an empty room to avoid null pointer exceptions when the recommender system cannot find a suiting room
+		roomAllocation.setRoom_(new Room());
 		roomAllocation.setSemester_("SS 13");
 		this.proposalAllocation = roomAllocation;
 		

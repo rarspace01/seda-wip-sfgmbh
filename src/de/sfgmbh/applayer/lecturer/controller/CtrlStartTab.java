@@ -122,6 +122,18 @@ public class CtrlStartTab {
 		// Ensure that the waiting status is set
 		roomAllocation.setApproved_("waiting");
 		
+		// Ensure that a valid time/date is set
+		if (roomAllocation.getTime_() < 1 || 
+				roomAllocation.getTime_() > 7 ||
+				roomAllocation.getDay_() < 1 || 
+				roomAllocation.getDay_() > 7 ||
+				roomAllocation.getSemester_() == null || 
+				roomAllocation.getSemester_().equals("")){
+			exceptionHandler.setNewException("Bitte wählen Sie ein gültiges Datum!", "Fehler!", "error");
+			return false;
+		}
+			
+		
 		// Check if the user for the course is a lecturer
 		if (roomAllocation.getCourse_().getLecturer_().getChair_() != null) {
 			// Check if the logged in user is from the same chair as the user he tries to create an allocation for
@@ -147,7 +159,7 @@ public class CtrlStartTab {
 				}
 
 			} else {
-				exceptionHandler.setNewException("Sie können nur Lehrveranstaltungen für Dozenten Ihres Lehrstuhls löschen!", "Fehler!", "error");
+				exceptionHandler.setNewException("Sie können nur Lehrveranstaltungen für Dozenten Ihres Lehrstuhls anlegen!", "Fehler!", "error");
 			}
 		} else {
 			exceptionHandler.setNewException("Ein unerwarteter Fehler ist aufgetreten (die Veranstaltung konnte keinem Dozenten zugeordnet werden)!", "Fehler!", "error");
