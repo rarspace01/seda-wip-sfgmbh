@@ -64,6 +64,9 @@ public class StartTab extends JPanel implements IntfComDialogObserver {
 	 * Create the panel.
 	 */
 	public StartTab() {
+		initialize();
+	}
+	private void initialize() {
 		User currentUser = SessionManager.getInstance().getSession();
 		
 		// When a logged in lecturer is here at fist check if he has counter proposals for which popups should be shown
@@ -98,7 +101,7 @@ public class StartTab extends JPanel implements IntfComDialogObserver {
 		
 		
 		setMaximumSize(new Dimension(10, 32767));
-		setLayout(new MigLayout("", "[140px:n:140px][][grow][grow][grow][grow][100px:100px:100px]", "[][385.00,grow]"));
+		setLayout(new MigLayout("", "[140px:n:140px,grow][][grow][grow][grow][grow][100px:100px:100px]", "[][385.00,grow][grow]"));
 		
 		JLabel lblLehrveranstaltungen = new JLabel("Lehrveranstaltungen:");
 		lblLehrveranstaltungen.setFont(new Font("Tahoma", Font.BOLD, 12));
@@ -106,7 +109,7 @@ public class StartTab extends JPanel implements IntfComDialogObserver {
 		add(lblLehrveranstaltungen, "cell 1 0,aligny bottom");
 		add(uniIconPanel, "cell 6 0,alignx center");
 		
-		add(ViewManager.getInstance().getCoreLiveTickerPanel(), "cell 0 1,grow");
+		add(ViewManager.getInstance().getCoreLiveTickerPanel(), "cell 0 1, grow, aligny top");
 		
 		tablePanel = new JPanel();
 		add(tablePanel, "cell 1 1 5 1,grow");
@@ -139,9 +142,9 @@ public class StartTab extends JPanel implements IntfComDialogObserver {
 		rowSorterTop.setModel(ViewManager.getInstance().getLecturerStartTabTableTop());
 		rowSorterTop.sort();
 		
-		JLabel lblRaumzuordnungen = new JLabel("Raumzuordnungen:");
-		lblRaumzuordnungen.setFont(new Font("Tahoma", Font.BOLD, 12));
-		tablePanel.add(lblRaumzuordnungen, "cell 0 3");
+		JLabel lblRoomallocations = new JLabel("Raumzuordnungen:");
+		lblRoomallocations.setFont(new Font("Tahoma", Font.BOLD, 12));
+		tablePanel.add(lblRoomallocations, "cell 0 3");
 		
 		JLabel lblLecturerBottom = new JLabel("Dozent:");
 		tablePanel.add(lblLecturerBottom, "cell 0 4");
@@ -198,7 +201,7 @@ public class StartTab extends JPanel implements IntfComDialogObserver {
 		tableRoomAllocationBottom.setRowSorter(rowSorterBottom);
 		rowSorterBottom.setModel(ViewManager.getInstance().getLecturerStartTabTableBottom());
 		rowSorterBottom.sort();
-				
+		
 		buttonPanel = new JPanel();
 		buttonPanel.setLayout(null);
 		buttonPanel.setMinimumSize(new Dimension(80, 10));
@@ -233,14 +236,14 @@ public class StartTab extends JPanel implements IntfComDialogObserver {
 		
 		JPanel panel = new JPanel();
 		panel.setBorder(UIManager.getBorder("FormattedTextField.border"));
-		panel.setBounds(0, 248, 100, 1);
+		panel.setBounds(-20, 232, 110, 1);
 		buttonPanel.add(panel);
 		
-		JButton btnZurckziehen = new JButton("zurückziehen");
-		btnZurckziehen.setToolTipText("<html> abgelehnte oder nicht mehr benötigte <br> Raumanfragen zurückziehen </html>");
-		btnZurckziehen.addActionListener(new StartTabBtnsControl("back"));
-		btnZurckziehen.setBounds(0, 260, 100, 23);
-		buttonPanel.add(btnZurckziehen);
+		JButton btnRecall = new JButton("widerrufen");
+		btnRecall.setToolTipText("<html> abgelehnte oder nicht mehr benötigte <br> Raumanfragen widerrufen </html>");
+		btnRecall.addActionListener(new StartTabBtnsControl("back"));
+		btnRecall.setBounds(0, 260, 90, 23);
+		buttonPanel.add(btnRecall);
 		
 		JLabel lbluniIcon = new JLabel("");
 		uniIconPanel.add(lbluniIcon);

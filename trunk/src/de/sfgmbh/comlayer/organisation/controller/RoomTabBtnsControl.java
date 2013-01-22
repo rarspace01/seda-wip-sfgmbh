@@ -54,10 +54,10 @@ public class RoomTabBtnsControl implements ActionListener, IntfComDialogObserver
 		// Edit Button is pressed
 		if (this.navAction.equals("edit")) {
 
-			if(roomTab.getRaumverwaltungTable().getSelectedRow()>=0){
+			if(roomTab.getRoommanagementTable().getSelectedRow()>=0){
 			
 				//get selected Room from DB	
-				int getTableId=roomTab.getRaumverwaltungTable().getSelectedRow();
+				int getTableId=roomTab.getRoommanagementTable().getSelectedRow();
 				getTableId = roomTab.getRowSorter().convertRowIndexToModel(getTableId);
 				int getId=Integer.parseInt(ViewManager.getInstance().getOrgaRoomTableModel().getValueAt(getTableId, 0).toString());
 				
@@ -93,7 +93,7 @@ public class RoomTabBtnsControl implements ActionListener, IntfComDialogObserver
 		// Delte Button is pressed
 		if (this.navAction.equals("del")) {
 			
-				if(roomTab.getRaumverwaltungTable().getSelectedRow()>=0){
+				if(roomTab.getRoommanagementTable().getSelectedRow()>=0){
 				
 					QuestionDialog dialog = new QuestionDialog("Wollen Sie den gewählten Raum wirklich löschen?", "Achtung!");
 					dialog.register(this);
@@ -113,10 +113,10 @@ public class RoomTabBtnsControl implements ActionListener, IntfComDialogObserver
 			
 			System.out.println("Roomplan klicked");
 			
-			if(roomTab.getRaumverwaltungTable().getSelectedRow()>=0){
+			if(roomTab.getRoommanagementTable().getSelectedRow()>=0){
 				
 				//get selected Room from DB	
-				int getTableId=roomTab.getRaumverwaltungTable().getSelectedRow();
+				int getTableId=roomTab.getRoommanagementTable().getSelectedRow();
 				getTableId = roomTab.getRowSorter().convertRowIndexToModel(getTableId);
 				int getId=Integer.parseInt(ViewManager.getInstance().getOrgaRoomTableModel().getValueAt(getTableId, 0).toString());
 				
@@ -147,7 +147,7 @@ public class RoomTabBtnsControl implements ActionListener, IntfComDialogObserver
 	public void answered(String answer) {
 		if (answer.equals("yes")) {
 
-			int getTableId=ViewManager.getInstance().getOrgaRoomTab().getRaumverwaltungTable().getSelectedRow();
+			int getTableId=ViewManager.getInstance().getOrgaRoomTab().getRoommanagementTable().getSelectedRow();
 			getTableId = ViewManager.getInstance().getOrgaRoomTab().getRowSorter().convertRowIndexToModel(getTableId);
 			int getId=Integer.parseInt(ViewManager.getInstance().getOrgaRoomTableModel().getValueAt(getTableId, 0).toString());
 			

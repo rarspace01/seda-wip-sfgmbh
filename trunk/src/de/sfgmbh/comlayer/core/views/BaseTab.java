@@ -129,11 +129,11 @@ public class BaseTab extends JFrame {
 		startScreenPanel.setMaximumSize(new Dimension(10, 32767));
 		contentPane.setLayer(startScreenPanel, 1);
 		contentPane.add(startScreenPanel, "name_5256771068822");
-		startScreenPanel.setLayout(new MigLayout("", "[][600px:600px,grow][]", "[][][]"));
-		startScreenPanel.add(ViewManager.getInstance().getCoreLiveTickerPanel(), "cell 0 2, grow");
+		startScreenPanel.setLayout(new MigLayout("", "[][][600px:600px,grow][]", "[][][grow]"));
+		startScreenPanel.add(ViewManager.getInstance().getCoreLiveTickerPanel(), "cell 0 2, grow, aligny top");
 
 		mainFilterPanel = new JPanel();
-		startScreenPanel.add(mainFilterPanel, "cell 1 0,grow");
+		startScreenPanel.add(mainFilterPanel, "cell 2 0,grow");
 		mainFilterPanel.setLayout(new MigLayout("", "[grow][100px:100px:100px,grow][grow][grow]", "[][]"));
 
 		mainFilterPanel
@@ -142,18 +142,18 @@ public class BaseTab extends JFrame {
 		mainFilterPanel.add(getLblDozent(), "cell 2 0,aligny bottom");
 		mainFilterPanel.add(getLblSemester(), "cell 3 0,aligny bottom");
 
-		mainFilterPanel.add(getComboBoxOrgaFilter(), "cell 0 1,alignx center");
+		mainFilterPanel.add(getComboBoxOrgaFilter(), "cell 0 1,alignx left");
 		mainFilterPanel.add(getComboBoxChairFilter(), "cell 1 1,alignx center");
 		mainFilterPanel.add(getComboBoxLecturerFilter(), "cell 2 1,growx");
 		mainFilterPanel.add(getComboBoxSemesterFilter(), "cell 3 1,alignx left");
 		startScreenPanel.add(getRdbtnCourse(),
 				"cell 0 0,aligny bottom");
 		
-				startScreenPanel.add(getLblUniicon(), "cell 2 0,alignx center");
+				startScreenPanel.add(getLblUniicon(), "cell 3 0,alignx center");
 		startScreenPanel.add(getRdbtnRooms(), "cell 0 1");
 		
 		mainTableScrollPane = new JScrollPane();
-		startScreenPanel.add(mainTableScrollPane, "cell 1 2,alignx left,aligny top, grow");
+		startScreenPanel.add(mainTableScrollPane, "cell 2 2,alignx left,aligny top,grow");
 
 		mainTableScrollPane.setViewportView(getOrganisationTable());
 		mainTableScrollPane.setMinimumSize(new Dimension(600, 500));
@@ -163,7 +163,7 @@ public class BaseTab extends JFrame {
 		JPanel buttonPanel = new JPanel();
 		buttonPanel.setMinimumSize(new Dimension(140, 10));
 		buttonPanel.setMaximumSize(new Dimension(140, 32767));
-		startScreenPanel.add(buttonPanel, "cell 2 2,grow");
+		startScreenPanel.add(buttonPanel, "cell 3 2,grow");
 		buttonPanel.setLayout(null);
 		buttonPanel.add(getBtnRoomplan());
 		buttonPanel.add(getBtnTimetable());
@@ -555,6 +555,7 @@ public class BaseTab extends JFrame {
 	public JPanel getPanelLogin() {
 		if (panelLogin == null) {
 			panelLogin = new JPanel();
+			panelLogin.setToolTipText("<html>Dozenten und Verwaltungsmitarbeiter können sich hier <br>zu ihrem persönlichen Funktionsbereich einloggen</html>");
 			panelLogin.setBounds(0, 339, 100, 121);
 			panelLogin.setLayout(new MigLayout("", "[grow]", "[][][][][]"));
 			panelLogin.add(getLblUsername(), "cell 0 0");
@@ -637,8 +638,9 @@ public class BaseTab extends JFrame {
 	public JButton getBtnTimetable() {
 		if (btnTimetable == null) {
 			btnTimetable = new JButton("Stundenplan");
+			btnTimetable.setToolTipText("<html>Selektieren Sie mit der Taste \"Strg\" und der linken Maustaste<br> eine oder mehrere Veranstaltungen und klicken Sie<br> auf \"Stundenplan\" um eine Wochenübersicht zu generieren</html>");
 			btnTimetable.setEnabled(true);
-			btnTimetable.setBounds(0, 40, 80, 23);
+			btnTimetable.setBounds(0, 40, 104, 23);
 			btnTimetable.addActionListener(new BaseBtns(
 					"timetable"));
 		}

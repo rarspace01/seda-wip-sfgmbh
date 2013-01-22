@@ -110,7 +110,7 @@ public class UserTab extends JPanel {
 		textFieldMail.setColumns(10);
 		add(textFieldMail, "cell 5 1,growx");
 		
-		add(ViewManager.getInstance().getCoreLiveTickerPanel(), "cell 0 2,grow");
+		add(ViewManager.getInstance().getCoreLiveTickerPanel(), "cell 0 2,grow, aligny top");
 		
 		userTableScrollPane = new JScrollPane();
 		add(userTableScrollPane, "flowx,cell 2 2 4 1,grow");
@@ -139,10 +139,10 @@ public class UserTab extends JPanel {
 		btnEdit.setBounds(6, 11, 88, 23);
 		buttonPanel.add(btnEdit);
 		
-		JButton btnBearbeiten = new JButton("bearbeiten");
-		btnBearbeiten.addActionListener(new UserTabBtnsControl("edit"));
-		btnBearbeiten.setBounds(6, 45, 88, 23);
-		buttonPanel.add(btnBearbeiten);
+		JButton btnEdit = new JButton("bearbeiten");
+		btnEdit.addActionListener(new UserTabBtnsControl("edit"));
+		btnEdit.setBounds(6, 45, 88, 23);
+		buttonPanel.add(btnEdit);
 		
 		btnDelete = new JButton("l\u00F6schen");
 		btnDelete.addActionListener(new UserTabBtnsControl("delete"));
