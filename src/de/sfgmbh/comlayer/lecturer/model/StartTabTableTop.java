@@ -42,7 +42,6 @@ public class StartTabTableTop extends DefaultTableModel implements IntfAppObserv
 	 * @param variant
 	 */
 	public void change(String variant) {
-		ViewHelper vh = new ViewHelper();
 		HashMap<String, String> filter = new HashMap<String, String>();
 		User sessionUser = SessionManager.getInstance().getSession();
 		
@@ -68,7 +67,7 @@ public class StartTabTableTop extends DefaultTableModel implements IntfAppObserv
 							course.getLecturer_().getlName_(), 
 							course.getSws_(), 
 							course.getExpectedAttendees_(), 
-							vh.getBoolean(course.isLecturerEnabled_()),
+							ViewHelper.getBoolean(course.isLecturerEnabled_()),
 							course
 							};
 					this.addRow(row);

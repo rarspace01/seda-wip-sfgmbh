@@ -35,7 +35,6 @@ public class RequestTabTable extends DefaultTableModel implements IntfAppObserve
 	 * @param variant
 	 */
 	public void change(String variant) {
-		ViewHelper vh = new ViewHelper();
 		HashMap<String, String> filter = new HashMap<String, String>();
 		
 		this.setRowCount(0);
@@ -69,11 +68,11 @@ public class RequestTabTable extends DefaultTableModel implements IntfAppObserve
 				Object[] row = {
 						ra.getCourse_().getLecturer_().getlName_(),
 						ra.getCourse_().getCourseAcronym_(),
-						vh.getDay(ra.getDay_()),
-						vh.getTime(ra.getTime_()),
+						ViewHelper.getDay(ra.getDay_()),
+						ViewHelper.getTime(ra.getTime_()),
 						ra.getRoom_().getRoomNumber_(),
 						ra.getSemester_(),
-						vh.getAllocationStatus(ra.getApproved_()),
+						ViewHelper.getAllocationStatus(ra.getApproved_()),
 						conflict,
 						ra
 						};

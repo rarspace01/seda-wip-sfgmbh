@@ -63,7 +63,6 @@ public class BaseTab extends JFrame {
 	private JComboBox<String> comboBoxSemesterFilter;
 	private CmbboxFilterSemester comboBoxSemesterModel_;
 	private JComboBox<String> comboBoxOrgaFilter;
-	private CmbboxFilterSemester comboBoxOrgaModel_;
 	private JComboBox<String> comboBoxRoomnumberFilter;
 	private CmbboxFilterRoomnumber comboBoxRoomnumberModel_;
 	private JComboBox<String> comboBoxSeatsFilter;
@@ -258,7 +257,6 @@ public class BaseTab extends JFrame {
 		if (comboBoxOrgaFilter == null) {
 			comboBoxOrgaFilter = new JComboBox<String>();
 			comboBoxOrgaFilter.setPreferredSize(new Dimension(110, 20));
-			comboBoxOrgaModel_=new CmbboxFilterSemester();
 			comboBoxOrgaFilter.addKeyListener(new BaseCmbboxFilter("allocations"));
 			comboBoxOrgaFilter.addActionListener(new BaseCmbboxFilter("allocations"));
 			comboBoxOrgaFilter.setAutoscrolls(true);

@@ -123,13 +123,12 @@ public class LiveTickerPanel extends JPanel {
 	}
 	
 	private String getRoomAllocationText (List<RoomAllocation> roomAllocations) {
-		ViewHelper vh = new ViewHelper();
 		String returnString = "";
 		
 		// Build the string for all allocations
 		for (RoomAllocation ra : roomAllocations) {
 			returnString = 
-					returnString + vh.getTime(ra.getTime_()) + " Uhr<br />" +
+					returnString + ViewHelper.getTime(ra.getTime_()) + " Uhr<br />" +
 					"Raum: " + ra.getRoom_().getRoomNumber_() + "<br />" +
 					"<strong>" + ra.getCourse_().getCourseAcronym_() + "</strong> (" + ra.getCourse_().getCourseKind_() + ")<br /><br />";
  		}

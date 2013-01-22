@@ -3,13 +3,13 @@ package de.sfgmbh.comlayer.lecturer.views;
 import java.awt.Component;
 
 import javax.swing.JTable;
-import javax.swing.JTextArea;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.TableCellRenderer;
 
 public class LineWrapCellRenderer extends DefaultTableCellRenderer implements TableCellRenderer
 {
 	
+	private static final long serialVersionUID = 1L;
 	private int maxEntries_;
 	
 	public LineWrapCellRenderer(int entries) {

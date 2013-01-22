@@ -44,7 +44,6 @@ public class StartTabTableBottom extends DefaultTableModel implements IntfAppObs
 	 * @param variant
 	 */
 	public void change(String variant) {
-		ViewHelper vh = new ViewHelper();
 		HashMap<String, String> filter = new HashMap<String, String>();
 		User sessionUser = SessionManager.getInstance().getSession();
 		
@@ -99,11 +98,11 @@ public class StartTabTableBottom extends DefaultTableModel implements IntfAppObs
 					Object[] row = {
 							ra.getCourse_().getCourseAcronym_(), 
 							ra.getCourse_().getLecturer_().getlName_(), 
-							vh.getTime(ra.getTime_()), 
-							vh.getDay(ra.getDay_()), 
+							ViewHelper.getTime(ra.getTime_()), 
+							ViewHelper.getDay(ra.getDay_()), 
 							ra.getSemester_(), 
 							ra.getRoom_().getRoomNumber_(),
-							vh.getAllocationStatus(ra.getApproved_()),
+							ViewHelper.getAllocationStatus(ra.getApproved_()),
 							ra
 							};
 					this.addRow(row);

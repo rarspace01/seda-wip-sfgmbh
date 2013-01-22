@@ -3,7 +3,6 @@ package de.sfgmbh.comlayer.organisation.model;
 import javax.swing.table.DefaultTableModel;
 
 import de.sfgmbh.applayer.core.definitions.IntfAppObserver;
-import de.sfgmbh.applayer.organisation.controller.CtrlRoomAllocation;
 import de.sfgmbh.comlayer.core.controller.ViewManager;
 
 public class RoomtableTable extends DefaultTableModel implements IntfAppObserver {
@@ -31,8 +30,6 @@ public class RoomtableTable extends DefaultTableModel implements IntfAppObserver
 
 	@Override
 	public void change() {
-		
-		CtrlRoomAllocation ctrlRoomAlCtrlRoom= new CtrlRoomAllocation();
 		
 		//delete all rows
 		for(int i=this.getRowCount()-1;i>=0;i--){

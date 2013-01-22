@@ -64,7 +64,6 @@ public class StartTab extends JPanel implements IntfComDialogObserver {
 	 */
 	public StartTab() {
 		User currentUser = SessionManager.getInstance().getSession();
-		ViewHelper vh = new ViewHelper();
 		
 		// When a logged in lecturer is here at fist check if he has counter proposals for which popups should be shown
 		if (currentUser != null && currentUser.getClass_().equals("lecturer")) {
@@ -80,8 +79,8 @@ public class StartTab extends JPanel implements IntfComDialogObserver {
 					QuestionDialog dialog = new QuestionDialog("Zu Ihrer Veranstaltung <strong>" +
 							ra.getCourse_().getCourseAcronym_() + " / " + ra.getCourse_().getCourseKind_() + " im " + ra.getSemester_() +
 							"</strong> konnte der Termin nicht gewährt werden. Die Verwaltung schlägt ihnen stattdessen folgenden Termin vor:<br /><br /><strong>" +
-							vh.getDay(ra.getDay_()) + "<br />" +
-							vh.getTime(ra.getTime_()) + "<br />" +
+							ViewHelper.getDay(ra.getDay_()) + "<br />" +
+							ViewHelper.getTime(ra.getTime_()) + "<br />" +
 							ra.getRoom_().getRoomNumber_() + "<br /></strong><br />" +
 							orgaMsg +
 							"Wollen Sie diesen Termin annehmen?<br /> " +

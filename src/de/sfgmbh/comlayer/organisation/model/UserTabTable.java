@@ -39,7 +39,6 @@ public class UserTabTable extends DefaultTableModel implements IntfAppObserver {
 	 */
 	public void change(String variant) {
 		HashMap<String, String> filter = new HashMap<String, String>();
-		ViewHelper vh = new ViewHelper();
 
 		this.setRowCount(0);
 
@@ -78,8 +77,8 @@ public class UserTabTable extends DefaultTableModel implements IntfAppObserver {
 			// Build the row...
 			try {
 				Object[] row = { user.getLogin_(), user.getMail_(),
-						vh.getUserClass(user.getClass_()), chair,
-						date.toString(), vh.getBoolean(user.isDisabled_()),
+						ViewHelper.getUserClass(user.getClass_()), chair,
+						date.toString(), ViewHelper.getBoolean(user.isDisabled_()),
 						user };
 				this.addRow(row);
 
