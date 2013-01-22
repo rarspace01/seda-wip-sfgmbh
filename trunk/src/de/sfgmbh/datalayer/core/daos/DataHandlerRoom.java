@@ -214,7 +214,7 @@ public class DataHandlerRoom implements IntfDataRoom, IntfDataFilter, IntfDataOb
 			} else {
 				filterDm.getPreparedStatement().setInt(2, 0);
 			}
-			if (filter.containsKey("course") && filter.get("level") != null && filter.get("level") != "" && filter.get("level") != "<alle>") {
+			if (filter.containsKey("level") && filter.get("level") != null && filter.get("level") != "" && filter.get("level") != "<alle>") {
 				filterDm.getPreparedStatement().setString(3, "%" + filter.get("level") + "%");
 			} else {
 				filterDm.getPreparedStatement().setString(3, "%");

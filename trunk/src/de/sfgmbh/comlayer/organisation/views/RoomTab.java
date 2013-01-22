@@ -4,7 +4,6 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.SystemColor;
 
-import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -19,9 +18,10 @@ import net.miginfocom.swing.MigLayout;
 import de.sfgmbh.applayer.core.model.AppModel;
 import de.sfgmbh.applayer.organisation.controller.CtrlRoom;
 import de.sfgmbh.comlayer.core.controller.ViewManager;
+import de.sfgmbh.comlayer.core.model.CmbboxFilterLevel;
 import de.sfgmbh.comlayer.core.views.BaseTab;
-import de.sfgmbh.comlayer.organisation.controller.ChairTabCmbboxFilter;
 import de.sfgmbh.comlayer.organisation.controller.RoomTabBtnsControl;
+import de.sfgmbh.comlayer.organisation.controller.RoomTabCmbboxFilter;
 
 public class RoomTab extends JPanel {
 
@@ -32,13 +32,15 @@ public class RoomTab extends JPanel {
 	private JLabel lblBuilding;
 	private JLabel lblSeats;
 	private JLabel lblPcseats;
-	private JComboBox<String> comboBoxBuilding;
+	private JComboBox<String> comboBoxLevel;
 	private JScrollPane organisationTableScrollPane;
 	private JPanel buttonPanel;
 	private JButton btnEdit;
 	private JButton btnDelete;
 	private JButton btnRaumplanDrucken;
 	private JPanel uniIconPanel;
+	private JLabel lblRoom;
+	private JTextField txtRoom;
 	
 	/**
 	 * Create the frame.
@@ -60,17 +62,17 @@ public class RoomTab extends JPanel {
 
 		lblBuilding = new JLabel("Stockwerke:");
 		add(lblBuilding, "cell 2 0,aligny bottom");
+		add(getLblRoom(), "cell 3 0,aligny bottom");
 
-		lblSeats = new JLabel("Pl\u00E4tze:");
+		lblSeats = new JLabel("Mehr Plätze als:");
 		add(lblSeats, "cell 4 0,aligny bottom");
 
-		lblPcseats = new JLabel("PC-Pl\u00E4tze:");
+		lblPcseats = new JLabel("Mehr PC-Plätze als:");
 		add(lblPcseats, "cell 5 0,aligny bottom");
 
-		comboBoxBuilding = new JComboBox<String>();
-		comboBoxBuilding.setModel(new DefaultComboBoxModel<String>(
-				new String[] { "<alle>" }));
-		comboBoxBuilding.addActionListener(new ChairTabCmbboxFilter());
+		comboBoxLevel = new JComboBox<String>();
+		comboBoxLevel.setModel(new CmbboxFilterLevel(comboBoxLevel));
+		comboBoxLevel.addActionListener(new RoomTabCmbboxFilter());
 
 		uniIconPanel = new JPanel();
 		add(uniIconPanel, "cell 6 0,alignx center,growy");
@@ -80,19 +82,20 @@ public class RoomTab extends JPanel {
 		lblUniIcon.setMaximumSize(new Dimension(50, 50));
 		uniIconPanel.add(lblUniIcon);
 
-		comboBoxBuilding.setEditable(true);
-		comboBoxBuilding.setAutoscrolls(true);
-		add(comboBoxBuilding, "cell 2 1,growx");
+		comboBoxLevel.setEditable(true);
+		comboBoxLevel.setAutoscrolls(true);
+		add(comboBoxLevel, "cell 2 1,growx");
 
 		textFieldSeats = new JTextField();
-		textFieldSeats.setText("<alle>");
-		textFieldSeats.addActionListener(new ChairTabCmbboxFilter());
+		textFieldSeats.setText("0");
+		textFieldSeats.addActionListener(new RoomTabCmbboxFilter());
+		add(getTxtRoom(), "cell 3 1,growx");
 		add(textFieldSeats, "cell 4 1,growx");
 		textFieldSeats.setColumns(10);
 
 		textFieldPCSeats = new JTextField();
-		textFieldPCSeats.setText("<alle>");
-		textFieldPCSeats.addActionListener(new ChairTabCmbboxFilter());
+		textFieldPCSeats.setText("0");
+		textFieldPCSeats.addActionListener(new RoomTabCmbboxFilter());
 		textFieldPCSeats.setColumns(10);
 		add(textFieldPCSeats, "cell 5 1,growx");
 
@@ -161,4 +164,39 @@ public class RoomTab extends JPanel {
 		return raumverwaltungTable;
 	}
 
+	/**
+	 * @return the textFieldSeats
+	 */
+	public JTextField getTextFieldSeats() {
+		return textFieldSeats;
+	}
+
+	/**
+	 * @return the textFieldPCSeats
+	 */
+	public JTextField getTextFieldPCSeats() {
+		return textFieldPCSeats;
+	}
+
+	/**
+	 * @return the comboBoxLevel
+	 */
+	public JComboBox<String> getComboBoxLevel() {
+		return comboBoxLevel;
+	}
+
+	public JLabel getLblRoom() {
+		if (lblRoom == null) {
+			lblRoom = new JLabel("Raum:");
+		}
+		return lblRoom;
+	}
+	public JTextField getTxtRoom() {
+		if (txtRoom == null) {
+			txtRoom = new JTextField();
+			txtRoom.setColumns(10);
+			txtRoom.addActionListener(new RoomTabCmbboxFilter());
+		}
+		return txtRoom;
+	}
 }

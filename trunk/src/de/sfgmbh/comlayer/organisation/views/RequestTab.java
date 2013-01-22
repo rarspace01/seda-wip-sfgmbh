@@ -67,7 +67,7 @@ public class RequestTab extends JPanel {
 	private void initialize() {
 		setMinimumSize(new Dimension(100, 10));
 		setMaximumSize(new Dimension(100, 32767));
-		setLayout(new MigLayout("", "[140px:140px:140px][10px:10px:10px][grow][grow][grow][grow][100px:100px:100px]", "[][][419.00,grow][]"));
+		setLayout(new MigLayout("", "[140px:140px:140px][10px:10px:10px][grow][grow][grow][grow][100px:100px:100px]", "[::40px,grow,center][][419.00,grow][]"));
 		
 		JLabel lblRaumverwaltung = new JLabel("Raumanfragen");
 		lblRaumverwaltung.setFont(new Font("SansSerif", Font.BOLD, 13));
@@ -95,6 +95,7 @@ public class RequestTab extends JPanel {
 		comboBoxLecturer.setAutoscrolls(true);
 		add(comboBoxLecturer, "cell 2 1,growx,aligny center");
 		add(getFilterBottom(), "cell 3 1,alignx left,aligny center");
+		add(getFilterTop(), "cell 3 0,alignx left,aligny bottom");
 		
 		comboBoxSemester = new JComboBox<String>();
 		comboBoxSemester.addActionListener(new RequestTabCmbboxFilter());
@@ -195,7 +196,7 @@ public class RequestTab extends JPanel {
 			filterBottom = new JPanel();
 			filterBottom.setBorder(null);
 			filterBottom.setAlignmentX(0.0f);
-			filterBottom.setLayout(new MigLayout("insets 0", "[200px:200px:200px][100px:100px:100px]", ""));
+			filterBottom.setLayout(new MigLayout("insets 0", "[200px:200px:200px][120px:120px:120px]", "[]"));
 			
 			comboBoxChair = new JComboBox<String>();
 			comboBoxChair.setMaximumSize(new Dimension(200, 50));
