@@ -25,10 +25,10 @@ public interface IntfDataCourse {
 
 	/**
 	 * Forms a course object out of a given result set
-	 * @param ResultSet rs
+	 * @param resultSet - {@link ResultSet}
 	 * @return a course object
 	 */
-	public abstract Course makeCourse(ResultSet rs);
+	public abstract Course makeCourse(ResultSet resultSet);
 
 	/**
 	 * 

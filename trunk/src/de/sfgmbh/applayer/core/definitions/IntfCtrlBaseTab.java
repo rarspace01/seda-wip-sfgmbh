@@ -11,7 +11,7 @@ public interface IntfCtrlBaseTab {
 	 * @param password
 	 * @return the user object if login credentials are correct (and the user is not disabled) and otherwise null
 	 */
-	public abstract User login(String login, String pw);
+	public abstract User login(String login, String password);
 
 	/**
 	 * Logout action

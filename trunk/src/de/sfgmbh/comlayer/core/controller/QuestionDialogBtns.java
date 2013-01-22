@@ -22,7 +22,7 @@ public class QuestionDialogBtns implements ActionListener, IntfComDialogObservab
 	
 	/**
 	 * Create the listener for a specific window and variant
-	 * @param affectedWindow
+	 * @param transmittedInfoWindow - affectedWindow
 	 * @param variant
 	 */
 	public QuestionDialogBtns(JDialog transmittedInfoWindow, String variant) {

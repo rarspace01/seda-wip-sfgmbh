@@ -39,7 +39,6 @@ public interface IntfDataRoom {
 	 * 
 	 * @param room
 	 *            - object of type Room to be saved in DB
-	 * @return - int for error handling
 	 */
 	public void save(IntfRoom room);
 	

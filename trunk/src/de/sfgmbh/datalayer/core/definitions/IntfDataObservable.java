@@ -9,13 +9,13 @@ public interface IntfDataObservable {
 	
 	/**
 	 * Registers an observer
-	 * @param listner
+	 * @param observer - {@link IntfDataObserver}
 	 */
 	public void register(IntfDataObserver observer);
 	
 	/**
 	 * Unregisters an observer 
-	 * @param listner
+	 * @param observer - {@link IntfDataObserver}
 	 */
 	public void unregister(IntfDataObserver observer);
 }

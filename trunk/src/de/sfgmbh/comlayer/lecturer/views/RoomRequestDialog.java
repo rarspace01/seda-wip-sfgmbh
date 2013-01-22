@@ -115,8 +115,8 @@ public class RoomRequestDialog extends JDialog {
 	 * Customize according to a room allocation
 	 * @param roomAllocation
 	 */
-	public void setRoomAllocation(RoomAllocation ra) {
-		this.proposalAllocation = ra;
+	public void setRoomAllocation(RoomAllocation roomAllocation) {
+		this.proposalAllocation = roomAllocation;
 		this.proposalAllocation.setForceConflictingAllocations_();
 		
 		// Stop action listener on comboboxes, set them and start action listener again
@@ -154,11 +154,11 @@ public class RoomRequestDialog extends JDialog {
 	 * Customize according to a suggested room allocation
 	 * @param roomAllocation
 	 */
-	public void setSuggestRoomAllocation(RoomAllocation ra, HashMap<String,String> filter) {
-		RoomAllocation suggestRoomAllocation = ctrlStartTab.suggest(ra, filter);
+	public void setSuggestRoomAllocation(RoomAllocation roomAllocation, HashMap<String,String> filter) {
+		RoomAllocation suggestRoomAllocation = ctrlStartTab.suggest(roomAllocation, filter);
 		if (suggestRoomAllocation == null) {
 			AppModel.getInstance().getExceptionHandler().setNewException("Scheinbar gibt es für diese Veranstaltung dieses Semester keinen freien Raum mehr, der groß genug wäre.<br />Sie können allerdings noch versuchen einen Raum außerhalb der regulären Vorelsungszeiten zu belegen, da diese vom Vorschlagsystem nicht berücksichtigt wurden (ab 20 Uhr sowie Sa. und So.).", "Information", "info");
-			this.setRoomAllocation(ra);
+			this.setRoomAllocation(roomAllocation);
 		} else {
 			this.setRoomAllocation(suggestRoomAllocation);
 		}
