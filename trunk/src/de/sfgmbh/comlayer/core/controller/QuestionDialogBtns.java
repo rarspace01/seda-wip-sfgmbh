@@ -50,7 +50,15 @@ public class QuestionDialogBtns implements ActionListener, IntfComDialogObservab
 	}
 
 	@Override
+	public void unregister(IntfComDialogObserver observer) {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	@Override
 	public void update(String answer) {
 			((IntfComDialogObserver) this.currentObserver_).answered(answer);
 	}
+
+
 }

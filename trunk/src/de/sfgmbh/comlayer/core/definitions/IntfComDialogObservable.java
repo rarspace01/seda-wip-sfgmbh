@@ -15,7 +15,13 @@ public interface IntfComDialogObservable {
 	public void register(IntfComDialogObserver observer);
 	
 	/**
-	 * Update the registered observer (in this case there should be only one observer) with the answer
+	 * Registers an observer in the dialog
+	 * @param observer
+	 */
+	public void unregister(IntfComDialogObserver observer);
+	
+	/**
+	 * Update the registered 
 	 * @param answer
 	 */
 	public void update(String answer);

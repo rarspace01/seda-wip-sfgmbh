@@ -58,6 +58,7 @@ public class BaseTab extends JFrame {
 	private JComboBox<String> comboBoxChairFilter;
 	private JComboBox<String> comboBoxLecturerFilter;
 	private JComboBox<String> comboBoxSemesterFilter;
+	private CmbboxFilterSemester comboBoxSemesterModel_= new CmbboxFilterSemester();
 	private JComboBox<String> comboBoxOrgaFilter;
 	private JComboBox<String> comboBoxRoomnumberFilter;
 	private JComboBox<String> comboBoxSeatsFilter;
@@ -273,14 +274,21 @@ public class BaseTab extends JFrame {
 		if (comboBoxSemesterFilter == null) {
 			comboBoxSemesterFilter = new JComboBox<String>();
 			comboBoxSemesterFilter.setPreferredSize(new Dimension(110, 20));
-			comboBoxSemesterFilter.setModel(new CmbboxFilterSemester());
-			comboBoxSemesterFilter.addKeyListener(new BaseCmbboxFilter());
-			comboBoxSemesterFilter.addActionListener(new BaseCmbboxFilter());
+			comboBoxSemesterFilter.setModel(comboBoxSemesterModel_);
+			comboBoxSemesterFilter.addKeyListener(comboBoxSemesterModel_);
+			comboBoxSemesterFilter.addActionListener(comboBoxSemesterModel_);
 			comboBoxSemesterFilter.setEditable(true);
 			comboBoxSemesterFilter.setAutoscrolls(true);
 		}
 
 		return comboBoxSemesterFilter;
+	}
+	
+	/**
+	 * @return the comboBoxSemesterModel_
+	 */
+	public CmbboxFilterSemester getComboBoxSemesterModel() {
+		return comboBoxSemesterModel_;
 	}
 
 	public JComboBox<String> getComboBoxRoomnumberFilter() {
@@ -342,6 +350,10 @@ public class BaseTab extends JFrame {
 			organisationTable.setShowVerticalLines(false);
 			organisationTable.setModel(ViewManager.getInstance()
 					.getCoreBaseTableModel());
+			
+			comboBoxSemesterModel_.register(ViewManager.getInstance()
+					.getCoreBaseTableModel());
+			
 			organisationTable.getColumnModel().getColumn(0).setResizable(false);
 			organisationTable.getColumnModel().getColumn(8)
 					.setCellRenderer(center);

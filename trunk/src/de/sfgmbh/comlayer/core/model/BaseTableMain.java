@@ -61,7 +61,7 @@ public class BaseTableMain extends DefaultTableModel implements IntfAppObserver 
 							ra.getCourse_().getCourseKind_(),
 							ra.getCourse_().getLecturer_().getlName_(), 
 							vh.getDay(ra.getDay_()),
-							vh.getTime(ra.getTime_()), 
+							ViewHelper.getTime(ra.getTime_()), 
 							ra.getRoom_().getRoomNumber_(), 
 							ra.getSemester_(), 
 							ra.getCourse_().getSws_(),
