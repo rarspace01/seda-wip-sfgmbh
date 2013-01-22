@@ -1,5 +1,6 @@
 package de.sfgmbh.applayer.core.controller;
 
+import de.sfgmbh.applayer.core.definitions.IntfSessionManager;
 import de.sfgmbh.applayer.core.model.User;
 
 /**
@@ -8,9 +9,9 @@ import de.sfgmbh.applayer.core.model.User;
  * @author hannes
  *
  */
-public class SessionManager {
+public class SessionManager implements IntfSessionManager {
 	
-	private static SessionManager uniqueInstance_ = new SessionManager();
+	private static IntfSessionManager uniqueInstance_ = new SessionManager();
 	private boolean isLoggedIn;
 	private User user;
 	
@@ -27,45 +28,47 @@ public class SessionManager {
 	 * Get the session manager
 	 * @return the SessionManager
 	 */
-	public static SessionManager getInstance() {
+	public static IntfSessionManager getInstance() {
 		return uniqueInstance_;
 	}
 
-	/**
-	 * Dispose the current session manager
+	/* (non-Javadoc)
+	 * @see de.sfgmbh.applayer.core.controller.IntfSessionManager#dispose()
 	 */
+	@Override
 	public void dispose() {
 		uniqueInstance_ = null;
 	}
 	
-	/**
-	 * Get the currently logged in user
-	 * @return the logged in use
+	/* (non-Javadoc)
+	 * @see de.sfgmbh.applayer.core.controller.IntfSessionManager#getSession()
 	 */
+	@Override
 	public User getSession() {
 		return this.user;
 	}
 	
-	/**
-	 * Start a user session
-	 * @param user
+	/* (non-Javadoc)
+	 * @see de.sfgmbh.applayer.core.controller.IntfSessionManager#setSession(de.sfgmbh.applayer.core.model.User)
 	 */
+	@Override
 	public void setSession(User user) {
 		this.user = user;
 		this.isLoggedIn = true;
 	}
 	
-	/**
-	 * Check if there currently is a session
-	 * @return true or false
+	/* (non-Javadoc)
+	 * @see de.sfgmbh.applayer.core.controller.IntfSessionManager#checkSession()
 	 */
+	@Override
 	public boolean checkSession() {
 		return this.isLoggedIn;
 	}
 	
-	/**
-	 * Reset the current session
+	/* (non-Javadoc)
+	 * @see de.sfgmbh.applayer.core.controller.IntfSessionManager#clearSession()
 	 */
+	@Override
 	public void clearSession() {
 		this.user = null;
 		this.isLoggedIn = false;

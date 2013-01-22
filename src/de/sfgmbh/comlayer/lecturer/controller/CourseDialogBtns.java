@@ -7,6 +7,7 @@ import de.sfgmbh.applayer.core.model.AppException;
 import de.sfgmbh.applayer.core.model.AppModel;
 import de.sfgmbh.applayer.core.model.Course;
 import de.sfgmbh.applayer.lecturer.controller.CtrlStartTab;
+import de.sfgmbh.applayer.lecturer.definitions.IntfCtrlStartTab;
 import de.sfgmbh.comlayer.core.model.CmbboxFilterLecturer;
 import de.sfgmbh.comlayer.lecturer.views.CourseDialog;
 
@@ -21,7 +22,7 @@ public class CourseDialogBtns implements ActionListener {
 
 	private String ctrlAction;
 	private CourseDialog motherDialog;
-	private CtrlStartTab cntrlStartTab = new CtrlStartTab();
+	private IntfCtrlStartTab cntrlStartTab = new CtrlStartTab();
 
 	/**
 	 * Create the action listener

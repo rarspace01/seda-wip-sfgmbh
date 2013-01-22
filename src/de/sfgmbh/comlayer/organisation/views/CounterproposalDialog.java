@@ -19,6 +19,7 @@ import javax.swing.border.EtchedBorder;
 import de.sfgmbh.applayer.core.model.AppModel;
 import de.sfgmbh.applayer.core.model.RoomAllocation;
 import de.sfgmbh.applayer.organisation.controller.CtrlRoomAllocation;
+import de.sfgmbh.applayer.organisation.definitions.IntfCtrlRoomAllocation;
 import de.sfgmbh.comlayer.core.model.CmbboxFilterDay;
 import de.sfgmbh.comlayer.core.model.CmbboxFilterRoomnumber;
 import de.sfgmbh.comlayer.core.model.CmbboxFilterTime;
@@ -50,7 +51,7 @@ public class CounterproposalDialog extends JDialog {
 	private JLabel lblSelectedRoomSeats;
 	private JLabel lblSelectedStudents;
 	private JLabel lblSelectedStatus;
-	private CtrlRoomAllocation ctrlRoomAllocation = new CtrlRoomAllocation();
+	private IntfCtrlRoomAllocation ctrlRoomAllocation = new CtrlRoomAllocation();
 	private JScrollPane scrollPane;
 	private JEditorPane editorPane;
 

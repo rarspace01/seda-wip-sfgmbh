@@ -46,7 +46,7 @@ public class RoomTableMain extends DefaultTableModel implements IntfAppObserver 
 				int intSeats = Integer.parseInt(baseTab.getComboBoxSeatsFilter().getSelectedItem().toString());
 				seats = String.valueOf(intSeats);
 			} catch (Exception e) {
-				AppModel.getInstance().getExceptionHandler().setNewException("Bitte stellen Sie sicher,  dass sie echte Zahlen bei dem Sitze-Filtern eingetragen haben", "Fehler!", "error");
+				AppModel.getInstance().getExceptionHandler().setNewException("Bitte stellen Sie sicher,  dass Sie eine Zahlen bei dem Sitze-Filtern eingetragen haben.", "Fehler!", "error");
 				baseTab.getComboBoxSeatsFilter().setSelectedItem("0");
 				return;
 			}

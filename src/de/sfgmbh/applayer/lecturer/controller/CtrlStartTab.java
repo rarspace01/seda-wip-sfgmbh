@@ -10,6 +10,7 @@ import de.sfgmbh.applayer.core.model.Course;
 import de.sfgmbh.applayer.core.model.Room;
 import de.sfgmbh.applayer.core.model.RoomAllocation;
 import de.sfgmbh.applayer.core.model.User;
+import de.sfgmbh.applayer.lecturer.definitions.IntfCtrlStartTab;
 
 /**
  * Controller for the lecturer's start tab
@@ -18,13 +19,12 @@ import de.sfgmbh.applayer.core.model.User;
  * @author christian
  *
  */
-public class CtrlStartTab {
+public class CtrlStartTab implements IntfCtrlStartTab {
 
-	/**
-	 * Create or edit a course if it is a valid course
-	 * @param course
-	 * @return true if the creation was successful
+	/* (non-Javadoc)
+	 * @see de.sfgmbh.applayer.lecturer.controller.IntfCtrlStartTab#saveCourse(de.sfgmbh.applayer.core.model.Course)
 	 */
+	@Override
 	public boolean saveCourse(Course course) {
 		AppException exceptionHandler = AppModel.getInstance().getExceptionHandler();
 		
@@ -48,11 +48,10 @@ public class CtrlStartTab {
 		return false;
 	}
 	
-	/**
-	 * Delete a course
-	 * @param course
-	 * @return true on success
+	/* (non-Javadoc)
+	 * @see de.sfgmbh.applayer.lecturer.controller.IntfCtrlStartTab#deleteCourse(de.sfgmbh.applayer.core.model.Course)
 	 */
+	@Override
 	public boolean deleteCourse(Course course) {
 		AppException exceptionHandler = AppModel.getInstance().getExceptionHandler();
 		
@@ -72,10 +71,10 @@ public class CtrlStartTab {
 		return false;
 	}
 	
-	/**
-	 * Suggest a time slot for a room allocation and a set of filters (seat preferences). Currently set time slot is, expect the semester, ignored.
-	 * @return a room allocation with a free time slot, null if there are none
+	/* (non-Javadoc)
+	 * @see de.sfgmbh.applayer.lecturer.controller.IntfCtrlStartTab#suggest(de.sfgmbh.applayer.core.model.RoomAllocation, java.util.HashMap)
 	 */
+	@Override
 	public RoomAllocation suggest(RoomAllocation roomAllocation, HashMap<String, String> filter) {
 		List<RoomAllocation> currentAllocations = AppModel.getInstance().getRepositoryRoomAllocation().getAllOpen();
 		List<Room> matchingRooms = AppModel.getInstance().getRepositoryRoom().getByFilter(filter);
@@ -110,11 +109,10 @@ public class CtrlStartTab {
 		return null;
 	}
 	
-	/**
-	 * Create a new room allocation
-	 * @param roomAllocation
-	 * @return true on success
+	/* (non-Javadoc)
+	 * @see de.sfgmbh.applayer.lecturer.controller.IntfCtrlStartTab#createRoomAllocation(de.sfgmbh.applayer.core.model.RoomAllocation)
 	 */
+	@Override
 	public boolean createRoomAllocation(RoomAllocation roomAllocation) {
 		AppException exceptionHandler = AppModel.getInstance().getExceptionHandler();
 		User loggedInUser = SessionManager.getInstance().getSession();
@@ -168,11 +166,10 @@ public class CtrlStartTab {
 		return false;
 	}
 	
-	/**
-	 * Revoke a new room allocation
-	 * @param roomAllocation
-	 * @return true on success
+	/* (non-Javadoc)
+	 * @see de.sfgmbh.applayer.lecturer.controller.IntfCtrlStartTab#revokeRoomAllocation(de.sfgmbh.applayer.core.model.RoomAllocation)
 	 */
+	@Override
 	public boolean revokeRoomAllocation(RoomAllocation roomAllocation) {
 		AppException exceptionHandler = AppModel.getInstance().getExceptionHandler();
 		User loggedInUser = SessionManager.getInstance().getSession();
@@ -197,12 +194,10 @@ public class CtrlStartTab {
 		return false;
 	}
 	
-	/**
-	 * Accept or deny a counter proposal where the boolean value decied which it should be
-	 * @param roomAllocation
-	 * @param accapt
-	 * @return true on success
+	/* (non-Javadoc)
+	 * @see de.sfgmbh.applayer.lecturer.controller.IntfCtrlStartTab#counterRoomAllocation(de.sfgmbh.applayer.core.model.RoomAllocation, boolean)
 	 */
+	@Override
 	public boolean counterRoomAllocation(RoomAllocation roomAllocation, boolean accept) {
 		AppException exceptionHandler = AppModel.getInstance().getExceptionHandler();
 		User loggedInUser = SessionManager.getInstance().getSession();

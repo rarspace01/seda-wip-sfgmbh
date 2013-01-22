@@ -2,6 +2,7 @@ package de.sfgmbh.applayer.organisation.controller;
 
 import de.sfgmbh.applayer.core.model.AppModel;
 import de.sfgmbh.applayer.core.model.User;
+import de.sfgmbh.applayer.organisation.definitions.IntfCtrlUser;
 
 /**
  * Controller for user management
@@ -9,13 +10,12 @@ import de.sfgmbh.applayer.core.model.User;
  * @author hannes
  *
  */
-public class CtrlUser {
+public class CtrlUser implements IntfCtrlUser {
 	
-	/**
-	 * Create or edit a user if it is a valid user
-	 * @param user
-	 * @return true if the creation was successful
+	/* (non-Javadoc)
+	 * @see de.sfgmbh.applayer.organisation.controller.IntfCtrlUser#saveUser(de.sfgmbh.applayer.core.model.User)
 	 */
+	@Override
 	public boolean saveUser(User user) {
 		
 		if (user.validate()) {
@@ -28,11 +28,10 @@ public class CtrlUser {
 		}
 	}
 
-	/**
-	 * Delete a user if possible
-	 * @param user
-	 * @return true on success
+	/* (non-Javadoc)
+	 * @see de.sfgmbh.applayer.organisation.controller.IntfCtrlUser#delete(de.sfgmbh.applayer.core.model.User)
 	 */
+	@Override
 	public boolean delete(User user) {
 		// Check if the users exists in the data base
 		User delUser = AppModel.getInstance().getRepositoryUser().get(user.getUserId_());

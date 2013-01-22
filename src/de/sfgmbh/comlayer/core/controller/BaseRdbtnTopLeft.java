@@ -3,7 +3,7 @@ package de.sfgmbh.comlayer.core.controller;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import de.sfgmbh.applayer.core.controller.CtrlBaseTab;
+import de.sfgmbh.applayer.core.definitions.IntfCtrlBaseTab;
 import de.sfgmbh.comlayer.core.views.BaseTab;
 import de.sfgmbh.comlayer.core.views.InfoDialog;
 /**
@@ -22,7 +22,7 @@ public class BaseRdbtnTopLeft implements ActionListener {
 	
 	private String ctrlAction;
 	protected InfoDialog infoWindow;
-	protected CtrlBaseTab ctrlBaseTab;
+	protected IntfCtrlBaseTab ctrlBaseTab;
 	
 	/**
 	 * Create the action listener 

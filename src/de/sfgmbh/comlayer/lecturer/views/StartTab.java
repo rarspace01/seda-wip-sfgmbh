@@ -22,6 +22,7 @@ import de.sfgmbh.applayer.core.model.AppModel;
 import de.sfgmbh.applayer.core.model.RoomAllocation;
 import de.sfgmbh.applayer.core.model.User;
 import de.sfgmbh.applayer.lecturer.controller.CtrlStartTab;
+import de.sfgmbh.applayer.lecturer.definitions.IntfCtrlStartTab;
 import de.sfgmbh.comlayer.core.controller.ViewHelper;
 import de.sfgmbh.comlayer.core.controller.ViewManager;
 import de.sfgmbh.comlayer.core.definitions.IntfComDialogObserver;
@@ -57,7 +58,7 @@ public class StartTab extends JPanel implements IntfComDialogObserver {
 	private TableRowSorter<TableModel> rowSorterTop;
 	private TableRowSorter<TableModel> rowSorterBottom;
 	private RoomAllocation roomAllocation;
-	private CtrlStartTab ctrlStartTab = new CtrlStartTab();
+	private IntfCtrlStartTab ctrlStartTab = new CtrlStartTab();
 
 	/**
 	 * Create the panel.

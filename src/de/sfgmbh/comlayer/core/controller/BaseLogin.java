@@ -5,6 +5,7 @@ import java.awt.event.ActionListener;
 import java.util.HashMap;
 
 import de.sfgmbh.applayer.core.controller.CtrlBaseTab;
+import de.sfgmbh.applayer.core.definitions.IntfCtrlBaseTab;
 import de.sfgmbh.applayer.core.model.AppModel;
 import de.sfgmbh.applayer.core.model.RoomAllocation;
 import de.sfgmbh.applayer.core.model.User;
@@ -20,7 +21,7 @@ import de.sfgmbh.comlayer.lecturer.views.StartTab;
  */
 public class BaseLogin implements ActionListener {
 	
-	private CtrlBaseTab ctrlBaseTab;
+	private IntfCtrlBaseTab ctrlBaseTab;
 	private String version;
 	
 	/**

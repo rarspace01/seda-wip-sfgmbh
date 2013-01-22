@@ -11,6 +11,7 @@ import de.sfgmbh.applayer.core.model.AppModel;
 import de.sfgmbh.applayer.core.model.Course;
 import de.sfgmbh.applayer.core.model.RoomAllocation;
 import de.sfgmbh.applayer.lecturer.controller.CtrlStartTab;
+import de.sfgmbh.applayer.lecturer.definitions.IntfCtrlStartTab;
 import de.sfgmbh.comlayer.core.controller.ViewManager;
 import de.sfgmbh.comlayer.core.definitions.IntfComDialogObserver;
 import de.sfgmbh.comlayer.core.views.QuestionDialog;
@@ -30,7 +31,7 @@ public class StartTabBtnsControl implements ActionListener, IntfComDialogObserve
 	private String ctrlAction;
 	private Course delCourse;
 	private RoomAllocation revokeAllocation;
-	private CtrlStartTab cntrlStartTab = new CtrlStartTab();
+	private IntfCtrlStartTab cntrlStartTab = new CtrlStartTab();
 	
 	/**
 	 * Create the action listener

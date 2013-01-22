@@ -19,6 +19,7 @@ import javax.swing.table.TableRowSorter;
 import net.miginfocom.swing.MigLayout;
 import de.sfgmbh.applayer.core.model.AppModel;
 import de.sfgmbh.applayer.organisation.controller.CtrlRoom;
+import de.sfgmbh.applayer.organisation.definitions.IntfCtrlRoom;
 import de.sfgmbh.comlayer.core.controller.ViewManager;
 import de.sfgmbh.comlayer.core.model.CmbboxFilterLevel;
 import de.sfgmbh.comlayer.core.views.BaseTab;
@@ -172,7 +173,7 @@ public class RoomTab extends JPanel {
 
 	public void loadRooms() {
 
-		CtrlRoom ctrlRoom = new CtrlRoom();
+		IntfCtrlRoom ctrlRoom = new CtrlRoom();
 
 		ViewManager.getInstance().getOrgaRoomTableModel()
 				.addRooms(ctrlRoom.getAllRooms());

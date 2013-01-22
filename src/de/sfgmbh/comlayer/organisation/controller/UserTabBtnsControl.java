@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 import de.sfgmbh.applayer.core.model.AppModel;
 import de.sfgmbh.applayer.core.model.User;
 import de.sfgmbh.applayer.organisation.controller.CtrlUser;
+import de.sfgmbh.applayer.organisation.definitions.IntfCtrlUser;
 import de.sfgmbh.comlayer.core.controller.ViewManager;
 import de.sfgmbh.comlayer.core.definitions.IntfComDialogObserver;
 import de.sfgmbh.comlayer.core.views.QuestionDialog;
@@ -23,7 +24,7 @@ public class UserTabBtnsControl implements ActionListener, IntfComDialogObserver
 	private String navAction;
 	private boolean deleteUser = false;
 	private User userMarkedForDeletion;
-	private CtrlUser ctrlUser = new CtrlUser();
+	private IntfCtrlUser ctrlUser = new CtrlUser();
 	
 	
 	/**

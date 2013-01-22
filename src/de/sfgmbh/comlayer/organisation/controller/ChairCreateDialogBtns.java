@@ -7,6 +7,7 @@ import de.sfgmbh.applayer.core.model.AppException;
 import de.sfgmbh.applayer.core.model.AppModel;
 import de.sfgmbh.applayer.core.model.Chair;
 import de.sfgmbh.applayer.organisation.controller.CtrlChair;
+import de.sfgmbh.applayer.organisation.definitions.IntfCtrlChair;
 import de.sfgmbh.comlayer.core.model.CmbboxFilterLecturer;
 import de.sfgmbh.comlayer.organisation.views.ChairCreateDialog;
 
@@ -21,7 +22,7 @@ public class ChairCreateDialogBtns implements ActionListener {
 
 	private String ctrlAction;
 	private ChairCreateDialog motherDialog;
-	private CtrlChair ctrlChair = new CtrlChair();
+	private IntfCtrlChair ctrlChair = new CtrlChair();
 
 	/**
 	 * Create the action listener
