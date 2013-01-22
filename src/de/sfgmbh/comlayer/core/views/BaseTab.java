@@ -449,7 +449,7 @@ public class BaseTab extends JFrame {
 	}
 	/**
 	 * 
-	 * @param set the organisationTable
+	 * @param organisationTable - set the organisationTable
 	 */
 	public void setOrganisationTable(JTable organisationTable) {
 		this.organisationTable = organisationTable;

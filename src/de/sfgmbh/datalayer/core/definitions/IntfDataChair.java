@@ -16,9 +16,9 @@ public interface IntfDataChair {
 
 	/**
 	 * 
-	 * @param iChairId
+	 * @param chairId
 	 *            - Chair id in the database
-	 * @return Chair object
+	 * @return {@link Chair} object
 	 */
 	public IntfChair get(int chairId);
 

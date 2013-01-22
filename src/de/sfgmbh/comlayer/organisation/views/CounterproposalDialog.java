@@ -70,8 +70,8 @@ public class CounterproposalDialog extends JDialog {
 	 * Customize according to a room allocation
 	 * @param roomAllocation
 	 */
-	public void setRoomAllocation(RoomAllocation ra) {
-		this.proposalAllocation = ra;
+	public void setRoomAllocation(RoomAllocation roomAllocation) {
+		this.proposalAllocation = roomAllocation;
 		this.proposalAllocation.setForceConflictingAllocations_();
 		getCmbboxDay().removeActionListener(getCmbboxDay().getActionListeners()[0]);
 		getCmbboxTime().removeActionListener(getCmbboxTime().getActionListeners()[0]);
@@ -95,11 +95,11 @@ public class CounterproposalDialog extends JDialog {
 	 * Customize according to a suggested room allocation
 	 * @param roomAllocation
 	 */
-	public void setSuggestRoomAllocation(RoomAllocation ra) {
-		RoomAllocation suggestRoomAllocation = ctrlRoomAllocation.suggest(ra);
+	public void setSuggestRoomAllocation(RoomAllocation roomAllocation) {
+		RoomAllocation suggestRoomAllocation = ctrlRoomAllocation.suggest(roomAllocation);
 		if (suggestRoomAllocation == null) {
 			AppModel.getInstance().getExceptionHandler().setNewException("Scheinbar gibt es für diese Veranstaltung dieses Semester keinen freien Raum mehr,  der groß genug wäre.", "Information", "info");
-			this.setRoomAllocation(ra);
+			this.setRoomAllocation(roomAllocation);
 		} else {
 			this.setRoomAllocation(suggestRoomAllocation);
 		}

@@ -19,11 +19,11 @@ public interface IntfDataUser {
 
 	/**
 	 * 
-	 * @param iUserId
+	 * @param userId
 	 *            - User id in the database
 	 * @return User object
 	 */
-	public User get(int UserId);
+	public User get(int userId);
 
 	/**
 	 * 

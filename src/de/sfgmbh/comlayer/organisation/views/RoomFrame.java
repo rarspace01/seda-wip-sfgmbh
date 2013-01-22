@@ -297,7 +297,7 @@ public class RoomFrame extends JDialog {
 	}
 	/**
 	 * 
-	 * @param the txtLevel to set
+	 * @param txtLevel - the txtLevel to set
 	 */
 	public void setTxtLevel(JTextField txtLevel) {
 		this.txtLevel = txtLevel;
@@ -311,7 +311,7 @@ public class RoomFrame extends JDialog {
 	}
 	/**
 	 * 
-	 * @param the txtRoomNumber to set
+	 * @param txtRoomNumber - the txtRoomNumber to set
 	 */
 	public void setTxtRoomNumber(JTextField txtRoomNumber) {
 		this.txtRoomNumber = txtRoomNumber;
@@ -339,7 +339,7 @@ public class RoomFrame extends JDialog {
 	}
 	/**
 	 * 
-	 * @param the txtPcSeats to set
+	 * @param txtPcSeats - the txtPcSeats to set
 	 */
 	public void setTxtPcSeats(JTextField txtPcSeats) {
 		this.txtPcSeats = txtPcSeats;

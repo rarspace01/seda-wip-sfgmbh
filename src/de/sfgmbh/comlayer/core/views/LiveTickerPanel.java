@@ -115,7 +115,7 @@ public class LiveTickerPanel extends JPanel {
 	
 	/**
 	 * Set a ticker text which may be HTML-formated but doesn't need the initial style (font-family and size is already set)
-	 * @param text/html
+	 * @param text - as text/html
 	 */
 	public void setTickerText(String text) {
 		this.getTxtTicker().setText("<div style=\"font-family: Tahoma, Calibri, monospace; font-size: 11pt;\">" +

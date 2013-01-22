@@ -69,7 +69,7 @@ public class AppModel implements IntfAppObservable, IntfAppModel {
 
 	/**
 	 * Returns the singleton instance
-	 * @return
+	 * @return uniqueInstance_ - Instance of the singelton
 	 */
 	public static IntfAppModel getInstance() {
 		return uniqueInstance_;

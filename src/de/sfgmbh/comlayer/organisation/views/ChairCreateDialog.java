@@ -221,7 +221,7 @@ public class ChairCreateDialog extends JDialog {
 	}
 
 	/**
-	 * @param course the chair to set
+	 * @param chair - the chair to set
 	 */
 	public void setChair(IntfChair chair) {
 		this.chair = chair;

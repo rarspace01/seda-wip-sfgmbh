@@ -354,7 +354,7 @@ public class DataHandlerRoom implements IntfDataRoom, IntfDataFilter,
 	/**
 	 * Forms a {@link Room} object out of a given {@link ResultSet}
 	 * 
-	 * @param {@link ResultSet}
+	 * @param resultSet - {@link ResultSet}
 	 *            
 	 * @return a {@link Room} object
 	 */
