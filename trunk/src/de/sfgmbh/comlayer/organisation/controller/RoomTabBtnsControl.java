@@ -9,7 +9,15 @@ import de.sfgmbh.comlayer.core.controller.ViewManager;
 import de.sfgmbh.comlayer.core.definitions.IntfComDialogObserver;
 import de.sfgmbh.comlayer.core.views.InfoDialog;
 import de.sfgmbh.comlayer.core.views.QuestionDialog;
+import de.sfgmbh.comlayer.organisation.views.RoomFrame;
+import de.sfgmbh.comlayer.organisation.views.RoomTab;
 
+/**
+ * Action listener for the room organization control buttons on the right
+ * 
+ * @author denis
+ *
+ */
 public class RoomTabBtnsControl implements ActionListener, IntfComDialogObserver {
 
 	private String navAction;
@@ -25,51 +33,54 @@ public class RoomTabBtnsControl implements ActionListener, IntfComDialogObserver
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
+		RoomFrame roomFrame = ViewManager.getInstance().getOrgaRoomFrame();
+		RoomTab roomTab = ViewManager.getInstance().getOrgaRoomTab();
 
 		//initializing values
-		ViewManager.getInstance().getOrgaRoomFrame().getTxtroomid().setText("-1");
-		ViewManager.getInstance().getOrgaRoomFrame().getTxtRoomNumber().setText("");
-		ViewManager.getInstance().getOrgaRoomFrame().getTxtLevel().setText("");
-		ViewManager.getInstance().getOrgaRoomFrame().getTxtSeats().setText("");
-		ViewManager.getInstance().getOrgaRoomFrame().getTxtPcSeats().setText("");
-		ViewManager.getInstance().getOrgaRoomFrame().getTxtBeamer().setText("");
-		ViewManager.getInstance().getOrgaRoomFrame().getTxtChalkboards().setText("");
-		ViewManager.getInstance().getOrgaRoomFrame().getTxtOverheads().setText("");
-		ViewManager.getInstance().getOrgaRoomFrame().getTxtVisualizer().setText("");
-		ViewManager.getInstance().getOrgaRoomFrame().getTxtWhiteboards().setText("");
+		roomFrame.getTxtroomid().setText("-1");
+		roomFrame.getTxtRoomNumber().setText("");
+		roomFrame.getTxtLevel().setText("");
+		roomFrame.getTxtSeats().setText("");
+		roomFrame.getTxtPcSeats().setText("");
+		roomFrame.getTxtBeamer().setText("");
+		roomFrame.getTxtChalkboards().setText("");
+		roomFrame.getTxtOverheads().setText("");
+		roomFrame.getTxtVisualizer().setText("");
+		roomFrame.getTxtWhiteboards().setText("");
 		
 		// Raum hinzufügen Button is pressed
-		if (this.navAction.equals("hinz")) {
-			ViewManager.getInstance().getOrgaRoomFrame().setVisible(true);
+		if (this.navAction.equals("add")) {
+			roomFrame.setVisible(true);
 		}
 
 		// Raum bearbeiten Button is pressed
 		if (this.navAction.equals("edit")) {
 
-			if(ViewManager.getInstance().getOrgaRoomTab().getRaumverwaltungTable().getSelectedRow()>=0){
+			if(roomTab.getRaumverwaltungTable().getSelectedRow()>=0){
 			
 				//get selected Room from DB	
-				int getTableId=ViewManager.getInstance().getOrgaRoomTab().getRaumverwaltungTable().getSelectedRow();
+				int getTableId=roomTab.getRaumverwaltungTable().getSelectedRow();
+				getTableId = roomTab.getRowSorter().convertRowIndexToModel(getTableId);
 				int getId=Integer.parseInt(ViewManager.getInstance().getOrgaRoomTableModel().getValueAt(getTableId, 0).toString());
 				
 				Room selectedRoom=AppModel.getInstance().getRepositoryRoom().getRoomById(getId);
 	
 				//load values from room object to gui
-				ViewManager.getInstance().getOrgaRoomFrame().getTxtroomid().setText(""+selectedRoom.getRoomId_());
+				roomFrame.getTxtroomid().setText(""+selectedRoom.getRoomId_());
 				
-				ViewManager.getInstance().getOrgaRoomFrame().getTxtRoomNumber().setText(selectedRoom.getRoomNumber_());
-				ViewManager.getInstance().getOrgaRoomFrame().getTxtLevel().setText(selectedRoom.getLevel_());
-				ViewManager.getInstance().getOrgaRoomFrame().getTxtSeats().setText(""+selectedRoom.getSeats_());
-				ViewManager.getInstance().getOrgaRoomFrame().getTxtPcSeats().setText(""+selectedRoom.getPcseats_());
-				ViewManager.getInstance().getOrgaRoomFrame().getTxtBeamer().setText(""+selectedRoom.getBeamer_());
-				ViewManager.getInstance().getOrgaRoomFrame().getTxtChalkboards().setText(""+selectedRoom.getChalkboards_());
-				ViewManager.getInstance().getOrgaRoomFrame().getTxtOverheads().setText(""+selectedRoom.getOverheads_());
-				ViewManager.getInstance().getOrgaRoomFrame().getTxtVisualizer().setText(""+selectedRoom.getVisualizer_());
-				ViewManager.getInstance().getOrgaRoomFrame().getTxtWhiteboards().setText(""+selectedRoom.getWhiteboards_());
+				roomFrame.getTxtRoomNumber().setText(selectedRoom.getRoomNumber_());
+				roomFrame.getTxtLevel().setText(selectedRoom.getLevel_());
+				roomFrame.getTxtSeats().setText(""+selectedRoom.getSeats_());
+				roomFrame.getTxtPcSeats().setText(""+selectedRoom.getPcseats_());
+				roomFrame.getTxtBeamer().setText(""+selectedRoom.getBeamer_());
+				roomFrame.getTxtChalkboards().setText(""+selectedRoom.getChalkboards_());
+				roomFrame.getTxtOverheads().setText(""+selectedRoom.getOverheads_());
+				roomFrame.getTxtVisualizer().setText(""+selectedRoom.getVisualizer_());
+				roomFrame.getTxtWhiteboards().setText(""+selectedRoom.getWhiteboards_());
 				
 				
 				//set Room Edit Frame visible
-				ViewManager.getInstance().getOrgaRoomFrame().setVisible(true);
+				roomFrame.setVisible(true);
 			
 			}else{
 				AppModel.getInstance()
@@ -82,9 +93,9 @@ public class RoomTabBtnsControl implements ActionListener, IntfComDialogObserver
 		}
 
 		// Raum löschen Button is pressed
-		if (this.navAction.equals("loschen")) {
+		if (this.navAction.equals("del")) {
 			
-				if(ViewManager.getInstance().getOrgaRoomTab().getRaumverwaltungTable().getSelectedRow()>=0){
+				if(roomTab.getRaumverwaltungTable().getSelectedRow()>=0){
 				
 					QuestionDialog dialog = new QuestionDialog("Wollen Sie den gewählten Raum wirklich löschen?", "Achtung!");
 					dialog.register(this);
@@ -99,30 +110,21 @@ public class RoomTabBtnsControl implements ActionListener, IntfComDialogObserver
 				}
 		}
 
-		// Fehlermeldung Button is pressed
-		if (this.navAction.equals("Fehlermeldung")) {
-			this.getInfoWindow(
-					"<b>Fehlermeldung:</b><br>Es besteht keine Verbindung zur Datenbank. Daher können keine R�ume angezeigt werden.")
-					.setVisible(true);
-		}
-
 		// Raumplan Button is pressed
-		if (this.navAction.equals("Raumplan")) {
+		if (this.navAction.equals("plan")) {
 			
 			System.out.println("Roomplan klicked");
 			
-			if(ViewManager.getInstance().getOrgaRoomTab().getRaumverwaltungTable().getSelectedRow()>=0){
+			if(roomTab.getRaumverwaltungTable().getSelectedRow()>=0){
 				
 				//get selected Room from DB	
-				int getTableId=ViewManager.getInstance().getOrgaRoomTab().getRaumverwaltungTable().getSelectedRow();
+				int getTableId=roomTab.getRaumverwaltungTable().getSelectedRow();
+				getTableId = roomTab.getRowSorter().convertRowIndexToModel(getTableId);
 				int getId=Integer.parseInt(ViewManager.getInstance().getOrgaRoomTableModel().getValueAt(getTableId, 0).toString());
 				
 				
 				
 				
-//				this.getInfoWindow(
-//						"<strong>Fehlermeldung</strong><br> Es konnte keine Übersicht Ihrer Veranstaltungen angezeigt werden. Sie haben keine Lehrveranstaltung ausgew�hlt!")
-//						.setVisible(true);
 				ViewManager.getInstance().getCoreBaseTab().getMainTabbedContainerPane()
 						.setVisible(true);
 				ViewManager.getInstance().getCoreBaseTab().getMainTabbedContainerPane()
@@ -143,17 +145,12 @@ public class RoomTabBtnsControl implements ActionListener, IntfComDialogObserver
 
 	}
 
-	// Manage InfoWindow instance
-	public InfoDialog getInfoWindow(String msg) {
-		this.infoWindow = new InfoDialog(msg);
-		return this.infoWindow;
-	}
-
 	@Override
 	public void answered(String answer) {
 		if (answer.equals("yes")) {
 
 			int getTableId=ViewManager.getInstance().getOrgaRoomTab().getRaumverwaltungTable().getSelectedRow();
+			getTableId = ViewManager.getInstance().getOrgaRoomTab().getRowSorter().convertRowIndexToModel(getTableId);
 			int getId=Integer.parseInt(ViewManager.getInstance().getOrgaRoomTableModel().getValueAt(getTableId, 0).toString());
 			
 			Room selectedRoom=AppModel.getInstance().getRepositoryRoom().getRoomById(getId);
