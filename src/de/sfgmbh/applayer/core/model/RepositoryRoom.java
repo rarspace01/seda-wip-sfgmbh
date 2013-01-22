@@ -12,9 +12,9 @@ import de.sfgmbh.datalayer.core.model.DataModel;
 
 public class RepositoryRoom implements IntfAppObservable, IntfDataObserver {
 	
-	private ArrayList<Object> observer_ = new ArrayList<Object>();
+	private ArrayList<IntfAppObserver> observer_ = new ArrayList<IntfAppObserver>();
 	
-	public List<Room> getByFilter(HashMap<String, String> filter) {
+	public List<IntfRoom> getByFilter(HashMap<String, String> filter) {
 		return DataModel.getInstance().getDataHandlerRoom().getByFilter(filter);
 	}	
 	
@@ -29,7 +29,7 @@ public class RepositoryRoom implements IntfAppObservable, IntfDataObserver {
 	 * Return all courses
 	 * @return a list of all courses
 	 */
-	public List<Room> getAll() {
+	public List<IntfRoom> getAll() {
 		return DataModel.getInstance().getDataHandlerRoom().getAll();
 	}
 	

@@ -130,7 +130,7 @@ public class RoomTab extends JPanel {
 		roommanagementTable.getColumnModel().removeColumn(
 				roommanagementTable.getColumn("roomid"));
 
-		this.loadRooms();
+		
 
 		roommanagementTable.setShowVerticalLines(false);
 		roommanagementTable.setBackground(SystemColor.activeCaption);
@@ -172,6 +172,8 @@ public class RoomTab extends JPanel {
 				.addActionListener(new RoomTabBtnsControl("plan"));
 		btnRoomplanPrint.setBounds(6, 124, 94, 23);
 		buttonPanel.add(btnRoomplanPrint);
+		
+		this.loadRooms();
 	}
 	/**
 	 * loads all the rooms through the interface to the tablemodel
