@@ -1,20 +1,25 @@
 package de.sfgmbh.comlayer.organisation.model;
 
+import java.util.HashMap;
 import java.util.List;
 
 import javax.swing.table.DefaultTableModel;
 
 import de.sfgmbh.applayer.core.definitions.IntfAppObserver;
+import de.sfgmbh.applayer.core.model.AppModel;
 import de.sfgmbh.applayer.core.model.Room;
-import de.sfgmbh.applayer.organisation.controller.CtrlRoom;
+import de.sfgmbh.comlayer.core.controller.ViewManager;
+import de.sfgmbh.comlayer.organisation.views.RoomTab;
 
+/**
+ * Table model for the room table
+ * 
+ * @author denis
+ *
+ */
 public class RoomTabTable extends DefaultTableModel implements IntfAppObserver {
 
 	private static final long serialVersionUID = 1L;
-//	private Object[][] preFill = {
-//			{"R001", "Erba1", "EG", "55", "55", "1", "0", "0", "0", "2"},
-//			{"R002", "Feki1", "1", "120", "0", "2", "1", "0", "4", "0"},
-//		};
 	private String[] preFillHeader = {"roomid","Raum", "Geb\u00E4ude", "Stock", "Pl\u00E4tze", "PC-Pl\u00E4tze", "Beamer", "Visualizer", "Overheads", "Tafeln", "Whiteboards"};
 	
 	
@@ -40,15 +45,33 @@ public class RoomTabTable extends DefaultTableModel implements IntfAppObserver {
 	@Override
 	public void change() {
 		
-		CtrlRoom ctrlRoom= new CtrlRoom();
-		
 		//delete all rows
 		for(int i=this.getRowCount()-1;i>=0;i--){
 			this.removeRow(i);
 		}
 		
-		//get all rooms from db
-		this.addRooms(ctrlRoom.getAllRooms());
+		//prepare a filter
+		HashMap<String, String> filter = new HashMap<String,String>();
+		RoomTab roomTab = ViewManager.getInstance().getOrgaRoomTab();
+		
+		String seats, pcSeats;
+		try {
+			int intSeats = Integer.parseInt(roomTab.getTextFieldSeats().getText());
+			int intPcSeats = Integer.parseInt(roomTab.getTextFieldPCSeats().getText());
+			seats = String.valueOf(intSeats);
+			pcSeats = String.valueOf(intPcSeats);
+		} catch (Exception e) {
+			AppModel.getInstance().getExceptionHandler().setNewException("Bitte stellen Sie sicher,  dass sie echte Zahlen bei den Filtern eingetragen haben", "Fehler!", "error");
+			return;
+		}
+		
+		filter.put("level", roomTab.getComboBoxLevel().getSelectedItem().toString());
+		filter.put("seats", seats);
+		filter.put("pcseats", pcSeats);
+		filter.put("room", roomTab.getTxtRoom().getText());
+
+		// get and add all rooms depending on a filter
+		this.addRooms(AppModel.getInstance().getRepositoryRoom().getByFilter(filter));
 		
 	}
 	
