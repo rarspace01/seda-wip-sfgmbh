@@ -1,6 +1,5 @@
 package de.sfgmbh.datalayer.io;
 
-import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -142,14 +141,6 @@ public class DataManagerPostgreSql {
 		}
 		
 		return i;
-	}
-
-	/**
-	 * Get the SQL connection object used to establish the connection to the database
-	 * @return the connection object
-	 */
-	private Connection getConnection() {
-		return conn;
 	}
 	
 	/**

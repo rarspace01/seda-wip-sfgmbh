@@ -35,7 +35,6 @@ public class BaseTableMain extends DefaultTableModel implements IntfAppObserver 
 	 * @param variant
 	 */
 	public void change(String variant) {
-		ViewHelper vh = new ViewHelper();
 		HashMap<String, String> filter = new HashMap<String, String>();
 		
 		this.setRowCount(0);
@@ -60,7 +59,7 @@ public class BaseTableMain extends DefaultTableModel implements IntfAppObserver 
 							ra.getCourse_().getCourseName_(),
 							ra.getCourse_().getCourseKind_(),
 							ra.getCourse_().getLecturer_().getlName_(), 
-							vh.getDay(ra.getDay_()),
+							ViewHelper.getDay(ra.getDay_()),
 							ViewHelper.getTime(ra.getTime_()), 
 							ra.getRoom_().getRoomNumber_(), 
 							ra.getSemester_(), 

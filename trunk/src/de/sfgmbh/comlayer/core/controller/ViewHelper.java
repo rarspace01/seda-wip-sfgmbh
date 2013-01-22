@@ -9,7 +9,7 @@ public class ViewHelper {
 	 * @param day
 	 * @return a formated day string
 	 */
-	public String getDay(int d) {
+	public static String getDay(int d) {
 		if (d == 1) {
 			return "Mo.";
 		} else if (d == 2) {
@@ -61,7 +61,7 @@ public class ViewHelper {
 	 * @param boolean
 	 * @return a formated boolean string
 	 */
-	public String getBoolean(boolean b) {
+	public static String getBoolean(boolean b) {
 		if(b){
 			return "ja";
 		} else {
@@ -74,7 +74,7 @@ public class ViewHelper {
 	 * @param uuserClass
 	 * @return the German value for a given user class
 	 */
-	public String getUserClass(String uc) {
+	public static String getUserClass(String uc) {
 		if (uc.equals("orga")) {
 			return "Verwaltung";
 		} else if (uc.equals("lecturer")) {
@@ -90,7 +90,7 @@ public class ViewHelper {
 	 * @param status
 	 * @return the formated string for a status
 	 */
-	public String getAllocationStatus(String s) {
+	public static String getAllocationStatus(String s) {
 		if (s.equals("waiting")) {
 			return "wartend";
 		} else if (s.equals("accepted")) {
