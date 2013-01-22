@@ -46,34 +46,34 @@ public class ProfessorshipTimetableTab extends JPanel{
 	}
 	private void createContents() {
 		setAutoscrolls(true);
-		setLayout(new MigLayout("", "[359px][10px][112px][286px][101px][right]", "[61px][][383px]"));
+		setLayout(new MigLayout("", "[20px:20px,grow][359px][10px][112px][286px][101px][20px:20px,grow][right]", "[61px][][383px]"));
 		
 		JLabel lblWochenplanFrDen = new JLabel("<html><h3>Wochenplan f\u00FCr den Lehrstuhl</h3></html>");
 		lblWochenplanFrDen.setFont(new Font("Arial", Font.PLAIN, 11));
-		add(lblWochenplanFrDen, "flowy,cell 0 0,growx,aligny center");
+		add(lblWochenplanFrDen, "flowy,cell 1 0,growx,aligny center");
 		
 		JLabel lblUniIcon = new JLabel("");
 		lblUniIcon.setVerticalAlignment(SwingConstants.TOP);
 		lblUniIcon.setHorizontalAlignment(SwingConstants.RIGHT);
-		add(lblUniIcon, "cell 5 0,alignx right,aligny top");
+		add(lblUniIcon, "cell 7 0,alignx right,aligny top");
 		lblUniIcon.setIcon(new ImageIcon(BaseTab.class.getResource("/de/sfgmbh/comlayer/core/images/UniBA_logo.png")));
 		lblUniIcon.setMaximumSize(new Dimension(50,50));
 		
 		JLabel lblSemester = new JLabel("Semester:");
-		add(lblSemester, "flowx,cell 0 1,alignx left,aligny bottom");
+		add(lblSemester, "flowx,cell 1 1,alignx left,aligny bottom");
 		
 		JButton btnPdfErzeugen = new JButton("PDF Erzeugen");
 		btnPdfErzeugen.addActionListener(new ProfessorshipTimetableTabBtn("createpdf"));
-		add(btnPdfErzeugen, "cell 2 1,growx,aligny bottom");
+		add(btnPdfErzeugen, "cell 3 1,growx,aligny bottom");
 		
 		panelProfessorshipPanel_=getPanel();
 		
-		add(panelProfessorshipPanel_, "cell 0 2 5 1,grow");
+		add(panelProfessorshipPanel_, "cell 1 2 5 1,grow");
 		
 		JPanel uniIconPanel = new JPanel();
 		FlowLayout flowLayout = (FlowLayout) uniIconPanel.getLayout();
 		flowLayout.setAlignment(FlowLayout.RIGHT);
-		add(uniIconPanel, "flowx,cell 4 0,alignx left,aligny top");
+		add(uniIconPanel, "flowx,cell 5 0,alignx left,aligny top");
 		
 		comboBoxSemesterFilter_= new JComboBox<>();
 		
@@ -82,7 +82,7 @@ public class ProfessorshipTimetableTab extends JPanel{
 		comboBoxSemesterFilter_.setEditable(true);
 		comboBoxSemesterFilter_.setAutoscrolls(true);
 		
-		add(comboBoxSemesterFilter_, "cell 0 1,alignx center,aligny bottom");
+		add(comboBoxSemesterFilter_, "cell 1 1,alignx center,aligny bottom");
 		
 		reloadPlan();
 	}

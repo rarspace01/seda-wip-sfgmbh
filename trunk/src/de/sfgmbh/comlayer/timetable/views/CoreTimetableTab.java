@@ -36,14 +36,14 @@ public class CoreTimetableTab extends JPanel {
 	}
 	private void initialize() {
 		setAutoscrolls(true);
-		setLayout(new MigLayout("", "[131px][50px][92.00px][461px][69px][right]", "[68px][392px]"));
+		setLayout(new MigLayout("", "[20px:20px,grow][131px][50px][92.00px][461px][20px:20px,grow][right]", "[68px][392px]"));
 		
 		btnStundenplanZurcksetzen = new JButton("Stundenplan zurücksetzen");
 		btnStundenplanZurcksetzen.addActionListener(new CoreTimetableTabBtnPdf("reset"));
-		add(btnStundenplanZurcksetzen, "cell 3 0");
+		add(btnStundenplanZurcksetzen, "cell 4 0");
 		
 		JPanel uniIconPanel = new JPanel();
-		add(uniIconPanel, "cell 5 0,alignx right,aligny top");
+		add(uniIconPanel, "cell 6 0,alignx right,aligny top");
 		
 		JLabel lblUniIcon = new JLabel();
 		lblUniIcon.setIcon(new ImageIcon(BaseTab.class.getResource("/de/sfgmbh/comlayer/core/images/UniBA_logo.png")));
@@ -51,7 +51,7 @@ public class CoreTimetableTab extends JPanel {
 		uniIconPanel.add(lblUniIcon);
 		
 		scrollPane_ = new JScrollPane();
-		add(scrollPane_, "cell 0 1 5 1,grow");
+		add(scrollPane_, "cell 1 1 4 1,grow");
 		
 		stundenplanTable = new JTable();
 		
@@ -65,7 +65,7 @@ public class CoreTimetableTab extends JPanel {
 		
 		JButton btnPdfErzeugen = new JButton("PDF erzeugen");
 		btnPdfErzeugen.addActionListener(new CoreTimetableTabBtnPdf("pdfCreate"));
-		add(btnPdfErzeugen, "cell 0 0,growx,aligny center");
+		add(btnPdfErzeugen, "cell 1 0,growx,aligny center");
 		stundenplanTable.getColumnModel().getColumn(0).setResizable(false);
 		stundenplanTable.getColumnModel().getColumn(0).setPreferredWidth(70);
 		stundenplanTable.getColumnModel().getColumn(0).setMinWidth(50);
@@ -88,10 +88,10 @@ public class CoreTimetableTab extends JPanel {
 		
 		lblSemester = new JLabel("Semester:");
 		
-		add(lblSemester, "flowx,cell 2 0,alignx left,aligny center");
+		add(lblSemester, "flowx,cell 3 0,alignx left,aligny center");
 		
 		lblvaluesemester = new JLabel("#valueSemester#");
-		add(lblvaluesemester, "cell 2 0");
+		add(lblvaluesemester, "cell 3 0");
 		
 		//reloadRoomTable();
 	}
