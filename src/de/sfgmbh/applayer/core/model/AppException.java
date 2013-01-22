@@ -107,11 +107,11 @@ public class AppException implements IntfAppObservable, IntfDataObserver {
 
 		// Create a private observer list to avoid ConcurrentModificationException
 		@SuppressWarnings("unchecked")
-		ArrayList<Object> currentObservers = (ArrayList<Object>) observer_.clone();
+		ArrayList<IntfAppObserver> currentObservers = (ArrayList<IntfAppObserver>) observer_.clone();
 				
-		for (Object o : currentObservers) {
-			if (o instanceof IntfAppObserver) {
-				((IntfAppObserver) o).change();
+		for (IntfAppObserver observer : currentObservers) {
+			if (observer instanceof IntfAppObserver) {
+				observer.change();
 			}
 		}
 	}
@@ -121,7 +121,7 @@ public class AppException implements IntfAppObservable, IntfDataObserver {
 	 * @param observer
 	 */
 	@Override
-	public void register(Object observer) {
+	public void register(IntfAppObserver observer) {
 		if (observer instanceof IntfAppObserver) {
 			observer_.add(observer);
 		} else {
@@ -135,7 +135,7 @@ public class AppException implements IntfAppObservable, IntfDataObserver {
 	 * @param observer
 	 */
 	@Override
-	public void unregister(Object observer) {
+	public void unregister(IntfAppObserver observer) {
 		observer_.remove(observer);
 	}
 

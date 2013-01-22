@@ -3,6 +3,7 @@ package de.sfgmbh.datalayer.core.model;
 import java.util.ArrayList;
 
 import de.sfgmbh.applayer.core.definitions.IntfAppObservable;
+import de.sfgmbh.applayer.core.definitions.IntfAppObserver;
 import de.sfgmbh.datalayer.core.daos.DataHandlerChair;
 import de.sfgmbh.datalayer.core.daos.DataHandlerCourse;
 import de.sfgmbh.datalayer.core.daos.DataHandlerRoom;
@@ -83,9 +84,13 @@ public class DataModel implements IntfAppObservable {
 	 */
 	@Override
 	public void update() {
-		for (Object o : observer_) {
-			if (o instanceof IntfDataObserver) {
-				((IntfDataObserver) o).change();
+		// Create a private observer list to avoid ConcurrentModificationException
+		@SuppressWarnings("unchecked")
+		ArrayList<IntfAppObserver> currentObservers = (ArrayList<IntfAppObserver>) observer_.clone();
+		
+		for (IntfAppObserver observer : currentObservers) {
+			if (observer instanceof IntfAppObserver) {
+				observer.change();
 			}
 		}
 	}
@@ -95,8 +100,8 @@ public class DataModel implements IntfAppObservable {
 	 * @param observer
 	 */
 	@Override
-	public void register(Object observer) {
-		if (observer instanceof IntfDataObserver) {
+	public void register(IntfAppObserver observer) {
+		if (observer instanceof IntfAppObserver) {
 			observer_.add(observer);
 		} else {
 			this.exceptionsHandler_
@@ -112,7 +117,7 @@ public class DataModel implements IntfAppObservable {
 	 * @param observer
 	 */
 	@Override
-	public void unregister(Object observer) {
+	public void unregister(IntfAppObserver observer) {
 		observer_.remove(observer);
 	}
 

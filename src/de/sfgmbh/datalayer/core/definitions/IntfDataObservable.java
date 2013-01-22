@@ -11,11 +11,11 @@ public interface IntfDataObservable {
 	 * Registers an observer
 	 * @param listner
 	 */
-	public void register(Object observer);
+	public void register(IntfDataObserver observer);
 	
 	/**
 	 * Unregisters an observer 
 	 * @param listner
 	 */
-	public void unregister(Object observer);
+	public void unregister(IntfDataObserver observer);
 }

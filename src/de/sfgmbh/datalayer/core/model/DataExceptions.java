@@ -81,9 +81,13 @@ public class DataExceptions implements IntfDataObservable {
 	 */
 	@Override
 	public void update() {
-		for (Object o : observer_) {
-			if (o instanceof IntfDataObserver) {
-				((IntfDataObserver) o).change();
+		// Create a private observer list to avoid ConcurrentModificationException
+		@SuppressWarnings("unchecked")
+		ArrayList<IntfDataObserver> currentObservers = (ArrayList<IntfDataObserver>) observer_.clone();
+		
+		for (IntfDataObserver observer : currentObservers) {
+			if (observer instanceof IntfDataObserver) {
+				observer.change();
 			}
 		}
 	}
@@ -93,11 +97,11 @@ public class DataExceptions implements IntfDataObservable {
 	 * @param observer
 	 */
 	@Override
-	public void register(Object observer) {
+	public void register(IntfDataObserver observer) {
 		if (observer instanceof IntfDataObserver) {
 			observer_.add(observer);
 		} else {
-			this.setNewException("Das Objekt implementiert nicht das Observer-Interface und kann daher nicht hinzugefügt werden!", "Fehler!");
+			this.setNewException("Das Objekt implementiert nicht das Observer-Interface und kann daher nicht hinzugefï¿½gt werden!", "Fehler!");
 		}
 		
 	}
@@ -107,7 +111,7 @@ public class DataExceptions implements IntfDataObservable {
 	 * @param observer
 	 */
 	@Override
-	public void unregister(Object observer) {
+	public void unregister(IntfDataObserver observer) {
 		observer_.remove(observer);
 	}
 }
