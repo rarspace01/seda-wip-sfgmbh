@@ -6,7 +6,12 @@ import java.awt.event.ActionListener;
 import de.sfgmbh.applayer.core.controller.CtrlBaseTab;
 import de.sfgmbh.comlayer.core.views.BaseTab;
 import de.sfgmbh.comlayer.core.views.InfoDialog;
-
+/**
+ * 
+ * @author hannes
+ * @author mario
+ *
+ */
 /**
  * Radio button action listener on the base tab
  * 
@@ -25,7 +30,10 @@ public class BaseRdbtnTopLeft implements ActionListener {
 	public BaseRdbtnTopLeft(){
 		this.ctrlAction ="default";
 	}
-	
+	/**
+	 * sets the action for the different selection for the rdbtns  (room or course list)
+	 * @param action
+	 */
 	/**
 	 * Create the action listener based on an action string
 	 */

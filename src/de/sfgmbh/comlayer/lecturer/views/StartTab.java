@@ -237,6 +237,7 @@ public class StartTab extends JPanel implements IntfComDialogObserver {
 		buttonPanel.add(panel);
 		
 		JButton btnZurckziehen = new JButton("zurückziehen");
+		btnZurckziehen.setToolTipText("<html> abgelehnte oder nicht mehr benötigte <br> Raumanfragen zurückziehen </html>");
 		btnZurckziehen.addActionListener(new StartTabBtnsControl("back"));
 		btnZurckziehen.setBounds(0, 260, 100, 23);
 		buttonPanel.add(btnZurckziehen);

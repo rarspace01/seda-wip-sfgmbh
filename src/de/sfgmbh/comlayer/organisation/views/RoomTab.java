@@ -112,6 +112,7 @@ public class RoomTab extends JPanel {
 		add(ViewManager.getInstance().getCoreLiveTickerPanel(), "cell 0 2,grow");
 
 		organisationTableScrollPane = new JScrollPane();
+		organisationTableScrollPane.setToolTipText("<html>Selektieren Sie einen Raum um ihn zu bearbeiten, löschen oder<br> den dazugehörigen Raumplan ausgeben zu lassen.</html>");
 		add(organisationTableScrollPane, "flowx,cell 2 2 4 1,grow");
 
 		raumverwaltungTable = new JTable();

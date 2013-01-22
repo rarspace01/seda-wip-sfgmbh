@@ -80,20 +80,19 @@ public class BaseTab extends JFrame {
 	private JLabel lblLevel;
 	private JTable organisationTable;
 	private JScrollPane mainTableScrollPane;
-	private JPanel tickerJPanel;
 	private JPanel buttonPanel;
 	private JPanel panelLogin;
 	private JPanel panelLogout;
 	private final ButtonGroup buttonGroup = new ButtonGroup();
 	private JLabel lblPasswort;
-	private JLabel lblBenutzername;
-	private JButton btnNewButton;
-	private JTextField txtBenutzername;
-	private JPasswordField pwdPasswort;
-	private JRadioButton rdbtnLehrveranstaltungen;
-	private JRadioButton rdbtnRaume;
+	private JLabel lblUsername;
+	private JButton btnLogin;
+	private JTextField txtUsername;
+	private JPasswordField pwdPassword;
+	private JRadioButton rdbtnCourse;
+	private JRadioButton rdbtnRoom;
 	private JButton btnLogout;
-	private JLabel lblNewLabel;
+	private JLabel lblUniIcon;
 	private JTable roomTable;
 	private JPanel mainFilterPanel;
 	private TableRowSorter<TableModel> rowSorterAllocation;
@@ -117,7 +116,7 @@ public class BaseTab extends JFrame {
 
 	private void createContents() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 1063, 648);
+		setBounds(100, 100, 930, 640);
 		contentPane = new JLayeredPane();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -131,13 +130,12 @@ public class BaseTab extends JFrame {
 		startScreenPanel.setMaximumSize(new Dimension(10, 32767));
 		contentPane.setLayer(startScreenPanel, 1);
 		contentPane.add(startScreenPanel, "name_5256771068822");
-		startScreenPanel.setLayout(new MigLayout("", "[grow][grow][grow]",
-				"[][][grow][]"));
+		startScreenPanel.setLayout(new MigLayout("", "[][600px:600px,grow][]", "[][][]"));
+		startScreenPanel.add(ViewManager.getInstance().getCoreLiveTickerPanel(), "cell 0 2, grow");
 
 		mainFilterPanel = new JPanel();
-		startScreenPanel.add(mainFilterPanel, "cell 1 0 1 2,grow");
-		mainFilterPanel.setLayout(new MigLayout("", "[grow][grow][grow][grow]",
-				"[][]"));
+		startScreenPanel.add(mainFilterPanel, "cell 1 0,grow");
+		mainFilterPanel.setLayout(new MigLayout("", "[grow][100px:100px:100px,grow][grow][grow]", "[][]"));
 
 		mainFilterPanel
 				.add(getLblLehrveranstaltung(), "cell 0 0,aligny bottom");
@@ -148,92 +146,114 @@ public class BaseTab extends JFrame {
 		mainFilterPanel.add(getComboBoxOrgaFilter(), "cell 0 1,alignx center");
 		mainFilterPanel.add(getComboBoxChairFilter(), "cell 1 1,alignx center");
 		mainFilterPanel.add(getComboBoxLecturerFilter(), "cell 2 1,growx");
-		mainFilterPanel.add(getComboBoxSemesterFilter(), "cell 3 1,growx");
-
-		startScreenPanel.add(getLblNewLabel(), "cell 2 0,alignx center");
-		startScreenPanel.add(getRdbtnLehrveranstaltungen(),
+		mainFilterPanel.add(getComboBoxSemesterFilter(), "cell 3 1,alignx left");
+		startScreenPanel.add(getRdbtnCourse(),
 				"cell 0 0,aligny bottom");
-		startScreenPanel.add(getRdbtnRaume(), "cell 0 1");
-
-		tickerJPanel = new JPanel();
-		tickerJPanel.setMinimumSize(new Dimension(140, 10));
-		tickerJPanel.setBorder(null);
-		tickerJPanel.setMaximumSize(new Dimension(140, 32767));
-		startScreenPanel.add(tickerJPanel, "cell 0 2,grow");
-		tickerJPanel.setLayout(null);
-
 		
-		tickerJPanel.add(ViewManager.getInstance().getCoreLiveTickerPanel());
+				startScreenPanel.add(getLblUniicon(), "cell 2 0,alignx center");
+		startScreenPanel.add(getRdbtnRooms(), "cell 0 1");
 		
-		tickerJPanel.add(getPanelLogin());
-
-		tickerJPanel.add(getPanelLogout());
-
 		mainTableScrollPane = new JScrollPane();
-		mainTableScrollPane.setMinimumSize(new Dimension(800, 600));
-		mainTableScrollPane.setMaximumSize(new Dimension(800, 600));
-		mainTableScrollPane.setSize(new Dimension(800, 600));
-		startScreenPanel.add(mainTableScrollPane, "cell 1 2,grow");
+		startScreenPanel.add(mainTableScrollPane, "cell 1 2,alignx left,aligny top, grow");
 
 		mainTableScrollPane.setViewportView(getOrganisationTable());
+		mainTableScrollPane.setMinimumSize(new Dimension(600, 500));
+		mainTableScrollPane.setPreferredSize(new Dimension(600, 500));
+		
 
 		JPanel buttonPanel = new JPanel();
-		buttonPanel.setMinimumSize(new Dimension(80, 10));
-		buttonPanel.setMaximumSize(new Dimension(100, 32767));
+		buttonPanel.setMinimumSize(new Dimension(140, 10));
+		buttonPanel.setMaximumSize(new Dimension(140, 32767));
 		startScreenPanel.add(buttonPanel, "cell 2 2,grow");
 		buttonPanel.setLayout(null);
 		buttonPanel.add(getBtnRoomplan());
 		buttonPanel.add(getBtnTimetable());
+		buttonPanel.add(getPanelLogout());
+		buttonPanel.add(getPanelLogin());
+
 
 	}
-
+	/**
+	 * 
+	 * @return the startScreenPanel
+	 */
 	public JPanel getStartScreenPanel() {
 		return startScreenPanel;
 	}
-
+	/**
+	 * 
+	 * @return the lblLehrveranstaltung
+	 */
 	public JLabel getLblLehrveranstaltung() {
 		lblLehrveranstaltung = new JLabel("Lehrveranstaltung:");
 		return lblLehrveranstaltung;
 	}
-
+	/**
+	 * 
+	 * @return the lblLehrstuhl
+	 */
 	public JLabel getLblLehrstuhl() {
 		lblLehrstuhl = new JLabel("Lehrstuhl:");
 		return lblLehrstuhl;
 	}
-
+	/**
+	 * 
+	 * @return the lblDozent
+	 */
 	public JLabel getLblDozent() {
 		lblDozent = new JLabel("Dozent:");
 		return lblDozent;
 	}
-
+	/**
+	 * 
+	 * @return the lblSemester
+	 */
 	public JLabel getLblSemester() {
 		lblSemester = new JLabel("Semester:");
 		return lblSemester;
 	}
-
+	/**
+	 * 
+	 * @return the lblRoomnumber
+	 */
 	public JLabel getLblRoomnumber() {
 		lblRoomnumber = new JLabel("Raum:");
 		return lblRoomnumber;
 	}
-
+	/**
+	 * 
+	 * @return the lblSeats
+	 */
 	public JLabel getLblRoomplaces() {
 		lblSeats = new JLabel("Sitzplätze");
 		return lblSeats;
 	}
-
+	/**
+	 * 
+	 * @return the lblLevel
+	 */
 	public JLabel getLblLevel() {
 		lblLevel = new JLabel("Stockwerk:");
 		return lblLevel;
 	}
-
+	/**
+	 * 
+	 * @return the mainTableScollPane
+	 */
 	public JScrollPane getMainTableScrollPane() {
 		return mainTableScrollPane;
 	}
-
+	/**
+	 * 
+	 * @return the mainFilterPanel
+	 */
 	public JPanel getMainFilterPanel() {
 		return mainFilterPanel;
 	}
-
+	/**
+	 * 
+	 * @return the comboBoxOrgaFilter
+	 */
 	public JComboBox<String> getComboBoxOrgaFilter() {
 		if (comboBoxOrgaFilter == null) {
 			comboBoxOrgaFilter = new JComboBox<String>();
@@ -248,11 +268,16 @@ public class BaseTab extends JFrame {
 
 		return comboBoxOrgaFilter;
 	}
-
+	/**
+	 * 
+	 * @return the comboBocChairFilter
+	 */
 	public JComboBox<String> getComboBoxChairFilter() {
 		if (comboBoxChairFilter == null) {
 			comboBoxChairFilter = new JComboBox<String>();
-			comboBoxChairFilter.setPreferredSize(new Dimension(440, 20));
+			comboBoxChairFilter.setPreferredSize(new Dimension(100, 20));
+			comboBoxChairFilter.setMaximumSize(new Dimension(100,20));
+			comboBoxChairFilter.setMinimumSize(new Dimension(100,20));
 			comboBoxChairModel_=new CmbboxFilterChair(comboBoxChairFilter);
 			comboBoxChairFilter.setModel(comboBoxChairModel_);
 			comboBoxChairFilter.addKeyListener(new BaseCmbboxFilter("allocations"));
@@ -263,7 +288,10 @@ public class BaseTab extends JFrame {
 
 		return comboBoxChairFilter;
 	}
-
+	/**
+	 * 
+	 * @return the comboBoxLecturerFilter
+	 */
 	public JComboBox<String> getComboBoxLecturerFilter() {
 		if (comboBoxLecturerFilter == null) {
 			comboBoxLecturerFilter = new JComboBox<String>();
@@ -278,7 +306,10 @@ public class BaseTab extends JFrame {
 
 		return comboBoxLecturerFilter;
 	}
-
+	/**
+	 * 
+	 * @return the comboBoxSemesterFilter
+	 */
 	public JComboBox<String> getComboBoxSemesterFilter() {
 		if (comboBoxSemesterFilter == null) {
 			comboBoxSemesterFilter = new JComboBox<String>();
@@ -315,7 +346,10 @@ public class BaseTab extends JFrame {
 		return comboBoxRoomnumberFilter;
 
 	}
-
+	/**
+	 * 
+	 * @return the comboBoxSeatsFilter
+	 */
 	public JComboBox<String> getComboBoxSeatsFilter() {
 		if (comboBoxSeatsFilter == null) {
 			comboBoxSeatsFilter = new JComboBox<String>();
@@ -329,7 +363,10 @@ public class BaseTab extends JFrame {
 
 		return comboBoxSeatsFilter;
 	}
-
+	/**
+	 * 
+	 * @return the comboBoxLevelFilter
+	 */
 	public JComboBox<String> getComboBoxLevelFilter() {
 		if (comboBoxLevelFilter == null) {
 			comboBoxLevelFilter = new JComboBox<String>();
@@ -343,7 +380,10 @@ public class BaseTab extends JFrame {
 
 		return comboBoxLevelFilter;
 	}
-
+	/**
+	 * 
+	 * @return the btnAddToTimetable
+	 */
 	public JTable getOrganisationTable() {
 		if (organisationTable == null) {
 			DefaultTableCellRenderer center = new DefaultTableCellRenderer();
@@ -373,7 +413,10 @@ public class BaseTab extends JFrame {
 		}
 		return organisationTable;
 	}
-
+	/**
+	 * 
+	 * @return the roomTable
+	 */
 	public JTable getRoomTable() {
 		if (roomTable == null) {
 			DefaultTableCellRenderer center = new DefaultTableCellRenderer();
@@ -404,27 +447,39 @@ public class BaseTab extends JFrame {
 		}
 		return roomTable;
 	}
-
+	/**
+	 * 
+	 * @param set the organisationTable
+	 */
 	public void setOrganisationTable(JTable organisationTable) {
 		this.organisationTable = organisationTable;
 	}
-
-	public JLabel getLblBenutzername() {
-		if (lblBenutzername == null) {
-			lblBenutzername = new JLabel("Benutzername:");
+	/**
+	 * 
+	 * @return the lblUsername
+	 */
+	public JLabel getLblUsername() {
+		if (lblUsername == null) {
+			lblUsername = new JLabel("Benutzername:");
 		}
-		return lblBenutzername;
+		return lblUsername;
 	}
-
-	public JButton getBtnNewButton() {
-		if (btnNewButton == null) {
-			btnNewButton = new JButton("Einloggen");
-			btnNewButton.setToolTipText("");
-			btnNewButton.addActionListener(new BaseLogin());
+	/**
+	 * 
+	 * @return the btnLogin
+	 */
+	public JButton getBtnLogin() {
+		if (btnLogin == null) {
+			btnLogin = new JButton("Einloggen");
+			btnLogin.setToolTipText("");
+			btnLogin.addActionListener(new BaseLogin());
 		}
-		return btnNewButton;
+		return btnLogin;
 	}
-
+	/**
+	 * 
+	 * @return the btnLogout
+	 */
 	public JButton getBtnLogout() {
 		if (btnLogout == null) {
 			btnLogout = new JButton("Logout");
@@ -432,78 +487,96 @@ public class BaseTab extends JFrame {
 		}
 		return btnLogout;
 	}
-
-	public JTextField getTxtBenutzername() {
-		if (txtBenutzername == null) {
-			txtBenutzername = new JTextField();
-			txtBenutzername.setColumns(10);
+	/**
+	 * 
+	 * @return the txtUsername
+	 */
+	public JTextField getTxtUsername() {
+		if (txtUsername == null) {
+			txtUsername = new JTextField();
+			txtUsername.setColumns(10);
 		}
-		return txtBenutzername;
+		return txtUsername;
 	}
-
+	/**
+	 * 
+	 * @return the pwdPassword
+	 */
 	public JPasswordField getPwdPasswort() {
-		if (pwdPasswort == null) {
-			pwdPasswort = new JPasswordField();
-			pwdPasswort.addActionListener(new BaseLogin());
+		if (pwdPassword == null) {
+			pwdPassword = new JPasswordField();
+			pwdPassword.addActionListener(new BaseLogin());
 		}
-		return pwdPasswort;
+		return pwdPassword;
 	}
-
-	public JRadioButton getRdbtnLehrveranstaltungen() {
-		if (rdbtnLehrveranstaltungen == null) {
-			rdbtnLehrveranstaltungen = new JRadioButton("Lehrveranstaltungen");
-			rdbtnLehrveranstaltungen.addActionListener(new BaseRdbtnTopLeft(
+	/**
+	 * 
+	 * @return the rdbtnCourse
+	 */
+	public JRadioButton getRdbtnCourse() {
+		if (rdbtnCourse == null) {
+			rdbtnCourse = new JRadioButton("Lehrveranstaltungen");
+			rdbtnCourse.addActionListener(new BaseRdbtnTopLeft(
 					"course"));
-			buttonGroup.add(rdbtnLehrveranstaltungen);
-			rdbtnLehrveranstaltungen.setSelected(true);
-			rdbtnLehrveranstaltungen.setMargin(new Insets(0, 0, 0, 0));
+			buttonGroup.add(rdbtnCourse);
+			rdbtnCourse.setSelected(true);
+			rdbtnCourse.setMargin(new Insets(0, 0, 0, 0));
 		}
-		return rdbtnLehrveranstaltungen;
+		return rdbtnCourse;
+	}
+	/**
+	 * 
+	 * @return the rdbtnRooms
+	 */
+	public JRadioButton getRdbtnRooms() {
+		if (rdbtnRoom == null) {
+			rdbtnRoom = new JRadioButton("R\u00E4ume");
+			rdbtnRoom.addActionListener(new BaseRdbtnTopLeft("room"));
+			buttonGroup.add(rdbtnRoom);
+			rdbtnRoom.setMargin(new Insets(0, 0, 0, 0));
+		}
+		return rdbtnRoom;
 	}
 
-	public JRadioButton getRdbtnRaume() {
-		if (rdbtnRaume == null) {
-			rdbtnRaume = new JRadioButton("R\u00E4ume");
-			rdbtnRaume.addActionListener(new BaseRdbtnTopLeft("room"));
-			buttonGroup.add(rdbtnRaume);
-			rdbtnRaume.setMargin(new Insets(0, 0, 0, 0));
-		}
-		return rdbtnRaume;
-	}
-
-	private JLabel getLblNewLabel() {
-		if (lblNewLabel == null) {
-			lblNewLabel = new JLabel("");
-			lblNewLabel
+	private JLabel getLblUniicon() {
+		if (lblUniIcon == null) {
+			lblUniIcon = new JLabel("");
+			lblUniIcon
 					.setIcon(new ImageIcon(
 							BaseTab.class
 									.getResource("/de/sfgmbh/comlayer/core/images/UniBA_logo.png")));
-			lblNewLabel.setMaximumSize(new Dimension(50, 50));
+			lblUniIcon.setMaximumSize(new Dimension(50, 50));
 
 		}
-		return lblNewLabel;
+		return lblUniIcon;
 	}
-
+	/**
+	 * 
+	 * @return the panelLogin
+	 */
 	public JPanel getPanelLogin() {
 		if (panelLogin == null) {
 			panelLogin = new JPanel();
-			panelLogin.setBounds(0, 319, 140, 150);
-			panelLogin.setLayout(new MigLayout("", "[grow]", "[][][][][][]"));
-			panelLogin.add(getLblBenutzername(), "cell 0 0");
-			panelLogin.add(getTxtBenutzername(), "cell 0 1,growx");
+			panelLogin.setBounds(0, 339, 100, 121);
+			panelLogin.setLayout(new MigLayout("", "[grow]", "[][][][][]"));
+			panelLogin.add(getLblUsername(), "cell 0 0");
+			panelLogin.add(getTxtUsername(), "cell 0 1,growx");
 			lblPasswort = new JLabel("Passwort:");
 			panelLogin.add(lblPasswort, "cell 0 2");
 			panelLogin.add(getPwdPasswort(), "cell 0 3,growx");
-			panelLogin.add(getBtnNewButton(), "cell 0 4,alignx right");
+			panelLogin.add(getBtnLogin(), "cell 0 4,alignx right");
 		}
 		return panelLogin;
 	}
-
+	/**
+	 * 
+	 * @return the panelLogout
+	 */
 	public JPanel getPanelLogout() {
 		if (panelLogout == null) {
 			panelLogout = new JPanel();
-			panelLogout.setBounds(0, 319, 140, 150);
-			panelLogout.setLayout(new MigLayout("", "[grow]", "[][][][][][]"));
+			panelLogout.setBounds(0, 353, 104, 55);
+			panelLogout.setLayout(new MigLayout("", "[140px:140px:140px]", "[][]"));
 			lblLoggedIn = new JLabel("Du bist eingeloggt!");
 			panelLogout.add(lblLoggedIn, "cell 0 0");
 			panelLogout.add(getBtnLogout(), "cell 0 1,alignx left");
@@ -525,11 +598,13 @@ public class BaseTab extends JFrame {
 	public JLayeredPane getContentPane() {
 		return contentPane;
 	}
-
+	/**
+	 * 
+	 * @return the buttonPanel
+	 */
 	public JPanel getButtonPanel() {
 		return buttonPanel;
 	}
-
 	/**
 	 * @return the rowSorterAllocation
 	 */
@@ -546,6 +621,7 @@ public class BaseTab extends JFrame {
 	public JButton getBtnRoomplan() {
 		if (btnRoomplan == null) {
 			btnRoomplan = new JButton("Raumplan");
+			btnRoomplan.setToolTipText("<html>Selektieren Sie einen Raum <br> um dafür einen Raumplan zu generieren </html>");
 			btnRoomplan.setVisible(false);
 			btnRoomplan.setEnabled(true);
 			btnRoomplan.setBounds(0, 40, 80, 23);
