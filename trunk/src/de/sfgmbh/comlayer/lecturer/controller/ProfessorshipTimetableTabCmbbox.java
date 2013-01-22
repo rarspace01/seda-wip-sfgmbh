@@ -15,7 +15,7 @@ public class ProfessorshipTimetableTabCmbbox implements ActionListener {
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		ViewManager.getInstance().getLecturerTimetableTab().reloadPlan();
+		ViewManager.getInstance().getChairTimetableTab().reloadPlan();
 	}
 	
 }
