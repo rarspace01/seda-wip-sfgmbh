@@ -39,10 +39,10 @@ public class RoomtableTab extends JPanel {
 	}
 	private void initialize() {
 		setAutoscrolls(true);
-		setLayout(new MigLayout("", "[131px][50px][129px][461px][69px][right]", "[68px][392px]"));
+		setLayout(new MigLayout("", "[20px:20px,grow][131px][50px][129px][461px][20px:20px,grow][99.00,right]", "[68px][392px]"));
 		
 		JPanel uniIconPanel = new JPanel();
-		add(uniIconPanel, "cell 5 0,alignx right,aligny top");
+		add(uniIconPanel, "cell 6 0,alignx right,aligny top");
 		
 		JLabel lblUniIcon = new JLabel();
 		lblUniIcon.setIcon(new ImageIcon(BaseTab.class.getResource("/de/sfgmbh/comlayer/core/images/UniBA_logo.png")));
@@ -50,7 +50,7 @@ public class RoomtableTab extends JPanel {
 		uniIconPanel.add(lblUniIcon);
 		
 		scrollPane_ = new JScrollPane();
-		add(scrollPane_, "cell 0 1 5 1,grow");
+		add(scrollPane_, "cell 1 1 4 1,grow");
 		
 		stundenplanTable = new JTable();
 		
@@ -64,7 +64,7 @@ public class RoomtableTab extends JPanel {
 		
 		JButton btnPdfErzeugen = new JButton("PDF erzeugen");
 		btnPdfErzeugen.addActionListener(new RoomtableTabBtnPdf("pdfCreate"));
-		add(btnPdfErzeugen, "cell 0 0,growx,aligny center");
+		add(btnPdfErzeugen, "cell 1 0,growx,aligny center");
 		stundenplanTable.getColumnModel().getColumn(0).setResizable(false);
 		stundenplanTable.getColumnModel().getColumn(0).setPreferredWidth(70);
 		stundenplanTable.getColumnModel().getColumn(0).setMinWidth(50);
@@ -93,8 +93,8 @@ public class RoomtableTab extends JPanel {
 		comboBoxSemesterFilter.setEditable(true);
 		comboBoxSemesterFilter.setAutoscrolls(true);
 		
-		add(lblSemester, "cell 2 0,alignx left,aligny center");
-		add(comboBoxSemesterFilter, "cell 2 0,alignx right,aligny center");
+		add(lblSemester, "cell 3 0,alignx left,aligny center");
+		add(comboBoxSemesterFilter, "cell 3 0,alignx right,aligny center");
 	}
 	
 	public JComboBox<String> getComboBoxSemesterFilter() {
