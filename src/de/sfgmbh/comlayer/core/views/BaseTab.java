@@ -224,7 +224,7 @@ public class BaseTab extends JFrame {
 	 * @return the lblSeats
 	 */
 	public JLabel getLblRoomplaces() {
-		lblSeats = new JLabel("Sitzplätze");
+		lblSeats = new JLabel("Mehr Plätze als:");
 		return lblSeats;
 	}
 	/**

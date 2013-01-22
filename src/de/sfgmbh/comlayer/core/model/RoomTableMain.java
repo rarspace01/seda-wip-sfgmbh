@@ -8,7 +8,15 @@ import de.sfgmbh.applayer.core.definitions.IntfAppObserver;
 import de.sfgmbh.applayer.core.model.AppModel;
 import de.sfgmbh.applayer.core.model.Room;
 import de.sfgmbh.comlayer.core.controller.ViewManager;
+import de.sfgmbh.comlayer.core.views.BaseTab;
 
+/**
+ * Model of the room list table
+ * 
+ * @author mario
+ * @author hannes
+ *
+ */
 public class RoomTableMain extends DefaultTableModel implements IntfAppObserver {
 
 	private static final long serialVersionUID = 1L;
@@ -22,6 +30,7 @@ public class RoomTableMain extends DefaultTableModel implements IntfAppObserver 
 
 	public void change(String variant) {
 		HashMap<String, String> filter = new HashMap<String, String>();
+		BaseTab baseTab = ViewManager.getInstance().getCoreBaseTab();
 		
 		this.setRowCount(0);
 		
@@ -30,9 +39,20 @@ public class RoomTableMain extends DefaultTableModel implements IntfAppObserver 
 			filter.put("seats", "<alle>");
 			filter.put("level", "<alle>");
 		} else {
-			filter.put("room", ViewManager.getInstance().getCoreBaseTab().getComboBoxRoomnumberFilter().getSelectedItem().toString());
-			filter.put("seats", ViewManager.getInstance().getCoreBaseTab().getComboBoxSeatsFilter().getSelectedItem().toString());
-			filter.put("level", ViewManager.getInstance().getCoreBaseTab().getComboBoxLevelFilter().getSelectedItem().toString());
+			
+			// Ensure seats is a number
+			String seats;
+			try {
+				int intSeats = Integer.parseInt(baseTab.getComboBoxSeatsFilter().getSelectedItem().toString());
+				seats = String.valueOf(intSeats);
+			} catch (Exception e) {
+				AppModel.getInstance().getExceptionHandler().setNewException("Bitte stellen Sie sicher,  dass sie echte Zahlen bei dem Sitze-Filtern eingetragen haben", "Fehler!", "error");
+				baseTab.getComboBoxSeatsFilter().setSelectedItem("0");
+				return;
+			}
+			filter.put("room", baseTab.getComboBoxRoomnumberFilter().getSelectedItem().toString());
+			filter.put("seats", seats);
+			filter.put("level", baseTab.getComboBoxLevelFilter().getSelectedItem().toString());
 		}
 		
 		for (Room room : AppModel.getInstance().getRepositoryRoom().getByFilter(filter)){
