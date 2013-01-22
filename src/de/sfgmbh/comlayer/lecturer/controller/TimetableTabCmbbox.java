@@ -6,12 +6,12 @@ import java.awt.event.ActionListener;
 import de.sfgmbh.comlayer.core.controller.ViewManager;
 
 /**
- * Action listener for the combobox on the professorship timetable
+ * Action listener for the combobox on the timetable
  * 
  * @author denis
  *
  */
-public class ProfessorshipTimetableTabCmbbox implements ActionListener {
+public class TimetableTabCmbbox implements ActionListener {
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {

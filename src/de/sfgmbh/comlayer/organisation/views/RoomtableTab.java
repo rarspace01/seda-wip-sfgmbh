@@ -20,6 +20,7 @@ import de.sfgmbh.comlayer.core.controller.ViewHelper;
 import de.sfgmbh.comlayer.core.controller.ViewManager;
 import de.sfgmbh.comlayer.core.model.CmbboxFilterSemester;
 import de.sfgmbh.comlayer.core.views.BaseTab;
+import de.sfgmbh.comlayer.organisation.controller.RoomtableCmbboxFilter;
 import de.sfgmbh.comlayer.organisation.controller.RoomtableTabBtnPdf;
 
 public class RoomtableTab extends JPanel {
@@ -88,12 +89,9 @@ public class RoomtableTab extends JPanel {
 		
 		comboBoxSemesterFilter = new JComboBox<String>();
 		comboBoxSemesterFilter.setModel(comboBoxSemesterModel_);
-		comboBoxSemesterFilter.addKeyListener(comboBoxSemesterModel_);
-		comboBoxSemesterFilter.addActionListener(comboBoxSemesterModel_);
+		comboBoxSemesterFilter.addActionListener(new RoomtableCmbboxFilter());
 		comboBoxSemesterFilter.setEditable(true);
 		comboBoxSemesterFilter.setAutoscrolls(true);
-		
-		comboBoxSemesterModel_.register(ViewManager.getInstance().getOrgaRoomtableTableModel());
 		
 		add(lblSemester, "cell 2 0,alignx left,aligny center");
 		add(comboBoxSemesterFilter, "cell 2 0,alignx right,aligny center");

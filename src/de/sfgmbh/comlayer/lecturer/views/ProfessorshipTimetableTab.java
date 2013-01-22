@@ -25,6 +25,7 @@ import de.sfgmbh.comlayer.core.controller.ViewManager;
 import de.sfgmbh.comlayer.core.model.CmbboxFilterSemester;
 import de.sfgmbh.comlayer.core.views.BaseTab;
 import de.sfgmbh.comlayer.lecturer.controller.ProfessorshipTimetableTabBtn;
+import de.sfgmbh.comlayer.lecturer.controller.ProfessorshipTimetableTabCmbbox;
 
 public class ProfessorshipTimetableTab extends JPanel{
 
@@ -77,8 +78,7 @@ public class ProfessorshipTimetableTab extends JPanel{
 		comboBoxSemesterFilter_= new JComboBox<>();
 		
 		comboBoxSemesterFilter_.setModel(comboBoxSemesterModel_);
-		comboBoxSemesterFilter_.addKeyListener(comboBoxSemesterModel_);
-		comboBoxSemesterFilter_.addActionListener(comboBoxSemesterModel_);
+		comboBoxSemesterFilter_.addActionListener(new ProfessorshipTimetableTabCmbbox());
 		comboBoxSemesterFilter_.setEditable(true);
 		comboBoxSemesterFilter_.setAutoscrolls(true);
 		
@@ -106,8 +106,7 @@ public class ProfessorshipTimetableTab extends JPanel{
 	
 			lehrstuhlStundenplanTable_.setBackground(Color.WHITE);
 			lehrstuhlStundenplanTable_.setModel(ViewManager.getInstance().getLecturerChairimetableTabTable());
-			
-			comboBoxSemesterModel_.register(ViewManager.getInstance().getLecturerChairimetableTabTable());
+		
 			
 			//comboBoxSemesterFilter_
 			
@@ -120,24 +119,6 @@ public class ProfessorshipTimetableTab extends JPanel{
 			
 			lehrstuhlStundenplanTable_.setDefaultRenderer(Object.class, new LineWrapCellRenderer(maxEntries_));
 			
-//			lehrstuhlStundenplanTable_.getColumnModel().getColumn(0).setResizable(true);
-//			lehrstuhlStundenplanTable_.getColumnModel().getColumn(0).setMinWidth(50);
-//			lehrstuhlStundenplanTable_.getColumnModel().getColumn(0).setMaxWidth(105);
-//			lehrstuhlStundenplanTable_.getColumnModel().getColumn(1).setResizable(true);
-//			lehrstuhlStundenplanTable_.getColumnModel().getColumn(1).setPreferredWidth(50);
-//			lehrstuhlStundenplanTable_.getColumnModel().getColumn(1).setMinWidth(50);
-//			lehrstuhlStundenplanTable_.getColumnModel().getColumn(1).setMaxWidth(145);
-//			lehrstuhlStundenplanTable_.getColumnModel().getColumn(2).setResizable(true);
-//			lehrstuhlStundenplanTable_.getColumnModel().getColumn(2).setMinWidth(75);
-//			lehrstuhlStundenplanTable_.getColumnModel().getColumn(2).setMaxWidth(145);
-//			lehrstuhlStundenplanTable_.getColumnModel().getColumn(3).setPreferredWidth(80);
-//			lehrstuhlStundenplanTable_.getColumnModel().getColumn(3).setMinWidth(80);
-//			lehrstuhlStundenplanTable_.getColumnModel().getColumn(3).setMaxWidth(145);
-//			lehrstuhlStundenplanTable_.getColumnModel().getColumn(4).setPreferredWidth(70);
-//			lehrstuhlStundenplanTable_.getColumnModel().getColumn(4).setMinWidth(70);
-//			lehrstuhlStundenplanTable_.getColumnModel().getColumn(4).setMaxWidth(145);
-//			lehrstuhlStundenplanTable_.getColumnModel().getColumn(5).setMinWidth(70);
-//			lehrstuhlStundenplanTable_.getColumnModel().getColumn(5).setMaxWidth(145);
 		}
 		return panelProfessorshipPanel_;
 	}

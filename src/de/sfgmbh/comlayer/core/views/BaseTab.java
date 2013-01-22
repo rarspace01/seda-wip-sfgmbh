@@ -28,6 +28,7 @@ import javax.swing.table.TableRowSorter;
 
 import net.miginfocom.swing.MigLayout;
 import de.sfgmbh.comlayer.core.controller.BaseBtns;
+import de.sfgmbh.comlayer.core.controller.BaseCmbboxFilter;
 import de.sfgmbh.comlayer.core.controller.BaseLogin;
 import de.sfgmbh.comlayer.core.controller.BaseRdbtnTopLeft;
 import de.sfgmbh.comlayer.core.controller.BaseTable;
@@ -239,8 +240,8 @@ public class BaseTab extends JFrame {
 			comboBoxOrgaFilter = new JComboBox<String>();
 			comboBoxOrgaFilter.setPreferredSize(new Dimension(110, 20));
 			comboBoxOrgaModel_=new CmbboxFilterOrga();
-			comboBoxOrgaFilter.addKeyListener(comboBoxOrgaModel_);
-			comboBoxOrgaFilter.addActionListener(comboBoxOrgaModel_);
+			comboBoxOrgaFilter.addKeyListener(new BaseCmbboxFilter("allocations"));
+			comboBoxOrgaFilter.addActionListener(new BaseCmbboxFilter("allocations"));
 			comboBoxOrgaFilter.setAutoscrolls(true);
 			comboBoxOrgaFilter.setEditable(true);
 			comboBoxOrgaFilter.setModel(new CmbboxFilterCourse(comboBoxOrgaFilter));
@@ -255,8 +256,8 @@ public class BaseTab extends JFrame {
 			comboBoxChairFilter.setPreferredSize(new Dimension(440, 20));
 			comboBoxChairModel_=new CmbboxFilterChair(comboBoxChairFilter);
 			comboBoxChairFilter.setModel(comboBoxChairModel_);
-			comboBoxChairFilter.addKeyListener(comboBoxChairModel_);
-			comboBoxChairFilter.addActionListener(comboBoxChairModel_);
+			comboBoxChairFilter.addKeyListener(new BaseCmbboxFilter("allocations"));
+			comboBoxChairFilter.addActionListener(new BaseCmbboxFilter("allocations"));
 			comboBoxChairFilter.setEditable(true);
 			comboBoxChairFilter.setAutoscrolls(true);
 		}
@@ -270,8 +271,8 @@ public class BaseTab extends JFrame {
 			comboBoxLecturerFilter.setPreferredSize(new Dimension(110, 20));
 			comboBoxLecturerModel_= new CmbboxFilterLecturer(comboBoxLecturerFilter);
 			comboBoxLecturerFilter.setModel(comboBoxLecturerModel_);
-			comboBoxLecturerFilter.addKeyListener(comboBoxLecturerModel_);
-			comboBoxLecturerFilter.addActionListener(comboBoxLecturerModel_);
+			comboBoxLecturerFilter.addKeyListener(new BaseCmbboxFilter("allocations"));
+			comboBoxLecturerFilter.addActionListener(new BaseCmbboxFilter("allocations"));
 			comboBoxLecturerFilter.setEditable(true);
 			comboBoxLecturerFilter.setAutoscrolls(true);
 		}
@@ -285,8 +286,8 @@ public class BaseTab extends JFrame {
 			comboBoxSemesterFilter.setPreferredSize(new Dimension(110, 20));
 			comboBoxSemesterModel_ = new CmbboxFilterSemester();
 			comboBoxSemesterFilter.setModel(comboBoxSemesterModel_);
-			comboBoxSemesterFilter.addKeyListener(comboBoxSemesterModel_);
-			comboBoxSemesterFilter.addActionListener(comboBoxSemesterModel_);
+			comboBoxSemesterFilter.addKeyListener(new BaseCmbboxFilter("allocations"));
+			comboBoxSemesterFilter.addActionListener(new BaseCmbboxFilter("allocations"));
 			comboBoxSemesterFilter.setEditable(true);
 			comboBoxSemesterFilter.setAutoscrolls(true);
 		}
@@ -306,8 +307,8 @@ public class BaseTab extends JFrame {
 			comboBoxRoomnumberFilter = new JComboBox<String>();
 			comboBoxRoomnumberModel_= new CmbboxFilterRoomnumber(comboBoxRoomnumberFilter);
 			comboBoxRoomnumberFilter.setModel(comboBoxRoomnumberModel_);
-			comboBoxRoomnumberFilter.addKeyListener(comboBoxRoomnumberModel_);
-			comboBoxRoomnumberFilter.addActionListener(comboBoxRoomnumberModel_);
+			comboBoxRoomnumberFilter.addKeyListener(new BaseCmbboxFilter("rooms"));
+			comboBoxRoomnumberFilter.addActionListener(new BaseCmbboxFilter("rooms"));
 			comboBoxRoomnumberFilter.setEditable(true);
 			comboBoxRoomnumberFilter.setAutoscrolls(true);
 		}
@@ -321,8 +322,8 @@ public class BaseTab extends JFrame {
 			comboBoxSeatsFilter = new JComboBox<String>();
 			comboBoxSeatsModel_ = new CmbboxFilterSeats();
 			comboBoxSeatsFilter.setModel(comboBoxSeatsModel_);
-			comboBoxSeatsFilter.addKeyListener(comboBoxSeatsModel_);
-			comboBoxSeatsFilter.addActionListener(comboBoxSeatsModel_);
+			comboBoxSeatsFilter.addKeyListener(new BaseCmbboxFilter("rooms"));
+			comboBoxSeatsFilter.addActionListener(new BaseCmbboxFilter("rooms"));
 			comboBoxSeatsFilter.setEditable(true);
 			comboBoxSeatsFilter.setAutoscrolls(true);
 		}
@@ -335,8 +336,8 @@ public class BaseTab extends JFrame {
 			comboBoxLevelFilter = new JComboBox<String>();
 			comboBoxLevelModel_ = new CmbboxFilterLevel(comboBoxLevelFilter);
 			comboBoxLevelFilter.setModel(comboBoxLevelModel_);
-			comboBoxLevelFilter.addKeyListener(comboBoxLevelModel_);
-			comboBoxLevelFilter.addActionListener(comboBoxLevelModel_);
+			comboBoxLevelFilter.addKeyListener(new BaseCmbboxFilter("rooms"));
+			comboBoxLevelFilter.addActionListener(new BaseCmbboxFilter("rooms"));
 			comboBoxLevelFilter.setEditable(true);
 			comboBoxLevelFilter.setAutoscrolls(true);
 		}
@@ -356,8 +357,6 @@ public class BaseTab extends JFrame {
 			organisationTable.setModel(ViewManager.getInstance()
 					.getCoreBaseTableModel());
 			
-			comboBoxSemesterModel_.register(ViewManager.getInstance()
-					.getCoreBaseTableModel());
 			comboBoxChairModel_.register(ViewManager.getInstance()
 					.getCoreBaseTableModel());
 			comboBoxLecturerModel_.register(ViewManager.getInstance()
@@ -394,8 +393,6 @@ public class BaseTab extends JFrame {
 			roomTable.setModel(ViewManager.getInstance()
 					.getCoreRoomTableModel());
 			
-			this.comboBoxSemesterModel_.register(ViewManager.getInstance()
-					.getCoreRoomTableModel());
 			this.comboBoxChairModel_.register(ViewManager.getInstance()
 					.getCoreRoomTableModel());
 			

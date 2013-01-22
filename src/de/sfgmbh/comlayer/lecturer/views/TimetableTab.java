@@ -23,6 +23,7 @@ import de.sfgmbh.comlayer.core.model.CmbboxFilterSemester;
 import de.sfgmbh.comlayer.core.views.BaseTab;
 import de.sfgmbh.comlayer.lecturer.controller.ProfessorshipTimetableTabCmbbox;
 import de.sfgmbh.comlayer.lecturer.controller.TimetableTabBtn;
+import de.sfgmbh.comlayer.lecturer.controller.TimetableTabCmbbox;
 
 public class TimetableTab extends JPanel {
 	private static final long serialVersionUID = 1L;
@@ -61,8 +62,7 @@ public class TimetableTab extends JPanel {
 		comboBoxSemesterFilter_= new JComboBox<>();
 		
 		comboBoxSemesterFilter_.setModel(comboBoxSemesterModel_);
-		comboBoxSemesterFilter_.addKeyListener(comboBoxSemesterModel_);
-		comboBoxSemesterFilter_.addActionListener(comboBoxSemesterModel_);
+		comboBoxSemesterFilter_.addActionListener(new TimetableTabCmbbox());
 		comboBoxSemesterFilter_.setEditable(true);
 		comboBoxSemesterFilter_.setAutoscrolls(true);
 		
@@ -98,8 +98,6 @@ public class TimetableTab extends JPanel {
 	
 			lecturerTimetableTable_.setBackground(Color.WHITE);
 			lecturerTimetableTable_.setModel(ViewManager.getInstance().getLecturerTimetableTabTable());
-			
-			comboBoxSemesterModel_.register(ViewManager.getInstance().getLecturerTimetableTabTable());
 			
 			lecturerTimetableTable_.getColumnModel().getColumn(0).setResizable(false);
 			lecturerTimetableTable_.getColumnModel().getColumn(0).setPreferredWidth(50);
