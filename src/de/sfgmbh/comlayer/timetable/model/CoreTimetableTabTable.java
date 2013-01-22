@@ -32,12 +32,8 @@ public class CoreTimetableTabTable extends DefaultTableModel implements IntfAppO
 	@Override
 	public void change() {
 		
-		CtrlRoomAllocation ctrlRoomAlCtrlRoom= new CtrlRoomAllocation();
-		
-		//delete all rows
-		for(int i=this.getRowCount()-1;i>=0;i--){
-			this.removeRow(i);
-		}
+		//remove all rows
+		this.setRowCount(0);
 		
 		//get all rooms from db
 		ViewManager.getInstance().getCoreTimetableTab().reloadRoomTable();
