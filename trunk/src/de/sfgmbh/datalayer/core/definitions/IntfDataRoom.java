@@ -32,7 +32,6 @@ public interface IntfDataRoom {
 	 * 
 	 * @param room
 	 *            - the object which should be remove from the database
-	 * @return
 	 */
 	public void delete(IntfRoom room);
 

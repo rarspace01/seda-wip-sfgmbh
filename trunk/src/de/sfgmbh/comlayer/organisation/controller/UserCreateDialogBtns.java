@@ -4,7 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import de.sfgmbh.applayer.core.model.AppModel;
-import de.sfgmbh.applayer.core.model.Chair;
+import de.sfgmbh.applayer.core.model.IntfChair;
 import de.sfgmbh.applayer.core.model.User;
 import de.sfgmbh.applayer.organisation.controller.CtrlUser;
 import de.sfgmbh.applayer.organisation.definitions.IntfCtrlUser;
@@ -74,7 +74,7 @@ public class UserCreateDialogBtns implements ActionListener {
 				
 				// Handle the chair of a user
 				if (!this.motherDialog.getComboBoxLehrstuhl().getSelectedItem().toString().equals("<keiner>")) {
-					Chair newChair = AppModel.getInstance().getRepositoryChair().getForAcronym(
+					IntfChair newChair = AppModel.getInstance().getRepositoryChair().getForAcronym(
 							this.motherDialog.getComboBoxLehrstuhl().getSelectedItem().toString());
 					if (newChair != null) {
 						createUser.setChair_(newChair);

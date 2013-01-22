@@ -12,6 +12,7 @@ import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
 import de.sfgmbh.applayer.core.model.Chair;
+import de.sfgmbh.applayer.core.model.IntfChair;
 import de.sfgmbh.comlayer.core.model.CmbboxFilterLecturer;
 import de.sfgmbh.comlayer.organisation.controller.ChairCreateDialogBtns;
 
@@ -39,7 +40,7 @@ public class ChairCreateDialog extends JDialog {
 	private JTextField txtFaculity;
 	private JTextField txtLevel;
 	private String variant;
-	private Chair chair;
+	private IntfChair chair;
 
 	/**
 	 * Create the dialog
@@ -64,7 +65,7 @@ public class ChairCreateDialog extends JDialog {
 	 * @param variant
 	 * @param chair
 	 */
-	public ChairCreateDialog(String variant, Chair chair) {
+	public ChairCreateDialog(String variant, IntfChair chair) {
 		this.variant = variant;
 		this.chair = chair;
 		this.init();
@@ -215,14 +216,14 @@ public class ChairCreateDialog extends JDialog {
 	/**
 	 * @return the chair
 	 */
-	public Chair getChair() {
+	public IntfChair getChair() {
 		return chair;
 	}
 
 	/**
 	 * @param course the chair to set
 	 */
-	public void setChair(Chair chair) {
+	public void setChair(IntfChair chair) {
 		this.chair = chair;
 	}
 }

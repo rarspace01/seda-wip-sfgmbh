@@ -5,7 +5,7 @@ import javax.swing.JComboBox;
 
 import de.sfgmbh.applayer.core.definitions.IntfAppObserver;
 import de.sfgmbh.applayer.core.model.AppModel;
-import de.sfgmbh.applayer.core.model.Chair;
+import de.sfgmbh.applayer.core.model.IntfChair;
 
 /**
  * Model for chair acronym combo boxes
@@ -48,7 +48,7 @@ public class CmbboxFilterChairAcronym extends DefaultComboBoxModel<String> imple
 		} else {
 			this.addElement("<keiner>");
 		}
-		for (Chair chair : AppModel.getInstance().getRepositoryChair().getAll()){
+		for (IntfChair chair : AppModel.getInstance().getRepositoryChair().getAll()){
 			this.addElement(chair.getAcronym_());
 		}
 	}

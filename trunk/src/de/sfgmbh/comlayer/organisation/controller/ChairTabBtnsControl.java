@@ -4,7 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import de.sfgmbh.applayer.core.model.AppModel;
-import de.sfgmbh.applayer.core.model.Chair;
+import de.sfgmbh.applayer.core.model.IntfChair;
 import de.sfgmbh.applayer.organisation.controller.CtrlChair;
 import de.sfgmbh.applayer.organisation.definitions.IntfCtrlChair;
 import de.sfgmbh.comlayer.core.controller.ViewManager;
@@ -25,7 +25,7 @@ public class ChairTabBtnsControl implements ActionListener, IntfComDialogObserve
 	
 	private String navAction;
 	private boolean deleteChair = false;
-	private Chair chairMarkedForDeletion;
+	private IntfChair chairMarkedForDeletion;
 	private IntfCtrlChair ctrlChair = new CtrlChair();
 	
 	/**
@@ -53,7 +53,7 @@ public class ChairTabBtnsControl implements ActionListener, IntfComDialogObserve
 			} else {
 				try {
 					row = ViewManager.getInstance().getOrgaChairTab().getRowSorter().convertRowIndexToModel(row);
-					Chair editChair = (Chair) ViewManager.getInstance().getOrgaChairTableModel().getValueAt(row, 4);
+					IntfChair editChair = (IntfChair) ViewManager.getInstance().getOrgaChairTableModel().getValueAt(row, 4);
 					ChairCreateDialog editDialog = new ChairCreateDialog("edit", editChair);
 					editDialog.setVisible(true);
 				} catch (Exception ex) {
@@ -74,7 +74,7 @@ public class ChairTabBtnsControl implements ActionListener, IntfComDialogObserve
 			} else {
 				try {
 					row = ViewManager.getInstance().getOrgaChairTab().getRowSorter().convertRowIndexToModel(row);
-					this.chairMarkedForDeletion = (Chair) ViewManager.getInstance().getOrgaChairTableModel().getValueAt(row, 4);
+					this.chairMarkedForDeletion = (IntfChair) ViewManager.getInstance().getOrgaChairTableModel().getValueAt(row, 4);
 				} catch (Exception ex) {
 					AppModel.getInstance().getExceptionHandler().setNewException("Ein unerwarteter Fehler ist aufgetreten.<br /><br >" + ex.toString(), "Fehler!");
 				}
@@ -101,7 +101,7 @@ public class ChairTabBtnsControl implements ActionListener, IntfComDialogObserve
 	 * @param chair
 	 * @return true if the deletion was successful
 	 */
-	public void deleteChair(Chair chair) {
+	public void deleteChair(IntfChair chair) {
 		
 		if (this.deleteChair) {
 			this.deleteChair = false;

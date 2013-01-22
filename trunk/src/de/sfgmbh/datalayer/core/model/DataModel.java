@@ -30,7 +30,7 @@ public class DataModel implements IntfAppObservable {
 	/**
 	 * Returns the singleton instance
 	 * 
-	 * @return
+	 * @return {@link DataModel}
 	 */
 	public static DataModel getInstance() {
 		if(uniqueInstance_==null){
