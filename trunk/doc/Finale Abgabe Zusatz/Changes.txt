@@ -1,5 +1,0 @@
-Veränderung der Navigation innerhalb der passwortgeschützten Bereiche:
-
-Die Navigation via Buttons wurde aufgrund der Benutzerfreundlichkeit durch bereits geladene Tabs ersetzt. Somit kann der Dozent oder die Verwaltung direkt den gewünschten Tab durch klicken öffnen und seine Funktionen durchführen.
-
-Dies fördert die Übersichtlichkeit und schafft noch weiteren Platz für die LiveTicker Nachrichten im linken Randbereich.
