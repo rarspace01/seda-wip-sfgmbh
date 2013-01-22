@@ -24,7 +24,7 @@ public class RepositoryChair implements IntfAppObservable, IntfDataObserver {
 	 * Return all chairs
 	 * @return a list of all chairs
 	 */
-	public List<Chair> getAll() {
+	public List<IntfChair> getAll() {
 		return DataModel.getInstance().getDataHandlerChair().getAll();
 	}
 	
@@ -33,7 +33,7 @@ public class RepositoryChair implements IntfAppObservable, IntfDataObserver {
 	 * @param filter
 	 * @return a filtered list of chairs
 	 */
-	public List<Chair> getByFilter(HashMap<String, String> filter) {
+	public List<IntfChair> getByFilter(HashMap<String, String> filter) {
 		return DataModel.getInstance().getDataHandlerChair().getByFilter(filter);
 	}
 	/**
@@ -41,7 +41,7 @@ public class RepositoryChair implements IntfAppObservable, IntfDataObserver {
 	 * @param acronym
 	 * @return a chair if the submitted acronym can be associated with one, otherwise returns null
 	 */
-	public Chair getForAcronym(String acronym) {
+	public IntfChair getForAcronym(String acronym) {
 		return DataModel.getInstance().getDataHandlerChair().getForAcronym(acronym);
 	}
 
@@ -90,7 +90,7 @@ public class RepositoryChair implements IntfAppObservable, IntfDataObserver {
 	 * @param chairId
 	 * @return the user for the id or null if it doesn't exist
 	 */
-	public Chair get(int chairId_) {
+	public IntfChair get(int chairId_) {
 		return DataModel.getInstance().getDataHandlerChair().get(chairId_);
 	}
 
@@ -99,7 +99,7 @@ public class RepositoryChair implements IntfAppObservable, IntfDataObserver {
 	 * @param chairToDelete
 	 * @return true on success
 	 */
-	public boolean delete(Chair delChair) {
+	public boolean delete(IntfChair delChair) {
 		return DataModel.getInstance().getDataHandlerChair().delete(delChair);
 	}
 
@@ -107,7 +107,7 @@ public class RepositoryChair implements IntfAppObservable, IntfDataObserver {
 	 * Save a chair in the DB
 	 * @return true on success
 	 */
-	public boolean save(Chair chair) {
+	public boolean save(IntfChair chair) {
 		return DataModel.getInstance().getDataHandlerChair().save(chair);
 	}
 

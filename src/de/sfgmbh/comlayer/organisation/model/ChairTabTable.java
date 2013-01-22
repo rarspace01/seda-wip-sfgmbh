@@ -6,7 +6,7 @@ import javax.swing.table.DefaultTableModel;
 
 import de.sfgmbh.applayer.core.definitions.IntfAppObserver;
 import de.sfgmbh.applayer.core.model.AppModel;
-import de.sfgmbh.applayer.core.model.Chair;
+import de.sfgmbh.applayer.core.model.IntfChair;
 import de.sfgmbh.comlayer.core.controller.ViewManager;
 
 /**
@@ -52,7 +52,7 @@ public class ChairTabTable extends DefaultTableModel implements
 			filter.put("chair", textChair);
 		}
 
-		for (Chair chair : AppModel.getInstance().getRepositoryChair()
+		for (IntfChair chair : AppModel.getInstance().getRepositoryChair()
 				.getByFilter(filter)) {
 			
 			String owner = "";

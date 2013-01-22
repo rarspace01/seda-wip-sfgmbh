@@ -5,7 +5,7 @@ import java.awt.event.ActionListener;
 
 import de.sfgmbh.applayer.core.model.AppException;
 import de.sfgmbh.applayer.core.model.AppModel;
-import de.sfgmbh.applayer.core.model.Chair;
+import de.sfgmbh.applayer.core.model.IntfChair;
 import de.sfgmbh.applayer.organisation.controller.CtrlChair;
 import de.sfgmbh.applayer.organisation.definitions.IntfCtrlChair;
 import de.sfgmbh.comlayer.core.model.CmbboxFilterLecturer;
@@ -59,7 +59,7 @@ public class ChairCreateDialogBtns implements ActionListener {
 
 		// Save button is pressed
 		if (this.ctrlAction.equals("save")) {
-			Chair newChair = motherDialog.getChair();
+			IntfChair newChair = motherDialog.getChair();
 			try {
 				newChair.setAcronym_(motherDialog.getTxtAcronym()
 						.getText());

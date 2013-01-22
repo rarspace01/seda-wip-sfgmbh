@@ -7,6 +7,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import de.sfgmbh.applayer.core.model.Chair;
+import de.sfgmbh.applayer.core.model.IntfChair;
 import de.sfgmbh.datalayer.core.definitions.IntfDataChair;
 import de.sfgmbh.datalayer.core.definitions.IntfDataFilter;
 import de.sfgmbh.datalayer.core.definitions.IntfDataObservable;
@@ -20,8 +21,8 @@ public class DataHandlerChair implements IntfDataChair, IntfDataFilter,
 	private ArrayList<Object> observer_ = new ArrayList<Object>();
 
 	@Override
-	public List<Chair> getAll() {
-		List<Chair> listChair = new ArrayList<Chair>();
+	public List<IntfChair> getAll() {
+		List<IntfChair> listChair = new ArrayList<IntfChair>();
 
 		String SqlStatement = 
 				"SELECT public.user.*, public.chair.* " + 
@@ -63,7 +64,7 @@ public class DataHandlerChair implements IntfDataChair, IntfDataFilter,
 	}
 
 	@Override
-	public Chair get(int id) {
+	public IntfChair get(int chairId) {
 		try {
 			DataManagerPostgreSql.getInstance().prepare(
 					"SELECT public.user.*, public.chair.* " + 
@@ -71,7 +72,7 @@ public class DataHandlerChair implements IntfDataChair, IntfDataFilter,
 					"ON public.chair.chairowner =  public.user.userid " +
 					"WHERE public.chair.chairid = ?");
 			DataManagerPostgreSql.getInstance().getPreparedStatement()
-					.setInt(1, id);
+					.setInt(1, chairId);
 			ResultSet rs = DataManagerPostgreSql.getInstance().selectPstmt();
 			while (rs.next()) {
 				return this.makeChair(rs);
@@ -107,7 +108,7 @@ public class DataHandlerChair implements IntfDataChair, IntfDataFilter,
 	 * @return a Chair if the submitted user (id) can be associated with one,
 	 *         otherwise returns null
 	 */
-	public Chair getForUser(int userId) {
+	public IntfChair getForUser(int userId) {
 		try {
 			DataManagerPostgreSql
 					.getInstance()
@@ -154,7 +155,7 @@ public class DataHandlerChair implements IntfDataChair, IntfDataFilter,
 	 * @return a chair if the submitted acronym can be associated with one,
 	 *         otherwise returns null
 	 */
-	public Chair getForAcronym(String acronym) {
+	public IntfChair getForAcronym(String acronym) {
 		try {
 			DataManagerPostgreSql.getInstance().prepare(
 					"SELECT public.user.*, public.chair.* " + 
@@ -192,19 +193,7 @@ public class DataHandlerChair implements IntfDataChair, IntfDataFilter,
 	}
 
 	@Override
-	public List<Chair> search(String searchQry) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public List<Chair> filter(String filterQry) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public boolean delete(Chair toBeDeletedChair) {
+	public boolean delete(IntfChair toBeDeletedChair) {
 		if (toBeDeletedChair != null) {
 			boolean returnState = true;
 
@@ -248,7 +237,7 @@ public class DataHandlerChair implements IntfDataChair, IntfDataFilter,
 	}
 
 	@Override
-	public boolean save(Chair chair) {
+	public boolean save(IntfChair chair) {
 		if (chair.getChairId_() == -1) {
 			boolean returnState = true;
 				try {
@@ -318,9 +307,9 @@ public class DataHandlerChair implements IntfDataChair, IntfDataFilter,
 	}
 
 	@Override
-	public List<Chair> getByFilter(HashMap<String, String> filter) {
+	public List<IntfChair> getByFilter(HashMap<String, String> filter) {
 		DataManagerPostgreSql filterDm = null;
-		List<Chair> listChair = new ArrayList<Chair>();
+		List<IntfChair> listChair = new ArrayList<IntfChair>();
 		// TODO Auto-generated method stub
 		try {
 
@@ -376,23 +365,23 @@ public class DataHandlerChair implements IntfDataChair, IntfDataFilter,
 	/**
 	 * Forms a Chair object out of a given result set
 	 * 
-	 * @param ResultSet
+	 * @param resultSet - {@link ResultSet} for creatign the CHair Objects
 	 *            rs
-	 * @return a Chair object
+	 * @return  - a Chair object
 	 */
-	public Chair makeChair(ResultSet rs) {
-		Chair returnChair = new Chair();
+	public IntfChair makeChair(ResultSet resultSet) {
+		IntfChair returnChair = new Chair();
 
 		try {
-			returnChair.setChairId_(rs.getInt("chairid"));
-			returnChair.setChairName_(rs.getString("chairname"));
-			if (rs.getInt("chairowner") > 0) {
-				returnChair.setChairOwner_(DataModel.getInstance().getDataHandlerUser().makeUser(rs, "nochair"));
+			returnChair.setChairId_(resultSet.getInt("chairid"));
+			returnChair.setChairName_(resultSet.getString("chairname"));
+			if (resultSet.getInt("chairowner") > 0) {
+				returnChair.setChairOwner_(DataModel.getInstance().getDataHandlerUser().makeUser(resultSet, "nochair"));
 			}
-			returnChair.setBuildingId_(rs.getInt("buildingid"));
-			returnChair.setChairLevel_(rs.getString("chairlevel"));
-			returnChair.setFaculty_(rs.getString("faculty"));
-			returnChair.setAcronym_(rs.getString("chairacronym"));
+			returnChair.setBuildingId_(resultSet.getInt("buildingid"));
+			returnChair.setChairLevel_(resultSet.getString("chairlevel"));
+			returnChair.setFaculty_(resultSet.getString("faculty"));
+			returnChair.setAcronym_(resultSet.getString("chairacronym"));
 		} catch (SQLException e) {
 			e.printStackTrace();
 			DataModel

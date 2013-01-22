@@ -5,7 +5,7 @@ import javax.swing.JComboBox;
 
 import de.sfgmbh.applayer.core.definitions.IntfAppObserver;
 import de.sfgmbh.applayer.core.model.AppModel;
-import de.sfgmbh.applayer.core.model.Chair;
+import de.sfgmbh.applayer.core.model.IntfChair;
 
 /**
  * Model for chair combo boxes
@@ -35,7 +35,7 @@ public class CmbboxFilterChair extends DefaultComboBoxModel<String> implements I
 	private void build() {
 		
 		this.addElement("<alle>");
-		for (Chair chair : AppModel.getInstance().getRepositoryChair().getAll()){
+		for (IntfChair chair : AppModel.getInstance().getRepositoryChair().getAll()){
 			this.addElement(chair.getChairName_());
 		}
 	}

@@ -8,7 +8,7 @@ package de.sfgmbh.applayer.core.model;
  * @author anna
  *
  */
-public class Chair {
+public class Chair implements IntfChair {
 
 	private int chairId_;
 	private String chairName_;
@@ -26,76 +26,87 @@ public class Chair {
 		this.buildingId_ = -1;
 	}
 	
-	/**
-	 * @return the chairId_
+	/* (non-Javadoc)
+	 * @see de.sfgmbh.applayer.core.model.IntfChair#getChairId_()
 	 */
+	@Override
 	public int getChairId_() {
 		return chairId_;
 	}
-	/**
-	 * @param chairId_ the chairId_ to set
+	/* (non-Javadoc)
+	 * @see de.sfgmbh.applayer.core.model.IntfChair#setChairId_(int)
 	 */
+	@Override
 	public void setChairId_(int chairId_) {
 		this.chairId_ = chairId_;
 	}
-	/**
-	 * @return the chairName_
+	/* (non-Javadoc)
+	 * @see de.sfgmbh.applayer.core.model.IntfChair#getChairName_()
 	 */
+	@Override
 	public String getChairName_() {
 		return chairName_;
 	}
-	/**
-	 * @param chairName_ the chairName_ to set
+	/* (non-Javadoc)
+	 * @see de.sfgmbh.applayer.core.model.IntfChair#setChairName_(java.lang.String)
 	 */
+	@Override
 	public void setChairName_(String chairName_) {
 		this.chairName_ = chairName_;
 	}
-	/**
-	 * @return the chairOwner_
+	/* (non-Javadoc)
+	 * @see de.sfgmbh.applayer.core.model.IntfChair#getChairOwner_()
 	 */
+	@Override
 	public User getChairOwner_() {
 		return chairOwner_;
 	}
-	/**
-	 * @param chairOwner_ the chairOwner_ to set
+	/* (non-Javadoc)
+	 * @see de.sfgmbh.applayer.core.model.IntfChair#setChairOwner_(de.sfgmbh.applayer.core.model.User)
 	 */
+	@Override
 	public void setChairOwner_(User chairOwner_) {
 		this.chairOwner_ = chairOwner_;
 	}
-	/**
-	 * @return the buildingId_
+	/* (non-Javadoc)
+	 * @see de.sfgmbh.applayer.core.model.IntfChair#getBuildingId_()
 	 */
+	@Override
 	public int getBuildingId_() {
 		return buildingId_;
 	}
-	/**
-	 * @param buildingId_ the buildingId_ to set
+	/* (non-Javadoc)
+	 * @see de.sfgmbh.applayer.core.model.IntfChair#setBuildingId_(int)
 	 */
+	@Override
 	public void setBuildingId_(int buildingId_) {
 		this.buildingId_ = buildingId_;
 	}
-	/**
-	 * @return the chairLevel_
+	/* (non-Javadoc)
+	 * @see de.sfgmbh.applayer.core.model.IntfChair#getChairLevel_()
 	 */
+	@Override
 	public String getChairLevel_() {
 		return chairLevel_;
 	}
-	/**
-	 * @param chairLevel_ the chairLevel_ to set
+	/* (non-Javadoc)
+	 * @see de.sfgmbh.applayer.core.model.IntfChair#setChairLevel_(java.lang.String)
 	 */
+	@Override
 	public void setChairLevel_(String chairLevel_) {
 		this.chairLevel_ = chairLevel_;
 	}
-	/**
-	 * @return the faculty_
+	/* (non-Javadoc)
+	 * @see de.sfgmbh.applayer.core.model.IntfChair#getFaculty_()
 	 */
+	@Override
 	public String getFaculty_() {
 		return faculty_;
 	}
-	/**
-	 * Set the faculty - currently only "WI" is supported
-	 * @param faculty_ the faculty_ to set
+	/* (non-Javadoc)
+	 * @see de.sfgmbh.applayer.core.model.IntfChair#setFaculty_(java.lang.String)
 	 */
+	@Override
 	public void setFaculty_(String faculty_) {
 		if (faculty_.equals("WI")) {
 			this.faculty_ = faculty_;
@@ -103,23 +114,25 @@ public class Chair {
 			this.faculty_ = "WI";
 		}
 	}
-	/**
-	 * @return the acronym_
+	/* (non-Javadoc)
+	 * @see de.sfgmbh.applayer.core.model.IntfChair#getAcronym_()
 	 */
+	@Override
 	public String getAcronym_() {
 		return acronym_;
 	}
-	/**
-	 * @param acronym_ the acronym_ to set
+	/* (non-Javadoc)
+	 * @see de.sfgmbh.applayer.core.model.IntfChair#setAcronym_(java.lang.String)
 	 */
+	@Override
 	public void setAcronym_(String acronym_) {
 		this.acronym_ = acronym_;
 	}
 
-	/**
-	 * Validates the chair object, calls an info dialog when one check fails and returns true if all checks are passed
-	 * @return true if all check attributes are valid
+	/* (non-Javadoc)
+	 * @see de.sfgmbh.applayer.core.model.IntfChair#validate()
 	 */
+	@Override
 	public boolean validate() {
 		boolean check = true;
 		String message = "";
@@ -159,10 +172,10 @@ public class Chair {
 		}
 	}
 	
-	/**
-	 * Save this chair in the DB
-	 * @return true on success
+	/* (non-Javadoc)
+	 * @see de.sfgmbh.applayer.core.model.IntfChair#save()
 	 */
+	@Override
 	public boolean save() {
 		return AppModel.getInstance().getRepositoryChair().save(this);
 	}

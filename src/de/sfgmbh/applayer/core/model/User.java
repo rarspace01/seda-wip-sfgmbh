@@ -24,7 +24,7 @@ public class User {
 	private String lName_;
 	private long lastLogin_;
 	private boolean disabled_;
-	private Chair chair_;
+	private IntfChair chair_;
 	private int newPasswordLength_;
 	private boolean newPassword_;
 	
@@ -122,11 +122,11 @@ public class User {
 		this.disabled_ = disabled_;
 	}
 	
-	public Chair getChair_() {
+	public IntfChair getChair_() {
 		return chair_;
 	}
 	
-	public void setChair_(Chair chair_) {
+	public void setChair_(IntfChair chair_) {
 		this.chair_ = chair_;
 	}
 

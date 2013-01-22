@@ -7,8 +7,8 @@ import javax.swing.table.DefaultTableModel;
 import de.sfgmbh.applayer.core.controller.SessionManager;
 import de.sfgmbh.applayer.core.definitions.IntfAppObserver;
 import de.sfgmbh.applayer.core.model.AppModel;
-import de.sfgmbh.applayer.core.model.Chair;
 import de.sfgmbh.applayer.core.model.Course;
+import de.sfgmbh.applayer.core.model.IntfChair;
 import de.sfgmbh.applayer.core.model.User;
 import de.sfgmbh.comlayer.core.controller.ViewHelper;
 import de.sfgmbh.comlayer.core.controller.ViewManager;
@@ -47,7 +47,7 @@ public class StartTabTableTop extends DefaultTableModel implements IntfAppObserv
 		
 		if (sessionUser.getChair_() != null) {
 		
-			Chair sessionChair = sessionUser.getChair_();
+			IntfChair sessionChair = sessionUser.getChair_();
 			
 			this.setRowCount(0);
 			
