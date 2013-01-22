@@ -4,59 +4,77 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import de.sfgmbh.applayer.core.controller.CtrlBaseTab;
+import de.sfgmbh.comlayer.core.views.BaseTab;
 import de.sfgmbh.comlayer.core.views.InfoDialog;
 
+/**
+ * Radio button action listener on the base tab
+ * 
+ * @author mario
+ *
+ */
 public class BaseRdbtnTopLeft implements ActionListener {
 	
 	private String ctrlAction;
 	protected InfoDialog infoWindow;
 	protected CtrlBaseTab ctrlBaseTab;
 	
+	/**
+	 * Create the action listener 
+	 */
 	public BaseRdbtnTopLeft(){
 		this.ctrlAction ="default";
 	}
 	
+	/**
+	 * Create the action listener based on an action string
+	 */
 	public BaseRdbtnTopLeft(String action){
 		this.ctrlAction = action;
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
+		BaseTab baseTab = ViewManager.getInstance().getCoreBaseTab();
 
 		//room-JRadioButton is pressed
 		if (this.ctrlAction.equals("room")){
-			ViewManager.getInstance().getCoreBaseTab().getRoomTable().setVisible(true);
-			ViewManager.getInstance().getCoreBaseTab().getOrganisationTable().setVisible(false);
-			ViewManager.getInstance().getCoreBaseTab().getMainTableScrollPane().setViewportView(ViewManager.getInstance().getCoreBaseTab().getRoomTable());
-			ViewManager.getInstance().getCoreBaseTab().getRoomTable().setVisible(true);
-			ViewManager.getInstance().getCoreBaseTab().getMainFilterPanel().setVisible(false);
-			ViewManager.getInstance().getCoreBaseTab().getMainFilterPanel().removeAll();
-			ViewManager.getInstance().getCoreBaseTab().getMainFilterPanel().add(ViewManager.getInstance().getCoreBaseTab().getLblRoomnumber(), "cell 0 0,aligny bottom");
-			ViewManager.getInstance().getCoreBaseTab().getMainFilterPanel().add(ViewManager.getInstance().getCoreBaseTab().getLblRoomplaces(), "cell 1 0,aligny bottom");
-			ViewManager.getInstance().getCoreBaseTab().getMainFilterPanel().add(ViewManager.getInstance().getCoreBaseTab().getLblLevel(), "cell 2 0,aligny bottom");
-			ViewManager.getInstance().getCoreBaseTab().getMainFilterPanel().add(ViewManager.getInstance().getCoreBaseTab().getComboBoxRoomnumberFilter(), "cell 0 1,aligny bottom");
-			ViewManager.getInstance().getCoreBaseTab().getMainFilterPanel().add(ViewManager.getInstance().getCoreBaseTab().getComboBoxSeatsFilter(), "cell 1 1,aligny bottom");
-			ViewManager.getInstance().getCoreBaseTab().getMainFilterPanel().add(ViewManager.getInstance().getCoreBaseTab().getComboBoxLevelFilter(), "cell 2 1,aligny bottom");
-			ViewManager.getInstance().getCoreBaseTab().getMainFilterPanel().setVisible(true);
+			baseTab.getRoomTable().setVisible(true);
+			baseTab.getOrganisationTable().setVisible(false);
+			baseTab.getMainTableScrollPane().setViewportView(baseTab.getRoomTable());
+			baseTab.getRoomTable().setVisible(true);
+			baseTab.getMainFilterPanel().setVisible(false);
+			baseTab.getMainFilterPanel().removeAll();
+			baseTab.getMainFilterPanel().add(baseTab.getLblRoomnumber(), "cell 0 0,aligny bottom");
+			baseTab.getMainFilterPanel().add(baseTab.getLblRoomplaces(), "cell 1 0,aligny bottom");
+			baseTab.getMainFilterPanel().add(baseTab.getLblLevel(), "cell 2 0,aligny bottom");
+			baseTab.getMainFilterPanel().add(baseTab.getComboBoxRoomnumberFilter(), "cell 0 1,aligny bottom");
+			baseTab.getMainFilterPanel().add(baseTab.getComboBoxSeatsFilter(), "cell 1 1,aligny bottom");
+			baseTab.getMainFilterPanel().add(baseTab.getComboBoxLevelFilter(), "cell 2 1,aligny bottom");
+			baseTab.getMainFilterPanel().setVisible(true);
+			baseTab.getBtnRoomplan().setVisible(true);
+			baseTab.getBtnTimetable().setVisible(false);
 		}
 		
 		//course-JRadioButton is pressed
 		if (this.ctrlAction.equals("course")){
-			ViewManager.getInstance().getCoreBaseTab().getOrganisationTable().setVisible(true);
-			ViewManager.getInstance().getCoreBaseTab().getRoomTable().setVisible(false);
-			ViewManager.getInstance().getCoreBaseTab().getMainTableScrollPane().setViewportView(ViewManager.getInstance().getCoreBaseTab().getOrganisationTable());
-			ViewManager.getInstance().getCoreBaseTab().getOrganisationTable().setVisible(true);
-			ViewManager.getInstance().getCoreBaseTab().getMainFilterPanel().setVisible(false);
-			ViewManager.getInstance().getCoreBaseTab().getMainFilterPanel().removeAll();
-			ViewManager.getInstance().getCoreBaseTab().getMainFilterPanel().add(ViewManager.getInstance().getCoreBaseTab().getLblLehrveranstaltung(), "cell 0 0,aligny bottom");
-			ViewManager.getInstance().getCoreBaseTab().getMainFilterPanel().add(ViewManager.getInstance().getCoreBaseTab().getLblLehrstuhl(), "cell 1 0,aligny bottom");
-			ViewManager.getInstance().getCoreBaseTab().getMainFilterPanel().add(ViewManager.getInstance().getCoreBaseTab().getLblDozent(), "cell 2 0,aligny bottom");
-			ViewManager.getInstance().getCoreBaseTab().getMainFilterPanel().add(ViewManager.getInstance().getCoreBaseTab().getLblSemester(), "cell 3 0,aligny bottom");
-			ViewManager.getInstance().getCoreBaseTab().getMainFilterPanel().add(ViewManager.getInstance().getCoreBaseTab().getComboBoxOrgaFilter(), "cell 0 1,aligny bottom");
-			ViewManager.getInstance().getCoreBaseTab().getMainFilterPanel().add(ViewManager.getInstance().getCoreBaseTab().getComboBoxChairFilter(), "cell 1 1,aligny bottom");
-			ViewManager.getInstance().getCoreBaseTab().getMainFilterPanel().add(ViewManager.getInstance().getCoreBaseTab().getComboBoxLecturerFilter(), "cell 2 1,aligny bottom");
-			ViewManager.getInstance().getCoreBaseTab().getMainFilterPanel().add(ViewManager.getInstance().getCoreBaseTab().getComboBoxSemesterFilter(), "cell 3 1,aligny bottom");
-			ViewManager.getInstance().getCoreBaseTab().getMainFilterPanel().setVisible(true);
+			baseTab.getOrganisationTable().setVisible(true);
+			baseTab.getRoomTable().setVisible(false);
+			baseTab.getMainTableScrollPane().setViewportView(baseTab.getOrganisationTable());
+			baseTab.getOrganisationTable().setVisible(true);
+			baseTab.getMainFilterPanel().setVisible(false);
+			baseTab.getMainFilterPanel().removeAll();
+			baseTab.getMainFilterPanel().add(baseTab.getLblLehrveranstaltung(), "cell 0 0,aligny bottom");
+			baseTab.getMainFilterPanel().add(baseTab.getLblLehrstuhl(), "cell 1 0,aligny bottom");
+			baseTab.getMainFilterPanel().add(baseTab.getLblDozent(), "cell 2 0,aligny bottom");
+			baseTab.getMainFilterPanel().add(baseTab.getLblSemester(), "cell 3 0,aligny bottom");
+			baseTab.getMainFilterPanel().add(baseTab.getComboBoxOrgaFilter(), "cell 0 1,aligny bottom");
+			baseTab.getMainFilterPanel().add(baseTab.getComboBoxChairFilter(), "cell 1 1,aligny bottom");
+			baseTab.getMainFilterPanel().add(baseTab.getComboBoxLecturerFilter(), "cell 2 1,aligny bottom");
+			baseTab.getMainFilterPanel().add(baseTab.getComboBoxSemesterFilter(), "cell 3 1,aligny bottom");
+			baseTab.getMainFilterPanel().setVisible(true);
+			baseTab.getBtnRoomplan().setVisible(false);
+			baseTab.getBtnTimetable().setVisible(true);
 		}
 	}
 }

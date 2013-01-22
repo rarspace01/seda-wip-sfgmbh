@@ -30,6 +30,7 @@ import net.miginfocom.swing.MigLayout;
 import de.sfgmbh.comlayer.core.controller.BaseBtns;
 import de.sfgmbh.comlayer.core.controller.BaseLogin;
 import de.sfgmbh.comlayer.core.controller.BaseRdbtnTopLeft;
+import de.sfgmbh.comlayer.core.controller.BaseTable;
 import de.sfgmbh.comlayer.core.controller.ViewManager;
 import de.sfgmbh.comlayer.core.model.CmbboxFilterChair;
 import de.sfgmbh.comlayer.core.model.CmbboxFilterCourse;
@@ -87,7 +88,6 @@ public class BaseTab extends JFrame {
 	private JLabel lblPasswort;
 	private JLabel lblBenutzername;
 	private JButton btnNewButton;
-	private JButton btnAddToStundenplan;
 	private JTextField txtBenutzername;
 	private JPasswordField pwdPasswort;
 	private JRadioButton rdbtnLehrveranstaltungen;
@@ -99,6 +99,7 @@ public class BaseTab extends JFrame {
 	private TableRowSorter<TableModel> rowSorterAllocation;
 	private TableRowSorter<TableModel> rowSorterRoom;
 	private JButton btnRoomplan;
+	private JButton btnTimetable;
 
 	/**
 	 * Create the frame. v.175
@@ -181,9 +182,8 @@ public class BaseTab extends JFrame {
 		buttonPanel.setMaximumSize(new Dimension(100, 32767));
 		startScreenPanel.add(buttonPanel, "cell 2 2,grow");
 		buttonPanel.setLayout(null);
-
-		buttonPanel.add(getBtnAddToStudenplan());
 		buttonPanel.add(getBtnRoomplan());
+		buttonPanel.add(getBtnTimetable());
 
 	}
 
@@ -344,21 +344,13 @@ public class BaseTab extends JFrame {
 		return comboBoxLevelFilter;
 	}
 
-	public JButton getBtnAddToStudenplan() {
-		btnAddToStundenplan = new JButton("Stundenplan");
-		btnAddToStundenplan.addActionListener(new BaseBtns(
-				"timetable"));
-		btnAddToStundenplan.setBounds(0, 29, 80, 23);
-
-		return btnAddToStundenplan;
-	}
-
 	public JTable getOrganisationTable() {
 		if (organisationTable == null) {
 			DefaultTableCellRenderer center = new DefaultTableCellRenderer();
 			center.setHorizontalAlignment(SwingConstants.CENTER);
 
 			organisationTable = new JTable();
+			organisationTable.addMouseListener(new BaseTable(this, "allocation"));
 			organisationTable.setBackground(SystemColor.activeCaption);
 			organisationTable.setShowVerticalLines(false);
 			organisationTable.setModel(ViewManager.getInstance()
@@ -397,6 +389,7 @@ public class BaseTab extends JFrame {
 			center.setHorizontalAlignment(SwingConstants.CENTER);
 
 			roomTable = new JTable();
+			roomTable.addMouseListener(new BaseTable(this, "room"));
 			roomTable.setShowVerticalLines(false);
 			roomTable.setModel(ViewManager.getInstance()
 					.getCoreRoomTableModel());
@@ -567,7 +560,9 @@ public class BaseTab extends JFrame {
 	public JButton getBtnRoomplan() {
 		if (btnRoomplan == null) {
 			btnRoomplan = new JButton("Raumplan");
-			btnRoomplan.setBounds(0, 63, 80, 23);
+			btnRoomplan.setVisible(false);
+			btnRoomplan.setEnabled(true);
+			btnRoomplan.setBounds(0, 40, 80, 23);
 			btnRoomplan.addActionListener(new BaseBtns(
 					"roomtable"));
 		}
@@ -578,5 +573,15 @@ public class BaseTab extends JFrame {
 		this.getMainTabbedContainerPane()
 		.setSelectedIndex(this.getMainTabbedContainerPane()
 				.getTabCount() - 1);
+	}
+	public JButton getBtnTimetable() {
+		if (btnTimetable == null) {
+			btnTimetable = new JButton("Stundenplan");
+			btnTimetable.setEnabled(true);
+			btnTimetable.setBounds(0, 40, 80, 23);
+			btnTimetable.addActionListener(new BaseBtns(
+					"timetable"));
+		}
+		return btnTimetable;
 	}
 }
