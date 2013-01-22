@@ -41,7 +41,7 @@ public class BaseLogin implements ActionListener {
 		
 		if (this.version == null || this.version.equals("login")) {
 			String pwd = new String(ViewManager.getInstance().getCoreBaseTab().getPwdPasswort().getPassword());
-			String user = ViewManager.getInstance().getCoreBaseTab().getTxtBenutzername().getText();
+			String user = ViewManager.getInstance().getCoreBaseTab().getTxtUsername().getText();
 			
 			User checkUser = ctrlBaseTab.login(user, pwd);
 			
@@ -63,7 +63,7 @@ public class BaseLogin implements ActionListener {
 			ViewManager.getInstance().getCoreBaseTab().getMainTabbedContainerPane().setVisible(false);
 			ViewManager.getInstance().getCoreBaseTab().getContentPane().add(ViewManager.getInstance().getCoreBaseTab().getStartScreenPanel(), "Start");
 			ViewManager.getInstance().getCoreBaseTab().getPwdPasswort().setText("");
-			ViewManager.getInstance().getCoreBaseTab().getTxtBenutzername().setText("");
+			ViewManager.getInstance().getCoreBaseTab().getTxtUsername().setText("");
 			ViewManager.getInstance().getCoreBaseTab().getStartScreenPanel().setVisible(true);
 			ViewManager.getInstance().getCoreBaseTab().getPanelLogin().setVisible(true);
 			ViewManager.getInstance().getCoreBaseTab().getPanelLogout().setVisible(false);
