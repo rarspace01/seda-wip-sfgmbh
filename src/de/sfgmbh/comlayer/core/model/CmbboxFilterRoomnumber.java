@@ -4,8 +4,8 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComboBox;
 
 import de.sfgmbh.applayer.core.definitions.IntfAppObserver;
+import de.sfgmbh.applayer.core.definitions.IntfRoom;
 import de.sfgmbh.applayer.core.model.AppModel;
-import de.sfgmbh.applayer.core.model.Room;
 
 /**
  * Model for roomnumber combo boxes
@@ -50,7 +50,7 @@ public class CmbboxFilterRoomnumber extends DefaultComboBoxModel<String> impleme
 		} else if (this.variant.equals("select")) {
 			this.addElement("");
 		}
-		for (Room room : AppModel.getInstance().getRepositoryRoom().getAll()){
+		for (IntfRoom room : AppModel.getInstance().getRepositoryRoom().getAll()){
 			this.addElement(room.getRoomNumber_());
 		}
 	}

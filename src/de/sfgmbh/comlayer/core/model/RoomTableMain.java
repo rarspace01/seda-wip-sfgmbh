@@ -5,8 +5,8 @@ import java.util.HashMap;
 import javax.swing.table.DefaultTableModel;
 
 import de.sfgmbh.applayer.core.definitions.IntfAppObserver;
+import de.sfgmbh.applayer.core.definitions.IntfRoom;
 import de.sfgmbh.applayer.core.model.AppModel;
-import de.sfgmbh.applayer.core.model.Room;
 import de.sfgmbh.comlayer.core.controller.ViewManager;
 import de.sfgmbh.comlayer.core.views.BaseTab;
 
@@ -55,7 +55,7 @@ public class RoomTableMain extends DefaultTableModel implements IntfAppObserver 
 			filter.put("level", baseTab.getComboBoxLevelFilter().getSelectedItem().toString());
 		}
 		
-		for (Room room : AppModel.getInstance().getRepositoryRoom().getByFilter(filter)){
+		for (IntfRoom room : AppModel.getInstance().getRepositoryRoom().getByFilter(filter)){
 			//if (room.isPublic()) {
 				try {
 					Object[] row = {

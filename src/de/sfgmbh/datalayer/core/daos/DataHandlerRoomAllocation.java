@@ -6,10 +6,12 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import de.sfgmbh.applayer.core.model.RepositoryRoomAllocation;
 import de.sfgmbh.applayer.core.model.RoomAllocation;
 import de.sfgmbh.datalayer.core.definitions.IntfDataFilter;
 import de.sfgmbh.datalayer.core.definitions.IntfDataObservable;
 import de.sfgmbh.datalayer.core.definitions.IntfDataObserver;
+import de.sfgmbh.datalayer.core.definitions.IntfDataRoomAllocation;
 import de.sfgmbh.datalayer.core.model.DataModel;
 import de.sfgmbh.datalayer.io.DataManagerPostgreSql;
 
@@ -20,14 +22,14 @@ import de.sfgmbh.datalayer.io.DataManagerPostgreSql;
  * @author denis
  *
  */
-public class DataHandlerRoomAllocation implements IntfDataObservable, IntfDataFilter {
+public class DataHandlerRoomAllocation implements IntfDataObservable, IntfDataFilter, IntfDataRoomAllocation {
 
 	private ArrayList<Object> observer_ = new ArrayList<Object>();
 	
-	/**
-	 * Get all room allocations
-	 * @return a list with all room allocations
+	/* (non-Javadoc)
+	 * @see de.sfgmbh.datalayer.core.daos.IntfDataRoomAllocation#getAll()
 	 */
+	@Override
 	public List<RoomAllocation> getAll() {
 		List<RoomAllocation> listRoomAllocation = new ArrayList<RoomAllocation>();
 
@@ -63,10 +65,10 @@ public class DataHandlerRoomAllocation implements IntfDataObservable, IntfDataFi
 		return this.setConflicts(listRoomAllocation);
 	}
 	
-	/**
-	 * Get all room allocations which are not already denied 
-	 * @return a list with all open room allocations
+	/* (non-Javadoc)
+	 * @see de.sfgmbh.datalayer.core.daos.IntfDataRoomAllocation#getAllOpen()
 	 */
+	@Override
 	public List<RoomAllocation> getAllOpen() {
 		List<RoomAllocation> listRoomAllocation = new ArrayList<RoomAllocation>();
 
@@ -103,6 +105,9 @@ public class DataHandlerRoomAllocation implements IntfDataObservable, IntfDataFi
 		return this.setConflicts(listRoomAllocation);
 	}
 	
+	/* (non-Javadoc)
+	 * @see de.sfgmbh.datalayer.core.daos.IntfDataRoomAllocation#getByFilter(java.util.HashMap)
+	 */
 	@Override
 	public List<RoomAllocation> getByFilter(HashMap<String, String> filter) {
 		DataManagerPostgreSql filterDm = null;
@@ -229,11 +234,10 @@ public class DataHandlerRoomAllocation implements IntfDataObservable, IntfDataFi
 		return this.setConflicts(listRoomAllocation);
 	}
 	
-	/**
-	 * Checks for conflicting room allocations for one given room allocation
-	 * @param roomAllocation
-	 * @return a list of all conflicting room allocations
+	/* (non-Javadoc)
+	 * @see de.sfgmbh.datalayer.core.daos.IntfDataRoomAllocation#getConflictingAllocation(de.sfgmbh.applayer.core.model.RoomAllocation)
 	 */
+	@Override
 	public List<RoomAllocation> getConflictingAllocation(RoomAllocation ra) {
 		// DataManagerPostgreSql filterDm = null;
 		DataManagerPostgreSql conflictingAllocationDm = null;
@@ -280,16 +284,10 @@ public class DataHandlerRoomAllocation implements IntfDataObservable, IntfDataFi
 		return this.setConflicts(listRoomAllocation);
 	}
 	
-	/**
-	 * Get a list of all conflicting dates. <br>
-	 * That means courses in the same room, at the same time in the same semester <br>
-	 * @return an ArrayList of HashMaps for each conflicting date. <br>
-	 * 		The HashMap has the following entries: <br>
-	 * 		"roomid" - the affected ID of the room <br>
-	 * 		"time" - the Integer of the affected time <br>
-	 * 		"day" - the Integer of the affected day <br>
-	 * 		"semester" - the String of the affected Semester
+	/* (non-Javadoc)
+	 * @see de.sfgmbh.datalayer.core.daos.IntfDataRoomAllocation#getConflictingDates()
 	 */
+	@Override
 	public List<HashMap<String, Object>> getConflictingDates() {
 		List<HashMap<String, Object>> conflictingDates = new ArrayList<HashMap<String, Object>>();
 
@@ -326,11 +324,10 @@ public class DataHandlerRoomAllocation implements IntfDataObservable, IntfDataFi
 		return conflictingDates;
 	}
 	
-	/**
-	 * For a given list of room allocations set their conflicting state appropriate
-	 * @param roomAllocations
-	 * @return a list of room allocations with the correct conflicting state
+	/* (non-Javadoc)
+	 * @see de.sfgmbh.datalayer.core.daos.IntfDataRoomAllocation#setConflicts(java.util.List)
 	 */
+	@Override
 	public List<RoomAllocation> setConflicts(List<RoomAllocation> roomAllocations) {
 		List<HashMap<String, Object>> conflictingDates = this.getConflictingDates();
 		List<RoomAllocation> setAllocations = new ArrayList<RoomAllocation>();
@@ -351,11 +348,10 @@ public class DataHandlerRoomAllocation implements IntfDataObservable, IntfDataFi
 		return setAllocations;
 	}
 	
-	/**
-	 * Get a room allocation by its id
-	 * @param roomAllocationId
-	 * @return a room allocation by its id
+	/* (non-Javadoc)
+	 * @see de.sfgmbh.datalayer.core.daos.IntfDataRoomAllocation#get(int)
 	 */
+	@Override
 	public RoomAllocation get(int id) {
 		try {
 			DataManagerPostgreSql.getInstance().prepare("SELECT public.roomallocation.*, public.course.*, public.user.*, public.room.*, public.chair.* " +
@@ -395,11 +391,10 @@ public class DataHandlerRoomAllocation implements IntfDataObservable, IntfDataFi
 		return null;
 	}
 	
-	/**
-	* Save a room allocation
-	* @param roomAllocation
-	* @return true on success
-	*/
+	/* (non-Javadoc)
+	 * @see de.sfgmbh.datalayer.core.daos.IntfDataRoomAllocation#save(de.sfgmbh.applayer.core.model.RoomAllocation)
+	 */
+	@Override
 	public boolean save(RoomAllocation ra) {
 		boolean returnStatus = false;
 		if (ra.getRoomAllocationId_() == -1) {
@@ -500,8 +495,8 @@ public class DataHandlerRoomAllocation implements IntfDataObservable, IntfDataFi
 		return returnRoomAllocation;
 	}
 
-	/**
-	 * 
+	/* (non-Javadoc)
+	 * @see de.sfgmbh.datalayer.core.daos.IntfDataRoomAllocation#update()
 	 */
 	@Override
 	public void update() {
@@ -517,9 +512,8 @@ public class DataHandlerRoomAllocation implements IntfDataObservable, IntfDataFi
 		}
 	}
 	
-	/**
-	 * 
-	 * @param observer
+	/* (non-Javadoc)
+	 * @see de.sfgmbh.datalayer.core.daos.IntfDataRoomAllocation#register(de.sfgmbh.datalayer.core.definitions.IntfDataObserver)
 	 */
 	@Override
 	public void register(IntfDataObserver observer) {
@@ -530,19 +524,18 @@ public class DataHandlerRoomAllocation implements IntfDataObservable, IntfDataFi
 		}
 	}
 	
-	/**
-	 * 
-	 * @param observer
+	/* (non-Javadoc)
+	 * @see de.sfgmbh.datalayer.core.daos.IntfDataRoomAllocation#unregister(de.sfgmbh.datalayer.core.definitions.IntfDataObserver)
 	 */
 	@Override
 	public void unregister(IntfDataObserver observer) {
 		observer_.remove(observer);
 	}
 
-	/**
-	 * Delete all denied allocations
-	 * @return true on success
+	/* (non-Javadoc)
+	 * @see de.sfgmbh.datalayer.core.daos.IntfDataRoomAllocation#clean()
 	 */
+	@Override
 	public boolean clean() {
 		boolean returnState = false;
 		try {
@@ -565,5 +558,6 @@ public class DataHandlerRoomAllocation implements IntfDataObservable, IntfDataFi
 		}
 		return returnState;
 	}
+
 
 }

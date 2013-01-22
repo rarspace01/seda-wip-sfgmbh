@@ -7,6 +7,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Observer;
 
+import de.sfgmbh.applayer.core.definitions.IntfRoom;
 import de.sfgmbh.applayer.core.model.Room;
 import de.sfgmbh.datalayer.core.definitions.IntfDataFilter;
 import de.sfgmbh.datalayer.core.definitions.IntfDataObservable;
@@ -73,8 +74,8 @@ public class DataHandlerRoom implements IntfDataRoom, IntfDataFilter,
 	 * return a {@link Room} Object from the given roomId
 	 */
 	@Override
-	public Room get(int roomId) {
-		Room returnRoom=null; 
+	public IntfRoom get(int roomId) {
+		IntfRoom returnRoom=null; 
 		
 		try {
 			DataManagerPostgreSql.getInstance().prepare(
@@ -115,7 +116,7 @@ public class DataHandlerRoom implements IntfDataRoom, IntfDataFilter,
 	 * deletes a {@link Room} Object in the database
 	 */
 	@Override
-	public void delete(Room room) {
+	public void delete(IntfRoom room) {
 
 		String SqlStatement = "DELETE FROM public.room " + "WHERE roomid = '"
 				+ room.getRoomId_() + "';";
@@ -143,7 +144,7 @@ public class DataHandlerRoom implements IntfDataRoom, IntfDataFilter,
 	 * saves an {@link Room} object in the database
 	 */
 	@Override
-	public void save(Room room) {
+	public void save(IntfRoom room) {
 
 		/* check if room has already an valid id
 		 * incase of <0 its a new Room and we use an INSERT otherwise we use an UPDATE

@@ -3,9 +3,9 @@ package de.sfgmbh.comlayer.organisation.controller;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import de.sfgmbh.applayer.core.definitions.IntfRoom;
 import de.sfgmbh.applayer.core.model.AppException;
 import de.sfgmbh.applayer.core.model.AppModel;
-import de.sfgmbh.applayer.core.model.Room;
 import de.sfgmbh.applayer.core.model.RoomAllocation;
 import de.sfgmbh.applayer.organisation.controller.CtrlRoomAllocation;
 import de.sfgmbh.applayer.organisation.definitions.IntfCtrlRoomAllocation;
@@ -74,7 +74,7 @@ public class CounterproposalFrameBtns implements ActionListener {
 		// Combobox action
 		if (this.ctrlAction.equals("combo")) {
 			RoomAllocation currentRoomAllocation = motherDialog.getProposalAllocation();
-			Room room = AppModel.getInstance().getRepositoryRoom().getByNumber(motherDialog.getCmbboxRoom().getSelectedItem().toString());
+			IntfRoom room = AppModel.getInstance().getRepositoryRoom().getByNumber(motherDialog.getCmbboxRoom().getSelectedItem().toString());
 			int time = motherDialog.getCmbboxTime().getSelectedIndex() + 1;
 			int day  = motherDialog.getCmbboxDay().getSelectedIndex() + 1;
 			

@@ -6,6 +6,7 @@ import java.util.List;
 
 import de.sfgmbh.applayer.core.definitions.IntfAppObservable;
 import de.sfgmbh.applayer.core.definitions.IntfAppObserver;
+import de.sfgmbh.applayer.core.definitions.IntfRoom;
 import de.sfgmbh.datalayer.core.definitions.IntfDataObserver;
 import de.sfgmbh.datalayer.core.model.DataModel;
 
@@ -32,16 +33,16 @@ public class RepositoryRoom implements IntfAppObservable, IntfDataObserver {
 		return DataModel.getInstance().getDataHandlerRoom().getAll();
 	}
 	
-	public Room getRoomById(int roomId) {
+	public IntfRoom getRoomById(int roomId) {
 		return DataModel.getInstance().getDataHandlerRoom().get(roomId);
 	}
 	
-	public void save(Room room){
+	public void save(IntfRoom room){
 		DataModel.getInstance().getDataHandlerRoom().save(room);
 		this.change();
 	}
 	
-	public void delete(Room room){
+	public void delete(IntfRoom room){
 		DataModel.getInstance().getDataHandlerRoom().delete(room);
 		this.change();
 	}
@@ -92,8 +93,8 @@ public class RepositoryRoom implements IntfAppObservable, IntfDataObserver {
 	 * @param roomNumber
 	 * @return a room object
 	 */
-	public Room getByNumber(String roomNumber_) {
-		Room room;
+	public IntfRoom getByNumber(String roomNumber_) {
+		IntfRoom room;
 		HashMap<String, String> filter=new HashMap<>();
 		filter.put("roomnumber", roomNumber_);
 		//we only need the first room

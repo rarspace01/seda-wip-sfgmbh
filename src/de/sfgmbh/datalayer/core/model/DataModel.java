@@ -9,7 +9,9 @@ import de.sfgmbh.datalayer.core.daos.DataHandlerCourse;
 import de.sfgmbh.datalayer.core.daos.DataHandlerRoom;
 import de.sfgmbh.datalayer.core.daos.DataHandlerRoomAllocation;
 import de.sfgmbh.datalayer.core.daos.DataHandlerUser;
+import de.sfgmbh.datalayer.core.definitions.IntfDataCourse;
 import de.sfgmbh.datalayer.core.definitions.IntfDataObserver;
+import de.sfgmbh.datalayer.core.definitions.IntfDataRoomAllocation;
 
 public class DataModel implements IntfAppObservable {
 
@@ -18,7 +20,7 @@ public class DataModel implements IntfAppObservable {
 	private DataExceptions exceptionsHandler_ = new DataExceptions();
 	private DataHandlerChair dataHandlerChair_ = new DataHandlerChair();
 	private DataHandlerUser dataHandlerUser_ = new DataHandlerUser();
-	private DataHandlerCourse dataHandlerCourse_ = new DataHandlerCourse();
+	private IntfDataCourse dataHandlerCourse_ = new DataHandlerCourse();
 	private DataHandlerRoom dataHandlerRoom_ = new DataHandlerRoom();
 	private DataHandlerRoomAllocation dataHandlerRoomAllocation_ = new DataHandlerRoomAllocation();
 
@@ -61,7 +63,7 @@ public class DataModel implements IntfAppObservable {
 	/**
 	 * @return the dataHandlerCourse
 	 */
-	public DataHandlerCourse getDataHandlerCourse() {
+	public IntfDataCourse getDataHandlerCourse() {
 		return dataHandlerCourse_;
 	}
 

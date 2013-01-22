@@ -7,6 +7,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import de.sfgmbh.applayer.core.model.Course;
+import de.sfgmbh.datalayer.core.definitions.IntfDataCourse;
 import de.sfgmbh.datalayer.core.definitions.IntfDataFilter;
 import de.sfgmbh.datalayer.core.definitions.IntfDataObservable;
 import de.sfgmbh.datalayer.core.definitions.IntfDataObserver;
@@ -20,14 +21,14 @@ import de.sfgmbh.datalayer.io.DataManagerPostgreSql;
  * @author hannes
  *
  */
-public class DataHandlerCourse implements IntfDataFilter, IntfDataObservable {
+public class DataHandlerCourse implements IntfDataFilter, IntfDataObservable, IntfDataCourse {
 	
 	private ArrayList<Object> observer_ = new ArrayList<Object>();
 
-	/**
-	 * Get all courses
-	 * @return a list of all courses
+	/* (non-Javadoc)
+	 * @see de.sfgmbh.datalayer.core.daos.IntfDataCourse#getAll()
 	 */
+	@Override
 	public List<Course> getAll() {
 		List<Course> listCourse = new ArrayList<Course>();
 		Course returnCourse = null;
@@ -62,6 +63,9 @@ public class DataHandlerCourse implements IntfDataFilter, IntfDataObservable {
 		return listCourse;
 	}
 	
+	/* (non-Javadoc)
+	 * @see de.sfgmbh.datalayer.core.daos.IntfDataCourse#getByFilter(java.util.HashMap)
+	 */
 	@Override
 	public List<Course> getByFilter(HashMap<String, String> filter) {
 		DataManagerPostgreSql filterDm = null;
@@ -117,11 +121,10 @@ public class DataHandlerCourse implements IntfDataFilter, IntfDataObservable {
 		return listCourse;
 	}
 	
-	/**
-	 * Get a course by its ID
-	 * @param id
-	 * @return a course
+	/* (non-Javadoc)
+	 * @see de.sfgmbh.datalayer.core.daos.IntfDataCourse#get(int)
 	 */
+	@Override
 	public Course get(int id) {
 		
 		try {
@@ -150,11 +153,10 @@ public class DataHandlerCourse implements IntfDataFilter, IntfDataObservable {
 		return null;
 	}
 	
-	/**
-	 * Forms a course object out of a given result set
-	 * @param ResultSet rs
-	 * @return a course object
+	/* (non-Javadoc)
+	 * @see de.sfgmbh.datalayer.core.daos.IntfDataCourse#makeCourse(java.sql.ResultSet)
 	 */
+	@Override
 	public Course makeCourse(ResultSet rs) {
 		Course returnCourse = new Course();
 		
@@ -180,8 +182,8 @@ public class DataHandlerCourse implements IntfDataFilter, IntfDataObservable {
 		return returnCourse;
 	}
 
-	/**
-	 * 
+	/* (non-Javadoc)
+	 * @see de.sfgmbh.datalayer.core.daos.IntfDataCourse#update()
 	 */
 	@Override
 	public void update() {
@@ -197,9 +199,8 @@ public class DataHandlerCourse implements IntfDataFilter, IntfDataObservable {
 		}
 	}
 	
-	/**
-	 * 
-	 * @param observer
+	/* (non-Javadoc)
+	 * @see de.sfgmbh.datalayer.core.daos.IntfDataCourse#register(de.sfgmbh.datalayer.core.definitions.IntfDataObserver)
 	 */
 	@Override
 	public void register(IntfDataObserver observer) {
@@ -210,20 +211,18 @@ public class DataHandlerCourse implements IntfDataFilter, IntfDataObservable {
 		}
 	}
 	
-	/**
-	 * 
-	 * @param observer
+	/* (non-Javadoc)
+	 * @see de.sfgmbh.datalayer.core.daos.IntfDataCourse#unregister(de.sfgmbh.datalayer.core.definitions.IntfDataObserver)
 	 */
 	@Override
 	public void unregister(IntfDataObserver observer) {
 		observer_.remove(observer);
 	}
 
-	/**
-	 * Save a course in the DB (this creates a course if its ID is -1 and otherwise updates an existing one)
-	 * @param course
-	 * @return true on success
+	/* (non-Javadoc)
+	 * @see de.sfgmbh.datalayer.core.daos.IntfDataCourse#save(de.sfgmbh.applayer.core.model.Course)
 	 */
+	@Override
 	public boolean save(Course course) {
 		
 		if (course.getCourseId_() == -1) {
@@ -291,11 +290,10 @@ public class DataHandlerCourse implements IntfDataFilter, IntfDataObservable {
 		}
 	}
 
-	/**
-	 * Delete a course from the DB
-	 * @param course
-	 * @return true on success
+	/* (non-Javadoc)
+	 * @see de.sfgmbh.datalayer.core.daos.IntfDataCourse#delete(de.sfgmbh.applayer.core.model.Course)
 	 */
+	@Override
 	public boolean delete(Course course) {
 		if (course != null) {
 			boolean returnState = true;
