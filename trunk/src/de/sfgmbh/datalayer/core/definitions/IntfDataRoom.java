@@ -18,7 +18,7 @@ public interface IntfDataRoom {
 	 * gets all {@link Room}s from the database
 	 * @return List of Room objects which are present in the database
 	 */
-	public List<Room> getAll();
+	public List<IntfRoom> getAll();
 
 	/**
 	 * 

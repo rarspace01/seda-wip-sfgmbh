@@ -35,7 +35,7 @@ public class RoomTabTable extends DefaultTableModel implements IntfAppObserver {
 		this.addRow(rowVector);
 	}
 
-	public void addRooms(List<Room> allRooms) {
+	public void addRooms(List<IntfRoom> allRooms) {
 		
 		for(int i=0; i<allRooms.size();i++){
 			this.addRoom(allRooms.get(i));

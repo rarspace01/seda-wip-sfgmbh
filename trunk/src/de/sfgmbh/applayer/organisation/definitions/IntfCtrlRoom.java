@@ -9,7 +9,7 @@ public interface IntfCtrlRoom {
 
 	public abstract void addRoom(IntfRoom room);
 
-	public abstract List<Room> getAllRooms();
+	public abstract List<IntfRoom> getAllRooms();
 
 	public abstract void delete(IntfRoom room);
 

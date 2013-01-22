@@ -89,7 +89,7 @@ public class CtrlRoomAllocation implements IntfCtrlRoomAllocation {
 		List<RoomAllocation> currentAllocations = AppModel.getInstance().getRepositoryRoomAllocation().getAllOpen();
 		HashMap<String, String> roomFilter = new HashMap<String, String>();
 		roomFilter.put("seats", String.valueOf(roomAllocation.getCourse_().getExpectedAttendees_()));
-		List<Room> matchingRooms = AppModel.getInstance().getRepositoryRoom().getByFilter(roomFilter);
+		List<IntfRoom> matchingRooms = AppModel.getInstance().getRepositoryRoom().getByFilter(roomFilter);
 		
 		// Iterate over all matching rooms
 		for (IntfRoom room : matchingRooms) {

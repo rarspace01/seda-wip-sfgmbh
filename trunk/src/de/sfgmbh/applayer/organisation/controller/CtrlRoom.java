@@ -23,7 +23,7 @@ public class CtrlRoom implements IntfCtrlRoom {
 	 * @see de.sfgmbh.applayer.organisation.controller.IntfCtrlRoom#getAllRooms()
 	 */
 	@Override
-	public List<Room> getAllRooms(){
+	public List<IntfRoom> getAllRooms(){
 		return AppModel.getInstance().getRepositoryRoom().getAll();
 	}
 	

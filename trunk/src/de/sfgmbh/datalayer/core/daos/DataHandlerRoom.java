@@ -32,8 +32,8 @@ public class DataHandlerRoom implements IntfDataRoom, IntfDataFilter,
 	 * retrieves all rooms from the database
 	 */
 	@Override
-	public List<Room> getAll() {
-		List<Room> listRooms = new ArrayList<Room>();
+	public List<IntfRoom> getAll() {
+		List<IntfRoom> listRooms = new ArrayList<IntfRoom>();
 
 		String sqlStatement = "SELECT * FROM public.room";
 
@@ -210,9 +210,9 @@ public class DataHandlerRoom implements IntfDataRoom, IntfDataFilter,
 	 * retrieves an {@link List} of {@link Room} objects based on a given {@link HashMap} filter
 	 */
 	@Override
-	public List<Room> getByFilter(HashMap<String, String> filter) {
+	public List<IntfRoom> getByFilter(HashMap<String, String> filter) {
 		DataManagerPostgreSql filterDm = null;
-		List<Room> listRoom = new ArrayList<Room>();
+		List<IntfRoom> listRoom = new ArrayList<IntfRoom>();
 
 		try {
 			if (filterDm == null) {
