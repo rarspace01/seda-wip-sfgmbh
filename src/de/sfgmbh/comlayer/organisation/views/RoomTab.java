@@ -38,7 +38,7 @@ public class RoomTab extends JPanel {
 	private static final long serialVersionUID = 1L;
 	private JTextField textFieldSeats;
 	private JTextField textFieldPCSeats;
-	private JTable raumverwaltungTable;
+	private JTable roommanagementTable;
 	private JLabel lblBuilding;
 	private JLabel lblSeats;
 	private JLabel lblPcseats;
@@ -47,7 +47,7 @@ public class RoomTab extends JPanel {
 	private JPanel buttonPanel;
 	private JButton btnEdit;
 	private JButton btnDelete;
-	private JButton btnRaumplanDrucken;
+	private JButton btnRoomplanPrint;
 	private JPanel uniIconPanel;
 	private JLabel lblRoom;
 	private JTextField txtRoom;
@@ -65,11 +65,11 @@ public class RoomTab extends JPanel {
 	private void initialize() {
 		setMinimumSize(new Dimension(100, 10));
 		setMaximumSize(new Dimension(100, 32767));
-		setLayout(new MigLayout("", "[140px:140px:140px][10px:10px:10px][][grow][grow][grow][100px:100px:100px]", "[][][grow]"));
+		setLayout(new MigLayout("", "[140px:140px:140px][10px:10px:10px][][grow 118][grow][grow][100px:100px:100px]", "[][][grow]"));
 
-		JLabel lblRaumverwaltung = new JLabel("Raumverwaltung");
-		lblRaumverwaltung.setFont(new Font("SansSerif", Font.BOLD, 13));
-		add(lblRaumverwaltung, "cell 0 0,alignx center,aligny bottom");
+		JLabel lblRoommanagement = new JLabel("Raumverwaltung");
+		lblRoommanagement.setFont(new Font("SansSerif", Font.BOLD, 13));
+		add(lblRoommanagement, "cell 0 0,alignx center,aligny bottom");
 
 		lblBuilding = new JLabel("Stockwerke:");
 		add(lblBuilding, "cell 2 0,aligny bottom");
@@ -110,35 +110,35 @@ public class RoomTab extends JPanel {
 		textFieldPCSeats.setColumns(10);
 		add(textFieldPCSeats, "cell 5 1,growx");
 
-		add(ViewManager.getInstance().getCoreLiveTickerPanel(), "cell 0 2,grow");
+		add(ViewManager.getInstance().getCoreLiveTickerPanel(), "cell 0 2,grow, aligny top");
 
 		organisationTableScrollPane = new JScrollPane();
 		organisationTableScrollPane.setToolTipText("<html>Selektieren Sie einen Raum um ihn zu bearbeiten, löschen oder<br> den dazugehörigen Raumplan ausgeben zu lassen.</html>");
 		add(organisationTableScrollPane, "flowx,cell 2 2 4 1,grow");
 
-		raumverwaltungTable = new JTable();
-		raumverwaltungTable
+		roommanagementTable = new JTable();
+		roommanagementTable
 				.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 
-		raumverwaltungTable.setModel(ViewManager.getInstance()
+		roommanagementTable.setModel(ViewManager.getInstance()
 				.getOrgaRoomTableModel());
 
 		// register tablemodel on repository
 		AppModel.getInstance().getRepositoryRoom()
 				.register(ViewManager.getInstance().getOrgaRoomTableModel());
 
-		raumverwaltungTable.getColumnModel().removeColumn(
-				raumverwaltungTable.getColumn("roomid"));
+		roommanagementTable.getColumnModel().removeColumn(
+				roommanagementTable.getColumn("roomid"));
 
 		this.loadRooms();
 
-		raumverwaltungTable.setShowVerticalLines(false);
-		raumverwaltungTable.setBackground(SystemColor.activeCaption);
-		organisationTableScrollPane.setViewportView(raumverwaltungTable);
+		roommanagementTable.setShowVerticalLines(false);
+		roommanagementTable.setBackground(SystemColor.activeCaption);
+		organisationTableScrollPane.setViewportView(roommanagementTable);
 		
 		// Enable table sorting for the model
 		rowSorter = new TableRowSorter<TableModel>();
-		raumverwaltungTable.setRowSorter(rowSorter);
+		roommanagementTable.setRowSorter(rowSorter);
 		rowSorter.setModel(ViewManager.getInstance()
 				.getOrgaRoomTableModel());
 		rowSorter.sort();
@@ -150,11 +150,13 @@ public class RoomTab extends JPanel {
 		add(buttonPanel, "cell 6 2,grow");
 
 		btnEdit = new JButton("hinzuf\u00FCgen");
+		btnEdit.setToolTipText("<html>Klicken Sie hier, <br>um einen neuen Raum hinzuzufügen</html>");
 		btnEdit.addActionListener(new RoomTabBtnsControl("add"));
 		btnEdit.setBounds(6, 11, 88, 23);
 		buttonPanel.add(btnEdit);
 
 		JButton btnBearbeiten = new JButton("bearbeiten");
+		btnBearbeiten.setToolTipText("<html>Selektieren Sie einen Raum <br> und klicken Sie auf bearbeiten um Eigenschaften zu ändern</html>");
 		btnBearbeiten.addActionListener(new RoomTabBtnsControl("edit"));
 		btnBearbeiten.setBounds(6, 45, 88, 23);
 		buttonPanel.add(btnBearbeiten);
@@ -164,13 +166,16 @@ public class RoomTab extends JPanel {
 		btnDelete.setBounds(6, 79, 88, 23);
 		buttonPanel.add(btnDelete);
 
-		btnRaumplanDrucken = new JButton("Raumplan");
-		btnRaumplanDrucken
+		btnRoomplanPrint = new JButton("Raumplan");
+		btnRoomplanPrint.setToolTipText("<html>Selektieren Sie einen Raum<br> und klicken Sie hier um einen Wochenplan <br>zur Belegung des Raumes zu erhalten</html>");
+		btnRoomplanPrint
 				.addActionListener(new RoomTabBtnsControl("plan"));
-		btnRaumplanDrucken.setBounds(6, 124, 94, 23);
-		buttonPanel.add(btnRaumplanDrucken);
+		btnRoomplanPrint.setBounds(6, 124, 94, 23);
+		buttonPanel.add(btnRoomplanPrint);
 	}
-
+	/**
+	 * loads all the rooms through the interface to the tablemodel
+	 */
 	public void loadRooms() {
 
 		IntfCtrlRoom ctrlRoom = new CtrlRoom();
@@ -178,9 +183,12 @@ public class RoomTab extends JPanel {
 		ViewManager.getInstance().getOrgaRoomTableModel()
 				.addRooms(ctrlRoom.getAllRooms());
 	}
-
-	public JTable getRaumverwaltungTable() {
-		return raumverwaltungTable;
+	/**
+	 * 
+	 * @return the raumverwaltungTable
+	 */
+	public JTable getRoommanagementTable() {
+		return roommanagementTable;
 	}
 
 	/**
@@ -203,13 +211,20 @@ public class RoomTab extends JPanel {
 	public JComboBox<String> getComboBoxLevel() {
 		return comboBoxLevel;
 	}
-
+	/**
+	 * 
+	 * @return the lblRoom
+	 */
 	public JLabel getLblRoom() {
 		if (lblRoom == null) {
 			lblRoom = new JLabel("Raum:");
 		}
 		return lblRoom;
 	}
+	/**
+	 * 
+	 * @return the txtRoom
+	 */
 	public JTextField getTxtRoom() {
 		if (txtRoom == null) {
 			txtRoom = new JTextField();

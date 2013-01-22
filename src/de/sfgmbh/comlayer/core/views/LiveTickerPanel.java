@@ -1,6 +1,7 @@
 package de.sfgmbh.comlayer.core.views;
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -19,6 +20,9 @@ import de.sfgmbh.applayer.core.controller.CtrlLiveTicker;
 import de.sfgmbh.applayer.core.definitions.IntfCtrlLiveTicker;
 import de.sfgmbh.applayer.core.model.RoomAllocation;
 import de.sfgmbh.comlayer.core.controller.ViewHelper;
+import java.awt.SystemColor;
+import javax.swing.border.MatteBorder;
+import javax.swing.border.LineBorder;
 
 /**
  * Panel for the live ticker
@@ -40,6 +44,8 @@ public class LiveTickerPanel extends JPanel {
 	 * Create the panel.
 	 */
 	public LiveTickerPanel() {
+		setToolTipText("<html>Achtung, bald starten hier gesammelte Veranstaltungen</html>");
+		setMaximumSize(new Dimension(140, 550));
 		createContents();
 		this.refresh();
 		this.cycles = 0;
@@ -67,26 +73,33 @@ public class LiveTickerPanel extends JPanel {
 	}
 	
 	private void createContents() {
-		setBorder(new CompoundBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "", TitledBorder.LEADING, TitledBorder.TOP, null, null), null));
+		setBorder(new MatteBorder(1, 1, 1, 1, (Color) SystemColor.activeCaption));
 		setLayout(null);
 		setBounds(0, 6, 140, 310);
 		add(getTxtHeader());
 		add(getTxtTicker());
 	}
-	
+	/**
+	 * 
+	 * @return the txtHeader
+	 */
 	public JTextArea getTxtHeader() {
 		if (txtHeader == null) {
 			txtHeader = new JTextArea();
-			txtHeader.setBorder(new TitledBorder(null, "", TitledBorder.LEFT, TitledBorder.TOP, null, null));
-			txtHeader.setBackground(new Color(240, 240, 240));
+			txtHeader.setBorder(new LineBorder(SystemColor.activeCaption));
+			txtHeader.setBackground(SystemColor.activeCaption);
 			txtHeader.setFont(new Font("Tahoma", Font.PLAIN, 11));
 			txtHeader.setEditable(false);
-			txtHeader.setText("Infos & nahe Termine:");
+			txtHeader.setText(" Infos & nahe Termine:");
 			txtHeader.setBounds(0, 0, 140, 23);
 		}
 		return txtHeader;
 	}
 	
+	/**
+	 * 
+	 * @return the txtTicker
+	 */
 	public JTextPane getTxtTicker() {
 		if (txtTicker == null) {
 			txtTicker = new JTextPane();
