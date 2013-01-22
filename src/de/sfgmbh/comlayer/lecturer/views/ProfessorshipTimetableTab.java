@@ -20,19 +20,19 @@ import net.miginfocom.swing.MigLayout;
 import de.sfgmbh.applayer.core.controller.SessionManager;
 import de.sfgmbh.applayer.core.model.AppModel;
 import de.sfgmbh.applayer.core.model.RoomAllocation;
-import de.sfgmbh.comlayer.core.controller.BaseCmbboxFilter;
 import de.sfgmbh.comlayer.core.controller.ViewHelper;
 import de.sfgmbh.comlayer.core.controller.ViewManager;
 import de.sfgmbh.comlayer.core.model.CmbboxFilterSemester;
 import de.sfgmbh.comlayer.core.views.BaseTab;
 import de.sfgmbh.comlayer.lecturer.controller.ProfessorshipTimetableTabBtn;
 
-public class ProfessorshipTimetableTab extends JPanel {
+public class ProfessorshipTimetableTab extends JPanel{
 
 	private static final long serialVersionUID = 1L;
 	private JTable lehrstuhlStundenplanTable_;
 	private JPanel panelProfessorshipPanel_;
 	private JComboBox<String> comboBoxSemesterFilter_;
+	private CmbboxFilterSemester comboBoxSemesterModel_= new CmbboxFilterSemester();
 	private int maxEntries_=0;
 
 
@@ -76,9 +76,9 @@ public class ProfessorshipTimetableTab extends JPanel {
 		
 		comboBoxSemesterFilter_= new JComboBox<>();
 		
-		comboBoxSemesterFilter_.setModel(new CmbboxFilterSemester());
-		comboBoxSemesterFilter_.addKeyListener(new BaseCmbboxFilter());
-		comboBoxSemesterFilter_.addActionListener(new BaseCmbboxFilter());
+		comboBoxSemesterFilter_.setModel(comboBoxSemesterModel_);
+		comboBoxSemesterFilter_.addKeyListener(comboBoxSemesterModel_);
+		comboBoxSemesterFilter_.addActionListener(comboBoxSemesterModel_);
 		comboBoxSemesterFilter_.setEditable(true);
 		comboBoxSemesterFilter_.setAutoscrolls(true);
 		
@@ -106,6 +106,10 @@ public class ProfessorshipTimetableTab extends JPanel {
 	
 			lehrstuhlStundenplanTable_.setBackground(Color.WHITE);
 			lehrstuhlStundenplanTable_.setModel(ViewManager.getInstance().getLecturerChairimetableTabTable());
+			
+			comboBoxSemesterModel_.register(ViewManager.getInstance().getLecturerChairimetableTabTable());
+			
+			//comboBoxSemesterFilter_
 			
 			lehrstuhlStundenplanTable_.getColumnModel().getColumn(0).setPreferredWidth(50);
 			lehrstuhlStundenplanTable_.getColumnModel().getColumn(1).setPreferredWidth(70);

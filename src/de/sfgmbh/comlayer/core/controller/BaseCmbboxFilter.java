@@ -5,8 +5,11 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
+import de.sfgmbh.comlayer.core.model.CmbboxFilterSemester;
+
 
 public class BaseCmbboxFilter implements KeyListener, ActionListener {
+
 
 	@Override
 	public void keyTyped(KeyEvent arg0) {
@@ -27,11 +30,11 @@ public class BaseCmbboxFilter implements KeyListener, ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		ViewManager.getInstance().getCoreBaseTableModel().change();
+		//ViewManager.getInstance().getCoreBaseTableModel().change(); -- with observer
 		ViewManager.getInstance().getCoreRoomTableModel().change();
 		ViewManager.getInstance().getOrgaRoomtableTableModel().change();
 		ViewManager.getInstance().getLecturerTimetableTabTable().change();
-		ViewManager.getInstance().getLecturerChairimetableTabTable().change();
+		//ViewManager.getInstance().getLecturerChairimetableTabTable().change(); - with observer
 		ViewManager.getInstance().getCoreTimetableTabTable().change();
 	}
 	

@@ -142,6 +142,12 @@ public class QuestionDialog extends JDialog implements IntfComDialogObserver, In
 	public void register(IntfComDialogObserver observer) {
 		this.currentObserver_ = observer;
 	}
+	
+	@Override
+	public void unregister(IntfComDialogObserver observer) {
+		this.currentObserver_ = null;
+		
+	}
 
 	@Override
 	public void update(String answer) {
@@ -152,4 +158,6 @@ public class QuestionDialog extends JDialog implements IntfComDialogObserver, In
 	public void answered(String answer) {
 		this.update(answer);
 	}
+
+
 }
