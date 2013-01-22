@@ -322,4 +322,18 @@ public class StartTab extends JPanel implements IntfComDialogObserver {
 			this.roomAllocation = null;
 		}
 	}
+
+	/**
+	 * @return the roomAllocation
+	 */
+	public RoomAllocation getRoomAllocation() {
+		return roomAllocation;
+	}
+
+	/**
+	 * @param roomAllocation the roomAllocation to set
+	 */
+	public void setRoomAllocation(RoomAllocation roomAllocation) {
+		this.roomAllocation = roomAllocation;
+	}
 }
