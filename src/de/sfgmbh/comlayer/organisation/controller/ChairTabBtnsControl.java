@@ -39,7 +39,7 @@ public class ChairTabBtnsControl implements ActionListener, IntfComDialogObserve
 		
 		// Add button is pressed
 		if (this.navAction.equals("add")) {
-			ChairCreateDialog newChairDialog = new ChairCreateDialog();
+			ChairCreateDialog newChairDialog = new ChairCreateDialog("create");
 			newChairDialog.setVisible(true);
 		}
 		

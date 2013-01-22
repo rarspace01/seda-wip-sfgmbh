@@ -42,10 +42,19 @@ public class ChairCreateDialog extends JDialog {
 	private Chair chair;
 
 	/**
-	 * Create the dialog.
+	 * Create the dialog
 	 */
 	public ChairCreateDialog() {
 		this.variant = "default";
+		this.chair = new Chair();
+		this.init();
+	}
+	
+	/**
+	 * Create the dialog based on a variant with no chair (create)
+	 */
+	public ChairCreateDialog(String variant) {
+		this.variant = variant;
 		this.chair = new Chair();
 		this.init();
 	}
@@ -88,6 +97,13 @@ public class ChairCreateDialog extends JDialog {
 		contentPanel.add(getCmbboxLecturer());
 		contentPanel.add(getTxtFaculity());
 		contentPanel.add(getTxtLevel());
+		
+		// Customize the create frame
+		if (this.variant.equals("create")) {
+			this.getLblLecturer().setVisible(false);
+			this.getCmbboxLecturer().setVisible(false);
+		}
+		
 		setLocationRelativeTo(null);
 		
 		// Customize if there is an old course and we are in edit mode

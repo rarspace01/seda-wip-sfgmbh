@@ -7,7 +7,6 @@ import de.sfgmbh.applayer.core.model.AppModel;
 import de.sfgmbh.applayer.core.model.Room;
 import de.sfgmbh.comlayer.core.controller.ViewManager;
 import de.sfgmbh.comlayer.core.definitions.IntfComDialogObserver;
-import de.sfgmbh.comlayer.core.views.InfoDialog;
 import de.sfgmbh.comlayer.core.views.QuestionDialog;
 import de.sfgmbh.comlayer.organisation.views.RoomFrame;
 import de.sfgmbh.comlayer.organisation.views.RoomTab;
@@ -21,7 +20,6 @@ import de.sfgmbh.comlayer.organisation.views.RoomTab;
 public class RoomTabBtnsControl implements ActionListener, IntfComDialogObserver {
 
 	private String navAction;
-	protected InfoDialog infoWindow;
 
 	public RoomTabBtnsControl() {
 		this.navAction = "default";
@@ -48,12 +46,12 @@ public class RoomTabBtnsControl implements ActionListener, IntfComDialogObserver
 		roomFrame.getTxtVisualizer().setText("");
 		roomFrame.getTxtWhiteboards().setText("");
 		
-		// Raum hinzufügen Button is pressed
+		// Add Button is pressed
 		if (this.navAction.equals("add")) {
 			roomFrame.setVisible(true);
 		}
 
-		// Raum bearbeiten Button is pressed
+		// Edit Button is pressed
 		if (this.navAction.equals("edit")) {
 
 			if(roomTab.getRaumverwaltungTable().getSelectedRow()>=0){
@@ -92,7 +90,7 @@ public class RoomTabBtnsControl implements ActionListener, IntfComDialogObserver
 			
 		}
 
-		// Raum löschen Button is pressed
+		// Delte Button is pressed
 		if (this.navAction.equals("del")) {
 			
 				if(roomTab.getRaumverwaltungTable().getSelectedRow()>=0){
@@ -110,7 +108,7 @@ public class RoomTabBtnsControl implements ActionListener, IntfComDialogObserver
 				}
 		}
 
-		// Raumplan Button is pressed
+		// Plan Button is pressed
 		if (this.navAction.equals("plan")) {
 			
 			System.out.println("Roomplan klicked");
