@@ -77,16 +77,20 @@ public class AppModel implements IntfAppObservable, IntfAppModel {
 	
 	@Override
 	public void update() {
-		for (Object o : observer_) {
-			if (o instanceof IntfAppObserver) {
-				((IntfAppObserver) o).change();
+		// Create a private observer list to avoid ConcurrentModificationException
+		@SuppressWarnings("unchecked")
+		ArrayList<IntfAppObserver> currentObservers = (ArrayList<IntfAppObserver>) observer_.clone();
+				
+		for (IntfAppObserver observer : currentObservers) {
+			if (observer instanceof IntfAppObserver) {
+				observer.change();
 			}
 		}
 	}
 	
 
 	@Override
-	public void register(Object observer) {
+	public void register(IntfAppObserver observer) {
 		if (observer instanceof IntfAppObserver) {
 			observer_.add(observer);
 		} else {
@@ -96,7 +100,7 @@ public class AppModel implements IntfAppObservable, IntfAppModel {
 	}
 	
 	@Override
-	public void unregister(Object observer) {
+	public void unregister(IntfAppObserver observer) {
 		observer_.remove(observer);
 	}
 

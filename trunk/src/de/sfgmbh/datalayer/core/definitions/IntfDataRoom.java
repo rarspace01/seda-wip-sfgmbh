@@ -1,5 +1,6 @@
 package de.sfgmbh.datalayer.core.definitions;
 
+import java.sql.ResultSet;
 import java.util.List;
 
 import de.sfgmbh.applayer.core.model.Room;
@@ -59,5 +60,11 @@ public interface IntfDataRoom {
 	 */
 	public void save(Room room);
 	
+	/**
+	 * creates Room objects from a given {@link ResultSet}
+	 * @param resultSet
+	 * @return {@link Room}
+	 */
+	public Room makeRoom(ResultSet resultSet);
 	
 }
