@@ -21,7 +21,7 @@ import de.sfgmbh.applayer.core.model.Room;
  * @author mario
  *
  */
-public class CmbboxFilterLevel extends DefaultComboBoxModel<String> implements IntfAppObserver,IntfAppObservable,KeyListener, ActionListener {
+public class CmbboxFilterLevel extends DefaultComboBoxModel<String> implements IntfAppObserver{
 
 	private static final long serialVersionUID = 1L;
 	private JComboBox<String> dependentComboBox;
@@ -57,53 +57,5 @@ public class CmbboxFilterLevel extends DefaultComboBoxModel<String> implements I
 		
 		// Unregister this model as it is no longer used and would cause unwanted additional queries
 		AppModel.getInstance().getRepositoryRoom().unregister(this);
-	}
-
-	@Override
-	public void keyTyped(KeyEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void keyPressed(KeyEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void keyReleased(KeyEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void update() {
-		
-		// Create a private observer list to avoid ConcurrentModificationException
-		@SuppressWarnings("unchecked")
-		ArrayList<Object> currentObservers = (ArrayList<Object>) observer_.clone();
-		
-		for (Object o : (currentObservers)) {
-			if (o instanceof IntfAppObserver) {
-				((IntfAppObserver) o).change();
-			}
-		}
-		
-	}
-
-	@Override
-	public void register(Object observer) {
-		observer_.add(observer);
-	}
-
-	@Override
-	public void unregister(Object observer) {
-		observer_.remove(observer);
-	}
-
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		update();
 	}
 }
