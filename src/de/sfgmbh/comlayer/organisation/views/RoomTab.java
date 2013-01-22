@@ -13,6 +13,8 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
+import javax.swing.table.TableModel;
+import javax.swing.table.TableRowSorter;
 
 import net.miginfocom.swing.MigLayout;
 import de.sfgmbh.applayer.core.model.AppModel;
@@ -23,6 +25,13 @@ import de.sfgmbh.comlayer.core.views.BaseTab;
 import de.sfgmbh.comlayer.organisation.controller.RoomTabBtnsControl;
 import de.sfgmbh.comlayer.organisation.controller.RoomTabCmbboxFilter;
 
+/**
+ * Tab for the room organization
+ * 
+ * @author anna
+ * @author denis
+ *
+ */
 public class RoomTab extends JPanel {
 
 	private static final long serialVersionUID = 1L;
@@ -41,6 +50,7 @@ public class RoomTab extends JPanel {
 	private JPanel uniIconPanel;
 	private JLabel lblRoom;
 	private JTextField txtRoom;
+	private TableRowSorter<TableModel> rowSorter;
 	
 	/**
 	 * Create the frame.
@@ -123,6 +133,13 @@ public class RoomTab extends JPanel {
 		raumverwaltungTable.setShowVerticalLines(false);
 		raumverwaltungTable.setBackground(SystemColor.activeCaption);
 		organisationTableScrollPane.setViewportView(raumverwaltungTable);
+		
+		// Enable table sorting for the model
+		rowSorter = new TableRowSorter<TableModel>();
+		raumverwaltungTable.setRowSorter(rowSorter);
+		rowSorter.setModel(ViewManager.getInstance()
+				.getOrgaRoomTableModel());
+		rowSorter.sort();
 
 		buttonPanel = new JPanel();
 		buttonPanel.setLayout(null);
@@ -131,7 +148,7 @@ public class RoomTab extends JPanel {
 		add(buttonPanel, "cell 6 2,grow");
 
 		btnEdit = new JButton("hinzuf\u00FCgen");
-		btnEdit.addActionListener(new RoomTabBtnsControl("hinz"));
+		btnEdit.addActionListener(new RoomTabBtnsControl("add"));
 		btnEdit.setBounds(6, 11, 88, 23);
 		buttonPanel.add(btnEdit);
 
@@ -141,13 +158,13 @@ public class RoomTab extends JPanel {
 		buttonPanel.add(btnBearbeiten);
 
 		btnDelete = new JButton("l\u00F6schen");
-		btnDelete.addActionListener(new RoomTabBtnsControl("loschen"));
+		btnDelete.addActionListener(new RoomTabBtnsControl("del"));
 		btnDelete.setBounds(6, 79, 88, 23);
 		buttonPanel.add(btnDelete);
 
 		btnRaumplanDrucken = new JButton("Raumplan");
 		btnRaumplanDrucken
-				.addActionListener(new RoomTabBtnsControl("Raumplan"));
+				.addActionListener(new RoomTabBtnsControl("plan"));
 		btnRaumplanDrucken.setBounds(6, 124, 94, 23);
 		buttonPanel.add(btnRaumplanDrucken);
 	}
@@ -198,5 +215,12 @@ public class RoomTab extends JPanel {
 			txtRoom.addActionListener(new RoomTabCmbboxFilter());
 		}
 		return txtRoom;
+	}
+
+	/**
+	 * @return the rowSorter
+	 */
+	public TableRowSorter<TableModel> getRowSorter() {
+		return rowSorter;
 	}
 }
