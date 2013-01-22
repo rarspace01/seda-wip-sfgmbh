@@ -66,7 +66,7 @@ public class RoomTab extends JPanel {
 	private void initialize() {
 		setMinimumSize(new Dimension(100, 10));
 		setMaximumSize(new Dimension(100, 32767));
-		setLayout(new MigLayout("", "[140px:140px:140px][10px:10px:10px][][grow 118][grow][grow][100px:100px:100px]", "[][][grow]"));
+		setLayout(new MigLayout("", "[140px:140px:140px][10px:10px:10px][grow][grow 118][grow][grow][100px:100px:100px]", "[][][grow]"));
 
 		JLabel lblRoommanagement = new JLabel("Raumverwaltung");
 		lblRoommanagement.setFont(new Font("SansSerif", Font.BOLD, 13));
@@ -114,7 +114,7 @@ public class RoomTab extends JPanel {
 		add(ViewManager.getInstance().getCoreLiveTickerPanel(), "cell 0 2,grow, aligny top");
 
 		organisationTableScrollPane = new JScrollPane();
-		organisationTableScrollPane.setToolTipText("<html>Selektieren Sie einen Raum um ihn zu bearbeiten, löschen oder<br> den dazugehörigen Raumplan ausgeben zu lassen.</html>");
+		organisationTableScrollPane.setToolTipText("");
 		add(organisationTableScrollPane, "flowx,cell 2 2 4 1,grow");
 
 		roommanagementTable = new JTable();
@@ -164,6 +164,7 @@ public class RoomTab extends JPanel {
 		buttonPanel.add(btnBearbeiten);
 
 		btnDelete = new JButton("l\u00F6schen");
+		btnDelete.setToolTipText("<html>Selektieren Sie einen Raum um ihn zu löschen</html>");
 		btnDelete.addActionListener(new RoomTabActionListener("del"));
 		btnDelete.setBounds(6, 79, 88, 23);
 		buttonPanel.add(btnDelete);
@@ -172,7 +173,7 @@ public class RoomTab extends JPanel {
 		btnRoomplanPrint.setToolTipText("<html>Selektieren Sie einen Raum<br> und klicken Sie hier um einen Wochenplan <br>zur Belegung des Raumes zu erhalten</html>");
 		btnRoomplanPrint
 				.addActionListener(new RoomTabActionListener("plan"));
-		btnRoomplanPrint.setBounds(6, 124, 94, 23);
+		btnRoomplanPrint.setBounds(6, 145, 88, 23);
 		buttonPanel.add(btnRoomplanPrint);
 		
 		this.loadRooms();

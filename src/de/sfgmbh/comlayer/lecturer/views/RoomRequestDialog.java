@@ -80,6 +80,7 @@ public class RoomRequestDialog extends JDialog {
 	 * Create the frame.
 	 */
 	public RoomRequestDialog(Course course) {
+		setTitle("Raumanfrage erstellen");
 		// Create the filter
 		HashMap<String,String> filter = new HashMap<String,String>();
 		filter.put("seats", String.valueOf(course.getExpectedAttendees_()));
@@ -165,7 +166,6 @@ public class RoomRequestDialog extends JDialog {
 	
 	private void initialize() {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(RoomRequestDialog.class.getResource("/de/sfgmbh/comlayer/core/images/HUT_klein.png")));
-		setTitle("Konfliktlösung");
 		setBounds(100, 100, 373, 462);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EtchedBorder(EtchedBorder.LOWERED, Color.WHITE, Color.LIGHT_GRAY));
@@ -173,13 +173,14 @@ public class RoomRequestDialog extends JDialog {
 		contentPane.setLayout(null);
 		
 		JButton btnSenden = new JButton("Senden");
-		btnSenden.setBounds(211, 372, 90, 28);
+		btnSenden.setToolTipText("<html>Schicken Sie Ihre Raumanfrage mit dem gewünschten Raum an die Verwaltung</html>");
+		btnSenden.setBounds(177, 385, 90, 28);
 		btnSenden.addActionListener(new RoomRequestDialogBtns(this, "send"));
 		contentPane.add(btnSenden);
 		
 		JButton btnAbbrechen = new JButton("Abbrechen");
 		btnAbbrechen.addActionListener(new RoomRequestDialogBtns(this, "cancel"));
-		btnAbbrechen.setBounds(47, 372, 90, 28);
+		btnAbbrechen.setBounds(77, 385, 90, 28);
 		contentPane.add(btnAbbrechen);
 		contentPane.add(getTxtrUnterbreitenSieDem());
 		contentPane.add(getLblRoom());
@@ -248,6 +249,7 @@ public class RoomRequestDialog extends JDialog {
 	public JComboBox<String> getCmbboxRoom() {
 		if (cmbboxRoom == null) {
 			cmbboxRoom = new JComboBox<String>();
+			cmbboxRoom.setToolTipText("Geben Sie einen gewünschten Raum direkt ein");
 			cmbboxRoom.setModel(new CmbboxFilterRoomnumber(cmbboxRoom, "select"));
 			cmbboxRoom.setEditable(true);
 			cmbboxRoom.addActionListener(new RoomRequestDialogBtns(this, "combo"));
@@ -258,6 +260,7 @@ public class RoomRequestDialog extends JDialog {
 	public JComboBox<String> getCmbboxDay() {
 		if (cmbboxDay == null) {
 			cmbboxDay = new JComboBox<String>();
+			cmbboxDay.setToolTipText("Geben Sie den Tag der Lehrveranstaltung ein");
 			cmbboxDay.setModel(new CmbboxFilterDay("select"));
 			cmbboxDay.addActionListener(new RoomRequestDialogBtns(this, "combo"));
 			cmbboxDay.setBounds(139, 95, 102, 20);
@@ -267,6 +270,7 @@ public class RoomRequestDialog extends JDialog {
 	public JComboBox<String> getCmbboxTime() {
 		if (cmbboxTime == null) {
 			cmbboxTime = new JComboBox<String>();
+			cmbboxTime.setToolTipText("Geben Sie die Uhrzeit der Lehrveranstaltung an");
 			cmbboxTime.setModel(new CmbboxFilterTime("select"));
 			cmbboxTime.addActionListener(new RoomRequestDialogBtns(this, "combo"));
 			cmbboxTime.setBounds(139, 120, 102, 20);
@@ -304,6 +308,7 @@ public class RoomRequestDialog extends JDialog {
 	public JTextField getTxtSeats() {
 		if (txtSeats == null) {
 			txtSeats = new JTextField();
+			txtSeats.setToolTipText("Geben Sie die Anzahl der Sitzplätze für die Studenten an");
 			txtSeats.setBounds(91, 224, 46, 20);
 			txtSeats.setColumns(10);
 		}
@@ -312,6 +317,7 @@ public class RoomRequestDialog extends JDialog {
 	public JTextField getTxtPcs() {
 		if (txtPcs == null) {
 			txtPcs = new JTextField();
+			txtPcs.setToolTipText("Geben Sie die benötigte Anzahl von PC-Arbeitsplätzen an");
 			txtPcs.setText("0");
 			txtPcs.setColumns(10);
 			txtPcs.setBounds(91, 255, 46, 20);
@@ -321,6 +327,7 @@ public class RoomRequestDialog extends JDialog {
 	public JTextField getTxtBeamer() {
 		if (txtBeamer == null) {
 			txtBeamer = new JTextField();
+			txtBeamer.setToolTipText("Geben Sie die benötigte Anzahl von Beamern an");
 			txtBeamer.setText("0");
 			txtBeamer.setColumns(10);
 			txtBeamer.setBounds(91, 286, 46, 20);
@@ -330,6 +337,7 @@ public class RoomRequestDialog extends JDialog {
 	public JTextField getTxtVisual() {
 		if (txtVisual == null) {
 			txtVisual = new JTextField();
+			txtVisual.setToolTipText("Geben Sie die benötigte Anzahl von Visualizer an");
 			txtVisual.setText("0");
 			txtVisual.setColumns(10);
 			txtVisual.setBounds(91, 316, 46, 20);
@@ -339,6 +347,7 @@ public class RoomRequestDialog extends JDialog {
 	public JTextField getTxtOverhead() {
 		if (txtOverhead == null) {
 			txtOverhead = new JTextField();
+			txtOverhead.setToolTipText("Geben Sie die benötigte Anzahl von Overheads an");
 			txtOverhead.setText("0");
 			txtOverhead.setColumns(10);
 			txtOverhead.setBounds(255, 224, 46, 20);
@@ -348,6 +357,7 @@ public class RoomRequestDialog extends JDialog {
 	public JTextField getTxtBoard() {
 		if (txtBoard == null) {
 			txtBoard = new JTextField();
+			txtBoard.setToolTipText("Geben Sie die benötigte Anzahl von Tafeln an");
 			txtBoard.setText("0");
 			txtBoard.setColumns(10);
 			txtBoard.setBounds(255, 255, 46, 20);
@@ -357,6 +367,7 @@ public class RoomRequestDialog extends JDialog {
 	public JTextField getTxtWhiteboard() {
 		if (txtWhiteboard == null) {
 			txtWhiteboard = new JTextField();
+			txtWhiteboard.setToolTipText("Geben Sie die benötigte Anzahl von Whiteboards an");
 			txtWhiteboard.setText("0");
 			txtWhiteboard.setColumns(10);
 			txtWhiteboard.setBounds(255, 286, 46, 20);
@@ -366,14 +377,16 @@ public class RoomRequestDialog extends JDialog {
 	public JButton getBtnNew() {
 		if (btnNew == null) {
 			btnNew = new JButton("Vorschlag");
+			btnNew.setToolTipText("<html>Geben Sie Ihre Wunschgrößen ein <br> und Klicken Sie hier, um sich einen passenden <br>Raum oben anzeigen zu lassen</html>");
 			btnNew.addActionListener(new RoomRequestDialogBtns(this, "newSuggestion"));
-			btnNew.setBounds(211, 319, 90, 28);
+			btnNew.setBounds(230, 316, 90, 28);
 		}
 		return btnNew;
 	}
 	public JComboBox<String> getCmbboxSemester() {
 		if (cmbboxSemester == null) {
 			cmbboxSemester = new JComboBox<String>();
+			cmbboxSemester.setToolTipText("Geben Sie das Semester der Lehrveranstaltung ein");
 			cmbboxSemester.setModel(new CmbboxFilterSemester("select"));
 			cmbboxSemester.addActionListener(new RoomRequestDialogBtns(this, "combo"));
 			cmbboxSemester.setBounds(139, 71, 102, 20);

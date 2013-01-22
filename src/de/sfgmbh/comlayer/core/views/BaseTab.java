@@ -40,6 +40,8 @@ import de.sfgmbh.comlayer.core.model.CmbboxFilterLevel;
 import de.sfgmbh.comlayer.core.model.CmbboxFilterRoomnumber;
 import de.sfgmbh.comlayer.core.model.CmbboxFilterSeats;
 import de.sfgmbh.comlayer.core.model.CmbboxFilterSemester;
+import javax.swing.border.LineBorder;
+import java.awt.Color;
 
 /**
  * The very first content users see when they start the application
@@ -69,9 +71,9 @@ public class BaseTab extends JFrame {
 	private CmbboxFilterSeats comboBoxSeatsModel_;
 	private JComboBox<String> comboBoxLevelFilter;
 	private CmbboxFilterLevel comboBoxLevelModel_;
-	private JLabel lblLehrveranstaltung;
-	private JLabel lblLehrstuhl;
-	private JLabel lblDozent;
+	private JLabel lblCourse;
+	private JLabel lblChair;
+	private JLabel lblLecturer;
 	private JLabel lblLoggedIn;
 	private JLabel lblSemester;
 	private JLabel lblRoomnumber;
@@ -109,13 +111,13 @@ public class BaseTab extends JFrame {
 				.getImage(
 						BaseTab.class
 								.getResource("/de/sfgmbh/comlayer/core/images/HUT_klein.png")));
-		setTitle("UnivIS 2.0");
+		setTitle("UnivIS 2.0 - Stundenpläne, Wochenpläne, Verwaltung von Lehrveranstaltungen, Raumverwaltung,...");
 		createContents();
 	}
 
 	private void createContents() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 930, 640);
+		setBounds(100, 100, 921, 640);
 		contentPane = new JLayeredPane();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -142,14 +144,14 @@ public class BaseTab extends JFrame {
 		mainFilterPanel.add(getLblDozent(), "cell 2 0,aligny bottom");
 		mainFilterPanel.add(getLblSemester(), "cell 3 0,aligny bottom");
 
-		mainFilterPanel.add(getComboBoxOrgaFilter(), "cell 0 1,alignx left");
+		mainFilterPanel.add(getComboBoxOrgaFilter(), "cell 0 1,growx");
 		mainFilterPanel.add(getComboBoxChairFilter(), "cell 1 1,alignx center");
 		mainFilterPanel.add(getComboBoxLecturerFilter(), "cell 2 1,growx");
-		mainFilterPanel.add(getComboBoxSemesterFilter(), "cell 3 1,alignx left");
+		mainFilterPanel.add(getComboBoxSemesterFilter(), "cell 3 1,growx");
 		startScreenPanel.add(getRdbtnCourse(),
 				"cell 0 0,aligny bottom");
 		
-				startScreenPanel.add(getLblUniicon(), "cell 3 0,alignx center");
+				startScreenPanel.add(getLblUniicon(), "cell 3 0,alignx right");
 		startScreenPanel.add(getRdbtnRooms(), "cell 0 1");
 		
 		mainTableScrollPane = new JScrollPane();
@@ -161,8 +163,8 @@ public class BaseTab extends JFrame {
 		
 
 		JPanel buttonPanel = new JPanel();
-		buttonPanel.setMinimumSize(new Dimension(140, 10));
-		buttonPanel.setMaximumSize(new Dimension(140, 32767));
+		buttonPanel.setMinimumSize(new Dimension(120, 10));
+		buttonPanel.setMaximumSize(new Dimension(120, 32767));
 		startScreenPanel.add(buttonPanel, "cell 3 2,grow");
 		buttonPanel.setLayout(null);
 		buttonPanel.add(getBtnRoomplan());
@@ -184,24 +186,24 @@ public class BaseTab extends JFrame {
 	 * @return the lblLehrveranstaltung
 	 */
 	public JLabel getLblLehrveranstaltung() {
-		lblLehrveranstaltung = new JLabel("Lehrveranstaltung:");
-		return lblLehrveranstaltung;
+		lblCourse = new JLabel("Lehrveranstaltung:");
+		return lblCourse;
 	}
 	/**
 	 * 
 	 * @return the lblLehrstuhl
 	 */
 	public JLabel getLblLehrstuhl() {
-		lblLehrstuhl = new JLabel("Lehrstuhl:");
-		return lblLehrstuhl;
+		lblChair = new JLabel("Lehrstuhl:");
+		return lblChair;
 	}
 	/**
 	 * 
 	 * @return the lblDozent
 	 */
 	public JLabel getLblDozent() {
-		lblDozent = new JLabel("Dozent:");
-		return lblDozent;
+		lblLecturer = new JLabel("Dozent:");
+		return lblLecturer;
 	}
 	/**
 	 * 
@@ -469,7 +471,7 @@ public class BaseTab extends JFrame {
 	public JButton getBtnLogin() {
 		if (btnLogin == null) {
 			btnLogin = new JButton("Einloggen");
-			btnLogin.setToolTipText("");
+			btnLogin.setToolTipText("Lehrstuhl- und Verwaltungsmitarbeitern können sich hier anmelden");
 			btnLogin.addActionListener(new BaseLogin());
 		}
 		return btnLogin;
@@ -481,6 +483,7 @@ public class BaseTab extends JFrame {
 	public JButton getBtnLogout() {
 		if (btnLogout == null) {
 			btnLogout = new JButton("Logout");
+			btnLogout.setBackground(SystemColor.activeCaption);
 			btnLogout.addActionListener(new BaseLogin("logout"));
 		}
 		return btnLogout;
@@ -555,13 +558,16 @@ public class BaseTab extends JFrame {
 	public JPanel getPanelLogin() {
 		if (panelLogin == null) {
 			panelLogin = new JPanel();
+			panelLogin.setBorder(new LineBorder(new Color(153, 180, 209), 2));
+			panelLogin.setBackground(SystemColor.activeCaptionBorder);
 			panelLogin.setToolTipText("<html>Dozenten und Verwaltungsmitarbeiter können sich hier <br>zu ihrem persönlichen Funktionsbereich einloggen</html>");
-			panelLogin.setBounds(0, 339, 100, 121);
-			panelLogin.setLayout(new MigLayout("", "[grow]", "[][][][][]"));
-			panelLogin.add(getLblUsername(), "cell 0 0");
+			panelLogin.setBounds(0, 379, 119, 121);
+			panelLogin.setAlignmentX(BOTTOM_ALIGNMENT);
+			panelLogin.setLayout(new MigLayout("", "[grow,center]", "[][][][][]"));
+			panelLogin.add(getLblUsername(), "cell 0 0,alignx left");
 			panelLogin.add(getTxtUsername(), "cell 0 1,growx");
 			lblPasswort = new JLabel("Passwort:");
-			panelLogin.add(lblPasswort, "cell 0 2");
+			panelLogin.add(lblPasswort, "cell 0 2,alignx left");
 			panelLogin.add(getPwdPasswort(), "cell 0 3,growx");
 			panelLogin.add(getBtnLogin(), "cell 0 4,alignx right");
 		}
@@ -574,10 +580,12 @@ public class BaseTab extends JFrame {
 	public JPanel getPanelLogout() {
 		if (panelLogout == null) {
 			panelLogout = new JPanel();
-			panelLogout.setBounds(0, 353, 104, 55);
-			panelLogout.setLayout(new MigLayout("", "[140px:140px:140px]", "[][]"));
+			panelLogout.setBorder(new LineBorder(new Color(153, 180, 209), 2));
+			panelLogout.setBackground(SystemColor.activeCaptionBorder);
+			panelLogout.setBounds(0, 445, 119, 55);
+			panelLogout.setLayout(new MigLayout("", "[140px:140px:140px,center]", "[][]"));
 			lblLoggedIn = new JLabel("Sie sind eingeloggt!");
-			panelLogout.add(lblLoggedIn, "cell 0 0");
+			panelLogout.add(lblLoggedIn, "cell 0 0,alignx left");
 			panelLogout.add(getBtnLogout(), "cell 0 1,alignx left");
 			panelLogout.setVisible(false);
 		}
@@ -620,10 +628,11 @@ public class BaseTab extends JFrame {
 	public JButton getBtnRoomplan() {
 		if (btnRoomplan == null) {
 			btnRoomplan = new JButton("Raumplan");
+			btnRoomplan.setBackground(SystemColor.inactiveCaption);
 			btnRoomplan.setToolTipText("<html>Selektieren Sie einen Raum <br> um dafür einen Raumplan zu generieren </html>");
 			btnRoomplan.setVisible(false);
 			btnRoomplan.setEnabled(true);
-			btnRoomplan.setBounds(0, 40, 80, 23);
+			btnRoomplan.setBounds(0, 40, 104, 23);
 			btnRoomplan.addActionListener(new BaseBtns(
 					"roomtable"));
 		}

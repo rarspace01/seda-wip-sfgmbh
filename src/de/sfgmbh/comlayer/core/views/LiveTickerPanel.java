@@ -45,7 +45,7 @@ public class LiveTickerPanel extends JPanel {
 	 */
 	public LiveTickerPanel() {
 		setToolTipText("<html>Achtung, bald starten hier gesammelte Veranstaltungen</html>");
-		setMaximumSize(new Dimension(140, 550));
+		setMaximumSize(new Dimension(140, 530));
 		createContents();
 		this.refresh();
 		this.cycles = 0;
