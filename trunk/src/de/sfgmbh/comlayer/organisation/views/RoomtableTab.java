@@ -31,6 +31,8 @@ public class RoomtableTab extends JPanel {
 	private JScrollPane scrollPane_;
 	private JLabel lblSemester;
 	private JComboBox<String> comboBoxSemesterFilter;
+	private CmbboxFilterSemester comboBoxSemesterModel_= new CmbboxFilterSemester();
+
 	
 	public RoomtableTab() {
 		initialize();
@@ -86,11 +88,13 @@ public class RoomtableTab extends JPanel {
 		lblSemester = new JLabel("Semester:");
 		
 		comboBoxSemesterFilter = new JComboBox<String>();
-		comboBoxSemesterFilter.setModel(new CmbboxFilterSemester());
-		comboBoxSemesterFilter.addKeyListener(new BaseCmbboxFilter());
-		comboBoxSemesterFilter.addActionListener(new BaseCmbboxFilter());
+		comboBoxSemesterFilter.setModel(comboBoxSemesterModel_);
+		comboBoxSemesterFilter.addKeyListener(comboBoxSemesterModel_);
+		comboBoxSemesterFilter.addActionListener(comboBoxSemesterModel_);
 		comboBoxSemesterFilter.setEditable(true);
 		comboBoxSemesterFilter.setAutoscrolls(true);
+		
+		comboBoxSemesterModel_.register(ViewManager.getInstance().getOrgaRoomtableTableModel());
 		
 		add(lblSemester, "cell 2 0,alignx left,aligny center");
 		add(comboBoxSemesterFilter, "cell 2 0,alignx right,aligny center");

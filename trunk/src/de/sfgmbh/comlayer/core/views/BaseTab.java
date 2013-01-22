@@ -381,6 +381,10 @@ public class BaseTab extends JFrame {
 			roomTable.setShowVerticalLines(false);
 			roomTable.setModel(ViewManager.getInstance()
 					.getCoreRoomTableModel());
+			
+			this.comboBoxSemesterModel_.register(ViewManager.getInstance()
+					.getCoreRoomTableModel());
+			
 			roomTable.setBackground(SystemColor.activeCaption);
 			mainTableScrollPane.setViewportView(roomTable);
 			roomTable.getColumnModel().getColumn(0).setResizable(false);
