@@ -1,7 +1,10 @@
 de.sfgmbh.applayer.core.controller
 de.sfgmbh.applayer.core.definitions
 de.sfgmbh.applayer.core.model
+de.sfgmbh.applayer.lecturer.controller
+de.sfgmbh.applayer.lecturer.definitions
 de.sfgmbh.applayer.organisation.controller
+de.sfgmbh.applayer.organisation.definitions
 de.sfgmbh.comlayer.core.controller
 de.sfgmbh.comlayer.core.definitions
 de.sfgmbh.comlayer.core.model
