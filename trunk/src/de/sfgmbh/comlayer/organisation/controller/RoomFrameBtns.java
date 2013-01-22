@@ -3,6 +3,7 @@ package de.sfgmbh.comlayer.organisation.controller;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import de.sfgmbh.applayer.core.definitions.IntfRoom;
 import de.sfgmbh.applayer.core.model.AppModel;
 import de.sfgmbh.applayer.core.model.Room;
 import de.sfgmbh.applayer.organisation.controller.CtrlRoom;
@@ -128,8 +129,8 @@ public class RoomFrameBtns implements ActionListener {
 				ViewManager.getInstance().getOrgaRoomFrame().setVisible(false);
 
 				// read Values, Create Room object, store to DB
-				Room toBeSavedRoom = new Room(1); // Building ID=1 for Erba
-
+				IntfRoom toBeSavedRoom = new Room(); // 
+				
 				toBeSavedRoom.setRoomId_(Integer.parseInt(ViewManager
 						.getInstance().getOrgaRoomFrame().getTxtroomid()
 						.getText()));

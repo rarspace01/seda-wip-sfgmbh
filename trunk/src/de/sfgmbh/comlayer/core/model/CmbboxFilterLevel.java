@@ -4,8 +4,8 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComboBox;
 
 import de.sfgmbh.applayer.core.definitions.IntfAppObserver;
+import de.sfgmbh.applayer.core.definitions.IntfRoom;
 import de.sfgmbh.applayer.core.model.AppModel;
-import de.sfgmbh.applayer.core.model.Room;
 
 /**
  * Model for room level combo boxes
@@ -31,7 +31,7 @@ public class CmbboxFilterLevel extends DefaultComboBoxModel<String> implements I
 	private void build() {
 		
 		this.addElement("<alle>");
-		for (Room room : AppModel.getInstance().getRepositoryRoom().getAll()){
+		for (IntfRoom room : AppModel.getInstance().getRepositoryRoom().getAll()){
 			// Check if already exists as we do not want multi-sets
 			if (this.getIndexOf(room.getLevel_()) < 0) {
 				this.addElement(room.getLevel_());

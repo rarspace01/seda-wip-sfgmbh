@@ -2,6 +2,7 @@ package de.sfgmbh.applayer.organisation.controller;
 
 import java.util.List;
 
+import de.sfgmbh.applayer.core.definitions.IntfRoom;
 import de.sfgmbh.applayer.core.model.AppModel;
 import de.sfgmbh.applayer.core.model.Room;
 import de.sfgmbh.applayer.organisation.definitions.IntfCtrlRoom;
@@ -12,7 +13,7 @@ public class CtrlRoom implements IntfCtrlRoom {
 	 * @see de.sfgmbh.applayer.organisation.controller.IntfCtrlRoom#addRoom(de.sfgmbh.applayer.core.model.Room)
 	 */
 	@Override
-	public void addRoom(Room room){
+	public void addRoom(IntfRoom room){
 		
 		AppModel.getInstance().getRepositoryRoom().save(room);
 		
@@ -31,7 +32,7 @@ public class CtrlRoom implements IntfCtrlRoom {
 	 * @see de.sfgmbh.applayer.organisation.controller.IntfCtrlRoom#delete(de.sfgmbh.applayer.core.model.Room)
 	 */
 	@Override
-	public void delete(Room room){
+	public void delete(IntfRoom room){
 		//TODO implement
 	}
 	

@@ -8,9 +8,9 @@ import java.util.List;
 import javax.swing.JTable;
 import javax.swing.table.TableModel;
 
+import de.sfgmbh.applayer.core.definitions.IntfRoom;
 import de.sfgmbh.applayer.core.model.AppException;
 import de.sfgmbh.applayer.core.model.AppModel;
-import de.sfgmbh.applayer.core.model.Room;
 import de.sfgmbh.applayer.core.model.RoomAllocation;
 import de.sfgmbh.comlayer.core.views.BaseTab;
 
@@ -127,7 +127,7 @@ public class BaseBtns implements ActionListener {
 				try {
 					row = baseTab.getRowSorterRoom()
 							.convertRowIndexToModel(row);
-					Room room = (Room) roomTableModel.getValueAt(row, 10);
+					IntfRoom room = (IntfRoom) roomTableModel.getValueAt(row, 10);
 
 					ViewManager.getInstance().getCoreBaseTab()
 							.getMainTabbedContainerPane().setVisible(true);

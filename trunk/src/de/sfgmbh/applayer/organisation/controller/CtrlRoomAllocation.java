@@ -3,6 +3,7 @@ package de.sfgmbh.applayer.organisation.controller;
 import java.util.HashMap;
 import java.util.List;
 
+import de.sfgmbh.applayer.core.definitions.IntfRoom;
 import de.sfgmbh.applayer.core.model.AppModel;
 import de.sfgmbh.applayer.core.model.Room;
 import de.sfgmbh.applayer.core.model.RoomAllocation;
@@ -91,7 +92,7 @@ public class CtrlRoomAllocation implements IntfCtrlRoomAllocation {
 		List<Room> matchingRooms = AppModel.getInstance().getRepositoryRoom().getByFilter(roomFilter);
 		
 		// Iterate over all matching rooms
-		for (Room room : matchingRooms) {
+		for (IntfRoom room : matchingRooms) {
 			// For each room iterate over all days except Saturday and Sunday
 			for (int day = 1; day < 6; day++) {
 				// For each day iterate over all times except 18:00 to 20:00 and 20:00 to 22:00

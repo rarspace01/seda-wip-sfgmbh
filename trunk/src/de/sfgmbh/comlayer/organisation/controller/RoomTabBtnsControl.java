@@ -3,8 +3,8 @@ package de.sfgmbh.comlayer.organisation.controller;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import de.sfgmbh.applayer.core.definitions.IntfRoom;
 import de.sfgmbh.applayer.core.model.AppModel;
-import de.sfgmbh.applayer.core.model.Room;
 import de.sfgmbh.comlayer.core.controller.ViewManager;
 import de.sfgmbh.comlayer.core.definitions.IntfComDialogObserver;
 import de.sfgmbh.comlayer.core.views.QuestionDialog;
@@ -61,7 +61,7 @@ public class RoomTabBtnsControl implements ActionListener, IntfComDialogObserver
 				getTableId = roomTab.getRowSorter().convertRowIndexToModel(getTableId);
 				int getId=Integer.parseInt(ViewManager.getInstance().getOrgaRoomTableModel().getValueAt(getTableId, 0).toString());
 				
-				Room selectedRoom=AppModel.getInstance().getRepositoryRoom().getRoomById(getId);
+				IntfRoom selectedRoom=AppModel.getInstance().getRepositoryRoom().getRoomById(getId);
 	
 				//load values from room object to gui
 				roomFrame.getTxtroomid().setText(""+selectedRoom.getRoomId_());
@@ -151,7 +151,7 @@ public class RoomTabBtnsControl implements ActionListener, IntfComDialogObserver
 			getTableId = ViewManager.getInstance().getOrgaRoomTab().getRowSorter().convertRowIndexToModel(getTableId);
 			int getId=Integer.parseInt(ViewManager.getInstance().getOrgaRoomTableModel().getValueAt(getTableId, 0).toString());
 			
-			Room selectedRoom=AppModel.getInstance().getRepositoryRoom().getRoomById(getId);
+			IntfRoom selectedRoom=AppModel.getInstance().getRepositoryRoom().getRoomById(getId);
 			
 			AppModel.getInstance().getRepositoryRoom().delete(selectedRoom);
 			

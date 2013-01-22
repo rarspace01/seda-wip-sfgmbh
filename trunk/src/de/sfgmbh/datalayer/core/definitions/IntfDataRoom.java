@@ -3,6 +3,7 @@ package de.sfgmbh.datalayer.core.definitions;
 import java.sql.ResultSet;
 import java.util.List;
 
+import de.sfgmbh.applayer.core.definitions.IntfRoom;
 import de.sfgmbh.applayer.core.model.Room;
 
 /**
@@ -25,7 +26,7 @@ public interface IntfDataRoom {
 	 *            - room id in the database
 	 * @return {@link Room} object
 	 */
-	public Room get(int roomId);
+	public IntfRoom get(int roomId);
 
 	/**
 	 * 
@@ -33,7 +34,7 @@ public interface IntfDataRoom {
 	 *            - the object which should be remove from the database
 	 * @return
 	 */
-	public void delete(Room room);
+	public void delete(IntfRoom room);
 
 	/**
 	 * 
@@ -41,13 +42,13 @@ public interface IntfDataRoom {
 	 *            - object of type Room to be saved in DB
 	 * @return - int for error handling
 	 */
-	public void save(Room room);
+	public void save(IntfRoom room);
 	
 	/**
 	 * creates Room objects from a given {@link ResultSet}
 	 * @param resultSet
 	 * @return {@link Room}
 	 */
-	public Room makeRoom(ResultSet resultSet);
+	public IntfRoom makeRoom(ResultSet resultSet);
 	
 }

@@ -2,6 +2,8 @@ package de.sfgmbh.applayer.core.model;
 
 import java.util.List;
 
+import de.sfgmbh.applayer.core.definitions.IntfRoom;
+
 /**
  * Model for room allocations
  * 
@@ -13,7 +15,7 @@ public class RoomAllocation {
 
 	private int roomAllocationId_;
 	private Course course_;
-	private Room room_;
+	private IntfRoom room_;
 	private String semester_;
 	private int day_;
 	private int time_;
@@ -59,14 +61,14 @@ public class RoomAllocation {
 	/**
 	 * @return the room_
 	 */
-	public Room getRoom_() {
+	public IntfRoom getRoom_() {
 		return room_;
 	}
 
 	/**
 	 * @param room_ the room_ to set
 	 */
-	public void setRoom_(Room room_) {
+	public void setRoom_(IntfRoom room_) {
 		this.room_ = room_;
 	}
 

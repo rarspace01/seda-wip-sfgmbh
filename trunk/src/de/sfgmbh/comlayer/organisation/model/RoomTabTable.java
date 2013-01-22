@@ -6,6 +6,7 @@ import java.util.List;
 import javax.swing.table.DefaultTableModel;
 
 import de.sfgmbh.applayer.core.definitions.IntfAppObserver;
+import de.sfgmbh.applayer.core.definitions.IntfRoom;
 import de.sfgmbh.applayer.core.model.AppModel;
 import de.sfgmbh.applayer.core.model.Room;
 import de.sfgmbh.comlayer.core.controller.ViewManager;
@@ -27,7 +28,7 @@ public class RoomTabTable extends DefaultTableModel implements IntfAppObserver {
 		this.setDataVector(null, preFillHeader);
 	}
 	
-	public void addRoom(Room room) {
+	public void addRoom(IntfRoom room) {
 		
 		Object[] rowVector= {room.getRoomId_(),room.getRoomNumber_(),"ERBA",room.getLevel_(),room.getSeats_(), room.getPcseats_(), room.getBeamer_(), room.getVisualizer_(), room.getOverheads_(), room.getChalkboards_(), room.getWhiteboards_()};
 		
