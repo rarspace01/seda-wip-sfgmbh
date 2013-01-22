@@ -1,15 +1,8 @@
 package de.sfgmbh.comlayer.core.model;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
-import java.util.ArrayList;
-
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComboBox;
 
-import de.sfgmbh.applayer.core.definitions.IntfAppObservable;
 import de.sfgmbh.applayer.core.definitions.IntfAppObserver;
 import de.sfgmbh.applayer.core.model.AppModel;
 import de.sfgmbh.applayer.core.model.Room;
@@ -25,8 +18,6 @@ public class CmbboxFilterLevel extends DefaultComboBoxModel<String> implements I
 
 	private static final long serialVersionUID = 1L;
 	private JComboBox<String> dependentComboBox;
-	private ArrayList<Object> observer_=new ArrayList<Object>();
-	
 	/**
 	 * Create the model object
 	 * @param dependentCombobox
