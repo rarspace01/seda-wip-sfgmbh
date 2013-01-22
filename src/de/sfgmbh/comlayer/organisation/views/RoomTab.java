@@ -18,19 +18,20 @@ import javax.swing.table.TableRowSorter;
 
 import net.miginfocom.swing.MigLayout;
 import de.sfgmbh.applayer.core.model.AppModel;
+import de.sfgmbh.applayer.core.model.Room;
 import de.sfgmbh.applayer.organisation.controller.CtrlRoom;
 import de.sfgmbh.applayer.organisation.definitions.IntfCtrlRoom;
 import de.sfgmbh.comlayer.core.controller.ViewManager;
 import de.sfgmbh.comlayer.core.model.CmbboxFilterLevel;
 import de.sfgmbh.comlayer.core.views.BaseTab;
-import de.sfgmbh.comlayer.organisation.controller.RoomTabBtnsControl;
+import de.sfgmbh.comlayer.organisation.controller.RoomTabActionListener;
 import de.sfgmbh.comlayer.organisation.controller.RoomTabCmbboxFilter;
 
 /**
  * Tab for the room organization
  * 
- * @author anna
- * @author denis
+ * @author anna - main parts of the gui
+ * @author denis - methods
  *
  */
 public class RoomTab extends JPanel {
@@ -127,6 +128,7 @@ public class RoomTab extends JPanel {
 		AppModel.getInstance().getRepositoryRoom()
 				.register(ViewManager.getInstance().getOrgaRoomTableModel());
 
+		// hide column where the room id ist stored
 		roommanagementTable.getColumnModel().removeColumn(
 				roommanagementTable.getColumn("roomid"));
 
@@ -151,32 +153,32 @@ public class RoomTab extends JPanel {
 
 		btnEdit = new JButton("hinzuf\u00FCgen");
 		btnEdit.setToolTipText("<html>Klicken Sie hier, <br>um einen neuen Raum hinzuzufügen</html>");
-		btnEdit.addActionListener(new RoomTabBtnsControl("add"));
+		btnEdit.addActionListener(new RoomTabActionListener("add"));
 		btnEdit.setBounds(6, 11, 88, 23);
 		buttonPanel.add(btnEdit);
 
 		JButton btnBearbeiten = new JButton("bearbeiten");
 		btnBearbeiten.setToolTipText("<html>Selektieren Sie einen Raum <br> und klicken Sie auf bearbeiten um Eigenschaften zu ändern</html>");
-		btnBearbeiten.addActionListener(new RoomTabBtnsControl("edit"));
+		btnBearbeiten.addActionListener(new RoomTabActionListener("edit"));
 		btnBearbeiten.setBounds(6, 45, 88, 23);
 		buttonPanel.add(btnBearbeiten);
 
 		btnDelete = new JButton("l\u00F6schen");
-		btnDelete.addActionListener(new RoomTabBtnsControl("del"));
+		btnDelete.addActionListener(new RoomTabActionListener("del"));
 		btnDelete.setBounds(6, 79, 88, 23);
 		buttonPanel.add(btnDelete);
 
 		btnRoomplanPrint = new JButton("Raumplan");
 		btnRoomplanPrint.setToolTipText("<html>Selektieren Sie einen Raum<br> und klicken Sie hier um einen Wochenplan <br>zur Belegung des Raumes zu erhalten</html>");
 		btnRoomplanPrint
-				.addActionListener(new RoomTabBtnsControl("plan"));
+				.addActionListener(new RoomTabActionListener("plan"));
 		btnRoomplanPrint.setBounds(6, 124, 94, 23);
 		buttonPanel.add(btnRoomplanPrint);
 		
 		this.loadRooms();
 	}
 	/**
-	 * loads all the rooms through the interface to the tablemodel
+	 * loads all the {@link Room}s through the interface to the tablemodel
 	 */
 	public void loadRooms() {
 

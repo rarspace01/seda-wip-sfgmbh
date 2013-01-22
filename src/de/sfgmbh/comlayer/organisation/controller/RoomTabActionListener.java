@@ -17,15 +17,15 @@ import de.sfgmbh.comlayer.organisation.views.RoomTab;
  * @author denis
  *
  */
-public class RoomTabBtnsControl implements ActionListener, IntfComDialogObserver {
+public class RoomTabActionListener implements ActionListener, IntfComDialogObserver {
 
 	private String navAction;
 
-	public RoomTabBtnsControl() {
+	public RoomTabActionListener() {
 		this.navAction = "default";
 	}
 
-	public RoomTabBtnsControl(String action) {
+	public RoomTabActionListener(String action) {
 		this.navAction = action;
 	}
 
