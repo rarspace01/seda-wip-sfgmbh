@@ -7,7 +7,7 @@ import java.awt.Insets;
 import java.awt.Toolkit;
 
 import javax.swing.JButton;
-import javax.swing.JFrame;
+import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
@@ -22,7 +22,7 @@ import de.sfgmbh.comlayer.organisation.controller.RoomFrameWin;
  * @author hannes
  *
  */
-public class RoomFrame extends JFrame {
+public class RoomFrame extends JDialog {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
@@ -42,7 +42,9 @@ public class RoomFrame extends JFrame {
 	 */
 	@SuppressWarnings({ })
 	public RoomFrame() {
+		setModal(true);
 		initialize();
+		setLocationRelativeTo(null);
 	}
 	private void initialize() {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(RoomFrame.class.getResource("/de/sfgmbh/comlayer/core/images/HUT_klein.png")));
