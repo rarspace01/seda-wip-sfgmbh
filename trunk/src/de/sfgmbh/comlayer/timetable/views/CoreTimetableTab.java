@@ -62,6 +62,8 @@ public class CoreTimetableTab extends JPanel {
 		stundenplanTable.setBackground(Color.WHITE);
 		stundenplanTable.setModel(ViewManager.getInstance().getCoreTimetableTabTable());
 		
+		ViewManager.getInstance().getCoreBaseTab().getComboBoxSemesterModel().register(ViewManager.getInstance().getCoreTimetableTabTable());
+		
 		AppModel.getInstance().getRepositoryRoomAllocation().register(ViewManager.getInstance().getCoreTimetableTabTable());
 		
 		JButton btnPdfErzeugen = new JButton("PDF erzeugen");
