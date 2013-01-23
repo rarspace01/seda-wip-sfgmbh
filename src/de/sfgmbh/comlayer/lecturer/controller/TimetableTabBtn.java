@@ -10,6 +10,7 @@ import de.sfgmbh.comlayer.core.controller.ViewManager;
 import de.sfgmbh.comlayer.core.views.InfoDialog;
 import de.sfgmbh.comlayer.organisation.views.FileFilters;
 import de.sfgmbh.datalayer.io.DataManagerPDF;
+import de.sfgmbh.datalayer.io.IntfDataManagerPDF;
 
 /**
  * action listener for the lecturer time table
@@ -59,7 +60,7 @@ public class TimetableTabBtn implements ActionListener {
 				semester = ViewManager.getInstance().getLecturerTimetableTab()
 						.getComboBoxSemesterFilter().getSelectedItem()
 						.toString();
-				DataManagerPDF dmpdf = new DataManagerPDF(fc.getSelectedFile()
+				IntfDataManagerPDF dmpdf = new DataManagerPDF(fc.getSelectedFile()
 						.getAbsolutePath());
 				// adding the content
 				dmpdf.addContent(lecturerTitle + " - " + semester, ViewManager

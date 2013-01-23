@@ -14,7 +14,7 @@ import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.PdfContentByte;
 import com.itextpdf.text.pdf.PdfWriter;
 
-public class DataManagerPDF {
+public class DataManagerPDF implements IntfDataManagerPDF {
 
 	private String filename_="";
 	private PdfWriter writer = null;
@@ -47,6 +47,10 @@ public class DataManagerPDF {
 		
 	}
 
+	/* (non-Javadoc)
+	 * @see de.sfgmbh.datalayer.io.IntfDataManagerPDF#addContent(java.lang.String, javax.swing.JComponent)
+	 */
+	@Override
 	public void addContent(String paragraphtitle, JComponent component){
 		//document.open();
 		
@@ -81,6 +85,10 @@ public class DataManagerPDF {
 		
 	}
 	
+	/* (non-Javadoc)
+	 * @see de.sfgmbh.datalayer.io.IntfDataManagerPDF#close()
+	 */
+	@Override
 	public void close(){
 		document.close();
 	}

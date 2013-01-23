@@ -11,6 +11,7 @@ import de.sfgmbh.comlayer.core.controller.ViewManager;
 import de.sfgmbh.comlayer.core.views.InfoDialog;
 import de.sfgmbh.comlayer.organisation.views.FileFilters;
 import de.sfgmbh.datalayer.io.DataManagerPDF;
+import de.sfgmbh.datalayer.io.IntfDataManagerPDF;
 
 /**
  * action listener class for the char timetables
@@ -61,7 +62,7 @@ public class ProfessorshipTimetableTabBtn implements ActionListener {
 				semester = ViewManager.getInstance().getOrgaRoomtableTab()
 						.getComboBoxSemesterFilter().getSelectedItem()
 						.toString();
-				DataManagerPDF dmpdf = new DataManagerPDF(fc.getSelectedFile()
+				IntfDataManagerPDF dmpdf = new DataManagerPDF(fc.getSelectedFile()
 						.getAbsolutePath());
 				// adding the content to the pdf
 				dmpdf.addContent("Lehrstuhl: " + chairTitle + " - Semester: "
