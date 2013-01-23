@@ -170,8 +170,8 @@ public class Course {
 			message = message + "Die Beschreibung einer Veranstaltung darf 256 Zeichen nicht überschreiten!<br />";
 			check = false;
 		}
-		if (this.courseName_.length() > 64 || this.courseName_.length() < 1) {
-			message = message + "Der ausführliche Name einer Veranstaltung muss zwischen 1 und 64 Zeichen lang sein!<br />";
+		if (this.courseName_.length() > 256 || this.courseName_.length() < 1) {
+			message = message + "Der ausführliche Name einer Veranstaltung muss zwischen 1 und 256 Zeichen lang sein!<br />";
 			check = false;
 		}
 		if (this.expectedAttendees_ < 0 ) {
