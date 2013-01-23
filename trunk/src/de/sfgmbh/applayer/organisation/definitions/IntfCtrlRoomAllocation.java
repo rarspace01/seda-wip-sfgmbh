@@ -6,7 +6,7 @@ import de.sfgmbh.applayer.core.definitions.IntfRoomAllocation;
 import de.sfgmbh.comlayer.core.controller.ViewHelper;
 
 /**
- * room Allocation Interface
+ * Room allocation Interface
  * @author hannes
  *
  */

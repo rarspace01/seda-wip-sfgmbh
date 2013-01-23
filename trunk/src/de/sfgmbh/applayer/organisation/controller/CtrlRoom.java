@@ -6,6 +6,13 @@ import de.sfgmbh.applayer.core.definitions.IntfRoom;
 import de.sfgmbh.applayer.core.model.AppModel;
 import de.sfgmbh.applayer.organisation.definitions.IntfCtrlRoom;
 
+/**
+ * Controller for room management
+ * 
+ * @author denis
+ * @author hannes
+ *
+ */
 public class CtrlRoom implements IntfCtrlRoom {
 
 	/* (non-Javadoc)

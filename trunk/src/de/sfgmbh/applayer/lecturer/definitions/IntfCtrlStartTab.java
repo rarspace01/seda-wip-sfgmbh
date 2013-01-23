@@ -5,6 +5,13 @@ import java.util.HashMap;
 import de.sfgmbh.applayer.core.definitions.IntfCourse;
 import de.sfgmbh.applayer.core.definitions.IntfRoomAllocation;
 
+/**
+ * Interface for the start tab controller
+ * 
+ * @author hannes
+ * @author christian
+ *
+ */
 public interface IntfCtrlStartTab {
 
 	/**
