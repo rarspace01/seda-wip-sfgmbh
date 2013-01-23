@@ -142,6 +142,28 @@ public class DataManagerPostgreSql {
 	}
 	
 	/**
+	 *  Executes the given SQL statement, which may be an INSERT, UPDATE, or DELETE statement or an SQL statement that returns nothing, such as an SQL DDL statement.
+	 * @param SQLString
+	 * @return either (1) the row count for SQL Data Manipulation Language (DML) statements or (2) 0 for SQL statements that return nothing
+	 * @throws SQLException
+	 */
+	public int silentexecute(String SQLString) throws SQLException {
+		
+		int i = -1;
+
+		try {
+		
+			i = stmt.executeUpdate(SQLString);
+
+		} catch (Exception e) {
+			//e.printStackTrace();
+			//DataModel.getInstance().getExceptionsHandler().setNewException(("Es ist ein SQL-Fehler (DataManagerPostgreSql-04) aufgetreten:<br /><br />" + e.toString()), "Datenbank-Fehler!");
+		}
+		
+		return i;
+	}
+	
+	/**
 	 * Prepare the data manager with a prepared statement that is about to be executed either by selectPstmt() or executePstmt()
 	 * @param prepareSqlString
 	 * @return the prepared statement object
