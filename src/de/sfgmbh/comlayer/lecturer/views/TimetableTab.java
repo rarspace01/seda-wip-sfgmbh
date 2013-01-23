@@ -33,6 +33,7 @@ public class TimetableTab extends JPanel {
 	private CmbboxFilterSemester comboBoxSemesterModel_= new CmbboxFilterSemester();
 	private JComboBox<String> comboBoxLecturer_;
 	private CmbboxFilterLecturer comboBoxLecturerModel_;
+	private JLabel lblWeekplanLecturer;
 	
 	
 
@@ -50,26 +51,10 @@ public class TimetableTab extends JPanel {
 		comboBoxLecturer_ = new JComboBox<>();
 		
 		comboBoxLecturer_.addActionListener(new TimetableTabCmbbox());
-		setLayout(new MigLayout("", "[20px:20px,grow][124px][23px][112px][501px][94px][20px:20px,grow][right]", "[42px][21px][364px]"));
-		comboBoxLecturerModel_= new CmbboxFilterLecturer(comboBoxLecturer_, "select");
-		comboBoxLecturer_.setModel(comboBoxLecturerModel_);
-		add(comboBoxLecturer_, "cell 1 0,growx,aligny bottom");
+		setLayout(new MigLayout("", "[5.00,grow][][][][][][-1.00,grow][right]", "[][][364px]"));
 		
-		lblSemester_ = new JLabel("Semester:");
-		add(lblSemester_, "flowx,cell 3 0,alignx left,aligny bottom");
-		
-		comboBoxSemesterFilter_= new JComboBox<>();
-		
-		comboBoxSemesterFilter_.setModel(comboBoxSemesterModel_);
-		comboBoxSemesterFilter_.addActionListener(new TimetableTabCmbbox());
-		comboBoxSemesterFilter_.setEditable(true);
-		comboBoxSemesterFilter_.setAutoscrolls(true);
-		
-		add(comboBoxSemesterFilter_, "cell 3 0,alignx right,aligny bottom");
-		
-		JButton btnPdfErzeugen = new JButton("PDF Erzeugen");
-		btnPdfErzeugen.addActionListener(new TimetableTabBtn("createpdf"));
-		add(btnPdfErzeugen, "cell 4 0,alignx left,aligny bottom");
+		lblWeekplanLecturer = new JLabel("<html><h3>Wochenplan für Dozenten</h3></html>");
+		add(lblWeekplanLecturer, "cell 1 0");
 		
 		JPanel uniIconPanel = new JPanel();
 		add(uniIconPanel, "cell 7 0,alignx right,aligny top");
@@ -78,6 +63,25 @@ public class TimetableTab extends JPanel {
 		lblUniIcon.setIcon(new ImageIcon(BaseTab.class.getResource("/de/sfgmbh/comlayer/core/images/UniBA_logo.png")));
 		lblUniIcon.setMaximumSize(new Dimension(50,50));
 		uniIconPanel.add(lblUniIcon);
+		comboBoxLecturerModel_= new CmbboxFilterLecturer(comboBoxLecturer_, "select");
+		comboBoxLecturer_.setModel(comboBoxLecturerModel_);
+		add(comboBoxLecturer_, "cell 1 1,growx,aligny bottom");
+		
+		lblSemester_ = new JLabel("Semester:");
+		add(lblSemester_, "flowx,cell 3 1,alignx left,aligny bottom");
+		
+		comboBoxSemesterFilter_= new JComboBox<>();
+		
+		comboBoxSemesterFilter_.setModel(comboBoxSemesterModel_);
+		comboBoxSemesterFilter_.addActionListener(new TimetableTabCmbbox());
+		comboBoxSemesterFilter_.setEditable(true);
+		comboBoxSemesterFilter_.setAutoscrolls(true);
+		
+		add(comboBoxSemesterFilter_, "cell 3 1,alignx right,aligny bottom");
+		
+		JButton btnPdfErzeugen = new JButton("PDF Erzeugen");
+		btnPdfErzeugen.addActionListener(new TimetableTabBtn("createpdf"));
+		add(btnPdfErzeugen, "cell 4 1,alignx left,aligny bottom");
 		add(getPanel(), "cell 1 2 5 1,grow");
 	}
 	

@@ -89,7 +89,7 @@ public class RequestTab extends JPanel {
 		add(getLblRoom(), "cell 5 0,aligny bottom");
 		
 		uniIconPanel = new JPanel();
-		add(uniIconPanel, "cell 6 0,alignx center,growy");	
+		add(uniIconPanel, "cell 6 0,alignx right,aligny top");	
 		lblUniIcon = new JLabel();
 		lblUniIcon.setIcon(new ImageIcon(BaseTab.class.getResource("/de/sfgmbh/comlayer/core/images/UniBA_logo.png")));
 		lblUniIcon.setMaximumSize(new Dimension(50,50));

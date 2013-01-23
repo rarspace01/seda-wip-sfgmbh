@@ -62,7 +62,7 @@ public class ChairTab extends JPanel {
 		textFieldChairname.addActionListener(new ChairTabCmbboxFilter());
 		
 		uniIconPanel = new JPanel();
-		add(uniIconPanel, "cell 6 0,alignx center,growy");
+		add(uniIconPanel, "cell 6 0,alignx right,aligny top");
 		lblUniIcon = new JLabel();
 		lblUniIcon.setIcon(new ImageIcon(BaseTab.class.getResource("/de/sfgmbh/comlayer/core/images/UniBA_logo.png")));
 		lblUniIcon.setMaximumSize(new Dimension(50,50));

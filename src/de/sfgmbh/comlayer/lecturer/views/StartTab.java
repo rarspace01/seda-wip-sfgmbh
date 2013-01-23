@@ -107,7 +107,7 @@ public class StartTab extends JPanel implements IntfComDialogObserver {
 		lblLehrveranstaltungen.setFont(new Font("Tahoma", Font.BOLD, 12));
 		JPanel uniIconPanel = new JPanel();
 		add(lblLehrveranstaltungen, "cell 1 0,aligny bottom");
-		add(uniIconPanel, "cell 6 0,alignx center");
+		add(uniIconPanel, "cell 6 0,alignx right,aligny top");
 		
 		add(ViewManager.getInstance().getCoreLiveTickerPanel(), "cell 0 1, grow, aligny top");
 		
