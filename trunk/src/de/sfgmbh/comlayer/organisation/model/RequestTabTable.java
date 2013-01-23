@@ -9,6 +9,7 @@ import de.sfgmbh.applayer.core.model.AppModel;
 import de.sfgmbh.applayer.core.model.RoomAllocation;
 import de.sfgmbh.comlayer.core.controller.ViewHelper;
 import de.sfgmbh.comlayer.core.controller.ViewManager;
+import de.sfgmbh.comlayer.organisation.views.RequestTab;
 
 /**
  * Table model for the room allocation table for the organization
@@ -19,7 +20,7 @@ import de.sfgmbh.comlayer.core.controller.ViewManager;
 public class RequestTabTable extends DefaultTableModel implements IntfAppObserver {
 
 	private static final long serialVersionUID = 1L;
-	private String[] header = {"Dozent", "Veranstaltung", "Tag", "Zeit", "Raum", "Semester", "Status","Konflikt", "Hidden"};
+	private String[] header = {"Dozent", "Veranstaltung", "Tag", "Zeit", "Raum", "Semester", "Status", "Konflikt", "Hidden"};
 	
 	/**
 	 * Creates an initial table model object
@@ -46,11 +47,13 @@ public class RequestTabTable extends DefaultTableModel implements IntfAppObserve
 			filter.put("semester", "<alle>");
 			filter.put("room", "<alle>");
 		} else {
-			filter.put("chair", ViewManager.getInstance().getOrgaRquestTab().getComboBoxChair().getSelectedItem().toString());
-			filter.put("status", ViewManager.getInstance().getOrgaRquestTab().getComboBoxStatus().getSelectedItem().toString());
-			filter.put("lecturer", ViewManager.getInstance().getOrgaRquestTab().getComboBoxLecturer().getSelectedItem().toString());
-			filter.put("semester", ViewManager.getInstance().getOrgaRquestTab().getComboBoxSemester().getSelectedItem().toString());
-			filter.put("room", ViewManager.getInstance().getOrgaRquestTab().getTxtRoom().getText());
+			RequestTab requestTab = ViewManager.getInstance().getOrgaRquestTab();
+			
+			filter.put("chair", requestTab.getComboBoxChair().getSelectedItem().toString());
+			filter.put("status", requestTab.getComboBoxStatus().getSelectedItem().toString());
+			filter.put("lecturer", requestTab.getComboBoxLecturer().getSelectedItem().toString());
+			filter.put("semester", requestTab.getComboBoxSemester().getSelectedItem().toString());
+			filter.put("room", requestTab.getTxtRoom().getText());
 		}
 		
 		// Time tracking for debugging - remove in final release
@@ -59,9 +62,17 @@ public class RequestTabTable extends DefaultTableModel implements IntfAppObserve
 		
 		for (RoomAllocation ra : AppModel.getInstance().getRepositoryRoomAllocation().getByFilter(filter)){
 			
+			// Set some speical Strings
 			String conflict = "-";
 			if (ra.isConflicting_()) {
-				conflict = "JA!!";
+				conflict = "JA!";
+			}
+			String status;
+			status = ViewHelper.getAllocationStatus(ra.getApproved_());
+			if (status.equals("wartend")) {
+				// UTF-8 Special invisible character to force ordering
+				// Character code: U+200D
+				status = "‍‍‍‍wartend";
 			}
 			
 			try {
@@ -72,7 +83,7 @@ public class RequestTabTable extends DefaultTableModel implements IntfAppObserve
 						ViewHelper.getTime(ra.getTime_()),
 						ra.getRoom_().getRoomNumber_(),
 						ra.getSemester_(),
-						ViewHelper.getAllocationStatus(ra.getApproved_()),
+						status,
 						conflict,
 						ra
 						};

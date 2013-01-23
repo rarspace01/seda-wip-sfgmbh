@@ -4,6 +4,8 @@ package de.sfgmbh.comlayer.organisation.views;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.SystemColor;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -13,6 +15,8 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.RowSorter;
+import javax.swing.SortOrder;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 
@@ -122,6 +126,9 @@ public class RequestTab extends JPanel {
 		rowSorter = new TableRowSorter<TableModel>();
 		roomAllocationTable.setRowSorter(rowSorter);
 		rowSorter.setModel(ViewManager.getInstance().getOrgaRequestTableModel());
+		List <RowSorter.SortKey> sortKeys = new ArrayList<RowSorter.SortKey>();
+		sortKeys.add(new RowSorter.SortKey(6, SortOrder.DESCENDING));
+		rowSorter.setSortKeys(sortKeys); 
 		rowSorter.sort();
 		
 		buttonPanel = new JPanel();
