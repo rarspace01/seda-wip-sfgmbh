@@ -34,7 +34,6 @@ public class QuestionDialog extends JDialog implements IntfComDialogObserver, In
 	 * Create the dialog with default message, title and settings
 	 */
 	public QuestionDialog() {
-		setIconImage(Toolkit.getDefaultToolkit().getImage(QuestionDialog.class.getResource("/de/sfgmbh/comlayer/core/images/HUT_klein.png")));
 		createContents();
 	}
 	
@@ -64,7 +63,7 @@ public class QuestionDialog extends JDialog implements IntfComDialogObserver, In
 	 */
 	public QuestionDialog(String text, String title, String variant) {
 		this.setDialog(text, title);
-		// jet to be implemented
+		// yet to be implemented
 	}
 	
 	
@@ -85,6 +84,7 @@ public class QuestionDialog extends JDialog implements IntfComDialogObserver, In
 		setTitle(title);
 		setModal(true);
 		setAlwaysOnTop(true);
+		setIconImage(Toolkit.getDefaultToolkit().getImage(QuestionDialog.class.getResource("/de/sfgmbh/comlayer/core/images/HUT_klein.png")));
 		getContentPane().setLayout(new MigLayout("", "[5px:n][center][5px:n][250px:n:500px,center][10px:n:10px]", "[100px:n:400px,center][40px:n:40px,center]"));
 		getContentPane().add(getLblNewLabel(), "cell 1 0,alignx center,aligny center");
 		getContentPane().add(getTxtpnInfoWindowText(), "cell 3 0,alignx left,aligny center");
