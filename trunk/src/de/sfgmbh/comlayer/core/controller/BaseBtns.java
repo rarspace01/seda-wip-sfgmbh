@@ -48,7 +48,6 @@ public class BaseBtns implements ActionListener {
 
 		// Add to timetable button is pressed
 		if (this.navAction.equals("timetable")) {
-			System.out.println("timetable fired");
 			JTable roomAllocationTable = baseTab.getOrganisationTable();
 			TableModel roomAllocationTableModel = roomAllocationTable
 					.getModel();
