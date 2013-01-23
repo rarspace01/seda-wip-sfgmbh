@@ -41,7 +41,6 @@ public class ProfessorshipTimetableTab extends JPanel{
 	private JPanel panelProfessorshipPanel_;
 	private JComboBox<String> comboBoxSemesterFilter_;
 	private CmbboxFilterSemester comboBoxSemesterModel_= new CmbboxFilterSemester("select");
-	private int maxEntries_=0;
 	private JScrollPane scrollPane_;
 
 
