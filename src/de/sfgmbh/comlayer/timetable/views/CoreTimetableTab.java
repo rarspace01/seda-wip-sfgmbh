@@ -4,6 +4,8 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -128,8 +130,33 @@ public class CoreTimetableTab extends JPanel {
 				
 			}
 		}
+		
+		//calc max heigth per row and set it
+		int maxHeight=1;
+		int tmpHeight=0;
+		for(int i=0;i<7;i++){
+			maxHeight=1;
+			for(int j=1; j<=5; j++){
+				tmpHeight=countBreaklines(ViewManager.getInstance().getCoreTimetableTabTable().getValueAt(i, j).toString());
+				if(tmpHeight>maxHeight){
+					maxHeight=tmpHeight;
+				}
+			}
+			this.getStundenplanTable().setRowHeight(i, maxHeight*16);
+		}
+		
 	}
 
+	public int countBreaklines (String inputString) {
+		   String string = inputString;
+		    Pattern p = Pattern.compile("<br/>");
+		    Matcher m = p.matcher(string);
+		    int count = 0;
+		    while (m.find()){
+		    	count +=1;
+		    }
+		    return count;
+	}
 	
 	public JTable getStundenplanTable() {
 		return stundenplanTable;
@@ -146,7 +173,9 @@ public class CoreTimetableTab extends JPanel {
 	public void addAllocation(List<RoomAllocation> roomallocations) {
 		
 		for(int i=0;i<roomallocations.size();i++){
+			if(!roomAllocList_.contains(roomallocations.get(i))){
 			this.roomAllocList_.add(roomallocations.get(i));
+			}
 		}
 		reloadRoomTable();
 	}
