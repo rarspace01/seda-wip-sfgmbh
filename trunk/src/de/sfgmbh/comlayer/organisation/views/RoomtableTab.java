@@ -31,7 +31,7 @@ public class RoomtableTab extends JPanel {
 	private JScrollPane scrollPane_;
 	private JLabel lblSemester;
 	private JComboBox<String> comboBoxSemesterFilter;
-	private CmbboxFilterSemester comboBoxSemesterModel_= new CmbboxFilterSemester();
+	private CmbboxFilterSemester comboBoxSemesterModel_= new CmbboxFilterSemester("select");
 
 	
 	public RoomtableTab() {

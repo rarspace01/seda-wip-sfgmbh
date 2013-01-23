@@ -43,5 +43,9 @@ public class CmbboxFilterSemester extends DefaultComboBoxModel<String>{
 		for (String element : elements) {
 			this.addElement(element);
 		}
+		
+		if (this.variant.equals("select")) {
+			this.setSelectedItem("SS 13");
+		}
 	}
 }
