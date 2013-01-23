@@ -31,11 +31,16 @@ import de.sfgmbh.comlayer.core.model.CmbboxFilterSemester;
 import de.sfgmbh.comlayer.core.views.BaseTab;
 import de.sfgmbh.comlayer.lecturer.controller.ProfessorshipTimetableTabBtn;
 import de.sfgmbh.comlayer.lecturer.controller.ProfessorshipTimetableTabCmbbox;
-
+/**
+ * 
+ * @author hannes
+ * @author denis
+ *
+ */
 public class ProfessorshipTimetableTab extends JPanel{
 
 	private static final long serialVersionUID = 1L;
-	private JTable lehrstuhlStundenplanTable_;
+	private JTable chairTimetableTable_;
 	private JPanel panelProfessorshipPanel_;
 	private JComboBox<String> comboBoxSemesterFilter_;
 	private CmbboxFilterSemester comboBoxSemesterModel_= new CmbboxFilterSemester("select");
@@ -53,9 +58,9 @@ public class ProfessorshipTimetableTab extends JPanel{
 		setAutoscrolls(true);
 		setLayout(new MigLayout("", "[14.00,grow][][10px][112px][][][10.00,grow][right]", "[][][383px]"));
 		
-		JLabel lblWochenplanFrDen = new JLabel("<html><h3>Wochenplan f\u00FCr den Lehrstuhl</h3></html>");
-		lblWochenplanFrDen.setFont(new Font("Arial", Font.PLAIN, 11));
-		add(lblWochenplanFrDen, "flowy,cell 1 0,growx,aligny center");
+		JLabel lblWeekplanforTheChair = new JLabel("<html><h3>Wochenplan f\u00FCr den Lehrstuhl</h3></html>");
+		lblWeekplanforTheChair.setFont(new Font("Arial", Font.PLAIN, 11));
+		add(lblWeekplanforTheChair, "flowy,cell 1 0,growx,aligny center");
 		
 		JLabel lblUniIcon = new JLabel("");
 		lblUniIcon.setVerticalAlignment(SwingConstants.TOP);
@@ -91,7 +96,10 @@ public class ProfessorshipTimetableTab extends JPanel{
 		
 		reloadPlan();
 	}
-	
+	/**
+	 * 
+	 * @return the panelProfessorshipPanel_
+	 */
 	public JPanel getPanel() {
 		if (panelProfessorshipPanel_ == null) {
 			panelProfessorshipPanel_ = new JPanel();
@@ -100,34 +108,36 @@ public class ProfessorshipTimetableTab extends JPanel{
 			JScrollPane scrollPane = new JScrollPane();
 			panelProfessorshipPanel_.add(scrollPane, "cell 0 0,growx,aligny top");
 			
-			lehrstuhlStundenplanTable_ = new JTable();
-			lehrstuhlStundenplanTable_.setPreferredScrollableViewportSize(new Dimension(750, 400));
-			lehrstuhlStundenplanTable_.setBorder(null);
+			chairTimetableTable_ = new JTable();
+			chairTimetableTable_.setPreferredScrollableViewportSize(new Dimension(750, 400));
+			chairTimetableTable_.setBorder(null);
 			
 			
 			
-			scrollPane.setViewportView(lehrstuhlStundenplanTable_);
+			scrollPane.setViewportView(chairTimetableTable_);
 			
 	
-			lehrstuhlStundenplanTable_.setBackground(Color.WHITE);
-			lehrstuhlStundenplanTable_.setModel(ViewManager.getInstance().getLecturerChairimetableTabTable());
+			chairTimetableTable_.setBackground(Color.WHITE);
+			chairTimetableTable_.setModel(ViewManager.getInstance().getLecturerChairimetableTabTable());
 		
 			
 			//comboBoxSemesterFilter_
 			
-			lehrstuhlStundenplanTable_.getColumnModel().getColumn(0).setPreferredWidth(50);
-			lehrstuhlStundenplanTable_.getColumnModel().getColumn(1).setPreferredWidth(70);
-			lehrstuhlStundenplanTable_.getColumnModel().getColumn(2).setPreferredWidth(70);
-			lehrstuhlStundenplanTable_.getColumnModel().getColumn(3).setPreferredWidth(70);
-			lehrstuhlStundenplanTable_.getColumnModel().getColumn(4).setPreferredWidth(70);
-			lehrstuhlStundenplanTable_.getColumnModel().getColumn(5).setPreferredWidth(70);
+			chairTimetableTable_.getColumnModel().getColumn(0).setPreferredWidth(50);
+			chairTimetableTable_.getColumnModel().getColumn(1).setPreferredWidth(70);
+			chairTimetableTable_.getColumnModel().getColumn(2).setPreferredWidth(70);
+			chairTimetableTable_.getColumnModel().getColumn(3).setPreferredWidth(70);
+			chairTimetableTable_.getColumnModel().getColumn(4).setPreferredWidth(70);
+			chairTimetableTable_.getColumnModel().getColumn(5).setPreferredWidth(70);
 			
-			lehrstuhlStundenplanTable_.setDefaultRenderer(Object.class, new LineWrapCellRenderer(maxEntries_));
+			chairTimetableTable_.setDefaultRenderer(Object.class, new LineWrapCellRenderer(maxEntries_));
 			
 		}
 		return panelProfessorshipPanel_;
 	}
-	
+	/**
+	 * reloads the timetable for the whole chair
+	 */
 	public void reloadPlan(){
 		
 		IntfCtrlGenericTables genericTablesController=new CtrlGenericTables();
@@ -142,14 +152,20 @@ public class ProfessorshipTimetableTab extends JPanel{
 		// get the roomAllocations from the repository
 		List<IntfRoomAllocation> roomAllocationList=AppModel.getInstance().getRepositoryRoomAllocation().getByFilter(tableFilter);
 		// reload Table based on roomAllocations
-		genericTablesController.reloadTable(lehrstuhlStundenplanTable_, roomAllocationList,true);
+		genericTablesController.reloadTable(chairTimetableTable_, roomAllocationList,true);
 		
 	}
-	
+	/**
+	 * 
+	 * @return the panelProfessorshipPanel_
+	 */
 	public JPanel getPanel_() {
 		return panelProfessorshipPanel_;
 	}
-	
+	/**
+	 * 
+	 * @return the comboBoxSemesterFilter_
+	 */
 	public JComboBox<String> getComboBoxSemesterFilter() {
 		return comboBoxSemesterFilter_;
 	}
