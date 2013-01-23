@@ -3,7 +3,7 @@ package de.sfgmbh.applayer.core.model;
 import de.sfgmbh.applayer.core.definitions.IntfRoom;
 
 /**
- * room model class
+ * Room model class
  * 
  * @author denis
  * 
@@ -22,6 +22,9 @@ public class Room implements IntfRoom {
 	private int chalkboards_;
 	private int whiteboards_;
 
+	/**
+	 * Create a default room
+	 */
 	public Room() {
 		this.roomId_ = -1;
 		roomNumber_ = "";
@@ -35,6 +38,20 @@ public class Room implements IntfRoom {
 		whiteboards_ = 0;
 	}
 	
+	/**
+	 * Create a room with specific values
+	 * @param roomId_
+	 * @param roomNumber_
+	 * @param buildingId_
+	 * @param level_
+	 * @param seats_
+	 * @param pcSeats_
+	 * @param beamer_
+	 * @param visualizer_
+	 * @param overheads_
+	 * @param chalkboards_
+	 * @param whiteboards_
+	 */
 	public Room(int roomId_, String roomNumber_, int buildingId_,
 			String level_, int seats_, int pcSeats_, int beamer_,
 			int visualizer_, int overheads_, int chalkboards_, int whiteboards_) {

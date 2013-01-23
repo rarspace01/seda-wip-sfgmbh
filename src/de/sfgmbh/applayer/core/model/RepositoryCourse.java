@@ -11,7 +11,7 @@ import de.sfgmbh.datalayer.core.definitions.IntfDataObserver;
 import de.sfgmbh.datalayer.core.model.DataModel;
 
 /**
- * Repository for the course objects in the model
+ * Repository for the {@link Course} objects in the model
  * 
  * @author hannes
  *
@@ -44,11 +44,19 @@ public class RepositoryCourse implements IntfAppObservable, IntfDataObserver {
 		return DataModel.getInstance().getDataHandlerCourse().getByFilter(filter);
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see de.sfgmbh.datalayer.core.definitions.IntfDataObserver#change()
+	 */
 	@Override
 	public void change() {
 		this.update();
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see de.sfgmbh.applayer.core.definitions.IntfAppObservable#update()
+	 */
 	@Override
 	public void update() {
 		
@@ -63,9 +71,9 @@ public class RepositoryCourse implements IntfAppObservable, IntfDataObserver {
 		}
 	}
 	
-	/**
-	 * 
-	 * @param observer
+	/*
+	 * (non-Javadoc)
+	 * @see de.sfgmbh.applayer.core.definitions.IntfAppObservable#register(de.sfgmbh.applayer.core.definitions.IntfAppObserver)
 	 */
 	@Override
 	public void register(IntfAppObserver observer) {
@@ -76,9 +84,9 @@ public class RepositoryCourse implements IntfAppObservable, IntfDataObserver {
 		}
 	}
 	
-	/**
-	 * 
-	 * @param observer
+	/*
+	 * (non-Javadoc)
+	 * @see de.sfgmbh.applayer.core.definitions.IntfAppObservable#unregister(de.sfgmbh.applayer.core.definitions.IntfAppObserver)
 	 */
 	@Override
 	public void unregister(IntfAppObserver observer) {

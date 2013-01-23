@@ -2,6 +2,11 @@ package de.sfgmbh.applayer.core.definitions;
 
 import java.util.List;
 
+/**
+ * Interface for the live ticker controller
+ * @author hannes
+ *
+ */
 public interface IntfCtrlLiveTicker {
 
 	/**

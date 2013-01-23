@@ -10,6 +10,13 @@ import de.sfgmbh.applayer.core.definitions.IntfRoomAllocation;
 import de.sfgmbh.datalayer.core.definitions.IntfDataObserver;
 import de.sfgmbh.datalayer.core.model.DataModel;
 
+/**
+ * Repository for {@link RoomAllocation} objects in the application model
+ * 
+ * @author hannes
+ * @author denis
+ *
+ */
 public class RepositoryRoomAllocation implements IntfAppObservable, IntfDataObserver {
 	
 	private ArrayList<Object> observer_ = new ArrayList<Object>();
@@ -71,11 +78,19 @@ public class RepositoryRoomAllocation implements IntfAppObservable, IntfDataObse
 		return DataModel.getInstance().getDataHandlerRoomAllocation().save(ra);
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see de.sfgmbh.datalayer.core.definitions.IntfDataObserver#change()
+	 */
 	@Override
 	public void change() {
 		this.update();
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see de.sfgmbh.applayer.core.definitions.IntfAppObservable#update()
+	 */
 	@Override
 	public void update() {
 		
@@ -90,9 +105,9 @@ public class RepositoryRoomAllocation implements IntfAppObservable, IntfDataObse
 		}
 	}
 	
-	/**
-	 * 
-	 * @param observer
+	/*
+	 * (non-Javadoc)
+	 * @see de.sfgmbh.applayer.core.definitions.IntfAppObservable#register(de.sfgmbh.applayer.core.definitions.IntfAppObserver)
 	 */
 	@Override
 	public void register(IntfAppObserver observer) {
@@ -103,9 +118,9 @@ public class RepositoryRoomAllocation implements IntfAppObservable, IntfDataObse
 		}
 	}
 	
-	/**
-	 * 
-	 * @param observer
+	/*
+	 * (non-Javadoc)
+	 * @see de.sfgmbh.applayer.core.definitions.IntfAppObservable#unregister(de.sfgmbh.applayer.core.definitions.IntfAppObserver)
 	 */
 	@Override
 	public void unregister(IntfAppObserver observer) {

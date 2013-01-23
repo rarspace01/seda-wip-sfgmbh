@@ -6,15 +6,19 @@ import java.util.regex.Pattern;
 
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.text.html.HTMLDocument.HTMLReader.IsindexAction;
 
 import de.sfgmbh.applayer.core.definitions.IntfCtrlGenericTables;
 import de.sfgmbh.applayer.core.definitions.IntfRoomAllocation;
 import de.sfgmbh.applayer.organisation.controller.CtrlRoomAllocation;
 import de.sfgmbh.applayer.organisation.definitions.IntfCtrlRoomAllocation;
 import de.sfgmbh.comlayer.core.controller.ViewHelper;
-import de.sfgmbh.comlayer.core.controller.ViewManager;
 
+/**
+ * Controller for tables
+ * 
+ * @author denis
+ *
+ */
 public class CtrlGenericTables implements IntfCtrlGenericTables {
 
 	/* (non-Javadoc)
@@ -32,6 +36,11 @@ public class CtrlGenericTables implements IntfCtrlGenericTables {
 		    return count;
 	}
 	
+	/* 
+	 * (non-Javadoc)
+	 * @see de.sfgmbh.applayer.core.definitions.IntfCtrlGenericTables#resizeRows(javax.swing.JTable)
+	 */
+	@Override
 	public void resizeRows(JTable table){
 		//calc max heigth per row and set it
 		int maxHeight=1;
@@ -48,6 +57,11 @@ public class CtrlGenericTables implements IntfCtrlGenericTables {
 		}
 	}
 	
+	/* 
+	 * (non-Javadoc)
+	 * @see de.sfgmbh.applayer.core.definitions.IntfCtrlGenericTables#reloadTable(javax.swing.JTable, java.util.List, boolean)
+	 */
+	@Override
 	public void reloadTable(JTable table, List<IntfRoomAllocation> roomAllocationList, boolean showRoomName){
 		IntfCtrlRoomAllocation roomAllocationController=new CtrlRoomAllocation();
 		// clear all rows

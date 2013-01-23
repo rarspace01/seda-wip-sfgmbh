@@ -10,10 +10,22 @@ import de.sfgmbh.applayer.core.definitions.IntfRoom;
 import de.sfgmbh.datalayer.core.definitions.IntfDataObserver;
 import de.sfgmbh.datalayer.core.model.DataModel;
 
+/**
+ * Repository for {@link Room} objects in the application model
+ * 
+ * @author denis
+ * @author hannes
+ *
+ */
 public class RepositoryRoom implements IntfAppObservable, IntfDataObserver {
 	
 	private ArrayList<IntfAppObserver> observer_ = new ArrayList<IntfAppObserver>();
 	
+	/**
+	 * Get rooms all rooms which match a HashMap filter
+	 * @param filter
+	 * @return a list of rooms
+	 */
 	public List<IntfRoom> getByFilter(HashMap<String, String> filter) {
 		return DataModel.getInstance().getDataHandlerRoom().getByFilter(filter);
 	}	
@@ -33,25 +45,46 @@ public class RepositoryRoom implements IntfAppObservable, IntfDataObserver {
 		return DataModel.getInstance().getDataHandlerRoom().getAll();
 	}
 	
+	/**
+	 * Get a unique room by its id
+	 * @param roomId
+	 * @return a room
+	 */
 	public IntfRoom getRoomById(int roomId) {
 		return DataModel.getInstance().getDataHandlerRoom().get(roomId);
 	}
 	
+	/**
+	 * Save a room
+	 * @param room
+	 */
 	public void save(IntfRoom room){
 		DataModel.getInstance().getDataHandlerRoom().save(room);
 		this.change();
 	}
 	
+	/**
+	 * Delte a room
+	 * @param room
+	 */
 	public void delete(IntfRoom room){
 		DataModel.getInstance().getDataHandlerRoom().delete(room);
 		this.change();
 	}
 	
+	/*
+	 * (non-Javadoc)
+	 * @see de.sfgmbh.datalayer.core.definitions.IntfDataObserver#change()
+	 */
 	@Override
 	public void change() {
 		this.update();
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see de.sfgmbh.applayer.core.definitions.IntfAppObservable#update()
+	 */
 	@Override
 	public void update() {
 		
@@ -66,9 +99,9 @@ public class RepositoryRoom implements IntfAppObservable, IntfDataObserver {
 		}
 	}
 	
-	/**
-	 * 
-	 * @param observer
+	/*
+	 * (non-Javadoc)
+	 * @see de.sfgmbh.applayer.core.definitions.IntfAppObservable#register(de.sfgmbh.applayer.core.definitions.IntfAppObserver)
 	 */
 	@Override
 	public void register(IntfAppObserver observer) {
@@ -79,9 +112,9 @@ public class RepositoryRoom implements IntfAppObservable, IntfDataObserver {
 		}
 	}
 	
-	/**
-	 * 
-	 * @param observer
+	/*
+	 * (non-Javadoc)
+	 * @see de.sfgmbh.applayer.core.definitions.IntfAppObservable#unregister(de.sfgmbh.applayer.core.definitions.IntfAppObserver)
 	 */
 	@Override
 	public void unregister(IntfAppObserver observer) {

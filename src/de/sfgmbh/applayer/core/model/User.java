@@ -32,7 +32,7 @@ public class User implements IntfUser {
 	private boolean newPassword_;
 	
 	/**
-	 * Create a new user object
+	 * Create a default user
 	 */
 	public User() {
 		userId_ = -1;

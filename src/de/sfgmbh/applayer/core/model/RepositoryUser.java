@@ -10,6 +10,13 @@ import de.sfgmbh.applayer.core.definitions.IntfUser;
 import de.sfgmbh.datalayer.core.definitions.IntfDataObserver;
 import de.sfgmbh.datalayer.core.model.DataModel;
 
+/**
+ * Repository for {@link User} objects in the application model
+ * 
+ * @author hannes
+ * @author denis
+ *
+ */
 public class RepositoryUser implements IntfAppObservable, IntfDataObserver {
 	
 	private ArrayList<Object> observer_ = new ArrayList<Object>();
@@ -56,11 +63,19 @@ public class RepositoryUser implements IntfAppObservable, IntfDataObserver {
 		return false;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see de.sfgmbh.datalayer.core.definitions.IntfDataObserver#change()
+	 */
 	@Override
 	public void change() {
 		this.update();
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see de.sfgmbh.applayer.core.definitions.IntfAppObservable#update()
+	 */
 	@Override
 	public void update() {
 		
@@ -76,9 +91,9 @@ public class RepositoryUser implements IntfAppObservable, IntfDataObserver {
 		
 	}
 	
-	/**
-	 * 
-	 * @param observer
+	/*
+	 * (non-Javadoc)
+	 * @see de.sfgmbh.applayer.core.definitions.IntfAppObservable#register(de.sfgmbh.applayer.core.definitions.IntfAppObserver)
 	 */
 	@Override
 	public void register(IntfAppObserver observer) {
@@ -89,9 +104,9 @@ public class RepositoryUser implements IntfAppObservable, IntfDataObserver {
 		}
 	}
 	
-	/**
-	 * 
-	 * @param observer
+	/*
+	 * (non-Javadoc)
+	 * @see de.sfgmbh.applayer.core.definitions.IntfAppObservable#unregister(de.sfgmbh.applayer.core.definitions.IntfAppObserver)
 	 */
 	@Override
 	public void unregister(IntfAppObserver observer) {

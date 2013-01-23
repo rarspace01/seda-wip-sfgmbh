@@ -1,6 +1,11 @@
 package de.sfgmbh.applayer.core.definitions;
 
-
+/**
+ * Interface for the base tab controller
+ * 
+ * @author hannes
+ *
+ */
 public interface IntfCtrlBaseTab {
 
 	/**

@@ -7,6 +7,12 @@ import de.sfgmbh.applayer.core.definitions.IntfAppObserver;
 import de.sfgmbh.datalayer.core.definitions.IntfDataObserver;
 import de.sfgmbh.datalayer.core.model.DataModel;
 
+/**
+ * Class to handle the behavior when there is an unexpected problem or something the user should get informed about (in a user-friendly way).
+ * 
+ * @author hannes
+ *
+ */
 public class AppException implements IntfAppObservable, IntfDataObserver {
 
 	private ArrayList<Object> observer_ = new ArrayList<Object>();
@@ -16,7 +22,7 @@ public class AppException implements IntfAppObservable, IntfDataObserver {
 	private boolean new_;
 	
 	/**
-	 * Register this class as observer of data layer exceptions
+	 * Create this class and register it as observer of data layer exceptions
 	 */
 	public AppException() {
 		DataModel.getInstance().getExceptionsHandler().register(this);
@@ -77,6 +83,7 @@ public class AppException implements IntfAppObservable, IntfDataObserver {
 	 * Valid status strings for the variant are:<br>
 	 * "success" - The look and feel gets customized to indicate success<br>
 	 * "info" - The look and feel gets customized for displaying information<br>
+	 * "warn" - The look and feel gets customized for displaying warnings<br>
 	 * "error" - The look and feel gets customized to show a problem<br><br>
 	 * 
 	 * "error" is the default look and feel if no or an invalid variant was submitted.
@@ -93,14 +100,16 @@ public class AppException implements IntfAppObservable, IntfDataObserver {
 			this.exceptionVariante_ = variant;
 		} else if (variant.equals("info")) {
 			this.exceptionVariante_ = variant;
+		} else if (variant.equals("warn")) {
+			this.exceptionVariante_ = variant;
 		} else {
 			this.exceptionVariante_ = "error";
 		}
 		this.setNewException(msg, title);
 	}
 	
-	/**
-	 * 
+	/* (non-Javadoc)
+	 * @see de.sfgmbh.applayer.core.definitions.IntfAppObservable#update()
 	 */
 	@Override
 	public void update() {
@@ -116,9 +125,9 @@ public class AppException implements IntfAppObservable, IntfDataObserver {
 		}
 	}
 	
-	/**
-	 * 
-	 * @param observer
+	/*
+	 * (non-Javadoc)
+	 * @see de.sfgmbh.applayer.core.definitions.IntfAppObservable#register(de.sfgmbh.applayer.core.definitions.IntfAppObserver)
 	 */
 	@Override
 	public void register(IntfAppObserver observer) {
@@ -130,15 +139,19 @@ public class AppException implements IntfAppObservable, IntfDataObserver {
 		
 	}
 	
-	/**
-	 * 
-	 * @param observer
+	/*
+	 * (non-Javadoc)
+	 * @see de.sfgmbh.applayer.core.definitions.IntfAppObservable#unregister(de.sfgmbh.applayer.core.definitions.IntfAppObserver)
 	 */
 	@Override
 	public void unregister(IntfAppObserver observer) {
 		observer_.remove(observer);
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see de.sfgmbh.datalayer.core.definitions.IntfDataObserver#change()
+	 */
 	@Override
 	public void change() {
 		String msg = DataModel.getInstance().getExceptionsHandler().getExceptionMsg_();

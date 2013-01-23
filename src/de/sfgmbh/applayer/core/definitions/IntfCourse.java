@@ -3,7 +3,7 @@ package de.sfgmbh.applayer.core.definitions;
 import de.sfgmbh.applayer.core.model.Course;
 
 /**
- * Interface for {@link Course} object
+ * Interface for the {@link Course} object
  * @author hannes
  *
  */
