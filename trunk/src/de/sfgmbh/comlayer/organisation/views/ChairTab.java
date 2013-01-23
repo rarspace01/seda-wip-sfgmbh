@@ -19,6 +19,7 @@ import de.sfgmbh.comlayer.core.controller.ViewManager;
 import de.sfgmbh.comlayer.core.views.BaseTab;
 import de.sfgmbh.comlayer.organisation.controller.ChairTabBtnsControl;
 import de.sfgmbh.comlayer.organisation.controller.ChairTabCmbboxFilter;
+import javax.swing.ListSelectionModel;
 
 /**
  * 
@@ -77,6 +78,7 @@ public class ChairTab extends JPanel {
 		add(organisationTableScrollPane, "flowx,cell 2 2 4 1,grow");
 		
 		chairOrgaTable = new JTable();
+		chairOrgaTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		chairOrgaTable.setModel(ViewManager.getInstance().getOrgaChairTableModel());
 		chairOrgaTable.setShowVerticalLines(false);
 		chairOrgaTable.getColumnModel().removeColumn(chairOrgaTable.getColumn("Hidden"));

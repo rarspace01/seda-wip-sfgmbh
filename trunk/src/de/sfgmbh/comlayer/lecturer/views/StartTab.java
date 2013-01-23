@@ -35,6 +35,7 @@ import de.sfgmbh.comlayer.core.views.QuestionDialog;
 import de.sfgmbh.comlayer.lecturer.controller.StartTabBtnsControl;
 import de.sfgmbh.comlayer.lecturer.controller.StartTabCmbboxFilter;
 import de.sfgmbh.comlayer.lecturer.controller.StartTabTableTop;
+import javax.swing.ListSelectionModel;
 
 public class StartTab extends JPanel implements IntfComDialogObserver {
 
@@ -129,6 +130,7 @@ public class StartTab extends JPanel implements IntfComDialogObserver {
 		tablePanel.add(lvOrganisationTableScrollPane, "cell 0 2 5 1,grow");
 		
 		tableCourseTop = new JTable();
+		tableCourseTop.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		tableCourseTop.addMouseListener(new StartTabTableTop());
 		tableCourseTop.setModel(ViewManager.getInstance().getLecturerStartTabTableTop());
 		tableCourseTop.getColumnModel().removeColumn(tableCourseTop.getColumn("Hidden"));
@@ -190,6 +192,7 @@ public class StartTab extends JPanel implements IntfComDialogObserver {
 		tablePanel.add(raumanfragenScrollPane, "cell 0 6 5 1,grow");
 		
 		tableRoomAllocationBottom = new JTable();
+		tableRoomAllocationBottom.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		tableRoomAllocationBottom.setModel(ViewManager.getInstance().getLecturerStartTabTableBottom());
 		tableRoomAllocationBottom.setShowVerticalLines(false);
 		tableRoomAllocationBottom.getColumnModel().removeColumn(tableRoomAllocationBottom.getColumn("Hidden"));

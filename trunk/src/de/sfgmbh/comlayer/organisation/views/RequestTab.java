@@ -29,6 +29,7 @@ import de.sfgmbh.comlayer.core.model.CmbboxFilterSemester;
 import de.sfgmbh.comlayer.core.views.BaseTab;
 import de.sfgmbh.comlayer.organisation.controller.RequestTabBtnsControl;
 import de.sfgmbh.comlayer.organisation.controller.RequestTabCmbboxFilter;
+import javax.swing.ListSelectionModel;
 
 /**
  * Tab for the room request management
@@ -116,6 +117,7 @@ public class RequestTab extends JPanel {
 		add(organisationTableScrollPane, "flowx,cell 2 2 4 1,grow");
 		
 		roomAllocationTable = new JTable();
+		roomAllocationTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		roomAllocationTable.setModel(ViewManager.getInstance().getOrgaRequestTableModel());
 		roomAllocationTable.setShowVerticalLines(false);
 		roomAllocationTable.setBackground(SystemColor.activeCaption);
