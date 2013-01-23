@@ -3,7 +3,6 @@ package de.sfgmbh.applayer.organisation.definitions;
 import java.util.List;
 
 import de.sfgmbh.applayer.core.definitions.IntfRoomAllocation;
-import de.sfgmbh.applayer.core.model.RoomAllocation;
 import de.sfgmbh.comlayer.core.controller.ViewHelper;
 
 /**
