@@ -21,7 +21,14 @@ public class Bootstrap {
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
-			
+		
+		// option for resseting DB on startup
+		for(int i=0;i<args.length;i++){
+			if(args[i].contains("resetdb")){
+				new ResetDb().factoryReset();
+			}
+		}
+		
 		// Start the GUI
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
