@@ -77,7 +77,7 @@ public class CtrlStartTab implements IntfCtrlStartTab {
 	 */
 	@Override
 	public IntfRoomAllocation suggest(IntfRoomAllocation roomAllocation, HashMap<String, String> filter) {
-		List<RoomAllocation> currentAllocations = AppModel.getInstance().getRepositoryRoomAllocation().getAllOpen();
+		List<IntfRoomAllocation> currentAllocations = AppModel.getInstance().getRepositoryRoomAllocation().getAllOpen();
 		List<IntfRoom> matchingRooms = AppModel.getInstance().getRepositoryRoom().getByFilter(filter);
 		
 		// Iterate over all matching rooms

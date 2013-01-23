@@ -118,7 +118,7 @@ public interface IntfRoomAllocation {
 	/**
 	 * @return the conflictingAllocations_
 	 */
-	public abstract List<RoomAllocation> getConflictingAllocations_();
+	public abstract List<IntfRoomAllocation> getConflictingAllocations_();
 
 	/**
 	 * Set conflicting room allocations when this room allocation doesn't already have any conflicting allocations

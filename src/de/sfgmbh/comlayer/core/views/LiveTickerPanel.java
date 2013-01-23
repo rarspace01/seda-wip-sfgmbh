@@ -34,7 +34,7 @@ public class LiveTickerPanel extends JPanel {
 	private JTextArea txtHeader;
 	private JTextPane txtTicker;
 	private IntfCtrlLiveTicker ctrlLiverTicker = new CtrlLiveTicker();
-	private List<RoomAllocation> displayAllocations;
+	private List<IntfRoomAllocation> displayAllocations;
 	private boolean isTooLong;
 	private int cycles;
 	
@@ -134,7 +134,7 @@ public class LiveTickerPanel extends JPanel {
 		}
 	}
 	
-	private String getRoomAllocationText (List<RoomAllocation> roomAllocations) {
+	private String getRoomAllocationText (List<IntfRoomAllocation> roomAllocations) {
 		String returnString = "";
 		
 		// Build the string for all allocations

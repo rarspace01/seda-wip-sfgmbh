@@ -12,15 +12,15 @@ public interface IntfDataRoomAllocation {
 	 * Get all room allocations
 	 * @return a list with all room allocations
 	 */
-	public abstract List<RoomAllocation> getAll();
+	public abstract List<IntfRoomAllocation> getAll();
 
 	/**
 	 * Get all room allocations which are not already denied 
 	 * @return a list with all open room allocations
 	 */
-	public abstract List<RoomAllocation> getAllOpen();
+	public abstract List<IntfRoomAllocation> getAllOpen();
 
-	public abstract List<RoomAllocation> getByFilter(
+	public abstract List<IntfRoomAllocation> getByFilter(
 			HashMap<String, String> filter);
 
 	/**
@@ -28,7 +28,7 @@ public interface IntfDataRoomAllocation {
 	 * @param roomAllocation
 	 * @return a list of all conflicting room allocations
 	 */
-	public abstract List<RoomAllocation> getConflictingAllocation(
+	public abstract List<IntfRoomAllocation> getConflictingAllocation(
 			IntfRoomAllocation roomAllocation);
 
 	/**
@@ -48,8 +48,8 @@ public interface IntfDataRoomAllocation {
 	 * @param roomAllocations
 	 * @return a list of room allocations with the correct conflicting state
 	 */
-	public abstract List<RoomAllocation> setConflicts(
-			List<RoomAllocation> roomAllocations);
+	public abstract List<IntfRoomAllocation> setConflicts(
+			List<IntfRoomAllocation> roomAllocations);
 
 	/**
 	 * Get a room allocation by its id

@@ -14,8 +14,11 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 
 import net.miginfocom.swing.MigLayout;
+import de.sfgmbh.applayer.core.definitions.IntfRoomAllocation;
 import de.sfgmbh.applayer.core.model.AppModel;
 import de.sfgmbh.applayer.core.model.RoomAllocation;
+import de.sfgmbh.applayer.organisation.controller.CtrlRoomAllocation;
+import de.sfgmbh.applayer.organisation.definitions.IntfCtrlRoomAllocation;
 import de.sfgmbh.comlayer.core.controller.ViewHelper;
 import de.sfgmbh.comlayer.core.controller.ViewManager;
 import de.sfgmbh.comlayer.core.model.CmbboxFilterSemester;
@@ -130,6 +133,8 @@ public class RoomtableTab extends JPanel {
 		
 		//clear all rows
 		
+		IntfCtrlRoomAllocation roomAllocationController=new CtrlRoomAllocation();
+		
 		ViewManager.getInstance().getOrgaRoomtableTableModel().setRowCount(0);
 		
 		HashMap<String,String> tableFilter = new HashMap<String,String> ();  //setting filter
@@ -137,7 +142,7 @@ public class RoomtableTab extends JPanel {
 		tableFilter.put("roomid", ""+this.roomId_);
 		tableFilter.put("semester", semester);
 		
-		List<RoomAllocation> ral=AppModel.getInstance().getRepositoryRoomAllocation().getByFilter(tableFilter);
+		List<IntfRoomAllocation> ral=AppModel.getInstance().getRepositoryRoomAllocation().getByFilter(tableFilter);
 		
 		for(int i=1;i<=7;i++){
 			
@@ -148,7 +153,7 @@ public class RoomtableTab extends JPanel {
 			
 			for(int j=1; j<=5; j++){
 				
-				ViewManager.getInstance().getOrgaRoomtableTableModel().setValueAt(getLectureOnTime(ral,j,i), i-1, j);
+				ViewManager.getInstance().getOrgaRoomtableTableModel().setValueAt(roomAllocationController.getLectureOnTime(ral,j,i), i-1, j);
 				
 			}
 		}
