@@ -24,6 +24,7 @@ import de.sfgmbh.comlayer.core.model.CmbboxFilterSemester;
 import de.sfgmbh.comlayer.core.views.BaseTab;
 import de.sfgmbh.comlayer.lecturer.controller.TimetableTabBtn;
 import de.sfgmbh.comlayer.lecturer.controller.TimetableTabCmbbox;
+import javax.swing.ScrollPaneConstants;
 
 public class TimetableTab extends JPanel {
 	private static final long serialVersionUID = 1L;
@@ -35,6 +36,7 @@ public class TimetableTab extends JPanel {
 	private JComboBox<String> comboBoxLecturer_;
 	private CmbboxFilterLecturer comboBoxLecturerModel_;
 	private JLabel lblWeekplanLecturer;
+	private JScrollPane scrollPane_;
 	
 	
 
@@ -95,12 +97,13 @@ public class TimetableTab extends JPanel {
 			panelTimetable_ = new JPanel();
 			panelTimetable_.setLayout(new MigLayout("", "[830px:n:830px,grow]", "[]"));
 			
-			JScrollPane scrollPane = new JScrollPane();
-			panelTimetable_.add(scrollPane, "cell 0 0,grow");
+			scrollPane_ = new JScrollPane();
+			scrollPane_.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
+			panelTimetable_.add(scrollPane_, "cell 0 0,grow");
 			
 			lecturerTimetableTable_ = new JTable();
 			
-			scrollPane.setViewportView(lecturerTimetableTable_);
+			scrollPane_.setViewportView(lecturerTimetableTable_);
 			
 	
 			lecturerTimetableTable_.setBackground(Color.WHITE);
@@ -163,6 +166,8 @@ public class TimetableTab extends JPanel {
 			//reloading the table based on the new roomAllocations
 			genericTablesController.reloadTable(lecturerTimetableTable_, roomAllocations,true);
 			
+			// Set the maximum size of the scroll pane (don't forget to add the table header!)
+			scrollPane_.setMaximumSize(new Dimension(32767, ((int) lecturerTimetableTable_.getPreferredSize().getHeight() + 26)));
 		}
 		
 	}

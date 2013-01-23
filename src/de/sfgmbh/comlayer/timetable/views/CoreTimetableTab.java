@@ -4,8 +4,6 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -20,12 +18,10 @@ import de.sfgmbh.applayer.core.definitions.IntfCtrlGenericTables;
 import de.sfgmbh.applayer.core.definitions.IntfRoomAllocation;
 import de.sfgmbh.applayer.core.model.AppModel;
 import de.sfgmbh.applayer.core.model.RoomAllocation;
-import de.sfgmbh.applayer.organisation.controller.CtrlRoomAllocation;
-import de.sfgmbh.applayer.organisation.definitions.IntfCtrlRoomAllocation;
-import de.sfgmbh.comlayer.core.controller.ViewHelper;
 import de.sfgmbh.comlayer.core.controller.ViewManager;
 import de.sfgmbh.comlayer.core.views.BaseTab;
 import de.sfgmbh.comlayer.timetable.controller.CoreTimetableTabBtnPdf;
+import javax.swing.ScrollPaneConstants;
 
 /**
  * @author anna
@@ -48,7 +44,7 @@ public class CoreTimetableTab extends JPanel {
 	}
 	private void initialize() {
 		setAutoscrolls(true);
-		setLayout(new MigLayout("", "[20px:20px,grow][131px][50px][92.00px][461px][20px:20px,grow][right]", "[68px][392px]"));
+		setLayout(new MigLayout("", "[20px:20px,grow][131px][50px][92.00px][461px][20px:20px,grow][right]", "[68px][grow,shrink 0]"));
 		
 		btnTimetableReset = new JButton("Stundenplan zurücksetzen");
 		btnTimetableReset.addActionListener(new CoreTimetableTabBtnPdf("reset"));
@@ -63,7 +59,9 @@ public class CoreTimetableTab extends JPanel {
 		uniIconPanel.add(lblUniIcon);
 		
 		scrollPane_ = new JScrollPane();
-		add(scrollPane_, "cell 1 1 4 1,grow");
+		scrollPane_.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
+		scrollPane_.setBorder(null);
+		add(scrollPane_, "cell 1 1 4 1,growx,aligny top");
 		
 		timetableTable = new JTable();
 		
@@ -104,7 +102,7 @@ public class CoreTimetableTab extends JPanel {
 		
 		lblvaluesemester = new JLabel("#valueSemester#");
 		add(lblvaluesemester, "cell 3 0");
-		
+	
 		reloadRoomTable();
 	}
 	/**
@@ -120,6 +118,8 @@ public class CoreTimetableTab extends JPanel {
 		//call the reload method
 		genericTablesController.reloadTable(getStundenplanTable(), roomAllocationList,true);
 		
+		// Set the maximum size of the scroll pane (don't forget to add the table header!)
+		scrollPane_.setMaximumSize(new Dimension(32767, ((int) timetableTable.getPreferredSize().getHeight() + 26)));
 	}
 
 	/**

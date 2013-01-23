@@ -18,14 +18,12 @@ import de.sfgmbh.applayer.core.controller.CtrlGenericTables;
 import de.sfgmbh.applayer.core.definitions.IntfCtrlGenericTables;
 import de.sfgmbh.applayer.core.definitions.IntfRoomAllocation;
 import de.sfgmbh.applayer.core.model.AppModel;
-import de.sfgmbh.applayer.organisation.controller.CtrlRoomAllocation;
-import de.sfgmbh.applayer.organisation.definitions.IntfCtrlRoomAllocation;
-import de.sfgmbh.comlayer.core.controller.ViewHelper;
 import de.sfgmbh.comlayer.core.controller.ViewManager;
 import de.sfgmbh.comlayer.core.model.CmbboxFilterSemester;
 import de.sfgmbh.comlayer.core.views.BaseTab;
 import de.sfgmbh.comlayer.organisation.controller.RoomtableCmbboxFilter;
 import de.sfgmbh.comlayer.organisation.controller.RoomtableTabBtnPdf;
+import javax.swing.ScrollPaneConstants;
 
 public class RoomtableTab extends JPanel {
 
@@ -54,6 +52,7 @@ public class RoomtableTab extends JPanel {
 		uniIconPanel.add(lblUniIcon);
 		
 		scrollPane_ = new JScrollPane();
+		scrollPane_.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
 		add(scrollPane_, "cell 1 1 4 1,grow");
 		
 		timetableTable = new JTable();
@@ -140,6 +139,8 @@ public class RoomtableTab extends JPanel {
 		//calling the controller for reloading the gui
 		genericTablesController.reloadTable(getStundenplanTable(), roomAllocationList,false);
 		
+		// Set the maximum size of the scroll pane (don't forget to add the table header!)
+		scrollPane_.setMaximumSize(new Dimension(32767, ((int) timetableTable.getPreferredSize().getHeight() + 26)));
 	}
 	/**
 	 * 

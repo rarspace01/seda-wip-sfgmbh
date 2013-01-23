@@ -22,15 +22,12 @@ import de.sfgmbh.applayer.core.controller.SessionManager;
 import de.sfgmbh.applayer.core.definitions.IntfCtrlGenericTables;
 import de.sfgmbh.applayer.core.definitions.IntfRoomAllocation;
 import de.sfgmbh.applayer.core.model.AppModel;
-import de.sfgmbh.applayer.core.model.RoomAllocation;
-import de.sfgmbh.applayer.organisation.controller.CtrlRoomAllocation;
-import de.sfgmbh.applayer.organisation.definitions.IntfCtrlRoomAllocation;
-import de.sfgmbh.comlayer.core.controller.ViewHelper;
 import de.sfgmbh.comlayer.core.controller.ViewManager;
 import de.sfgmbh.comlayer.core.model.CmbboxFilterSemester;
 import de.sfgmbh.comlayer.core.views.BaseTab;
 import de.sfgmbh.comlayer.lecturer.controller.ProfessorshipTimetableTabBtn;
 import de.sfgmbh.comlayer.lecturer.controller.ProfessorshipTimetableTabCmbbox;
+import javax.swing.ScrollPaneConstants;
 /**
  * 
  * @author hannes
@@ -45,6 +42,7 @@ public class ProfessorshipTimetableTab extends JPanel{
 	private JComboBox<String> comboBoxSemesterFilter_;
 	private CmbboxFilterSemester comboBoxSemesterModel_= new CmbboxFilterSemester("select");
 	private int maxEntries_=0;
+	private JScrollPane scrollPane_;
 
 
 	/**
@@ -105,8 +103,9 @@ public class ProfessorshipTimetableTab extends JPanel{
 			panelProfessorshipPanel_ = new JPanel();
 			panelProfessorshipPanel_.setLayout(new MigLayout("", "[830px:n:830px]", "[grow]"));
 			
-			JScrollPane scrollPane = new JScrollPane();
-			panelProfessorshipPanel_.add(scrollPane, "cell 0 0,growx,aligny top");
+			scrollPane_ = new JScrollPane();
+			scrollPane_.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
+			panelProfessorshipPanel_.add(scrollPane_, "cell 0 0,growx,aligny top");
 			
 			chairTimetableTable_ = new JTable();
 			chairTimetableTable_.setPreferredScrollableViewportSize(new Dimension(750, 400));
@@ -114,7 +113,7 @@ public class ProfessorshipTimetableTab extends JPanel{
 			
 			
 			
-			scrollPane.setViewportView(chairTimetableTable_);
+			scrollPane_.setViewportView(chairTimetableTable_);
 			
 	
 			chairTimetableTable_.setBackground(Color.WHITE);
@@ -154,6 +153,8 @@ public class ProfessorshipTimetableTab extends JPanel{
 		// reload Table based on roomAllocations
 		genericTablesController.reloadTable(chairTimetableTable_, roomAllocationList,true);
 		
+		// Set the maximum size of the scroll pane (don't forget to add the table header!)
+		scrollPane_.setMaximumSize(new Dimension(32767, ((int) chairTimetableTable_.getPreferredSize().getHeight() + 26)));
 	}
 	/**
 	 * 
