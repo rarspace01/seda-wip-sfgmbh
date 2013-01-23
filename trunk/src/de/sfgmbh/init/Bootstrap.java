@@ -68,6 +68,7 @@ public class Bootstrap {
 		try {
 			DataManagerPostgreSql.getInstance().select("SELECT 1;");
 			hasDbConnection=true;
+			DataManagerPostgreSql.getInstance().dispose();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			DataModel.getInstance().getExceptionsHandler().setNewException(("Keine Verbindung zur Datenbank möglich:<br /><br />" + e.toString()), "Verbindungs-Fehler!");
