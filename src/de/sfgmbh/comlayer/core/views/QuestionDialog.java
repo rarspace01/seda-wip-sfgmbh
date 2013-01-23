@@ -2,6 +2,7 @@ package de.sfgmbh.comlayer.core.views;
 
 import java.awt.Dimension;
 import java.awt.SystemColor;
+import java.awt.Toolkit;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -13,7 +14,6 @@ import net.miginfocom.swing.MigLayout;
 import de.sfgmbh.comlayer.core.controller.QuestionDialogBtns;
 import de.sfgmbh.comlayer.core.definitions.IntfComDialogObservable;
 import de.sfgmbh.comlayer.core.definitions.IntfComDialogObserver;
-import java.awt.Toolkit;
 
 /**
  * Modal dialog with more options
