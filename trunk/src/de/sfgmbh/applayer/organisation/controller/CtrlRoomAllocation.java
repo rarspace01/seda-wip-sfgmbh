@@ -62,7 +62,7 @@ public class CtrlRoomAllocation implements IntfCtrlRoomAllocation {
 	 * @see de.sfgmbh.applayer.organisation.controller.IntfCtrlRoomAllocation#getAllRoomAllocations()
 	 */
 	@Override
-	public List<RoomAllocation> getAllRoomAllocations(){
+	public List<IntfRoomAllocation> getAllRoomAllocations(){
 		return AppModel.getInstance().getRepositoryRoomAllocation().getAll();
 	}
 	
@@ -86,7 +86,7 @@ public class CtrlRoomAllocation implements IntfCtrlRoomAllocation {
 	 */
 	@Override
 	public IntfRoomAllocation suggest(IntfRoomAllocation roomAllocation) {
-		List<RoomAllocation> currentAllocations = AppModel.getInstance().getRepositoryRoomAllocation().getAllOpen();
+		List<IntfRoomAllocation> currentAllocations = AppModel.getInstance().getRepositoryRoomAllocation().getAllOpen();
 		HashMap<String, String> roomFilter = new HashMap<String, String>();
 		roomFilter.put("seats", String.valueOf(roomAllocation.getCourse_().getExpectedAttendees_()));
 		List<IntfRoom> matchingRooms = AppModel.getInstance().getRepositoryRoom().getByFilter(roomFilter);
@@ -162,6 +162,19 @@ public class CtrlRoomAllocation implements IntfCtrlRoomAllocation {
 	@Override
 	public boolean cleanRoomAllocations() {
 		return AppModel.getInstance().getRepositoryRoomAllocation().clean();
+	}
+
+	@Override
+	public String getLectureOnTime(List<IntfRoomAllocation> roomAllocations,
+			int day, int time) {
+		String textualRepresentation="<html>";
+		//check for room allocations on given time
+		for(int i=0;i<roomAllocations.size();i++){
+			if(roomAllocations.get(i).getDay_()==day && roomAllocations.get(i).getTime_()==time){
+				textualRepresentation+=roomAllocations.get(i).getCourse_().getCourseAcronym_()+" - in - "+roomAllocations.get(i).getRoom_().getRoomNumber_()+"<br/>";
+			}
+		}
+		return textualRepresentation+"</html>";
 	}
 	
 }

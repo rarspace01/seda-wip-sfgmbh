@@ -8,6 +8,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import de.sfgmbh.applayer.core.definitions.IntfCtrlLiveTicker;
+import de.sfgmbh.applayer.core.definitions.IntfRoomAllocation;
 import de.sfgmbh.applayer.core.model.AppModel;
 import de.sfgmbh.applayer.core.model.RoomAllocation;
 
@@ -23,7 +24,7 @@ public class CtrlLiveTicker implements IntfCtrlLiveTicker {
 	 * @see de.sfgmbh.applayer.core.controller.IntfCtrlLiveTicker#getTickerAllocations()
 	 */
 	@Override
-	public List<RoomAllocation> getTickerAllocations() {
+	public List<IntfRoomAllocation> getTickerAllocations() {
 		
 		// Determine the date
 		Date now = new Date( );
@@ -48,12 +49,12 @@ public class CtrlLiveTicker implements IntfCtrlLiveTicker {
 	    filter.put("semester", "SS 13");
 	    
 	    // Get the allocations for the day
-	    List<RoomAllocation> dayAllocations = AppModel.getInstance().getRepositoryRoomAllocation().getByFilter(filter);
+	    List<IntfRoomAllocation> dayAllocations = AppModel.getInstance().getRepositoryRoomAllocation().getByFilter(filter);
 	    
 	    // Determine which allocations to return (they have to be public, yet to start and at most ten)
-	    List<RoomAllocation> returnList = new ArrayList<RoomAllocation>();
+	    List<IntfRoomAllocation> returnList = new ArrayList<IntfRoomAllocation>();
 	    Integer counter = 0;
-	    for (RoomAllocation ra : dayAllocations) {
+	    for (IntfRoomAllocation ra : dayAllocations) {
 	    	if (ra.isPublic() && 
 	    			ra.getTime_() > this.transcodeHour(formatHour)) {
 	    		returnList.add(ra);

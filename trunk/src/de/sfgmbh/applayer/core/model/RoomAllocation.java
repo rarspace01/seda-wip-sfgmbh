@@ -24,7 +24,7 @@ public class RoomAllocation implements IntfRoomAllocation {
 	private String approved_;
 	private String orgaMessage_;
 	private String comment_;
-	private List<RoomAllocation> conflictingAllocations_;
+	private List<IntfRoomAllocation> conflictingAllocations_;
 	private boolean conflicting_;
 	
 	public RoomAllocation() {
@@ -194,7 +194,7 @@ public class RoomAllocation implements IntfRoomAllocation {
 	 * @see de.sfgmbh.applayer.core.model.IntfRoomAllocation#getConflictingAllocations_()
 	 */
 	@Override
-	public List<RoomAllocation> getConflictingAllocations_() {
+	public List<IntfRoomAllocation> getConflictingAllocations_() {
 		return conflictingAllocations_;
 	}
 
@@ -204,7 +204,7 @@ public class RoomAllocation implements IntfRoomAllocation {
 	@Override
 	public void setConflictingAllocations_() {
 		if (this.conflictingAllocations_ == null) {
-			List<RoomAllocation> ral = AppModel.getInstance().getRepositoryRoomAllocation().getConflictingAllocation(this);
+			List<IntfRoomAllocation> ral = AppModel.getInstance().getRepositoryRoomAllocation().getConflictingAllocation(this);
 			this.conflictingAllocations_ = ral;
 		}
 	}
@@ -214,7 +214,7 @@ public class RoomAllocation implements IntfRoomAllocation {
 	 */
 	@Override
 	public void setForceConflictingAllocations_() {
-		List<RoomAllocation> ral = AppModel.getInstance().getRepositoryRoomAllocation().getConflictingAllocation(this);
+		List<IntfRoomAllocation> ral = AppModel.getInstance().getRepositoryRoomAllocation().getConflictingAllocation(this);
 		this.conflictingAllocations_ = ral;
 	}
 	

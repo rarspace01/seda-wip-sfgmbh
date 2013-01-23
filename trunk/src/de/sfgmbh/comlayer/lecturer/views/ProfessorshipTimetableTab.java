@@ -18,8 +18,11 @@ import javax.swing.SwingConstants;
 
 import net.miginfocom.swing.MigLayout;
 import de.sfgmbh.applayer.core.controller.SessionManager;
+import de.sfgmbh.applayer.core.definitions.IntfRoomAllocation;
 import de.sfgmbh.applayer.core.model.AppModel;
 import de.sfgmbh.applayer.core.model.RoomAllocation;
+import de.sfgmbh.applayer.organisation.controller.CtrlRoomAllocation;
+import de.sfgmbh.applayer.organisation.definitions.IntfCtrlRoomAllocation;
 import de.sfgmbh.comlayer.core.controller.ViewHelper;
 import de.sfgmbh.comlayer.core.controller.ViewManager;
 import de.sfgmbh.comlayer.core.model.CmbboxFilterSemester;
@@ -143,7 +146,7 @@ public class ProfessorshipTimetableTab extends JPanel{
 	
 	public void reloadPlan(){
 		
-		
+		IntfCtrlRoomAllocation roomAllocationController=new CtrlRoomAllocation();
 			
 		ViewManager.getInstance().getLecturerChairimetableTabTable().setRowCount(0);
 			
@@ -154,7 +157,7 @@ public class ProfessorshipTimetableTab extends JPanel{
 			if(SessionManager.getInstance().getSession() != null){
 			tableFilter.put("chairid", ""+SessionManager.getInstance().getSession().getChair_().getChairId_());
 			}
-			List<RoomAllocation> ral=AppModel.getInstance().getRepositoryRoomAllocation().getByFilter(tableFilter);
+			List<IntfRoomAllocation> ral=AppModel.getInstance().getRepositoryRoomAllocation().getByFilter(tableFilter);
 			
 			for(int i=1;i<=7;i++){
 				
@@ -165,7 +168,7 @@ public class ProfessorshipTimetableTab extends JPanel{
 				
 				for(int j=1; j<=5; j++){
 					
-					ViewManager.getInstance().getLecturerChairimetableTabTable().setValueAt(getLectureOnTime(ral,j,i), i-1, j);
+					ViewManager.getInstance().getLecturerChairimetableTabTable().setValueAt(roomAllocationController.getLectureOnTime(ral,j,i), i-1, j);
 					
 				}
 			}

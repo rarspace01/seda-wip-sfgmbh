@@ -4,7 +4,13 @@ import java.util.List;
 
 import de.sfgmbh.applayer.core.definitions.IntfRoomAllocation;
 import de.sfgmbh.applayer.core.model.RoomAllocation;
+import de.sfgmbh.comlayer.core.controller.ViewHelper;
 
+/**
+ * room Allocation Interface
+ * @author hannes
+ *
+ */
 public interface IntfCtrlRoomAllocation {
 
 	/**
@@ -20,7 +26,7 @@ public interface IntfCtrlRoomAllocation {
 	 * @return a list of all RoomAlloction objects
 	 * @deprecated As no further filtering is done here the method should be used in RepositoryRoomAllocation directly instead.
 	 */
-	public abstract List<RoomAllocation> getAllRoomAllocations();
+	public abstract List<IntfRoomAllocation> getAllRoomAllocations();
 
 	/**
 	 * Deny a room allocation if possible
@@ -47,5 +53,15 @@ public interface IntfCtrlRoomAllocation {
 	 * @return true on success
 	 */
 	public abstract boolean cleanRoomAllocations();
+	
+	/**
+	 * retrieves the room allocations from a given List and day/time
+	 * @param roomAllocations
+	 * @param day - @see {@link ViewHelper}
+	 * @param time - @see {@link ViewHelper}
+	 * @return textualRepresentation - Textual HTML Representation as a {@link String} 
+	 * @author denis
+	 */
+	public String getLectureOnTime(List<IntfRoomAllocation> roomAllocations,int day, int time);
 
 }

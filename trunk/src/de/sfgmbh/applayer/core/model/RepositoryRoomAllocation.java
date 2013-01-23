@@ -25,7 +25,7 @@ public class RepositoryRoomAllocation implements IntfAppObservable, IntfDataObse
 	 * Return all room allocations
 	 * @return a list of all room allocations
 	 */
-	public List<RoomAllocation> getAll() {
+	public List<IntfRoomAllocation> getAll() {
 		return DataModel.getInstance().getDataHandlerRoomAllocation().getAll();
 	}
 	
@@ -33,7 +33,7 @@ public class RepositoryRoomAllocation implements IntfAppObservable, IntfDataObse
 	 * Get all room allocations which are not already denied 
 	 * @return a list with all open room allocations
 	 */
-	public List<RoomAllocation> getAllOpen() {
+	public List<IntfRoomAllocation> getAllOpen() {
 		return DataModel.getInstance().getDataHandlerRoomAllocation().getAllOpen();
 	}
 		
@@ -41,7 +41,7 @@ public class RepositoryRoomAllocation implements IntfAppObservable, IntfDataObse
 	 * Return filtered courses
 	 * @return a list of filtered courses
 	 */
-	public List<RoomAllocation> getByFilter(HashMap<String, String> filter) {
+	public List<IntfRoomAllocation> getByFilter(HashMap<String, String> filter) {
 		return DataModel.getInstance().getDataHandlerRoomAllocation().getByFilter(filter);
 	}
 
@@ -50,7 +50,7 @@ public class RepositoryRoomAllocation implements IntfAppObservable, IntfDataObse
 	 * @param ra
 	 * @return a list of all conflicting room allocations
 	 */
-	public List<RoomAllocation> getConflictingAllocation(IntfRoomAllocation ra) {
+	public List<IntfRoomAllocation> getConflictingAllocation(IntfRoomAllocation ra) {
 		return DataModel.getInstance().getDataHandlerRoomAllocation().getConflictingAllocation(ra);
 	}
 	

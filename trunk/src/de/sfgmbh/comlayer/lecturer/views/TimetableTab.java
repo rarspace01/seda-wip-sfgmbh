@@ -14,8 +14,11 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 
 import net.miginfocom.swing.MigLayout;
+import de.sfgmbh.applayer.core.definitions.IntfRoomAllocation;
 import de.sfgmbh.applayer.core.model.AppModel;
 import de.sfgmbh.applayer.core.model.RoomAllocation;
+import de.sfgmbh.applayer.organisation.controller.CtrlRoomAllocation;
+import de.sfgmbh.applayer.organisation.definitions.IntfCtrlRoomAllocation;
 import de.sfgmbh.comlayer.core.controller.ViewHelper;
 import de.sfgmbh.comlayer.core.controller.ViewManager;
 import de.sfgmbh.comlayer.core.model.CmbboxFilterLecturer;
@@ -136,24 +139,11 @@ public class TimetableTab extends JPanel {
 		return comboBoxLecturer_;
 	}
 	
-	public String getLectureOnTime(List<RoomAllocation> ral,int day, int time){
-		String textualRepresentation="";
-		
-		for(int i=0;i<ral.size();i++){
-			if(ral.get(i).getDay_()==day && ral.get(i).getTime_()==time){
-				//textualRepresentation=ral.get(i).getCourse_().getCourseName_()+" ("+ral.get(i).getCourse_().getLecturer_().getChair_().getAcronym_()+" - "+ral.get(i).getCourse_().getCourseAcronym_()+")";
-				textualRepresentation=ral.get(i).getCourse_().getCourseAcronym_()+" - in - "+ral.get(i).getRoom_().getRoomNumber_();
-			}
-		}
-		
-		return textualRepresentation;
-	}
-	
 	public void reloadPlan(){
 		
-		if(this.getcomboBoxLecturer_().getSelectedItem().toString().toLowerCase().contains("alle")){
-			
-		}else{
+		IntfCtrlRoomAllocation roomAllocationController=new CtrlRoomAllocation();
+		
+		if(!this.getcomboBoxLecturer_().getSelectedItem().toString().toLowerCase().contains("alle")){
 			
 		ViewManager.getInstance().getLecturerTimetableTabTable().setRowCount(0);
 			
@@ -163,7 +153,7 @@ public class TimetableTab extends JPanel {
 			
 			tableFilter.put("login", this.comboBoxLecturerModel_.getLecturerForModel().get(this.getcomboBoxLecturer_().getSelectedIndex()).getLogin_());
 			
-			List<RoomAllocation> ral=AppModel.getInstance().getRepositoryRoomAllocation().getByFilter(tableFilter);
+			List<IntfRoomAllocation> roomAllocations=AppModel.getInstance().getRepositoryRoomAllocation().getByFilter(tableFilter);
 			
 			for(int i=1;i<=7;i++){
 				
@@ -174,7 +164,7 @@ public class TimetableTab extends JPanel {
 				
 				for(int j=1; j<=5; j++){
 					
-					ViewManager.getInstance().getLecturerTimetableTabTable().setValueAt(getLectureOnTime(ral,j,i), i-1, j);
+					ViewManager.getInstance().getLecturerTimetableTabTable().setValueAt(roomAllocationController.getLectureOnTime(roomAllocations,j,i), i-1, j);
 					
 				}
 			}

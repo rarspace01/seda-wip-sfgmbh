@@ -11,6 +11,6 @@ public interface IntfCtrlLiveTicker {
 	 * This allocations only affect the current day, public allocations and there are at most 15 allocations retrieved (started by the most recent on)
 	 * @return a list of room allocations
 	 */
-	public abstract List<RoomAllocation> getTickerAllocations();
+	public abstract List<IntfRoomAllocation> getTickerAllocations();
 
 }

@@ -6,20 +6,13 @@ public class ResetDb {
 	}
 	
 	public void factoryReset(){
-		dropTables();
-		createTables();
-		insertData();
-	}
-	
-	private void insertData() {
-		
+		runSqlScript();
 	}
 
-	private void createTables() {
+	private void runSqlScript() {
 		
-	}
-
-	private void dropTables(){
+		this.getClass().getResourceAsStream("");
+		
 	}
 	
 }

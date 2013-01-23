@@ -30,8 +30,8 @@ public class DataHandlerRoomAllocation implements IntfDataObservable, IntfDataFi
 	 * @see de.sfgmbh.datalayer.core.daos.IntfDataRoomAllocation#getAll()
 	 */
 	@Override
-	public List<RoomAllocation> getAll() {
-		List<RoomAllocation> listRoomAllocation = new ArrayList<RoomAllocation>();
+	public List<IntfRoomAllocation> getAll() {
+		List<IntfRoomAllocation> listRoomAllocation = new ArrayList<IntfRoomAllocation>();
 
 		String SqlStatement = "SELECT public.roomallocation.*, public.course.*, public.user.*, public.room.*, public.chair.* " +
 								"FROM public.roomallocation, public.room, public.course, public.user, public.chair, public.lecturer " +
@@ -69,8 +69,8 @@ public class DataHandlerRoomAllocation implements IntfDataObservable, IntfDataFi
 	 * @see de.sfgmbh.datalayer.core.daos.IntfDataRoomAllocation#getAllOpen()
 	 */
 	@Override
-	public List<RoomAllocation> getAllOpen() {
-		List<RoomAllocation> listRoomAllocation = new ArrayList<RoomAllocation>();
+	public List<IntfRoomAllocation> getAllOpen() {
+		List<IntfRoomAllocation> listRoomAllocation = new ArrayList<IntfRoomAllocation>();
 
 		String SqlStatement = "SELECT public.roomallocation.*, public.course.*, public.user.*, public.room.*, public.chair.* " +
 								"FROM public.roomallocation, public.room, public.course, public.user, public.chair, public.lecturer " +
@@ -109,10 +109,10 @@ public class DataHandlerRoomAllocation implements IntfDataObservable, IntfDataFi
 	 * @see de.sfgmbh.datalayer.core.daos.IntfDataRoomAllocation#getByFilter(java.util.HashMap)
 	 */
 	@Override
-	public List<RoomAllocation> getByFilter(HashMap<String, String> filter) {
+	public List<IntfRoomAllocation> getByFilter(HashMap<String, String> filter) {
 		DataManagerPostgreSql filterDm = null;
 		// DataManagerPostgreSql conflictingAllocationDm = null;
-		List<RoomAllocation> listRoomAllocation = new ArrayList<RoomAllocation>();
+		List<IntfRoomAllocation> listRoomAllocation = new ArrayList<IntfRoomAllocation>();
 		
 		// Translate some filter values when needed
 		if (filter.containsKey("status") && filter.get("status").equals("wartend")) {
@@ -238,10 +238,10 @@ public class DataHandlerRoomAllocation implements IntfDataObservable, IntfDataFi
 	 * @see de.sfgmbh.datalayer.core.daos.IntfDataRoomAllocation#getConflictingAllocation(de.sfgmbh.applayer.core.model.RoomAllocation)
 	 */
 	@Override
-	public List<RoomAllocation> getConflictingAllocation(IntfRoomAllocation ra) {
+	public List<IntfRoomAllocation> getConflictingAllocation(IntfRoomAllocation ra) {
 		// DataManagerPostgreSql filterDm = null;
 		DataManagerPostgreSql conflictingAllocationDm = null;
-		List<RoomAllocation> listRoomAllocation = new ArrayList<RoomAllocation>();
+		List<IntfRoomAllocation> listRoomAllocation = new ArrayList<IntfRoomAllocation>();
 		try {
 			if (conflictingAllocationDm == null) { 
 				conflictingAllocationDm = DataManagerPostgreSql.getInstance(); 
@@ -328,12 +328,12 @@ public class DataHandlerRoomAllocation implements IntfDataObservable, IntfDataFi
 	 * @see de.sfgmbh.datalayer.core.daos.IntfDataRoomAllocation#setConflicts(java.util.List)
 	 */
 	@Override
-	public List<RoomAllocation> setConflicts(List<RoomAllocation> roomAllocations) {
+	public List<IntfRoomAllocation> setConflicts(List<IntfRoomAllocation> listRoomAllocation) {
 		List<HashMap<String, Object>> conflictingDates = this.getConflictingDates();
-		List<RoomAllocation> setAllocations = new ArrayList<RoomAllocation>();
+		List<IntfRoomAllocation> setAllocations = new ArrayList<IntfRoomAllocation>();
 		
 		// Iterate over all room allocations and check for each allocation all conflicting dates
-		for (RoomAllocation roomAllocation : roomAllocations) {
+		for (IntfRoomAllocation roomAllocation : listRoomAllocation) {
 			for (HashMap<String, Object> conflict : conflictingDates) {
 				if (roomAllocation.getRoom_().getRoomId_() == (int) conflict.get("roomid") && 
 						roomAllocation.getDay_() == (int) conflict.get("day") &&
