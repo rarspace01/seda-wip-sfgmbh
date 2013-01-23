@@ -56,10 +56,6 @@ public class RequestTabTable extends DefaultTableModel implements IntfAppObserve
 			filter.put("room", requestTab.getTxtRoom().getText());
 		}
 		
-		// Time tracking for debugging - remove in final release
-		long a, b, diff;
-		a = (long) System.currentTimeMillis();
-		
 		for (IntfRoomAllocation ra : AppModel.getInstance().getRepositoryRoomAllocation().getByFilter(filter)){
 			
 			// Set some speical Strings
@@ -93,9 +89,6 @@ public class RequestTabTable extends DefaultTableModel implements IntfAppObserve
 				AppModel.getInstance().getExceptionHandler().setNewException("Ein unbekannter Fehler ist aufgetreten! <br /><br />Fehler RequestTabTable-01:<br />" + e.toString(), "Fehler!");
 			}
 		}
-		b = (long) System.currentTimeMillis();
-		diff = b - a;
-		System.out.println(diff + "ms for RequestTabTable build process");
 	}
 
 	/**
