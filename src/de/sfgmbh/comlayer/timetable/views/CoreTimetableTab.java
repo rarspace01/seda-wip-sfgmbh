@@ -15,8 +15,11 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 
 import net.miginfocom.swing.MigLayout;
+import de.sfgmbh.applayer.core.definitions.IntfRoomAllocation;
 import de.sfgmbh.applayer.core.model.AppModel;
 import de.sfgmbh.applayer.core.model.RoomAllocation;
+import de.sfgmbh.applayer.organisation.controller.CtrlRoomAllocation;
+import de.sfgmbh.applayer.organisation.definitions.IntfCtrlRoomAllocation;
 import de.sfgmbh.comlayer.core.controller.ViewHelper;
 import de.sfgmbh.comlayer.core.controller.ViewManager;
 import de.sfgmbh.comlayer.core.views.BaseTab;
@@ -29,7 +32,7 @@ public class CoreTimetableTab extends JPanel {
 	private int roomId_;
 	private JScrollPane scrollPane_;
 	private JLabel lblSemester;
-	private List<RoomAllocation> roomAllocList_=new ArrayList<RoomAllocation>();	
+	private List<IntfRoomAllocation> roomAllocList_=new ArrayList<IntfRoomAllocation>();	
 	private JLabel lblvaluesemester;
 	private JButton btnStundenplanZurcksetzen;
 	
@@ -98,34 +101,21 @@ public class CoreTimetableTab extends JPanel {
 		reloadRoomTable();
 	}
 	
-	/**
-	 * method for returning room allocations on given time
-	 * @author denis
-	 */
-	public String getLectureOnTime(List<RoomAllocation> ral,int day, int time){
-		String textualRepresentation="<html>";
-		//check for room allocations on given time
-		for(int i=0;i<ral.size();i++){
-			if(ral.get(i).getDay_()==day && ral.get(i).getTime_()==time){
-				textualRepresentation+=ral.get(i).getCourse_().getCourseAcronym_()+" - in - "+ral.get(i).getRoom_().getRoomNumber_()+"<br/>";
-			}
-		}
-		return textualRepresentation+"</html>";
-	}
-
 	public void reloadRoomTable(){
+		
+		IntfCtrlRoomAllocation roomAllocationController=new CtrlRoomAllocation();
 		
 		this.lblvaluesemester.setText(ViewManager.getInstance().getCoreBaseTab().getComboBoxSemesterFilter().getSelectedItem().toString());
 		
 		// clear all rows
 		ViewManager.getInstance().getCoreTimetableTabTable().setRowCount(0);
-		List<RoomAllocation> ral=this.roomAllocList_;
+		List<IntfRoomAllocation> ral=this.roomAllocList_;
 		// add data to the table
 		for(int i=1;i<=6;i++){
 			Object[] rowData= {ViewHelper.getTime(i)+" Uhr", "","", "", "", ""}; // inital data values
 			ViewManager.getInstance().getCoreTimetableTabTable().addRow(rowData);
 			for(int j=1; j<=5; j++){
-				ViewManager.getInstance().getCoreTimetableTabTable().setValueAt(getLectureOnTime(ral,j,i), i-1, j);
+				ViewManager.getInstance().getCoreTimetableTabTable().setValueAt(roomAllocationController.getLectureOnTime(ral,j,i), i-1, j);
 			}
 		}
 		
