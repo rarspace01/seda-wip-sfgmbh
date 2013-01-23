@@ -2,6 +2,11 @@ package de.sfgmbh.applayer.organisation.definitions;
 
 import de.sfgmbh.applayer.core.definitions.IntfUser;
 
+/**
+ * Interface for the user controller
+ * @author hannes
+ *
+ */
 public interface IntfCtrlUser {
 
 	/**

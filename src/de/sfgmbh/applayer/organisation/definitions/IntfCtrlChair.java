@@ -2,6 +2,12 @@ package de.sfgmbh.applayer.organisation.definitions;
 
 import de.sfgmbh.applayer.core.definitions.IntfChair;
 
+/**
+ * Interfaces for the chair controller
+ * 
+ * @author anna
+ *
+ */
 public interface IntfCtrlChair {
 
 	/**
