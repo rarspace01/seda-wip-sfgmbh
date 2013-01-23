@@ -4,7 +4,6 @@ import java.util.List;
 
 import de.sfgmbh.applayer.core.definitions.IntfRoom;
 import de.sfgmbh.applayer.core.model.AppModel;
-import de.sfgmbh.applayer.core.model.Room;
 import de.sfgmbh.applayer.organisation.definitions.IntfCtrlRoom;
 
 public class CtrlRoom implements IntfCtrlRoom {

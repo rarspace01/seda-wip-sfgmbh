@@ -21,7 +21,6 @@ import de.sfgmbh.comlayer.core.controller.ViewManager;
 import de.sfgmbh.comlayer.core.model.CmbboxFilterLecturer;
 import de.sfgmbh.comlayer.core.model.CmbboxFilterSemester;
 import de.sfgmbh.comlayer.core.views.BaseTab;
-import de.sfgmbh.comlayer.lecturer.controller.ProfessorshipTimetableTabCmbbox;
 import de.sfgmbh.comlayer.lecturer.controller.TimetableTabBtn;
 import de.sfgmbh.comlayer.lecturer.controller.TimetableTabCmbbox;
 
@@ -50,9 +49,9 @@ public class TimetableTab extends JPanel {
 		
 		comboBoxLecturer_ = new JComboBox<>();
 		
-		comboBoxLecturer_.addActionListener(new ProfessorshipTimetableTabCmbbox());
+		comboBoxLecturer_.addActionListener(new TimetableTabCmbbox());
 		setLayout(new MigLayout("", "[20px:20px,grow][124px][23px][112px][501px][94px][20px:20px,grow][right]", "[42px][21px][364px]"));
-		comboBoxLecturerModel_= new CmbboxFilterLecturer(comboBoxLecturer_);
+		comboBoxLecturerModel_= new CmbboxFilterLecturer(comboBoxLecturer_, "select");
 		comboBoxLecturer_.setModel(comboBoxLecturerModel_);
 		add(comboBoxLecturer_, "cell 1 0,growx,aligny bottom");
 		

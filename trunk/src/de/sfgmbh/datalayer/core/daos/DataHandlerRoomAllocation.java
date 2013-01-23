@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import de.sfgmbh.applayer.core.model.RepositoryRoomAllocation;
 import de.sfgmbh.applayer.core.model.RoomAllocation;
 import de.sfgmbh.datalayer.core.definitions.IntfDataFilter;
 import de.sfgmbh.datalayer.core.definitions.IntfDataObservable;

@@ -6,23 +6,20 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
+import java.awt.SystemColor;
 import java.util.List;
 
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JTextPane;
 import javax.swing.SwingWorker;
-import javax.swing.UIManager;
-import javax.swing.border.CompoundBorder;
-import javax.swing.border.TitledBorder;
+import javax.swing.border.LineBorder;
+import javax.swing.border.MatteBorder;
 
 import de.sfgmbh.applayer.core.controller.CtrlLiveTicker;
 import de.sfgmbh.applayer.core.definitions.IntfCtrlLiveTicker;
 import de.sfgmbh.applayer.core.model.RoomAllocation;
 import de.sfgmbh.comlayer.core.controller.ViewHelper;
-import java.awt.SystemColor;
-import javax.swing.border.MatteBorder;
-import javax.swing.border.LineBorder;
 
 /**
  * Panel for the live ticker

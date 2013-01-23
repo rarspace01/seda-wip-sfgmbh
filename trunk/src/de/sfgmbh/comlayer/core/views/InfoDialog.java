@@ -2,6 +2,7 @@ package de.sfgmbh.comlayer.core.views;
 
 import java.awt.Dimension;
 import java.awt.SystemColor;
+import java.awt.Toolkit;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -13,7 +14,6 @@ import net.miginfocom.swing.MigLayout;
 import de.sfgmbh.applayer.core.definitions.IntfAppObserver;
 import de.sfgmbh.applayer.core.model.AppModel;
 import de.sfgmbh.comlayer.core.controller.InfoDialogBtnOk;
-import java.awt.Toolkit;
 
 /**
  * Modal dialog for all kinds of system messages

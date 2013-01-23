@@ -1,6 +1,7 @@
 package de.sfgmbh.comlayer.core.views;
 
 import java.awt.CardLayout;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Insets;
 import java.awt.SystemColor;
@@ -22,6 +23,7 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
+import javax.swing.border.LineBorder;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
@@ -40,8 +42,6 @@ import de.sfgmbh.comlayer.core.model.CmbboxFilterLevel;
 import de.sfgmbh.comlayer.core.model.CmbboxFilterRoomnumber;
 import de.sfgmbh.comlayer.core.model.CmbboxFilterSeats;
 import de.sfgmbh.comlayer.core.model.CmbboxFilterSemester;
-import javax.swing.border.LineBorder;
-import java.awt.Color;
 
 /**
  * The very first content users see when they start the application
