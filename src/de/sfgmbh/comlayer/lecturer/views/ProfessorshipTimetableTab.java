@@ -111,25 +111,17 @@ public class ProfessorshipTimetableTab extends JPanel{
 			chairTimetableTable_.setPreferredScrollableViewportSize(new Dimension(750, 400));
 			chairTimetableTable_.setBorder(null);
 			
-			
-			
 			scrollPane_.setViewportView(chairTimetableTable_);
 			
-	
 			chairTimetableTable_.setBackground(Color.WHITE);
 			chairTimetableTable_.setModel(ViewManager.getInstance().getLecturerChairimetableTabTable());
 		
-			
-			//comboBoxSemesterFilter_
-			
 			chairTimetableTable_.getColumnModel().getColumn(0).setPreferredWidth(50);
 			chairTimetableTable_.getColumnModel().getColumn(1).setPreferredWidth(70);
 			chairTimetableTable_.getColumnModel().getColumn(2).setPreferredWidth(70);
 			chairTimetableTable_.getColumnModel().getColumn(3).setPreferredWidth(70);
 			chairTimetableTable_.getColumnModel().getColumn(4).setPreferredWidth(70);
 			chairTimetableTable_.getColumnModel().getColumn(5).setPreferredWidth(70);
-			
-			chairTimetableTable_.setDefaultRenderer(Object.class, new LineWrapCellRenderer(maxEntries_));
 			
 		}
 		return panelProfessorshipPanel_;
