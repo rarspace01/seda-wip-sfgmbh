@@ -6,8 +6,6 @@ import java.io.File;
 
 import javax.swing.JFileChooser;
 
-import de.sfgmbh.applayer.core.model.AppException;
-import de.sfgmbh.applayer.core.model.AppModel;
 import de.sfgmbh.comlayer.core.controller.ViewManager;
 import de.sfgmbh.comlayer.core.views.InfoDialog;
 import de.sfgmbh.comlayer.organisation.views.FileFilters;
@@ -34,50 +32,29 @@ public class CoreTimetableTabBtnPdf implements ActionListener {
 		// Pdf Button is pressed
 		if (this.navAction.equals("pdfCreate")) {
 			
-			//get save path
-			
+			String sFilename = "";
 			JFileChooser fc = new JFileChooser();
+			
+			//setting *.pdf filter for save dialog
 			FileFilters filter = new FileFilters();
 			filter.addExtension("pdf");
 			filter.setDescription("PDF - Portable Document Format");
 			fc.setFileFilter(filter);
-
-			String sDateiname = "";
-			fc.setSelectedFile(new File(sDateiname));
-
-			if (fc.showSaveDialog(fc) != 0) {
-			} else {
-					//sofern der user nicht pdf als endung ausgew�hlt hat machen wir es
+			
+			fc.setSelectedFile(new File(sFilename));
+			if (fc.showSaveDialog(fc) == JFileChooser.APPROVE_OPTION) {
+			// if the user hasn't typed .pdf, we'll do it for him
 				if (!fc.getSelectedFile().getPath().toLowerCase().endsWith(
 						".pdf"))
 					{
 						fc.setSelectedFile(new File(fc.getSelectedFile() + ".pdf"));
 					}
-			
+				String semester = ViewManager.getInstance().getCoreBaseTab().getComboBoxSemesterFilter().getSelectedItem().toString();
+				DataManagerPDF dmpdf=new DataManagerPDF(fc.getSelectedFile().getAbsolutePath());
+				dmpdf.addContent("Vorlesungsplan - Semester: "+semester,ViewManager.getInstance().getCoreTimetableTab().getScrollPane_());
+				dmpdf.close();
 			}
 			
-			if(!fc.getSelectedFile().getName().contains(".")){
-				System.out.println("no file selected");
-				AppException exceptionHandler = AppModel.getInstance().getExceptionHandler();
-				exceptionHandler.setNewException("Keine Datei Ausgewählt");
-			}else{
-			
-			System.out.println("Selected Path: ["+fc.getSelectedFile().getAbsolutePath()+"]");		
-			
-			//finished pathget
-			
-			//getRoomTItle
-			String semester = ViewManager.getInstance().getCoreBaseTab().getComboBoxSemesterFilter().getSelectedItem().toString();
-			
-			DataManagerPDF dmpdf=new DataManagerPDF(fc.getSelectedFile().getAbsolutePath());
-			
-			dmpdf.addContent("Vorlesungsplan - Semester: "+semester,ViewManager.getInstance().getCoreTimetableTab().getScrollPane_());
-			
-			dmpdf.close();
-			
-			System.out.println("Created PDF");
-			
-			}
 		}
 		if (this.navAction.equals("reset")) {
 			ViewManager.getInstance().getCoreTimetableTab().resetPlan();
