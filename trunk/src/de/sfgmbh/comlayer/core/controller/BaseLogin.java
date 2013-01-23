@@ -1,5 +1,6 @@
 package de.sfgmbh.comlayer.core.controller;
 
+import java.awt.Cursor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.HashMap;
@@ -44,75 +45,92 @@ public class BaseLogin implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		
 		// Login is pressed
+		// Setting cursor for any Component:
+		ViewManager.getInstance().getCoreBaseTab().setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
 		if (this.version == null || this.version.equals("login")) {
-			String pwd = new String(ViewManager.getInstance().getCoreBaseTab().getPwdPasswort().getPassword());
-			String user = ViewManager.getInstance().getCoreBaseTab().getTxtUsername().getText();
-			
-			IntfUser checkUser = ctrlBaseTab.login(user, pwd);
-			
-			if (checkUser == null) {
-				// currently here happens nothing
+			try {
+							
+				String pwd = new String(ViewManager.getInstance().getCoreBaseTab().getPwdPasswort().getPassword());
+				String user = ViewManager.getInstance().getCoreBaseTab().getTxtUsername().getText();
 				
-			// A organization member is logging in...
-			} else if (checkUser.getClass_().equals("orga")) {
-				this.callOrga();
-				ViewManager.getInstance().getCoreBaseTab().getPanelLogin().setVisible(false);
-				ViewManager.getInstance().getCoreBaseTab().getPanelLogout().setVisible(true);
+				IntfUser checkUser = ctrlBaseTab.login(user, pwd);
 				
-			// A lecturer is logging in...
-			} else if (checkUser.getClass_().equals("lecturer")) {
-				this.callLecturer();
-				ViewManager.getInstance().getCoreBaseTab().getPanelLogin().setVisible(false);
-				ViewManager.getInstance().getCoreBaseTab().getPanelLogout().setVisible(true);
-				
-				// Check if there are counter proposals and display a popup if yes
-				HashMap<String,String> filter = new HashMap<String,String>();
-				filter.put("login", checkUser.getLogin_());
-				for (IntfRoomAllocation ra : AppModel.getInstance().getRepositoryRoomAllocation().getByFilter(filter)) {
-					if (ra.getApproved_().equals("counter")) {
-						String orgaMsg = "";
-						if (ra.getOrgaMessage_().length() > 1) {
-							orgaMsg = "Folgende Nachricht wurde Ihnen von der Organisation dazu hinterlegt:<br /><span style='font-style:italic;'>" +
-									ra.getOrgaMessage_().replace("\r", "<br />") + "</span><br /><br />";
+				if (checkUser == null) {
+					// currently here happens nothing
+					
+				// A organization member is logging in...
+				} else if (checkUser.getClass_().equals("orga")) {
+					this.callOrga();
+					ViewManager.getInstance().getCoreBaseTab().getPanelLogin().setVisible(false);
+					ViewManager.getInstance().getCoreBaseTab().getPanelLogout().setVisible(true);
+					
+				// A lecturer is logging in...
+				} else if (checkUser.getClass_().equals("lecturer")) {
+					this.callLecturer();
+					ViewManager.getInstance().getCoreBaseTab().getPanelLogin().setVisible(false);
+					ViewManager.getInstance().getCoreBaseTab().getPanelLogout().setVisible(true);
+					
+					// Check if there are counter proposals and display a popup if yes
+					HashMap<String,String> filter = new HashMap<String,String>();
+					filter.put("login", checkUser.getLogin_());
+					for (IntfRoomAllocation ra : AppModel.getInstance().getRepositoryRoomAllocation().getByFilter(filter)) {
+						if (ra.getApproved_().equals("counter")) {
+							String orgaMsg = "";
+							if (ra.getOrgaMessage_().length() > 1) {
+								orgaMsg = "Folgende Nachricht wurde Ihnen von der Organisation dazu hinterlegt:<br /><span style='font-style:italic;'>" +
+										ra.getOrgaMessage_().replace("\r", "<br />") + "</span><br /><br />";
+							}
+							QuestionDialog dialog = new QuestionDialog("Zu Ihrer Veranstaltung <strong>" +
+									ra.getCourse_().getCourseAcronym_() + " / " + ra.getCourse_().getCourseKind_() + " im " + ra.getSemester_() +
+									"</strong> konnte der Termin nicht gewährt werden. Die Verwaltung schlägt ihnen stattdessen folgenden Termin vor:<br /><br /><strong>" +
+									ViewHelper.getDay(ra.getDay_()) + " von " +
+									ViewHelper.getTime(ra.getTime_()) + " Uhr<br />" +
+									ra.getRoom_().getRoomNumber_() + "<br /></strong> (Plätze: " + ra.getRoom_().getSeats_() +
+									", PC-Plätze: " + ra.getRoom_().getPcseats_() +
+									", Beamer: " + ra.getRoom_().getBeamer_() + 
+									", Visualizer: " + ra.getRoom_().getVisualizer_() +
+									", Overheads: " + ra.getRoom_().getOverheads_() +
+									", Tafeln: " + ra.getRoom_().getChalkboards_() + 
+									", Whiteboards: " + ra.getRoom_().getWhiteboards_() + ")<br /><br />" +
+									orgaMsg +
+									"Wollen Sie diesen Termin annehmen?<br /> " +
+									"Wenn Sie sich noch nicht sicher sind, so verneinen Sie dies bitte. " +
+									"Sie können dann einfach selbst wieder eine Raumanfrage stellen. Allerdings nur, wenn Ihnen bis dorthin niemand zuvor " +
+									"kommt. Nehmen Sie den Termin jetzt an, so ist er sofort freigeben!", 
+									"Gegenvorschlag!");
+							StartTab startTab = ViewManager.getInstance().getLecturerStartTab();
+							startTab.setRoomAllocation(ra);
+							dialog.register(startTab);
+							dialog.setVisible(true);
 						}
-						QuestionDialog dialog = new QuestionDialog("Zu Ihrer Veranstaltung <strong>" +
-								ra.getCourse_().getCourseAcronym_() + " / " + ra.getCourse_().getCourseKind_() + " im " + ra.getSemester_() +
-								"</strong> konnte der Termin nicht gewährt werden. Die Verwaltung schlägt ihnen stattdessen folgenden Termin vor:<br /><br /><strong>" +
-								ViewHelper.getDay(ra.getDay_()) + " von " +
-								ViewHelper.getTime(ra.getTime_()) + " Uhr<br />" +
-								ra.getRoom_().getRoomNumber_() + "<br /></strong> (Plätze: " + ra.getRoom_().getSeats_() +
-								", PC-Plätze: " + ra.getRoom_().getPcseats_() +
-								", Beamer: " + ra.getRoom_().getBeamer_() + 
-								", Visualizer: " + ra.getRoom_().getVisualizer_() +
-								", Overheads: " + ra.getRoom_().getOverheads_() +
-								", Tafeln: " + ra.getRoom_().getChalkboards_() + 
-								", Whiteboards: " + ra.getRoom_().getWhiteboards_() + ")<br /><br />" +
-								orgaMsg +
-								"Wollen Sie diesen Termin annehmen?<br /> " +
-								"Wenn Sie sich noch nicht sicher sind, so verneinen Sie dies bitte. " +
-								"Sie können dann einfach selbst wieder eine Raumanfrage stellen. Allerdings nur, wenn Ihnen bis dorthin niemand zuvor " +
-								"kommt. Nehmen Sie den Termin jetzt an, so ist er sofort freigeben!", 
-								"Gegenvorschlag!");
-						StartTab startTab = ViewManager.getInstance().getLecturerStartTab();
-						startTab.setRoomAllocation(ra);
-						dialog.register(startTab);
-						dialog.setVisible(true);
 					}
-				}
-				
+				} 
+			} catch (Exception ex) {
+				AppModel.getInstance().getExceptionHandler().setNewException("Leider hat mit dem Login etwas nicht geklappt.<br /><br />Fehler:<br />" + ex.toString(), "Fehler!", "error");
+			} finally {
+				ViewManager.getInstance().getCoreBaseTab().setCursor(Cursor.getDefaultCursor());
 			}
 			
 		} else if (this.version.equals("logout")){
-			ctrlBaseTab.logout();
-			ViewManager.getInstance().getCoreBaseTab().getMainTabbedContainerPane().removeAll();
-			ViewManager.getInstance().getCoreBaseTab().getMainTabbedContainerPane().setVisible(false);
-			ViewManager.getInstance().getCoreBaseTab().getContentPane().add(ViewManager.getInstance().getCoreBaseTab().getStartScreenPanel(), "Start");
-			ViewManager.getInstance().getCoreBaseTab().getPwdPasswort().setText("");
-			ViewManager.getInstance().getCoreBaseTab().getTxtUsername().setText("");
-			ViewManager.getInstance().getCoreBaseTab().getStartScreenPanel().setVisible(true);
-			ViewManager.getInstance().getCoreBaseTab().getPanelLogin().setVisible(true);
-			ViewManager.getInstance().getCoreBaseTab().getPanelLogout().setVisible(false);
+			try {
+				
+				ctrlBaseTab.logout();
+				ViewManager.getInstance().getCoreBaseTab().getMainTabbedContainerPane().removeAll();
+				ViewManager.getInstance().getCoreBaseTab().getMainTabbedContainerPane().setVisible(false);
+				ViewManager.getInstance().getCoreBaseTab().getContentPane().add(ViewManager.getInstance().getCoreBaseTab().getStartScreenPanel(), "Start");
+				ViewManager.getInstance().getCoreBaseTab().getPwdPasswort().setText("");
+				ViewManager.getInstance().getCoreBaseTab().getTxtUsername().setText("");
+				ViewManager.getInstance().getCoreBaseTab().getStartScreenPanel().setVisible(true);
+				ViewManager.getInstance().getCoreBaseTab().getPanelLogin().setVisible(true);
+				ViewManager.getInstance().getCoreBaseTab().getPanelLogout().setVisible(false);
+			} catch (Exception ex) {
+				AppModel.getInstance().getExceptionHandler().setNewException("Leider hat mit dem Logout etwas nicht geklappt.<br /><br />Fehler:<br />" + ex.toString(), "Fehler!", "error");
+			} finally {
+				ViewManager.getInstance().getCoreBaseTab().setCursor(Cursor.getDefaultCursor());
+			}
 		}
+		// Restore the Cursor
+		ViewManager.getInstance().getCoreBaseTab().setCursor(Cursor.getDefaultCursor());
 	}
 	
 	/**
