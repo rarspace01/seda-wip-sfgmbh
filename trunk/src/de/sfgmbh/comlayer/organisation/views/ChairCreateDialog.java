@@ -11,8 +11,8 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
+import de.sfgmbh.applayer.core.definitions.IntfChair;
 import de.sfgmbh.applayer.core.model.Chair;
-import de.sfgmbh.applayer.core.model.IntfChair;
 import de.sfgmbh.comlayer.core.model.CmbboxFilterLecturer;
 import de.sfgmbh.comlayer.organisation.controller.ChairCreateDialogBtns;
 

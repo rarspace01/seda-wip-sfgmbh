@@ -5,8 +5,8 @@ import java.util.HashMap;
 import javax.swing.table.DefaultTableModel;
 
 import de.sfgmbh.applayer.core.definitions.IntfAppObserver;
+import de.sfgmbh.applayer.core.definitions.IntfChair;
 import de.sfgmbh.applayer.core.model.AppModel;
-import de.sfgmbh.applayer.core.model.IntfChair;
 import de.sfgmbh.comlayer.core.controller.ViewManager;
 
 /**

@@ -1,7 +1,7 @@
 package de.sfgmbh.applayer.organisation.controller;
 
+import de.sfgmbh.applayer.core.definitions.IntfChair;
 import de.sfgmbh.applayer.core.model.AppModel;
-import de.sfgmbh.applayer.core.model.IntfChair;
 import de.sfgmbh.applayer.organisation.definitions.IntfCtrlChair;
 
 /**

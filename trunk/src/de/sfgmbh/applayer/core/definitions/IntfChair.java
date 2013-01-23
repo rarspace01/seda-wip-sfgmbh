@@ -1,4 +1,6 @@
-package de.sfgmbh.applayer.core.model;
+package de.sfgmbh.applayer.core.definitions;
+
+import de.sfgmbh.applayer.core.model.User;
 
 public interface IntfChair {
 
