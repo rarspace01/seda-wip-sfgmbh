@@ -37,7 +37,7 @@ public class CounterproposalDialog extends JDialog {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-	private JTextArea txtrUnterbreitenSieDem;
+	private JTextArea txtrCounterOffer;
 	private IntfRoomAllocation proposalAllocation;
 	private JLabel lblRoom;
 	private JLabel lblDay;
@@ -107,7 +107,7 @@ public class CounterproposalDialog extends JDialog {
 	
 	private void initialize() {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(CounterproposalDialog.class.getResource("/de/sfgmbh/comlayer/core/images/HUT_klein.png")));
-		setTitle("Konfliktlösung");
+		setTitle("Konflikt lösen");
 		setBounds(100, 100, 320, 410);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EtchedBorder(EtchedBorder.LOWERED, Color.WHITE, Color.LIGHT_GRAY));
@@ -145,25 +145,33 @@ public class CounterproposalDialog extends JDialog {
 		
 		addWindowListener(new UserCreateDialogWin(this));
 	}
+	/**
+	 * 
+	 * @return the txtCounterOffer
+	 */
 	public JTextArea getTxtrUnterbreitenSieDem() {
-		if (txtrUnterbreitenSieDem == null) {
-			txtrUnterbreitenSieDem = new JTextArea();
-			txtrUnterbreitenSieDem.setFont(new Font("Tahoma", Font.PLAIN, 11));
-			txtrUnterbreitenSieDem.setOpaque(false);
-			txtrUnterbreitenSieDem.setEditable(false);
-			txtrUnterbreitenSieDem.setWrapStyleWord(true);
-			txtrUnterbreitenSieDem.setLineWrap(true);
-			txtrUnterbreitenSieDem.setText("Unterbreiten Sie dem Dozenten " +
+		if (txtrCounterOffer == null) {
+			txtrCounterOffer = new JTextArea();
+			txtrCounterOffer.setFont(new Font("Tahoma", Font.PLAIN, 11));
+			txtrCounterOffer.setOpaque(false);
+			txtrCounterOffer.setEditable(false);
+			txtrCounterOffer.setWrapStyleWord(true);
+			txtrCounterOffer.setLineWrap(true);
+			txtrCounterOffer.setText("Unterbreiten Sie dem Dozenten " +
 					this.proposalAllocation.getCourse_().getLecturer_().getlName_() +
 					" für die Veranstaltung " +
 					this.proposalAllocation.getCourse_().getCourseAcronym_() +
 					" im " +
 					this.proposalAllocation.getSemester_() +
 					" einen Gegenvorschlag, der sofort freigeschalten wird, wenn der Dozent ihn annimmt:");
-			txtrUnterbreitenSieDem.setBounds(10, 11, 284, 73);
+			txtrCounterOffer.setBounds(10, 11, 284, 73);
 		}
-		return txtrUnterbreitenSieDem;
+		return txtrCounterOffer;
 	}
+	/**
+	 * 
+	 * @return the lblRoom
+	 */
 	public JLabel getLblRoom() {
 		if (lblRoom == null) {
 			lblRoom = new JLabel("Raum:");
@@ -171,6 +179,10 @@ public class CounterproposalDialog extends JDialog {
 		}
 		return lblRoom;
 	}
+	/**
+	 * 
+	 * @return the lblDay
+	 */
 	public JLabel getLblDay() {
 		if (lblDay == null) {
 			lblDay = new JLabel("Tag:");
@@ -178,6 +190,10 @@ public class CounterproposalDialog extends JDialog {
 		}
 		return lblDay;
 	}
+	/**
+	 * 
+	 * @return the lblTime
+	 */
 	public JLabel getLblTime() {
 		if (lblTime == null) {
 			lblTime = new JLabel("Zeit:");
@@ -185,6 +201,10 @@ public class CounterproposalDialog extends JDialog {
 		}
 		return lblTime;
 	}
+	/**
+	 * 
+	 * @return the cmbboxRoom
+	 */
 	public JComboBox<String> getCmbboxRoom() {
 		if (cmbboxRoom == null) {
 			cmbboxRoom = new JComboBox<String>();
@@ -195,6 +215,10 @@ public class CounterproposalDialog extends JDialog {
 		}
 		return cmbboxRoom;
 	}
+	/**
+	 * 
+	 * @return the cmbboxDay
+	 */
 	public JComboBox<String> getCmbboxDay() {
 		if (cmbboxDay == null) {
 			cmbboxDay = new JComboBox<String>();
@@ -204,6 +228,10 @@ public class CounterproposalDialog extends JDialog {
 		}
 		return cmbboxDay;
 	}
+	/**
+	 * 
+	 * @return the cmbboxTime
+	 */
 	public JComboBox<String> getCmbboxTime() {
 		if (cmbboxTime == null) {
 			cmbboxTime = new JComboBox<String>();
@@ -213,6 +241,10 @@ public class CounterproposalDialog extends JDialog {
 		}
 		return cmbboxTime;
 	}
+	/**
+	 * 
+	 * @return the lblRoomSeats
+	 */
 	public JLabel getLblRoomSeats() {
 		if (lblRoomSeats == null) {
 			lblRoomSeats = new JLabel("Plätze des gewählten Raums:");
@@ -220,6 +252,10 @@ public class CounterproposalDialog extends JDialog {
 		}
 		return lblRoomSeats;
 	}
+	/**
+	 * 
+	 * @return the lblStudents
+	 */
 	public JLabel getLblStudents() {
 		if (lblStudents == null) {
 			lblStudents = new JLabel("Erwartete Teilnehmer:");
@@ -227,6 +263,10 @@ public class CounterproposalDialog extends JDialog {
 		}
 		return lblStudents;
 	}
+	/**
+	 * 
+	 * @return the lblStatus
+	 */
 	public JLabel getLblStatus() {
 		if (lblStatus == null) {
 			lblStatus = new JLabel("Belegung zur gewählten Zeit:");
@@ -234,6 +274,10 @@ public class CounterproposalDialog extends JDialog {
 		}
 		return lblStatus;
 	}
+	/**
+	 * 
+	 * @return the lblselectedStudents
+	 */
 	public JLabel getLblSelectedRoomSeats() {
 		if (lblSelectedRoomSeats == null) {
 			lblSelectedRoomSeats = new JLabel("n/a");
@@ -241,6 +285,10 @@ public class CounterproposalDialog extends JDialog {
 		}
 		return lblSelectedRoomSeats;
 	}
+	/**
+	 * 
+	 * @return the lblSelectedstudents
+	 */
 	public JLabel getLblSelectedStudents() {
 		if (lblSelectedStudents == null) {
 			lblSelectedStudents = new JLabel(String.valueOf(this.proposalAllocation.getCourse_().getExpectedAttendees_()));
@@ -248,6 +296,10 @@ public class CounterproposalDialog extends JDialog {
 		}
 		return lblSelectedStudents;
 	}
+	/**
+	 * 
+	 * @return the lblSelectedStatus
+	 */
 	public JLabel getLblSelectedStatus() {
 		if (lblSelectedStatus == null) {
 			lblSelectedStatus = new JLabel("n/a");
@@ -269,6 +321,10 @@ public class CounterproposalDialog extends JDialog {
 	public void setProposalAllocation(IntfRoomAllocation proposalAllocation) {
 		this.proposalAllocation = proposalAllocation;
 	}
+	/**
+	 * 
+	 * @return the scrollPane
+	 */
 	public JScrollPane getScrollPane() {
 		if (scrollPane == null) {
 			scrollPane = new JScrollPane();
@@ -283,6 +339,10 @@ public class CounterproposalDialog extends JDialog {
 		}
 		return scrollPane;
 	}
+	/**
+	 * 
+	 * @return the editorPane
+	 */
 	public JEditorPane getEditorPane() {
 		if (editorPane == null) {
 			editorPane = new JEditorPane();

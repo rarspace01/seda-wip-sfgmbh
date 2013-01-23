@@ -48,7 +48,7 @@ public class RoomFrame extends JDialog {
 	}
 	private void initialize() {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(RoomFrame.class.getResource("/de/sfgmbh/comlayer/core/images/HUT_klein.png")));
-		setTitle("Rauminfo erstellen");
+		setTitle("Neuen Raum anlegen");
 		setBounds(100, 100, 266, 400);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
