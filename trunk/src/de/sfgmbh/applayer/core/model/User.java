@@ -342,8 +342,8 @@ public class User implements IntfUser {
 			message = message + "Einem Dozenten muss ein Lehrstuhl zugeordnet werden!<br />";
 			check = false;
 		}
-		if (this.newPassword_ && this.newPasswordLength_ < 6) {
-			message = message + "Ein neues Passwort muss mindestens 6 Zeichen lang sein!<br />";
+		if (this.newPassword_ && this.newPasswordLength_ < 8) {
+			message = message + "Ein neues Passwort muss mindestens 8 Zeichen lang sein!<br />";
 			check = false;
 		}
 		
