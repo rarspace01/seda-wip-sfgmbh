@@ -6,12 +6,12 @@ import java.io.File;
 
 import javax.swing.JFileChooser;
 
+import de.sfgmbh.applayer.core.controller.CtrlPdf;
 import de.sfgmbh.applayer.core.controller.SessionManager;
+import de.sfgmbh.applayer.core.definitions.IntfCtrlPdf;
 import de.sfgmbh.comlayer.core.controller.ViewManager;
 import de.sfgmbh.comlayer.core.views.InfoDialog;
 import de.sfgmbh.comlayer.organisation.views.FileFilters;
-import de.sfgmbh.datalayer.io.DataManagerPDF;
-import de.sfgmbh.datalayer.io.IntfDataManagerPDF;
 
 /**
  * action listener class for the char timetables
@@ -21,22 +21,24 @@ import de.sfgmbh.datalayer.io.IntfDataManagerPDF;
  */
 public class ProfessorshipTimetableTabBtn implements ActionListener {
 
-	private String navAction;
+	private String navAction_;
 	protected InfoDialog infoWindow;
 
 	public ProfessorshipTimetableTabBtn() {
-		this.navAction = "default";
+		this.navAction_ = "default";
 	}
 
 	public ProfessorshipTimetableTabBtn(String action) {
-		this.navAction = action;
+		this.navAction_ = action;
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
 
-		if (this.navAction.equals("createpdf")) {
+		if (this.navAction_.equals("createpdf")) {
 
+			IntfCtrlPdf pdfController;
+			
 			String sFilename = "";
 			String chairTitle = "";
 			String semester = "";
@@ -62,13 +64,16 @@ public class ProfessorshipTimetableTabBtn implements ActionListener {
 				semester = ViewManager.getInstance().getOrgaRoomtableTab()
 						.getComboBoxSemesterFilter().getSelectedItem()
 						.toString();
-				IntfDataManagerPDF dmpdf = new DataManagerPDF(fc.getSelectedFile()
+				
+				//set the PDF
+				pdfController=new CtrlPdf(fc.getSelectedFile()
 						.getAbsolutePath());
 				// adding the content to the pdf
-				dmpdf.addContent("Lehrstuhl: " + chairTitle + " - Semester: "
+				pdfController.addContent("Lehrstuhl: " + chairTitle + " - Semester: "
 						+ semester, ViewManager.getInstance()
 						.getChairTimetableTab().getPanel_());
-				dmpdf.close();
+				//close the PDF file
+				pdfController.close();
 			}
 
 		}

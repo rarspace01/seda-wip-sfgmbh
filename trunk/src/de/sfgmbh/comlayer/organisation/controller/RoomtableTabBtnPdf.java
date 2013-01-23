@@ -12,8 +12,6 @@ import de.sfgmbh.applayer.core.model.AppModel;
 import de.sfgmbh.comlayer.core.controller.ViewManager;
 import de.sfgmbh.comlayer.core.views.InfoDialog;
 import de.sfgmbh.comlayer.organisation.views.FileFilters;
-import de.sfgmbh.datalayer.io.DataManagerPDF;
-import de.sfgmbh.datalayer.io.IntfDataManagerPDF;
 
 /**
  * action listener for room management tab
@@ -23,15 +21,15 @@ import de.sfgmbh.datalayer.io.IntfDataManagerPDF;
  */
 public class RoomtableTabBtnPdf implements ActionListener {
 
-	private String navAction;
+	private String navAction_;
 	protected InfoDialog infoWindow;
 
 	public RoomtableTabBtnPdf() {
-		this.navAction = "default";
+		this.navAction_ = "default";
 	}
 
 	public RoomtableTabBtnPdf(String action) {
-		this.navAction = action;
+		this.navAction_ = action;
 	}
 
 	@Override
@@ -40,7 +38,7 @@ public class RoomtableTabBtnPdf implements ActionListener {
 		IntfCtrlPdf pdfController;
 		
 		// Pdf Button is pressed
-		if (this.navAction.equals("pdfCreate")) {
+		if (this.navAction_.equals("pdfCreate")) {
 
 			String sFilename = "";
 			String roomtitle = "";
@@ -71,10 +69,10 @@ public class RoomtableTabBtnPdf implements ActionListener {
 				semester = ViewManager.getInstance().getOrgaRoomtableTab()
 						.getComboBoxSemesterFilter().getSelectedItem()
 						.toString();
-				
+
+				// create the PDF
 				pdfController=new CtrlPdf(fc.getSelectedFile()
 						.getAbsolutePath());
-				
 				// adding the panel as the content of the document
 				pdfController.addContent(roomtitle + " - " + semester, ViewManager
 						.getInstance().getOrgaRoomtableTab().getScrollPane_());

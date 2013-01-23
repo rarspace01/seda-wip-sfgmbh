@@ -6,32 +6,32 @@ import java.io.File;
 
 import javax.swing.JFileChooser;
 
+import de.sfgmbh.applayer.core.controller.CtrlPdf;
+import de.sfgmbh.applayer.core.definitions.IntfCtrlPdf;
 import de.sfgmbh.comlayer.core.controller.ViewManager;
 import de.sfgmbh.comlayer.core.views.InfoDialog;
 import de.sfgmbh.comlayer.organisation.views.FileFilters;
-import de.sfgmbh.datalayer.io.DataManagerPDF;
-import de.sfgmbh.datalayer.io.IntfDataManagerPDF;
 
 
 
 public class CoreTimetableTabBtnPdf implements ActionListener {
 	
-	private String navAction;
+	private String navAction_;
 	protected InfoDialog infoWindow;
 	
 	
 	public CoreTimetableTabBtnPdf() {
-		this.navAction = "default";
+		this.navAction_ = "default";
 	}
 	public CoreTimetableTabBtnPdf(String action) {
-		this.navAction = action;
+		this.navAction_ = action;
 	}
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		
+		IntfCtrlPdf pdfController;
 		// Pdf Button is pressed
-		if (this.navAction.equals("pdfCreate")) {
+		if (this.navAction_.equals("pdfCreate")) {
 			
 			String sFilename = "";
 			JFileChooser fc = new JFileChooser();
@@ -51,13 +51,17 @@ public class CoreTimetableTabBtnPdf implements ActionListener {
 						fc.setSelectedFile(new File(fc.getSelectedFile() + ".pdf"));
 					}
 				String semester = ViewManager.getInstance().getCoreBaseTab().getComboBoxSemesterFilter().getSelectedItem().toString();
-				IntfDataManagerPDF dmpdf=new DataManagerPDF(fc.getSelectedFile().getAbsolutePath());
-				dmpdf.addContent("Vorlesungsplan - Semester: "+semester,ViewManager.getInstance().getCoreTimetableTab().getScrollPane_());
-				dmpdf.close();
+				
+				//setPDF
+				pdfController=new CtrlPdf(fc.getSelectedFile().getAbsolutePath());
+				//add the specific content
+				pdfController.addContent("Vorlesungsplan - Semester: "+semester,ViewManager.getInstance().getCoreTimetableTab().getScrollPane_());
+				//close document
+				pdfController.close();
 			}
 			
 		}
-		if (this.navAction.equals("reset")) {
+		if (this.navAction_.equals("reset")) {
 			ViewManager.getInstance().getCoreTimetableTab().resetPlan();
 		}
 	}
