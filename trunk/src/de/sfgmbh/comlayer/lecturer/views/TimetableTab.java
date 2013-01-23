@@ -157,8 +157,6 @@ public class TimetableTab extends JPanel {
 			
 			tableFilter.put("semester", this.getComboBoxSemesterFilter().getSelectedItem().toString());
 			
-			System.out.println("Semesterfilter: "+this.getComboBoxSemesterFilter().getSelectedItem().toString());
-			
 			tableFilter.put("login", this.comboBoxLecturerModel_.getLecturerForModel().get(this.getcomboBoxLecturer_().getSelectedIndex()).getLogin_());
 			
 			List<RoomAllocation> ral=AppModel.getInstance().getRepositoryRoomAllocation().getByFilter(tableFilter);

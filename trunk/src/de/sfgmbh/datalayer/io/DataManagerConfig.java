@@ -63,8 +63,6 @@ public class DataManagerConfig {
 	
 	private void createConfigFile(){
 		
-		System.out.println("created default db config");
-		
 		this.dbproperties_.setProperty("ip", "141.13.6.76");
 		this.dbproperties_.setProperty("port", "5433");
 		this.dbproperties_.setProperty("database", "WIP-SFGmbH");
@@ -74,10 +72,8 @@ public class DataManagerConfig {
 		try {
 			this.dbproperties_.store(new FileOutputStream(new File(fileName_)), "UNIVIS 2.0 config file");
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

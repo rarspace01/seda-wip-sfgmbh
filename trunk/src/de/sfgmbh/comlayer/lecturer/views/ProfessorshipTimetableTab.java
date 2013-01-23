@@ -150,10 +150,7 @@ public class ProfessorshipTimetableTab extends JPanel{
 			HashMap<String,String> tableFilter = new HashMap<String,String> ();  //setting filter
 			
 			tableFilter.put("semester", this.getComboBoxSemesterFilter().getSelectedItem().toString());
-			
-			System.out.println("Semesterfilter: "+this.getComboBoxSemesterFilter().getSelectedItem().toString());
-			
-			
+
 			if(SessionManager.getInstance().getSession() != null){
 			tableFilter.put("chairid", ""+SessionManager.getInstance().getSession().getChair_().getChairId_());
 			}
