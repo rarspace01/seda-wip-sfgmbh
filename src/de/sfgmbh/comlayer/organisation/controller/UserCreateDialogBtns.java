@@ -70,7 +70,13 @@ public class UserCreateDialogBtns implements ActionListener {
 				createUser.setMail_(this.motherDialog.getTxtEmail().getText());
 				createUser.setfName_(this.motherDialog.getTxtFirstName().getText());
 				createUser.setlName_(this.motherDialog.getTxtLastName().getText());
-				createUser.setClass_(this.motherDialog.getComboBoxUserClass().getSelectedItem().toString());
+				
+				// Only overwrite the class if a user gets created
+				// Already existent user currently cannot get a class change.
+				// Though it would be possible it could get a complicated so it probably will not make it in v. 1.0
+				if (create) {
+					createUser.setClass_(this.motherDialog.getComboBoxUserClass().getSelectedItem().toString());
+				}
 				
 				// Handle the chair of a user
 				if (!this.motherDialog.getComboBoxLehrstuhl().getSelectedItem().toString().equals("<keiner>")) {
