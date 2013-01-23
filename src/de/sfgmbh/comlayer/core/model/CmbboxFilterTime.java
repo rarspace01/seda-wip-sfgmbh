@@ -32,9 +32,9 @@ public class CmbboxFilterTime extends DefaultComboBoxModel<String>{
 	}
 
 	public void build() {
-		String[] elements = new String[] {"<alle>", "8:00 - 10:00", "10:00 - 12:00", "12:00 - 14:00", "14:00 - 16:00", "16:00 - 18:00", "18:00 - 20:00", "20:00 - 22:00"};
+		String[] elements = new String[] {"<alle>", "8:00 - 10:00", "10:00 - 12:00", "12:00 - 14:00", "14:00 - 16:00", "16:00 - 18:00", "18:00 - 20:00"};
 		if (this.variant.equals("select")) {
-			elements = new String[] {"8:00 - 10:00", "10:00 - 12:00", "12:00 - 14:00", "14:00 - 16:00", "16:00 - 18:00", "18:00 - 20:00", "20:00 - 22:00"};
+			elements = new String[] {"8:00 - 10:00", "10:00 - 12:00", "12:00 - 14:00", "14:00 - 16:00", "16:00 - 18:00", "18:00 - 20:00"};
 		}
 		
 		this.removeAllElements();
