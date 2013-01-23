@@ -30,7 +30,7 @@ public class TimetableTab extends JPanel {
 	private JPanel panel_;
 	private JLabel lblSemester_;
 	private JComboBox<String> comboBoxSemesterFilter_;
-	private CmbboxFilterSemester comboBoxSemesterModel_= new CmbboxFilterSemester();
+	private CmbboxFilterSemester comboBoxSemesterModel_= new CmbboxFilterSemester("select");
 	private JComboBox<String> comboBoxLecturer_;
 	private CmbboxFilterLecturer comboBoxLecturerModel_;
 	private JLabel lblWeekplanLecturer;
