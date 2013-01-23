@@ -89,6 +89,15 @@ public class DataManagerPostgreSql {
 	}
 
 	/**
+	 * Get the statement object for batch statements
+	 * @return pstmt - the preparedStatement
+	 */
+	public Statement getStatement() {
+		return stmt;
+	}
+
+	
+	/**
 	 * Executes the given SQL statement, which returns a single ResultSet object. 
 	 * @param SQLString - To be executed
 	 * @return ResultSet
