@@ -32,9 +32,9 @@ public class CmbboxFilterDay extends DefaultComboBoxModel<String>{
 	}
 
 	private void build() {
-		String[] elements = new String[] {"<alle>", "Montag", "Dienstag", "Mittwoch", "Donnerstag", "Freitag", "Samstag", "Sonntag"};
+		String[] elements = new String[] {"<alle>", "Montag", "Dienstag", "Mittwoch", "Donnerstag", "Freitag"};
 		if (this.variant.equals("select")) {
-			elements = new String[] {"Montag", "Dienstag", "Mittwoch", "Donnerstag", "Freitag", "Samstag", "Sonntag"};
+			elements = new String[] {"Montag", "Dienstag", "Mittwoch", "Donnerstag", "Freitag"};
 		}
 		
 		this.removeAllElements();
