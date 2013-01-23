@@ -119,8 +119,6 @@ public class RoomtableTab extends JPanel {
 
 	public void loadRoomTable(int roomId){
 		
-		System.out.println("Filter on Roomplan: ["+this.getComboBoxSemesterFilter().getSelectedItem().toString()+"]");
-		
 		loadRoomTable(roomId, this.getComboBoxSemesterFilter().getSelectedItem().toString());
 	}
 	
