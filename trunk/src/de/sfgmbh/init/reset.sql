@@ -11,7 +11,7 @@ Target Server Type    : PGSQL
 Target Server Version : 90201
 File Encoding         : 65001
 
-Date: 2013-01-23 14:08:55
+Date: 2013-01-23 16:13:12
 */
 
 
@@ -78,7 +78,7 @@ CREATE SEQUENCE "public"."roomallocation_roomallocationid_seq"
  INCREMENT 1
  MINVALUE 1
  MAXVALUE 9223372036854775807
- START 42
+ START 45
  CACHE 1;
 
 -- ----------------------------
@@ -274,16 +274,12 @@ INSERT INTO "public"."roomallocation" VALUES ('2', '1', '35', 'SS 13', '1', '3',
 INSERT INTO "public"."roomallocation" VALUES ('3', '2', '33', 'SS 13', '1', '1', 'counter', 'Ich muss Ihnen leider folgenden Gegenvorschlag unterbreiten.', null);
 INSERT INTO "public"."roomallocation" VALUES ('5', '6', '2', 'SS 13', '2', '5', 'accepted', null, null);
 INSERT INTO "public"."roomallocation" VALUES ('9', '2', '3', 'SS 13', '1', '3', 'accepted', null, null);
-INSERT INTO "public"."roomallocation" VALUES ('11', '11', '3', 'SS 13', '1', '1', 'accepted', null, null);
 INSERT INTO "public"."roomallocation" VALUES ('12', '11', '3', 'SS 13', '1', '5', 'accepted', '', null);
-INSERT INTO "public"."roomallocation" VALUES ('16', '7', '3', 'SS 13', '2', '1', 'accepted', null, null);
 INSERT INTO "public"."roomallocation" VALUES ('17', '12', '27', 'SS 13', '1', '2', 'accepted', null, null);
-INSERT INTO "public"."roomallocation" VALUES ('18', '13', '35', 'SS 13', '7', '7', 'denied', null, null);
 INSERT INTO "public"."roomallocation" VALUES ('20', '15', '3', 'SS 13', '3', '6', 'accepted', 'Sehr geehrter Herr Serno,
 anbei ein Vorschlag zur Konfliktlösung.
 MfG
 Ihr Verwaltungsteam', null);
-INSERT INTO "public"."roomallocation" VALUES ('21', '16', '2', 'SS 13', '6', '1', 'accepted', null, null);
 INSERT INTO "public"."roomallocation" VALUES ('22', '17', '35', 'SS 13', '1', '4', 'accepted', 'Test, Test', null);
 INSERT INTO "public"."roomallocation" VALUES ('23', '17', '35', 'SS 13', '1', '2', 'accepted', 'Sehr geehrter Herr Serno,
 anbei ein Gegenvorschlag', null);
@@ -293,16 +289,12 @@ INSERT INTO "public"."roomallocation" VALUES ('26', '19', '35', 'SS 13', '1', '5
 INSERT INTO "public"."roomallocation" VALUES ('27', '20', '2', 'SS 13', '1', '1', 'accepted', '', null);
 INSERT INTO "public"."roomallocation" VALUES ('29', '19', '35', 'SS 13', '2', '1', 'accepted', null, null);
 INSERT INTO "public"."roomallocation" VALUES ('30', '19', '35', 'SS 13', '2', '2', 'accepted', null, null);
-INSERT INTO "public"."roomallocation" VALUES ('33', '19', '4', 'SS 13', '2', '7', 'denied', null, null);
-INSERT INTO "public"."roomallocation" VALUES ('34', '19', '27', 'SS 13', '2', '7', 'accepted', null, null);
-INSERT INTO "public"."roomallocation" VALUES ('35', '19', '33', 'SS 13', '2', '7', 'accepted', null, null);
-INSERT INTO "public"."roomallocation" VALUES ('36', '19', '35', 'SS 13', '2', '7', 'accepted', null, null);
-INSERT INTO "public"."roomallocation" VALUES ('37', '19', '5', 'SS 13', '2', '7', 'accepted', null, null);
-INSERT INTO "public"."roomallocation" VALUES ('38', '19', '2', 'SS 13', '2', '7', 'accepted', null, null);
 INSERT INTO "public"."roomallocation" VALUES ('39', '22', '35', 'SS 13', '2', '3', 'accepted', null, null);
 INSERT INTO "public"."roomallocation" VALUES ('40', '23', '3', 'SS 13', '4', '4', 'accepted', null, null);
 INSERT INTO "public"."roomallocation" VALUES ('41', '25', '27', 'SS 13', '3', '3', 'accepted', null, null);
 INSERT INTO "public"."roomallocation" VALUES ('42', '26', '35', 'SS 13', '2', '4', 'waiting', null, null);
+INSERT INTO "public"."roomallocation" VALUES ('43', '19', '27', 'SS 13', '2', '5', 'waiting', null, null);
+INSERT INTO "public"."roomallocation" VALUES ('44', '19', '27', 'SS 13', '4', '5', 'accepted', '', null);
 
 -- ----------------------------
 -- Table structure for "public"."user"
@@ -329,19 +321,19 @@ WITH (OIDS=FALSE)
 -- ----------------------------
 INSERT INTO "public"."user" VALUES ('1', 'hstad', '3d22f87a9655e2bc971e4f53bb623006dbc2fc9ab57b03e52df964895573d2c1', '10p06od', 'h@s.de', 'lecturer', 'Hannes', 'Stadler', '1358291445', 't');
 INSERT INTO "public"."user" VALUES ('2', 'akupf', 'none_set', 'none_set', 'test@test.de', 'lecturer', 'Anna', 'Kupfer', '0', 'f');
-INSERT INTO "public"."user" VALUES ('8', 'Verw', '3e280c39a065b49322088ae34b31fdb9052374b07764e65e2bbee279705a410e', 'j2t66r', 'Verwaltung@uni-bamberg.de', 'orga', '', '', '1358945904', 'f');
-INSERT INTO "public"."user" VALUES ('22', 'Doz', '8430df002cc316b8d8973aa1f749958a6fdf43eb250179f127fae755868f7665', '3ki7555', 'asf@asdf.de', 'lecturer', 'Christian', 'Hindelang', '1358937877', 'f');
+INSERT INTO "public"."user" VALUES ('8', 'Verw', '3e280c39a065b49322088ae34b31fdb9052374b07764e65e2bbee279705a410e', 'j2t66r', 'Verwaltung@uni-bamberg.de', 'orga', '', '', '1358951354', 'f');
+INSERT INTO "public"."user" VALUES ('22', 'Doz', '8430df002cc316b8d8973aa1f749958a6fdf43eb250179f127fae755868f7665', '3ki7555', 'asf@asdf.de', 'lecturer', 'DozVorname', 'DozNachname', '1358952896', 'f');
 INSERT INTO "public"."user" VALUES ('27', 'profTest', 'd410260b4b689f52160aeefc2ef4e11d174695febbafd01ea634ec5fb5380ed0', '3e80ttk', 'p@te.st', 'lecturer', 'P', 'Test', '0', 'f');
 INSERT INTO "public"."user" VALUES ('29', 'Sinz', '591d162438cd1528aadbe9784f8d0f84d3400faf1fbfba3f8038d772ed73c192', '3f16lft', 'e.sinz@uni-bamberg.de', 'lecturer', 'Elmar J.', 'Sinz', '1358874274', 'f');
 INSERT INTO "public"."user" VALUES ('35', 'Test3', '28c5d2b2dded3936f260680b5f282a9033cc143601d42a9aa0ec060fd00a2bda', '257tar8', 'asfd@test.de', 'lecturer', '', 'asfd', '0', 't');
 INSERT INTO "public"."user" VALUES ('36', 'asdfasdf', 'c340602c1f1927da5e8d79f6481207a95f2aed7d296aaf852433b60f7e209560', '8vbtha', 'asdf@asfd.de', 'lecturer', '', 'asdf', '0', 't');
 INSERT INTO "public"."user" VALUES ('38', 'Ferstl', '5a20d7a5dfc82ab6f50506e215cbc348f6f2685c8b209cdd1282566a7604b1ba', '36vkv0a', 'o.ferstl@uni-bamberg.de', 'lecturer', 'Otto', 'Ferstl', '0', 'f');
-INSERT INTO "public"."user" VALUES ('39', 'denis', '0daa5f04411e3f93a75e7a7172dc234ad23806166be0c14173128af39b1e3f9a', '1aqqf1p', 'denis.hamann@stud.uni-bamberg.de', 'orga', 'Denis', 'Hamann', '1358937850', 'f');
-INSERT INTO "public"."user" VALUES ('42', 'denis2', '3635aab2c8de16602d81c6c1eade9fea7d99514819a678d0e00639cef4ebce62', '3fghbln', 'denis2@test.com', 'lecturer', 'Denis', 'Hamann', '1358945985', 'f');
+INSERT INTO "public"."user" VALUES ('39', 'denis', '0daa5f04411e3f93a75e7a7172dc234ad23806166be0c14173128af39b1e3f9a', '1aqqf1p', 'denis.hamann@stud.uni-bamberg.de', 'orga', 'Denis', 'Hamann', '1358953494', 'f');
+INSERT INTO "public"."user" VALUES ('42', 'denis2', '3635aab2c8de16602d81c6c1eade9fea7d99514819a678d0e00639cef4ebce62', '3fghbln', 'denis2@test.com', 'lecturer', 'Denis', 'Hamann', '1358953217', 'f');
 INSERT INTO "public"."user" VALUES ('43', 'mserno', 'a940b2c9112014c03cbd92d4cc7ddfbe332a5d5ce7b93df1c6a02662213a7919', '1emk244', 'mario.serno@uni-bamberg.de', 'lecturer', 'Mario', 'Serno', '1358892842', 'f');
-INSERT INTO "public"."user" VALUES ('44', 'KK-', 'db45d1fd08471b1314c48745ea426b7d34a3f3f2edec1a182ded3495ccb6c786', '2svufgk', 'asdf@test.de', 'orga', 'TestK1', 'TestK1', '0', 't');
+INSERT INTO "public"."user" VALUES ('44', 'KK-', 'db45d1fd08471b1314c48745ea426b7d34a3f3f2edec1a182ded3495ccb6c786', '2svufgk', 'asdf@test.de', 'orga', 'TestK1', 'TestK1', '0', 'f');
 INSERT INTO "public"."user" VALUES ('45', 'KK2', 'fd9f64014d81ffeb273b5699837834631d09d01064cd23b33ace75e2d8b87194', '1kbptcc', 'alskfdj@asdfk.de', 'orga', 'asdfkl', 'lökö', '0', 't');
-INSERT INTO "public"."user" VALUES ('46', 'asfdasfd', '2689c8c6109329f2d5ebebb99eb5011c9ed351fddfb8b17b784ca958f7cc773f', '2qsb6fb', 'asfd@kkd.de', 'orga', 'sadf', 'safdsf', '0', 't');
+INSERT INTO "public"."user" VALUES ('46', 'asfdasfd', '2689c8c6109329f2d5ebebb99eb5011c9ed351fddfb8b17b784ca958f7cc773f', '2qsb6fb', 'asfd@kkd.de', 'orga', 'sadf', 'safdsf', '0', 'f');
 INSERT INTO "public"."user" VALUES ('47', 'asfdFFö>', '2520dd66a06643dd0918a254f3fa6a7f6375cec4fcfe62b88a189bcbac7aa9cf', '3u3mf9k', 'ssdE3@asdlf.de', 'orga', 'as', 'asdf', '0', 't');
 
 -- ----------------------------
