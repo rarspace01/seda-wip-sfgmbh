@@ -63,6 +63,7 @@ public class UserTabBtnsControl implements ActionListener, IntfComDialogObserver
 					IntfUser editUser = (IntfUser) ViewManager.getInstance().getOrgaUserTableModel().getValueAt(row, 6);
 					UserCreateDialog editDialog = new UserCreateDialog(editUser);
 					editDialog.setVisible(true);
+					editDialog.setTitle("Benutzerinfo bearbeiten");
 				} catch (Exception ex) {
 					AppModel.getInstance().getExceptionHandler().setNewException("Ein unerwarteter Fehler ist aufgetreten.<br /><br >" + ex.toString(), "Fehler!");
 				}

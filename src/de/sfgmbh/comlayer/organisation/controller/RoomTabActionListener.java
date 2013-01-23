@@ -45,6 +45,7 @@ public class RoomTabActionListener implements ActionListener, IntfComDialogObser
 		// Add Button is pressed
 		if (this.navAction.equals("add")) {
 			roomFrame.setVisible(true);
+			roomFrame.setTitle("Neuen Raum anlegen");
 		}
 
 		// Edit Button is pressed
@@ -63,7 +64,7 @@ public class RoomTabActionListener implements ActionListener, IntfComDialogObser
 	
 				// load values from room object to gui
 				roomFrame.getTxtroomid().setText(""+selectedRoom.getRoomId_());
-				
+				roomFrame.setTitle("Rauminfo bearbeiten");
 				roomFrame.getTxtRoomNumber().setText(selectedRoom.getRoomNumber_());
 				roomFrame.getTxtLevel().setText(selectedRoom.getLevel_());
 				roomFrame.getTxtSeats().setText(""+selectedRoom.getSeats_());

@@ -73,9 +73,9 @@ public class ChairCreateDialog extends JDialog {
 	
 	private void init() {
 		if (this.variant.equals("edit")) {
-			setTitle("Lehrstuhl bearbeiten");
+			setTitle("Lehrstuhlinfo bearbeiten");
 		} else {
-			setTitle("Lehrstuhl anlegen");
+			setTitle("Neuen Lehrstuhl anlegen");
 		}
 		setIconImage(Toolkit.getDefaultToolkit().getImage(CounterproposalDialog.class.getResource("/de/sfgmbh/comlayer/core/images/HUT_klein.png")));
 		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
