@@ -183,7 +183,7 @@ public class LiveTickerPanel extends JPanel {
 					e.printStackTrace();
 				}
 				LiveTickerPanel.this.scroll();
-				// refresh the ticker every two minutes (1091 cycles as one cycle takes 110 ms)
+				// Refresh the ticker every two minutes (1091 cycles as one cycle takes 110 ms)
 				LiveTickerPanel.this.cycles++;
 				if (LiveTickerPanel.this.cycles > 1091) {
 					LiveTickerPanel.this.cycles = 0;
@@ -193,6 +193,12 @@ public class LiveTickerPanel extends JPanel {
 		}
 	}
 	
+	/**
+	 * Anti-aliasing for the text
+	 * Makes it a very little bit smoother while scrolling up.
+	 *
+	 * @author hannes
+	 */
 	public class JTextPaneAntiAliasing extends JTextPane {
 		private static final long serialVersionUID = 1L;
 
