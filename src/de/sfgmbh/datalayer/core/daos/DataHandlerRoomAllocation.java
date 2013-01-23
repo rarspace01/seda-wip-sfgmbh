@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import de.sfgmbh.applayer.core.definitions.IntfRoomAllocation;
 import de.sfgmbh.applayer.core.model.RoomAllocation;
 import de.sfgmbh.datalayer.core.definitions.IntfDataFilter;
 import de.sfgmbh.datalayer.core.definitions.IntfDataObservable;
@@ -237,7 +238,7 @@ public class DataHandlerRoomAllocation implements IntfDataObservable, IntfDataFi
 	 * @see de.sfgmbh.datalayer.core.daos.IntfDataRoomAllocation#getConflictingAllocation(de.sfgmbh.applayer.core.model.RoomAllocation)
 	 */
 	@Override
-	public List<RoomAllocation> getConflictingAllocation(RoomAllocation ra) {
+	public List<RoomAllocation> getConflictingAllocation(IntfRoomAllocation ra) {
 		// DataManagerPostgreSql filterDm = null;
 		DataManagerPostgreSql conflictingAllocationDm = null;
 		List<RoomAllocation> listRoomAllocation = new ArrayList<RoomAllocation>();
@@ -351,7 +352,7 @@ public class DataHandlerRoomAllocation implements IntfDataObservable, IntfDataFi
 	 * @see de.sfgmbh.datalayer.core.daos.IntfDataRoomAllocation#get(int)
 	 */
 	@Override
-	public RoomAllocation get(int id) {
+	public IntfRoomAllocation get(int id) {
 		try {
 			DataManagerPostgreSql.getInstance().prepare("SELECT public.roomallocation.*, public.course.*, public.user.*, public.room.*, public.chair.* " +
 														"FROM public.roomallocation, public.room, public.course, public.user, public.chair, public.lecturer " +
@@ -365,7 +366,7 @@ public class DataHandlerRoomAllocation implements IntfDataObservable, IntfDataFi
 			DataManagerPostgreSql.getInstance().getPreparedStatement().setInt(1, id);
 			ResultSet rs = DataManagerPostgreSql.getInstance().selectPstmt();
 			while (rs.next()) {
-				RoomAllocation roomAllocation = this.makeRoomAllocation(rs, "normal");
+				IntfRoomAllocation roomAllocation = this.makeRoomAllocation(rs, "normal");
 				for (HashMap<String, Object> conflict : this.getConflictingDates()) {
 					if (roomAllocation.getRoom_().getRoomId_() == (int) conflict.get("roomid") && 
 							roomAllocation.getDay_() == (int) conflict.get("day") &&
@@ -394,7 +395,7 @@ public class DataHandlerRoomAllocation implements IntfDataObservable, IntfDataFi
 	 * @see de.sfgmbh.datalayer.core.daos.IntfDataRoomAllocation#save(de.sfgmbh.applayer.core.model.RoomAllocation)
 	 */
 	@Override
-	public boolean save(RoomAllocation ra) {
+	public boolean save(IntfRoomAllocation ra) {
 		boolean returnStatus = false;
 		if (ra.getRoomAllocationId_() == -1) {
 			try {

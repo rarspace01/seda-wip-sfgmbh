@@ -2,7 +2,9 @@ package de.sfgmbh.applayer.core.model;
 
 import java.util.List;
 
+import de.sfgmbh.applayer.core.definitions.IntfCourse;
 import de.sfgmbh.applayer.core.definitions.IntfRoom;
+import de.sfgmbh.applayer.core.definitions.IntfRoomAllocation;
 
 /**
  * Model for room allocations
@@ -11,10 +13,10 @@ import de.sfgmbh.applayer.core.definitions.IntfRoom;
  * @author hannes
  *
  */
-public class RoomAllocation {
+public class RoomAllocation implements IntfRoomAllocation {
 
 	private int roomAllocationId_;
-	private Course course_;
+	private IntfCourse course_;
 	private IntfRoom room_;
 	private String semester_;
 	private int day_;
@@ -30,113 +32,114 @@ public class RoomAllocation {
 		this.conflicting_ = false;
 	}
 	
-	/**
-	 * @return the roomAllocationId_
+	/* (non-Javadoc)
+	 * @see de.sfgmbh.applayer.core.model.IntfRoomAllocation#getRoomAllocationId_()
 	 */
+	@Override
 	public int getRoomAllocationId_() {
 		return roomAllocationId_;
 	}
 
-	/**
-	 * @param roomAllocationId_ the roomAllocationId_ to set
+	/* (non-Javadoc)
+	 * @see de.sfgmbh.applayer.core.model.IntfRoomAllocation#setRoomAllocationId_(int)
 	 */
+	@Override
 	public void setRoomAllocationId_(int roomAllocationId_) {
 		this.roomAllocationId_ = roomAllocationId_;
 	}
 
-	/**
-	 * @return the course_
+	/* (non-Javadoc)
+	 * @see de.sfgmbh.applayer.core.model.IntfRoomAllocation#getCourse_()
 	 */
-	public Course getCourse_() {
+	@Override
+	public IntfCourse getCourse_() {
 		return course_;
 	}
 
-	/**
-	 * @param course_ the course_ to set
+	/* (non-Javadoc)
+	 * @see de.sfgmbh.applayer.core.model.IntfRoomAllocation#setCourse_(de.sfgmbh.applayer.core.definitions.IntfCourse)
 	 */
-	public void setCourse_(Course course_) {
+	@Override
+	public void setCourse_(IntfCourse course_) {
 		this.course_ = course_;
 	}
 
-	/**
-	 * @return the room_
+	/* (non-Javadoc)
+	 * @see de.sfgmbh.applayer.core.model.IntfRoomAllocation#getRoom_()
 	 */
+	@Override
 	public IntfRoom getRoom_() {
 		return room_;
 	}
 
-	/**
-	 * @param room_ the room_ to set
+	/* (non-Javadoc)
+	 * @see de.sfgmbh.applayer.core.model.IntfRoomAllocation#setRoom_(de.sfgmbh.applayer.core.definitions.IntfRoom)
 	 */
+	@Override
 	public void setRoom_(IntfRoom room_) {
 		this.room_ = room_;
 	}
 
-	/**
-	 * @return the semester_
+	/* (non-Javadoc)
+	 * @see de.sfgmbh.applayer.core.model.IntfRoomAllocation#getSemester_()
 	 */
+	@Override
 	public String getSemester_() {
 		return semester_;
 	}
 
-	/**
-	 * @param semester_ the semester_ to set
+	/* (non-Javadoc)
+	 * @see de.sfgmbh.applayer.core.model.IntfRoomAllocation#setSemester_(java.lang.String)
 	 */
+	@Override
 	public void setSemester_(String semester_) {
 		this.semester_ = semester_;
 	}
 
-	/**
-	 * @return the day_
+	/* (non-Javadoc)
+	 * @see de.sfgmbh.applayer.core.model.IntfRoomAllocation#getDay_()
 	 */
+	@Override
 	public int getDay_() {
 		return day_;
 	}
 
-	/**
-	 * @param day_ the day_ to set
+	/* (non-Javadoc)
+	 * @see de.sfgmbh.applayer.core.model.IntfRoomAllocation#setDay_(int)
 	 */
+	@Override
 	public void setDay_(int day_) {
 		this.day_ = day_;
 	}
 
-	/**
-	 * @return the time_
+	/* (non-Javadoc)
+	 * @see de.sfgmbh.applayer.core.model.IntfRoomAllocation#getTime_()
 	 */
+	@Override
 	public int getTime_() {
 		return time_;
 	}
 
-	/**
-	 * @param time_ the time_ to set
+	/* (non-Javadoc)
+	 * @see de.sfgmbh.applayer.core.model.IntfRoomAllocation#setTime_(int)
 	 */
+	@Override
 	public void setTime_(int time_) {
 		this.time_ = time_;
 	}
 
-	/**
-	 * @return the approved_
+	/* (non-Javadoc)
+	 * @see de.sfgmbh.applayer.core.model.IntfRoomAllocation#getApproved_()
 	 */
+	@Override
 	public String getApproved_() {
 		return approved_;
 	}
 
-	/**
-	 * Set the approval status of the room allocation Valid status strings are:<br><br>
-	 * 
-	 * "accepted" - The room allocation is approved by the organization<br>
-	 * "denied" - The room allocation is denied by the organization<br>
-	 * "waiting" - The room allocation is not yet reviewed by the organization<br>
-	 * "counter" - The room allocation marks a counter proposal by the organization,<br>
-	 * this should be changed to "accepted" or "denied" automatically as soon as<br>
-	 * the lecturer accepts or denies the proposal. Until then time slot for this room<br>
-	 * allocation may not be taken by other allocations.<br><br>
-	 * 
-	 * "waiting" is the default status which will be set if no other valid status was
-	 * submitted.
-	 * 
-	 * @param status
+	/* (non-Javadoc)
+	 * @see de.sfgmbh.applayer.core.model.IntfRoomAllocation#setApproved_(java.lang.String)
 	 */
+	@Override
 	public void setApproved_(String approved_) {
 		if (approved_.equals("accepted")) {
 			this.approved_ = "accepted";
@@ -149,17 +152,18 @@ public class RoomAllocation {
 		}
 	}
 
-	/**
-	 * @return the orgaMessage_
+	/* (non-Javadoc)
+	 * @see de.sfgmbh.applayer.core.model.IntfRoomAllocation#getOrgaMessage_()
 	 */
+	@Override
 	public String getOrgaMessage_() {
 		return orgaMessage_;
 	}
 
-	/**
-	 * Set the organization message. The message will be cut after 10 000 characters.
-	 * @param orgaMessage_ the orgaMessage_ to set
+	/* (non-Javadoc)
+	 * @see de.sfgmbh.applayer.core.model.IntfRoomAllocation#setOrgaMessage_(java.lang.String)
 	 */
+	@Override
 	public void setOrgaMessage_(String orgaMessage_) {
 		if (orgaMessage_ != null) {
 			if (orgaMessage_.length() > 10000) {
@@ -169,32 +173,35 @@ public class RoomAllocation {
 		this.orgaMessage_ = orgaMessage_;
 	}
 
-	/**
-	 * @return the comment_
+	/* (non-Javadoc)
+	 * @see de.sfgmbh.applayer.core.model.IntfRoomAllocation#getComment_()
 	 */
+	@Override
 	public String getComment_() {
 		return comment_;
 	}
 
-	/**
-	 * @param comment_ the comment_ to set
+	/* (non-Javadoc)
+	 * @see de.sfgmbh.applayer.core.model.IntfRoomAllocation#setComment_(java.lang.String)
 	 */
+	@Override
 	public void setComment_(String comment_) {
 		this.comment_ = comment_;
 	}
 	
 	
-	/**
-	 * @return the conflictingAllocations_
+	/* (non-Javadoc)
+	 * @see de.sfgmbh.applayer.core.model.IntfRoomAllocation#getConflictingAllocations_()
 	 */
+	@Override
 	public List<RoomAllocation> getConflictingAllocations_() {
 		return conflictingAllocations_;
 	}
 
-	/**
-	 * Set conflicting room allocations when this room allocation doesn't already have any conflicting allocations
-	 * @param conflictingAllocations_ the conflictingAllocations_ to set
+	/* (non-Javadoc)
+	 * @see de.sfgmbh.applayer.core.model.IntfRoomAllocation#setConflictingAllocations_()
 	 */
+	@Override
 	public void setConflictingAllocations_() {
 		if (this.conflictingAllocations_ == null) {
 			List<RoomAllocation> ral = AppModel.getInstance().getRepositoryRoomAllocation().getConflictingAllocation(this);
@@ -202,27 +209,27 @@ public class RoomAllocation {
 		}
 	}
 	
-	/**
-	 * Set conflicting room allocations regardless if there already are any set
-	 * @param conflictingAllocations_ the conflictingAllocations_ to set
+	/* (non-Javadoc)
+	 * @see de.sfgmbh.applayer.core.model.IntfRoomAllocation#setForceConflictingAllocations_()
 	 */
+	@Override
 	public void setForceConflictingAllocations_() {
 		List<RoomAllocation> ral = AppModel.getInstance().getRepositoryRoomAllocation().getConflictingAllocation(this);
 		this.conflictingAllocations_ = ral;
 	}
 	
-	/**
-	 * Save this room allocation in the DB
-	 * @return true on success
+	/* (non-Javadoc)
+	 * @see de.sfgmbh.applayer.core.model.IntfRoomAllocation#save()
 	 */
+	@Override
 	public boolean save() {
 		return AppModel.getInstance().getRepositoryRoomAllocation().save(this);
 	}
 
-	/**
-	 * Check if this allocation is published (approved by the organ staff and published by the lecturer)
-	 * @return true if this allocation is published
+	/* (non-Javadoc)
+	 * @see de.sfgmbh.applayer.core.model.IntfRoomAllocation#isPublic()
 	 */
+	@Override
 	public boolean isPublic() {
 		
 		if (this.course_.isLecturerEnabled_() && this.approved_.equals("accepted")) {
@@ -232,16 +239,18 @@ public class RoomAllocation {
 		return false;
 	}
 
-	/**
-	 * @return the conflicting_
+	/* (non-Javadoc)
+	 * @see de.sfgmbh.applayer.core.model.IntfRoomAllocation#isConflicting_()
 	 */
+	@Override
 	public boolean isConflicting_() {
 		return conflicting_;
 	}
 
-	/**
-	 * @param conflicting_ the conflicting_ to set
+	/* (non-Javadoc)
+	 * @see de.sfgmbh.applayer.core.model.IntfRoomAllocation#setConflicting_(boolean)
 	 */
+	@Override
 	public void setConflicting_(boolean conflicting_) {
 		this.conflicting_ = conflicting_;
 	}

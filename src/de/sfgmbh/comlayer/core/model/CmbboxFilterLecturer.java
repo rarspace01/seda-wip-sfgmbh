@@ -7,6 +7,7 @@ import javax.swing.JComboBox;
 
 import de.sfgmbh.applayer.core.controller.SessionManager;
 import de.sfgmbh.applayer.core.definitions.IntfAppObserver;
+import de.sfgmbh.applayer.core.definitions.IntfUser;
 import de.sfgmbh.applayer.core.model.AppModel;
 import de.sfgmbh.applayer.core.model.User;
 
@@ -71,7 +72,7 @@ public class CmbboxFilterLecturer extends DefaultComboBoxModel<String> implement
 
 		// Set the selected lecturer to the currently logged in lecturer if
 		// there is a lecturer logged in - otherwise set it to "<alle>"
-		User currentUser = SessionManager.getInstance().getSession();
+		IntfUser currentUser = SessionManager.getInstance().getSession();
 		if (currentUser != null) {
 			if (currentUser.getClass_().equals("lecturer")) {
 				this.setSelectedItem(currentUser.getlName_());

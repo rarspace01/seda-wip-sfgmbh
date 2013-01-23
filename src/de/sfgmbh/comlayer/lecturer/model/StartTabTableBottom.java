@@ -8,10 +8,10 @@ import javax.swing.table.DefaultTableModel;
 import de.sfgmbh.applayer.core.controller.SessionManager;
 import de.sfgmbh.applayer.core.definitions.IntfAppObserver;
 import de.sfgmbh.applayer.core.definitions.IntfChair;
+import de.sfgmbh.applayer.core.definitions.IntfCourse;
+import de.sfgmbh.applayer.core.definitions.IntfRoomAllocation;
+import de.sfgmbh.applayer.core.definitions.IntfUser;
 import de.sfgmbh.applayer.core.model.AppModel;
-import de.sfgmbh.applayer.core.model.Course;
-import de.sfgmbh.applayer.core.model.RoomAllocation;
-import de.sfgmbh.applayer.core.model.User;
 import de.sfgmbh.comlayer.core.controller.ViewHelper;
 import de.sfgmbh.comlayer.core.controller.ViewManager;
 
@@ -45,7 +45,7 @@ public class StartTabTableBottom extends DefaultTableModel implements IntfAppObs
 	 */
 	public void change(String variant) {
 		HashMap<String, String> filter = new HashMap<String, String>();
-		User sessionUser = SessionManager.getInstance().getSession();
+		IntfUser sessionUser = SessionManager.getInstance().getSession();
 		
 		if (sessionUser.getChair_() != null) {
 		
@@ -63,9 +63,9 @@ public class StartTabTableBottom extends DefaultTableModel implements IntfAppObs
 			} else if (variant.equals("select")) {
 				int row = ViewManager.getInstance().getLecturerStartTab().getTableCourseTop().getSelectedRow();
 				if (row != -1) {
-					Course selectedCourse = null;
+					IntfCourse selectedCourse = null;
 					try {
-						selectedCourse = (Course) ViewManager.getInstance().getLecturerStartTabTableTop().getValueAt(row, 6);
+						selectedCourse = (IntfCourse) ViewManager.getInstance().getLecturerStartTabTableTop().getValueAt(row, 6);
 					} catch (Exception ex) {
 						AppModel.getInstance().getExceptionHandler().setNewException("Ein unerwarteter Fehler ist aufgetreten.<br /><br >" + ex.toString(), "Fehler!");
 					}
@@ -93,7 +93,7 @@ public class StartTabTableBottom extends DefaultTableModel implements IntfAppObs
 				filter.put("course", ViewManager.getInstance().getLecturerStartTab().getComboBoxCourse().getSelectedItem().toString());
 			}
 			
-			for (RoomAllocation ra : AppModel.getInstance().getRepositoryRoomAllocation().getByFilter(filter)){
+			for (IntfRoomAllocation ra : AppModel.getInstance().getRepositoryRoomAllocation().getByFilter(filter)){
 				try {
 					Object[] row = {
 							ra.getCourse_().getCourseAcronym_(), 

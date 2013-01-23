@@ -3,6 +3,7 @@ package de.sfgmbh.datalayer.core.definitions;
 import java.util.HashMap;
 import java.util.List;
 
+import de.sfgmbh.applayer.core.definitions.IntfRoomAllocation;
 import de.sfgmbh.applayer.core.model.RoomAllocation;
 
 public interface IntfDataRoomAllocation {
@@ -28,7 +29,7 @@ public interface IntfDataRoomAllocation {
 	 * @return a list of all conflicting room allocations
 	 */
 	public abstract List<RoomAllocation> getConflictingAllocation(
-			RoomAllocation roomAllocation);
+			IntfRoomAllocation roomAllocation);
 
 	/**
 	 * Get a list of all conflicting dates. <br>
@@ -55,14 +56,14 @@ public interface IntfDataRoomAllocation {
 	 * @param roomAllocationId
 	 * @return a room allocation by its id
 	 */
-	public abstract RoomAllocation get(int roomAllocationId);
+	public abstract IntfRoomAllocation get(int roomAllocationId);
 
 	/**
 	 * Save a room allocation
 	 * @param roomAllocation
 	 * @return true on success
 	 */
-	public abstract boolean save(RoomAllocation roomAllocation);
+	public abstract boolean save(IntfRoomAllocation roomAllocation);
 
 	/**
 	 * Delete all denied allocations

@@ -4,6 +4,7 @@ import java.sql.ResultSet;
 import java.util.HashMap;
 import java.util.List;
 
+import de.sfgmbh.applayer.core.definitions.IntfCourse;
 import de.sfgmbh.applayer.core.model.Course;
 
 public interface IntfDataCourse {
@@ -21,14 +22,14 @@ public interface IntfDataCourse {
 	 * @param id
 	 * @return a course
 	 */
-	public abstract Course get(int id);
+	public abstract IntfCourse get(int id);
 
 	/**
 	 * Forms a course object out of a given result set
 	 * @param resultSet - {@link ResultSet}
 	 * @return a course object
 	 */
-	public abstract Course makeCourse(ResultSet resultSet);
+	public abstract IntfCourse makeCourse(ResultSet resultSet);
 
 	/**
 	 * 
@@ -52,13 +53,13 @@ public interface IntfDataCourse {
 	 * @param course
 	 * @return true on success
 	 */
-	public abstract boolean save(Course course);
+	public abstract boolean save(IntfCourse course);
 
 	/**
 	 * Delete a course from the DB
 	 * @param course
 	 * @return true on success
 	 */
-	public abstract boolean delete(Course course);
+	public abstract boolean delete(IntfCourse course);
 
 }

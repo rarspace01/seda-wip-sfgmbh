@@ -18,6 +18,7 @@ import javax.swing.border.MatteBorder;
 
 import de.sfgmbh.applayer.core.controller.CtrlLiveTicker;
 import de.sfgmbh.applayer.core.definitions.IntfCtrlLiveTicker;
+import de.sfgmbh.applayer.core.definitions.IntfRoomAllocation;
 import de.sfgmbh.applayer.core.model.RoomAllocation;
 import de.sfgmbh.comlayer.core.controller.ViewHelper;
 
@@ -137,7 +138,7 @@ public class LiveTickerPanel extends JPanel {
 		String returnString = "";
 		
 		// Build the string for all allocations
-		for (RoomAllocation ra : roomAllocations) {
+		for (IntfRoomAllocation ra : roomAllocations) {
 			returnString = 
 					returnString + ViewHelper.getTime(ra.getTime_()) + " Uhr<br />" +
 					"Raum: " + ra.getRoom_().getRoomNumber_() + "<br />" +

@@ -6,6 +6,7 @@ import java.util.List;
 
 import de.sfgmbh.applayer.core.definitions.IntfAppObservable;
 import de.sfgmbh.applayer.core.definitions.IntfAppObserver;
+import de.sfgmbh.applayer.core.definitions.IntfUser;
 import de.sfgmbh.datalayer.core.definitions.IntfDataObserver;
 import de.sfgmbh.datalayer.core.model.DataModel;
 
@@ -48,7 +49,7 @@ public class RepositoryUser implements IntfAppObservable, IntfDataObserver {
 	 * Save this user object in the DB (this will update a database entry if there is already one and create one if there is none)
 	 * @return true on success
 	 */
-	public boolean save(User user) {
+	public boolean save(IntfUser user) {
 		if (DataModel.getInstance().getDataHandlerUser().save(user)) {
 			return true;
 		}
@@ -102,7 +103,7 @@ public class RepositoryUser implements IntfAppObservable, IntfDataObserver {
 	 * @param userId
 	 * @return the user for the id or null if it doesn't exist
 	 */
-	public User get(int userId_) {
+	public IntfUser get(int userId_) {
 		return DataModel.getInstance().getDataHandlerUser().get(userId_);
 	}
 
@@ -111,7 +112,7 @@ public class RepositoryUser implements IntfAppObservable, IntfDataObserver {
 	 * @param userToDelete
 	 * @return true on success
 	 */
-	public boolean delete(User delUser) {
+	public boolean delete(IntfUser delUser) {
 		return DataModel.getInstance().getDataHandlerUser().delete(delUser);
 	}
 

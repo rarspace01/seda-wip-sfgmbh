@@ -18,9 +18,9 @@ import javax.swing.table.TableRowSorter;
 
 import net.miginfocom.swing.MigLayout;
 import de.sfgmbh.applayer.core.controller.SessionManager;
+import de.sfgmbh.applayer.core.definitions.IntfRoomAllocation;
+import de.sfgmbh.applayer.core.definitions.IntfUser;
 import de.sfgmbh.applayer.core.model.AppModel;
-import de.sfgmbh.applayer.core.model.RoomAllocation;
-import de.sfgmbh.applayer.core.model.User;
 import de.sfgmbh.applayer.lecturer.controller.CtrlStartTab;
 import de.sfgmbh.applayer.lecturer.definitions.IntfCtrlStartTab;
 import de.sfgmbh.comlayer.core.controller.ViewHelper;
@@ -57,7 +57,7 @@ public class StartTab extends JPanel implements IntfComDialogObserver {
 	private JComboBox<String> comboBoxSemesterBottom;
 	private TableRowSorter<TableModel> rowSorterTop;
 	private TableRowSorter<TableModel> rowSorterBottom;
-	private RoomAllocation roomAllocation;
+	private IntfRoomAllocation roomAllocation;
 	private IntfCtrlStartTab ctrlStartTab = new CtrlStartTab();
 
 	/**
@@ -67,13 +67,13 @@ public class StartTab extends JPanel implements IntfComDialogObserver {
 		initialize();
 	}
 	private void initialize() {
-		User currentUser = SessionManager.getInstance().getSession();
+		IntfUser currentUser = SessionManager.getInstance().getSession();
 		
 		// When a logged in lecturer is here at fist check if he has counter proposals for which popups should be shown
 		if (currentUser != null && currentUser.getClass_().equals("lecturer")) {
 			HashMap<String,String> filter = new HashMap<String,String>();
 			filter.put("login", currentUser.getLogin_());
-			for (RoomAllocation ra : AppModel.getInstance().getRepositoryRoomAllocation().getByFilter(filter)) {
+			for (IntfRoomAllocation ra : AppModel.getInstance().getRepositoryRoomAllocation().getByFilter(filter)) {
 				if (ra.getApproved_().equals("counter")) {
 					String orgaMsg = "";
 					if (ra.getOrgaMessage_().length() > 1) {
@@ -335,14 +335,14 @@ public class StartTab extends JPanel implements IntfComDialogObserver {
 	/**
 	 * @return the roomAllocation
 	 */
-	public RoomAllocation getRoomAllocation() {
+	public IntfRoomAllocation getRoomAllocation() {
 		return roomAllocation;
 	}
 
 	/**
 	 * @param roomAllocation the roomAllocation to set
 	 */
-	public void setRoomAllocation(RoomAllocation roomAllocation) {
+	public void setRoomAllocation(IntfRoomAllocation roomAllocation) {
 		this.roomAllocation = roomAllocation;
 	}
 }

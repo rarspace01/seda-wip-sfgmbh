@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import de.sfgmbh.applayer.core.definitions.IntfCourse;
 import de.sfgmbh.applayer.core.model.Course;
 import de.sfgmbh.datalayer.core.definitions.IntfDataCourse;
 import de.sfgmbh.datalayer.core.definitions.IntfDataFilter;
@@ -125,7 +126,7 @@ public class DataHandlerCourse implements IntfDataFilter, IntfDataObservable, In
 	 * @see de.sfgmbh.datalayer.core.daos.IntfDataCourse#get(int)
 	 */
 	@Override
-	public Course get(int id) {
+	public IntfCourse get(int id) {
 		
 		try {
 			DataManagerPostgreSql.getInstance().prepare("SELECT public.course.*, public.user.*, public.chair.* " +
@@ -223,7 +224,7 @@ public class DataHandlerCourse implements IntfDataFilter, IntfDataObservable, In
 	 * @see de.sfgmbh.datalayer.core.daos.IntfDataCourse#save(de.sfgmbh.applayer.core.model.Course)
 	 */
 	@Override
-	public boolean save(Course course) {
+	public boolean save(IntfCourse course) {
 		
 		if (course.getCourseId_() == -1) {
 			boolean returnState = true;
@@ -294,7 +295,7 @@ public class DataHandlerCourse implements IntfDataFilter, IntfDataObservable, In
 	 * @see de.sfgmbh.datalayer.core.daos.IntfDataCourse#delete(de.sfgmbh.applayer.core.model.Course)
 	 */
 	@Override
-	public boolean delete(Course course) {
+	public boolean delete(IntfCourse course) {
 		if (course != null) {
 			boolean returnState = true;
 			

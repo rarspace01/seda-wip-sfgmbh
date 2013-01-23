@@ -4,9 +4,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import de.sfgmbh.applayer.core.definitions.IntfRoom;
+import de.sfgmbh.applayer.core.definitions.IntfRoomAllocation;
 import de.sfgmbh.applayer.core.model.AppException;
 import de.sfgmbh.applayer.core.model.AppModel;
-import de.sfgmbh.applayer.core.model.RoomAllocation;
 import de.sfgmbh.applayer.organisation.controller.CtrlRoomAllocation;
 import de.sfgmbh.applayer.organisation.definitions.IntfCtrlRoomAllocation;
 import de.sfgmbh.comlayer.organisation.views.CounterproposalDialog;
@@ -55,7 +55,7 @@ public class CounterproposalFrameBtns implements ActionListener {
 		
 		// Sent button is pressed
 		if (this.ctrlAction.equals("send")){
-			RoomAllocation currentAllocation = motherDialog.getProposalAllocation();
+			IntfRoomAllocation currentAllocation = motherDialog.getProposalAllocation();
 			
 			String orgaMessage = motherDialog.getEditorPane().getText();
 			if (orgaMessage.length() > 10000) {
@@ -73,7 +73,7 @@ public class CounterproposalFrameBtns implements ActionListener {
 		
 		// Combobox action
 		if (this.ctrlAction.equals("combo")) {
-			RoomAllocation currentRoomAllocation = motherDialog.getProposalAllocation();
+			IntfRoomAllocation currentRoomAllocation = motherDialog.getProposalAllocation();
 			IntfRoom room = AppModel.getInstance().getRepositoryRoom().getByNumber(motherDialog.getCmbboxRoom().getSelectedItem().toString());
 			int time = motherDialog.getCmbboxTime().getSelectedIndex() + 1;
 			int day  = motherDialog.getCmbboxDay().getSelectedIndex() + 1;
@@ -83,7 +83,7 @@ public class CounterproposalFrameBtns implements ActionListener {
 				motherDialog.getCmbboxRoom().setSelectedItem(currentRoomAllocation.getRoom_().getRoomNumber_());
 				return;
 			} else {
-				RoomAllocation newRoomAllocation = currentRoomAllocation;
+				IntfRoomAllocation newRoomAllocation = currentRoomAllocation;
 				newRoomAllocation.setRoom_(room);
 				newRoomAllocation.setTime_(time);
 				newRoomAllocation.setDay_(day);

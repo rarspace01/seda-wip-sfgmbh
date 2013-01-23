@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import de.sfgmbh.applayer.core.definitions.IntfUser;
 import de.sfgmbh.applayer.core.model.User;
 import de.sfgmbh.datalayer.core.definitions.IntfDataFilter;
 import de.sfgmbh.datalayer.core.definitions.IntfDataObservable;
@@ -210,7 +211,7 @@ public class DataHandlerUser implements IntfDataUser, IntfDataObservable, IntfDa
 	}
 	
 	@Override
-	public User get(int id) {
+	public IntfUser get(int id) {
 		try {
 			DataManagerPostgreSql.getInstance().prepare("SELECT public.user.*, public.chair.* " +
 														"FROM public.user LEFT JOIN public.lecturer INNER JOIN public.chair " +
@@ -241,7 +242,7 @@ public class DataHandlerUser implements IntfDataUser, IntfDataObservable, IntfDa
 	 * @param login
 	 * @return a user
 	 */
-	public User getByLogin(String login) {
+	public IntfUser getByLogin(String login) {
 		
 		try {
 			DataManagerPostgreSql.getInstance().prepare("SELECT public.user.*, public.chair.* " +
@@ -275,7 +276,7 @@ public class DataHandlerUser implements IntfDataUser, IntfDataObservable, IntfDa
 	}
 
 	@Override
-	public boolean delete(User toBeDeletedUser) {
+	public boolean delete(IntfUser toBeDeletedUser) {
 		if (toBeDeletedUser != null) {
 			boolean returnState = true;
 			
@@ -335,7 +336,7 @@ public class DataHandlerUser implements IntfDataUser, IntfDataObservable, IntfDa
 	 * @return ture on success
 	 */
 	@Override
-	public boolean save(User user) {
+	public boolean save(IntfUser user) {
 		
 		if (user.getUserId_() == -1) {
 			boolean returnState = true;
@@ -357,7 +358,7 @@ public class DataHandlerUser implements IntfDataUser, IntfDataObservable, IntfDa
 					dm.getPreparedStatement().setBoolean(9, user.isDisabled_());
 					dm.executePstmt();
 					if (user.getChair_() != null) {
-						User newUser = this.getByLogin(user.getLogin_());
+						IntfUser newUser = this.getByLogin(user.getLogin_());
 						dm.prepare("INSERT INTO public.lecturer"
 								+ "(userid, chairid)"
 								+ "VALUES (?,?)");

@@ -5,9 +5,9 @@ import java.awt.event.ActionListener;
 import java.util.HashMap;
 
 import de.sfgmbh.applayer.core.definitions.IntfRoom;
+import de.sfgmbh.applayer.core.definitions.IntfRoomAllocation;
 import de.sfgmbh.applayer.core.model.AppException;
 import de.sfgmbh.applayer.core.model.AppModel;
-import de.sfgmbh.applayer.core.model.RoomAllocation;
 import de.sfgmbh.applayer.lecturer.controller.CtrlStartTab;
 import de.sfgmbh.applayer.lecturer.definitions.IntfCtrlStartTab;
 import de.sfgmbh.comlayer.lecturer.views.RoomRequestDialog;
@@ -56,7 +56,7 @@ public class RoomRequestDialogBtns implements ActionListener {
 		
 		// Sent button is pressed
 		if (this.ctrlAction.equals("send")){
-			RoomAllocation currentAllocation = motherDialog.getProposalAllocation();
+			IntfRoomAllocation currentAllocation = motherDialog.getProposalAllocation();
 			
 			if (ctrlStartTab.createRoomAllocation(currentAllocation)) {
 				exceptionHandler.setNewException("Ihre Raumanfrage wurde erfolgreich eingetragen.<br />" +
@@ -95,7 +95,7 @@ public class RoomRequestDialogBtns implements ActionListener {
 		
 		// Combobox action
 		if (this.ctrlAction.equals("combo")) {
-			RoomAllocation currentRoomAllocation = motherDialog.getProposalAllocation();
+			IntfRoomAllocation currentRoomAllocation = motherDialog.getProposalAllocation();
 			IntfRoom room = AppModel.getInstance().getRepositoryRoom().getByNumber(motherDialog.getCmbboxRoom().getSelectedItem().toString());
 			int time = motherDialog.getCmbboxTime().getSelectedIndex() + 1;
 			int day  = motherDialog.getCmbboxDay().getSelectedIndex() + 1;
@@ -106,7 +106,7 @@ public class RoomRequestDialogBtns implements ActionListener {
 				motherDialog.getCmbboxRoom().setSelectedItem(currentRoomAllocation.getRoom_().getRoomNumber_());
 				return;
 			} else {
-				RoomAllocation newRoomAllocation = currentRoomAllocation;
+				IntfRoomAllocation newRoomAllocation = currentRoomAllocation;
 				newRoomAllocation.setRoom_(room);
 				newRoomAllocation.setTime_(time);
 				newRoomAllocation.setDay_(day);

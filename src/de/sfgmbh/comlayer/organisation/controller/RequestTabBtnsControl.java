@@ -3,9 +3,9 @@ package de.sfgmbh.comlayer.organisation.controller;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import de.sfgmbh.applayer.core.definitions.IntfRoomAllocation;
 import de.sfgmbh.applayer.core.model.AppException;
 import de.sfgmbh.applayer.core.model.AppModel;
-import de.sfgmbh.applayer.core.model.RoomAllocation;
 import de.sfgmbh.applayer.organisation.controller.CtrlRoomAllocation;
 import de.sfgmbh.applayer.organisation.definitions.IntfCtrlRoomAllocation;
 import de.sfgmbh.comlayer.core.controller.ViewManager;
@@ -25,8 +25,8 @@ public class RequestTabBtnsControl implements ActionListener, IntfComDialogObser
 	
 	private String navAction;
 	private IntfCtrlRoomAllocation ctrlRoomAllocation;
-	private RoomAllocation revokeAllocation;
-	private RoomAllocation solveApprovedAllocation;
+	private IntfRoomAllocation revokeAllocation;
+	private IntfRoomAllocation solveApprovedAllocation;
 	private boolean cleanRoomAllocations;
 	
 	/**
@@ -62,7 +62,7 @@ public class RequestTabBtnsControl implements ActionListener, IntfComDialogObser
 			} else {
 				try {
 					row = requestTab.getRowSorter().convertRowIndexToModel(row);
-					RoomAllocation selectedRa = (RoomAllocation) requestTableModel.getValueAt(row, 8);
+					IntfRoomAllocation selectedRa = (IntfRoomAllocation) requestTableModel.getValueAt(row, 8);
 					
 					if (selectedRa.getApproved_().equals("denied")) {
 						exceptionHandler.setNewException("Zu bereits abgelehnten Raumbelegungen gibt es kein Verfahren für Lösungen bzw. Gegenvorschläge. Hier muss der Dozent eine neue Raumbelegung erstellen.", "Fehler!");
@@ -94,7 +94,7 @@ public class RequestTabBtnsControl implements ActionListener, IntfComDialogObser
 			} else {
 				try {
 					row = requestTab.getRowSorter().convertRowIndexToModel(row);
-					RoomAllocation selectedRa = (RoomAllocation) requestTableModel.getValueAt(row, 8);
+					IntfRoomAllocation selectedRa = (IntfRoomAllocation) requestTableModel.getValueAt(row, 8);
 					ctrlRoomAllocation.acceptRoomAllocation(selectedRa);
 				} catch (Exception ex) {
 					exceptionHandler.setNewException("Ein unerwarteter Fehler ist aufgetreten.<br /><br >" + ex.toString(), "Fehler!");
@@ -111,7 +111,7 @@ public class RequestTabBtnsControl implements ActionListener, IntfComDialogObser
 			} else {
 				try {
 					row = requestTab.getRowSorter().convertRowIndexToModel(row);
-					RoomAllocation selectedRa = (RoomAllocation) requestTableModel.getValueAt(row, 8);
+					IntfRoomAllocation selectedRa = (IntfRoomAllocation) requestTableModel.getValueAt(row, 8);
 					
 					// Check if room allocation is already accepted and warn in that case
 					if (selectedRa.getApproved_().equals("accepted")) {
@@ -142,7 +142,7 @@ public class RequestTabBtnsControl implements ActionListener, IntfComDialogObser
 		}
 	}
 	
-	private void denyAllocation (RoomAllocation ra) {
+	private void denyAllocation (IntfRoomAllocation ra) {
 		if (ra == null) {
 			AppModel.getInstance().getExceptionHandler().setNewException("Die Raumbelegung konnte nicht abgelehnt werden", "Fehler!");
 			return;

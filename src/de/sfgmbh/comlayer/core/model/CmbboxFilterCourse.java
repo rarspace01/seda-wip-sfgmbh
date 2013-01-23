@@ -4,8 +4,8 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComboBox;
 
 import de.sfgmbh.applayer.core.definitions.IntfAppObserver;
+import de.sfgmbh.applayer.core.definitions.IntfCourse;
 import de.sfgmbh.applayer.core.model.AppModel;
-import de.sfgmbh.applayer.core.model.Course;
 
 /**
  * Model for course combo boxes
@@ -31,7 +31,7 @@ public class CmbboxFilterCourse extends DefaultComboBoxModel<String> implements 
 	private void build() {
 		
 		this.addElement("<alle>");
-		for (Course course : AppModel.getInstance().getRepositoryCourse().getAll()){
+		for (IntfCourse course : AppModel.getInstance().getRepositoryCourse().getAll()){
 			this.addElement(course.getCourseAcronym_());
 		}
 	}

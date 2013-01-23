@@ -5,8 +5,8 @@ import java.util.HashMap;
 import javax.swing.table.DefaultTableModel;
 
 import de.sfgmbh.applayer.core.definitions.IntfAppObserver;
+import de.sfgmbh.applayer.core.definitions.IntfRoomAllocation;
 import de.sfgmbh.applayer.core.model.AppModel;
-import de.sfgmbh.applayer.core.model.RoomAllocation;
 import de.sfgmbh.comlayer.core.controller.ViewHelper;
 import de.sfgmbh.comlayer.core.controller.ViewManager;
 
@@ -51,7 +51,7 @@ public class BaseTableMain extends DefaultTableModel implements IntfAppObserver 
 			filter.put("semester", ViewManager.getInstance().getCoreBaseTab().getComboBoxSemesterFilter().getSelectedItem().toString());
 		}
 		
-		for (RoomAllocation ra : AppModel.getInstance().getRepositoryRoomAllocation().getByFilter(filter)){
+		for (IntfRoomAllocation ra : AppModel.getInstance().getRepositoryRoomAllocation().getByFilter(filter)){
 			if (ra.isPublic()) {
 				try {
 					Object[] row = {

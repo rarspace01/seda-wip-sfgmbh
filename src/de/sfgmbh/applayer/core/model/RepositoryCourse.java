@@ -6,6 +6,7 @@ import java.util.List;
 
 import de.sfgmbh.applayer.core.definitions.IntfAppObservable;
 import de.sfgmbh.applayer.core.definitions.IntfAppObserver;
+import de.sfgmbh.applayer.core.definitions.IntfCourse;
 import de.sfgmbh.datalayer.core.definitions.IntfDataObserver;
 import de.sfgmbh.datalayer.core.model.DataModel;
 
@@ -89,7 +90,7 @@ public class RepositoryCourse implements IntfAppObservable, IntfDataObserver {
 	 * @param course
 	 * @return true on success
 	 */
-	public boolean save(Course course) {
+	public boolean save(IntfCourse course) {
 		return DataModel.getInstance().getDataHandlerCourse().save(course);
 	}
 
@@ -98,7 +99,7 @@ public class RepositoryCourse implements IntfAppObservable, IntfDataObserver {
 	 * @param course
 	 * @return true on success
 	 */
-	public boolean delete(Course course) {
+	public boolean delete(IntfCourse course) {
 		return DataModel.getInstance().getDataHandlerCourse().delete(course);
 	}
 

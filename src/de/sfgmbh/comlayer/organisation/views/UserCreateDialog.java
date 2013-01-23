@@ -12,7 +12,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
-import de.sfgmbh.applayer.core.model.User;
+import de.sfgmbh.applayer.core.definitions.IntfUser;
 import de.sfgmbh.comlayer.core.model.CmbboxFilterChairAcronym;
 import de.sfgmbh.comlayer.core.model.CmbboxFilterUserClass;
 import de.sfgmbh.comlayer.organisation.controller.UserCreateDialogBtns;
@@ -42,7 +42,7 @@ public class UserCreateDialog extends JDialog {
 	private JLabel lblNutzerklasse;
 	private JLabel lblPasswort;
 	private JCheckBox chckbxUserDisabled;
-	private User editUser;
+	private IntfUser editUser;
 
 	/**
 	 * Create the frame.
@@ -58,7 +58,7 @@ public class UserCreateDialog extends JDialog {
 	 * Create the frame in a modified version with a user that shall be edited
 	 * @param userToEdit
 	 */
-	public UserCreateDialog(User userToEdit) {
+	public UserCreateDialog(IntfUser userToEdit) {
 		setModal(true);
 		initialize();
 		setLocationRelativeTo(null);
@@ -242,14 +242,14 @@ public class UserCreateDialog extends JDialog {
 	/**
 	 * @return the editUser
 	 */
-	public User getEditUser() {
+	public IntfUser getEditUser() {
 		return editUser;
 	}
 
 	/**
 	 * @param editUser the editUser to set
 	 */
-	public void setEditUser(User editUser) {
+	public void setEditUser(IntfUser editUser) {
 		this.editUser = editUser;
 	}
 }
