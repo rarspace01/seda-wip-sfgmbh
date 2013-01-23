@@ -1,5 +1,11 @@
 package de.sfgmbh.applayer.core.definitions;
 
+/**
+ * Interfaces for objects from the app layer which should be observable
+ * 
+ * @author hannes
+ *
+ */
 public interface IntfAppObservable {
 
 	/**

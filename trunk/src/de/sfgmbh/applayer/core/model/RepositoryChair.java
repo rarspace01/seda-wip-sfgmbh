@@ -10,6 +10,13 @@ import de.sfgmbh.applayer.core.definitions.IntfChair;
 import de.sfgmbh.datalayer.core.definitions.IntfDataObserver;
 import de.sfgmbh.datalayer.core.model.DataModel;
 
+/**
+ * Repository for {@link Chair} objects in the application model
+ * 
+ * @author denis
+ * @author hannes
+ *
+ */
 public class RepositoryChair implements IntfAppObservable, IntfDataObserver {
 	
 	private ArrayList<Object> observer_ = new ArrayList<Object>();
@@ -46,11 +53,19 @@ public class RepositoryChair implements IntfAppObservable, IntfDataObserver {
 		return DataModel.getInstance().getDataHandlerChair().getForAcronym(acronym);
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see de.sfgmbh.datalayer.core.definitions.IntfDataObserver#change()
+	 */
 	@Override
 	public void change() {
 		this.update();
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see de.sfgmbh.applayer.core.definitions.IntfAppObservable#update()
+	 */
 	@Override
 	public void update() {
 		
@@ -65,9 +80,9 @@ public class RepositoryChair implements IntfAppObservable, IntfDataObserver {
 		}
 	}
 	
-	/**
-	 * 
-	 * @param observer
+	/*
+	 * (non-Javadoc)
+	 * @see de.sfgmbh.applayer.core.definitions.IntfAppObservable#register(de.sfgmbh.applayer.core.definitions.IntfAppObserver)
 	 */
 	@Override
 	public void register(IntfAppObserver observer) {
@@ -78,9 +93,9 @@ public class RepositoryChair implements IntfAppObservable, IntfDataObserver {
 		}
 	}
 	
-	/**
-	 * 
-	 * @param observer
+	/*
+	 * (non-Javadoc)
+	 * @see de.sfgmbh.applayer.core.definitions.IntfAppObservable#unregister(de.sfgmbh.applayer.core.definitions.IntfAppObserver)
 	 */
 	@Override
 	public void unregister(IntfAppObserver observer) {

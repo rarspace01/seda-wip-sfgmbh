@@ -27,6 +27,9 @@ public class RoomAllocation implements IntfRoomAllocation {
 	private List<IntfRoomAllocation> conflictingAllocations_;
 	private boolean conflicting_;
 	
+	/**
+	 * Create a default room allocation
+	 */
 	public RoomAllocation() {
 		this.roomAllocationId_ = -1;
 		this.conflicting_ = false;

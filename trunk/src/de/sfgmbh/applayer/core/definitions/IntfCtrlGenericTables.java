@@ -7,7 +7,7 @@ import javax.swing.JTable;
 import de.sfgmbh.applayer.core.model.RoomAllocation;
 
 /**
- * handles the methods we need for the tables in the gui
+ * Interface to handles the methods we need for the tables in the gui
  * @author denis
  *
  */

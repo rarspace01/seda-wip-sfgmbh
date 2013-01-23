@@ -3,7 +3,13 @@ package de.sfgmbh.applayer.core.model;
 import de.sfgmbh.applayer.core.definitions.IntfCourse;
 import de.sfgmbh.applayer.core.definitions.IntfUser;
 
-
+/**
+ * Class for courses
+ * 
+ * @author christian
+ * @author hannes
+ *
+ */
 public class Course implements IntfCourse {
 
 	private int courseId_;

@@ -6,6 +6,12 @@ import de.sfgmbh.applayer.core.definitions.IntfAppModel;
 import de.sfgmbh.applayer.core.definitions.IntfAppObservable;
 import de.sfgmbh.applayer.core.definitions.IntfAppObserver;
 
+/**
+ * This is the main application layer model class
+ * 
+ * @author hannes
+ *
+ */
 public class AppModel implements IntfAppObservable, IntfAppModel {
 	
 	private static IntfAppModel uniqueInstance_ = new AppModel(); // declare on first access through JVM (thread-safe)
@@ -75,6 +81,10 @@ public class AppModel implements IntfAppObservable, IntfAppModel {
 		return uniqueInstance_;
 	}
 	
+	/*
+	 * (non-Javadoc)
+	 * @see de.sfgmbh.applayer.core.definitions.IntfAppObservable#update()
+	 */
 	@Override
 	public void update() {
 		// Create a private observer list to avoid ConcurrentModificationException
@@ -87,8 +97,11 @@ public class AppModel implements IntfAppObservable, IntfAppModel {
 			}
 		}
 	}
-	
 
+	/*
+	 * (non-Javadoc)
+	 * @see de.sfgmbh.applayer.core.definitions.IntfAppObservable#register(de.sfgmbh.applayer.core.definitions.IntfAppObserver)
+	 */
 	@Override
 	public void register(IntfAppObserver observer) {
 		if (observer instanceof IntfAppObserver) {
@@ -99,6 +112,10 @@ public class AppModel implements IntfAppObservable, IntfAppModel {
 		
 	}
 	
+	/*
+	 * (non-Javadoc)
+	 * @see de.sfgmbh.applayer.core.definitions.IntfAppObservable#unregister(de.sfgmbh.applayer.core.definitions.IntfAppObserver)
+	 */
 	@Override
 	public void unregister(IntfAppObserver observer) {
 		observer_.remove(observer);

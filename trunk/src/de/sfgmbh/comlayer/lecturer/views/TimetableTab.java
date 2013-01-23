@@ -12,6 +12,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.ScrollPaneConstants;
 
 import net.miginfocom.swing.MigLayout;
 import de.sfgmbh.applayer.core.controller.CtrlGenericTables;
@@ -24,7 +25,6 @@ import de.sfgmbh.comlayer.core.model.CmbboxFilterSemester;
 import de.sfgmbh.comlayer.core.views.BaseTab;
 import de.sfgmbh.comlayer.lecturer.controller.TimetableTabBtn;
 import de.sfgmbh.comlayer.lecturer.controller.TimetableTabCmbbox;
-import javax.swing.ScrollPaneConstants;
 
 public class TimetableTab extends JPanel {
 	private static final long serialVersionUID = 1L;

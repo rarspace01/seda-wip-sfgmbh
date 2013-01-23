@@ -1,6 +1,12 @@
 package de.sfgmbh.applayer.core.definitions;
 
-
+/**
+ * Interface for the {@link Chair} object
+ * 
+ * @author anna
+ * @author hannes
+ *
+ */
 public interface IntfChair {
 
 	/**

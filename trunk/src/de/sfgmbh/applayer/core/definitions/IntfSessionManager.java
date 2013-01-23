@@ -1,6 +1,10 @@
 package de.sfgmbh.applayer.core.definitions;
 
-
+/**
+ * Interface for the session manager
+ * @author hannes
+ *
+ */
 public interface IntfSessionManager {
 
 	/**
