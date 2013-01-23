@@ -15,6 +15,8 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 
 import net.miginfocom.swing.MigLayout;
+import de.sfgmbh.applayer.core.controller.CtrlGenericTables;
+import de.sfgmbh.applayer.core.definitions.IntfCtrlGenericTables;
 import de.sfgmbh.applayer.core.definitions.IntfRoomAllocation;
 import de.sfgmbh.applayer.core.model.AppModel;
 import de.sfgmbh.applayer.core.model.RoomAllocation;
@@ -25,6 +27,11 @@ import de.sfgmbh.comlayer.core.controller.ViewManager;
 import de.sfgmbh.comlayer.core.views.BaseTab;
 import de.sfgmbh.comlayer.timetable.controller.CoreTimetableTabBtnPdf;
 
+/**
+ * @author anna
+ * @author denis - view methods
+ *
+ */
 public class CoreTimetableTab extends JPanel {
 
 	private static final long serialVersionUID = 1L;
@@ -102,49 +109,17 @@ public class CoreTimetableTab extends JPanel {
 	}
 	
 	public void reloadRoomTable(){
-		
-		IntfCtrlRoomAllocation roomAllocationController=new CtrlRoomAllocation();
-		
+		//controller for table methods
+		IntfCtrlGenericTables genericTablesController=new CtrlGenericTables();
+		//set teh Semester label
 		this.lblvaluesemester.setText(ViewManager.getInstance().getCoreBaseTab().getComboBoxSemesterFilter().getSelectedItem().toString());
-		
-		// clear all rows
-		ViewManager.getInstance().getCoreTimetableTabTable().setRowCount(0);
-		List<IntfRoomAllocation> ral=this.roomAllocList_;
-		// add data to the table
-		for(int i=1;i<=6;i++){
-			Object[] rowData= {ViewHelper.getTime(i)+" Uhr", "","", "", "", ""}; // inital data values
-			ViewManager.getInstance().getCoreTimetableTabTable().addRow(rowData);
-			for(int j=1; j<=5; j++){
-				ViewManager.getInstance().getCoreTimetableTabTable().setValueAt(roomAllocationController.getLectureOnTime(ral,j,i), i-1, j);
-			}
-		}
-		
-		//calc max heigth per row and set it
-		int maxHeight=1;
-		int tmpHeight=0;
-		for(int i=0;i<6;i++){
-			maxHeight=1;
-			for(int j=1; j<=5; j++){
-				tmpHeight=countBreaklines(ViewManager.getInstance().getCoreTimetableTabTable().getValueAt(i, j).toString());
-				if(tmpHeight>maxHeight){
-					maxHeight=tmpHeight;
-				}
-			}
-			this.getStundenplanTable().setRowHeight(i, maxHeight*16);
-		}
+		//get the room allocations from the temprary storage
+		List<IntfRoomAllocation> roomAllocationList=this.roomAllocList_;
+		//call the reload method
+		genericTablesController.reloadTable(getStundenplanTable(), roomAllocationList);
 		
 	}
 
-	public int countBreaklines (String inputString) {
-		   String string = inputString;
-		    Pattern p = Pattern.compile("<br/>");
-		    Matcher m = p.matcher(string);
-		    int count = 0;
-		    while (m.find()){
-		    	count +=1;
-		    }
-		    return count;
-	}
 	
 	public JTable getStundenplanTable() {
 		return stundenplanTable;
@@ -158,6 +133,11 @@ public class CoreTimetableTab extends JPanel {
 		return roomId_;
 	}
 	
+	/**
+	 * adds an room allocation to he table, stores it locally
+	 * @author denis
+	 * @param roomallocations - {@link RoomAllocation}
+	 */
 	public void addAllocation(List<RoomAllocation> roomallocations) {
 		
 		for(int i=0;i<roomallocations.size();i++){

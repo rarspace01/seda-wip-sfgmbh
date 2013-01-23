@@ -16,7 +16,6 @@ import javax.swing.JTable;
 import net.miginfocom.swing.MigLayout;
 import de.sfgmbh.applayer.core.definitions.IntfRoomAllocation;
 import de.sfgmbh.applayer.core.model.AppModel;
-import de.sfgmbh.applayer.core.model.RoomAllocation;
 import de.sfgmbh.applayer.organisation.controller.CtrlRoomAllocation;
 import de.sfgmbh.applayer.organisation.definitions.IntfCtrlRoomAllocation;
 import de.sfgmbh.comlayer.core.controller.ViewHelper;
@@ -103,18 +102,6 @@ public class RoomtableTab extends JPanel {
 	public JComboBox<String> getComboBoxSemesterFilter() {
 		return comboBoxSemesterFilter;
 	}
-	public String getLectureOnTime(List<RoomAllocation> ral,int day, int time){
-		String textualRepresentation="";
-		
-		for(int i=0;i<ral.size();i++){
-			if(ral.get(i).getDay_()==day && ral.get(i).getTime_()==time){
-				//textualRepresentation=ral.get(i).getCourse_().getCourseName_()+" ("+ral.get(i).getCourse_().getLecturer_().getChair_().getAcronym_()+" - "+ral.get(i).getCourse_().getCourseAcronym_()+")";
-				textualRepresentation=ral.get(i).getCourse_().getLecturer_().getChair_().getAcronym_()+" - "+ral.get(i).getCourse_().getCourseAcronym_();
-			}
-		}
-		
-		return textualRepresentation;
-	}
 
 	public void reloadRoomTable(){
 		loadRoomTable(this.roomId_);
@@ -128,11 +115,6 @@ public class RoomtableTab extends JPanel {
 	public void loadRoomTable(int roomId, String semester){
 		
 		this.roomId_=roomId;
-		
-		//Room selectedRoom=AppModel.getInstance().getRepositoryRoom().getRoomById(roomId);
-		
-		//clear all rows
-		
 		IntfCtrlRoomAllocation roomAllocationController=new CtrlRoomAllocation();
 		
 		ViewManager.getInstance().getOrgaRoomtableTableModel().setRowCount(0);
