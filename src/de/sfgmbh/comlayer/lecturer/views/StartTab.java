@@ -12,6 +12,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.ListSelectionModel;
 import javax.swing.UIManager;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
@@ -35,7 +36,6 @@ import de.sfgmbh.comlayer.core.views.QuestionDialog;
 import de.sfgmbh.comlayer.lecturer.controller.StartTabBtnsControl;
 import de.sfgmbh.comlayer.lecturer.controller.StartTabCmbboxFilter;
 import de.sfgmbh.comlayer.lecturer.controller.StartTabTableTop;
-import javax.swing.ListSelectionModel;
 
 public class StartTab extends JPanel implements IntfComDialogObserver {
 

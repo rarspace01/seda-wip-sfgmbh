@@ -10,7 +10,6 @@ import java.util.List;
 import de.sfgmbh.applayer.core.definitions.IntfCtrlLiveTicker;
 import de.sfgmbh.applayer.core.definitions.IntfRoomAllocation;
 import de.sfgmbh.applayer.core.model.AppModel;
-import de.sfgmbh.applayer.core.model.RoomAllocation;
 
 /**
  * Controller for the live ticker

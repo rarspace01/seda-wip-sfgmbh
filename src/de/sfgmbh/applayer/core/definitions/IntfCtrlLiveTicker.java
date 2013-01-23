@@ -2,8 +2,6 @@ package de.sfgmbh.applayer.core.definitions;
 
 import java.util.List;
 
-import de.sfgmbh.applayer.core.model.RoomAllocation;
-
 public interface IntfCtrlLiveTicker {
 
 	/**

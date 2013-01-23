@@ -4,7 +4,6 @@ import java.util.HashMap;
 import java.util.List;
 
 import de.sfgmbh.applayer.core.definitions.IntfRoomAllocation;
-import de.sfgmbh.applayer.core.model.RoomAllocation;
 
 public interface IntfDataRoomAllocation {
 
