@@ -168,6 +168,7 @@ public class TimetableTab extends JPanel {
 			
 			// Set the maximum size of the scroll pane (don't forget to add the table header!)
 			scrollPane_.setMaximumSize(new Dimension(32767, ((int) lecturerTimetableTable_.getPreferredSize().getHeight() + 26)));
+			this.updateUI();
 		}
 		
 	}
