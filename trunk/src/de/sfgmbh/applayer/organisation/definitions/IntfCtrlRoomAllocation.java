@@ -60,7 +60,8 @@ public interface IntfCtrlRoomAllocation {
 	 * @param time - @see {@link ViewHelper}
 	 * @return textualRepresentation - Textual HTML Representation as a {@link String} 
 	 * @author denis
+	 * @param showRoomName  - shows the roomname on output
 	 */
-	public String getLectureOnTime(List<IntfRoomAllocation> roomAllocations,int day, int time);
+	public String getLectureOnTime(List<IntfRoomAllocation> roomAllocations,int day, int time, boolean showRoomName);
 
 }

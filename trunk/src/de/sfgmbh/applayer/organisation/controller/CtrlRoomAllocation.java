@@ -166,12 +166,17 @@ public class CtrlRoomAllocation implements IntfCtrlRoomAllocation {
 
 	@Override
 	public String getLectureOnTime(List<IntfRoomAllocation> roomAllocations,
-			int day, int time) {
+			int day, int time, boolean showRoomName) {
 		String textualRepresentation="<html>";
 		//check for room allocations on given time
 		for(int i=0;i<roomAllocations.size();i++){
 			if(roomAllocations.get(i).getDay_()==day && roomAllocations.get(i).getTime_()==time){
-				textualRepresentation+=roomAllocations.get(i).getCourse_().getCourseAcronym_()+" - in - "+roomAllocations.get(i).getRoom_().getRoomNumber_()+"<br/>";
+				if(showRoomName){
+					textualRepresentation+=roomAllocations.get(i).getCourse_().getCourseAcronym_()+" - in - "+roomAllocations.get(i).getRoom_().getRoomNumber_()+"<br/>";
+				}else{
+					textualRepresentation+=roomAllocations.get(i).getCourse_().getCourseAcronym_()+"<br/>";
+				}
+				
 			}
 		}
 		return textualRepresentation+"</html>";

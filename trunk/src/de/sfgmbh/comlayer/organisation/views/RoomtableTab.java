@@ -14,6 +14,8 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 
 import net.miginfocom.swing.MigLayout;
+import de.sfgmbh.applayer.core.controller.CtrlGenericTables;
+import de.sfgmbh.applayer.core.definitions.IntfCtrlGenericTables;
 import de.sfgmbh.applayer.core.definitions.IntfRoomAllocation;
 import de.sfgmbh.applayer.core.model.AppModel;
 import de.sfgmbh.applayer.organisation.controller.CtrlRoomAllocation;
@@ -115,31 +117,16 @@ public class RoomtableTab extends JPanel {
 	public void loadRoomTable(int roomId, String semester){
 		
 		this.roomId_=roomId;
-		IntfCtrlRoomAllocation roomAllocationController=new CtrlRoomAllocation();
+		IntfCtrlGenericTables genericTablesController=new CtrlGenericTables();
 		
-		ViewManager.getInstance().getOrgaRoomtableTableModel().setRowCount(0);
-		
-		HashMap<String,String> tableFilter = new HashMap<String,String> ();  //setting filter
-		
+		//setting the filters
+		HashMap<String,String> tableFilter = new HashMap<String,String> ();
 		tableFilter.put("roomid", ""+this.roomId_);
 		tableFilter.put("semester", semester);
-		
-		List<IntfRoomAllocation> ral=AppModel.getInstance().getRepositoryRoomAllocation().getByFilter(tableFilter);
-		
-		for(int i=1;i<=7;i++){
-			
-			Object[] rowData= {ViewHelper.getTime(i)+" Uhr", "","", "", "", ""};
-			
-			ViewManager.getInstance().getOrgaRoomtableTableModel().addRow(rowData);
-			
-			
-			for(int j=1; j<=5; j++){
-				
-				ViewManager.getInstance().getOrgaRoomtableTableModel().setValueAt(roomAllocationController.getLectureOnTime(ral,j,i), i-1, j);
-				
-			}
-		}
-		
+		//get Room allocations based on roomid + semester
+		List<IntfRoomAllocation> roomAllocationList=AppModel.getInstance().getRepositoryRoomAllocation().getByFilter(tableFilter);
+		//calling the controller for reloading the gui
+		genericTablesController.reloadTable(getStundenplanTable(), roomAllocationList,false);
 		
 	}
 	

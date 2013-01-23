@@ -116,7 +116,7 @@ public class CoreTimetableTab extends JPanel {
 		//get the room allocations from the temprary storage
 		List<IntfRoomAllocation> roomAllocationList=this.roomAllocList_;
 		//call the reload method
-		genericTablesController.reloadTable(getStundenplanTable(), roomAllocationList);
+		genericTablesController.reloadTable(getStundenplanTable(), roomAllocationList,true);
 		
 	}
 
