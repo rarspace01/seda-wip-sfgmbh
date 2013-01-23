@@ -1,6 +1,5 @@
 package de.sfgmbh.applayer.core.definitions;
 
-import de.sfgmbh.applayer.core.model.User;
 
 public interface IntfChair {
 
@@ -27,12 +26,12 @@ public interface IntfChair {
 	/**
 	 * @return the chairOwner_
 	 */
-	public abstract User getChairOwner_();
+	public abstract IntfUser getChairOwner_();
 
 	/**
 	 * @param chairOwner_ the chairOwner_ to set
 	 */
-	public abstract void setChairOwner_(User chairOwner_);
+	public abstract void setChairOwner_(IntfUser chairOwner_);
 
 	/**
 	 * @return the buildingId_

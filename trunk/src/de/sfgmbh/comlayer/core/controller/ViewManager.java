@@ -1,6 +1,6 @@
 package de.sfgmbh.comlayer.core.controller;
 
-import de.sfgmbh.applayer.core.model.User;
+import de.sfgmbh.applayer.core.definitions.IntfUser;
 import de.sfgmbh.comlayer.core.model.BaseTableMain;
 import de.sfgmbh.comlayer.core.model.RoomTableMain;
 import de.sfgmbh.comlayer.core.views.BaseTab;
@@ -253,7 +253,7 @@ public class ViewManager {
 	 * @param user
 	 * @return the userEditFrame for a certain user
 	 */
-	public UserCreateDialog getOrgaUserEditFrame(User user) {
+	public UserCreateDialog getOrgaUserEditFrame(IntfUser user) {
 		if (this.userEditFrame == null) {
 			this.userEditFrame = new UserCreateDialog(user);
 		}

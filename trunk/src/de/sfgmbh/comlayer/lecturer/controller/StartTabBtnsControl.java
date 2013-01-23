@@ -6,10 +6,10 @@ import java.awt.event.ActionListener;
 import javax.swing.JTable;
 import javax.swing.table.TableModel;
 
+import de.sfgmbh.applayer.core.definitions.IntfCourse;
+import de.sfgmbh.applayer.core.definitions.IntfRoomAllocation;
 import de.sfgmbh.applayer.core.model.AppException;
 import de.sfgmbh.applayer.core.model.AppModel;
-import de.sfgmbh.applayer.core.model.Course;
-import de.sfgmbh.applayer.core.model.RoomAllocation;
 import de.sfgmbh.applayer.lecturer.controller.CtrlStartTab;
 import de.sfgmbh.applayer.lecturer.definitions.IntfCtrlStartTab;
 import de.sfgmbh.comlayer.core.controller.ViewManager;
@@ -29,8 +29,8 @@ import de.sfgmbh.comlayer.lecturer.views.StartTab;
 public class StartTabBtnsControl implements ActionListener, IntfComDialogObserver {
 	
 	private String ctrlAction;
-	private Course delCourse;
-	private RoomAllocation revokeAllocation;
+	private IntfCourse delCourse;
+	private IntfRoomAllocation revokeAllocation;
 	private IntfCtrlStartTab cntrlStartTab = new CtrlStartTab();
 	
 	/**
@@ -76,7 +76,7 @@ public class StartTabBtnsControl implements ActionListener, IntfComDialogObserve
 			} else {
 				try {
 					row = startTab.getRowSorterTop().convertRowIndexToModel(row);
-					Course editCourse = (Course) modelTopTable.getValueAt(row, 6);
+					IntfCourse editCourse = (IntfCourse) modelTopTable.getValueAt(row, 6);
 					CourseDialog editCourseDialog = new CourseDialog("edit", editCourse);
 					editCourseDialog.setVisible(true);
 				} catch (Exception ex) {
@@ -93,7 +93,7 @@ public class StartTabBtnsControl implements ActionListener, IntfComDialogObserve
 				exceptionHandler.setNewException("Sie müssen zunächst eine Veranstaltung wählen.", "Achtung!");
 			} else {
 				row = startTab.getRowSorterTop().convertRowIndexToModel(row);
-				Course delCourse = (Course) modelTopTable.getValueAt(row, 6);
+				IntfCourse delCourse = (IntfCourse) modelTopTable.getValueAt(row, 6);
 				QuestionDialog dialog = new QuestionDialog("Wollen Sie die gewählte Veranstaltung wirklich löschen?", "Achtung!");
 				this.delCourse = delCourse;
 				dialog.register(this);
@@ -110,7 +110,7 @@ public class StartTabBtnsControl implements ActionListener, IntfComDialogObserve
 				exceptionHandler.setNewException("Sie müssen zunächst eine Veranstaltung wählen.", "Achtung!");
 			} else {
 				row = startTab.getRowSorterTop().convertRowIndexToModel(row);
-				Course publishCourse = (Course) modelTopTable.getValueAt(row, 6);
+				IntfCourse publishCourse = (IntfCourse) modelTopTable.getValueAt(row, 6);
 				if (!publishCourse.isLecturerEnabled_()) {
 					publishCourse.setLecturerEnabled_(true);
 					if (this.cntrlStartTab.saveCourse(publishCourse)){
@@ -130,7 +130,7 @@ public class StartTabBtnsControl implements ActionListener, IntfComDialogObserve
 				exceptionHandler.setNewException("Sie müssen zunächst eine Veranstaltung wählen.", "Achtung!");
 			} else {
 				row = startTab.getRowSorterTop().convertRowIndexToModel(row);
-				Course requestCourse = (Course) modelTopTable.getValueAt(row, 6);
+				IntfCourse requestCourse = (IntfCourse) modelTopTable.getValueAt(row, 6);
 				RoomRequestDialog roomRequestDialog = new RoomRequestDialog(requestCourse);
 				roomRequestDialog.setVisible(true);
 			}
@@ -144,7 +144,7 @@ public class StartTabBtnsControl implements ActionListener, IntfComDialogObserve
 				exceptionHandler.setNewException("Sie müssen zunächst eine Raumanfrage wählen.", "Achtung!");
 			} else {
 				row = startTab.getRowSorterBottom().convertRowIndexToModel(row);
-				RoomAllocation revokeAllocation = (RoomAllocation) modelTableBottom.getValueAt(row, 7);
+				IntfRoomAllocation revokeAllocation = (IntfRoomAllocation) modelTableBottom.getValueAt(row, 7);
 				if (revokeAllocation.getApproved_().equals("denied")) {
 					exceptionHandler.setNewException("Diese Raumbelegung ist bereits zurückgezogen bzw. abgelehnt.", "Achtung!", "info");
 					return;

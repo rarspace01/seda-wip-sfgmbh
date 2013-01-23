@@ -3,8 +3,8 @@ package de.sfgmbh.comlayer.organisation.controller;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import de.sfgmbh.applayer.core.definitions.IntfUser;
 import de.sfgmbh.applayer.core.model.AppModel;
-import de.sfgmbh.applayer.core.model.User;
 import de.sfgmbh.applayer.organisation.controller.CtrlUser;
 import de.sfgmbh.applayer.organisation.definitions.IntfCtrlUser;
 import de.sfgmbh.comlayer.core.controller.ViewManager;
@@ -23,7 +23,7 @@ public class UserTabBtnsControl implements ActionListener, IntfComDialogObserver
 	
 	private String navAction;
 	private boolean deleteUser = false;
-	private User userMarkedForDeletion;
+	private IntfUser userMarkedForDeletion;
 	private IntfCtrlUser ctrlUser = new CtrlUser();
 	
 	
@@ -60,7 +60,7 @@ public class UserTabBtnsControl implements ActionListener, IntfComDialogObserver
 			} else {
 				try {
 					row = ViewManager.getInstance().getOrgaUserTab().getRowSorter().convertRowIndexToModel(row);
-					User editUser = (User) ViewManager.getInstance().getOrgaUserTableModel().getValueAt(row, 6);
+					IntfUser editUser = (IntfUser) ViewManager.getInstance().getOrgaUserTableModel().getValueAt(row, 6);
 					UserCreateDialog editDialog = new UserCreateDialog(editUser);
 					editDialog.setVisible(true);
 				} catch (Exception ex) {
@@ -81,7 +81,7 @@ public class UserTabBtnsControl implements ActionListener, IntfComDialogObserver
 			} else {
 				try {
 					row = ViewManager.getInstance().getOrgaUserTab().getRowSorter().convertRowIndexToModel(row);
-					this.userMarkedForDeletion = (User) ViewManager.getInstance().getOrgaUserTableModel().getValueAt(row, 6);
+					this.userMarkedForDeletion = (IntfUser) ViewManager.getInstance().getOrgaUserTableModel().getValueAt(row, 6);
 				} catch (Exception ex) {
 					AppModel.getInstance().getExceptionHandler().setNewException("Ein unerwarteter Fehler ist aufgetreten.<br /><br >" + ex.toString(), "Fehler!");
 				}
@@ -107,7 +107,7 @@ public class UserTabBtnsControl implements ActionListener, IntfComDialogObserver
 	 * @param user
 	 * @return true if the deletion was successful
 	 */
-	public void deleteUser(User user) {
+	public void deleteUser(IntfUser user) {
 		
 		if (this.deleteUser) {
 			this.deleteUser = false;

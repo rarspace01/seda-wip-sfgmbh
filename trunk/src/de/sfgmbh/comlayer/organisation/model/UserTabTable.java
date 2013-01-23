@@ -5,8 +5,8 @@ import java.util.HashMap;
 import javax.swing.table.DefaultTableModel;
 
 import de.sfgmbh.applayer.core.definitions.IntfAppObserver;
+import de.sfgmbh.applayer.core.definitions.IntfUser;
 import de.sfgmbh.applayer.core.model.AppModel;
-import de.sfgmbh.applayer.core.model.User;
 import de.sfgmbh.comlayer.core.controller.ViewHelper;
 import de.sfgmbh.comlayer.core.controller.ViewManager;
 
@@ -61,7 +61,7 @@ public class UserTabTable extends DefaultTableModel implements IntfAppObserver {
 
 		}
 
-		for (User user : AppModel.getInstance().getRepositoryUser()
+		for (IntfUser user : AppModel.getInstance().getRepositoryUser()
 				.getByFilter(filter)) {
 
 			// Chair if user is lecturer

@@ -6,6 +6,7 @@ import java.util.List;
 
 import de.sfgmbh.applayer.core.definitions.IntfAppObservable;
 import de.sfgmbh.applayer.core.definitions.IntfAppObserver;
+import de.sfgmbh.applayer.core.definitions.IntfRoomAllocation;
 import de.sfgmbh.datalayer.core.definitions.IntfDataObserver;
 import de.sfgmbh.datalayer.core.model.DataModel;
 
@@ -49,7 +50,7 @@ public class RepositoryRoomAllocation implements IntfAppObservable, IntfDataObse
 	 * @param ra
 	 * @return a list of all conflicting room allocations
 	 */
-	public List<RoomAllocation> getConflictingAllocation(RoomAllocation ra) {
+	public List<RoomAllocation> getConflictingAllocation(IntfRoomAllocation ra) {
 		return DataModel.getInstance().getDataHandlerRoomAllocation().getConflictingAllocation(ra);
 	}
 	
@@ -58,7 +59,7 @@ public class RepositoryRoomAllocation implements IntfAppObservable, IntfDataObse
 	 * @param id
 	 * @return a room allocation by its id
 	 */
-	public RoomAllocation get(int id) {
+	public IntfRoomAllocation get(int id) {
 		return DataModel.getInstance().getDataHandlerRoomAllocation().get(id);
 	}
 	
@@ -66,7 +67,7 @@ public class RepositoryRoomAllocation implements IntfAppObservable, IntfDataObse
 	 * Save this user object in the DB (this will update a database entry if there is already one and create one if there is none)
 	 * @return true on success
 	 */
-	public boolean save(RoomAllocation ra) {
+	public boolean save(IntfRoomAllocation ra) {
 		return DataModel.getInstance().getDataHandlerRoomAllocation().save(ra);
 	}
 

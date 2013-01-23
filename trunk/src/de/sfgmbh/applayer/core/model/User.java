@@ -7,6 +7,7 @@ import java.security.SecureRandom;
 import java.util.regex.Pattern;
 
 import de.sfgmbh.applayer.core.definitions.IntfChair;
+import de.sfgmbh.applayer.core.definitions.IntfUser;
 
 /**
  * Model for users
@@ -14,7 +15,7 @@ import de.sfgmbh.applayer.core.definitions.IntfChair;
  * @author hannes
  *
  */
-public class User {
+public class User implements IntfUser {
 
 	private int userId_;
 	private String login_;
@@ -38,50 +39,98 @@ public class User {
 		newPassword_ = false;
 	}
 
+	/* (non-Javadoc)
+	 * @see de.sfgmbh.applayer.core.model.IntfUser#getUserId_()
+	 */
+	@Override
 	public int getUserId_() {
 		return userId_;
 	}
 
+	/* (non-Javadoc)
+	 * @see de.sfgmbh.applayer.core.model.IntfUser#setUserId_(int)
+	 */
+	@Override
 	public void setUserId_(int userId_) {
 		this.userId_ = userId_;
 	}
 
+	/* (non-Javadoc)
+	 * @see de.sfgmbh.applayer.core.model.IntfUser#getLogin_()
+	 */
+	@Override
 	public String getLogin_() {
 		return login_;
 	}
 
+	/* (non-Javadoc)
+	 * @see de.sfgmbh.applayer.core.model.IntfUser#setLogin_(java.lang.String)
+	 */
+	@Override
 	public void setLogin_(String login_) {
 		this.login_ = this.cleanString(login_);
 	}
 
+	/* (non-Javadoc)
+	 * @see de.sfgmbh.applayer.core.model.IntfUser#getPass_()
+	 */
+	@Override
 	public String getPass_() {
 		return pass_;
 	}
 
+	/* (non-Javadoc)
+	 * @see de.sfgmbh.applayer.core.model.IntfUser#setPass_(java.lang.String)
+	 */
+	@Override
 	public void setPass_(String pass_) {
 		this.pass_ = pass_;
 	}
 
+	/* (non-Javadoc)
+	 * @see de.sfgmbh.applayer.core.model.IntfUser#getSalt_()
+	 */
+	@Override
 	public String getSalt_() {
 		return salt_;
 	}
 
+	/* (non-Javadoc)
+	 * @see de.sfgmbh.applayer.core.model.IntfUser#setSalt_(java.lang.String)
+	 */
+	@Override
 	public void setSalt_(String salt_) {
 		this.salt_ = salt_;
 	}
 
+	/* (non-Javadoc)
+	 * @see de.sfgmbh.applayer.core.model.IntfUser#getMail_()
+	 */
+	@Override
 	public String getMail_() {
 		return mail_;
 	}
 
+	/* (non-Javadoc)
+	 * @see de.sfgmbh.applayer.core.model.IntfUser#setMail_(java.lang.String)
+	 */
+	@Override
 	public void setMail_(String mail_) {
 		this.mail_ = mail_;
 	}
 
+	/* (non-Javadoc)
+	 * @see de.sfgmbh.applayer.core.model.IntfUser#getClass_()
+	 */
+	@Override
 	public String getClass_() {
 		return class_;
 	}
 
+	/* (non-Javadoc)
+	 * @see de.sfgmbh.applayer.core.model.IntfUser#setClass_(java.lang.String)
+	 */
+	@Override
 	public void setClass_(String class_) {
 		if (class_.equals("Verwaltung") || class_.equals("orga")) {
 			this.class_ = "orga";
@@ -92,50 +141,90 @@ public class User {
 		}
 	}
 
+	/* (non-Javadoc)
+	 * @see de.sfgmbh.applayer.core.model.IntfUser#getfName_()
+	 */
+	@Override
 	public String getfName_() {
 		return fName_;
 	}
 
+	/* (non-Javadoc)
+	 * @see de.sfgmbh.applayer.core.model.IntfUser#setfName_(java.lang.String)
+	 */
+	@Override
 	public void setfName_(String fName_) {
 		this.fName_ = this.cleanString(fName_);
 	}
 
+	/* (non-Javadoc)
+	 * @see de.sfgmbh.applayer.core.model.IntfUser#getlName_()
+	 */
+	@Override
 	public String getlName_() {
 		return lName_;
 	}
 
+	/* (non-Javadoc)
+	 * @see de.sfgmbh.applayer.core.model.IntfUser#setlName_(java.lang.String)
+	 */
+	@Override
 	public void setlName_(String lName_) {
 		this.lName_ = this.cleanString(lName_);
 	}
 
+	/* (non-Javadoc)
+	 * @see de.sfgmbh.applayer.core.model.IntfUser#getLastLogin_()
+	 */
+	@Override
 	public long getLastLogin_() {
 		return lastLogin_;
 	}
 
+	/* (non-Javadoc)
+	 * @see de.sfgmbh.applayer.core.model.IntfUser#setLastLogin_(long)
+	 */
+	@Override
 	public void setLastLogin_(long lastLogin_) {
 		this.lastLogin_ = lastLogin_;
 	}
 	
+	/* (non-Javadoc)
+	 * @see de.sfgmbh.applayer.core.model.IntfUser#isDisabled_()
+	 */
+	@Override
 	public boolean isDisabled_() {
 		return disabled_;
 	}
 
+	/* (non-Javadoc)
+	 * @see de.sfgmbh.applayer.core.model.IntfUser#setDisabled_(boolean)
+	 */
+	@Override
 	public void setDisabled_(boolean disabled_) {
 		this.disabled_ = disabled_;
 	}
 	
+	/* (non-Javadoc)
+	 * @see de.sfgmbh.applayer.core.model.IntfUser#getChair_()
+	 */
+	@Override
 	public IntfChair getChair_() {
 		return chair_;
 	}
 	
+	/* (non-Javadoc)
+	 * @see de.sfgmbh.applayer.core.model.IntfUser#setChair_(de.sfgmbh.applayer.core.definitions.IntfChair)
+	 */
+	@Override
 	public void setChair_(IntfChair chair_) {
 		this.chair_ = chair_;
 	}
 
-	/**
-	 * Set hash for a plain text password string salted by a random string
-	 * @param password
+	/* (non-Javadoc)
+	 * @see de.sfgmbh.applayer.core.model.IntfUser#setPwHashAndSalt(java.lang.String)
 	 */
+	@Override
 	public void setPwHashAndSalt (String pw) {
 		
 		SecureRandom rand = new SecureRandom();
@@ -152,11 +241,10 @@ public class User {
 		this.newPassword_ = true;
 	}
 	
-	/**
-	 * Check if a plain text password string together with the users salt matches its hash
-	 * @param password
-	 * @return true if the submitted plain text password is correct
+	/* (non-Javadoc)
+	 * @see de.sfgmbh.applayer.core.model.IntfUser#checkPw(java.lang.String)
 	 */
+	@Override
 	public boolean checkPw (String pw) {
 		
 		String checkPhrase = this.salt_ + pw;
@@ -202,9 +290,10 @@ public class User {
 		return cleanString;
 	}
 	
-	/**
-	 * Save this user object in the DB (this will update a database entry if there is already one and create one if there is none)
+	/* (non-Javadoc)
+	 * @see de.sfgmbh.applayer.core.model.IntfUser#save()
 	 */
+	@Override
 	public boolean save() {
 		if (AppModel.getInstance().getRepositoryUser().save(this)) {
 			return true;
@@ -212,10 +301,10 @@ public class User {
 		return false;
 	}
 	
-	/**
-	 * Validates the user object, calls an info dialog when one check fails and returns true if all checks are passed
-	 * @return true if all check attributes are valid user attributes
+	/* (non-Javadoc)
+	 * @see de.sfgmbh.applayer.core.model.IntfUser#validate()
 	 */
+	@Override
 	public boolean validate() {
 		boolean check = true;
 		String message = "";

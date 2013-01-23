@@ -2,6 +2,7 @@ package de.sfgmbh.applayer.organisation.definitions;
 
 import java.util.List;
 
+import de.sfgmbh.applayer.core.definitions.IntfRoomAllocation;
 import de.sfgmbh.applayer.core.model.RoomAllocation;
 
 public interface IntfCtrlRoomAllocation {
@@ -11,7 +12,7 @@ public interface IntfCtrlRoomAllocation {
 	 * @param roomAllocation
 	 * @return true on successful accept
 	 */
-	public abstract boolean acceptRoomAllocation(RoomAllocation ra);
+	public abstract boolean acceptRoomAllocation(IntfRoomAllocation ra);
 
 	/**
 	 * Get all room allocations
@@ -25,21 +26,21 @@ public interface IntfCtrlRoomAllocation {
 	 * Deny a room allocation if possible
 	 * @param roomAllocation
 	 */
-	public abstract boolean denyRoomAllocation(RoomAllocation ra);
+	public abstract boolean denyRoomAllocation(IntfRoomAllocation ra);
 
 	/**
 	 * Suggest a time slot for a room allocation. Currently set time slot is, expect the semester, ignored. Expected attendees of the course are taken into account.
 	 * @param roomAllocation
 	 * @return a room allocation with a free time slot, null if there are none
 	 */
-	public abstract RoomAllocation suggest(RoomAllocation roomAllocation);
+	public abstract IntfRoomAllocation suggest(IntfRoomAllocation roomAllocation);
 
 	/**
 	 * Create a counter proposal room allocation
 	 * @param roomAllocation
 	 * @return true on success
 	 */
-	public abstract boolean createCounterProposal(RoomAllocation roomAllocation);
+	public abstract boolean createCounterProposal(IntfRoomAllocation roomAllocation);
 
 	/**
 	 * Delete all denied allocations

@@ -3,9 +3,9 @@ package de.sfgmbh.comlayer.lecturer.controller;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import de.sfgmbh.applayer.core.definitions.IntfCourse;
 import de.sfgmbh.applayer.core.model.AppException;
 import de.sfgmbh.applayer.core.model.AppModel;
-import de.sfgmbh.applayer.core.model.Course;
 import de.sfgmbh.applayer.lecturer.controller.CtrlStartTab;
 import de.sfgmbh.applayer.lecturer.definitions.IntfCtrlStartTab;
 import de.sfgmbh.comlayer.core.model.CmbboxFilterLecturer;
@@ -59,7 +59,7 @@ public class CourseDialogBtns implements ActionListener {
 
 		// Save button is pressed
 		if (this.ctrlAction.equals("save")) {
-			Course newCourse = motherDialog.getCourse();
+			IntfCourse newCourse = motherDialog.getCourse();
 			try {
 				newCourse.setCourseAcronym_(motherDialog.getTxtAcronym()
 						.getText());

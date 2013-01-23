@@ -16,8 +16,8 @@ import javax.swing.JTextArea;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.border.EtchedBorder;
 
+import de.sfgmbh.applayer.core.definitions.IntfRoomAllocation;
 import de.sfgmbh.applayer.core.model.AppModel;
-import de.sfgmbh.applayer.core.model.RoomAllocation;
 import de.sfgmbh.applayer.organisation.controller.CtrlRoomAllocation;
 import de.sfgmbh.applayer.organisation.definitions.IntfCtrlRoomAllocation;
 import de.sfgmbh.comlayer.core.model.CmbboxFilterDay;
@@ -38,7 +38,7 @@ public class CounterproposalDialog extends JDialog {
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JTextArea txtrUnterbreitenSieDem;
-	private RoomAllocation proposalAllocation;
+	private IntfRoomAllocation proposalAllocation;
 	private JLabel lblRoom;
 	private JLabel lblDay;
 	private JLabel lblTime;
@@ -58,7 +58,7 @@ public class CounterproposalDialog extends JDialog {
 	/**
 	 * Create the frame.
 	 */
-	public CounterproposalDialog(RoomAllocation ra) {
+	public CounterproposalDialog(IntfRoomAllocation ra) {
 		this.proposalAllocation = ra;
 		setModal(true);
 		initialize();
@@ -70,7 +70,7 @@ public class CounterproposalDialog extends JDialog {
 	 * Customize according to a room allocation
 	 * @param roomAllocation
 	 */
-	public void setRoomAllocation(RoomAllocation roomAllocation) {
+	public void setRoomAllocation(IntfRoomAllocation roomAllocation) {
 		this.proposalAllocation = roomAllocation;
 		this.proposalAllocation.setForceConflictingAllocations_();
 		getCmbboxDay().removeActionListener(getCmbboxDay().getActionListeners()[0]);
@@ -95,8 +95,8 @@ public class CounterproposalDialog extends JDialog {
 	 * Customize according to a suggested room allocation
 	 * @param roomAllocation
 	 */
-	public void setSuggestRoomAllocation(RoomAllocation roomAllocation) {
-		RoomAllocation suggestRoomAllocation = ctrlRoomAllocation.suggest(roomAllocation);
+	public void setSuggestRoomAllocation(IntfRoomAllocation roomAllocation) {
+		IntfRoomAllocation suggestRoomAllocation = ctrlRoomAllocation.suggest(roomAllocation);
 		if (suggestRoomAllocation == null) {
 			AppModel.getInstance().getExceptionHandler().setNewException("Scheinbar gibt es für diese Veranstaltung dieses Semester keinen freien Raum mehr,  der groß genug wäre.", "Information", "info");
 			this.setRoomAllocation(roomAllocation);
@@ -259,14 +259,14 @@ public class CounterproposalDialog extends JDialog {
 	/**
 	 * @return the proposalAllocation
 	 */
-	public RoomAllocation getProposalAllocation() {
+	public IntfRoomAllocation getProposalAllocation() {
 		return proposalAllocation;
 	}
 
 	/**
 	 * @param proposalAllocation the proposalAllocation to set
 	 */
-	public void setProposalAllocation(RoomAllocation proposalAllocation) {
+	public void setProposalAllocation(IntfRoomAllocation proposalAllocation) {
 		this.proposalAllocation = proposalAllocation;
 	}
 	public JScrollPane getScrollPane() {

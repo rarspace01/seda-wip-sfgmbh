@@ -1,6 +1,5 @@
 package de.sfgmbh.applayer.core.definitions;
 
-import de.sfgmbh.applayer.core.model.User;
 
 public interface IntfCtrlBaseTab {
 
@@ -11,7 +10,7 @@ public interface IntfCtrlBaseTab {
 	 * @param password
 	 * @return the user object if login credentials are correct (and the user is not disabled) and otherwise null
 	 */
-	public abstract User login(String login, String password);
+	public abstract IntfUser login(String login, String password);
 
 	/**
 	 * Logout action

@@ -2,8 +2,8 @@ package de.sfgmbh.applayer.lecturer.definitions;
 
 import java.util.HashMap;
 
-import de.sfgmbh.applayer.core.model.Course;
-import de.sfgmbh.applayer.core.model.RoomAllocation;
+import de.sfgmbh.applayer.core.definitions.IntfCourse;
+import de.sfgmbh.applayer.core.definitions.IntfRoomAllocation;
 
 public interface IntfCtrlStartTab {
 
@@ -12,20 +12,20 @@ public interface IntfCtrlStartTab {
 	 * @param course
 	 * @return true if the creation was successful
 	 */
-	public abstract boolean saveCourse(Course course);
+	public abstract boolean saveCourse(IntfCourse course);
 
 	/**
 	 * Delete a course
 	 * @param course
 	 * @return true on success
 	 */
-	public abstract boolean deleteCourse(Course course);
+	public abstract boolean deleteCourse(IntfCourse course);
 
 	/**
 	 * Suggest a time slot for a room allocation and a set of filters (seat preferences). Currently set time slot is, expect the semester, ignored.
 	 * @return a room allocation with a free time slot, null if there are none
 	 */
-	public abstract RoomAllocation suggest(RoomAllocation roomAllocation,
+	public abstract IntfRoomAllocation suggest(IntfRoomAllocation roomAllocation,
 			HashMap<String, String> filter);
 
 	/**
@@ -33,14 +33,14 @@ public interface IntfCtrlStartTab {
 	 * @param roomAllocation
 	 * @return true on success
 	 */
-	public abstract boolean createRoomAllocation(RoomAllocation roomAllocation);
+	public abstract boolean createRoomAllocation(IntfRoomAllocation roomAllocation);
 
 	/**
 	 * Revoke a new room allocation
 	 * @param roomAllocation
 	 * @return true on success
 	 */
-	public abstract boolean revokeRoomAllocation(RoomAllocation roomAllocation);
+	public abstract boolean revokeRoomAllocation(IntfRoomAllocation roomAllocation);
 
 	/**
 	 * Accept or deny a counter proposal where the boolean value decied which it should be
@@ -49,6 +49,6 @@ public interface IntfCtrlStartTab {
 	 * @return true on success
 	 */
 	public abstract boolean counterRoomAllocation(
-			RoomAllocation roomAllocation, boolean accept);
+			IntfRoomAllocation roomAllocation, boolean accept);
 
 }

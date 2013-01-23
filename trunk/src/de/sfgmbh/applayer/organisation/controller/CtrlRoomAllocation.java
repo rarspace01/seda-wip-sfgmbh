@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import de.sfgmbh.applayer.core.definitions.IntfRoom;
+import de.sfgmbh.applayer.core.definitions.IntfRoomAllocation;
 import de.sfgmbh.applayer.core.model.AppModel;
 import de.sfgmbh.applayer.core.model.RoomAllocation;
 import de.sfgmbh.applayer.organisation.definitions.IntfCtrlRoomAllocation;
@@ -21,9 +22,9 @@ public class CtrlRoomAllocation implements IntfCtrlRoomAllocation {
 	 * @see de.sfgmbh.applayer.organisation.controller.IntfCtrlRoomAllocation#acceptRoomAllocation(de.sfgmbh.applayer.core.model.RoomAllocation)
 	 */
 	@Override
-	public boolean acceptRoomAllocation(RoomAllocation ra) {
+	public boolean acceptRoomAllocation(IntfRoomAllocation ra) {
 		// Get the currently up to date room allocation
-		RoomAllocation currentRa = AppModel.getInstance().getRepositoryRoomAllocation().get(ra.getRoomAllocationId_());
+		IntfRoomAllocation currentRa = AppModel.getInstance().getRepositoryRoomAllocation().get(ra.getRoomAllocationId_());
 		
 		// Denied allocations will not get accepted
 		if (currentRa.getApproved_().equals("denied")) {
@@ -39,7 +40,7 @@ public class CtrlRoomAllocation implements IntfCtrlRoomAllocation {
 			} else {
 				boolean allowSave = false;
 				currentRa.setConflictingAllocations_();
-				for (RoomAllocation conflictRa : currentRa.getConflictingAllocations_()){
+				for (IntfRoomAllocation conflictRa : currentRa.getConflictingAllocations_()){
 					if (conflictRa.getApproved_().equals("waiting") || conflictRa.getApproved_().equals("denied")) {
 						allowSave = true;
 					}
@@ -69,8 +70,8 @@ public class CtrlRoomAllocation implements IntfCtrlRoomAllocation {
 	 * @see de.sfgmbh.applayer.organisation.controller.IntfCtrlRoomAllocation#denyRoomAllocation(de.sfgmbh.applayer.core.model.RoomAllocation)
 	 */
 	@Override
-	public boolean denyRoomAllocation(RoomAllocation ra) {
-		RoomAllocation currentRa = AppModel.getInstance().getRepositoryRoomAllocation().get(ra.getRoomAllocationId_());
+	public boolean denyRoomAllocation(IntfRoomAllocation ra) {
+		IntfRoomAllocation currentRa = AppModel.getInstance().getRepositoryRoomAllocation().get(ra.getRoomAllocationId_());
 		if (currentRa.getApproved_().equals("accepted") || currentRa.getApproved_().equals("waiting") || currentRa.getApproved_().equals("counter")){
 			currentRa.setApproved_("denied");
 			return currentRa.save();
@@ -84,7 +85,7 @@ public class CtrlRoomAllocation implements IntfCtrlRoomAllocation {
 	 * @see de.sfgmbh.applayer.organisation.controller.IntfCtrlRoomAllocation#suggest(de.sfgmbh.applayer.core.model.RoomAllocation)
 	 */
 	@Override
-	public RoomAllocation suggest(RoomAllocation roomAllocation) {
+	public IntfRoomAllocation suggest(IntfRoomAllocation roomAllocation) {
 		List<RoomAllocation> currentAllocations = AppModel.getInstance().getRepositoryRoomAllocation().getAllOpen();
 		HashMap<String, String> roomFilter = new HashMap<String, String>();
 		roomFilter.put("seats", String.valueOf(roomAllocation.getCourse_().getExpectedAttendees_()));
@@ -98,7 +99,7 @@ public class CtrlRoomAllocation implements IntfCtrlRoomAllocation {
 				for (int time = 1; time < 6; time++) {
 					// Finally iterate over all existing room allocations and when there is none for this time, create the suggestion room allocation here
 					boolean isFree = true;
-					for (RoomAllocation existingRoomAllocation : currentAllocations) {
+					for (IntfRoomAllocation existingRoomAllocation : currentAllocations) {
 						if (existingRoomAllocation.getDay_() == day && 
 								existingRoomAllocation.getTime_() == time && 
 								existingRoomAllocation.getSemester_().equals(roomAllocation.getSemester_()) &&
@@ -107,7 +108,7 @@ public class CtrlRoomAllocation implements IntfCtrlRoomAllocation {
 						}
 					}
 					if (isFree) {
-						RoomAllocation suggestAllocation = new RoomAllocation();
+						IntfRoomAllocation suggestAllocation = new RoomAllocation();
 						suggestAllocation = roomAllocation;
 						suggestAllocation.setRoom_(room);
 						suggestAllocation.setDay_(day);
@@ -124,7 +125,7 @@ public class CtrlRoomAllocation implements IntfCtrlRoomAllocation {
 	 * @see de.sfgmbh.applayer.organisation.controller.IntfCtrlRoomAllocation#createCounterProposal(de.sfgmbh.applayer.core.model.RoomAllocation)
 	 */
 	@Override
-	public boolean createCounterProposal(RoomAllocation roomAllocation) {
+	public boolean createCounterProposal(IntfRoomAllocation roomAllocation) {
 		if (roomAllocation.getApproved_().equals("denied")) {
 			return false;
 		}
@@ -137,7 +138,7 @@ public class CtrlRoomAllocation implements IntfCtrlRoomAllocation {
 		} else {
 			boolean allowSave = false;
 			roomAllocation.setConflictingAllocations_();
-			for (RoomAllocation conflictRa : roomAllocation.getConflictingAllocations_()){
+			for (IntfRoomAllocation conflictRa : roomAllocation.getConflictingAllocations_()){
 				if (conflictRa.getApproved_().equals("waiting") || conflictRa.getApproved_().equals("denied")) {
 					allowSave = true;
 				}

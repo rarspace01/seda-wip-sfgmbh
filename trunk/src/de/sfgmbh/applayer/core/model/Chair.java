@@ -1,6 +1,7 @@
 package de.sfgmbh.applayer.core.model;
 
 import de.sfgmbh.applayer.core.definitions.IntfChair;
+import de.sfgmbh.applayer.core.definitions.IntfUser;
 
 
 /**
@@ -14,7 +15,7 @@ public class Chair implements IntfChair {
 
 	private int chairId_;
 	private String chairName_;
-	private User chairOwner_;
+	private IntfUser chairOwner_;
 	private int buildingId_;
 	private String chairLevel_;
 	private String faculty_;
@@ -60,14 +61,14 @@ public class Chair implements IntfChair {
 	 * @see de.sfgmbh.applayer.core.model.IntfChair#getChairOwner_()
 	 */
 	@Override
-	public User getChairOwner_() {
+	public IntfUser getChairOwner_() {
 		return chairOwner_;
 	}
 	/* (non-Javadoc)
 	 * @see de.sfgmbh.applayer.core.model.IntfChair#setChairOwner_(de.sfgmbh.applayer.core.model.User)
 	 */
 	@Override
-	public void setChairOwner_(User chairOwner_) {
+	public void setChairOwner_(IntfUser chairOwner_) {
 		this.chairOwner_ = chairOwner_;
 	}
 	/* (non-Javadoc)

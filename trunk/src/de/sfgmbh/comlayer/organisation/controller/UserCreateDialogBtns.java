@@ -4,6 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import de.sfgmbh.applayer.core.definitions.IntfChair;
+import de.sfgmbh.applayer.core.definitions.IntfUser;
 import de.sfgmbh.applayer.core.model.AppModel;
 import de.sfgmbh.applayer.core.model.User;
 import de.sfgmbh.applayer.organisation.controller.CtrlUser;
@@ -53,7 +54,7 @@ public class UserCreateDialogBtns implements ActionListener {
 		// Save button is pressed
 		if (this.ctrlAction.equals("save")){
 			
-			User createUser = null;
+			IntfUser createUser = null;
 			boolean create;
 			
 			// When there is no editUser this is the create frame

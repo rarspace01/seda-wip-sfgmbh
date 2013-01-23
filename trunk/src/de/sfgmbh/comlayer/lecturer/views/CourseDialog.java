@@ -14,6 +14,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
+import de.sfgmbh.applayer.core.definitions.IntfCourse;
 import de.sfgmbh.applayer.core.model.Course;
 import de.sfgmbh.comlayer.core.model.CmbboxFilterKind;
 import de.sfgmbh.comlayer.core.model.CmbboxFilterLecturer;
@@ -50,7 +51,7 @@ public class CourseDialog extends JDialog {
 	private JEditorPane editDescription;
 	private String variant;
 	private JCheckBox chckbxPublic;
-	private Course course;
+	private IntfCourse course;
 
 	/**
 	 * Create the dialog.
@@ -67,7 +68,7 @@ public class CourseDialog extends JDialog {
 	 * @param variant
 	 * @param course
 	 */
-	public CourseDialog(String variant, Course course) {
+	public CourseDialog(String variant, IntfCourse course) {
 		this.variant = variant;
 		this.course = course;
 		this.init();
@@ -335,14 +336,14 @@ public class CourseDialog extends JDialog {
 	/**
 	 * @return the course
 	 */
-	public Course getCourse() {
+	public IntfCourse getCourse() {
 		return course;
 	}
 
 	/**
 	 * @param course the course to set
 	 */
-	public void setCourse(Course course) {
+	public void setCourse(IntfCourse course) {
 		this.course = course;
 	}
 }

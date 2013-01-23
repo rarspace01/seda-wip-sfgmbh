@@ -1,7 +1,7 @@
 package de.sfgmbh.applayer.core.controller;
 
 import de.sfgmbh.applayer.core.definitions.IntfSessionManager;
-import de.sfgmbh.applayer.core.model.User;
+import de.sfgmbh.applayer.core.definitions.IntfUser;
 
 /**
  * Session manager class which is used to store, retrieve and manage user sessions
@@ -13,7 +13,7 @@ public class SessionManager implements IntfSessionManager {
 	
 	private static IntfSessionManager uniqueInstance_ = new SessionManager();
 	private boolean isLoggedIn;
-	private User user;
+	private IntfUser user;
 	
 	/**
 	 * Create the session manager singleton
@@ -44,7 +44,7 @@ public class SessionManager implements IntfSessionManager {
 	 * @see de.sfgmbh.applayer.core.controller.IntfSessionManager#getSession()
 	 */
 	@Override
-	public User getSession() {
+	public IntfUser getSession() {
 		return this.user;
 	}
 	
@@ -52,7 +52,7 @@ public class SessionManager implements IntfSessionManager {
 	 * @see de.sfgmbh.applayer.core.controller.IntfSessionManager#setSession(de.sfgmbh.applayer.core.model.User)
 	 */
 	@Override
-	public void setSession(User user) {
+	public void setSession(IntfUser user) {
 		this.user = user;
 		this.isLoggedIn = true;
 	}

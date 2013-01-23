@@ -4,12 +4,13 @@ import java.util.HashMap;
 import java.util.List;
 
 import de.sfgmbh.applayer.core.controller.SessionManager;
+import de.sfgmbh.applayer.core.definitions.IntfCourse;
 import de.sfgmbh.applayer.core.definitions.IntfRoom;
+import de.sfgmbh.applayer.core.definitions.IntfRoomAllocation;
+import de.sfgmbh.applayer.core.definitions.IntfUser;
 import de.sfgmbh.applayer.core.model.AppException;
 import de.sfgmbh.applayer.core.model.AppModel;
-import de.sfgmbh.applayer.core.model.Course;
 import de.sfgmbh.applayer.core.model.RoomAllocation;
-import de.sfgmbh.applayer.core.model.User;
 import de.sfgmbh.applayer.lecturer.definitions.IntfCtrlStartTab;
 
 /**
@@ -25,12 +26,12 @@ public class CtrlStartTab implements IntfCtrlStartTab {
 	 * @see de.sfgmbh.applayer.lecturer.controller.IntfCtrlStartTab#saveCourse(de.sfgmbh.applayer.core.model.Course)
 	 */
 	@Override
-	public boolean saveCourse(Course course) {
+	public boolean saveCourse(IntfCourse course) {
 		AppException exceptionHandler = AppModel.getInstance().getExceptionHandler();
 		
 		// Check if course is valid
 		if (course.validate()) {
-			User loggedInUser = SessionManager.getInstance().getSession();
+			IntfUser loggedInUser = SessionManager.getInstance().getSession();
 			// Check if the user for the course is a lecturer
 			if (course.getLecturer_().getChair_() != null) {
 				// Check if the logged in user is from the same chair as the user he tries to save the course for
@@ -52,10 +53,10 @@ public class CtrlStartTab implements IntfCtrlStartTab {
 	 * @see de.sfgmbh.applayer.lecturer.controller.IntfCtrlStartTab#deleteCourse(de.sfgmbh.applayer.core.model.Course)
 	 */
 	@Override
-	public boolean deleteCourse(Course course) {
+	public boolean deleteCourse(IntfCourse course) {
 		AppException exceptionHandler = AppModel.getInstance().getExceptionHandler();
 		
-		User loggedInUser = SessionManager.getInstance().getSession();
+		IntfUser loggedInUser = SessionManager.getInstance().getSession();
 		// Check if the user for the course is a lecturer
 		if (course.getLecturer_().getChair_() != null) {
 			// Check if the logged in user is from the same chair as the user he tries to save the course for
@@ -75,7 +76,7 @@ public class CtrlStartTab implements IntfCtrlStartTab {
 	 * @see de.sfgmbh.applayer.lecturer.controller.IntfCtrlStartTab#suggest(de.sfgmbh.applayer.core.model.RoomAllocation, java.util.HashMap)
 	 */
 	@Override
-	public RoomAllocation suggest(RoomAllocation roomAllocation, HashMap<String, String> filter) {
+	public IntfRoomAllocation suggest(IntfRoomAllocation roomAllocation, HashMap<String, String> filter) {
 		List<RoomAllocation> currentAllocations = AppModel.getInstance().getRepositoryRoomAllocation().getAllOpen();
 		List<IntfRoom> matchingRooms = AppModel.getInstance().getRepositoryRoom().getByFilter(filter);
 		
@@ -87,7 +88,7 @@ public class CtrlStartTab implements IntfCtrlStartTab {
 				for (int time = 1; time < 6; time++) {
 					// Finally iterate over all existing room allocations and when there is none for this time, create the suggestion room allocation here
 					boolean isFree = true;
-					for (RoomAllocation existingRoomAllocation : currentAllocations) {
+					for (IntfRoomAllocation existingRoomAllocation : currentAllocations) {
 						if (existingRoomAllocation.getDay_() == day && 
 								existingRoomAllocation.getTime_() == time && 
 								existingRoomAllocation.getSemester_().equals(roomAllocation.getSemester_()) &&
@@ -96,7 +97,7 @@ public class CtrlStartTab implements IntfCtrlStartTab {
 						}
 					}
 					if (isFree) {
-						RoomAllocation suggestAllocation = new RoomAllocation();
+						IntfRoomAllocation suggestAllocation = new RoomAllocation();
 						suggestAllocation = roomAllocation;
 						suggestAllocation.setRoom_(room);
 						suggestAllocation.setDay_(day);
@@ -113,9 +114,9 @@ public class CtrlStartTab implements IntfCtrlStartTab {
 	 * @see de.sfgmbh.applayer.lecturer.controller.IntfCtrlStartTab#createRoomAllocation(de.sfgmbh.applayer.core.model.RoomAllocation)
 	 */
 	@Override
-	public boolean createRoomAllocation(RoomAllocation roomAllocation) {
+	public boolean createRoomAllocation(IntfRoomAllocation roomAllocation) {
 		AppException exceptionHandler = AppModel.getInstance().getExceptionHandler();
-		User loggedInUser = SessionManager.getInstance().getSession();
+		IntfUser loggedInUser = SessionManager.getInstance().getSession();
 		
 		// Ensure that the waiting status is set
 		roomAllocation.setApproved_("waiting");
@@ -143,7 +144,7 @@ public class CtrlStartTab implements IntfCtrlStartTab {
 				if (roomAllocation.getConflictingAllocations_().isEmpty()) {
 					allowSave = true;
 				}
-				for (RoomAllocation conflictRa : roomAllocation.getConflictingAllocations_()){
+				for (IntfRoomAllocation conflictRa : roomAllocation.getConflictingAllocations_()){
 					if (conflictRa.getApproved_().equals("waiting") || conflictRa.getApproved_().equals("denied")) {
 						if (conflictRa.getCourse_().getCourseId_() != roomAllocation.getCourse_().getCourseId_()) {
 							allowSave = true;
@@ -170,9 +171,9 @@ public class CtrlStartTab implements IntfCtrlStartTab {
 	 * @see de.sfgmbh.applayer.lecturer.controller.IntfCtrlStartTab#revokeRoomAllocation(de.sfgmbh.applayer.core.model.RoomAllocation)
 	 */
 	@Override
-	public boolean revokeRoomAllocation(RoomAllocation roomAllocation) {
+	public boolean revokeRoomAllocation(IntfRoomAllocation roomAllocation) {
 		AppException exceptionHandler = AppModel.getInstance().getExceptionHandler();
-		User loggedInUser = SessionManager.getInstance().getSession();
+		IntfUser loggedInUser = SessionManager.getInstance().getSession();
 		
 		// Set the status
 		roomAllocation.setApproved_("denied");
@@ -198,9 +199,9 @@ public class CtrlStartTab implements IntfCtrlStartTab {
 	 * @see de.sfgmbh.applayer.lecturer.controller.IntfCtrlStartTab#counterRoomAllocation(de.sfgmbh.applayer.core.model.RoomAllocation, boolean)
 	 */
 	@Override
-	public boolean counterRoomAllocation(RoomAllocation roomAllocation, boolean accept) {
+	public boolean counterRoomAllocation(IntfRoomAllocation roomAllocation, boolean accept) {
 		AppException exceptionHandler = AppModel.getInstance().getExceptionHandler();
-		User loggedInUser = SessionManager.getInstance().getSession();
+		IntfUser loggedInUser = SessionManager.getInstance().getSession();
 		
 		// Check for current room location
 		roomAllocation = AppModel.getInstance().getRepositoryRoomAllocation().get(roomAllocation.getRoomAllocationId_());

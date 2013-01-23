@@ -6,9 +6,9 @@ import java.util.HashMap;
 
 import de.sfgmbh.applayer.core.controller.CtrlBaseTab;
 import de.sfgmbh.applayer.core.definitions.IntfCtrlBaseTab;
+import de.sfgmbh.applayer.core.definitions.IntfRoomAllocation;
+import de.sfgmbh.applayer.core.definitions.IntfUser;
 import de.sfgmbh.applayer.core.model.AppModel;
-import de.sfgmbh.applayer.core.model.RoomAllocation;
-import de.sfgmbh.applayer.core.model.User;
 import de.sfgmbh.comlayer.core.views.QuestionDialog;
 import de.sfgmbh.comlayer.lecturer.views.StartTab;
 
@@ -48,7 +48,7 @@ public class BaseLogin implements ActionListener {
 			String pwd = new String(ViewManager.getInstance().getCoreBaseTab().getPwdPasswort().getPassword());
 			String user = ViewManager.getInstance().getCoreBaseTab().getTxtUsername().getText();
 			
-			User checkUser = ctrlBaseTab.login(user, pwd);
+			IntfUser checkUser = ctrlBaseTab.login(user, pwd);
 			
 			if (checkUser == null) {
 				// currently here happens nothing
@@ -68,7 +68,7 @@ public class BaseLogin implements ActionListener {
 				// Check if there are counter proposals and display a popup if yes
 				HashMap<String,String> filter = new HashMap<String,String>();
 				filter.put("login", checkUser.getLogin_());
-				for (RoomAllocation ra : AppModel.getInstance().getRepositoryRoomAllocation().getByFilter(filter)) {
+				for (IntfRoomAllocation ra : AppModel.getInstance().getRepositoryRoomAllocation().getByFilter(filter)) {
 					if (ra.getApproved_().equals("counter")) {
 						String orgaMsg = "";
 						if (ra.getOrgaMessage_().length() > 1) {

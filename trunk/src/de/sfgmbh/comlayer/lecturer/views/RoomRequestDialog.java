@@ -14,8 +14,9 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.border.EtchedBorder;
 
+import de.sfgmbh.applayer.core.definitions.IntfCourse;
+import de.sfgmbh.applayer.core.definitions.IntfRoomAllocation;
 import de.sfgmbh.applayer.core.model.AppModel;
-import de.sfgmbh.applayer.core.model.Course;
 import de.sfgmbh.applayer.core.model.Room;
 import de.sfgmbh.applayer.core.model.RoomAllocation;
 import de.sfgmbh.applayer.lecturer.controller.CtrlStartTab;
@@ -39,8 +40,8 @@ public class RoomRequestDialog extends JDialog {
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JTextArea txtrUnterbreitenSieDem;
-	private RoomAllocation proposalAllocation;
-	private Course course;
+	private IntfRoomAllocation proposalAllocation;
+	private IntfCourse course;
 	private JLabel lblRoom;
 	private JLabel lblDay;
 	private JLabel lblTime;
@@ -79,14 +80,14 @@ public class RoomRequestDialog extends JDialog {
 	/**
 	 * Create the frame.
 	 */
-	public RoomRequestDialog(Course course) {
+	public RoomRequestDialog(IntfCourse course) {
 		setTitle("Raumanfrage erstellen");
 		// Create the filter
 		HashMap<String,String> filter = new HashMap<String,String>();
 		filter.put("seats", String.valueOf(course.getExpectedAttendees_()));
 		
 		// Create a first new room allocation object (default semester currently hard coded - this should be changed in the following versions)
-		RoomAllocation roomAllocation = new RoomAllocation();
+		IntfRoomAllocation roomAllocation = new RoomAllocation();
 		roomAllocation.setCourse_(course);
 		// Set an empty room to avoid null pointer exceptions when the recommender system cannot find a suiting room
 		roomAllocation.setRoom_(new Room());
@@ -115,7 +116,7 @@ public class RoomRequestDialog extends JDialog {
 	 * Customize according to a room allocation
 	 * @param roomAllocation
 	 */
-	public void setRoomAllocation(RoomAllocation roomAllocation) {
+	public void setRoomAllocation(IntfRoomAllocation roomAllocation) {
 		this.proposalAllocation = roomAllocation;
 		this.proposalAllocation.setForceConflictingAllocations_();
 		
@@ -154,8 +155,8 @@ public class RoomRequestDialog extends JDialog {
 	 * Customize according to a suggested room allocation
 	 * @param roomAllocation
 	 */
-	public void setSuggestRoomAllocation(RoomAllocation roomAllocation, HashMap<String,String> filter) {
-		RoomAllocation suggestRoomAllocation = ctrlStartTab.suggest(roomAllocation, filter);
+	public void setSuggestRoomAllocation(IntfRoomAllocation roomAllocation, HashMap<String,String> filter) {
+		IntfRoomAllocation suggestRoomAllocation = ctrlStartTab.suggest(roomAllocation, filter);
 		if (suggestRoomAllocation == null) {
 			AppModel.getInstance().getExceptionHandler().setNewException("Scheinbar gibt es für diese Veranstaltung dieses Semester keinen freien Raum mehr, der groß genug wäre.<br />Sie können allerdings noch versuchen einen Raum außerhalb der regulären Vorelsungszeiten zu belegen, da diese vom Vorschlagsystem nicht berücksichtigt wurden (ab 20 Uhr sowie Sa. und So.).", "Information", "info");
 			this.setRoomAllocation(roomAllocation);
@@ -295,14 +296,14 @@ public class RoomRequestDialog extends JDialog {
 	/**
 	 * @return the proposalAllocation
 	 */
-	public RoomAllocation getProposalAllocation() {
+	public IntfRoomAllocation getProposalAllocation() {
 		return proposalAllocation;
 	}
 
 	/**
 	 * @param proposalAllocation the proposalAllocation to set
 	 */
-	public void setProposalAllocation(RoomAllocation proposalAllocation) {
+	public void setProposalAllocation(IntfRoomAllocation proposalAllocation) {
 		this.proposalAllocation = proposalAllocation;
 	}
 	public JTextField getTxtSeats() {
@@ -450,11 +451,11 @@ public class RoomRequestDialog extends JDialog {
 		return lblWhiteboard;
 	}
 
-	public Course getCourse() {
+	public IntfCourse getCourse() {
 		return course;
 	}
 
-	public void setCourse(Course course) {
+	public void setCourse(IntfCourse course) {
 		this.course = course;
 	}
 	public JLabel getLblCountSeats() {

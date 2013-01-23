@@ -1,6 +1,5 @@
 package de.sfgmbh.applayer.core.definitions;
 
-import de.sfgmbh.applayer.core.model.User;
 
 public interface IntfSessionManager {
 
@@ -13,13 +12,13 @@ public interface IntfSessionManager {
 	 * Get the currently logged in user
 	 * @return the logged in use
 	 */
-	public abstract User getSession();
+	public abstract IntfUser getSession();
 
 	/**
 	 * Start a user session
 	 * @param user
 	 */
-	public abstract void setSession(User user);
+	public abstract void setSession(IntfUser user);
 
 	/**
 	 * Check if there currently is a session

@@ -2,6 +2,7 @@ package de.sfgmbh.datalayer.core.definitions;
 
 import java.util.List;
 
+import de.sfgmbh.applayer.core.definitions.IntfUser;
 import de.sfgmbh.applayer.core.model.User;
 
 /**
@@ -23,7 +24,7 @@ public interface IntfDataUser {
 	 *            - User id in the database
 	 * @return User object
 	 */
-	public User get(int userId);
+	public IntfUser get(int userId);
 
 	/**
 	 * 
@@ -38,7 +39,7 @@ public interface IntfDataUser {
 	 *            - the object which should be remove from the database
 	 * @return true on success
 	 */
-	public boolean delete(User toBeDeletedUser);
+	public boolean delete(IntfUser toBeDeletedUser);
 
 	/**
 	 * 
@@ -46,6 +47,6 @@ public interface IntfDataUser {
 	 *            - object of type User to be saved in DB
 	 * @return true on success
 	 */
-	public boolean save(User toBeSavedUser);
+	public boolean save(IntfUser toBeSavedUser);
 	
 }

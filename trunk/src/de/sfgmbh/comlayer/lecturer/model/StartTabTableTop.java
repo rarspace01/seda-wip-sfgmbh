@@ -7,9 +7,9 @@ import javax.swing.table.DefaultTableModel;
 import de.sfgmbh.applayer.core.controller.SessionManager;
 import de.sfgmbh.applayer.core.definitions.IntfAppObserver;
 import de.sfgmbh.applayer.core.definitions.IntfChair;
+import de.sfgmbh.applayer.core.definitions.IntfCourse;
+import de.sfgmbh.applayer.core.definitions.IntfUser;
 import de.sfgmbh.applayer.core.model.AppModel;
-import de.sfgmbh.applayer.core.model.Course;
-import de.sfgmbh.applayer.core.model.User;
 import de.sfgmbh.comlayer.core.controller.ViewHelper;
 import de.sfgmbh.comlayer.core.controller.ViewManager;
 
@@ -43,7 +43,7 @@ public class StartTabTableTop extends DefaultTableModel implements IntfAppObserv
 	 */
 	public void change(String variant) {
 		HashMap<String, String> filter = new HashMap<String, String>();
-		User sessionUser = SessionManager.getInstance().getSession();
+		IntfUser sessionUser = SessionManager.getInstance().getSession();
 		
 		if (sessionUser.getChair_() != null) {
 		
@@ -59,7 +59,7 @@ public class StartTabTableTop extends DefaultTableModel implements IntfAppObserv
 				filter.put("lecturer", ViewManager.getInstance().getLecturerStartTab().getComboLecturer().getSelectedItem().toString());
 			}
 			
-			for (Course course : AppModel.getInstance().getRepositoryCourse().getByFilter(filter)){
+			for (IntfCourse course : AppModel.getInstance().getRepositoryCourse().getByFilter(filter)){
 				try {
 					Object[] row = {
 							course.getCourseAcronym_(), 
