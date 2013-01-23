@@ -21,6 +21,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.ListSelectionModel;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
@@ -436,6 +437,7 @@ public class BaseTab extends JFrame {
 			roomTable.getColumnModel().getColumn(6).setCellRenderer(center);
 			roomTable.getColumnModel().removeColumn(
 					roomTable.getColumn("Hidden"));
+			roomTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 			
 			// Enable table sorting for the model
 			rowSorterRoom = new TableRowSorter<TableModel>();

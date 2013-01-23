@@ -22,6 +22,7 @@ import de.sfgmbh.comlayer.core.model.CmbboxFilterUserClass;
 import de.sfgmbh.comlayer.core.views.BaseTab;
 import de.sfgmbh.comlayer.organisation.controller.UserTabBtnsControl;
 import de.sfgmbh.comlayer.organisation.controller.UserTabCmbboxFilter;
+import javax.swing.ListSelectionModel;
 
 /**
  * Tab for the user management
@@ -116,6 +117,7 @@ public class UserTab extends JPanel {
 		add(userTableScrollPane, "flowx,cell 2 2 4 1,grow");
 		
 		userOrgaTable = new JTable();
+		userOrgaTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		userOrgaTable.setModel(ViewManager.getInstance().getOrgaUserTableModel());
 		userOrgaTable.setShowVerticalLines(false);
 		userOrgaTable.setBackground(SystemColor.activeCaption);
