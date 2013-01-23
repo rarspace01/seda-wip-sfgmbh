@@ -1,14 +1,18 @@
 package de.sfgmbh.datalayer.io;
 
+import java.awt.image.BufferedImage;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.IOException;
 
 import javax.swing.JComponent;
 
 import com.itextpdf.awt.PdfGraphics2D;
+import com.itextpdf.text.BadElementException;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Font;
+import com.itextpdf.text.Image;
 import com.itextpdf.text.PageSize;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.PdfContentByte;
@@ -72,14 +76,34 @@ public class DataManagerPDF implements IntfDataManagerPDF {
 		}
 
 		
+		////get the buffered image, Graphics2D doesnt support absolute positioning
+		BufferedImage im = new BufferedImage(component.getWidth(), component.getHeight(), BufferedImage.TYPE_INT_ARGB);
+		component.paint(im.getGraphics());
+		// (PDF)Image != (Java)Image - no type conversion supported 
+		java.awt.Image image = im.getScaledInstance(component.getWidth(), component.getHeight(), java.awt.Image.SCALE_SMOOTH);
 		
-		PdfContentByte contentByte = writer.getDirectContent();
+		try {
+			Image imagepdf = Image.getInstance(image, null);
+			imagepdf.setAbsolutePosition(20f, (500f-((float)component.getHeight())));
+			
+			document.add(imagepdf);
+			
+		} catch (BadElementException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (DocumentException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+				
+		//g = new PdfGraphics2D(contentByte, component.getWidth(), component.getHeight()
 		
-		PdfGraphics2D g = new PdfGraphics2D(contentByte, component.getWidth(), component.getHeight());
-
-		component.printAll(g);
-		
-		g.dispose();
+//		component.printAll(g);
+//		
+//		g.dispose();
 		
 		
 		
