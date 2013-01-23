@@ -45,15 +45,13 @@ public class RoomTabTable extends DefaultTableModel implements IntfAppObserver {
 	@Override
 	public void change() {
 		
-		//delete all rows
-		for(int i=this.getRowCount()-1;i>=0;i--){
-			this.removeRow(i);
-		}
+		//delete all rows 
+		this.setRowCount(0);
 		
 		//prepare a filter
 		HashMap<String, String> filter = new HashMap<String,String>();
 		RoomTab roomTab = ViewManager.getInstance().getOrgaRoomTab();
-		
+		//setting the filters
 		String seats, pcSeats;
 		try {
 			int intSeats = Integer.parseInt(roomTab.getTextFieldSeats().getText());
@@ -64,13 +62,13 @@ public class RoomTabTable extends DefaultTableModel implements IntfAppObserver {
 			AppModel.getInstance().getExceptionHandler().setNewException("Bitte stellen Sie sicher,  dass sie echte Zahlen bei den Filtern eingetragen haben", "Fehler!", "error");
 			return;
 		}
-		
+		//push filter into hashmap
 		filter.put("level", roomTab.getComboBoxLevel().getSelectedItem().toString());
 		filter.put("seats", seats);
 		filter.put("pcseats", pcSeats);
 		filter.put("room", roomTab.getTxtRoom().getText());
 
-		// get and add all rooms depending on a filter
+		// get Rooms & push them into the table
 		this.addRooms(AppModel.getInstance().getRepositoryRoom().getByFilter(filter));
 		
 	}

@@ -6,11 +6,14 @@ import java.io.File;
 
 import javax.swing.JFileChooser;
 
+import de.sfgmbh.applayer.core.controller.CtrlPdf;
+import de.sfgmbh.applayer.core.definitions.IntfCtrlPdf;
 import de.sfgmbh.applayer.core.model.AppModel;
 import de.sfgmbh.comlayer.core.controller.ViewManager;
 import de.sfgmbh.comlayer.core.views.InfoDialog;
 import de.sfgmbh.comlayer.organisation.views.FileFilters;
 import de.sfgmbh.datalayer.io.DataManagerPDF;
+import de.sfgmbh.datalayer.io.IntfDataManagerPDF;
 
 /**
  * action listener for room management tab
@@ -34,6 +37,8 @@ public class RoomtableTabBtnPdf implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 
+		IntfCtrlPdf pdfController;
+		
 		// Pdf Button is pressed
 		if (this.navAction.equals("pdfCreate")) {
 
@@ -55,7 +60,7 @@ public class RoomtableTabBtnPdf implements ActionListener {
 						.endsWith(".pdf")) {
 					fc.setSelectedFile(new File(fc.getSelectedFile() + ".pdf"));
 				}
-				// setting roomtitle and semseeter for the header of the PDF
+				// setting roomtitle and semeseter for the header of the PDF
 				// document
 				roomtitle = AppModel
 						.getInstance()
@@ -66,12 +71,14 @@ public class RoomtableTabBtnPdf implements ActionListener {
 				semester = ViewManager.getInstance().getOrgaRoomtableTab()
 						.getComboBoxSemesterFilter().getSelectedItem()
 						.toString();
-				DataManagerPDF dmpdf = new DataManagerPDF(fc.getSelectedFile()
+				
+				pdfController=new CtrlPdf(fc.getSelectedFile()
 						.getAbsolutePath());
-				// adding the pnael as the content of the document
-				dmpdf.addContent(roomtitle + " - " + semester, ViewManager
+				
+				// adding the panel as the content of the document
+				pdfController.addContent(roomtitle + " - " + semester, ViewManager
 						.getInstance().getOrgaRoomtableTab().getScrollPane_());
-				dmpdf.close();
+				pdfController.close();
 			}
 		}
 	}

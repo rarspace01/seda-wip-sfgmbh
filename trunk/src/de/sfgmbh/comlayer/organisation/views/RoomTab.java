@@ -128,7 +128,7 @@ public class RoomTab extends JPanel {
 		AppModel.getInstance().getRepositoryRoom()
 				.register(ViewManager.getInstance().getOrgaRoomTableModel());
 
-		// hide column where the room id ist stored
+		// hide column where the room id is stored
 		roommanagementTable.getColumnModel().removeColumn(
 				roommanagementTable.getColumn("roomid"));
 
@@ -185,6 +185,8 @@ public class RoomTab extends JPanel {
 
 		IntfCtrlRoom ctrlRoom = new CtrlRoom();
 
+		//this.getRoommanagementTable().getModel().
+		
 		ViewManager.getInstance().getOrgaRoomTableModel()
 				.addRooms(ctrlRoom.getAllRooms());
 	}

@@ -10,6 +10,7 @@ import de.sfgmbh.comlayer.core.controller.ViewManager;
 import de.sfgmbh.comlayer.core.views.InfoDialog;
 import de.sfgmbh.comlayer.organisation.views.FileFilters;
 import de.sfgmbh.datalayer.io.DataManagerPDF;
+import de.sfgmbh.datalayer.io.IntfDataManagerPDF;
 
 
 
@@ -50,7 +51,7 @@ public class CoreTimetableTabBtnPdf implements ActionListener {
 						fc.setSelectedFile(new File(fc.getSelectedFile() + ".pdf"));
 					}
 				String semester = ViewManager.getInstance().getCoreBaseTab().getComboBoxSemesterFilter().getSelectedItem().toString();
-				DataManagerPDF dmpdf=new DataManagerPDF(fc.getSelectedFile().getAbsolutePath());
+				IntfDataManagerPDF dmpdf=new DataManagerPDF(fc.getSelectedFile().getAbsolutePath());
 				dmpdf.addContent("Vorlesungsplan - Semester: "+semester,ViewManager.getInstance().getCoreTimetableTab().getScrollPane_());
 				dmpdf.close();
 			}
