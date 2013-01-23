@@ -141,6 +141,7 @@ public class RoomtableTab extends JPanel {
 		
 		// Set the maximum size of the scroll pane (don't forget to add the table header!)
 		scrollPane_.setMaximumSize(new Dimension(32767, ((int) timetableTable.getPreferredSize().getHeight() + 26)));
+		this.updateUI();
 	}
 	/**
 	 * 
