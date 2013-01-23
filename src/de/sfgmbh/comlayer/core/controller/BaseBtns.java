@@ -22,13 +22,13 @@ import de.sfgmbh.comlayer.core.views.BaseTab;
  * 
  */
 public class BaseBtns implements ActionListener {
-	private String navAction;
+	private String navAction_;
 
 	/**
 	 * Create the action listener
 	 */
 	public BaseBtns() {
-		this.navAction = "default";
+		this.navAction_ = "default";
 	}
 
 	/**
@@ -37,7 +37,7 @@ public class BaseBtns implements ActionListener {
 	 * @param action
 	 */
 	public BaseBtns(String action) {
-		this.navAction = action;
+		this.navAction_ = action;
 	}
 
 	@Override
@@ -47,7 +47,7 @@ public class BaseBtns implements ActionListener {
 				.getExceptionHandler();
 
 		// Add to timetable button is pressed
-		if (this.navAction.equals("timetable")) {
+		if (this.navAction_.equals("timetable")) {
 			JTable roomAllocationTable = baseTab.getOrganisationTable();
 			TableModel roomAllocationTableModel = roomAllocationTable
 					.getModel();
@@ -112,7 +112,7 @@ public class BaseBtns implements ActionListener {
 		}
 
 		// Get roomtable button is pressed
-		if (this.navAction.equals("roomtable")) {
+		if (this.navAction_.equals("roomtable")) {
 			JTable roomTable = baseTab.getRoomTable();
 			TableModel roomTableModel = roomTable.getModel();
 
@@ -125,7 +125,8 @@ public class BaseBtns implements ActionListener {
 				try {
 					row = baseTab.getRowSorterRoom()
 							.convertRowIndexToModel(row);
-					IntfRoom room = (IntfRoom) roomTableModel.getValueAt(row, 10);
+					IntfRoom room = (IntfRoom) roomTableModel.getValueAt(row,
+							10);
 
 					ViewManager.getInstance().getCoreBaseTab()
 							.getMainTabbedContainerPane().setVisible(true);
@@ -145,7 +146,7 @@ public class BaseBtns implements ActionListener {
 
 					ViewManager.getInstance().getCoreBaseTab()
 							.getMainTabbedContainerPane().setVisible(true);
-					
+
 					ViewManager
 							.getInstance()
 							.getCoreBaseTab()
@@ -154,7 +155,7 @@ public class BaseBtns implements ActionListener {
 									null,
 									ViewManager.getInstance()
 											.getOrgaRoomtableTab(), null);
-					
+
 					ViewManager.getInstance().getOrgaRoomtableTab()
 							.loadRoomTable(getId);
 					ViewManager.getInstance().getCoreBaseTab()

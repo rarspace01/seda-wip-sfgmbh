@@ -28,23 +28,23 @@ import de.sfgmbh.comlayer.lecturer.views.StartTab;
  */
 public class StartTabBtnsControl implements ActionListener, IntfComDialogObserver {
 	
-	private String ctrlAction;
-	private IntfCourse delCourse;
-	private IntfRoomAllocation revokeAllocation;
-	private IntfCtrlStartTab cntrlStartTab = new CtrlStartTab();
+	private String ctrlAction_;
+	private IntfCourse delCourse_;
+	private IntfRoomAllocation revokeAllocation_;
+	private IntfCtrlStartTab cntrlStartTab_ = new CtrlStartTab();
 	
 	/**
 	 * Create the action listener
 	 */
 	public StartTabBtnsControl() {
-		this.ctrlAction = "default";
+		this.ctrlAction_ = "default";
 	}
 	/**
 	 * Create the action listener based on an action string
 	 * @param action
 	 */
 	public StartTabBtnsControl(String action) {
-		this.ctrlAction = action;
+		this.ctrlAction_ = action;
 	}
 	
 	@Override
@@ -62,13 +62,13 @@ public class StartTabBtnsControl implements ActionListener, IntfComDialogObserve
 				.getExceptionHandler();
 		
 		// Add button is pressed
-		if (this.ctrlAction.equals("add")){
+		if (this.ctrlAction_.equals("add")){
 			CourseDialog newCourse = new CourseDialog();
 			newCourse.setVisible(true);
 		}
 		
 		// Edit button is pressed
-		if (this.ctrlAction.equals("edit")){
+		if (this.ctrlAction_.equals("edit")){
 			// Get course and use it
 			int row = topTable.getSelectedRow();
 			if (row == -1) {
@@ -86,7 +86,7 @@ public class StartTabBtnsControl implements ActionListener, IntfComDialogObserve
 		}
 		
 		// Delete button is pressed
-		if (this.ctrlAction.equals("delete")){
+		if (this.ctrlAction_.equals("delete")){
 			// Get course and use it
 			int row = topTable.getSelectedRow();
 			if (row == -1) {
@@ -95,7 +95,7 @@ public class StartTabBtnsControl implements ActionListener, IntfComDialogObserve
 				row = startTab.getRowSorterTop().convertRowIndexToModel(row);
 				IntfCourse delCourse = (IntfCourse) modelTopTable.getValueAt(row, 6);
 				QuestionDialog dialog = new QuestionDialog("Wollen Sie die gewählte Veranstaltung wirklich löschen?", "Achtung!");
-				this.delCourse = delCourse;
+				this.delCourse_ = delCourse;
 				dialog.register(this);
 				dialog.setVisible(true);
 				return;
@@ -103,7 +103,7 @@ public class StartTabBtnsControl implements ActionListener, IntfComDialogObserve
 		}
 		
 		// Publish button is pressed
-		if (this.ctrlAction.equals("publish")){
+		if (this.ctrlAction_.equals("publish")){
 			// Get course and use it
 			int row = topTable.getSelectedRow();
 			if (row == -1) {
@@ -113,7 +113,7 @@ public class StartTabBtnsControl implements ActionListener, IntfComDialogObserve
 				IntfCourse publishCourse = (IntfCourse) modelTopTable.getValueAt(row, 6);
 				if (!publishCourse.isLecturerEnabled_()) {
 					publishCourse.setLecturerEnabled_(true);
-					if (this.cntrlStartTab.saveCourse(publishCourse)){
+					if (this.cntrlStartTab_.saveCourse(publishCourse)){
 						exceptionHandler.setNewException("Veranstaltung freigegebn.", "Erfolg!", "success");
 					}
 				} else {
@@ -123,7 +123,7 @@ public class StartTabBtnsControl implements ActionListener, IntfComDialogObserve
 		}
 		
 		// Request room button is pressed
-		if (this.ctrlAction.equals("roomrequest")){
+		if (this.ctrlAction_.equals("roomrequest")){
 			// Get course and use it
 			int row = topTable.getSelectedRow();
 			if (row == -1) {
@@ -137,7 +137,7 @@ public class StartTabBtnsControl implements ActionListener, IntfComDialogObserve
 		}
 		
 		// Revoke button is pressed
-		if (this.ctrlAction.equals("back")){
+		if (this.ctrlAction_.equals("back")){
 			// Get the room allocation and use it
 			int row = bottomTable.getSelectedRow();
 			if (row == -1) {
@@ -150,7 +150,7 @@ public class StartTabBtnsControl implements ActionListener, IntfComDialogObserve
 					return;
 				}
 				QuestionDialog dialog = new QuestionDialog("Wollen Sie die gewählte Raumbelegung wirklich zurückziehen?", "Achtung!");
-				this.revokeAllocation = revokeAllocation;
+				this.revokeAllocation_ = revokeAllocation;
 				dialog.register(this);
 				dialog.setVisible(true);
 				return;
@@ -162,19 +162,19 @@ public class StartTabBtnsControl implements ActionListener, IntfComDialogObserve
 	@Override
 	public void answered(String answer) {
 		if (answer.equals("yes")) {
-			if (this.delCourse != null) {
-				if (this.cntrlStartTab.deleteCourse(this.delCourse)) {
+			if (this.delCourse_ != null) {
+				if (this.cntrlStartTab_.deleteCourse(this.delCourse_)) {
 					AppModel.getInstance().getExceptionHandler().setNewException("Die Veranstaltung wurde erfolgreich gelöscht.", "Erfolg!", "success");
 				}
 			}
-			if (this.revokeAllocation != null) {
-				if (this.cntrlStartTab.revokeRoomAllocation(this.revokeAllocation)) {
+			if (this.revokeAllocation_ != null) {
+				if (this.cntrlStartTab_.revokeRoomAllocation(this.revokeAllocation_)) {
 					AppModel.getInstance().getExceptionHandler().setNewException("Die Raumbelegung wurde zurückgezogen.", "Erfolg!", "success");
 				}
 			}
 		} else if (answer.equals("no")) {
-			this.delCourse = null;
-			this.revokeAllocation = null;
+			this.delCourse_ = null;
+			this.revokeAllocation_ = null;
 		}
 	}
 	

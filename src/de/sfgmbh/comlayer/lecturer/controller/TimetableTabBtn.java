@@ -6,11 +6,11 @@ import java.io.File;
 
 import javax.swing.JFileChooser;
 
+import de.sfgmbh.applayer.core.controller.CtrlPdf;
+import de.sfgmbh.applayer.core.definitions.IntfCtrlPdf;
 import de.sfgmbh.comlayer.core.controller.ViewManager;
 import de.sfgmbh.comlayer.core.views.InfoDialog;
 import de.sfgmbh.comlayer.organisation.views.FileFilters;
-import de.sfgmbh.datalayer.io.DataManagerPDF;
-import de.sfgmbh.datalayer.io.IntfDataManagerPDF;
 
 /**
  * action listener for the lecturer time table
@@ -20,22 +20,22 @@ import de.sfgmbh.datalayer.io.IntfDataManagerPDF;
  */
 public class TimetableTabBtn implements ActionListener {
 
-	private String navAction;
+	private String navAction_;
 	protected InfoDialog infoWindow;
 
 	public TimetableTabBtn() {
-		this.navAction = "default";
+		this.navAction_ = "default";
 	}
 
 	public TimetableTabBtn(String action) {
-		this.navAction = action;
+		this.navAction_ = action;
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
 
-		if (this.navAction.equals("createpdf")) {
-
+		if (this.navAction_.equals("createpdf")) {
+			IntfCtrlPdf pdfController;
 			String sFilename = "";
 			String lecturerTitle = "";
 			String semester = "";
@@ -60,12 +60,14 @@ public class TimetableTabBtn implements ActionListener {
 				semester = ViewManager.getInstance().getLecturerTimetableTab()
 						.getComboBoxSemesterFilter().getSelectedItem()
 						.toString();
-				IntfDataManagerPDF dmpdf = new DataManagerPDF(fc.getSelectedFile()
+				
+				pdfController=new CtrlPdf(fc.getSelectedFile()
 						.getAbsolutePath());
 				// adding the content
-				dmpdf.addContent(lecturerTitle + " - " + semester, ViewManager
+				pdfController.addContent(lecturerTitle + " - " + semester, ViewManager
 						.getInstance().getLecturerTimetableTab().getPanel_());
-				dmpdf.close();
+				//close the PDF file
+				pdfController.close();
 			}
 
 		}
