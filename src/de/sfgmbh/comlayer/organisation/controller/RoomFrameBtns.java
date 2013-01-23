@@ -48,7 +48,7 @@ public class RoomFrameBtns implements ActionListener {
 		// Speichern button is pressed
 		if (this.ctrlAction.equals("save")) {
 
-			// TODO check for fileds
+			// valide the individual fields with regex patterns
 			if (ViewManager.getInstance().getOrgaRoomFrame().getTxtLevel()
 					.getText().length() == 0) {
 				AppModel.getInstance()
@@ -125,7 +125,7 @@ public class RoomFrameBtns implements ActionListener {
 								"Bitte geben Sie ein Whiteboardanzahl an.",
 								"Achtung!");
 			} else {
-
+				//if everythign is fine, we'll dismiss the window and store the room object
 				ViewManager.getInstance().getOrgaRoomFrame().setVisible(false);
 
 				// read Values, Create Room object, store to DB

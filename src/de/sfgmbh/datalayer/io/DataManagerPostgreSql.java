@@ -27,7 +27,6 @@ public class DataManagerPostgreSql {
 	 */
 	private DataManagerPostgreSql() {
 		DataManagerConfig dbconfig=new DataManagerConfig();
-		System.out.println("[D-Layer] Creating Connection to: ["+dbconfig.getIp()+":"+dbconfig.getPort()+"]");
 		try {
 			Class.forName("org.postgresql.Driver");
 			conn = DriverManager.getConnection("jdbc:postgresql://" +
