@@ -3,9 +3,9 @@ package de.sfgmbh.comlayer.organisation.controller;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import de.sfgmbh.applayer.core.definitions.IntfChair;
 import de.sfgmbh.applayer.core.model.AppException;
 import de.sfgmbh.applayer.core.model.AppModel;
-import de.sfgmbh.applayer.core.model.IntfChair;
 import de.sfgmbh.applayer.organisation.controller.CtrlChair;
 import de.sfgmbh.applayer.organisation.definitions.IntfCtrlChair;
 import de.sfgmbh.comlayer.core.model.CmbboxFilterLecturer;

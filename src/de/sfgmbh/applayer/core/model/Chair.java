@@ -1,5 +1,7 @@
 package de.sfgmbh.applayer.core.model;
 
+import de.sfgmbh.applayer.core.definitions.IntfChair;
+
 
 /**
  * Chair model class

@@ -1,6 +1,6 @@
 package de.sfgmbh.applayer.organisation.definitions;
 
-import de.sfgmbh.applayer.core.model.IntfChair;
+import de.sfgmbh.applayer.core.definitions.IntfChair;
 
 public interface IntfCtrlChair {
 

@@ -6,6 +6,8 @@ import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 import java.util.regex.Pattern;
 
+import de.sfgmbh.applayer.core.definitions.IntfChair;
+
 /**
  * Model for users
  * 

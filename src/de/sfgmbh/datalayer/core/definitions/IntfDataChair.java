@@ -3,8 +3,8 @@ package de.sfgmbh.datalayer.core.definitions;
 import java.sql.ResultSet;
 import java.util.List;
 
+import de.sfgmbh.applayer.core.definitions.IntfChair;
 import de.sfgmbh.applayer.core.model.Chair;
-import de.sfgmbh.applayer.core.model.IntfChair;
 
 public interface IntfDataChair {
 
