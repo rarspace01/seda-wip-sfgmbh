@@ -33,7 +33,7 @@ public class ProfessorshipTimetableTab extends JPanel{
 	private JTable lehrstuhlStundenplanTable_;
 	private JPanel panelProfessorshipPanel_;
 	private JComboBox<String> comboBoxSemesterFilter_;
-	private CmbboxFilterSemester comboBoxSemesterModel_= new CmbboxFilterSemester();
+	private CmbboxFilterSemester comboBoxSemesterModel_= new CmbboxFilterSemester("select");
 	private int maxEntries_=0;
 
 
