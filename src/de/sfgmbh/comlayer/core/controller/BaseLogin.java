@@ -77,12 +77,12 @@ public class BaseLogin implements ActionListener {
 						if (ra.getApproved_().equals("counter")) {
 							String orgaMsg = "";
 							if (ra.getOrgaMessage_().length() > 1) {
-								orgaMsg = "Folgende Nachricht wurde Ihnen von der Organisation dazu hinterlegt:<br /><span style='font-style:italic;'>" +
+								orgaMsg = "Folgende Nachricht wurde Ihnen von der Verwaltung dazu hinterlegt:<br /><span style='font-style:italic;'>" +
 										ra.getOrgaMessage_().replace("\r", "<br />") + "</span><br /><br />";
 							}
 							QuestionDialog dialog = new QuestionDialog("Zu Ihrer Veranstaltung <strong>" +
 									ra.getCourse_().getCourseAcronym_() + " / " + ra.getCourse_().getCourseKind_() + " im " + ra.getSemester_() +
-									"</strong> konnte der Termin nicht gewährt werden. Die Verwaltung schlägt ihnen stattdessen folgenden Termin vor:<br /><br /><strong>" +
+									"</strong> konnte der Termin nicht gewährt werden. Die Verwaltung schlägt Ihnen stattdessen folgenden Termin vor:<br /><br /><strong>" +
 									ViewHelper.getDay(ra.getDay_()) + " von " +
 									ViewHelper.getTime(ra.getTime_()) + " Uhr<br />" +
 									ra.getRoom_().getRoomNumber_() + "<br /></strong> (Plätze: " + ra.getRoom_().getSeats_() +

@@ -32,7 +32,6 @@ public class InfoDialog extends JDialog implements IntfAppObserver {
 	 * Create the dialog with default message, title and settings
 	 */
 	public InfoDialog() {
-		setIconImage(Toolkit.getDefaultToolkit().getImage(InfoDialog.class.getResource("/de/sfgmbh/comlayer/core/images/HUT_klein.png")));
 		createContents();
 	}
 	
@@ -79,6 +78,12 @@ public class InfoDialog extends JDialog implements IntfAppObserver {
 		this.getTxtpnInfoWindowText().setText("<div style='font-family: Calibri,monospace; text-align: left;'>" + info + "</div>");
 		if (variant.equals("success")) {
 			this.getLblIcon().setIcon(new ImageIcon(InfoDialog.class.getResource("/de/sfgmbh/comlayer/core/images/Success.png")));
+		} else if (variant.equals("info")) {
+			this.getLblIcon().setIcon(new ImageIcon(InfoDialog.class.getResource("/de/sfgmbh/comlayer/core/images/InfoDialogIcon.png")));
+		} else if (variant.equals("warn")) {
+			this.getLblIcon().setIcon(new ImageIcon(InfoDialog.class.getResource("/de/sfgmbh/comlayer/core/images/warning.png")));
+		} else if (variant.equals("error")) {
+			this.getLblIcon().setIcon(new ImageIcon(InfoDialog.class.getResource("/de/sfgmbh/comlayer/core/images/error.png")));
 		}
 		createContents(title);
 	}
@@ -90,6 +95,7 @@ public class InfoDialog extends JDialog implements IntfAppObserver {
 		setTitle(title);
 		setModal(true);
 		setAlwaysOnTop(true);
+		setIconImage(Toolkit.getDefaultToolkit().getImage(InfoDialog.class.getResource("/de/sfgmbh/comlayer/core/images/HUT_klein.png")));
 		getContentPane().setLayout(new MigLayout("", "[5px:n][center][5px:n][250px:n:500px,center][10px:n:10px]", "[100px:n:400px,center][40px:n:40px,center]"));
 		getContentPane().add(getLblIcon(), "cell 1 0,alignx center,aligny center");
 		getContentPane().add(getTxtpnInfoWindowText(), "cell 3 0,alignx left,aligny center");
@@ -130,7 +136,7 @@ public class InfoDialog extends JDialog implements IntfAppObserver {
 	private JLabel getLblIcon() {
 		if (lblIcon == null) {
 			lblIcon = new JLabel("");
-			lblIcon.setIcon(new ImageIcon(InfoDialog.class.getResource("/de/sfgmbh/comlayer/core/images/InfoDialogIcon.png")));
+			lblIcon.setIcon(new ImageIcon(InfoDialog.class.getResource("/de/sfgmbh/comlayer/core/images/error.png")));
 			lblIcon.setMaximumSize(new Dimension(100, 100));
 			lblIcon.setMinimumSize(new Dimension(100, 100));
 		}

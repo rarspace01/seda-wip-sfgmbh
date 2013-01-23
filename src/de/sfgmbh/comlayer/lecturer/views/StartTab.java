@@ -3,7 +3,6 @@ package de.sfgmbh.comlayer.lecturer.views;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.SystemColor;
-import java.util.HashMap;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -18,13 +17,9 @@ import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 
 import net.miginfocom.swing.MigLayout;
-import de.sfgmbh.applayer.core.controller.SessionManager;
 import de.sfgmbh.applayer.core.definitions.IntfRoomAllocation;
-import de.sfgmbh.applayer.core.definitions.IntfUser;
-import de.sfgmbh.applayer.core.model.AppModel;
 import de.sfgmbh.applayer.lecturer.controller.CtrlStartTab;
 import de.sfgmbh.applayer.lecturer.definitions.IntfCtrlStartTab;
-import de.sfgmbh.comlayer.core.controller.ViewHelper;
 import de.sfgmbh.comlayer.core.controller.ViewManager;
 import de.sfgmbh.comlayer.core.definitions.IntfComDialogObserver;
 import de.sfgmbh.comlayer.core.model.CmbboxFilterAllocationStatus;
@@ -32,7 +27,6 @@ import de.sfgmbh.comlayer.core.model.CmbboxFilterCourse;
 import de.sfgmbh.comlayer.core.model.CmbboxFilterLecturer;
 import de.sfgmbh.comlayer.core.model.CmbboxFilterSemester;
 import de.sfgmbh.comlayer.core.views.BaseTab;
-import de.sfgmbh.comlayer.core.views.QuestionDialog;
 import de.sfgmbh.comlayer.lecturer.controller.StartTabBtnsControl;
 import de.sfgmbh.comlayer.lecturer.controller.StartTabCmbboxFilter;
 import de.sfgmbh.comlayer.lecturer.controller.StartTabTableTop;
@@ -67,39 +61,7 @@ public class StartTab extends JPanel implements IntfComDialogObserver {
 	public StartTab() {
 		initialize();
 	}
-	private void initialize() {
-		IntfUser currentUser = SessionManager.getInstance().getSession();
-		
-		// When a logged in lecturer is here at fist check if he has counter proposals for which popups should be shown
-		if (currentUser != null && currentUser.getClass_().equals("lecturer")) {
-			HashMap<String,String> filter = new HashMap<String,String>();
-			filter.put("login", currentUser.getLogin_());
-			for (IntfRoomAllocation ra : AppModel.getInstance().getRepositoryRoomAllocation().getByFilter(filter)) {
-				if (ra.getApproved_().equals("counter")) {
-					String orgaMsg = "";
-					if (ra.getOrgaMessage_().length() > 1) {
-						orgaMsg = "Folgende Nachricht wurde Ihnen von der Organisation dazu hinterlegt:<br /><span style='font-style:italic;'>" +
-								ra.getOrgaMessage_() + "</span><br /><br />";
-					}
-					QuestionDialog dialog = new QuestionDialog("Zu Ihrer Veranstaltung <strong>" +
-							ra.getCourse_().getCourseAcronym_() + " / " + ra.getCourse_().getCourseKind_() + " im " + ra.getSemester_() +
-							"</strong> konnte der Termin nicht gewährt werden. Die Verwaltung schlägt ihnen stattdessen folgenden Termin vor:<br /><br /><strong>" +
-							ViewHelper.getDay(ra.getDay_()) + "<br />" +
-							ViewHelper.getTime(ra.getTime_()) + "<br />" +
-							ra.getRoom_().getRoomNumber_() + "<br /></strong><br />" +
-							orgaMsg +
-							"Wollen Sie diesen Termin annehmen?<br /> " +
-							"Wenn Sie sich noch nicht sicher sind, so verneinen Sie dies bitte. " +
-							"Sie können dann einfach selbst wieder eine Raumanfrage stellen. Allerdings nur, wenn Ihnen bis dorthin niemand zuvor " +
-							"kommt. Nehmen Sie den Termin jetzt an, so ist er sofort freigeben!", 
-							"Gegenvorschlag!");
-					this.roomAllocation = ra;
-					dialog.register(this);
-					dialog.setVisible(true);
-				}
-			}
-		}
-		
+	private void initialize() {	
 		
 		setMaximumSize(new Dimension(10, 32767));
 		setLayout(new MigLayout("", "[140px:n:140px,grow][][grow][grow][grow][grow][100px:100px:100px]", "[][385.00,grow][grow]"));
