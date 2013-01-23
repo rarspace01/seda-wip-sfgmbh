@@ -14,11 +14,10 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 
 import net.miginfocom.swing.MigLayout;
+import de.sfgmbh.applayer.core.controller.CtrlGenericTables;
+import de.sfgmbh.applayer.core.definitions.IntfCtrlGenericTables;
 import de.sfgmbh.applayer.core.definitions.IntfRoomAllocation;
 import de.sfgmbh.applayer.core.model.AppModel;
-import de.sfgmbh.applayer.organisation.controller.CtrlRoomAllocation;
-import de.sfgmbh.applayer.organisation.definitions.IntfCtrlRoomAllocation;
-import de.sfgmbh.comlayer.core.controller.ViewHelper;
 import de.sfgmbh.comlayer.core.controller.ViewManager;
 import de.sfgmbh.comlayer.core.model.CmbboxFilterLecturer;
 import de.sfgmbh.comlayer.core.model.CmbboxFilterSemester;
@@ -140,33 +139,18 @@ public class TimetableTab extends JPanel {
 	
 	public void reloadPlan(){
 		
-		IntfCtrlRoomAllocation roomAllocationController=new CtrlRoomAllocation();
+		IntfCtrlGenericTables genericTablesController=new CtrlGenericTables();
 		
 		if(!this.getcomboBoxLecturer_().getSelectedItem().toString().toLowerCase().contains("alle")){
 			
-		ViewManager.getInstance().getLecturerTimetableTabTable().setRowCount(0);
-			
-			HashMap<String,String> tableFilter = new HashMap<String,String> ();  //setting filter
-			
+			//setting filter for semester and login
+			HashMap<String,String> tableFilter = new HashMap<String,String> ();  
 			tableFilter.put("semester", this.getComboBoxSemesterFilter().getSelectedItem().toString());
-			
 			tableFilter.put("login", this.comboBoxLecturerModel_.getLecturerForModel().get(this.getcomboBoxLecturer_().getSelectedIndex()).getLogin_());
-			
+			//geting the new roomAllocationList
 			List<IntfRoomAllocation> roomAllocations=AppModel.getInstance().getRepositoryRoomAllocation().getByFilter(tableFilter);
-			
-			for(int i=1;i<=7;i++){
-				
-				Object[] rowData= {ViewHelper.getTime(i)+" Uhr", "","", "", "", ""};
-				
-				ViewManager.getInstance().getLecturerTimetableTabTable().addRow(rowData);
-				
-				
-				for(int j=1; j<=5; j++){
-					
-					ViewManager.getInstance().getLecturerTimetableTabTable().setValueAt(roomAllocationController.getLectureOnTime(roomAllocations,j,i), i-1, j);
-					
-				}
-			}
+			//reloading the table based on the new roomAllocations
+			genericTablesController.reloadTable(lecturerTimetableTable_, roomAllocations,true);
 			
 		}
 		

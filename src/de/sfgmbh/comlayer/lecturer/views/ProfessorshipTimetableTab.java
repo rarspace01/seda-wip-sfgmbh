@@ -17,7 +17,9 @@ import javax.swing.JTable;
 import javax.swing.SwingConstants;
 
 import net.miginfocom.swing.MigLayout;
+import de.sfgmbh.applayer.core.controller.CtrlGenericTables;
 import de.sfgmbh.applayer.core.controller.SessionManager;
+import de.sfgmbh.applayer.core.definitions.IntfCtrlGenericTables;
 import de.sfgmbh.applayer.core.definitions.IntfRoomAllocation;
 import de.sfgmbh.applayer.core.model.AppModel;
 import de.sfgmbh.applayer.core.model.RoomAllocation;
@@ -126,54 +128,21 @@ public class ProfessorshipTimetableTab extends JPanel{
 		return panelProfessorshipPanel_;
 	}
 	
-	public String getLectureOnTime(List<RoomAllocation> ral,int day, int time){
-		String textualRepresentation="<html>";
-		
-		int tempEntries=0;
-		
-		for(int i=0;i<ral.size();i++){
-			if(ral.get(i).getDay_()==day && ral.get(i).getTime_()==time){
-				//textualRepresentation=ral.get(i).getCourse_().getCourseName_()+" ("+ral.get(i).getCourse_().getLecturer_().getChair_().getAcronym_()+" - "+ral.get(i).getCourse_().getCourseAcronym_()+")";
-				textualRepresentation+=ral.get(i).getCourse_().getCourseAcronym_()+" - in - "+ral.get(i).getRoom_().getRoomNumber_()+"<br/>";
-				tempEntries++;
-			}
-		}
-		if(tempEntries>maxEntries_){
-			maxEntries_=tempEntries;
-		}
-		return textualRepresentation+"</html>";
-	}
-	
 	public void reloadPlan(){
 		
-		IntfCtrlRoomAllocation roomAllocationController=new CtrlRoomAllocation();
+		IntfCtrlGenericTables genericTablesController=new CtrlGenericTables();
 			
-		ViewManager.getInstance().getLecturerChairimetableTabTable().setRowCount(0);
-			
-			HashMap<String,String> tableFilter = new HashMap<String,String> ();  //setting filter
-			
-			tableFilter.put("semester", this.getComboBoxSemesterFilter().getSelectedItem().toString());
-
-			if(SessionManager.getInstance().getSession() != null){
+		HashMap<String,String> tableFilter = new HashMap<String,String> ();  //setting filter
+		//get the selected semester
+		tableFilter.put("semester", this.getComboBoxSemesterFilter().getSelectedItem().toString());
+		//get the chairid of the logged in user
+		if(SessionManager.getInstance().getSession() != null){
 			tableFilter.put("chairid", ""+SessionManager.getInstance().getSession().getChair_().getChairId_());
-			}
-			List<IntfRoomAllocation> ral=AppModel.getInstance().getRepositoryRoomAllocation().getByFilter(tableFilter);
-			
-			for(int i=1;i<=7;i++){
-				
-				Object[] rowData= {ViewHelper.getTime(i)+" Uhr", "","", "", "", ""};
-				
-				ViewManager.getInstance().getLecturerChairimetableTabTable().addRow(rowData);
-				
-				
-				for(int j=1; j<=5; j++){
-					
-					ViewManager.getInstance().getLecturerChairimetableTabTable().setValueAt(roomAllocationController.getLectureOnTime(ral,j,i), i-1, j);
-					
-				}
-			}
-			
-		
+		}
+		// get the roomAllocations from the repository
+		List<IntfRoomAllocation> roomAllocationList=AppModel.getInstance().getRepositoryRoomAllocation().getByFilter(tableFilter);
+		// reload Table based on roomAllocations
+		genericTablesController.reloadTable(lehrstuhlStundenplanTable_, roomAllocationList,true);
 		
 	}
 	

@@ -48,7 +48,7 @@ public class CtrlGenericTables implements IntfCtrlGenericTables {
 		}
 	}
 	
-	public void reloadTable(JTable table, List<IntfRoomAllocation> roomAllocationList){
+	public void reloadTable(JTable table, List<IntfRoomAllocation> roomAllocationList, boolean showRoomName){
 		IntfCtrlRoomAllocation roomAllocationController=new CtrlRoomAllocation();
 		// clear all rows
 		if(table.getModel() instanceof DefaultTableModel){
@@ -58,7 +58,7 @@ public class CtrlGenericTables implements IntfCtrlGenericTables {
 					Object[] rowData= {ViewHelper.getTime(i)+" Uhr", "","", "", "", ""}; // inital data values
 					((DefaultTableModel) table.getModel()).addRow(rowData);
 					for(int j=1; j<=5; j++){
-						((DefaultTableModel) table.getModel()).setValueAt(roomAllocationController.getLectureOnTime(roomAllocationList,j,i), i-1, j);
+						((DefaultTableModel) table.getModel()).setValueAt(roomAllocationController.getLectureOnTime(roomAllocationList,j,i,showRoomName), i-1, j);
 					}
 				}
 		}
