@@ -99,14 +99,9 @@ public class CoreTimetableTab extends JPanel {
 	public String getLectureOnTime(List<RoomAllocation> ral,int day, int time){
 		String textualRepresentation="<html>";
 		
-		//int tempEntries=0;
-		
 		for(int i=0;i<ral.size();i++){
 			if(ral.get(i).getDay_()==day && ral.get(i).getTime_()==time){
-				System.out.println("matched");
-				//textualRepresentation=ral.get(i).getCourse_().getCourseName_()+" ("+ral.get(i).getCourse_().getLecturer_().getChair_().getAcronym_()+" - "+ral.get(i).getCourse_().getCourseAcronym_()+")";
 				textualRepresentation+=ral.get(i).getCourse_().getCourseAcronym_()+" - in - "+ral.get(i).getRoom_().getRoomNumber_()+"<br/>";
-				//tempEntries++;
 			}
 		}
 		return textualRepresentation+"</html>";
@@ -116,10 +111,7 @@ public class CoreTimetableTab extends JPanel {
 		
 		this.lblvaluesemester.setText(ViewManager.getInstance().getCoreBaseTab().getComboBoxSemesterFilter().getSelectedItem().toString());
 		
-		//Room selectedRoom=AppModel.getInstance().getRepositoryRoom().getRoomById(roomId);
-		
-		//clear all rows
-		
+		//clear all rows		
 		ViewManager.getInstance().getCoreTimetableTabTable().setRowCount(0);
 		
 		List<RoomAllocation> ral=this.roomAllocList_;
@@ -152,7 +144,6 @@ public class CoreTimetableTab extends JPanel {
 	}
 	
 	public void addAllocation(List<RoomAllocation> roomallocations) {
-		System.out.println("[Com-Layer] Allocs recieved: "+roomallocations.size());
 		
 		for(int i=0;i<roomallocations.size();i++){
 			this.roomAllocList_.add(roomallocations.get(i));

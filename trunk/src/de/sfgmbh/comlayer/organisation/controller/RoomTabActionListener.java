@@ -108,9 +108,7 @@ public class RoomTabActionListener implements ActionListener, IntfComDialogObser
 
 		// Plan Button is pressed
 		if (this.navAction.equals("plan")) {
-			
-			System.out.println("Roomplan klicked");
-			
+			// if a room was selected
 			if(roomTab.getRoommanagementTable().getSelectedRow()>=0){
 				
 				//get selected Room from DB	
@@ -127,6 +125,7 @@ public class RoomTabActionListener implements ActionListener, IntfComDialogObser
 				ViewManager.getInstance().getOrgaRoomtableTab().loadRoomTable(getId);
 				ViewManager.getInstance().getCoreBaseTab().switchToNextTab();
 			}else{
+				//show error on missing selection
 				AppModel.getInstance()
 				.getExceptionHandler()
 				.setNewException(

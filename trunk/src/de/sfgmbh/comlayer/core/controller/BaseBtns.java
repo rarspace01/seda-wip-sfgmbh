@@ -59,7 +59,6 @@ public class BaseBtns implements ActionListener {
 						"Sie müssen zunächst eine Veranstaltung wählen.",
 						"Achtung!");
 			} else {
-				System.out.println("[Com-Layer] Rows selected: " + rows.length);
 				try {
 					List<RoomAllocation> returnList = new ArrayList<RoomAllocation>();
 					for (int row : rows) {
