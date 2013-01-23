@@ -35,13 +35,13 @@ import de.sfgmbh.comlayer.timetable.controller.CoreTimetableTabBtnPdf;
 public class CoreTimetableTab extends JPanel {
 
 	private static final long serialVersionUID = 1L;
-	private JTable stundenplanTable;
+	private JTable timetableTable;
 	private int roomId_;
 	private JScrollPane scrollPane_;
 	private JLabel lblSemester;
 	private List<IntfRoomAllocation> roomAllocList_=new ArrayList<IntfRoomAllocation>();	
 	private JLabel lblvaluesemester;
-	private JButton btnStundenplanZurcksetzen;
+	private JButton btnTimetableReset;
 	
 	public CoreTimetableTab() {
 		initialize();
@@ -50,9 +50,9 @@ public class CoreTimetableTab extends JPanel {
 		setAutoscrolls(true);
 		setLayout(new MigLayout("", "[20px:20px,grow][131px][50px][92.00px][461px][20px:20px,grow][right]", "[68px][392px]"));
 		
-		btnStundenplanZurcksetzen = new JButton("Stundenplan zurücksetzen");
-		btnStundenplanZurcksetzen.addActionListener(new CoreTimetableTabBtnPdf("reset"));
-		add(btnStundenplanZurcksetzen, "cell 4 0");
+		btnTimetableReset = new JButton("Stundenplan zurücksetzen");
+		btnTimetableReset.addActionListener(new CoreTimetableTabBtnPdf("reset"));
+		add(btnTimetableReset, "cell 4 0");
 		
 		JPanel uniIconPanel = new JPanel();
 		add(uniIconPanel, "cell 6 0,alignx right,aligny top");
@@ -65,38 +65,38 @@ public class CoreTimetableTab extends JPanel {
 		scrollPane_ = new JScrollPane();
 		add(scrollPane_, "cell 1 1 4 1,grow");
 		
-		stundenplanTable = new JTable();
+		timetableTable = new JTable();
 		
-		scrollPane_.setViewportView(stundenplanTable);
+		scrollPane_.setViewportView(timetableTable);
 		
 	
-		stundenplanTable.setBackground(Color.WHITE);
-		stundenplanTable.setModel(ViewManager.getInstance().getCoreTimetableTabTable());
+		timetableTable.setBackground(Color.WHITE);
+		timetableTable.setModel(ViewManager.getInstance().getCoreTimetableTabTable());
 		
 		AppModel.getInstance().getRepositoryRoomAllocation().register(ViewManager.getInstance().getCoreTimetableTabTable());
 		
 		JButton btnPdfErzeugen = new JButton("PDF erzeugen");
 		btnPdfErzeugen.addActionListener(new CoreTimetableTabBtnPdf("pdfCreate"));
 		add(btnPdfErzeugen, "cell 1 0,growx,aligny center");
-		stundenplanTable.getColumnModel().getColumn(0).setResizable(false);
-		stundenplanTable.getColumnModel().getColumn(0).setPreferredWidth(70);
-		stundenplanTable.getColumnModel().getColumn(0).setMinWidth(50);
-		stundenplanTable.getColumnModel().getColumn(0).setMaxWidth(105);
-		stundenplanTable.getColumnModel().getColumn(1).setResizable(true);
-		stundenplanTable.getColumnModel().getColumn(1).setPreferredWidth(50);
-		stundenplanTable.getColumnModel().getColumn(1).setMinWidth(50);
-		stundenplanTable.getColumnModel().getColumn(1).setMaxWidth(145);
-		stundenplanTable.getColumnModel().getColumn(2).setResizable(true);
-		stundenplanTable.getColumnModel().getColumn(2).setMinWidth(50);
-		stundenplanTable.getColumnModel().getColumn(2).setMaxWidth(145);
-		stundenplanTable.getColumnModel().getColumn(3).setPreferredWidth(50);
-		stundenplanTable.getColumnModel().getColumn(3).setMinWidth(50);
-		stundenplanTable.getColumnModel().getColumn(3).setMaxWidth(145);
-		stundenplanTable.getColumnModel().getColumn(4).setPreferredWidth(50);
-		stundenplanTable.getColumnModel().getColumn(4).setMinWidth(50);
-		stundenplanTable.getColumnModel().getColumn(4).setMaxWidth(145);
-		stundenplanTable.getColumnModel().getColumn(5).setMinWidth(50);
-		stundenplanTable.getColumnModel().getColumn(5).setMaxWidth(145);
+		timetableTable.getColumnModel().getColumn(0).setResizable(false);
+		timetableTable.getColumnModel().getColumn(0).setPreferredWidth(70);
+		timetableTable.getColumnModel().getColumn(0).setMinWidth(50);
+		timetableTable.getColumnModel().getColumn(0).setMaxWidth(105);
+		timetableTable.getColumnModel().getColumn(1).setResizable(true);
+		timetableTable.getColumnModel().getColumn(1).setPreferredWidth(50);
+		timetableTable.getColumnModel().getColumn(1).setMinWidth(50);
+		timetableTable.getColumnModel().getColumn(1).setMaxWidth(145);
+		timetableTable.getColumnModel().getColumn(2).setResizable(true);
+		timetableTable.getColumnModel().getColumn(2).setMinWidth(50);
+		timetableTable.getColumnModel().getColumn(2).setMaxWidth(145);
+		timetableTable.getColumnModel().getColumn(3).setPreferredWidth(50);
+		timetableTable.getColumnModel().getColumn(3).setMinWidth(50);
+		timetableTable.getColumnModel().getColumn(3).setMaxWidth(145);
+		timetableTable.getColumnModel().getColumn(4).setPreferredWidth(50);
+		timetableTable.getColumnModel().getColumn(4).setMinWidth(50);
+		timetableTable.getColumnModel().getColumn(4).setMaxWidth(145);
+		timetableTable.getColumnModel().getColumn(5).setMinWidth(50);
+		timetableTable.getColumnModel().getColumn(5).setMaxWidth(145);
 		
 		lblSemester = new JLabel("Semester:");
 		
@@ -107,11 +107,13 @@ public class CoreTimetableTab extends JPanel {
 		
 		reloadRoomTable();
 	}
-	
+	/**
+	 * reloads the timetable corresponding to the selection on the basetab
+	 */
 	public void reloadRoomTable(){
 		//controller for table methods
 		IntfCtrlGenericTables genericTablesController=new CtrlGenericTables();
-		//set teh Semester label
+		//set the Semester label
 		this.lblvaluesemester.setText(ViewManager.getInstance().getCoreBaseTab().getComboBoxSemesterFilter().getSelectedItem().toString());
 		//get the room allocations from the temprary storage
 		List<IntfRoomAllocation> roomAllocationList=this.roomAllocList_;
@@ -120,15 +122,24 @@ public class CoreTimetableTab extends JPanel {
 		
 	}
 
-	
+	/**
+	 * 
+	 * @return the timetableTable
+	 */
 	public JTable getStundenplanTable() {
-		return stundenplanTable;
+		return timetableTable;
 	}
-	
+	/**
+	 * 
+	 * @return scrollPane_
+	 */
 	public JScrollPane getScrollPane_() {
 		return scrollPane_;
 	}
-	
+	/**
+	 * 
+	 * @return the roomId_
+	 */
 	public int getRoomId_() {
 		return roomId_;
 	}
@@ -147,7 +158,9 @@ public class CoreTimetableTab extends JPanel {
 		}
 		reloadRoomTable();
 	}
-	
+	/**
+	 * resets the timetable
+	 */
 	public void resetPlan(){
 		roomAllocList_.clear();
 		reloadRoomTable();

@@ -28,7 +28,7 @@ import de.sfgmbh.comlayer.lecturer.controller.TimetableTabCmbbox;
 public class TimetableTab extends JPanel {
 	private static final long serialVersionUID = 1L;
 	private JTable lecturerTimetableTable_;
-	private JPanel panel_;
+	private JPanel panelTimetable_;
 	private JLabel lblSemester_;
 	private JComboBox<String> comboBoxSemesterFilter_;
 	private CmbboxFilterSemester comboBoxSemesterModel_= new CmbboxFilterSemester("select");
@@ -86,14 +86,17 @@ public class TimetableTab extends JPanel {
 		add(getPanel(), "cell 1 2 5 1,grow");
 	}
 	
-	
+	/**
+	 * 
+	 * @return panel_
+	 */
 	public JPanel getPanel() {
-		if (panel_ == null) {
-			panel_ = new JPanel();
-			panel_.setLayout(new MigLayout("", "[830px:n:830px,grow]", "[]"));
+		if (panelTimetable_ == null) {
+			panelTimetable_ = new JPanel();
+			panelTimetable_.setLayout(new MigLayout("", "[830px:n:830px,grow]", "[]"));
 			
 			JScrollPane scrollPane = new JScrollPane();
-			panel_.add(scrollPane, "cell 0 0,grow");
+			panelTimetable_.add(scrollPane, "cell 0 0,grow");
 			
 			lecturerTimetableTable_ = new JTable();
 			
@@ -126,17 +129,25 @@ public class TimetableTab extends JPanel {
 			reloadPlan();
 			
 		}
-		return panel_;
+		return panelTimetable_;
 	}
-	
+	/**
+	 * 
+	 * @return the comboBoxSemesterFilter_
+	 */
 	public JComboBox<String> getComboBoxSemesterFilter() {
 		return comboBoxSemesterFilter_;
 	}
-	
+	/**
+	 * 
+	 * @return the comboBoxLecturer_
+	 */
 	public JComboBox<String> getcomboBoxLecturer_() {
 		return comboBoxLecturer_;
 	}
-	
+	/**
+	 * reloads the plan
+	 */
 	public void reloadPlan(){
 		
 		IntfCtrlGenericTables genericTablesController=new CtrlGenericTables();
@@ -155,9 +166,12 @@ public class TimetableTab extends JPanel {
 		}
 		
 	}
-	
+	/**
+	 * 
+	 * @return the panelTimetable_
+	 */
 	public JPanel getPanel_() {
-		return panel_;
+		return panelTimetable_;
 	}
 	
 	

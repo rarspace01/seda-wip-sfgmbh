@@ -30,7 +30,7 @@ import de.sfgmbh.comlayer.organisation.controller.RoomtableTabBtnPdf;
 public class RoomtableTab extends JPanel {
 
 	private static final long serialVersionUID = 1L;
-	private JTable stundenplanTable;
+	private JTable timetableTable;
 	private int roomId_;
 	private JScrollPane scrollPane_;
 	private JLabel lblSemester;
@@ -56,38 +56,38 @@ public class RoomtableTab extends JPanel {
 		scrollPane_ = new JScrollPane();
 		add(scrollPane_, "cell 1 1 4 1,grow");
 		
-		stundenplanTable = new JTable();
+		timetableTable = new JTable();
 		
-		scrollPane_.setViewportView(stundenplanTable);
+		scrollPane_.setViewportView(timetableTable);
 		
 	
-		stundenplanTable.setBackground(Color.WHITE);
-		stundenplanTable.setModel(ViewManager.getInstance().getOrgaRoomtableTableModel());
+		timetableTable.setBackground(Color.WHITE);
+		timetableTable.setModel(ViewManager.getInstance().getOrgaRoomtableTableModel());
 		
 		AppModel.getInstance().getRepositoryRoomAllocation().register(ViewManager.getInstance().getOrgaRoomTableModel());
 		
 		JButton btnPdfErzeugen = new JButton("PDF erzeugen");
 		btnPdfErzeugen.addActionListener(new RoomtableTabBtnPdf("pdfCreate"));
 		add(btnPdfErzeugen, "cell 1 0,growx,aligny center");
-		stundenplanTable.getColumnModel().getColumn(0).setResizable(false);
-		stundenplanTable.getColumnModel().getColumn(0).setPreferredWidth(70);
-		stundenplanTable.getColumnModel().getColumn(0).setMinWidth(50);
-		stundenplanTable.getColumnModel().getColumn(0).setMaxWidth(105);
-		stundenplanTable.getColumnModel().getColumn(1).setResizable(true);
-		stundenplanTable.getColumnModel().getColumn(1).setPreferredWidth(50);
-		stundenplanTable.getColumnModel().getColumn(1).setMinWidth(50);
-		stundenplanTable.getColumnModel().getColumn(1).setMaxWidth(145);
-		stundenplanTable.getColumnModel().getColumn(2).setResizable(true);
-		stundenplanTable.getColumnModel().getColumn(2).setMinWidth(50);
-		stundenplanTable.getColumnModel().getColumn(2).setMaxWidth(145);
-		stundenplanTable.getColumnModel().getColumn(3).setPreferredWidth(50);
-		stundenplanTable.getColumnModel().getColumn(3).setMinWidth(50);
-		stundenplanTable.getColumnModel().getColumn(3).setMaxWidth(145);
-		stundenplanTable.getColumnModel().getColumn(4).setPreferredWidth(50);
-		stundenplanTable.getColumnModel().getColumn(4).setMinWidth(50);
-		stundenplanTable.getColumnModel().getColumn(4).setMaxWidth(145);
-		stundenplanTable.getColumnModel().getColumn(5).setMinWidth(50);
-		stundenplanTable.getColumnModel().getColumn(5).setMaxWidth(145);
+		timetableTable.getColumnModel().getColumn(0).setResizable(false);
+		timetableTable.getColumnModel().getColumn(0).setPreferredWidth(70);
+		timetableTable.getColumnModel().getColumn(0).setMinWidth(50);
+		timetableTable.getColumnModel().getColumn(0).setMaxWidth(105);
+		timetableTable.getColumnModel().getColumn(1).setResizable(true);
+		timetableTable.getColumnModel().getColumn(1).setPreferredWidth(50);
+		timetableTable.getColumnModel().getColumn(1).setMinWidth(50);
+		timetableTable.getColumnModel().getColumn(1).setMaxWidth(145);
+		timetableTable.getColumnModel().getColumn(2).setResizable(true);
+		timetableTable.getColumnModel().getColumn(2).setMinWidth(50);
+		timetableTable.getColumnModel().getColumn(2).setMaxWidth(145);
+		timetableTable.getColumnModel().getColumn(3).setPreferredWidth(50);
+		timetableTable.getColumnModel().getColumn(3).setMinWidth(50);
+		timetableTable.getColumnModel().getColumn(3).setMaxWidth(145);
+		timetableTable.getColumnModel().getColumn(4).setPreferredWidth(50);
+		timetableTable.getColumnModel().getColumn(4).setMinWidth(50);
+		timetableTable.getColumnModel().getColumn(4).setMaxWidth(145);
+		timetableTable.getColumnModel().getColumn(5).setMinWidth(50);
+		timetableTable.getColumnModel().getColumn(5).setMaxWidth(145);
 		
 		lblSemester = new JLabel("Semester:");
 		
@@ -100,20 +100,32 @@ public class RoomtableTab extends JPanel {
 		add(lblSemester, "cell 3 0,alignx left,aligny center");
 		add(comboBoxSemesterFilter, "cell 3 0,alignx right,aligny center");
 	}
-	
+	/**
+	 * 
+	 * @return the comboBoxSemesterFilter
+	 */
 	public JComboBox<String> getComboBoxSemesterFilter() {
 		return comboBoxSemesterFilter;
 	}
-
+	/**
+	 * reloads the timetable for the selected room
+	 */
 	public void reloadRoomTable(){
 		loadRoomTable(this.roomId_);
 	}
-
+	/**
+	 * 
+	 * @param roomId
+	 */
 	public void loadRoomTable(int roomId){
 		
 		loadRoomTable(roomId, this.getComboBoxSemesterFilter().getSelectedItem().toString());
 	}
-	
+	/**
+	 * loads the table depending on the roomId and semester
+	 * @param roomId
+	 * @param semester
+	 */
 	public void loadRoomTable(int roomId, String semester){
 		
 		this.roomId_=roomId;
@@ -129,15 +141,24 @@ public class RoomtableTab extends JPanel {
 		genericTablesController.reloadTable(getStundenplanTable(), roomAllocationList,false);
 		
 	}
-	
+	/**
+	 * 
+	 * @return the timetableTable
+	 */
 	public JTable getStundenplanTable() {
-		return stundenplanTable;
+		return timetableTable;
 	}
-	
+	/**
+	 * 
+	 * @return the scrollPane_
+	 */
 	public JScrollPane getScrollPane_() {
 		return scrollPane_;
 	}
-	
+	/**
+	 * 
+	 * @return the roomId_
+	 */
 	public int getRoomId_() {
 		return roomId_;
 	}
