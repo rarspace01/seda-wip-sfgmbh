@@ -56,11 +56,12 @@ public class UserCreateDialog extends JDialog {
 	
 	/**
 	 * Create the frame in a modified version with a user that shall be edited
-	 * @param userToEdit
+	 * @param userToEdits
 	 */
 	public UserCreateDialog(IntfUser userToEdit) {
 		setModal(true);
 		initialize();
+		setTitle("Benutzerinfo bearbeiten");
 		setLocationRelativeTo(null);
 		this.comboBoxLehrstuhl.setBounds(115, 150, 116, 20);
 		this.lblLehrstuhl.setBounds(12, 152, 120, 14);
@@ -196,6 +197,10 @@ public class UserCreateDialog extends JDialog {
 	public JComboBox<String> getComboBoxLehrstuhl() {
 		return comboBoxLehrstuhl;
 	}
+	/**
+	 * 
+	 * @return the lblFirstName
+	 */
 	public JLabel getLblFirstName() {
 		if (lblFirstName == null) {
 			lblFirstName = new JLabel("Vorname:");
@@ -204,6 +209,10 @@ public class UserCreateDialog extends JDialog {
 		}
 		return lblFirstName;
 	}
+	/**
+	 * 
+	 * @return he txtFirstName
+	 */
 	public JTextField getTxtFirstName() {
 		if (txtFirstName == null) {
 			txtFirstName = new JTextField();
@@ -213,6 +222,10 @@ public class UserCreateDialog extends JDialog {
 		}
 		return txtFirstName;
 	}
+	/**
+	 * 
+	 * @return the txtLastName
+	 */
 	public JTextField getTxtLastName() {
 		if (txtLastName == null) {
 			txtLastName = new JTextField();
@@ -222,6 +235,10 @@ public class UserCreateDialog extends JDialog {
 		}
 		return txtLastName;
 	}
+	/**
+	 * 
+	 * @return the lblLastName
+	 */
 	public JLabel getLblLastName() {
 		if (lblLastName == null) {
 			lblLastName = new JLabel("Nachname:");
@@ -230,6 +247,10 @@ public class UserCreateDialog extends JDialog {
 		}
 		return lblLastName;
 	}
+	/**
+	 * 
+	 * @return the chckbxUserDisabled
+	 */
 	public JCheckBox getChckbxUserDisabled() {
 		if (chckbxUserDisabled == null) {
 			chckbxUserDisabled = new JCheckBox("Benutzer deaktiviert");
