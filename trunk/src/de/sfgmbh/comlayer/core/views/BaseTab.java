@@ -117,7 +117,7 @@ public class BaseTab extends JFrame {
 
 	private void createContents() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 921, 640);
+		setBounds(100, 100, 950, 640);
 		contentPane = new JLayeredPane();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -151,7 +151,7 @@ public class BaseTab extends JFrame {
 		startScreenPanel.add(getRdbtnCourse(),
 				"cell 0 0,aligny bottom");
 		
-				startScreenPanel.add(getLblUniicon(), "cell 3 0,alignx right");
+				startScreenPanel.add(getLblUniicon(), "cell 3 0,alignx right,aligny top");
 		startScreenPanel.add(getRdbtnRooms(), "cell 0 1");
 		
 		mainTableScrollPane = new JScrollPane();
@@ -471,7 +471,7 @@ public class BaseTab extends JFrame {
 	public JButton getBtnLogin() {
 		if (btnLogin == null) {
 			btnLogin = new JButton("Einloggen");
-			btnLogin.setToolTipText("Lehrstuhl- und Verwaltungsmitarbeitern können sich hier anmelden");
+			btnLogin.setToolTipText("<html>Lehrstuhl- und Verwaltungsmitarbeitern<br> können sich hier anmelden</html>");
 			btnLogin.addActionListener(new BaseLogin());
 		}
 		return btnLogin;
@@ -561,7 +561,7 @@ public class BaseTab extends JFrame {
 			panelLogin.setBorder(new LineBorder(new Color(153, 180, 209), 2));
 			panelLogin.setBackground(SystemColor.activeCaptionBorder);
 			panelLogin.setToolTipText("<html>Dozenten und Verwaltungsmitarbeiter können sich hier <br>zu ihrem persönlichen Funktionsbereich einloggen</html>");
-			panelLogin.setBounds(0, 379, 119, 121);
+			panelLogin.setBounds(0, 356, 119, 121);
 			panelLogin.setAlignmentX(BOTTOM_ALIGNMENT);
 			panelLogin.setLayout(new MigLayout("", "[grow,center]", "[][][][][]"));
 			panelLogin.add(getLblUsername(), "cell 0 0,alignx left");
@@ -582,7 +582,7 @@ public class BaseTab extends JFrame {
 			panelLogout = new JPanel();
 			panelLogout.setBorder(new LineBorder(new Color(153, 180, 209), 2));
 			panelLogout.setBackground(SystemColor.activeCaptionBorder);
-			panelLogout.setBounds(0, 445, 119, 55);
+			panelLogout.setBounds(0, 422, 119, 55);
 			panelLogout.setLayout(new MigLayout("", "[140px:140px:140px,center]", "[][]"));
 			lblLoggedIn = new JLabel("Sie sind eingeloggt!");
 			panelLogout.add(lblLoggedIn, "cell 0 0,alignx left");

@@ -46,7 +46,7 @@ public class ProfessorshipTimetableTab extends JPanel{
 	}
 	private void createContents() {
 		setAutoscrolls(true);
-		setLayout(new MigLayout("", "[20px:20px,grow][359px][10px][112px][286px][101px][20px:20px,grow][right]", "[61px][][383px]"));
+		setLayout(new MigLayout("", "[14.00,grow][][10px][112px][][][10.00,grow][right]", "[][][383px]"));
 		
 		JLabel lblWochenplanFrDen = new JLabel("<html><h3>Wochenplan f\u00FCr den Lehrstuhl</h3></html>");
 		lblWochenplanFrDen.setFont(new Font("Arial", Font.PLAIN, 11));

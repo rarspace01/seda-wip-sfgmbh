@@ -39,7 +39,7 @@ public class RoomtableTab extends JPanel {
 	}
 	private void initialize() {
 		setAutoscrolls(true);
-		setLayout(new MigLayout("", "[20px:20px,grow][131px][50px][129px][461px][20px:20px,grow][99.00,right]", "[68px][392px]"));
+		setLayout(new MigLayout("", "[20px:20px,grow][131px][50px][129px][461px][20px:20px,grow][right]", "[68px][392px]"));
 		
 		JPanel uniIconPanel = new JPanel();
 		add(uniIconPanel, "cell 6 0,alignx right,aligny top");

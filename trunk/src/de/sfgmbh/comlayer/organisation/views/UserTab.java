@@ -84,7 +84,7 @@ public class UserTab extends JPanel {
 		comboBoxUserclass.addActionListener(new UserTabCmbboxFilter());
 		
 		uniIconPanel = new JPanel();
-		add(uniIconPanel, "cell 6 0,alignx center,growy");
+		add(uniIconPanel, "cell 6 0,alignx center,aligny top");
 		lblUniIcon = new JLabel("");
 		lblUniIcon.setIcon(new ImageIcon(BaseTab.class.getResource("/de/sfgmbh/comlayer/core/images/UniBA_logo.png")));
 		lblUniIcon.setMaximumSize(new Dimension(50,50));
