@@ -69,7 +69,7 @@ public class CtrlGenericTables implements IntfCtrlGenericTables {
 		((DefaultTableModel) table.getModel()).setRowCount(0);
 				// add data to the table
 				for(int i=1;i<=6;i++){
-					Object[] rowData= {ViewHelper.getTime(i)+" Uhr", "","", "", "", ""}; // inital data values
+					Object[] rowData= {"<html><b>"+ViewHelper.getTime(i)+" Uhr</b></html>", "","", "", "", ""}; // inital data values
 					((DefaultTableModel) table.getModel()).addRow(rowData);
 					for(int j=1; j<=5; j++){
 						((DefaultTableModel) table.getModel()).setValueAt(roomAllocationController.getLectureOnTime(roomAllocationList,j,i,showRoomName,markDuplicates), i-1, j);
