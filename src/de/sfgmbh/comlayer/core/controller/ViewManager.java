@@ -77,7 +77,7 @@ public class ViewManager {
 	 * @return a live ticker panel
 	 */
 	public LiveTickerPanel getCoreLiveTickerPanel() {
-		// Always return a new instance as one Swing component my only be registered in one Frame.
+		// Always return a new instance as one Swing component my only be registered in one single Frame.
 		// Later here needs to be a logic to sync the sliding position of all created instances.
 		this.liveTickerPanel = new LiveTickerPanel();
 		return this.liveTickerPanel;

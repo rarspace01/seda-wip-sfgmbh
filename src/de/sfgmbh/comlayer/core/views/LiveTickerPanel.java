@@ -54,7 +54,11 @@ public class LiveTickerPanel extends JPanel {
 	 * Refresh the live ticker with current values
 	 */
 	public void refresh() {
-		this.displayAllocations = this.ctrlLiverTicker.getTickerAllocations();
+		try {
+			this.displayAllocations = this.ctrlLiverTicker.getTickerAllocations();
+		} catch (Exception e) {
+			// This would be a good place for logging - but normally nothing should happen here
+		}
 		
 		// Set a fix top text message
 		String textToSet = "<strong>Logindaten:</strong><br />" +
@@ -176,6 +180,14 @@ public class LiveTickerPanel extends JPanel {
 	class ScrollTicker extends SwingWorker<Object, Object> {
 		
 		protected Object doInBackground() throws Exception {
+			// Wait a short time (3s) after the live ticker start before the scrolling starts
+			try {
+				Thread.sleep(3000);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			
+			// Start the loop
 			while (true) {
 				try {
 					Thread.sleep(110);

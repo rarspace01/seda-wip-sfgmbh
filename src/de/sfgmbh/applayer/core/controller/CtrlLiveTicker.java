@@ -19,11 +19,23 @@ import de.sfgmbh.applayer.core.model.AppModel;
  */
 public class CtrlLiveTicker implements IntfCtrlLiveTicker {
 	
+	private static long lastCheck;
+	private static List<IntfRoomAllocation> lastAllocations;
+	
 	/* (non-Javadoc)
 	 * @see de.sfgmbh.applayer.core.controller.IntfCtrlLiveTicker#getTickerAllocations()
 	 */
 	@Override
 	public List<IntfRoomAllocation> getTickerAllocations() {
+		
+		// To avoid concurrent queries check if there were a recent check and if yes get the allocations from it and skip the rest
+		long currentTime = System.currentTimeMillis() / 1000L;
+		if (CtrlLiveTicker.lastCheck < (currentTime - 110)) {
+			CtrlLiveTicker.lastCheck = currentTime;
+		} else {
+			return CtrlLiveTicker.lastAllocations;
+		}
+		
 		
 		// Determine the date
 		Date now = new Date( );
@@ -63,6 +75,8 @@ public class CtrlLiveTicker implements IntfCtrlLiveTicker {
 	    		}
 	    	}
 	    }
+	    
+	    CtrlLiveTicker.lastAllocations = returnList;
 	    
 		return returnList;
 	}

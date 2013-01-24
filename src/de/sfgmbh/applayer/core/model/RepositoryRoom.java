@@ -129,7 +129,7 @@ public class RepositoryRoom implements IntfAppObservable, IntfDataObserver {
 	public IntfRoom getByNumber(String roomNumber_) {
 		IntfRoom room;
 		HashMap<String, String> filter=new HashMap<>();
-		filter.put("roomnumber", roomNumber_);
+		filter.put("room", roomNumber_);
 		//we only need the first room
 		room=DataModel.getInstance().getDataHandlerRoom().getByFilter(filter).get(0);
 		return room;
