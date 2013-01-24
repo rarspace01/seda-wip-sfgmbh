@@ -39,7 +39,16 @@ public class CtrlRoom implements IntfCtrlRoom {
 	 */
 	@Override
 	public void delete(IntfRoom room){
-		//TODO implement
+		AppModel.getInstance().getRepositoryRoom().delete(room);
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * @see de.sfgmbh.applayer.organisation.definitions.IntfCtrlRoom#get(int)
+	 */
+	@Override
+	public IntfRoom get(int roomId) {
+		return AppModel.getInstance().getRepositoryRoom().getRoomById(roomId);
 	}
 	
 }

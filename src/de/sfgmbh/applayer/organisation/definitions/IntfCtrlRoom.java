@@ -29,5 +29,12 @@ public interface IntfCtrlRoom {
 	 * @param room
 	 */
 	public abstract void delete(IntfRoom room);
+	
+	/**
+	 * get a room by hsi id
+	 * @param int
+	 */
+	public abstract IntfRoom get(int roomId);
+	
 
 }

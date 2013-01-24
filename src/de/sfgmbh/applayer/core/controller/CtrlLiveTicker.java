@@ -65,10 +65,10 @@ public class CtrlLiveTicker implements IntfCtrlLiveTicker {
 	    // Determine which allocations to return (they have to be public, yet to start and at most ten)
 	    List<IntfRoomAllocation> returnList = new ArrayList<IntfRoomAllocation>();
 	    Integer counter = 0;
-	    for (IntfRoomAllocation ra : dayAllocations) {
-	    	if (ra.isPublic() && 
-	    			ra.getTime_() > this.transcodeHour(formatHour)) {
-	    		returnList.add(ra);
+	    for (IntfRoomAllocation roomAllocations : dayAllocations) {
+	    	if (roomAllocations.isPublic() && 
+	    			roomAllocations.getTime_() > this.transcodeHour(formatHour)) {
+	    		returnList.add(roomAllocations);
 	    		counter++;
 	    		if (counter >= 15) {
 	    			break;
