@@ -358,14 +358,15 @@ public class DataHandlerUser implements IntfDataUser, IntfDataObservable, IntfDa
 					dm.getPreparedStatement().setBoolean(9, user.isDisabled_());
 					dm.executePreparedStatement();
 					if (user.getChair_() != null) {
-						//DataManagerPostgreSql dmPrivate = new DataManagerPostgreSql();
+						DataManagerPostgreSql dmPrivate = new DataManagerPostgreSql();
 						IntfUser newUser = this.getByLogin(user.getLogin_());
-						DataManagerPostgreSql.getInstance().execute("INSERT INTO public.lecturer"
+						dmPrivate.prepare("INSERT INTO public.lecturer"
 								+ "(userid, chairid)"
-								+ "VALUES ("+newUser.getUserId_()+","
-								+ user.getChair_().getChairId_()+")");
-						returnState = true;
-					}
+								+ "VALUES (?,?)");
+						dmPrivate.getPreparedStatement().setInt(1, newUser.getUserId_());
+						dmPrivate.getPreparedStatement().setInt(2, user.getChair_().getChairId_());
+						returnState = dmPrivate.executePstmt();
+						dmPrivate.disposeNonSingleton();					}
 					this.update();
 				} catch (SQLException e) {
 					e.printStackTrace();
@@ -417,12 +418,14 @@ public class DataHandlerUser implements IntfDataUser, IntfDataObservable, IntfDa
 						
 					// Create if not...
 					} else {
-						DataManagerPostgreSql.getInstance().execute("INSERT INTO public.lecturer"
+						DataManagerPostgreSql dmPrivate = new DataManagerPostgreSql();
+						dmPrivate.prepare("INSERT INTO public.lecturer"
 								+ "(userid, chairid)"
-								+ "VALUES ("+user.getUserId_()+","
-								+ user.getChair_().getChairId_()+")");
-						returnState = true;
-					}
+								+ "VALUES (?,?)");
+						dmPrivate.getPreparedStatement().setInt(1, user.getUserId_());
+						dmPrivate.getPreparedStatement().setInt(2, user.getChair_().getChairId_());
+						returnState = dmPrivate.executePstmt();
+						dmPrivate.disposeNonSingleton();					}
 				}
 				this.update();
 			} catch (SQLException e) {
