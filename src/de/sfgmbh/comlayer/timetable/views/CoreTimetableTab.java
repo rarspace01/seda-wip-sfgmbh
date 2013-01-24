@@ -33,13 +33,13 @@ import de.sfgmbh.comlayer.timetable.controller.CoreTimetableTabBtnPdf;
 public class CoreTimetableTab extends JPanel {
 
 	private static final long serialVersionUID = 1L;
-	private JTable timetableTable;
+	private JTable timetableTable_;
 	private int roomId_;
 	private JScrollPane scrollPane_;
-	private JLabel lblSemester;
+	private JLabel lblSemester_;
 	private List<IntfRoomAllocation> roomAllocList_ = new ArrayList<IntfRoomAllocation>();
-	private JLabel lblvaluesemester;
-	private JButton btnTimetableReset;
+	private JLabel lblvaluesemester_;
+	private JButton btnTimetableReset_;
 
 	public CoreTimetableTab() {
 		initialize();
@@ -52,10 +52,10 @@ public class CoreTimetableTab extends JPanel {
 				"[20px:20px,grow][131px][50px][92.00px][461px][20px:20px,grow][right]",
 				"[68px][grow,shrink 0]"));
 
-		btnTimetableReset = new JButton("Stundenplan zurücksetzen");
-		btnTimetableReset
+		btnTimetableReset_ = new JButton("Stundenplan zurücksetzen");
+		btnTimetableReset_
 				.addActionListener(new CoreTimetableTabBtnPdf("reset"));
-		add(btnTimetableReset, "cell 4 0");
+		add(btnTimetableReset_, "cell 4 0");
 
 		JPanel uniIconPanel = new JPanel();
 		add(uniIconPanel, "cell 6 0,alignx right,aligny top");
@@ -74,12 +74,12 @@ public class CoreTimetableTab extends JPanel {
 		scrollPane_.setBorder(null);
 		add(scrollPane_, "cell 1 1 4 1,growx,aligny top");
 
-		timetableTable = new JTable();
+		timetableTable_ = new JTable();
 
-		scrollPane_.setViewportView(timetableTable);
+		scrollPane_.setViewportView(timetableTable_);
 
-		timetableTable.setBackground(Color.WHITE);
-		timetableTable.setModel(ViewManager.getInstance()
+		timetableTable_.setBackground(Color.WHITE);
+		timetableTable_.setModel(ViewManager.getInstance()
 				.getCoreTimetableTabTable());
 
 		AppModel.getInstance().getRepositoryRoomAllocation()
@@ -89,32 +89,32 @@ public class CoreTimetableTab extends JPanel {
 		btnPdfErzeugen
 				.addActionListener(new CoreTimetableTabBtnPdf("pdfCreate"));
 		add(btnPdfErzeugen, "cell 1 0,growx,aligny center");
-		timetableTable.getColumnModel().getColumn(0).setResizable(false);
-		timetableTable.getColumnModel().getColumn(0).setPreferredWidth(70);
-		timetableTable.getColumnModel().getColumn(0).setMinWidth(50);
-		timetableTable.getColumnModel().getColumn(0).setMaxWidth(105);
-		timetableTable.getColumnModel().getColumn(1).setResizable(true);
-		timetableTable.getColumnModel().getColumn(1).setPreferredWidth(50);
-		timetableTable.getColumnModel().getColumn(1).setMinWidth(50);
-		timetableTable.getColumnModel().getColumn(1).setMaxWidth(145);
-		timetableTable.getColumnModel().getColumn(2).setResizable(true);
-		timetableTable.getColumnModel().getColumn(2).setMinWidth(50);
-		timetableTable.getColumnModel().getColumn(2).setMaxWidth(145);
-		timetableTable.getColumnModel().getColumn(3).setPreferredWidth(50);
-		timetableTable.getColumnModel().getColumn(3).setMinWidth(50);
-		timetableTable.getColumnModel().getColumn(3).setMaxWidth(145);
-		timetableTable.getColumnModel().getColumn(4).setPreferredWidth(50);
-		timetableTable.getColumnModel().getColumn(4).setMinWidth(50);
-		timetableTable.getColumnModel().getColumn(4).setMaxWidth(145);
-		timetableTable.getColumnModel().getColumn(5).setMinWidth(50);
-		timetableTable.getColumnModel().getColumn(5).setMaxWidth(145);
+		timetableTable_.getColumnModel().getColumn(0).setResizable(false);
+		timetableTable_.getColumnModel().getColumn(0).setPreferredWidth(70);
+		timetableTable_.getColumnModel().getColumn(0).setMinWidth(50);
+		timetableTable_.getColumnModel().getColumn(0).setMaxWidth(105);
+		timetableTable_.getColumnModel().getColumn(1).setResizable(true);
+		timetableTable_.getColumnModel().getColumn(1).setPreferredWidth(50);
+		timetableTable_.getColumnModel().getColumn(1).setMinWidth(50);
+		timetableTable_.getColumnModel().getColumn(1).setMaxWidth(145);
+		timetableTable_.getColumnModel().getColumn(2).setResizable(true);
+		timetableTable_.getColumnModel().getColumn(2).setMinWidth(50);
+		timetableTable_.getColumnModel().getColumn(2).setMaxWidth(145);
+		timetableTable_.getColumnModel().getColumn(3).setPreferredWidth(50);
+		timetableTable_.getColumnModel().getColumn(3).setMinWidth(50);
+		timetableTable_.getColumnModel().getColumn(3).setMaxWidth(145);
+		timetableTable_.getColumnModel().getColumn(4).setPreferredWidth(50);
+		timetableTable_.getColumnModel().getColumn(4).setMinWidth(50);
+		timetableTable_.getColumnModel().getColumn(4).setMaxWidth(145);
+		timetableTable_.getColumnModel().getColumn(5).setMinWidth(50);
+		timetableTable_.getColumnModel().getColumn(5).setMaxWidth(145);
 
-		lblSemester = new JLabel("Semester:");
+		lblSemester_ = new JLabel("Semester:");
 
-		add(lblSemester, "flowx,cell 3 0,alignx left,aligny center");
+		add(lblSemester_, "flowx,cell 3 0,alignx left,aligny center");
 
-		lblvaluesemester = new JLabel("#valueSemester#");
-		add(lblvaluesemester, "cell 3 0");
+		lblvaluesemester_ = new JLabel("#valueSemester#");
+		add(lblvaluesemester_, "cell 3 0");
 
 		reloadRoomTable();
 	}
@@ -128,7 +128,7 @@ public class CoreTimetableTab extends JPanel {
 		// controller for table methods
 		IntfCtrlGenericTables genericTablesController = new CtrlGenericTables();
 		// set the Semester label
-		this.lblvaluesemester.setText(ViewManager.getInstance()
+		this.lblvaluesemester_.setText(ViewManager.getInstance()
 				.getCoreBaseTab().getComboBoxSemesterFilter().getSelectedItem()
 				.toString());
 		// get the room allocations from the temprary storage
@@ -139,7 +139,7 @@ public class CoreTimetableTab extends JPanel {
 
 		// Set the maximum size of the scroll pane (don't forget to add the
 		// table header!)
-		scrollPane_.setMaximumSize(new Dimension(32767, ((int) timetableTable
+		scrollPane_.setMaximumSize(new Dimension(32767, ((int) timetableTable_
 				.getPreferredSize().getHeight() + 26)));
 		this.updateUI();
 	}
@@ -176,7 +176,7 @@ public class CoreTimetableTab extends JPanel {
 	 * @return the timetableTable
 	 */
 	public JTable getStundenplanTable() {
-		return timetableTable;
+		return timetableTable_;
 	}
 
 	/**

@@ -29,6 +29,7 @@ public class DataHandlerRoom implements IntfDataRoom, IntfDataFilter,
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see de.sfgmbh.datalayer.core.definitions.IntfDataRoom#getAll()
 	 */
 	@Override
@@ -72,23 +73,25 @@ public class DataHandlerRoom implements IntfDataRoom, IntfDataFilter,
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see de.sfgmbh.datalayer.core.definitions.IntfDataRoom#get(int)
 	 */
 	@Override
 	public IntfRoom get(int roomId) {
-		IntfRoom returnRoom=null; 
-		
+		IntfRoom returnRoom = null;
+
 		try {
 			DataManagerPostgreSql.getInstance().prepare(
 					"SELECT * FROM public.room WHERE roomid = ?");
 			DataManagerPostgreSql.getInstance().getPreparedStatement()
 					.setInt(1, roomId);
-			ResultSet rs = DataManagerPostgreSql.getInstance().selectPreparedStatement();
-			//take the first result and save it to the room object
+			ResultSet rs = DataManagerPostgreSql.getInstance()
+					.selectPreparedStatement();
+			// take the first result and save it to the room object
 			while (rs.next()) {
-				returnRoom=this.makeRoom(rs);
+				returnRoom = this.makeRoom(rs);
 			}
-		//exception handling
+			// exception handling
 		} catch (SQLException e) {
 			e.printStackTrace();
 			DataModel
@@ -109,13 +112,16 @@ public class DataHandlerRoom implements IntfDataRoom, IntfDataFilter,
 			// close the connection when we retrieved the data
 			DataManagerPostgreSql.getInstance().dispose();
 		}
-		
+
 		return returnRoom;
 	}
 
 	/*
 	 * (non-Javadoc)
-	 * @see de.sfgmbh.datalayer.core.definitions.IntfDataRoom#delete(de.sfgmbh.applayer.core.definitions.IntfRoom)
+	 * 
+	 * @see
+	 * de.sfgmbh.datalayer.core.definitions.IntfDataRoom#delete(de.sfgmbh.applayer
+	 * .core.definitions.IntfRoom)
 	 */
 	@Override
 	public void delete(IntfRoom room) {
@@ -130,11 +136,11 @@ public class DataHandlerRoom implements IntfDataRoom, IntfDataFilter,
 		} catch (SQLException e) {
 			e.printStackTrace();
 			DataModel
-			.getInstance()
-			.getExceptionsHandler()
-			.setNewException(
-					("Es ist ein SQL-Fehler (DataHandlerRoom-06) aufgetreten:<br /><br />" + e
-							.toString()), "Datenbank-Fehler!");
+					.getInstance()
+					.getExceptionsHandler()
+					.setNewException(
+							("Es ist ein SQL-Fehler (DataHandlerRoom-06) aufgetreten:<br /><br />" + e
+									.toString()), "Datenbank-Fehler!");
 		} finally {
 			// close the connection when we retrieved the data
 			DataManagerPostgreSql.getInstance().dispose();
@@ -144,50 +150,64 @@ public class DataHandlerRoom implements IntfDataRoom, IntfDataFilter,
 
 	/*
 	 * (non-Javadoc)
-	 * @see de.sfgmbh.datalayer.core.definitions.IntfDataRoom#save(de.sfgmbh.applayer.core.definitions.IntfRoom)
+	 * 
+	 * @see
+	 * de.sfgmbh.datalayer.core.definitions.IntfDataRoom#save(de.sfgmbh.applayer
+	 * .core.definitions.IntfRoom)
 	 */
 	@Override
 	public void save(IntfRoom room) {
 		DataManagerPostgreSql dataManager = null;
 
-		/* check if room has already an valid id
-		 * incase of <0 its a new Room and we use an INSERT otherwise we use an UPDATE
+		/*
+		 * check if room has already an valid id incase of <0 its a new Room and
+		 * we use an INSERT otherwise we use an UPDATE
 		 */
 		if (room.getRoomId_() < 0) {
-			
 
 			try {
 				if (dataManager == null) {
 					dataManager = DataManagerPostgreSql.getInstance();
 					// build the prepared statement
-					dataManager.prepare("INSERT INTO public.room "
-						+ "(roomnumber, buildingid, level, seats, pcseats, beamer, visualizer, overheads, chalkboards, whiteboards) "
-						+ "VALUES (?,?,?,?,?,?,?,?,?,?);");
-					dataManager.getPreparedStatement().setString(1, room.getRoomNumber_());
-					dataManager.getPreparedStatement().setInt(2, room.getBuildingId_());
-					dataManager.getPreparedStatement().setString(3, room.getLevel_());
-					dataManager.getPreparedStatement().setInt(4, room.getSeats_());
-					dataManager.getPreparedStatement().setInt(5, room.getPcseats_());
-					dataManager.getPreparedStatement().setInt(6, room.getBeamer_());
-					dataManager.getPreparedStatement().setInt(7, room.getVisualizer_());
-					dataManager.getPreparedStatement().setInt(8, room.getOverheads_());
-					dataManager.getPreparedStatement().setInt(9, room.getChalkboards_());
-					dataManager.getPreparedStatement().setInt(10, room.getWhiteboards_());
+					dataManager
+							.prepare("INSERT INTO public.room "
+									+ "(roomnumber, buildingid, level, seats, pcseats, beamer, visualizer, overheads, chalkboards, whiteboards) "
+									+ "VALUES (?,?,?,?,?,?,?,?,?,?);");
+					dataManager.getPreparedStatement().setString(1,
+							room.getRoomNumber_());
+					dataManager.getPreparedStatement().setInt(2,
+							room.getBuildingId_());
+					dataManager.getPreparedStatement().setString(3,
+							room.getLevel_());
+					dataManager.getPreparedStatement().setInt(4,
+							room.getSeats_());
+					dataManager.getPreparedStatement().setInt(5,
+							room.getPcseats_());
+					dataManager.getPreparedStatement().setInt(6,
+							room.getBeamer_());
+					dataManager.getPreparedStatement().setInt(7,
+							room.getVisualizer_());
+					dataManager.getPreparedStatement().setInt(8,
+							room.getOverheads_());
+					dataManager.getPreparedStatement().setInt(9,
+							room.getChalkboards_());
+					dataManager.getPreparedStatement().setInt(10,
+							room.getWhiteboards_());
 					// execute the prepared statement
 					dataManager.executePreparedStatement();
-					
+
 				}
 
 			} catch (SQLException e) {
 				e.printStackTrace();
 				DataModel
-				.getInstance()
-				.getExceptionsHandler()
-				.setNewException(
-						("Es ist ein SQL-Fehler (DataHandlerRoom-07a) aufgetreten:<br /><br />" + e
-								.toString()), "Datenbank-Fehler!");
+						.getInstance()
+						.getExceptionsHandler()
+						.setNewException(
+								("Es ist ein SQL-Fehler (DataHandlerRoom-07a) aufgetreten:<br /><br />" + e
+										.toString()), "Datenbank-Fehler!");
 			} finally {
-				dataManager=null;
+				dataManager = null;
 				DataManagerPostgreSql.getInstance().dispose();
 			}
 		} else {
@@ -197,37 +217,48 @@ public class DataHandlerRoom implements IntfDataRoom, IntfDataFilter,
 				if (dataManager == null) {
 					dataManager = DataManagerPostgreSql.getInstance();
 					// build the prepared statement
-					dataManager.prepare("UPDATE public.room SET roomnumber = ?,"+
-					" buildingid = ?, level = ?, seats = ?, pcseats = ?," +
-							" beamer = ?, visualizer = ?, overheads = ?, chalkboards = ?," +
-					" whiteboards = ? WHERE roomid= ?;");
-					dataManager.getPreparedStatement().setString(1, room.getRoomNumber_());
-					dataManager.getPreparedStatement().setInt(2, room.getBuildingId_());
-					dataManager.getPreparedStatement().setString(3, room.getLevel_());
-					dataManager.getPreparedStatement().setInt(4, room.getSeats_());
-					dataManager.getPreparedStatement().setInt(5, room.getPcseats_());
-					dataManager.getPreparedStatement().setInt(6, room.getBeamer_());
-					dataManager.getPreparedStatement().setInt(7, room.getVisualizer_());
-					dataManager.getPreparedStatement().setInt(8, room.getOverheads_());
-					dataManager.getPreparedStatement().setInt(9, room.getChalkboards_());
-					dataManager.getPreparedStatement().setInt(10, room.getWhiteboards_());
-					dataManager.getPreparedStatement().setInt(11, room.getRoomId_());
+					dataManager
+							.prepare("UPDATE public.room SET roomnumber = ?,"
+									+ " buildingid = ?, level = ?, seats = ?, pcseats = ?,"
+									+ " beamer = ?, visualizer = ?, overheads = ?, chalkboards = ?,"
+									+ " whiteboards = ? WHERE roomid= ?;");
+					dataManager.getPreparedStatement().setString(1,
+							room.getRoomNumber_());
+					dataManager.getPreparedStatement().setInt(2,
+							room.getBuildingId_());
+					dataManager.getPreparedStatement().setString(3,
+							room.getLevel_());
+					dataManager.getPreparedStatement().setInt(4,
+							room.getSeats_());
+					dataManager.getPreparedStatement().setInt(5,
+							room.getPcseats_());
+					dataManager.getPreparedStatement().setInt(6,
+							room.getBeamer_());
+					dataManager.getPreparedStatement().setInt(7,
+							room.getVisualizer_());
+					dataManager.getPreparedStatement().setInt(8,
+							room.getOverheads_());
+					dataManager.getPreparedStatement().setInt(9,
+							room.getChalkboards_());
+					dataManager.getPreparedStatement().setInt(10,
+							room.getWhiteboards_());
+					dataManager.getPreparedStatement().setInt(11,
+							room.getRoomId_());
 					// execute the statement
 					dataManager.executePreparedStatement();
-					
-					
+
 				}
 
 			} catch (SQLException e) {
 				e.printStackTrace();
 				DataModel
-				.getInstance()
-				.getExceptionsHandler()
-				.setNewException(
-						("Es ist ein SQL-Fehler (DataHandlerRoom-07b) aufgetreten:<br /><br />" + e
-								.toString()), "Datenbank-Fehler!");
+						.getInstance()
+						.getExceptionsHandler()
+						.setNewException(
+								("Es ist ein SQL-Fehler (DataHandlerRoom-07b) aufgetreten:<br /><br />" + e
+										.toString()), "Datenbank-Fehler!");
 			} finally {
-				dataManager=null;
+				dataManager = null;
 				DataManagerPostgreSql.getInstance().dispose();
 			}
 		}
@@ -235,7 +266,8 @@ public class DataHandlerRoom implements IntfDataRoom, IntfDataFilter,
 	}
 
 	/**
-	 * retrieves an {@link List} of {@link Room} objects based on a given {@link HashMap} filter
+	 * retrieves an {@link List} of {@link Room} objects based on a given
+	 * {@link HashMap} filter
 	 */
 	@Override
 	public List<IntfRoom> getByFilter(HashMap<String, String> filter) {
@@ -245,7 +277,8 @@ public class DataHandlerRoom implements IntfDataRoom, IntfDataFilter,
 		try {
 			if (filterDataManager == null) {
 				filterDataManager = DataManagerPostgreSql.getInstance();
-				filterDataManager.prepare("SELECT public.room.* " + "FROM public.room "
+				filterDataManager.prepare("SELECT public.room.* "
+						+ "FROM public.room "
 						+ "WHERE public.room.roomnumber LIKE ? "
 						+ "AND public.room.seats >= ? "
 						+ "AND public.room.level LIKE ? "
@@ -257,8 +290,10 @@ public class DataHandlerRoom implements IntfDataRoom, IntfDataFilter,
 						+ "AND public.room.whiteboards >= ? ");
 
 			}
-			/* retireving the filters from the hashmap and settig the values fro the preparedstatement
-			 * we check if <alle> ist set and replace it to specifiy a according wildcard
+			/*
+			 * retireving the filters from the hashmap and settig the values fro
+			 * the preparedstatement we check if <alle> ist set and replace it
+			 * to specifiy a according wildcard
 			 */
 			if (filter.containsKey("room") && filter.get("room") != null
 					&& filter.get("room") != ""
@@ -382,15 +417,16 @@ public class DataHandlerRoom implements IntfDataRoom, IntfDataFilter,
 	/**
 	 * Forms a {@link Room} object out of a given {@link ResultSet}
 	 * 
-	 * @param resultSet - {@link ResultSet}
-	 *            
+	 * @param resultSet
+	 *            - {@link ResultSet}
+	 * 
 	 * @return a {@link Room} object
 	 */
 	public Room makeRoom(ResultSet resultSet) {
 		Room returnRoom = new Room();
 
 		try {
-			//setting the values on the temporary Room object
+			// setting the values on the temporary Room object
 			returnRoom.setRoomId_(resultSet.getInt("roomid"));
 			returnRoom.setBuildingId_(resultSet.getInt("buildingid"));
 			returnRoom.setBeamer_(resultSet.getInt("beamer"));
@@ -428,10 +464,12 @@ public class DataHandlerRoom implements IntfDataRoom, IntfDataFilter,
 	 */
 	@Override
 	public void update() {
-		// Create a private observer list to avoid ConcurrentModificationException
+		// Create a private observer list to avoid
+		// ConcurrentModificationException
 		@SuppressWarnings("unchecked")
-		ArrayList<IntfDataObserver> currentObservers = (ArrayList<IntfDataObserver>) observer_.clone();
-		//call the change() method on all Observers
+		ArrayList<IntfDataObserver> currentObservers = (ArrayList<IntfDataObserver>) observer_
+				.clone();
+		// call the change() method on all Observers
 		for (IntfDataObserver observer : currentObservers) {
 			if (observer instanceof IntfDataObserver) {
 				observer.change();
@@ -440,12 +478,14 @@ public class DataHandlerRoom implements IntfDataRoom, IntfDataFilter,
 	}
 
 	/**
-	 * registers an {@link IntfDataObserver} Observer at the {@link DataHandlerRoom}
+	 * registers an {@link IntfDataObserver} Observer at the
+	 * {@link DataHandlerRoom}
+	 * 
 	 * @param observer
 	 */
 	@Override
 	public void register(IntfDataObserver observer) {
-		//checking for implementation
+		// checking for implementation
 		if (observer instanceof IntfDataObserver) {
 			observer_.add(observer);
 		} else {
@@ -459,7 +499,9 @@ public class DataHandlerRoom implements IntfDataRoom, IntfDataFilter,
 	}
 
 	/**
-	 * unregisters an {@link IntfDataObserver} Observer at the {@link DataHandlerRoom}
+	 * unregisters an {@link IntfDataObserver} Observer at the
+	 * {@link DataHandlerRoom}
+	 * 
 	 * @param observer
 	 */
 	@Override
