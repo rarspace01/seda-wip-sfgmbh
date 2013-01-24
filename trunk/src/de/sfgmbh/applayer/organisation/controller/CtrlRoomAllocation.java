@@ -174,7 +174,7 @@ public class CtrlRoomAllocation implements IntfCtrlRoomAllocation {
 		for(int i=0;i<roomAllocations.size();i++){
 			if(roomAllocations.get(i).getDay_()==day && roomAllocations.get(i).getTime_()==time){
 				if(showRoomName){
-					textualRepresentation+=roomAllocations.get(i).getCourse_().getCourseAcronym_()+" - in - "+roomAllocations.get(i).getRoom_().getRoomNumber_()+"<br/>";
+					textualRepresentation+=roomAllocations.get(i).getCourse_().getCourseAcronym_()+" - "+roomAllocations.get(i).getRoom_().getRoomNumber_()+"<br/>";
 				}else{
 					textualRepresentation+=roomAllocations.get(i).getCourse_().getCourseAcronym_()+"<br/>";
 				}
