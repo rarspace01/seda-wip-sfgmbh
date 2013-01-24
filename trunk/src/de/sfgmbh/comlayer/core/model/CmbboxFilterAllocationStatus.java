@@ -19,7 +19,7 @@ public class CmbboxFilterAllocationStatus extends DefaultComboBoxModel<String> {
 		this.build();
 	}
 
-	public void build() {
+	private void build() {
 		String[] elements = new String[] {"<alle>", "wartend", "abgelehnt", "freigegeben", "Gegenvorschlag"};
 		
 

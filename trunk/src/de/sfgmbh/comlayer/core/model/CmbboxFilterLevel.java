@@ -39,6 +39,10 @@ public class CmbboxFilterLevel extends DefaultComboBoxModel<String> implements I
 		}
 	}
 	
+	/*
+	 * (non-Javadoc)
+	 * @see de.sfgmbh.applayer.core.definitions.IntfAppObserver#change()
+	 */
 	@Override
 	public void change() {
 		

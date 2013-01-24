@@ -40,6 +40,10 @@ public class BaseBtns implements ActionListener {
 		this.navAction_ = action;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		BaseTab baseTab = ViewManager.getInstance().getCoreBaseTab();

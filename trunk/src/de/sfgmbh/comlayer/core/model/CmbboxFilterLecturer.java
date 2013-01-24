@@ -47,6 +47,9 @@ public class CmbboxFilterLecturer extends DefaultComboBoxModel<String> implement
 		this.build();
 	}
 
+	/**
+	 * Create the model object
+	 */
 	public CmbboxFilterLecturer() {
 		this.variant = "default";
 		this.build();
@@ -80,6 +83,10 @@ public class CmbboxFilterLecturer extends DefaultComboBoxModel<String> implement
 		}
 	}
 	
+	/*
+	 * (non-Javadoc)
+	 * @see de.sfgmbh.applayer.core.definitions.IntfAppObserver#change()
+	 */
 	@Override
 	public void change() {
 		
@@ -92,6 +99,7 @@ public class CmbboxFilterLecturer extends DefaultComboBoxModel<String> implement
 	}
 
 	/**
+	 * Get an array of lecturers which corresponds to the model (same indexes as model positions)
 	 * @return the lecturerForModel
 	 */
 	public ArrayList<User> getLecturerForModel() {

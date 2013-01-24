@@ -1,10 +1,8 @@
 package de.sfgmbh.comlayer.core.controller;
 
-import de.sfgmbh.applayer.core.definitions.IntfUser;
 import de.sfgmbh.comlayer.core.model.BaseTableMain;
 import de.sfgmbh.comlayer.core.model.RoomTableMain;
 import de.sfgmbh.comlayer.core.views.BaseTab;
-import de.sfgmbh.comlayer.core.views.InfoDialog;
 import de.sfgmbh.comlayer.core.views.LiveTickerPanel;
 import de.sfgmbh.comlayer.lecturer.model.ChairTimetableTabTable;
 import de.sfgmbh.comlayer.lecturer.model.StartTabTableBottom;
@@ -23,12 +21,20 @@ import de.sfgmbh.comlayer.organisation.views.RequestTab;
 import de.sfgmbh.comlayer.organisation.views.RoomFrame;
 import de.sfgmbh.comlayer.organisation.views.RoomTab;
 import de.sfgmbh.comlayer.organisation.views.RoomtableTab;
-import de.sfgmbh.comlayer.organisation.views.UserCreateDialog;
 import de.sfgmbh.comlayer.organisation.views.UserTab;
 import de.sfgmbh.comlayer.timetable.model.CoreTimetableTabTable;
 import de.sfgmbh.comlayer.timetable.views.CoreTimetableTab;
 
-
+/**
+ * Manage instances of view objects as a lot of view objects shall be present
+ * only one time or need special treatment. This is helpful to avoid too complex
+ * dependency injection chains or a lot of singletons.
+ * 
+ * @author anna
+ * @author hannes
+ * @author denis
+ * 
+ */
 public class ViewManager {
 	
 	private static ViewManager uniqueInstance_ = new ViewManager();
@@ -36,6 +42,10 @@ public class ViewManager {
 	private ViewManager() {
 	}
 	
+	/**
+	 * Get the singleton instance of the view manager
+	 * @return the view manager
+	 */
 	public static ViewManager getInstance() {
 		if(uniqueInstance_==null){
 			uniqueInstance_=new ViewManager();
@@ -47,31 +57,35 @@ public class ViewManager {
 	* Module: Core (global area - all other modules have dependencies to this one)
 	*/
 	private BaseTab baseTab;
-	private InfoDialog infoDialog;
 	private BaseTableMain baseTableMain;
 	private RoomTableMain roomTableMain;
 	private LiveTickerPanel liveTickerPanel;
 	private CoreTimetableTab coreTimetableTab_; 
 	private CoreTimetableTabTable coreTimetableTabTable_;
 	
+	/**
+	 * @return the core base tab
+	 */
 	public BaseTab getCoreBaseTab() {
 		if (this.baseTab == null) {
 			this.baseTab = new BaseTab();
 		}
 		return this.baseTab;
 	}
-	public InfoDialog getCoreInfoDialog() {
-		if (this.infoDialog == null) {
-			this.infoDialog = new InfoDialog();
-		}
-		return this.infoDialog;
-	}
+	
+	/**
+	 * @return a live ticker panel
+	 */
 	public LiveTickerPanel getCoreLiveTickerPanel() {
 		// Always return a new instance as one Swing component my only be registered in one Frame.
 		// Later here needs to be a logic to sync the sliding position of all created instances.
 		this.liveTickerPanel = new LiveTickerPanel();
 		return this.liveTickerPanel;
 	}
+	
+	/**
+	 * @return the table model of the core base table
+	 */
 	public BaseTableMain getCoreBaseTableModel(){
 		if (this.baseTableMain == null) {
 			this.baseTableMain = new BaseTableMain();
@@ -79,6 +93,9 @@ public class ViewManager {
 		return this.baseTableMain;
 	}
 	
+	/**
+	 * @return the table model of the core room table
+	 */
 	public RoomTableMain getCoreRoomTableModel(){
 		if (this.roomTableMain == null) {
 			this.roomTableMain = new RoomTableMain();
@@ -90,6 +107,9 @@ public class ViewManager {
 	/**
 	* Module: Timetable
 	*/
+	/**
+	 * @return the timetable tab
+	 */
 	public CoreTimetableTab getCoreTimetableTab() {
 		if (this.coreTimetableTab_ == null) {
 			this.coreTimetableTab_ = new CoreTimetableTab();
@@ -97,20 +117,15 @@ public class ViewManager {
 		return this.coreTimetableTab_;
 	}
 	
+	/**
+	 * @return the table of the timetable tab
+	 */
 	public CoreTimetableTabTable getCoreTimetableTabTable() {
 		if (this.coreTimetableTabTable_ == null) {
 			this.coreTimetableTabTable_ = new CoreTimetableTabTable();
 		}
 		return this.coreTimetableTabTable_;
 	}
-//	private PublicTimetableTab publicTimetableTab;
-//	
-//	public PublicTimetableTab getPublicTimetableTab() {
-//		if (this.publicTimetableTab == null) {
-//			this.publicTimetableTab = new PublicTimetableTab();
-//		}
-//		return this.publicTimetableTab;
-//	}
 	
 	/**
 	* Module: Organization
@@ -120,8 +135,6 @@ public class ViewManager {
 	private ChairTab chairTab;
 	private RequestTab requestTab;
 	private RoomFrame roomFrame;
-	private UserCreateDialog userFrame;
-	private UserCreateDialog userEditFrame;
 	private RequestTabTable requestTabTable;
 	private UserTabTable userTabTable;
 	private RoomTabTable roomTabTable;
@@ -129,7 +142,6 @@ public class ViewManager {
 	private RoomtableTab roomtableTab;
 	private RoomtableTable roomtableTable;
 	/**
-	 * 
 	 * @return the roomtableTable
 	 */
 	public RoomtableTable getOrgaRoomtableTableModel() {
@@ -138,8 +150,8 @@ public class ViewManager {
 		}
 		return this.roomtableTable;
 	}
+	
 	/**
-	 * 
 	 * @return the roomtableTab
 	 */
 	public RoomtableTab getOrgaRoomtableTab() {
@@ -148,8 +160,8 @@ public class ViewManager {
 		}
 		return this.roomtableTab;
 	}
+	
 	/**
-	 * 
 	 * @return the chairTabTable
 	 */
 	public ChairTabTable getOrgaChairTableModel() {
@@ -158,8 +170,8 @@ public class ViewManager {
 		}
 		return this.chairTabTable;
 	}
+	
 	/**
-	 * 
 	 * @return the roomTabTable
 	 */
 	public RoomTabTable getOrgaRoomTableModel() {
@@ -168,8 +180,8 @@ public class ViewManager {
 		}
 		return this.roomTabTable;
 	}
+	
 	/**
-	 * 
 	 * @return the userTabTable
 	 */
 	public UserTabTable getOrgaUserTableModel() {
@@ -178,8 +190,8 @@ public class ViewManager {
 		}
 		return this.userTabTable;
 	}
+	
 	/**
-	 * 
 	 * @return the requestTabTable
 	 */
 	public RequestTabTable getOrgaRequestTableModel() {
@@ -188,8 +200,8 @@ public class ViewManager {
 		}
 		return this.requestTabTable;
 	}
+	
 	/**
-	 * 
 	 * @return the roomTab
 	 */
 	public RoomTab getOrgaRoomTab() {
@@ -198,8 +210,8 @@ public class ViewManager {
 		}
 		return this.roomTab;
 	}
+	
 	/**
-	 * 
 	 * @return the userTab
 	 */
 	public UserTab getOrgaUserTab() {
@@ -208,8 +220,8 @@ public class ViewManager {
 		}
 		return this.userTab;
 	}
+	
 	/**
-	 * 
 	 * @return the requestTab
 	 */
 	public RequestTab getOrgaRquestTab() {
@@ -218,8 +230,8 @@ public class ViewManager {
 		}
 		return this.requestTab;
 	}
+	
 	/**
-	 * 
 	 * @return the chairTab
 	 */
 	public ChairTab getOrgaChairTab() {
@@ -228,8 +240,8 @@ public class ViewManager {
 		}
 		return this.chairTab;
 	}
+	
 	/**
-	 * 
 	 * @return roomFrame
 	 */
 	public RoomFrame getOrgaRoomFrame() {
@@ -237,37 +249,6 @@ public class ViewManager {
 			this.roomFrame = new RoomFrame();
 		}
 		return this.roomFrame;
-	}
-	/**
-	 * 
-	 * @return the userFrame
-	 */
-	public UserCreateDialog getOrgaUserCreateDialog() {
-		if (this.userFrame == null) {
-			this.userFrame = new UserCreateDialog();
-		}
-		return this.userFrame;
-	}
-	/**
-	 * 
-	 * @param user
-	 * @return the userEditFrame for a certain user
-	 */
-	public UserCreateDialog getOrgaUserEditFrame(IntfUser user) {
-		if (this.userEditFrame == null) {
-			this.userEditFrame = new UserCreateDialog(user);
-		}
-		return this.userEditFrame;
-	}
-	/**
-	 * 
-	 * @return the userEditFrame
-	 */
-	public UserCreateDialog getOrgaUserEditFrame() {
-		if (this.userEditFrame == null) {
-			this.userEditFrame = new UserCreateDialog(null);
-		}
-		return this.userEditFrame;
 	}
 	
 	/**
@@ -281,42 +262,69 @@ public class ViewManager {
 	private ChairTimetableTabTable chairTimetableTabTable;
 	private ProfessorshipTimetableTab chairTimetableTab;
 	
+	/**
+	 * @return the lecturer start tab
+	 */
 	public StartTab getLecturerStartTab() {
 		if (this.startTab == null) {
 			this.startTab = new StartTab();
 		}
 		return this.startTab;
 	}
+	
+	/**
+	 * @return the lecturer start tab top table
+	 */
 	public StartTabTableTop getLecturerStartTabTableTop() {
 		if (this.startTabTableTop == null) {
 			this.startTabTableTop = new StartTabTableTop();
 		}
 		return this.startTabTableTop;
 	}
+	
+	/**
+	 * @return the lecturer start tab bottom table
+	 */
 	public StartTabTableBottom getLecturerStartTabTableBottom() {
 		if (this.startTabTableBottom == null) {
 			this.startTabTableBottom = new StartTabTableBottom();
 		}
 		return this.startTabTableBottom;
 	}
+	
+	/**
+	 * @return the lecturer start tab
+	 */
 	public TimetableTabTable getLecturerTimetableTabTable() {
 		if (this.timetableTabTable == null) {
 			this.timetableTabTable = new TimetableTabTable();
 		}
 		return this.timetableTabTable;
 	}
+	
+	/**
+	 * @return the lecturer timetable tab
+	 */
 	public TimetableTab getLecturerTimetableTab() {
 		if (this.timetableTab == null) {
 			this.timetableTab = new TimetableTab();
 		}
 		return this.timetableTab;
 	}
+	
+	/**
+	 * @return the lecturer chair timetable tab
+	 */
 	public ProfessorshipTimetableTab getChairTimetableTab() {
 		if (this.chairTimetableTab == null) {
 			this.chairTimetableTab = new ProfessorshipTimetableTab();
 		}
 		return this.chairTimetableTab;
 	}
+	
+	/**
+	 * @return the lecturer chair timetable table
+	 */
 	public ChairTimetableTabTable getLecturerChairimetableTabTable() {
 		if (this.chairTimetableTabTable == null) {
 			this.chairTimetableTabTable = new ChairTimetableTabTable();

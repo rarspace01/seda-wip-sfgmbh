@@ -22,13 +22,16 @@ public class RoomTableMain extends DefaultTableModel implements IntfAppObserver 
 	private static final long serialVersionUID = 1L;
 	private String[] header = {"Raum", "Gebäude", "Stock.", "Plätze", "PC-Plätze", "Beamer", "Visualizer", "Overheads", "Tafeln", "Whiteboards", "Hidden"};
 	
+	/**
+	 * Create the room table model
+	 */
 	public RoomTableMain() {
 		AppModel.getInstance().getRepositoryRoom().register(this);
 		this.setColumnIdentifiers(header);
 		this.change("init");
 	}
 
-	public void change(String variant) {
+	private void change(String variant) {
 		HashMap<String, String> filter = new HashMap<String, String>();
 		BaseTab baseTab = ViewManager.getInstance().getCoreBaseTab();
 		
@@ -80,6 +83,10 @@ public class RoomTableMain extends DefaultTableModel implements IntfAppObserver 
 		}
 	}
 	
+	/*
+	 * (non-Javadoc)
+	 * @see de.sfgmbh.applayer.core.definitions.IntfAppObserver#change()
+	 */
 	@Override
 	public void change() {
 		this.change("update");
