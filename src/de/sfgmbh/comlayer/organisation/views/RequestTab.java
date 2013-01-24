@@ -24,7 +24,7 @@ import javax.swing.table.TableRowSorter;
 import net.miginfocom.swing.MigLayout;
 import de.sfgmbh.comlayer.core.controller.ViewManager;
 import de.sfgmbh.comlayer.core.model.CmbboxFilterAllocationStatus;
-import de.sfgmbh.comlayer.core.model.CmbboxFilterChair;
+import de.sfgmbh.comlayer.core.model.CmbboxFilterChairAcronym;
 import de.sfgmbh.comlayer.core.model.CmbboxFilterLecturer;
 import de.sfgmbh.comlayer.core.model.CmbboxFilterSemester;
 import de.sfgmbh.comlayer.core.views.BaseTab;
@@ -213,7 +213,7 @@ public class RequestTab extends JPanel {
 			comboBoxChair.setMaximumSize(new Dimension(200, 50));
 			filterBottom.add(comboBoxChair, "cell 0 0,aligny center");
 			comboBoxChair.addActionListener(new RequestTabCmbboxFilter());
-			comboBoxChair.setModel(new CmbboxFilterChair(comboBoxChair));
+			comboBoxChair.setModel(new CmbboxFilterChairAcronym(comboBoxChair));
 			comboBoxChair.setEditable(true);
 			comboBoxChair.setAutoscrolls(true);
 			

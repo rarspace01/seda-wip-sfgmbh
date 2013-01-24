@@ -18,7 +18,7 @@ import javax.swing.table.TableRowSorter;
 
 import net.miginfocom.swing.MigLayout;
 import de.sfgmbh.comlayer.core.controller.ViewManager;
-import de.sfgmbh.comlayer.core.model.CmbboxFilterChair;
+import de.sfgmbh.comlayer.core.model.CmbboxFilterChairAcronym;
 import de.sfgmbh.comlayer.core.model.CmbboxFilterUserClass;
 import de.sfgmbh.comlayer.core.views.BaseTab;
 import de.sfgmbh.comlayer.organisation.controller.UserTabBtnsControl;
@@ -95,7 +95,7 @@ public class UserTab extends JPanel {
 		add(comboBoxUserclass, "cell 2 1,growx");
 		
 		comboBoxChair = new JComboBox<String>();
-		comboBoxChair.setModel(new CmbboxFilterChair(comboBoxChair));
+		comboBoxChair.setModel(new CmbboxFilterChairAcronym(comboBoxChair));
 		comboBoxChair.addActionListener(new UserTabCmbboxFilter());
 		comboBoxChair.setEditable(true);
 		comboBoxChair.setAutoscrolls(true);
