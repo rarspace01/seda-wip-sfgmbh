@@ -33,6 +33,6 @@ public interface IntfCtrlGenericTables {
 	 * @param showRoomName - enables the Room output
 	 */
 	public abstract void reloadTable(JTable stundenplanTable,
-			List<IntfRoomAllocation> roomAllocationList, boolean showRoomName);
+			List<IntfRoomAllocation> roomAllocationList, boolean showRoomName, boolean markDuplicates);
 
 }

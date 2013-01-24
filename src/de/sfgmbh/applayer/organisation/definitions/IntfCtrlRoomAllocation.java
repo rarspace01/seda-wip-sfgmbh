@@ -62,6 +62,6 @@ public interface IntfCtrlRoomAllocation {
 	 * @author denis
 	 * @param showRoomName  - shows the roomname on output
 	 */
-	public String getLectureOnTime(List<IntfRoomAllocation> roomAllocations,int day, int time, boolean showRoomName);
+	public String getLectureOnTime(List<IntfRoomAllocation> roomAllocations,int day, int time, boolean showRoomName, boolean markDuplicates);
 
 }
