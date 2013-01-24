@@ -134,7 +134,7 @@ public class RoomtableTab extends JPanel {
 		HashMap<String,String> tableFilter = new HashMap<String,String> ();
 		// only show verified classes
 		tableFilter.put("status", "accepted");
-		tableFilter.put("courseenabled", "t");
+		tableFilter.put("courseenabled", "true");
 		// setting roomid&semester
 		tableFilter.put("roomid", ""+this.roomId_);
 		tableFilter.put("semester", semester);

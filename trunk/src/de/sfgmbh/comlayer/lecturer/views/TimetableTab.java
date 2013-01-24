@@ -165,7 +165,7 @@ public class TimetableTab extends JPanel {
 			HashMap<String,String> tableFilter = new HashMap<String,String> ();
 			//only show verified classes
 			tableFilter.put("status", "accepted");
-			tableFilter.put("courseenabled", "t");
+			tableFilter.put("courseenabled", "true");
 			//setting filter for semester and login
 			tableFilter.put("semester", this.getComboBoxSemesterFilter().getSelectedItem().toString());
 			tableFilter.put("login", this.comboBoxLecturerModel_.getLecturerForModel().get(this.getcomboBoxLecturer_().getSelectedIndex()).getLogin_());
