@@ -400,12 +400,34 @@ public class DataHandlerUser implements IntfDataUser, IntfDataObservable, IntfDa
 				dm.getPreparedStatement().setInt(10, user.getUserId_());
 				returnState = dm.executePstmt();
 				if (user.getChair_() != null) {
-					dm.prepare("UPDATE public.lecturer SET "
-							+ "chairid = ? "
-							+ "WHERE userid = ?");
-					dm.getPreparedStatement().setInt(1, user.getChair_().getChairId_());
-					dm.getPreparedStatement().setInt(2, user.getUserId_());
-					returnState = dm.executePstmt();
+					
+					// Frist check if the user already exists in the lecturer table
+					dm.prepare("SELECT public.lecturer.* " +
+								"FROM public.lecturer " +
+								"WHERE public.lecturer.userid = ? ");
+					dm.getPreparedStatement().setInt(1, user.getUserId_());
+					ResultSet resultSet = dm.selectPstmt();
+					
+					// Update if there is already an entry...
+					if (resultSet.next()) {
+						dm.prepare("UPDATE public.lecturer SET "
+								+ "chairid = ? "
+								+ "WHERE userid = ?");
+						dm.getPreparedStatement().setInt(1, user.getChair_().getChairId_());
+						dm.getPreparedStatement().setInt(2, user.getUserId_());
+						returnState = dm.executePstmt();
+						
+					// Create if not...
+					} else {
+						DataManagerPostgreSql dmPrivate = new DataManagerPostgreSql();
+						dmPrivate.prepare("INSERT INTO public.lecturer"
+								+ "(userid, chairid)"
+								+ "VALUES (?,?)");
+						dmPrivate.getPreparedStatement().setInt(1, user.getUserId_());
+						dmPrivate.getPreparedStatement().setInt(2, user.getChair_().getChairId_());
+						returnState = dmPrivate.executePstmt();
+						dmPrivate.disposeNonSingleton();
+					}
 				}
 				this.update();
 			} catch (SQLException e) {
