@@ -13,16 +13,16 @@ import de.sfgmbh.comlayer.core.controller.ViewManager;
 public class ChairTimetableTabTable extends DefaultTableModel implements IntfAppObserver{
 
 	private static final long serialVersionUID = 1L;
-			private Object[][] preFill = {
+			private Object[][] preFill_ = {
 				};
-			private String[] preFillHeader = {"Uhrzeit", "Montag", "Dienstag", "Mittwoch", "Donnerstag", "Freitag"};
+			private String[] preFillHeader_ = {"Uhrzeit", "Montag", "Dienstag", "Mittwoch", "Donnerstag", "Freitag"};
 	
 	
 	/**
 	 * Create the model
 	 */
 	public ChairTimetableTabTable() {
-		this.setDataVector(preFill, preFillHeader);
+		this.setDataVector(preFill_, preFillHeader_);
 	}
 	
 	/**

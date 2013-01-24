@@ -25,14 +25,14 @@ import de.sfgmbh.comlayer.core.controller.ViewManager;
 public class StartTabTableBottom extends DefaultTableModel implements IntfAppObserver {
 
 	private static final long serialVersionUID = 1L;
-	private String[] header = {"Bezeichnung", "Dozent", "Zeit", "Tag", "Semester", "Raum", "Status", "Hidden"};
+	private String[] header_ = {"Bezeichnung", "Dozent", "Zeit", "Tag", "Semester", "Raum", "Status", "Hidden"};
 	
 	/**
 	 * Creates a default model object and performs a default (initial) change action
 	 */
 	public StartTabTableBottom() {
 		AppModel.getInstance().getRepositoryRoomAllocation().register(this);
-		this.setColumnIdentifiers(header);
+		this.setColumnIdentifiers(header_);
 		this.change("init");
 	}
 	

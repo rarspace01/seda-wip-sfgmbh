@@ -10,24 +10,16 @@ import javax.swing.table.DefaultTableModel;
 public class ProfessorshipTimetableTabTable extends DefaultTableModel {
 
 	private static final long serialVersionUID = 1L;
-			private Object[][] preFill = {
-					{"08:00-10:00 Uhr", "","", "SEDA-WIP-B in WP3/01.004", "", "SEDA-DMS-B in WP3/01.004"},
-					{"10:00-12:00 Uhr", "", "SEDA-WIP-B in WP3/01.004", "", "", "ISDL-ISS1-M in WP3/01.004"},
-					{"12:00-14:00 Uhr", "", "", "ISDL-ISS1-M �bung in WP3/01.004", "",""},
-					{"14:00-16:00 Uhr", "SEDA-EbIS-1 in WP3/04.004", "","", "", ""},
-					{"16:00-18:00 Uhr", "","", "", "", ""},
-					{"18:00-20:00 Uhr", "", "", "", "SEDA-EbIS-1Übung in WP3/01.004", ""},
-					
-					{null, null, null, null, null, null, null, null, null},
+			private Object[][] preFill_ = {
 				};
-			private String[] preFillHeader = {"Uhrzeit", "Montag", "Dienstag", "Mittwoch", "Donnerstag", "Freitag"};
+			private String[] preFillHeader_ = {"Uhrzeit", "Montag", "Dienstag", "Mittwoch", "Donnerstag", "Freitag"};
 	
 	
 	/**
 	 * Create the model
 	 */
 	public ProfessorshipTimetableTabTable() {
-		this.setDataVector(preFill, preFillHeader);
+		this.setDataVector(preFill_, preFillHeader_);
 	}
 	
 	/**

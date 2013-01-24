@@ -46,20 +46,20 @@ public class TimetableTabBtn implements ActionListener {
 			String sFilename = "";
 			String lecturerTitle = "";
 			String semester = "";
-			JFileChooser fc = new JFileChooser();
+			JFileChooser fileChooser = new JFileChooser();
 
 			// setting *.pdf filter for save dialog
 			FileFilters filter = new FileFilters();
 			filter.addExtension("pdf");
 			filter.setDescription("PDF - Portable Document Format");
-			fc.setFileFilter(filter);
+			fileChooser.setFileFilter(filter);
 
-			fc.setSelectedFile(new File(sFilename));
-			if (fc.showSaveDialog(fc) == JFileChooser.APPROVE_OPTION) {
+			fileChooser.setSelectedFile(new File(sFilename));
+			if (fileChooser.showSaveDialog(fileChooser) == JFileChooser.APPROVE_OPTION) {
 				// if the user hasn't typed .pdf, we'll do it for him
-				if (!fc.getSelectedFile().getPath().toLowerCase()
+				if (!fileChooser.getSelectedFile().getPath().toLowerCase()
 						.endsWith(".pdf")) {
-					fc.setSelectedFile(new File(fc.getSelectedFile() + ".pdf"));
+					fileChooser.setSelectedFile(new File(fileChooser.getSelectedFile() + ".pdf"));
 				}
 				lecturerTitle = ViewManager.getInstance()
 						.getLecturerTimetableTab().getcomboBoxLecturer_()
@@ -68,7 +68,7 @@ public class TimetableTabBtn implements ActionListener {
 						.getComboBoxSemesterFilter().getSelectedItem()
 						.toString();
 				
-				pdfController=new CtrlPdf(fc.getSelectedFile()
+				pdfController=new CtrlPdf(fileChooser.getSelectedFile()
 						.getAbsolutePath());
 				// adding the content
 				pdfController.addContent(lecturerTitle + " - " + semester, ViewManager

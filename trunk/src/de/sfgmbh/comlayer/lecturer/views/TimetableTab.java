@@ -27,7 +27,7 @@ import de.sfgmbh.comlayer.lecturer.controller.TimetableTabBtn;
 import de.sfgmbh.comlayer.lecturer.controller.TimetableTabCmbbox;
 
 /**
- * Timetable tab
+ * Timetable tab for the lecturer
  * 
  * @author denis
  *

@@ -20,18 +20,18 @@ import de.sfgmbh.comlayer.lecturer.views.RoomRequestDialog;
  */
 public class RoomRequestDialogBtns implements ActionListener {
 	
-	private String ctrlAction;
-	private RoomRequestDialog motherDialog;
-	private IntfCtrlStartTab ctrlStartTab;
+	private String ctrlAction_;
+	private RoomRequestDialog motherDialog_;
+	private IntfCtrlStartTab ctrlStartTab_;
 	
 	/**
 	 * Create the action listener
 	 * @param motherDialog
 	 */
 	public RoomRequestDialogBtns(RoomRequestDialog motherDialog) {
-		this.ctrlAction = "default";
-		this.ctrlStartTab = new CtrlStartTab();
-		this.motherDialog = motherDialog;
+		this.ctrlAction_ = "default";
+		this.ctrlStartTab_ = new CtrlStartTab();
+		this.motherDialog_ = motherDialog;
 	}
 	
 	/**
@@ -42,9 +42,9 @@ public class RoomRequestDialogBtns implements ActionListener {
 	 * @param action
 	 */
 	public RoomRequestDialogBtns(RoomRequestDialog motherDialog, String action) {
-		this.ctrlAction = action;
-		this.ctrlStartTab = new CtrlStartTab();
-		this.motherDialog = motherDialog;
+		this.ctrlAction_ = action;
+		this.ctrlStartTab_ = new CtrlStartTab();
+		this.motherDialog_ = motherDialog;
 	}
 	
 	/*
@@ -56,35 +56,35 @@ public class RoomRequestDialogBtns implements ActionListener {
 		AppException exceptionHandler = AppModel.getInstance().getExceptionHandler();
 		
 		// Cancle button is pressed
-		if (this.ctrlAction.equals("cancel")){
-			this.motherDialog.dispose();
+		if (this.ctrlAction_.equals("cancel")){
+			this.motherDialog_.dispose();
 		}
 		
 		// Sent button is pressed
-		if (this.ctrlAction.equals("send")){
-			IntfRoomAllocation currentAllocation = motherDialog.getProposalAllocation();
+		if (this.ctrlAction_.equals("send")){
+			IntfRoomAllocation currentAllocation = motherDialog_.getProposalAllocation();
 			
-			if (ctrlStartTab.createRoomAllocation(currentAllocation)) {
+			if (ctrlStartTab_.createRoomAllocation(currentAllocation)) {
 				exceptionHandler.setNewException("Ihre Raumanfrage wurde erfolgreich eingetragen.<br />" +
 						"In der unteren Tabelle können Sie ihren Freigabestatus sehen. Sobald sie durch die Verwaltung " +
 						"freigegeben wrude und Sie die dazugehörige Veranstaltung veröffentlicht haben, ist sie für Studenten " +
 						"sichtbar.", "Erfolg!", "success");
-				motherDialog.dispose();
+				motherDialog_.dispose();
 			} 
 		}
 		
 		// New suggestion button is pressed
-		if (this.ctrlAction.equals("newSuggestion")){
+		if (this.ctrlAction_.equals("newSuggestion")){
 			HashMap<String,String> filter = new HashMap<String,String>();
 			int seats, pcSeats, beamer, overheads, whiteboards, vizualizer, chalkboards;
 			try {
-				seats = Integer.parseInt(motherDialog.getTxtSeats().getText());
-				pcSeats = Integer.parseInt(motherDialog.getTxtPcs().getText());
-				beamer = Integer.parseInt(motherDialog.getTxtBeamer().getText());
-				overheads = Integer.parseInt(motherDialog.getTxtOverhead().getText());
-				whiteboards = Integer.parseInt(motherDialog.getTxtWhiteboard().getText());
-				vizualizer = Integer.parseInt(motherDialog.getTxtVisual().getText());
-				chalkboards = Integer.parseInt(motherDialog.getTxtBoard().getText());
+				seats = Integer.parseInt(motherDialog_.getTxtSeats().getText());
+				pcSeats = Integer.parseInt(motherDialog_.getTxtPcs().getText());
+				beamer = Integer.parseInt(motherDialog_.getTxtBeamer().getText());
+				overheads = Integer.parseInt(motherDialog_.getTxtOverhead().getText());
+				whiteboards = Integer.parseInt(motherDialog_.getTxtWhiteboard().getText());
+				vizualizer = Integer.parseInt(motherDialog_.getTxtVisual().getText());
+				chalkboards = Integer.parseInt(motherDialog_.getTxtBoard().getText());
 			} catch (Exception ex) {
 				exceptionHandler.setNewException("Bitte stellen Sie sicher, dass Sie alle Felder für einen Vorschlag mit einer gültigen Zahl gefüllt haben. Sollte Ihnen ein Wert egal sein, so lassen Sie ihn bitte einfach auf 0 stehen.", "Fehler!", "error");
 				return;
@@ -96,20 +96,20 @@ public class RoomRequestDialogBtns implements ActionListener {
 			filter.put("whiteboards", String.valueOf(whiteboards));
 			filter.put("visualizer", String.valueOf(vizualizer));
 			filter.put("chalkboards", String.valueOf(chalkboards));
-			motherDialog.setSuggestRoomAllocation(motherDialog.getProposalAllocation(), filter);
+			motherDialog_.setSuggestRoomAllocation(motherDialog_.getProposalAllocation(), filter);
 		}
 		
 		// Combobox action
-		if (this.ctrlAction.equals("combo")) {
-			IntfRoomAllocation currentRoomAllocation = motherDialog.getProposalAllocation();
-			IntfRoom room = AppModel.getInstance().getRepositoryRoom().getByNumber(motherDialog.getCmbboxRoom().getSelectedItem().toString());
-			int time = motherDialog.getCmbboxTime().getSelectedIndex() + 1;
-			int day  = motherDialog.getCmbboxDay().getSelectedIndex() + 1;
-			String semester = motherDialog.getCmbboxSemester().getSelectedItem().toString();
+		if (this.ctrlAction_.equals("combo")) {
+			IntfRoomAllocation currentRoomAllocation = motherDialog_.getProposalAllocation();
+			IntfRoom room = AppModel.getInstance().getRepositoryRoom().getByNumber(motherDialog_.getCmbboxRoom().getSelectedItem().toString());
+			int time = motherDialog_.getCmbboxTime().getSelectedIndex() + 1;
+			int day  = motherDialog_.getCmbboxDay().getSelectedIndex() + 1;
+			String semester = motherDialog_.getCmbboxSemester().getSelectedItem().toString();
 			
 			if (room == null) {
 				exceptionHandler.setNewException("Dies ist kein gültiger Raum, bitte tragen Sie einen gültigen Raumnamen ein und versuchen Sie es erneut!", "Fehler!", "error");
-				motherDialog.getCmbboxRoom().setSelectedItem(currentRoomAllocation.getRoom_().getRoomNumber_());
+				motherDialog_.getCmbboxRoom().setSelectedItem(currentRoomAllocation.getRoom_().getRoomNumber_());
 				return;
 			} else {
 				IntfRoomAllocation newRoomAllocation = currentRoomAllocation;
@@ -117,7 +117,7 @@ public class RoomRequestDialogBtns implements ActionListener {
 				newRoomAllocation.setTime_(time);
 				newRoomAllocation.setDay_(day);
 				newRoomAllocation.setSemester_(semester);
-				motherDialog.setRoomAllocation(newRoomAllocation);
+				motherDialog_.setRoomAllocation(newRoomAllocation);
 			}
 		}
 	}
