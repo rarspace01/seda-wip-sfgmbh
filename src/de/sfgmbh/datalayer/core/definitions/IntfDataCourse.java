@@ -6,7 +6,13 @@ import java.util.List;
 
 import de.sfgmbh.applayer.core.definitions.IntfCourse;
 import de.sfgmbh.applayer.core.model.Course;
-
+/**
+ * This is the interface for the {@link DataCourse}
+ * 
+ * @author denis
+ * @author hannes
+ *
+ */
 public interface IntfDataCourse {
 
 	/**

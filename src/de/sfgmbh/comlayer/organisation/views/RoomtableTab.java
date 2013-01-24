@@ -24,7 +24,11 @@ import de.sfgmbh.comlayer.core.model.CmbboxFilterSemester;
 import de.sfgmbh.comlayer.core.views.BaseTab;
 import de.sfgmbh.comlayer.organisation.controller.RoomtableCmbboxFilter;
 import de.sfgmbh.comlayer.organisation.controller.RoomtableTabBtnPdf;
-
+/**
+ * 
+ * @author denis
+ *
+ */
 public class RoomtableTab extends JPanel {
 
 	private static final long serialVersionUID = 1L;

@@ -4,14 +4,18 @@ import java.util.ArrayList;
 
 import de.sfgmbh.datalayer.core.definitions.IntfDataObservable;
 import de.sfgmbh.datalayer.core.definitions.IntfDataObserver;
-
+/**
+ * Exception handler for Data Layer
+ * @author hannes
+ *
+ */
 public class DataExceptions implements IntfDataObservable {
 	
 	private ArrayList<Object> observer_ = new ArrayList<Object>();
 	private String exceptionMsg_;
 	private String exceptionTitle_;
 	private String exceptionVariante_;
-	private boolean new_;
+	private boolean isNew_;
 	
 	/**
 	 * @return the exceptionMsg_
@@ -39,13 +43,13 @@ public class DataExceptions implements IntfDataObservable {
 	 * @param msg
 	 */
 	public void setNewException(String msg) {
-		if (this.new_ == true) {
+		if (this.isNew_ == true) {
 			this.exceptionTitle_ = null;
 			this.exceptionVariante_ = null;
 		}
 		this.exceptionMsg_ = msg;
 		this.update();
-		this.new_ = true;
+		this.isNew_ = true;
 	}
 	
 	/**
@@ -54,11 +58,11 @@ public class DataExceptions implements IntfDataObservable {
 	 * @param title
 	 */
 	public void setNewException(String msg, String title) {
-		if (this.new_ == true) {
+		if (this.isNew_ == true) {
 			this.exceptionVariante_ = null;
 		}
 		this.exceptionTitle_ = title;
-		this.new_ = false;
+		this.isNew_ = false;
 		this.setNewException(msg);
 	}
 	
@@ -71,7 +75,7 @@ public class DataExceptions implements IntfDataObservable {
 	public void setNewException(String msg, String title, String variant) {
 		this.exceptionMsg_ = null;
 		this.exceptionTitle_ = null;
-		this.new_ = false;
+		this.isNew_ = false;
 		this.exceptionVariante_ = variant;
 		this.setNewException(msg, title);
 	}

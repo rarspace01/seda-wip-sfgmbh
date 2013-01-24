@@ -7,6 +7,11 @@ import java.awt.event.KeyListener;
 
 import de.sfgmbh.comlayer.core.controller.ViewManager;
 
+/**
+ * 
+ * @author hannes
+ *
+ */
 public class RequestTabCmbboxFilter implements KeyListener, ActionListener {
 
 	@Override

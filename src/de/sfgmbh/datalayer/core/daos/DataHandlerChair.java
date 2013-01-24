@@ -14,7 +14,11 @@ import de.sfgmbh.datalayer.core.definitions.IntfDataObservable;
 import de.sfgmbh.datalayer.core.definitions.IntfDataObserver;
 import de.sfgmbh.datalayer.core.model.DataModel;
 import de.sfgmbh.datalayer.io.DataManagerPostgreSql;
-
+/**
+ * 
+ * @author denis
+ *
+ */
 public class DataHandlerChair implements IntfDataChair, IntfDataFilter,
 		IntfDataObservable {
 

@@ -10,7 +10,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import de.sfgmbh.datalayer.io.DataManagerPostgreSql;
-
+/**
+ * Resets the database
+ * @author denis
+ *
+ */
 /**
  * class for reseting the database based on the included sql file
  * @author denis

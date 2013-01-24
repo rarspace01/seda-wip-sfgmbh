@@ -5,7 +5,11 @@ import java.util.List;
 
 import de.sfgmbh.applayer.core.definitions.IntfChair;
 import de.sfgmbh.applayer.core.model.Chair;
-
+/**
+ * This is the interface for the {@link DataChair}
+ * @author denis
+ *
+ */	
 public interface IntfDataChair {
 
 	/**

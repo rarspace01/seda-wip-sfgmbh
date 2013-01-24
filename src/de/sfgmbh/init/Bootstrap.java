@@ -14,7 +14,12 @@ import de.sfgmbh.datalayer.core.model.DataModel;
 import de.sfgmbh.datalayer.io.DataManagerPostgreSql;
 
 
-
+/**
+ * Runs the program
+ * @author hannes
+ * @author denis
+ *
+ */
 public class Bootstrap {
 
 	/**

@@ -10,7 +10,11 @@ import de.sfgmbh.datalayer.core.daos.DataHandlerRoom;
 import de.sfgmbh.datalayer.core.daos.DataHandlerRoomAllocation;
 import de.sfgmbh.datalayer.core.daos.DataHandlerUser;
 import de.sfgmbh.datalayer.core.definitions.IntfDataCourse;
-
+/**
+ * 
+ * @author hannes
+ *
+ */
 public class DataModel implements IntfAppObservable {
 
 	private static DataModel uniqueInstance_; 

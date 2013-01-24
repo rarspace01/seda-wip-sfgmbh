@@ -1,7 +1,11 @@
 package de.sfgmbh.applayer.core.definitions;
 
 import javax.swing.JComponent;
-
+/**
+ * 
+ * @author denis
+ *
+ */
 public interface IntfCtrlPdf {
 
 	/**
