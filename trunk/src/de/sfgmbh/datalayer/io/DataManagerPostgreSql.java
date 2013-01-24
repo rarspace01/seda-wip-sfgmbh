@@ -25,7 +25,7 @@ public class DataManagerPostgreSql {
 	 * Create the data manager object
 	 * (Non singleton instances of this object have to be allowed for some special cases. Remember to dispose connections from those with disposeNonSingleton().)
 	 */
-	public DataManagerPostgreSql() {
+	private DataManagerPostgreSql() {
 		DataManagerConfig dbconfig=new DataManagerConfig();
 		try {
 			Class.forName("org.postgresql.Driver");
@@ -202,7 +202,7 @@ public class DataManagerPostgreSql {
 	 * @return a result set
 	 * @throws SQLException
 	 */
-	public ResultSet selectPstmt()  throws SQLException {
+	public ResultSet selectPreparedStatement()  throws SQLException {
 		
 		ResultSet rs = null;
 		
@@ -224,7 +224,7 @@ public class DataManagerPostgreSql {
 	 * @return true on success
 	 * @throws SQLException
 	 */
-	public boolean executePstmt()  throws SQLException {
+	public boolean executePreparedStatement()  throws SQLException {
 		
 		try {
 
