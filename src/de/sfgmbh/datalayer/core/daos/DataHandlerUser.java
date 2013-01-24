@@ -365,7 +365,7 @@ public class DataHandlerUser implements IntfDataUser, IntfDataObservable, IntfDa
 								+ "VALUES (?,?)");
 						dmPrivate.getPreparedStatement().setInt(1, newUser.getUserId_());
 						dmPrivate.getPreparedStatement().setInt(2, user.getChair_().getChairId_());
-						returnState = dmPrivate.executePstmt();
+						returnState = dmPrivate.executePreparedStatement();
 						dmPrivate.disposeNonSingleton();					}
 					this.update();
 				} catch (SQLException e) {
@@ -424,7 +424,7 @@ public class DataHandlerUser implements IntfDataUser, IntfDataObservable, IntfDa
 								+ "VALUES (?,?)");
 						dmPrivate.getPreparedStatement().setInt(1, user.getUserId_());
 						dmPrivate.getPreparedStatement().setInt(2, user.getChair_().getChairId_());
-						returnState = dmPrivate.executePstmt();
+						returnState = dmPrivate.executePreparedStatement();
 						dmPrivate.disposeNonSingleton();					}
 				}
 				this.update();
