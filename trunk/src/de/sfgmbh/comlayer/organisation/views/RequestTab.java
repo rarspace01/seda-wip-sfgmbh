@@ -41,26 +41,26 @@ import de.sfgmbh.comlayer.organisation.controller.RequestTabCmbboxFilter;
 public class RequestTab extends JPanel {
 
 	private static final long serialVersionUID = 1L;
-	private JTable roomAllocationTable;
-	private JLabel lblLecturer;
-	private JLabel lblProfessorship;
-	private JLabel lblStatus;
-	private JLabel lblPCSeats;
-	private JComboBox<String> comboBoxLecturer;
-	private JComboBox<String> comboBoxChair;
-	private JScrollPane organisationTableScrollPane;
-	private JPanel buttonPanel;
-	private JButton btnFreigeben;
-	private JComboBox<String> comboBoxStatus;
-	private JComboBox<String> comboBoxSemester;
-	private JPanel uniIconPanel;
-	private JLabel lblUniIcon;
-	private JPanel filterTop;
-	private JPanel filterBottom;
-	private JLabel lblRoom;
-	private JTextField txtRoom;
-	private TableRowSorter<TableModel> rowSorter;
-	private JButton btnClean;
+	private JTable roomAllocationTable_;
+	private JLabel lblLecturer_;
+	private JLabel lblProfessorship_;
+	private JLabel lblStatus_;
+	private JLabel lblPCSeats_;
+	private JComboBox<String> comboBoxLecturer_;
+	private JComboBox<String> comboBoxChair_;
+	private JScrollPane organisationTableScrollPane_;
+	private JPanel buttonPanel_;
+	private JButton btnFreigeben_;
+	private JComboBox<String> comboBoxStatus_;
+	private JComboBox<String> comboBoxSemester_;
+	private JPanel uniIconPanel_;
+	private JLabel lblUniIcon_;
+	private JPanel filterTop_;
+	private JPanel filterBottom_;
+	private JLabel lblRoom_;
+	private JTextField txtRoom_;
+	private TableRowSorter<TableModel> rowSorter_;
+	private JButton btnClean_;
 
 	/**
 	 * Create the frame.
@@ -79,75 +79,75 @@ public class RequestTab extends JPanel {
 		lblRaumverwaltung.setFont(new Font("SansSerif", Font.BOLD, 13));
 		add(lblRaumverwaltung, "cell 0 0,alignx center,aligny bottom");
 		
-		lblLecturer = new JLabel("Dozent:");
-		add(lblLecturer, "cell 2 0,aligny bottom");
+		lblLecturer_ = new JLabel("Dozent:");
+		add(lblLecturer_, "cell 2 0,aligny bottom");
 		
-		comboBoxLecturer = new JComboBox<String>();
-		comboBoxLecturer.addActionListener(new RequestTabCmbboxFilter());
+		comboBoxLecturer_ = new JComboBox<String>();
+		comboBoxLecturer_.addActionListener(new RequestTabCmbboxFilter());
 		
-		lblPCSeats = new JLabel("Semester:");
-		add(lblPCSeats, "cell 4 0,aligny bottom");
+		lblPCSeats_ = new JLabel("Semester:");
+		add(lblPCSeats_, "cell 4 0,aligny bottom");
 		add(getLblRoom(), "cell 5 0,aligny bottom");
 		
-		uniIconPanel = new JPanel();
-		add(uniIconPanel, "cell 6 0,alignx right,aligny top");	
-		lblUniIcon = new JLabel();
-		lblUniIcon.setIcon(new ImageIcon(BaseTab.class.getResource("/de/sfgmbh/comlayer/core/images/UniBA_logo.png")));
-		lblUniIcon.setMaximumSize(new Dimension(50,50));
-		uniIconPanel.add(lblUniIcon);
+		uniIconPanel_ = new JPanel();
+		add(uniIconPanel_, "cell 6 0,alignx right,aligny top");	
+		lblUniIcon_ = new JLabel();
+		lblUniIcon_.setIcon(new ImageIcon(BaseTab.class.getResource("/de/sfgmbh/comlayer/core/images/UniBA_logo.png")));
+		lblUniIcon_.setMaximumSize(new Dimension(50,50));
+		uniIconPanel_.add(lblUniIcon_);
 		
-		comboBoxLecturer.setModel(new CmbboxFilterLecturer(comboBoxLecturer));
-		comboBoxLecturer.setEditable(true);
-		comboBoxLecturer.setAutoscrolls(true);
-		add(comboBoxLecturer, "cell 2 1,growx,aligny center");
+		comboBoxLecturer_.setModel(new CmbboxFilterLecturer(comboBoxLecturer_));
+		comboBoxLecturer_.setEditable(true);
+		comboBoxLecturer_.setAutoscrolls(true);
+		add(comboBoxLecturer_, "cell 2 1,growx,aligny center");
 		add(getFilterBottom(), "cell 3 1,alignx left,aligny center");
 		add(getFilterTop(), "cell 3 0,alignx left,aligny bottom");
 		
-		comboBoxSemester = new JComboBox<String>();
-		comboBoxSemester.addActionListener(new RequestTabCmbboxFilter());
-		comboBoxSemester.setModel(new CmbboxFilterSemester());
-		comboBoxSemester.setEditable(true);
-		comboBoxSemester.setAutoscrolls(true);
-		add(comboBoxSemester, "cell 4 1,growx");
+		comboBoxSemester_ = new JComboBox<String>();
+		comboBoxSemester_.addActionListener(new RequestTabCmbboxFilter());
+		comboBoxSemester_.setModel(new CmbboxFilterSemester());
+		comboBoxSemester_.setEditable(true);
+		comboBoxSemester_.setAutoscrolls(true);
+		add(comboBoxSemester_, "cell 4 1,growx");
 		add(getTxtRoom(), "cell 5 1,growx");
 		
 		add(ViewManager.getInstance().getCoreLiveTickerPanel(), "cell 0 2,grow");
 		
-		organisationTableScrollPane = new JScrollPane();
-		add(organisationTableScrollPane, "flowx,cell 2 2 4 1,grow");
+		organisationTableScrollPane_ = new JScrollPane();
+		add(organisationTableScrollPane_, "flowx,cell 2 2 4 1,grow");
 		
-		roomAllocationTable = new JTable();
-		roomAllocationTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		roomAllocationTable.setModel(ViewManager.getInstance().getOrgaRequestTableModel());
-		roomAllocationTable.setShowVerticalLines(false);
-		roomAllocationTable.setBackground(SystemColor.activeCaption);
-		roomAllocationTable.getColumnModel().removeColumn(roomAllocationTable.getColumn("Hidden"));
-		organisationTableScrollPane.setViewportView(roomAllocationTable);
+		roomAllocationTable_ = new JTable();
+		roomAllocationTable_.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		roomAllocationTable_.setModel(ViewManager.getInstance().getOrgaRequestTableModel());
+		roomAllocationTable_.setShowVerticalLines(false);
+		roomAllocationTable_.setBackground(SystemColor.activeCaption);
+		roomAllocationTable_.getColumnModel().removeColumn(roomAllocationTable_.getColumn("Hidden"));
+		organisationTableScrollPane_.setViewportView(roomAllocationTable_);
 		
 		// Enable table sorting for the model
-		rowSorter = new TableRowSorter<TableModel>();
-		roomAllocationTable.setRowSorter(rowSorter);
-		rowSorter.setModel(ViewManager.getInstance().getOrgaRequestTableModel());
+		rowSorter_ = new TableRowSorter<TableModel>();
+		roomAllocationTable_.setRowSorter(rowSorter_);
+		rowSorter_.setModel(ViewManager.getInstance().getOrgaRequestTableModel());
 		List <RowSorter.SortKey> sortKeys = new ArrayList<RowSorter.SortKey>();
 		sortKeys.add(new RowSorter.SortKey(6, SortOrder.DESCENDING));
-		rowSorter.setSortKeys(sortKeys); 
-		rowSorter.sort();
+		rowSorter_.setSortKeys(sortKeys); 
+		rowSorter_.sort();
 		
-		buttonPanel = new JPanel();
-		buttonPanel.setLayout(null);
-		buttonPanel.setMinimumSize(new Dimension(80, 10));
-		buttonPanel.setMaximumSize(new Dimension(120, 32767));
-		add(buttonPanel, "cell 6 2,grow");
+		buttonPanel_ = new JPanel();
+		buttonPanel_.setLayout(null);
+		buttonPanel_.setMinimumSize(new Dimension(80, 10));
+		buttonPanel_.setMaximumSize(new Dimension(120, 32767));
+		add(buttonPanel_, "cell 6 2,grow");
 		
-		btnFreigeben = new JButton("freigeben");
-		btnFreigeben.setBounds(6, 11, 88, 23);
-		btnFreigeben.addActionListener(new RequestTabBtnsControl("accept"));
-		buttonPanel.add(btnFreigeben);
+		btnFreigeben_ = new JButton("freigeben");
+		btnFreigeben_.setBounds(6, 11, 88, 23);
+		btnFreigeben_.addActionListener(new RequestTabBtnsControl("accept"));
+		buttonPanel_.add(btnFreigeben_);
 		
 		JButton btnAblehnen = new JButton("ablehnen");
 		btnAblehnen.setBounds(6, 45, 88, 23);
 		btnAblehnen.addActionListener(new RequestTabBtnsControl("deny"));
-		buttonPanel.add(btnAblehnen);
+		buttonPanel_.add(btnAblehnen);
 		
 		JButton btnGegenvorschlag = new JButton("lösen");
 		btnGegenvorschlag.setMinimumSize(new Dimension(90, 23));
@@ -155,109 +155,109 @@ public class RequestTab extends JPanel {
 		btnGegenvorschlag.setPreferredSize(new Dimension(50, 23));
 		btnGegenvorschlag.addActionListener(new RequestTabBtnsControl("solve"));
 		btnGegenvorschlag.setBounds(6, 79, 88, 23);
-		buttonPanel.add(btnGegenvorschlag);
-		buttonPanel.add(getBtnClean());
+		buttonPanel_.add(btnGegenvorschlag);
+		buttonPanel_.add(getBtnClean());
 		
 	}
 	/**
 	 * @return the comboBoxLecturer
 	 */
 	public JComboBox<String> getComboBoxLecturer() {
-		return comboBoxLecturer;
+		return comboBoxLecturer_;
 	}
 	/**
 	 * @return the comboBoxChair
 	 */
 	public JComboBox<String> getComboBoxChair() {
-		return comboBoxChair;
+		return comboBoxChair_;
 	}
 	/**
 	 * @return the comboBoxStatus
 	 */
 	public JComboBox<String> getComboBoxStatus() {
-		return comboBoxStatus;
+		return comboBoxStatus_;
 	}
 	/**
 	 * @return the comboBoxSemester
 	 */
 	public JComboBox<String> getComboBoxSemester() {
-		return comboBoxSemester;
+		return comboBoxSemester_;
 	}
 	/**
 	 * @return the roomAllocationTable
 	 */
 	public JTable getRoomAllocationTable() {
-		return roomAllocationTable;
+		return roomAllocationTable_;
 	}
 	public JPanel getFilterTop() {
-		if (filterTop == null) {
-			filterTop = new JPanel();
-			filterTop.setLayout(new MigLayout("insets 0", "[200px:200px:200px][100px:100px]", "[]"));
+		if (filterTop_ == null) {
+			filterTop_ = new JPanel();
+			filterTop_.setLayout(new MigLayout("insets 0", "[200px:200px:200px][100px:100px]", "[]"));
 			
-			lblProfessorship = new JLabel("Lehrstuhl:");
-			filterTop.add(lblProfessorship, "cell 0 0");
+			lblProfessorship_ = new JLabel("Lehrstuhl:");
+			filterTop_.add(lblProfessorship_, "cell 0 0");
 			
-			lblStatus = new JLabel("Freigabestatus:");
-			filterTop.add(lblStatus, "cell 1 0");
+			lblStatus_ = new JLabel("Freigabestatus:");
+			filterTop_.add(lblStatus_, "cell 1 0");
 		}
-		return filterTop;
+		return filterTop_;
 	}
 	public JPanel getFilterBottom() {
-		if (filterBottom == null) {
-			filterBottom = new JPanel();
-			filterBottom.setBorder(null);
-			filterBottom.setAlignmentX(0.0f);
-			filterBottom.setLayout(new MigLayout("insets 0", "[200px:200px:200px][120px:120px:120px]", "[]"));
+		if (filterBottom_ == null) {
+			filterBottom_ = new JPanel();
+			filterBottom_.setBorder(null);
+			filterBottom_.setAlignmentX(0.0f);
+			filterBottom_.setLayout(new MigLayout("insets 0", "[200px:200px:200px][120px:120px:120px]", "[]"));
 			
-			comboBoxChair = new JComboBox<String>();
-			comboBoxChair.setMaximumSize(new Dimension(200, 50));
-			filterBottom.add(comboBoxChair, "cell 0 0,aligny center");
-			comboBoxChair.addActionListener(new RequestTabCmbboxFilter());
-			comboBoxChair.setModel(new CmbboxFilterChairAcronym(comboBoxChair));
-			comboBoxChair.setEditable(true);
-			comboBoxChair.setAutoscrolls(true);
+			comboBoxChair_ = new JComboBox<String>();
+			comboBoxChair_.setMaximumSize(new Dimension(200, 50));
+			filterBottom_.add(comboBoxChair_, "cell 0 0,aligny center");
+			comboBoxChair_.addActionListener(new RequestTabCmbboxFilter());
+			comboBoxChair_.setModel(new CmbboxFilterChairAcronym(comboBoxChair_));
+			comboBoxChair_.setEditable(true);
+			comboBoxChair_.setAutoscrolls(true);
 			
-			comboBoxStatus = new JComboBox<String>();
-			filterBottom.add(comboBoxStatus, "cell 1 0,aligny center");
-			comboBoxStatus.addActionListener(new RequestTabCmbboxFilter());
-			comboBoxStatus.setModel(new CmbboxFilterAllocationStatus());
-			comboBoxStatus.setEditable(true);
-			comboBoxStatus.setAutoscrolls(true);
+			comboBoxStatus_ = new JComboBox<String>();
+			filterBottom_.add(comboBoxStatus_, "cell 1 0,aligny center");
+			comboBoxStatus_.addActionListener(new RequestTabCmbboxFilter());
+			comboBoxStatus_.setModel(new CmbboxFilterAllocationStatus());
+			comboBoxStatus_.setEditable(true);
+			comboBoxStatus_.setAutoscrolls(true);
 		}
-		return filterBottom;
+		return filterBottom_;
 	}
 	public JLabel getLblRoom() {
-		if (lblRoom == null) {
-			lblRoom = new JLabel("Raum:");
+		if (lblRoom_ == null) {
+			lblRoom_ = new JLabel("Raum:");
 		}
-		return lblRoom;
+		return lblRoom_;
 	}
 	public JTextField getTxtRoom() {
-		if (txtRoom == null) {
-			txtRoom = new JTextField();
-			txtRoom.setColumns(10);
-			txtRoom.addActionListener(new RequestTabCmbboxFilter());
+		if (txtRoom_ == null) {
+			txtRoom_ = new JTextField();
+			txtRoom_.setColumns(10);
+			txtRoom_.addActionListener(new RequestTabCmbboxFilter());
 		}
-		return txtRoom;
+		return txtRoom_;
 	}
 	/**
 	 * @return the rowSorter
 	 */
 	public TableRowSorter<TableModel> getRowSorter() {
-		return rowSorter;
+		return rowSorter_;
 	}
 	/**
 	 * @param rowSorter the rowSorter to set
 	 */
 	public void setRowSorter(TableRowSorter<TableModel> rowSorter) {
-		this.rowSorter = rowSorter;
+		this.rowSorter_ = rowSorter;
 	}
 	public JButton getBtnClean() {
-		if (btnClean == null) {
-			btnClean = new JButton("aufräumen");
-			btnClean.setBounds(5, 161, 89, 23);
-			btnClean.addActionListener(new RequestTabBtnsControl("clean"));
+		if (btnClean_ == null) {
+			btnClean_ = new JButton("aufräumen");
+			btnClean_.setBounds(5, 161, 89, 23);
+			btnClean_.addActionListener(new RequestTabBtnsControl("clean"));
 		}
-		return btnClean;
+		return btnClean_;
 	}
 }

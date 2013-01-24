@@ -19,7 +19,7 @@ import de.sfgmbh.comlayer.core.controller.ViewManager;
 public class UserTabTable extends DefaultTableModel implements IntfAppObserver {
 
 	private static final long serialVersionUID = 1L;
-	private String[] header = { "Kennung", "E-Mail", "Benutzerklasse",
+	private String[] header_ = { "Kennung", "E-Mail", "Benutzerklasse",
 			"Lehrstuhl", "Letzer Login", "deaktiviert", "Hidden" };
 
 	/**
@@ -27,7 +27,7 @@ public class UserTabTable extends DefaultTableModel implements IntfAppObserver {
 	 */
 	public UserTabTable() {
 		AppModel.getInstance().getRepositoryUser().register(this);
-		this.setColumnIdentifiers(header);
+		this.setColumnIdentifiers(header_);
 		this.change("init");
 	}
 

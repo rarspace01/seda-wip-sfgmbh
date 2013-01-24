@@ -28,21 +28,21 @@ import de.sfgmbh.comlayer.organisation.controller.UserCreateDialogWin;
 public class UserCreateDialog extends JDialog {
 
 	private static final long serialVersionUID = 1L;
-	private JPanel contentPane;
-	private JTextField txtNutzerkennung;
-	private JTextField txtPasswort;
-	private JTextField txtEmail;
-	private JComboBox<String> comboBoxNutzerklasse;
-	private JComboBox<String> comboBoxLehrstuhl;
-	private JLabel lblFirstName;
-	private JTextField txtFirstName;
-	private JTextField txtLastName;
-	private JLabel lblLastName;
-	private JLabel lblLehrstuhl;
-	private JLabel lblNutzerklasse;
-	private JLabel lblPasswort;
-	private JCheckBox chckbxUserDisabled;
-	private IntfUser editUser;
+	private JPanel contentPane_;
+	private JTextField txtNutzerkennung_;
+	private JTextField txtPasswort_;
+	private JTextField txtEmail_;
+	private JComboBox<String> comboBoxNutzerklasse_;
+	private JComboBox<String> comboBoxLehrstuhl_;
+	private JLabel lblFirstName_;
+	private JTextField txtFirstName_;
+	private JTextField txtLastName_;
+	private JLabel lblLastName_;
+	private JLabel lblLehrstuhl_;
+	private JLabel lblNutzerklasse_;
+	private JLabel lblPasswort_;
+	private JCheckBox chckbxUserDisabled_;
+	private IntfUser editUser_;
 
 	/**
 	 * Create the frame.
@@ -63,11 +63,11 @@ public class UserCreateDialog extends JDialog {
 		initialize();
 		setTitle("Benutzerinfo bearbeiten");
 		setLocationRelativeTo(null);
-		this.comboBoxLehrstuhl.setBounds(115, 150, 116, 20);
-		this.lblLehrstuhl.setBounds(12, 152, 120, 14);
-		this.comboBoxNutzerklasse.setVisible(false);
-		this.lblNutzerklasse.setVisible(false);
-		this.lblPasswort.setText("Neues Passwort:");
+		this.comboBoxLehrstuhl_.setBounds(115, 150, 116, 20);
+		this.lblLehrstuhl_.setBounds(12, 152, 120, 14);
+		this.comboBoxNutzerklasse_.setVisible(false);
+		this.lblNutzerklasse_.setVisible(false);
+		this.lblPasswort_.setText("Neues Passwort:");
 		this.getChckbxUserDisabled().setVisible(true);
 		this.setEditUser(userToEdit);
 		this.getTxtLogin().setText(userToEdit.getLogin_());
@@ -79,7 +79,7 @@ public class UserCreateDialog extends JDialog {
 		} 
 		if (!userToEdit.getClass_().equals("lecturer")) {
 			this.getComboBoxLehrstuhl().setVisible(false);
-			this.lblLehrstuhl.setVisible(false);
+			this.lblLehrstuhl_.setVisible(false);
 		}
 		this.getChckbxUserDisabled().setSelected(userToEdit.isDisabled_());
 		
@@ -90,81 +90,81 @@ public class UserCreateDialog extends JDialog {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(UserCreateDialog.class.getResource("/de/sfgmbh/comlayer/core/images/HUT_klein.png")));
 		setTitle("Neuen Nutzer anlegen");
 		setBounds(100, 100, 266, 309);
-		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		setContentPane(contentPane);
-		contentPane.setLayout(null);
+		contentPane_ = new JPanel();
+		contentPane_.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setContentPane(contentPane_);
+		contentPane_.setLayout(null);
 		
 		JLabel lblNutzerkennung = new JLabel("Nutzerkennung:");
 		lblNutzerkennung.setFont(new Font("SansSerif", Font.PLAIN, 12));
 		lblNutzerkennung.setBounds(12, 14, 120, 14);
-		contentPane.add(lblNutzerkennung);
+		contentPane_.add(lblNutzerkennung);
 		
 		JLabel lblEmail = new JLabel("E-Mail:");
 		lblEmail.setFont(new Font("SansSerif", Font.PLAIN, 12));
 		lblEmail.setBounds(12, 42, 120, 14);
-		contentPane.add(lblEmail);
+		contentPane_.add(lblEmail);
 		
-		lblPasswort = new JLabel("Passwort:");
-		lblPasswort.setFont(new Font("SansSerif", Font.PLAIN, 12));
-		lblPasswort.setBounds(12, 123, 120, 14);
-		contentPane.add(lblPasswort);
+		lblPasswort_ = new JLabel("Passwort:");
+		lblPasswort_.setFont(new Font("SansSerif", Font.PLAIN, 12));
+		lblPasswort_.setBounds(12, 123, 120, 14);
+		contentPane_.add(lblPasswort_);
 		
-		lblNutzerklasse = new JLabel("Nutzerklasse:");
-		lblNutzerklasse.setFont(new Font("SansSerif", Font.PLAIN, 12));
-		lblNutzerklasse.setBounds(12, 152, 120, 14);
-		contentPane.add(lblNutzerklasse);
+		lblNutzerklasse_ = new JLabel("Nutzerklasse:");
+		lblNutzerklasse_.setFont(new Font("SansSerif", Font.PLAIN, 12));
+		lblNutzerklasse_.setBounds(12, 152, 120, 14);
+		contentPane_.add(lblNutzerklasse_);
 		
-		lblLehrstuhl = new JLabel("Lehrstuhl:");
-		lblLehrstuhl.setFont(new Font("SansSerif", Font.PLAIN, 12));
-		lblLehrstuhl.setBounds(12, 181, 120, 14);
-		contentPane.add(lblLehrstuhl);
+		lblLehrstuhl_ = new JLabel("Lehrstuhl:");
+		lblLehrstuhl_.setFont(new Font("SansSerif", Font.PLAIN, 12));
+		lblLehrstuhl_.setBounds(12, 181, 120, 14);
+		contentPane_.add(lblLehrstuhl_);
 		
-		txtNutzerkennung = new JTextField();
-		txtNutzerkennung.setFont(new Font("SansSerif", Font.PLAIN, 12));
-		txtNutzerkennung.setBounds(115, 11, 116, 20);
-		contentPane.add(txtNutzerkennung);
-		txtNutzerkennung.setColumns(10);
+		txtNutzerkennung_ = new JTextField();
+		txtNutzerkennung_.setFont(new Font("SansSerif", Font.PLAIN, 12));
+		txtNutzerkennung_.setBounds(115, 11, 116, 20);
+		contentPane_.add(txtNutzerkennung_);
+		txtNutzerkennung_.setColumns(10);
 		
-		txtPasswort = new JTextField();
-		txtPasswort.setFont(new Font("SansSerif", Font.PLAIN, 12));
-		txtPasswort.setColumns(10);
-		txtPasswort.setBounds(115, 121, 116, 20);
-		contentPane.add(txtPasswort);
+		txtPasswort_ = new JTextField();
+		txtPasswort_.setFont(new Font("SansSerif", Font.PLAIN, 12));
+		txtPasswort_.setColumns(10);
+		txtPasswort_.setBounds(115, 121, 116, 20);
+		contentPane_.add(txtPasswort_);
 		
-		txtEmail = new JTextField();
-		txtEmail.setFont(new Font("SansSerif", Font.PLAIN, 12));
-		txtEmail.setColumns(10);
-		txtEmail.setBounds(115, 40, 116, 20);
-		contentPane.add(txtEmail);
+		txtEmail_ = new JTextField();
+		txtEmail_.setFont(new Font("SansSerif", Font.PLAIN, 12));
+		txtEmail_.setColumns(10);
+		txtEmail_.setBounds(115, 40, 116, 20);
+		contentPane_.add(txtEmail_);
 		
-		comboBoxNutzerklasse = new JComboBox<String>();
-		comboBoxNutzerklasse.setFont(new Font("SansSerif", Font.PLAIN, 12));
-		comboBoxNutzerklasse.setModel(new CmbboxFilterUserClass("blank"));
-		comboBoxNutzerklasse.setBounds(115, 150, 116, 20);
-		contentPane.add(comboBoxNutzerklasse);
+		comboBoxNutzerklasse_ = new JComboBox<String>();
+		comboBoxNutzerklasse_.setFont(new Font("SansSerif", Font.PLAIN, 12));
+		comboBoxNutzerklasse_.setModel(new CmbboxFilterUserClass("blank"));
+		comboBoxNutzerklasse_.setBounds(115, 150, 116, 20);
+		contentPane_.add(comboBoxNutzerklasse_);
 		
-		comboBoxLehrstuhl = new JComboBox<String>();
-		comboBoxLehrstuhl.setEditable(true);
-		comboBoxLehrstuhl.setFont(new Font("SansSerif", Font.PLAIN, 12));
-		comboBoxLehrstuhl.setModel(new CmbboxFilterChairAcronym(comboBoxLehrstuhl, "blank"));
-		comboBoxLehrstuhl.setBounds(115, 179, 116, 20);
-		contentPane.add(comboBoxLehrstuhl);
+		comboBoxLehrstuhl_ = new JComboBox<String>();
+		comboBoxLehrstuhl_.setEditable(true);
+		comboBoxLehrstuhl_.setFont(new Font("SansSerif", Font.PLAIN, 12));
+		comboBoxLehrstuhl_.setModel(new CmbboxFilterChairAcronym(comboBoxLehrstuhl_, "blank"));
+		comboBoxLehrstuhl_.setBounds(115, 179, 116, 20);
+		contentPane_.add(comboBoxLehrstuhl_);
 		
 		JButton btnSpeichern = new JButton("Speichern");
 		btnSpeichern.setBounds(141, 233, 90, 28);
 		btnSpeichern.addActionListener(new UserCreateDialogBtns(this, "save"));
-		contentPane.add(btnSpeichern);
+		contentPane_.add(btnSpeichern);
 		
 		JButton btnAbbrechen = new JButton("Abbrechen");
 		btnAbbrechen.setBounds(42, 233, 90, 28);
 		btnAbbrechen.addActionListener(new UserCreateDialogBtns(this, "cancle"));
-		contentPane.add(btnAbbrechen);
-		contentPane.add(getLblFirstName());
-		contentPane.add(getTxtFirstName());
-		contentPane.add(getTxtLastName());
-		contentPane.add(getLblLastName());
-		contentPane.add(getChckbxUserDisabled());
+		contentPane_.add(btnAbbrechen);
+		contentPane_.add(getLblFirstName());
+		contentPane_.add(getTxtFirstName());
+		contentPane_.add(getTxtLastName());
+		contentPane_.add(getLblLastName());
+		contentPane_.add(getChckbxUserDisabled());
 		
 		addWindowListener(new UserCreateDialogWin(this));
 	}
@@ -172,106 +172,106 @@ public class UserCreateDialog extends JDialog {
 	 * @return the txtNutzerkennung
 	 */
 	public JTextField getTxtLogin() {
-		return txtNutzerkennung;
+		return txtNutzerkennung_;
 	}
 	/**
 	 * @return the txtPasswort
 	 */
 	public JTextField getTxtPasswort() {
-		return txtPasswort;
+		return txtPasswort_;
 	}
 	/**
 	 * @return the txtEmail
 	 */
 	public JTextField getTxtEmail() {
-		return txtEmail;
+		return txtEmail_;
 	}
 	/**
 	 * @return the comboBoxNutzerklasse
 	 */
 	public JComboBox<String> getComboBoxUserClass() {
-		return comboBoxNutzerklasse;
+		return comboBoxNutzerklasse_;
 	}
 	/**
 	 * @return the comboBoxLehrstuhl
 	 */
 	public JComboBox<String> getComboBoxLehrstuhl() {
-		return comboBoxLehrstuhl;
+		return comboBoxLehrstuhl_;
 	}
 	/**
 	 * 
 	 * @return the lblFirstName
 	 */
 	public JLabel getLblFirstName() {
-		if (lblFirstName == null) {
-			lblFirstName = new JLabel("Vorname:");
-			lblFirstName.setFont(new Font("SansSerif", Font.PLAIN, 12));
-			lblFirstName.setBounds(12, 69, 120, 14);
+		if (lblFirstName_ == null) {
+			lblFirstName_ = new JLabel("Vorname:");
+			lblFirstName_.setFont(new Font("SansSerif", Font.PLAIN, 12));
+			lblFirstName_.setBounds(12, 69, 120, 14);
 		}
-		return lblFirstName;
+		return lblFirstName_;
 	}
 	/**
 	 * 
 	 * @return he txtFirstName
 	 */
 	public JTextField getTxtFirstName() {
-		if (txtFirstName == null) {
-			txtFirstName = new JTextField();
-			txtFirstName.setFont(new Font("SansSerif", Font.PLAIN, 12));
-			txtFirstName.setColumns(10);
-			txtFirstName.setBounds(115, 67, 116, 20);
+		if (txtFirstName_ == null) {
+			txtFirstName_ = new JTextField();
+			txtFirstName_.setFont(new Font("SansSerif", Font.PLAIN, 12));
+			txtFirstName_.setColumns(10);
+			txtFirstName_.setBounds(115, 67, 116, 20);
 		}
-		return txtFirstName;
+		return txtFirstName_;
 	}
 	/**
 	 * 
 	 * @return the txtLastName
 	 */
 	public JTextField getTxtLastName() {
-		if (txtLastName == null) {
-			txtLastName = new JTextField();
-			txtLastName.setFont(new Font("SansSerif", Font.PLAIN, 12));
-			txtLastName.setColumns(10);
-			txtLastName.setBounds(115, 94, 116, 20);
+		if (txtLastName_ == null) {
+			txtLastName_ = new JTextField();
+			txtLastName_.setFont(new Font("SansSerif", Font.PLAIN, 12));
+			txtLastName_.setColumns(10);
+			txtLastName_.setBounds(115, 94, 116, 20);
 		}
-		return txtLastName;
+		return txtLastName_;
 	}
 	/**
 	 * 
 	 * @return the lblLastName
 	 */
 	public JLabel getLblLastName() {
-		if (lblLastName == null) {
-			lblLastName = new JLabel("Nachname:");
-			lblLastName.setFont(new Font("SansSerif", Font.PLAIN, 12));
-			lblLastName.setBounds(12, 96, 120, 14);
+		if (lblLastName_ == null) {
+			lblLastName_ = new JLabel("Nachname:");
+			lblLastName_.setFont(new Font("SansSerif", Font.PLAIN, 12));
+			lblLastName_.setBounds(12, 96, 120, 14);
 		}
-		return lblLastName;
+		return lblLastName_;
 	}
 	/**
 	 * 
 	 * @return the chckbxUserDisabled
 	 */
 	public JCheckBox getChckbxUserDisabled() {
-		if (chckbxUserDisabled == null) {
-			chckbxUserDisabled = new JCheckBox("Benutzer deaktiviert");
-			chckbxUserDisabled.setBounds(61, 178, 151, 23);
-			chckbxUserDisabled.setVisible(false);
+		if (chckbxUserDisabled_ == null) {
+			chckbxUserDisabled_ = new JCheckBox("Benutzer deaktiviert");
+			chckbxUserDisabled_.setBounds(61, 178, 151, 23);
+			chckbxUserDisabled_.setVisible(false);
 		}
-		return chckbxUserDisabled;
+		return chckbxUserDisabled_;
 	}
 
 	/**
 	 * @return the editUser
 	 */
 	public IntfUser getEditUser() {
-		return editUser;
+		return editUser_;
 	}
 
 	/**
 	 * @param editUser the editUser to set
 	 */
 	public void setEditUser(IntfUser editUser) {
-		this.editUser = editUser;
+		this.editUser_ = editUser;
 	}
 }

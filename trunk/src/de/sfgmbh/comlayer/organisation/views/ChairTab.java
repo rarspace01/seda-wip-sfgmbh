@@ -29,16 +29,16 @@ import de.sfgmbh.comlayer.organisation.controller.ChairTabCmbboxFilter;
 public class ChairTab extends JPanel {
 
 	private static final long serialVersionUID = 1L;
-	private JTextField textFieldChairname;
-	private JTable chairOrgaTable;
-	private JLabel lblChairname;
-	private JScrollPane organisationTableScrollPane;
-	private JPanel buttonPanel;
-	private JButton btnAdd;
-	private JButton btnDelete;
-	private JPanel uniIconPanel;
-	private JLabel lblUniIcon;
-	private TableRowSorter<TableModel> rowSorter;
+	private JTextField textFieldChairname_;
+	private JTable chairOrgaTable_;
+	private JLabel lblChairname_;
+	private JScrollPane organisationTableScrollPane_;
+	private JPanel buttonPanel_;
+	private JButton btnAdd_;
+	private JButton btnDelete_;
+	private JPanel uniIconPanel_;
+	private JLabel lblUniIcon_;
+	private TableRowSorter<TableModel> rowSorter_;
 
 	/**
 	 * Create the frame.
@@ -56,86 +56,86 @@ public class ChairTab extends JPanel {
 		lblChairorganisation.setFont(new Font("SansSerif", Font.BOLD, 13));
 		add(lblChairorganisation, "cell 0 0,alignx center,aligny bottom");
 		
-		lblChairname = new JLabel("Lehrstuhlname:");
-		add(lblChairname, "cell 2 0,aligny bottom");
+		lblChairname_ = new JLabel("Lehrstuhlname:");
+		add(lblChairname_, "cell 2 0,aligny bottom");
 		
-		textFieldChairname = new JTextField();
-		textFieldChairname.addActionListener(new ChairTabCmbboxFilter());
+		textFieldChairname_ = new JTextField();
+		textFieldChairname_.addActionListener(new ChairTabCmbboxFilter());
 		
-		uniIconPanel = new JPanel();
-		add(uniIconPanel, "cell 6 0,alignx right,aligny top");
-		lblUniIcon = new JLabel();
-		lblUniIcon.setIcon(new ImageIcon(BaseTab.class.getResource("/de/sfgmbh/comlayer/core/images/UniBA_logo.png")));
-		lblUniIcon.setMaximumSize(new Dimension(50,50));
-		uniIconPanel.add(lblUniIcon);
-		textFieldChairname.setColumns(10);
-		add(textFieldChairname, "cell 2 1,growx");
+		uniIconPanel_ = new JPanel();
+		add(uniIconPanel_, "cell 6 0,alignx right,aligny top");
+		lblUniIcon_ = new JLabel();
+		lblUniIcon_.setIcon(new ImageIcon(BaseTab.class.getResource("/de/sfgmbh/comlayer/core/images/UniBA_logo.png")));
+		lblUniIcon_.setMaximumSize(new Dimension(50,50));
+		uniIconPanel_.add(lblUniIcon_);
+		textFieldChairname_.setColumns(10);
+		add(textFieldChairname_, "cell 2 1,growx");
 		
 		add(ViewManager.getInstance().getCoreLiveTickerPanel(), "cell 0 2,grow");
 		
-		organisationTableScrollPane = new JScrollPane();
-		organisationTableScrollPane.setMinimumSize(new Dimension(400, 25));
-		add(organisationTableScrollPane, "flowx,cell 2 2 4 1,grow");
+		organisationTableScrollPane_ = new JScrollPane();
+		organisationTableScrollPane_.setMinimumSize(new Dimension(400, 25));
+		add(organisationTableScrollPane_, "flowx,cell 2 2 4 1,grow");
 		
-		chairOrgaTable = new JTable();
-		chairOrgaTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		chairOrgaTable.setModel(ViewManager.getInstance().getOrgaChairTableModel());
-		chairOrgaTable.setShowVerticalLines(false);
-		chairOrgaTable.getColumnModel().removeColumn(chairOrgaTable.getColumn("Hidden"));
-		chairOrgaTable.setBackground(SystemColor.activeCaption);
-		organisationTableScrollPane.setViewportView(chairOrgaTable);
+		chairOrgaTable_ = new JTable();
+		chairOrgaTable_.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		chairOrgaTable_.setModel(ViewManager.getInstance().getOrgaChairTableModel());
+		chairOrgaTable_.setShowVerticalLines(false);
+		chairOrgaTable_.getColumnModel().removeColumn(chairOrgaTable_.getColumn("Hidden"));
+		chairOrgaTable_.setBackground(SystemColor.activeCaption);
+		organisationTableScrollPane_.setViewportView(chairOrgaTable_);
 		
 		//Enable table sorting for the model
-		rowSorter = new TableRowSorter<TableModel>();
-		chairOrgaTable.setRowSorter(rowSorter);
-		rowSorter.setModel(ViewManager.getInstance().getOrgaChairTableModel());
-		rowSorter.sort();
+		rowSorter_ = new TableRowSorter<TableModel>();
+		chairOrgaTable_.setRowSorter(rowSorter_);
+		rowSorter_.setModel(ViewManager.getInstance().getOrgaChairTableModel());
+		rowSorter_.sort();
 		
-		buttonPanel = new JPanel();
-		buttonPanel.setLayout(null);
-		buttonPanel.setMinimumSize(new Dimension(80, 10));
-		buttonPanel.setMaximumSize(new Dimension(100, 32767));
-		add(buttonPanel, "cell 6 2,grow");
+		buttonPanel_ = new JPanel();
+		buttonPanel_.setLayout(null);
+		buttonPanel_.setMinimumSize(new Dimension(80, 10));
+		buttonPanel_.setMaximumSize(new Dimension(100, 32767));
+		add(buttonPanel_, "cell 6 2,grow");
 		
-		btnAdd = new JButton("hinzufügen");
-		btnAdd.addActionListener(new ChairTabBtnsControl("add"));
-		btnAdd.setBounds(6, 11, 88, 23);
-		buttonPanel.add(btnAdd);
+		btnAdd_ = new JButton("hinzufügen");
+		btnAdd_.addActionListener(new ChairTabBtnsControl("add"));
+		btnAdd_.setBounds(6, 11, 88, 23);
+		buttonPanel_.add(btnAdd_);
 		
 		JButton btnBearbeiten = new JButton("bearbeiten");
 		btnBearbeiten.addActionListener(new ChairTabBtnsControl("edit"));
 		btnBearbeiten.setBounds(6, 45, 88, 23);
-		buttonPanel.add(btnBearbeiten);
+		buttonPanel_.add(btnBearbeiten);
 		
-		btnDelete = new JButton("l\u00F6schen");
-		btnDelete.addActionListener(new ChairTabBtnsControl("delete"));
-		btnDelete.setBounds(6, 79, 88, 23);
-		buttonPanel.add(btnDelete);
+		btnDelete_ = new JButton("l\u00F6schen");
+		btnDelete_.addActionListener(new ChairTabBtnsControl("delete"));
+		btnDelete_.setBounds(6, 79, 88, 23);
+		buttonPanel_.add(btnDelete_);
 				
 	}
 	/**
 	 * @return the textFieldChairname
 	 */
 	public JTextField getTextFieldChairname() {
-		return textFieldChairname;
+		return textFieldChairname_;
 	}
 	/**
 	 * @return the chairOrgaTable
 	 */
 	public JTable getChairOrgaTable() {
-		return chairOrgaTable;
+		return chairOrgaTable_;
 	}
 	/**
 	 * @return the rowSorter
 	 */
 	public TableRowSorter<TableModel> getRowSorter() {
-		return rowSorter;
+		return rowSorter_;
 	}
 	/**
 	 * @param rowSorter the rowSorter to set
 	 */
 	public void setRowSorter(TableRowSorter<TableModel> rowSorter) {
-		this.rowSorter = rowSorter;
+		this.rowSorter_ = rowSorter;
 	}
 	
 	

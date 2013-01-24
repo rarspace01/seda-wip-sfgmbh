@@ -20,11 +20,11 @@ import de.sfgmbh.comlayer.organisation.views.RoomTab;
 public class RoomTabTable extends DefaultTableModel implements IntfAppObserver {
 
 	private static final long serialVersionUID = 1L;
-	private String[] preFillHeader = {"roomid","Raum", "Geb\u00E4ude", "Stock", "Pl\u00E4tze", "PC-Pl\u00E4tze", "Beamer", "Visualizer", "Overheads", "Tafeln", "Whiteboards"};
+	private String[] preFillHeader_ = {"roomid","Raum", "Geb\u00E4ude", "Stock", "Pl\u00E4tze", "PC-Pl\u00E4tze", "Beamer", "Visualizer", "Overheads", "Tafeln", "Whiteboards"};
 	
 	
 	public RoomTabTable() {
-		this.setDataVector(null, preFillHeader);
+		this.setDataVector(null, preFillHeader_);
 	}
 	
 	public void addRoom(IntfRoom room) {
