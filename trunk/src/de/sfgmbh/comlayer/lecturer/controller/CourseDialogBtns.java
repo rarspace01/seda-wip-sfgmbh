@@ -36,7 +36,7 @@ public class CourseDialogBtns implements ActionListener {
 
 	/**
 	 * Create the action listener based on an action string
-	 * 
+	 * Supported action strings are "cancel" and "save"
 	 * @param motherDialog
 	 * @param action
 	 */
@@ -45,6 +45,10 @@ public class CourseDialogBtns implements ActionListener {
 		this.ctrlAction = action;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		AppException exceptionHandler = AppModel.getInstance()

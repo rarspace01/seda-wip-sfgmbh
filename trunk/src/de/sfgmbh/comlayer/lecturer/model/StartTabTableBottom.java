@@ -39,7 +39,10 @@ public class StartTabTableBottom extends DefaultTableModel implements IntfAppObs
 	/**
 	 * Update the model<br>
 	 * Depending on the variant and certain values which are currently present in the corresponding view components there are certain filters set.
-	 * Based on these filters data is retrieved and the model is (re-)built.
+	 * Based on these filters data is retrieved and the model is (re-)built.<br>
+	 * 
+	 * Supported variant strings are:<br>
+	 * "init" and "select", all other strings fall back to the default change() behavior
 	 * 
 	 * @param variant
 	 */
@@ -114,6 +117,10 @@ public class StartTabTableBottom extends DefaultTableModel implements IntfAppObs
 		}
 	}
 	
+	/*
+	 * (non-Javadoc)
+	 * @see de.sfgmbh.applayer.core.definitions.IntfAppObserver#change()
+	 */
 	@Override
 	public void change() {
 		this.change("update");

@@ -26,6 +26,12 @@ import de.sfgmbh.comlayer.core.views.BaseTab;
 import de.sfgmbh.comlayer.lecturer.controller.TimetableTabBtn;
 import de.sfgmbh.comlayer.lecturer.controller.TimetableTabCmbbox;
 
+/**
+ * Timetable tab
+ * 
+ * @author denis
+ *
+ */
 public class TimetableTab extends JPanel {
 	private static final long serialVersionUID = 1L;
 	private JTable lecturerTimetableTable_;
@@ -43,7 +49,6 @@ public class TimetableTab extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	@SuppressWarnings({ })
 	public TimetableTab() {
 
 		createContents();

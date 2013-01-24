@@ -41,12 +41,18 @@ public class StartTabBtnsControl implements ActionListener, IntfComDialogObserve
 	}
 	/**
 	 * Create the action listener based on an action string
+	 * Supported action strings are:<br>
+	 * "add", "edit", "delete", "roomrequest", "publish" and "back"
 	 * @param action
 	 */
 	public StartTabBtnsControl(String action) {
 		this.ctrlAction_ = action;
 	}
 	
+	/*
+	 * (non-Javadoc)
+	 * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		StartTab startTab = ViewManager.getInstance().getLecturerStartTab();
@@ -159,6 +165,10 @@ public class StartTabBtnsControl implements ActionListener, IntfComDialogObserve
 		
 	}
 	
+	/*
+	 * (non-Javadoc)
+	 * @see de.sfgmbh.comlayer.core.definitions.IntfComDialogObserver#answered(java.lang.String)
+	 */
 	@Override
 	public void answered(String answer) {
 		if (answer.equals("yes")) {

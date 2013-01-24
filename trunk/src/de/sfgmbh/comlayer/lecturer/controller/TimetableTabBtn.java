@@ -9,7 +9,6 @@ import javax.swing.JFileChooser;
 import de.sfgmbh.applayer.core.controller.CtrlPdf;
 import de.sfgmbh.applayer.core.definitions.IntfCtrlPdf;
 import de.sfgmbh.comlayer.core.controller.ViewManager;
-import de.sfgmbh.comlayer.core.views.InfoDialog;
 import de.sfgmbh.comlayer.organisation.views.FileFilters;
 
 /**
@@ -21,12 +20,20 @@ import de.sfgmbh.comlayer.organisation.views.FileFilters;
 public class TimetableTabBtn implements ActionListener {
 
 	private String navAction_;
-	protected InfoDialog infoWindow;
 
+	/**
+	 * Create the action listener
+	 */
 	public TimetableTabBtn() {
 		this.navAction_ = "default";
 	}
 
+	/**
+	 * Create the action listener based on a action string
+	 * Supported action strings are:<br>
+	 * "createpdf"
+	 * @param action
+	 */
 	public TimetableTabBtn(String action) {
 		this.navAction_ = action;
 	}

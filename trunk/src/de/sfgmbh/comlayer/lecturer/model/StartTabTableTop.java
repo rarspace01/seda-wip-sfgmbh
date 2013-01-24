@@ -34,14 +34,7 @@ public class StartTabTableTop extends DefaultTableModel implements IntfAppObserv
 		this.change("init");
 	}
 
-	/**
-	 * Update the model<br>
-	 * Depending on the variant and certain values which are currently present in the corresponding view components there are certain filters set.
-	 * Based on these filters data is retrieved and the model is (re-)built.
-	 * 
-	 * @param variant
-	 */
-	public void change(String variant) {
+	private void change(String variant) {
 		HashMap<String, String> filter = new HashMap<String, String>();
 		IntfUser sessionUser = SessionManager.getInstance().getSession();
 		
@@ -80,6 +73,10 @@ public class StartTabTableTop extends DefaultTableModel implements IntfAppObserv
 		}
 	}
 	
+	/*
+	 * (non-Javadoc)
+	 * @see de.sfgmbh.applayer.core.definitions.IntfAppObserver#change()
+	 */
 	@Override
 	public void change() {
 		this.change("update");
