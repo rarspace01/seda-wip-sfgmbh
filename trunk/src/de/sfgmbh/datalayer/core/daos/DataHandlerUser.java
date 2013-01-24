@@ -359,7 +359,7 @@ public class DataHandlerUser implements IntfDataUser, IntfDataObservable, IntfDa
 					dataManager.getPreparedStatement().setString(3, user.getSalt_());
 					dataManager.getPreparedStatement().setString(4, user.getMail_());
 					dataManager.getPreparedStatement().setString(5, user.getClass_());
-					dataManager.getPreparedStatement().setString(6, user.getfName_());
+					dataManager.getPreparedStatement().setString(6, user.getFirstName_());
 					dataManager.getPreparedStatement().setString(7, user.getlName_());
 					dataManager.getPreparedStatement().setLong(8, user.getLastLogin_());
 					dataManager.getPreparedStatement().setBoolean(9, user.isDisabled_());
@@ -399,7 +399,7 @@ public class DataHandlerUser implements IntfDataUser, IntfDataObservable, IntfDa
 				dataManager.getPreparedStatement().setString(3, user.getSalt_());
 				dataManager.getPreparedStatement().setString(4, user.getMail_());
 				dataManager.getPreparedStatement().setString(5, user.getClass_());
-				dataManager.getPreparedStatement().setString(6, user.getfName_());
+				dataManager.getPreparedStatement().setString(6, user.getFirstName_());
 				dataManager.getPreparedStatement().setString(7, user.getlName_());
 				dataManager.getPreparedStatement().setLong(8, user.getLastLogin_());
 				dataManager.getPreparedStatement().setBoolean(9, user.isDisabled_());
@@ -454,26 +454,26 @@ public class DataHandlerUser implements IntfDataUser, IntfDataObservable, IntfDa
 	
 	/**
 	 * Forms a User object out of a given result set based on a variant
-	 * @param rs
+	 * @param resultSet
 	 * @param variant
 	 * @return a User object
 	 */
-	public User makeUser(ResultSet rs, String variant) {
+	public User makeUser(ResultSet resultSet, String variant) {
 		User returnUser = new User();
 		
 		try {
-			returnUser.setUserId_(rs.getInt("userid"));
-			returnUser.setLogin_(rs.getString("login"));
-			returnUser.setPass_(rs.getString("pass"));
-			returnUser.setSalt_(rs.getString("salt"));
-			returnUser.setMail_(rs.getString("mail"));
-			returnUser.setClass_(rs.getString("class"));
-			returnUser.setfName_(rs.getString("fname"));
-			returnUser.setlName_(rs.getString("lname"));
-			returnUser.setLastLogin_(rs.getLong("lastlogin"));
-			returnUser.setDisabled_(rs.getBoolean("disabled"));
-			if (rs.getInt("chairid") > 0 && !variant.equals("nochair")) {
-				returnUser.setChair_(DataModel.getInstance().getDataHandlerChair().makeChair(rs));
+			returnUser.setUserId_(resultSet.getInt("userid"));
+			returnUser.setLogin_(resultSet.getString("login"));
+			returnUser.setPass_(resultSet.getString("pass"));
+			returnUser.setSalt_(resultSet.getString("salt"));
+			returnUser.setMail_(resultSet.getString("mail"));
+			returnUser.setClass_(resultSet.getString("class"));
+			returnUser.setFirstName_(resultSet.getString("fname"));
+			returnUser.setlName_(resultSet.getString("lname"));
+			returnUser.setLastLogin_(resultSet.getLong("lastlogin"));
+			returnUser.setDisabled_(resultSet.getBoolean("disabled"));
+			if (resultSet.getInt("chairid") > 0 && !variant.equals("nochair")) {
+				returnUser.setChair_(DataModel.getInstance().getDataHandlerChair().makeChair(resultSet));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();

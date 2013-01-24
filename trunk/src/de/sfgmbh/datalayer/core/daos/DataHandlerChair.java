@@ -251,16 +251,16 @@ public class DataHandlerChair implements IntfDataChair, IntfDataFilter,
 					dataManager.prepare("INSERT INTO public.chair"
 							+ "(chairname, chairowner, buildingid, chairlevel, faculty, chairacronym)"
 							+ "VALUES (?,?,?,?,?,?)");
-					dataManager.getPreparedStatement().setString(1, chair.getChairName_());
-					if (chair.getChairOwner_() != null) {
-						dataManager.getPreparedStatement().setInt(2, chair.getChairOwner_().getUserId_());
+					dataManager.getPreparedStatement().setString(1, chair.getChairName());
+					if (chair.getChairOwner() != null) {
+						dataManager.getPreparedStatement().setInt(2, chair.getChairOwner().getUserId_());
 					} else {
 						dataManager.getPreparedStatement().setNull(2, java.sql.Types.INTEGER);
 					}
-					dataManager.getPreparedStatement().setInt(3, chair.getBuildingId_());
-					dataManager.getPreparedStatement().setString(4, chair.getChairLevel_());
-					dataManager.getPreparedStatement().setString(5, chair.getFaculty_());
-					dataManager.getPreparedStatement().setString(6, chair.getAcronym_());
+					dataManager.getPreparedStatement().setInt(3, chair.getBuildingId());
+					dataManager.getPreparedStatement().setString(4, chair.getChairLevel());
+					dataManager.getPreparedStatement().setString(5, chair.getFaculty());
+					dataManager.getPreparedStatement().setString(6, chair.getAcronym());
 					dataManager.executePreparedStatement();
 					this.update();
 				} catch (SQLException e) {
@@ -281,16 +281,16 @@ public class DataHandlerChair implements IntfDataChair, IntfDataFilter,
 				dataManager.prepare("UPDATE public.chair SET "
 						+ "chairname = ?, chairowner = ?, buildingid = ?, chairlevel = ?, faculty = ?, chairacronym = ? "
 						+ "WHERE chairid = ?");
-				dataManager.getPreparedStatement().setString(1, chair.getChairName_());
-				if (chair.getChairOwner_() != null) {
-					dataManager.getPreparedStatement().setInt(2, chair.getChairOwner_().getUserId_());
+				dataManager.getPreparedStatement().setString(1, chair.getChairName());
+				if (chair.getChairOwner() != null) {
+					dataManager.getPreparedStatement().setInt(2, chair.getChairOwner().getUserId_());
 				} else {
 					dataManager.getPreparedStatement().setNull(2, java.sql.Types.INTEGER);
 				}
-				dataManager.getPreparedStatement().setInt(3, chair.getBuildingId_());
-				dataManager.getPreparedStatement().setString(4, chair.getChairLevel_());
-				dataManager.getPreparedStatement().setString(5, chair.getFaculty_());
-				dataManager.getPreparedStatement().setString(6, chair.getAcronym_());
+				dataManager.getPreparedStatement().setInt(3, chair.getBuildingId());
+				dataManager.getPreparedStatement().setString(4, chair.getChairLevel());
+				dataManager.getPreparedStatement().setString(5, chair.getFaculty());
+				dataManager.getPreparedStatement().setString(6, chair.getAcronym());
 				dataManager.getPreparedStatement().setInt(7, chair.getChairId_());
 				returnState = dataManager.executePreparedStatement();
 				this.update();
@@ -377,15 +377,15 @@ public class DataHandlerChair implements IntfDataChair, IntfDataFilter,
 		IntfChair returnChair = new Chair();
 
 		try {
-			returnChair.setChairId_(resultSet.getInt("chairid"));
-			returnChair.setChairName_(resultSet.getString("chairname"));
+			returnChair.setChairId(resultSet.getInt("chairid"));
+			returnChair.setChairName(resultSet.getString("chairname"));
 			if (resultSet.getInt("chairowner") > 0) {
-				returnChair.setChairOwner_(DataModel.getInstance().getDataHandlerUser().makeUser(resultSet, "nochair"));
+				returnChair.setChairOwner(DataModel.getInstance().getDataHandlerUser().makeUser(resultSet, "nochair"));
 			}
-			returnChair.setBuildingId_(resultSet.getInt("buildingid"));
-			returnChair.setChairLevel_(resultSet.getString("chairlevel"));
-			returnChair.setFaculty_(resultSet.getString("faculty"));
-			returnChair.setAcronym_(resultSet.getString("chairacronym"));
+			returnChair.setBuildingId(resultSet.getInt("buildingid"));
+			returnChair.setChairLevel(resultSet.getString("chairlevel"));
+			returnChair.setFaculty(resultSet.getString("faculty"));
+			returnChair.setAcronym(resultSet.getString("chairacronym"));
 		} catch (SQLException e) {
 			e.printStackTrace();
 			DataModel
