@@ -1,7 +1,6 @@
 package de.sfgmbh.datalayer.io;
 
 import javax.swing.JComponent;
-import javax.swing.JTable;
 
 public interface IntfDataManagerPDF {
 
