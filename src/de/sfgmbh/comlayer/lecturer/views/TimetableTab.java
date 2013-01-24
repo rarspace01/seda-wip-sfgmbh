@@ -59,7 +59,7 @@ public class TimetableTab extends JPanel {
 		comboBoxLecturer_ = new JComboBox<>();
 		
 		comboBoxLecturer_.addActionListener(new TimetableTabCmbbox());
-		setLayout(new MigLayout("", "[5.00,grow][][][][][][-1.00,grow][right]", "[][][364px]"));
+		setLayout(new MigLayout("", "[5.00,grow][][][][][][-1.00,grow][right]", "[68px][][364px][grow]"));
 		
 		lblWeekplanLecturer = new JLabel("<html><h3>Wochenplan für Dozenten</h3></html>");
 		add(lblWeekplanLecturer, "cell 1 0");
@@ -88,6 +88,7 @@ public class TimetableTab extends JPanel {
 		add(comboBoxSemesterFilter_, "cell 3 1,alignx right,aligny bottom");
 		
 		JButton btnPdfErzeugen = new JButton("PDF Erzeugen");
+		btnPdfErzeugen.setToolTipText("<html>Hier können Sie den <br> unten stehenden<br>Wochenplan im <br> PDF Format ausdrucken<br>");
 		btnPdfErzeugen.addActionListener(new TimetableTabBtn("createpdf"));
 		add(btnPdfErzeugen, "cell 4 1,alignx left,aligny bottom");
 		add(getPanel(), "cell 1 2 5 1,grow");

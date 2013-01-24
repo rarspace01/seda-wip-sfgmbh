@@ -81,6 +81,7 @@ public class UserTab extends JPanel {
 		add(lblEmail_, "cell 5 0,aligny bottom");
 		
 		comboBoxUserclass_ = new JComboBox<String>();
+		comboBoxUserclass_.setToolTipText("<html>Sie können die Liste der <br> Benutzer über <br> diese Filter begrenzen</html>");
 		comboBoxUserclass_.setModel(new CmbboxFilterUserClass());
 		comboBoxUserclass_.addActionListener(new UserTabCmbboxFilter());
 		
@@ -95,6 +96,7 @@ public class UserTab extends JPanel {
 		add(comboBoxUserclass_, "cell 2 1,growx");
 		
 		comboBoxChair_ = new JComboBox<String>();
+		comboBoxChair_.setToolTipText("<html>Sie können die Liste der <br> Lehrveranstaltungen über <br> diese Filter begrenzen</html>");
 		comboBoxChair_.setModel(new CmbboxFilterChairAcronym(comboBoxChair_));
 		comboBoxChair_.addActionListener(new UserTabCmbboxFilter());
 		comboBoxChair_.setEditable(true);
@@ -102,11 +104,13 @@ public class UserTab extends JPanel {
 		add(comboBoxChair_, "cell 3 1,growx");
 		
 		textFieldUserLogin_ = new JTextField();
+		textFieldUserLogin_.setToolTipText("<html>Sie können die Liste der <br> Lehrveranstaltungen über <br> diese Filter begrenzen</html>");
 		textFieldUserLogin_.addActionListener(new UserTabCmbboxFilter());
 		add(textFieldUserLogin_, "cell 4 1,growx");
 		textFieldUserLogin_.setColumns(10);
 		
 		textFieldMail_ = new JTextField();
+		textFieldMail_.setToolTipText("<html>Sie können die Liste der <br> Lehrveranstaltungen über <br> diese Filter begrenzen</html>");
 		textFieldMail_.addActionListener(new UserTabCmbboxFilter());
 		textFieldMail_.setColumns(10);
 		add(textFieldMail_, "cell 5 1,growx");
@@ -137,16 +141,19 @@ public class UserTab extends JPanel {
 		add(buttonPanel_, "cell 6 2,grow");
 		
 		btnEdit_ = new JButton("hinzuf\u00FCgen");
+		btnEdit_.setToolTipText("<html>Klicken Sie hier <br> um einen neuen Nutzer anzulegen</hml>");
 		btnEdit_.addActionListener(new UserTabBtnsControl("add"));
 		btnEdit_.setBounds(6, 11, 88, 23);
 		buttonPanel_.add(btnEdit_);
 		
 		JButton btnEdit = new JButton("bearbeiten");
+		btnEdit.setToolTipText("<html>Selektieren Sie einen Nutzer<br> und klicken Sie hier um dessen Eigenschaften zu ändern</html>");
 		btnEdit.addActionListener(new UserTabBtnsControl("edit"));
 		btnEdit.setBounds(6, 45, 88, 23);
 		buttonPanel_.add(btnEdit);
 		
 		btnDelete_ = new JButton("l\u00F6schen");
+		btnDelete_.setToolTipText("<html>Selektieren Sie einen Nutzer<br> und klicken Sie hier um diesen zu löschen</html>");
 		btnDelete_.addActionListener(new UserTabBtnsControl("delete"));
 		btnDelete_.setBounds(6, 79, 88, 23);
 		buttonPanel_.add(btnDelete_);

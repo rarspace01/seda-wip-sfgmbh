@@ -60,6 +60,7 @@ public class ChairTab extends JPanel {
 		add(lblChairname_, "cell 2 0,aligny bottom");
 		
 		textFieldChairname_ = new JTextField();
+		textFieldChairname_.setToolTipText("<html>Sie können die Liste der <br> Lehrstühle über diesen<br>Filter begrenzen</html>");
 		textFieldChairname_.addActionListener(new ChairTabCmbboxFilter());
 		
 		uniIconPanel_ = new JPanel();
@@ -98,16 +99,19 @@ public class ChairTab extends JPanel {
 		add(buttonPanel_, "cell 6 2,grow");
 		
 		btnAdd_ = new JButton("hinzufügen");
+		btnAdd_.setToolTipText("<html>Klicken Sie hier <br>um einen neuen Lehrstuhl anzulegen</html>");
 		btnAdd_.addActionListener(new ChairTabBtnsControl("add"));
 		btnAdd_.setBounds(6, 11, 88, 23);
 		buttonPanel_.add(btnAdd_);
 		
 		JButton btnBearbeiten = new JButton("bearbeiten");
+		btnBearbeiten.setToolTipText("<html>Selektieren Sie einen Lehrstuhl <br> und klicken Sie hier um dessen Eigenschaften zu ändern</html>");
 		btnBearbeiten.addActionListener(new ChairTabBtnsControl("edit"));
 		btnBearbeiten.setBounds(6, 45, 88, 23);
 		buttonPanel_.add(btnBearbeiten);
 		
 		btnDelete_ = new JButton("l\u00F6schen");
+		btnDelete_.setToolTipText("<html>Selektieren Sie einen Lehrstuhl<br> um ihn zu löschen</html>");
 		btnDelete_.addActionListener(new ChairTabBtnsControl("delete"));
 		btnDelete_.setBounds(6, 79, 88, 23);
 		buttonPanel_.add(btnDelete_);

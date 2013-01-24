@@ -83,6 +83,7 @@ public class RoomtableTab extends JPanel {
 				.register(ViewManager.getInstance().getOrgaRoomTableModel());
 
 		JButton btnPdfErzeugen = new JButton("PDF erzeugen");
+		btnPdfErzeugen.setToolTipText("<html>Hier können Sie den <br> unten stehenden<br>Wochenplan im <br> PDF Format ausdrucken<br>");
 		btnPdfErzeugen.addActionListener(new RoomtableTabBtnPdf("pdfCreate"));
 		add(btnPdfErzeugen, "cell 1 0,growx,aligny center");
 		timetableTable_.getColumnModel().getColumn(0).setResizable(false);
