@@ -13,14 +13,14 @@ import de.sfgmbh.datalayer.io.IntfDataManagerPdf;
  */
 public class CtrlPdf implements IntfCtrlPdf {
 
-	IntfDataManagerPdf pdfManager;
-	String filename_;
+	private IntfDataManagerPdf pdfManager_;
+	private String filename_;
 	
 	
 	public CtrlPdf(String filename) {
 		this.filename_=filename;
 		
-		pdfManager=new DataManagerPdf(this.filename_);
+		pdfManager_=new DataManagerPdf(this.filename_);
 		
 	}
 	
@@ -30,7 +30,7 @@ public class CtrlPdf implements IntfCtrlPdf {
 	@Override
 	public void addContent(String paragraphtitle, JComponent component){
 		if(filename_.length()>0){
-			pdfManager.addContent(paragraphtitle, component);
+			pdfManager_.addContent(paragraphtitle, component);
 		}
 	}
 	
@@ -40,8 +40,8 @@ public class CtrlPdf implements IntfCtrlPdf {
 	 */
 	@Override
 	public void close(){
-		pdfManager.close();
-		pdfManager=null;
+		pdfManager_.close();
+		pdfManager_=null;
 	}
 
 	

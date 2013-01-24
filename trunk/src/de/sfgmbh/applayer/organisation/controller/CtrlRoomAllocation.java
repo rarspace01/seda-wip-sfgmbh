@@ -23,32 +23,32 @@ public class CtrlRoomAllocation implements IntfCtrlRoomAllocation {
 	 * @see de.sfgmbh.applayer.organisation.controller.IntfCtrlRoomAllocation#acceptRoomAllocation(de.sfgmbh.applayer.core.model.RoomAllocation)
 	 */
 	@Override
-	public boolean acceptRoomAllocation(IntfRoomAllocation ra) {
+	public boolean acceptRoomAllocation(IntfRoomAllocation roomAllocations) {
 		// Get the currently up to date room allocation
-		IntfRoomAllocation currentRa = AppModel.getInstance().getRepositoryRoomAllocation().get(ra.getRoomAllocationId_());
+		IntfRoomAllocation currentRoomAllocations = AppModel.getInstance().getRepositoryRoomAllocation().get(roomAllocations.getRoomAllocationId_());
 		
 		// Denied allocations will not get accepted
-		if (currentRa.getApproved_().equals("denied")) {
+		if (currentRoomAllocations.getApproved_().equals("denied")) {
 			AppModel.getInstance().getExceptionHandler().setNewException("Eine bereits abgelehnte Raumbelegung kann nicht freigegeben werden. Bitten Sie den Dozenten eine erneute Anfrage zu stellen.", "Fehler!");
 			return false;
 		}
 		
 		// Check if it is possible to set it to accepted and do so if yes
-		if (!currentRa.getApproved_().equals("accepted")){
-			if (!currentRa.isConflicting_()){
-				currentRa.setApproved_("accepted");
-				return currentRa.save();
+		if (!currentRoomAllocations.getApproved_().equals("accepted")){
+			if (!currentRoomAllocations.isConflicting_()){
+				currentRoomAllocations.setApproved_("accepted");
+				return currentRoomAllocations.save();
 			} else {
 				boolean allowSave = false;
-				currentRa.setConflictingAllocations_();
-				for (IntfRoomAllocation conflictRa : currentRa.getConflictingAllocations_()){
-					if (conflictRa.getApproved_().equals("waiting") || conflictRa.getApproved_().equals("denied")) {
+				currentRoomAllocations.setConflictingAllocations_();
+				for (IntfRoomAllocation conflictRoomAllocations : currentRoomAllocations.getConflictingAllocations_()){
+					if (conflictRoomAllocations.getApproved_().equals("waiting") || conflictRoomAllocations.getApproved_().equals("denied")) {
 						allowSave = true;
 					}
 				}
 				if (allowSave) {
-					currentRa.setApproved_("accepted");
-					return currentRa.save();
+					currentRoomAllocations.setApproved_("accepted");
+					return currentRoomAllocations.save();
 				} else {
 					AppModel.getInstance().getExceptionHandler().setNewException("Eine andere Raumbelegung auf diesem Zeitslot ist bereits freigegeben oder als Gegenvorschlag eingetragen.", "Fehler!");
 				}
