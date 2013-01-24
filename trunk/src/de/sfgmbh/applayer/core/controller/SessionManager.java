@@ -18,8 +18,7 @@ public class SessionManager implements IntfSessionManager {
 	/**
 	 * Create the session manager singleton
 	 */
-	public SessionManager() {
-		uniqueInstance_ = this;
+	private SessionManager() {
 		this.isLoggedIn_ = false;
 		this.user_ = null;
 	}
@@ -29,6 +28,9 @@ public class SessionManager implements IntfSessionManager {
 	 * @return the SessionManager
 	 */
 	public static IntfSessionManager getInstance() {
+		if(uniqueInstance_==null){
+			uniqueInstance_=new SessionManager();
+		}
 		return uniqueInstance_;
 	}
 
@@ -37,6 +39,8 @@ public class SessionManager implements IntfSessionManager {
 	 */
 	@Override
 	public void dispose() {
+		isLoggedIn_= false;
+		user_=null;
 		uniqueInstance_ = null;
 	}
 	

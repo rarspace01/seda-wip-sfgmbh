@@ -15,70 +15,70 @@ public interface IntfChair {
 	public abstract int getChairId_();
 
 	/**
-	 * @param chairId_ the chairId_ to set
+	 * @param chairId the chairId_ to set
 	 */
-	public abstract void setChairId_(int chairId_);
+	public abstract void setChairId(int chairId);
 
 	/**
 	 * @return the chairName_
 	 */
-	public abstract String getChairName_();
+	public abstract String getChairName();
 
 	/**
-	 * @param chairName_ the chairName_ to set
+	 * @param chairName the chairName_ to set
 	 */
-	public abstract void setChairName_(String chairName_);
+	public abstract void setChairName(String chairName);
 
 	/**
 	 * @return the chairOwner_
 	 */
-	public abstract IntfUser getChairOwner_();
+	public abstract IntfUser getChairOwner();
 
 	/**
-	 * @param chairOwner_ the chairOwner_ to set
+	 * @param chairOwner the chairOwner_ to set
 	 */
-	public abstract void setChairOwner_(IntfUser chairOwner_);
+	public abstract void setChairOwner(IntfUser chairOwner);
 
 	/**
 	 * @return the buildingId_
 	 */
-	public abstract int getBuildingId_();
+	public abstract int getBuildingId();
 
 	/**
-	 * @param buildingId_ the buildingId_ to set
+	 * @param buildingId the buildingId_ to set
 	 */
-	public abstract void setBuildingId_(int buildingId_);
+	public abstract void setBuildingId(int buildingId);
 
 	/**
 	 * @return the chairLevel_
 	 */
-	public abstract String getChairLevel_();
+	public abstract String getChairLevel();
 
 	/**
-	 * @param chairLevel_ the chairLevel_ to set
+	 * @param chairLevel the chairLevel_ to set
 	 */
-	public abstract void setChairLevel_(String chairLevel_);
+	public abstract void setChairLevel(String chairLevel);
 
 	/**
 	 * @return the faculty_
 	 */
-	public abstract String getFaculty_();
+	public abstract String getFaculty();
 
 	/**
 	 * Set the faculty - currently only "WI" is supported
 	 * @param faculty_ the faculty_ to set
 	 */
-	public abstract void setFaculty_(String faculty_);
+	public abstract void setFaculty(String faculty_);
 
 	/**
 	 * @return the acronym_
 	 */
-	public abstract String getAcronym_();
+	public abstract String getAcronym();
 
 	/**
 	 * @param acronym_ the acronym_ to set
 	 */
-	public abstract void setAcronym_(String acronym_);
+	public abstract void setAcronym(String acronym_);
 
 	/**
 	 * Validates the chair object, calls an info dialog when one check fails and returns true if all checks are passed

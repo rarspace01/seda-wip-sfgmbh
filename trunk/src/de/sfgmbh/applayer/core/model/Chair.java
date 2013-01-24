@@ -40,77 +40,77 @@ public class Chair implements IntfChair {
 	 * @see de.sfgmbh.applayer.core.model.IntfChair#setChairId_(int)
 	 */
 	@Override
-	public void setChairId_(int chairId_) {
+	public void setChairId(int chairId_) {
 		this.chairId_ = chairId_;
 	}
 	/* (non-Javadoc)
 	 * @see de.sfgmbh.applayer.core.model.IntfChair#getChairName_()
 	 */
 	@Override
-	public String getChairName_() {
+	public String getChairName() {
 		return chairName_;
 	}
 	/* (non-Javadoc)
 	 * @see de.sfgmbh.applayer.core.model.IntfChair#setChairName_(java.lang.String)
 	 */
 	@Override
-	public void setChairName_(String chairName_) {
+	public void setChairName(String chairName_) {
 		this.chairName_ = chairName_;
 	}
 	/* (non-Javadoc)
 	 * @see de.sfgmbh.applayer.core.model.IntfChair#getChairOwner_()
 	 */
 	@Override
-	public IntfUser getChairOwner_() {
+	public IntfUser getChairOwner() {
 		return chairOwner_;
 	}
 	/* (non-Javadoc)
 	 * @see de.sfgmbh.applayer.core.model.IntfChair#setChairOwner_(de.sfgmbh.applayer.core.model.User)
 	 */
 	@Override
-	public void setChairOwner_(IntfUser chairOwner_) {
+	public void setChairOwner(IntfUser chairOwner_) {
 		this.chairOwner_ = chairOwner_;
 	}
 	/* (non-Javadoc)
 	 * @see de.sfgmbh.applayer.core.model.IntfChair#getBuildingId_()
 	 */
 	@Override
-	public int getBuildingId_() {
+	public int getBuildingId() {
 		return buildingId_;
 	}
 	/* (non-Javadoc)
 	 * @see de.sfgmbh.applayer.core.model.IntfChair#setBuildingId_(int)
 	 */
 	@Override
-	public void setBuildingId_(int buildingId_) {
+	public void setBuildingId(int buildingId_) {
 		this.buildingId_ = buildingId_;
 	}
 	/* (non-Javadoc)
 	 * @see de.sfgmbh.applayer.core.model.IntfChair#getChairLevel_()
 	 */
 	@Override
-	public String getChairLevel_() {
+	public String getChairLevel() {
 		return chairLevel_;
 	}
 	/* (non-Javadoc)
 	 * @see de.sfgmbh.applayer.core.model.IntfChair#setChairLevel_(java.lang.String)
 	 */
 	@Override
-	public void setChairLevel_(String chairLevel_) {
+	public void setChairLevel(String chairLevel_) {
 		this.chairLevel_ = chairLevel_;
 	}
 	/* (non-Javadoc)
 	 * @see de.sfgmbh.applayer.core.model.IntfChair#getFaculty_()
 	 */
 	@Override
-	public String getFaculty_() {
+	public String getFaculty() {
 		return faculty_;
 	}
 	/* (non-Javadoc)
 	 * @see de.sfgmbh.applayer.core.model.IntfChair#setFaculty_(java.lang.String)
 	 */
 	@Override
-	public void setFaculty_(String faculty_) {
+	public void setFaculty(String faculty_) {
 		if (faculty_.equals("WI")) {
 			this.faculty_ = faculty_;
 		} else {
@@ -121,14 +121,14 @@ public class Chair implements IntfChair {
 	 * @see de.sfgmbh.applayer.core.model.IntfChair#getAcronym_()
 	 */
 	@Override
-	public String getAcronym_() {
+	public String getAcronym() {
 		return acronym_;
 	}
 	/* (non-Javadoc)
 	 * @see de.sfgmbh.applayer.core.model.IntfChair#setAcronym_(java.lang.String)
 	 */
 	@Override
-	public void setAcronym_(String acronym_) {
+	public void setAcronym(String acronym_) {
 		this.acronym_ = acronym_;
 	}
 
