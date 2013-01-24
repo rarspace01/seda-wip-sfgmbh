@@ -24,8 +24,9 @@ import de.sfgmbh.comlayer.core.views.BaseTab;
 import de.sfgmbh.comlayer.timetable.controller.CoreTimetableTabBtnPdf;
 
 /**
- * @author anna
- * @author denis - view methods
+ * Tab for the Students to let them view their colelcted Tiemtable
+ * @author anna - guiparts
+ * @author denis - methods
  *
  */
 public class CoreTimetableTab extends JPanel {
@@ -70,7 +71,6 @@ public class CoreTimetableTab extends JPanel {
 	
 		timetableTable.setBackground(Color.WHITE);
 		timetableTable.setModel(ViewManager.getInstance().getCoreTimetableTabTable());
-		timetableTable.setDefaultRenderer(Object.class, new FirstColumnGrayRenderer());
 		
 		AppModel.getInstance().getRepositoryRoomAllocation().register(ViewManager.getInstance().getCoreTimetableTabTable());
 		
@@ -108,6 +108,7 @@ public class CoreTimetableTab extends JPanel {
 	}
 	/**
 	 * reloads the timetable corresponding to the selection on the basetab
+	 * @author denis
 	 */
 	public void reloadRoomTable(){
 		//controller for table methods
@@ -124,6 +125,30 @@ public class CoreTimetableTab extends JPanel {
 		this.updateUI();
 	}
 
+	/**
+	 * adds an room allocation to he table, stores it locally
+	 * @author denis
+	 * @param roomallocations - {@link RoomAllocation}
+	 */
+	public void addAllocation(List<RoomAllocation> roomallocations) {
+		
+		for(int i=0;i<roomallocations.size();i++){
+			if(!roomAllocList_.contains(roomallocations.get(i))){
+			this.roomAllocList_.add(roomallocations.get(i));
+			}
+		}
+		reloadRoomTable();
+	}
+	
+	/**
+	 * resets the collectedAllocations
+	 * @author denis
+	 */
+	public void resetPlan(){
+		roomAllocList_.clear();
+		reloadRoomTable();
+	}
+	
 	/**
 	 * 
 	 * @return the timetableTable
@@ -146,26 +171,5 @@ public class CoreTimetableTab extends JPanel {
 		return roomId_;
 	}
 	
-	/**
-	 * adds an room allocation to he table, stores it locally
-	 * @author denis
-	 * @param roomallocations - {@link RoomAllocation}
-	 */
-	public void addAllocation(List<RoomAllocation> roomallocations) {
-		
-		for(int i=0;i<roomallocations.size();i++){
-			if(!roomAllocList_.contains(roomallocations.get(i))){
-			this.roomAllocList_.add(roomallocations.get(i));
-			}
-		}
-		reloadRoomTable();
-	}
-	/**
-	 * resets the timetable
-	 */
-	public void resetPlan(){
-		roomAllocList_.clear();
-		reloadRoomTable();
-	}
 	
 }
