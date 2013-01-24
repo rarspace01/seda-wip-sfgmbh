@@ -26,7 +26,7 @@ import de.sfgmbh.comlayer.organisation.controller.RoomtableCmbboxFilter;
 import de.sfgmbh.comlayer.organisation.controller.RoomtableTabBtnPdf;
 
 /**
- * 
+ * Table for the room allocation overview on a specific room
  * @author denis
  * 
  */

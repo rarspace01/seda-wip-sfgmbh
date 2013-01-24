@@ -20,9 +20,9 @@ import de.sfgmbh.comlayer.organisation.views.ChairCreateDialog;
  */
 public class ChairCreateDialogBtns implements ActionListener {
 
-	private String ctrlAction;
-	private ChairCreateDialog motherDialog;
-	private IntfCtrlChair ctrlChair = new CtrlChair();
+	private String ctrlAction_;
+	private ChairCreateDialog motherDialog_;
+	private IntfCtrlChair ctrlChair_ = new CtrlChair();
 
 	/**
 	 * Create the action listener
@@ -30,8 +30,8 @@ public class ChairCreateDialogBtns implements ActionListener {
 	 * @param motherDialog
 	 */
 	public ChairCreateDialogBtns(ChairCreateDialog motherDialog) {
-		this.motherDialog = motherDialog;
-		this.ctrlAction = "default";
+		this.motherDialog_ = motherDialog;
+		this.ctrlAction_ = "default";
 	}
 
 	/**
@@ -41,32 +41,32 @@ public class ChairCreateDialogBtns implements ActionListener {
 	 * @param action
 	 */
 	public ChairCreateDialogBtns(ChairCreateDialog motherDialog, String action) {
-		this.motherDialog = motherDialog;
-		this.ctrlAction = action;
+		this.motherDialog_ = motherDialog;
+		this.ctrlAction_ = action;
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		AppException exceptionHandler = AppModel.getInstance()
 				.getExceptionHandler();
-		CmbboxFilterLecturer cmbboxModel = (CmbboxFilterLecturer) motherDialog
+		CmbboxFilterLecturer cmbboxModel = (CmbboxFilterLecturer) motherDialog_
 				.getCmbboxLecturer().getModel();
 
 		// Cancel button is pressed
-		if (this.ctrlAction.equals("cancel")) {
-			this.motherDialog.dispose();
+		if (this.ctrlAction_.equals("cancel")) {
+			this.motherDialog_.dispose();
 		}
 
 		// Save button is pressed
-		if (this.ctrlAction.equals("save")) {
-			IntfChair newChair = motherDialog.getChair();
+		if (this.ctrlAction_.equals("save")) {
+			IntfChair newChair = motherDialog_.getChair();
 			try {
-				newChair.setAcronym_(motherDialog.getTxtAcronym()
+				newChair.setAcronym_(motherDialog_.getTxtAcronym()
 						.getText());
-				newChair.setChairName_(motherDialog
+				newChair.setChairName_(motherDialog_
 						.getTxtName().getText());
-				newChair.setChairLevel_(motherDialog.getTxtLevel().getText());
-				newChair.setFaculty_(motherDialog.getTxtFaculity().getText());
+				newChair.setChairLevel_(motherDialog_.getTxtLevel().getText());
+				newChair.setFaculty_(motherDialog_.getTxtFaculity().getText());
 				// Get the lecturer object out of the model as a sql query on
 				// the last name which should not be unique would not be a good
 				// idea
@@ -75,7 +75,7 @@ public class ChairCreateDialogBtns implements ActionListener {
 				// But as per default the currently logged in lecturer is
 				// selected in most of the cases this should be no big problem.
 				newChair.setChairOwner_(cmbboxModel.getLecturerForModel().get(
-						motherDialog.getCmbboxLecturer().getSelectedIndex()));
+						motherDialog_.getCmbboxLecturer().getSelectedIndex()));
 			} catch (Exception ex) {
 				exceptionHandler
 						.setNewException(
@@ -87,11 +87,11 @@ public class ChairCreateDialogBtns implements ActionListener {
 				return;
 			}
 
-			if (this.ctrlChair.saveChair(newChair)) {
+			if (this.ctrlChair_.saveChair(newChair)) {
 				exceptionHandler.setNewException(
 						"Der Lehrstuhl wurde gespeichert.", "Erfolg!",
 						"success");
-				this.motherDialog.dispose();
+				this.motherDialog_.dispose();
 			}
 
 		}

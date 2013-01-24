@@ -5,6 +5,8 @@ import java.awt.event.ActionListener;
 
 import de.sfgmbh.applayer.core.definitions.IntfRoom;
 import de.sfgmbh.applayer.core.model.AppModel;
+import de.sfgmbh.applayer.organisation.controller.CtrlRoom;
+import de.sfgmbh.applayer.organisation.definitions.IntfCtrlRoom;
 import de.sfgmbh.comlayer.core.controller.ViewManager;
 import de.sfgmbh.comlayer.core.definitions.IntfComDialogObserver;
 import de.sfgmbh.comlayer.core.views.QuestionDialog;
@@ -19,14 +21,14 @@ import de.sfgmbh.comlayer.organisation.views.RoomTab;
  */
 public class RoomTabActionListener implements ActionListener, IntfComDialogObserver {
 
-	private String navAction;
+	private String navAction_;
 
 	public RoomTabActionListener() {
-		this.navAction = "default";
+		this.navAction_ = "default";
 	}
 
 	public RoomTabActionListener(String action) {
-		this.navAction = action;
+		this.navAction_ = action;
 	}
 
 	/**
@@ -36,6 +38,8 @@ public class RoomTabActionListener implements ActionListener, IntfComDialogObser
 	public void actionPerformed(ActionEvent e) {
 		int getTableId;
 		
+		IntfCtrlRoom roomController=new CtrlRoom();
+		
 		RoomFrame roomFrame = ViewManager.getInstance().getOrgaRoomFrame();
 		RoomTab roomTab = ViewManager.getInstance().getOrgaRoomTab();
 
@@ -43,13 +47,13 @@ public class RoomTabActionListener implements ActionListener, IntfComDialogObser
 		roomFrame.reset();
 		
 		// Add Button is pressed
-		if (this.navAction.equals("add")) {
+		if (this.navAction_.equals("add")) {
 			roomFrame.setVisible(true);
 			roomFrame.setTitle("Neuen Raum anlegen");
 		}
 
 		// Edit Button is pressed
-		if (this.navAction.equals("edit")) {
+		if (this.navAction_.equals("edit")) {
 
 			// check if a room was selected
 			if(roomTab.getRoommanagementTable().getSelectedRow()>=0){
@@ -60,7 +64,7 @@ public class RoomTabActionListener implements ActionListener, IntfComDialogObser
 				getTableId = roomTab.getRowSorter().convertRowIndexToModel(getTableId);
 				int getId=Integer.parseInt(ViewManager.getInstance().getOrgaRoomTableModel().getValueAt(getTableId, 0).toString());
 				
-				IntfRoom selectedRoom=AppModel.getInstance().getRepositoryRoom().getRoomById(getId);
+				IntfRoom selectedRoom=roomController.get(getId);
 	
 				// load values from room object to gui
 				roomFrame.getTxtroomid().setText(""+selectedRoom.getRoomId_());
@@ -90,7 +94,7 @@ public class RoomTabActionListener implements ActionListener, IntfComDialogObser
 		}
 
 		// Delete Button is pressed
-		if (this.navAction.equals("del")) {
+		if (this.navAction_.equals("del")) {
 				// check if a room was selected
 				if(roomTab.getRoommanagementTable().getSelectedRow()>=0){
 					//open dialog and ask the user to confirm deletion
@@ -108,7 +112,7 @@ public class RoomTabActionListener implements ActionListener, IntfComDialogObser
 		}
 
 		// Plan Button is pressed
-		if (this.navAction.equals("plan")) {
+		if (this.navAction_.equals("plan")) {
 			// if a room was selected
 			if(roomTab.getRoommanagementTable().getSelectedRow()>=0){
 				
@@ -141,14 +145,15 @@ public class RoomTabActionListener implements ActionListener, IntfComDialogObser
 	@Override
 	public void answered(String answer) {
 		if (answer.equals("yes")) {
-
+			IntfCtrlRoom roomController=new CtrlRoom();
+			//get roomid from the selected object
 			int getTableId=ViewManager.getInstance().getOrgaRoomTab().getRoommanagementTable().getSelectedRow();
 			getTableId = ViewManager.getInstance().getOrgaRoomTab().getRowSorter().convertRowIndexToModel(getTableId);
 			int getId=Integer.parseInt(ViewManager.getInstance().getOrgaRoomTableModel().getValueAt(getTableId, 0).toString());
-			
+			//get roomobject  over the repository
 			IntfRoom selectedRoom=AppModel.getInstance().getRepositoryRoom().getRoomById(getId);
-			
-			AppModel.getInstance().getRepositoryRoom().delete(selectedRoom);
+			//delete the room over the repository
+			roomController.delete(selectedRoom);
 			
 		} else if (answer.equals("no")) {
 			//do nothing

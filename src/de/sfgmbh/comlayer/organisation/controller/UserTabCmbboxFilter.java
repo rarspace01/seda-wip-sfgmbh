@@ -5,9 +5,10 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
+import de.sfgmbh.applayer.core.model.User;
 import de.sfgmbh.comlayer.core.controller.ViewManager;
 /**
- * 
+ * ComboboxFilter to select the {@link User}
  * @author hannes
  *
  */

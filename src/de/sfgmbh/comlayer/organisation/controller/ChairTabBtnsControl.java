@@ -23,29 +23,29 @@ import de.sfgmbh.comlayer.organisation.views.ChairCreateDialog;
  */
 public class ChairTabBtnsControl implements ActionListener, IntfComDialogObserver {
 	
-	private String navAction;
-	private boolean deleteChair = false;
-	private IntfChair chairMarkedForDeletion;
-	private IntfCtrlChair ctrlChair = new CtrlChair();
+	private String navAction_;
+	private boolean deleteChair_ = false;
+	private IntfChair chairMarkedForDeletion_;
+	private IntfCtrlChair ctrlChair_ = new CtrlChair();
 	
 	/**
 	 * Create the action listener based on a submitted action string
 	 */
 	public ChairTabBtnsControl(String action) {
-		this.navAction = action;
+		this.navAction_ = action;
 	}
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		
 		// Add button is pressed
-		if (this.navAction.equals("add")) {
+		if (this.navAction_.equals("add")) {
 			ChairCreateDialog newChairDialog = new ChairCreateDialog("create");
 			newChairDialog.setVisible(true);
 		}
 		
 		// Edit button is pressed
-		if (this.navAction.equals("edit")) {
+		if (this.navAction_.equals("edit")) {
 			// Get the chair
 			int row = ViewManager.getInstance().getOrgaChairTab().getChairOrgaTable().getSelectedRow();
 			if (row == -1) {
@@ -63,9 +63,9 @@ public class ChairTabBtnsControl implements ActionListener, IntfComDialogObserve
 		}
 		
 		// Delete button is pressed
-		if (this.navAction.equals("delete")) {
+		if (this.navAction_.equals("delete")) {
 			//set a chair delete variable to be sure the user really pressed the delete button later
-			deleteChair = true;
+			deleteChair_ = true;
 			
 			//Get the chair
 			int row = ViewManager.getInstance().getOrgaChairTab().getChairOrgaTable().getSelectedRow();
@@ -74,7 +74,7 @@ public class ChairTabBtnsControl implements ActionListener, IntfComDialogObserve
 			} else {
 				try {
 					row = ViewManager.getInstance().getOrgaChairTab().getRowSorter().convertRowIndexToModel(row);
-					this.chairMarkedForDeletion = (IntfChair) ViewManager.getInstance().getOrgaChairTableModel().getValueAt(row, 4);
+					this.chairMarkedForDeletion_ = (IntfChair) ViewManager.getInstance().getOrgaChairTableModel().getValueAt(row, 4);
 				} catch (Exception ex) {
 					AppModel.getInstance().getExceptionHandler().setNewException("Ein unerwarteter Fehler ist aufgetreten.<br /><br >" + ex.toString(), "Fehler!");
 				}
@@ -89,10 +89,10 @@ public class ChairTabBtnsControl implements ActionListener, IntfComDialogObserve
 	@Override
 	public void answered(String answer) {
 		if (answer.equals("yes")) {
-			this.deleteChair(this.chairMarkedForDeletion);
+			this.deleteChair(this.chairMarkedForDeletion_);
 		} else if (answer.equals("no")) {
-			this.deleteChair = false;
-			this.chairMarkedForDeletion = null;
+			this.deleteChair_ = false;
+			this.chairMarkedForDeletion_ = null;
 		}
 	}
 	
@@ -103,10 +103,10 @@ public class ChairTabBtnsControl implements ActionListener, IntfComDialogObserve
 	 */
 	public void deleteChair(IntfChair chair) {
 		
-		if (this.deleteChair) {
-			this.deleteChair = false;
-			if (ctrlChair.delete(chair)) {
-				this.chairMarkedForDeletion = null;
+		if (this.deleteChair_) {
+			this.deleteChair_ = false;
+			if (ctrlChair_.delete(chair)) {
+				this.chairMarkedForDeletion_ = null;
 				AppModel.getInstance().getExceptionHandler().setNewException("Der Lehrstuhl wurde erfolgreich gelöscht!", "Erfolg!", "success");
 			} 
 		}

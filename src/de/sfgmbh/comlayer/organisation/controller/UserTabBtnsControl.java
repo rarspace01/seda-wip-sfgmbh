@@ -21,17 +21,17 @@ import de.sfgmbh.comlayer.organisation.views.UserCreateDialog;
  */
 public class UserTabBtnsControl implements ActionListener, IntfComDialogObserver {
 	
-	private String navAction;
-	private boolean deleteUser = false;
-	private IntfUser userMarkedForDeletion;
-	private IntfCtrlUser ctrlUser = new CtrlUser();
+	private String navAction_;
+	private boolean deleteUser_ = false;
+	private IntfUser userMarkedForDeletion_;
+	private IntfCtrlUser ctrlUser_ = new CtrlUser();
 	
 	
 	/**
 	 * Create the action listener
 	 */
 	public UserTabBtnsControl() {
-		this.navAction = "default";
+		this.navAction_ = "default";
 	}
 	
 	/**
@@ -39,20 +39,20 @@ public class UserTabBtnsControl implements ActionListener, IntfComDialogObserver
 	 * @param action
 	 */
 	public UserTabBtnsControl(String action) {
-		this.navAction = action;
+		this.navAction_ = action;
 	}
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		
 		// Add button is pressed
-		if (this.navAction.equals("add")) {
+		if (this.navAction_.equals("add")) {
 			UserCreateDialog newUserDialog = new UserCreateDialog();
 			newUserDialog.setVisible(true);
 		}
 		
 		// Edit button is pressed
-		if (this.navAction.equals("edit")) {
+		if (this.navAction_.equals("edit")) {
 			// Get the user
 			int row = ViewManager.getInstance().getOrgaUserTab().getUserOrgaTable().getSelectedRow();
 			if (row == -1) {
@@ -71,9 +71,9 @@ public class UserTabBtnsControl implements ActionListener, IntfComDialogObserver
 		}
 		
 		// Delete button is pressed
-		if (this.navAction.equals("delete")) {
+		if (this.navAction_.equals("delete")) {
 			// Set a user delete variable to be sure the user really pressed the delete button later
-			deleteUser = true;
+			deleteUser_ = true;
 			
 			// Get the user
 			int row = ViewManager.getInstance().getOrgaUserTab().getUserOrgaTable().getSelectedRow();
@@ -82,7 +82,7 @@ public class UserTabBtnsControl implements ActionListener, IntfComDialogObserver
 			} else {
 				try {
 					row = ViewManager.getInstance().getOrgaUserTab().getRowSorter().convertRowIndexToModel(row);
-					this.userMarkedForDeletion = (IntfUser) ViewManager.getInstance().getOrgaUserTableModel().getValueAt(row, 6);
+					this.userMarkedForDeletion_ = (IntfUser) ViewManager.getInstance().getOrgaUserTableModel().getValueAt(row, 6);
 				} catch (Exception ex) {
 					AppModel.getInstance().getExceptionHandler().setNewException("Ein unerwarteter Fehler ist aufgetreten.<br /><br >" + ex.toString(), "Fehler!");
 				}
@@ -97,9 +97,9 @@ public class UserTabBtnsControl implements ActionListener, IntfComDialogObserver
 	@Override
 	public void answered(String answer) {
 		if (answer.equals("yes")) {
-			this.deleteUser(this.userMarkedForDeletion);
+			this.deleteUser(this.userMarkedForDeletion_);
 		} else if (answer.equals("no")) {
-			this.deleteUser = false;
+			this.deleteUser_ = false;
 		}
 	}
 	
@@ -110,9 +110,9 @@ public class UserTabBtnsControl implements ActionListener, IntfComDialogObserver
 	 */
 	public void deleteUser(IntfUser user) {
 		
-		if (this.deleteUser) {
-			this.deleteUser = false;
-			if (ctrlUser.delete(user)) {
+		if (this.deleteUser_) {
+			this.deleteUser_ = false;
+			if (ctrlUser_.delete(user)) {
 				AppModel.getInstance().getExceptionHandler().setNewException("Der Benutzer wurde erfolgreich gelöscht!", "Erfolg!", "success");
 			} else {
 				
