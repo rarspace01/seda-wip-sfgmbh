@@ -1,11 +1,16 @@
 package de.sfgmbh.datalayer.io;
 
+import java.awt.BorderLayout;
+import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
 import javax.swing.JComponent;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
 
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
@@ -98,6 +103,7 @@ public class DataManagerPDF implements IntfDataManagerPDF {
 //		component.printAll(g);
 //		g.dispose();
 		
+	
 	}
 	
 	/* (non-Javadoc)
@@ -107,6 +113,7 @@ public class DataManagerPDF implements IntfDataManagerPDF {
 	public void close(){
 		document_.close();
 	}
+
 	
 	
 }

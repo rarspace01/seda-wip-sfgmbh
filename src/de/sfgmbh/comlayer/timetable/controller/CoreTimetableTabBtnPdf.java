@@ -55,7 +55,7 @@ public class CoreTimetableTabBtnPdf implements ActionListener {
 				//setPDF
 				pdfController=new CtrlPdf(fc.getSelectedFile().getAbsolutePath());
 				//add the specific content
-				pdfController.addContent("Vorlesungsplan - Semester: "+semester,ViewManager.getInstance().getCoreTimetableTab().getScrollPane_());
+				pdfController.addContent("Vorlesungsplan - Semester: "+semester,ViewManager.getInstance().getCoreTimetableTab().getStundenplanTable());
 				//close document
 				pdfController.close();
 			}
