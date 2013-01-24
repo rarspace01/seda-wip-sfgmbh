@@ -34,6 +34,7 @@ public class CtrlPdf implements IntfCtrlPdf {
 		}
 	}
 	
+	
 	/* (non-Javadoc)
 	 * @see de.sfgmbh.applayer.core.controller.IntfCtrlPdf#close()
 	 */
@@ -42,5 +43,6 @@ public class CtrlPdf implements IntfCtrlPdf {
 		pdfManager.close();
 		pdfManager=null;
 	}
+
 	
 }

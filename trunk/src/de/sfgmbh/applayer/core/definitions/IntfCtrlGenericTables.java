@@ -21,10 +21,23 @@ public interface IntfCtrlGenericTables {
 	public abstract int countBreaklines(String inputString);
 	
 	/**
+	 * retrieves the max length from the Lines
+	 * @param inputString
+	 * @return count - Number of < br /> in String
+	 */
+	public abstract int maxLengthBreakline(String inputString);
+	
+	/**
 	 * resizes the given table dynamicly based on the row max size
 	 * @param table
 	 */
 	public void resizeRows(JTable table);
+	
+	/**
+	 * resizes the given table dynamicly based on the max column size
+	 * @param table
+	 */
+	public void resizeColums(JTable table);
 	
 	/**
 	 * manages the reload process of a table, based on a given {@link RoomAllocation} {@link List}

@@ -10,7 +10,7 @@ public interface IntfCtrlPdf {
 	 * @param component
 	 */
 	public abstract void addContent(String paragraphtitle, JComponent component);
-
+	
 	/**
 	 * closes the current PDF file
 	 */

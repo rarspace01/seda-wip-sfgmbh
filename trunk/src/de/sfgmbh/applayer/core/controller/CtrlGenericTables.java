@@ -78,6 +78,45 @@ public class CtrlGenericTables implements IntfCtrlGenericTables {
 		}
 		resizeRows(table);
 	}
+
+	@Override
+	public void resizeColums(JTable table) {
+		//calc max heigth per row and set it
+		int maxWidth=0;
+		int tmpWidth=0;
+		for(int i=0;i<6;i++){
+			for(int j=0; j<=5; j++){
+				tmpWidth=maxLengthBreakline(table.getModel().getValueAt(i, j).toString());
+				if(tmpWidth>maxWidth){
+					maxWidth=tmpWidth;
+				}
+			}
+		}
+		System.out.println(maxWidth);
+		for(int i=0;i<=5;i++){
+			table.getColumnModel().getColumn(i).setMinWidth(maxWidth);
+			table.getColumnModel().getColumn(i).setPreferredWidth(maxWidth);
+			table.getColumnModel().getColumn(i).setMaxWidth(maxWidth);
+		}
+		
+	}
+
+	@Override
+	public int maxLengthBreakline(String inputString) {
+		String string=inputString;
+		int maxLength=0;
+		if(inputString.contains("<br/>")){
+			String[] splittedString = string.split("<br/>");
+			for(int i=0;i<splittedString.length;i++){
+				if(splittedString[i].length()>maxLength){
+					maxLength=splittedString[i].length();
+				}
+			}
+		}else{
+			maxLength=inputString.length();
+		}
+		return maxLength;
+	}
 	
 	
 }
