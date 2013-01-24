@@ -27,8 +27,9 @@ public class DataHandlerRoom implements IntfDataRoom, IntfDataFilter,
 
 	private ArrayList<Object> observer_ = new ArrayList<Object>();
 
-	/**
-	 * retrieves all rooms from the database
+	/*
+	 * (non-Javadoc)
+	 * @see de.sfgmbh.datalayer.core.definitions.IntfDataRoom#getAll()
 	 */
 	@Override
 	public List<IntfRoom> getAll() {
@@ -69,8 +70,9 @@ public class DataHandlerRoom implements IntfDataRoom, IntfDataFilter,
 		return listRooms;
 	}
 
-	/**
-	 * return a {@link Room} Object from the given roomId
+	/*
+	 * (non-Javadoc)
+	 * @see de.sfgmbh.datalayer.core.definitions.IntfDataRoom#get(int)
 	 */
 	@Override
 	public IntfRoom get(int roomId) {
@@ -111,8 +113,9 @@ public class DataHandlerRoom implements IntfDataRoom, IntfDataFilter,
 		return returnRoom;
 	}
 
-	/**
-	 * deletes a {@link Room} Object in the database
+	/*
+	 * (non-Javadoc)
+	 * @see de.sfgmbh.datalayer.core.definitions.IntfDataRoom#delete(de.sfgmbh.applayer.core.definitions.IntfRoom)
 	 */
 	@Override
 	public void delete(IntfRoom room) {
@@ -139,8 +142,9 @@ public class DataHandlerRoom implements IntfDataRoom, IntfDataFilter,
 
 	}
 
-	/**
-	 * saves an {@link Room} object in the database
+	/*
+	 * (non-Javadoc)
+	 * @see de.sfgmbh.datalayer.core.definitions.IntfDataRoom#save(de.sfgmbh.applayer.core.definitions.IntfRoom)
 	 */
 	@Override
 	public void save(IntfRoom room) {
