@@ -33,9 +33,9 @@ public interface IntfUser {
 
 	public abstract void setClass_(String class_);
 
-	public abstract String getfName_();
+	public abstract String getFirstName_();
 
-	public abstract void setfName_(String fName_);
+	public abstract void setFirstName_(String fName_);
 
 	public abstract String getlName_();
 

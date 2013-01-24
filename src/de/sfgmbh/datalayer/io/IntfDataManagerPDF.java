@@ -2,11 +2,11 @@ package de.sfgmbh.datalayer.io;
 
 import javax.swing.JComponent;
 /**
- * This is the interface for the {@link DataManagerPDF}
+ * This is the interface for the {@link DataManagerPdf}
  * @author denis
  *
  */
-public interface IntfDataManagerPDF {
+public interface IntfDataManagerPdf {
 
 	public abstract void addContent(String paragraphtitle, JComponent component);
 	

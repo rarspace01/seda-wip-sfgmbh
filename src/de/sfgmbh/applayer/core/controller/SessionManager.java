@@ -12,16 +12,16 @@ import de.sfgmbh.applayer.core.definitions.IntfUser;
 public class SessionManager implements IntfSessionManager {
 	
 	private static IntfSessionManager uniqueInstance_ = new SessionManager();
-	private boolean isLoggedIn;
-	private IntfUser user;
+	private boolean isLoggedIn_;
+	private IntfUser user_;
 	
 	/**
 	 * Create the session manager singleton
 	 */
 	public SessionManager() {
 		uniqueInstance_ = this;
-		this.isLoggedIn = false;
-		this.user = null;
+		this.isLoggedIn_ = false;
+		this.user_ = null;
 	}
 	
 	/**
@@ -45,7 +45,7 @@ public class SessionManager implements IntfSessionManager {
 	 */
 	@Override
 	public IntfUser getSession() {
-		return this.user;
+		return this.user_;
 	}
 	
 	/* (non-Javadoc)
@@ -53,8 +53,8 @@ public class SessionManager implements IntfSessionManager {
 	 */
 	@Override
 	public void setSession(IntfUser user) {
-		this.user = user;
-		this.isLoggedIn = true;
+		this.user_ = user;
+		this.isLoggedIn_ = true;
 	}
 	
 	/* (non-Javadoc)
@@ -62,7 +62,7 @@ public class SessionManager implements IntfSessionManager {
 	 */
 	@Override
 	public boolean checkSession() {
-		return this.isLoggedIn;
+		return this.isLoggedIn_;
 	}
 	
 	/* (non-Javadoc)
@@ -70,8 +70,8 @@ public class SessionManager implements IntfSessionManager {
 	 */
 	@Override
 	public void clearSession() {
-		this.user = null;
-		this.isLoggedIn = false;
+		this.user_ = null;
+		this.isLoggedIn_ = false;
 	}
 
 }

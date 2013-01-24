@@ -3,8 +3,8 @@ package de.sfgmbh.applayer.core.controller;
 import javax.swing.JComponent;
 
 import de.sfgmbh.applayer.core.definitions.IntfCtrlPdf;
-import de.sfgmbh.datalayer.io.DataManagerPDF;
-import de.sfgmbh.datalayer.io.IntfDataManagerPDF;
+import de.sfgmbh.datalayer.io.DataManagerPdf;
+import de.sfgmbh.datalayer.io.IntfDataManagerPdf;
 
 /**
  * controller class for the PDF handling
@@ -13,14 +13,14 @@ import de.sfgmbh.datalayer.io.IntfDataManagerPDF;
  */
 public class CtrlPdf implements IntfCtrlPdf {
 
-	IntfDataManagerPDF pdfManager;
+	IntfDataManagerPdf pdfManager;
 	String filename_;
 	
 	
 	public CtrlPdf(String filename) {
 		this.filename_=filename;
 		
-		pdfManager=new DataManagerPDF(this.filename_);
+		pdfManager=new DataManagerPdf(this.filename_);
 		
 	}
 	
