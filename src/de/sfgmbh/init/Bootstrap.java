@@ -68,6 +68,7 @@ public class Bootstrap {
 		
 	}
 	
+	
 	private static boolean hasDbConnection(){
 		boolean hasDbConnection=false;		
 		try {
@@ -75,7 +76,6 @@ public class Bootstrap {
 			hasDbConnection=true;
 			DataManagerPostgreSql.getInstance().dispose();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			DataModel.getInstance().getExceptionsHandler().setNewException(("Keine Verbindung zur Datenbank möglich:<br /><br />" + e.toString()), "Verbindungs-Fehler!");
 			e.printStackTrace();
 		} catch (NullPointerException e){

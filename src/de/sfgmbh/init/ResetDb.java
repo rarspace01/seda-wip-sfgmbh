@@ -10,11 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import de.sfgmbh.datalayer.io.DataManagerPostgreSql;
-/**
- * Resets the database
- * @author denis
- *
- */
+
 /**
  * class for reseting the database based on the included sql file
  * @author denis
@@ -32,6 +28,8 @@ public class ResetDb {
 	 */
 	public void factoryReset(){
 		runSqlScript();
+		System.out.println("resetted Database to initial values");
+		
 	}
 
 	// defines the explicit method for running the sql File
