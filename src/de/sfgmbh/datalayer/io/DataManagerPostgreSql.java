@@ -12,15 +12,14 @@ import de.sfgmbh.datalayer.core.model.DataModel;
  * Class is used for the PostgreSQL DB connection
  * 
  * @author denis
- * @author hannes
- * 
+ * @hannes hannes
  */
 public class DataManagerPostgreSql {
 	private static DataManagerPostgreSql uniqueInstance_ = null;
 
-	private java.sql.Connection conn;
-	private Statement stmt;
-	private PreparedStatement pstmt;
+	private java.sql.Connection connection_;
+	private Statement statement_;
+	private PreparedStatement preparedStatement_;
 	
 	/**
 	 * Create the data manager object
@@ -30,10 +29,10 @@ public class DataManagerPostgreSql {
 		DataManagerConfig dbconfig=new DataManagerConfig();
 		try {
 			Class.forName("org.postgresql.Driver");
-			conn = DriverManager.getConnection("jdbc:postgresql://" +
+			connection_ = DriverManager.getConnection("jdbc:postgresql://" +
 			dbconfig.getIp()+":"+dbconfig.getPort()+ "/" + dbconfig.getDatabase(), 
 			dbconfig.getUsername(),dbconfig.getPassword());
-			stmt = conn.createStatement();
+			statement_ = connection_.createStatement();
 
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -62,18 +61,18 @@ public class DataManagerPostgreSql {
 	 */
 	public void dispose() {
 		try {
-			if(this.pstmt!=null){
-			this.pstmt.close();
+			if(this.preparedStatement_!=null){
+			this.preparedStatement_.close();
 			}
-			if(this.stmt!=null){
-			this.stmt.close();
+			if(this.statement_!=null){
+			this.statement_.close();
 			}
-			if(this.conn!=null){
-			this.conn.close();
+			if(this.connection_!=null){
+			this.connection_.close();
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
+			DataModel.getInstance().getExceptionsHandler().setNewException(("Es ist ein unbekannter Fehler in der Datenhaltung aufgetreten.<br /><br />DataManagerPostgreSql-032:<br />" + e.toString()), "Fehler!");
 		}
 		uniqueInstance_ = null;
 	}
@@ -83,14 +82,14 @@ public class DataManagerPostgreSql {
 	 */
 	public void disposeNonSingleton() {
 		try {
-			if(this.pstmt!=null){
-			this.pstmt.close();
+			if(this.preparedStatement_!=null){
+			this.preparedStatement_.close();
 			}
-			if(this.stmt!=null){
-			this.stmt.close();
+			if(this.statement_!=null){
+			this.statement_.close();
 			}
-			if(this.conn!=null){
-			this.conn.close();
+			if(this.connection_!=null){
+			this.connection_.close();
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -102,7 +101,7 @@ public class DataManagerPostgreSql {
 	 * @return the preparedStatement
 	 */
 	public PreparedStatement getPreparedStatement() {
-		return pstmt;
+		return preparedStatement_;
 	}
 
 	/**
@@ -110,7 +109,7 @@ public class DataManagerPostgreSql {
 	 * @return pstmt - the preparedStatement
 	 */
 	public Statement getStatement() {
-		return stmt;
+		return statement_;
 	}
 
 	
@@ -122,18 +121,18 @@ public class DataManagerPostgreSql {
 	 */
 	public ResultSet select(String SQLString) throws SQLException {
 		
-		ResultSet rs = null;
+		ResultSet resultSet = null;
 
 		try {
 
-			rs = stmt.executeQuery(SQLString);
+			resultSet = statement_.executeQuery(SQLString);
 
 		} catch (SQLException e) {
 			e.printStackTrace();
 			DataModel.getInstance().getExceptionsHandler().setNewException(("Es ist ein SQL-Fehler (DataManagerPostgreSql-03) aufgetreten:<br /><br />" + e.toString()), "Datenbank-Fehler!");
 		}
 		
-		return rs;
+		return resultSet;
 	}
 
 	/**
@@ -148,7 +147,7 @@ public class DataManagerPostgreSql {
 
 		try {
 		
-			i = stmt.executeUpdate(SQLString);
+			i = statement_.executeUpdate(SQLString);
 
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -170,7 +169,7 @@ public class DataManagerPostgreSql {
 
 		try {
 		
-			i = stmt.executeUpdate(SQLString);
+			i = statement_.executeUpdate(SQLString);
 
 		} catch (Exception e) {
 			//e.printStackTrace();
@@ -184,18 +183,18 @@ public class DataManagerPostgreSql {
 	 * Prepare the data manager with a prepared statement that is about to be executed either by selectPstmt() or executePstmt()
 	 * @param prepareSqlString
 	 * @return the prepared statement object
-	 * 
+	 * @author hannes
 	 */
 	public PreparedStatement prepare(String prepareSqlString) {
 		
 		try {
-			this.pstmt = conn.prepareStatement(prepareSqlString);
+			this.preparedStatement_ = connection_.prepareStatement(prepareSqlString);
 		} catch (Exception e) {
 			e.printStackTrace();
 			DataModel.getInstance().getExceptionsHandler().setNewException(("Es ist ein unbekannter Fehler (DataManagerPostgreSql-05) in der Datenhaltung aufgetreten:<br /><br />" + e.toString()), "Fehler!");
 		}
 		
-		return this.pstmt;
+		return this.preparedStatement_;
 	}
 	
 	/**
