@@ -131,28 +131,51 @@ public class DataHandlerRoomAllocation implements IntfDataObservable, IntfDataFi
 		
 		try {
 			if (filterDm == null) { 
-				filterDm = DataManagerPostgreSql.getInstance(); 
-				filterDm.prepare(
-						"SELECT public.roomallocation.*, public.course.*, public.user.*, public.room.*, public.chair.* " +
-						"FROM public.roomallocation, public.room, public.course, public.user, public.chair, public.lecturer " +
-						"WHERE public.roomallocation.courseid = public.course.courseid " +
-						"AND public.course.lecturerid = public.user.userid " +
-						"AND public.course.lecturerid = public.lecturer.userid " +
-						"AND public.chair.chairid = public.lecturer.chairid " +
-						"AND public.roomallocation.roomid = public.room.roomid " +
-						"AND (public.user.lname LIKE ? OR public.user.fname LIKE ? ) " +
-						"AND (public.chair.chairname LIKE ? OR public.chair.chairacronym LIKE ? ) " +
-						"AND (public.course.courseacronym LIKE ? OR public.course.coursename LIKE ? ) " +
-						"AND public.roomallocation.semester LIKE ? " +
-						"AND public.roomallocation.approved LIKE ? " +
-						"AND public.room.roomnumber LIKE ? " +
-						"AND public.user.login LIKE ? " +
-						"AND public.room.roomid BETWEEN ? AND ? " +
-						"AND public.chair.chairid BETWEEN ? AND ? " +
-						"AND public.roomallocation.day BETWEEN ? AND ? " +
-						"ORDER BY public.roomallocation.day ASC, public.roomallocation.time ASC");
-				
+				filterDm = DataManagerPostgreSql.getInstance();
+				if(filter.containsKey("courseenabled")){
+					filterDm.prepare(
+							"SELECT public.roomallocation.*, public.course.*, public.user.*, public.room.*, public.chair.* " +
+									"FROM public.roomallocation, public.room, public.course, public.user, public.chair, public.lecturer " +
+									"WHERE public.roomallocation.courseid = public.course.courseid " +
+									"AND public.course.lecturerid = public.user.userid " +
+									"AND public.course.lecturerid = public.lecturer.userid " +
+									"AND public.chair.chairid = public.lecturer.chairid " +
+									"AND public.roomallocation.roomid = public.room.roomid " +
+									"AND (public.user.lname LIKE ? OR public.user.fname LIKE ? ) " +
+									"AND (public.chair.chairname LIKE ? OR public.chair.chairacronym LIKE ? ) " +
+									"AND (public.course.courseacronym LIKE ? OR public.course.coursename LIKE ? ) " +
+									"AND public.roomallocation.semester LIKE ? " +
+									"AND public.roomallocation.approved LIKE ? " +
+									"AND public.room.roomnumber LIKE ? " +
+									"AND public.user.login LIKE ? " +
+									"AND public.room.roomid BETWEEN ? AND ? " +
+									"AND public.chair.chairid BETWEEN ? AND ? " +
+									"AND public.roomallocation.day BETWEEN ? AND ? " +
+									"AND public.course.lecturerenabled = ? " +
+							"ORDER BY public.roomallocation.day ASC, public.roomallocation.time ASC");
+				}else{
+					filterDm.prepare(
+							"SELECT public.roomallocation.*, public.course.*, public.user.*, public.room.*, public.chair.* " +
+									"FROM public.roomallocation, public.room, public.course, public.user, public.chair, public.lecturer " +
+									"WHERE public.roomallocation.courseid = public.course.courseid " +
+									"AND public.course.lecturerid = public.user.userid " +
+									"AND public.course.lecturerid = public.lecturer.userid " +
+									"AND public.chair.chairid = public.lecturer.chairid " +
+									"AND public.roomallocation.roomid = public.room.roomid " +
+									"AND (public.user.lname LIKE ? OR public.user.fname LIKE ? ) " +
+									"AND (public.chair.chairname LIKE ? OR public.chair.chairacronym LIKE ? ) " +
+									"AND (public.course.courseacronym LIKE ? OR public.course.coursename LIKE ? ) " +
+									"AND public.roomallocation.semester LIKE ? " +
+									"AND public.roomallocation.approved LIKE ? " +
+									"AND public.room.roomnumber LIKE ? " +
+									"AND public.user.login LIKE ? " +
+									"AND public.room.roomid BETWEEN ? AND ? " +
+									"AND public.chair.chairid BETWEEN ? AND ? " +
+									"AND public.roomallocation.day BETWEEN ? AND ? " +
+							"ORDER BY public.roomallocation.day ASC, public.roomallocation.time ASC");
+				}
 			}
+				
 			if (filter.containsKey("lecturer") && filter.get("lecturer") != null && filter.get("lecturer") != "" && filter.get("lecturer") != "<alle>") {
 				filterDm.getPreparedStatement().setString(1, "%" + filter.get("lecturer") + "%");
 				filterDm.getPreparedStatement().setString(2, "%" + filter.get("lecturer") + "%");
@@ -214,6 +237,9 @@ public class DataHandlerRoomAllocation implements IntfDataObservable, IntfDataFi
 			} else {
 				filterDm.getPreparedStatement().setInt(15, 0);
 				filterDm.getPreparedStatement().setInt(16, 2147483647);
+			}
+			if (filter.containsKey("courseenabled") && filter.get("courseenabled") != null && filter.get("courseenabled") != "" && filter.get("courseenabled") != "<alle>") {
+				filterDm.getPreparedStatement().setBoolean(17, true);
 			}
 			
 			ResultSet rs = filterDm.selectPstmt();

@@ -133,6 +133,9 @@ public class ProfessorshipTimetableTab extends JPanel{
 		IntfCtrlGenericTables genericTablesController=new CtrlGenericTables();
 			
 		HashMap<String,String> tableFilter = new HashMap<String,String> ();  //setting filter
+		//only show verified classes
+		tableFilter.put("status", "accepted");
+		tableFilter.put("courseenabled", "t");
 		//get the selected semester
 		tableFilter.put("semester", this.getComboBoxSemesterFilter().getSelectedItem().toString());
 		//get the chairid of the logged in user

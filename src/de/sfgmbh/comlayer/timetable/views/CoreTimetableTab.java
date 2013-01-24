@@ -70,6 +70,7 @@ public class CoreTimetableTab extends JPanel {
 	
 		timetableTable.setBackground(Color.WHITE);
 		timetableTable.setModel(ViewManager.getInstance().getCoreTimetableTabTable());
+		timetableTable.setDefaultRenderer(Object.class, new FirstColumnGrayRenderer());
 		
 		AppModel.getInstance().getRepositoryRoomAllocation().register(ViewManager.getInstance().getCoreTimetableTabTable());
 		
