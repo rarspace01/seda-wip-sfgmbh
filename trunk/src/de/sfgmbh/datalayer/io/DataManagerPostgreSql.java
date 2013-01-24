@@ -24,8 +24,9 @@ public class DataManagerPostgreSql {
 	
 	/**
 	 * Create the data manager object
+	 * (Non singleton instances of this object have to be allowed for some special cases. Remember to dispose connections from those with disposeNonSingleton().)
 	 */
-	private DataManagerPostgreSql() {
+	public DataManagerPostgreSql() {
 		DataManagerConfig dbconfig=new DataManagerConfig();
 		try {
 			Class.forName("org.postgresql.Driver");
@@ -43,9 +44,6 @@ public class DataManagerPostgreSql {
 			e.printStackTrace();
 			DataModel.getInstance().getExceptionsHandler().setNewException(("Es ist ein unbekannter Fehler in der Datenhaltung aufgetreten.<br /><br />DataManagerPostgreSql-02:<br />" + e.toString()), "Fehler!");
 		}
-		
-		
-		
 	}
 
 	/**
@@ -78,6 +76,25 @@ public class DataManagerPostgreSql {
 			e.printStackTrace();
 		}
 		uniqueInstance_ = null;
+	}
+	
+	/**
+	 * Dispatch an instance of this object without touching the singleton
+	 */
+	public void disposeNonSingleton() {
+		try {
+			if(this.pstmt!=null){
+			this.pstmt.close();
+			}
+			if(this.stmt!=null){
+			this.stmt.close();
+			}
+			if(this.conn!=null){
+			this.conn.close();
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	/**

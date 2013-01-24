@@ -358,13 +358,15 @@ public class DataHandlerUser implements IntfDataUser, IntfDataObservable, IntfDa
 					dm.getPreparedStatement().setBoolean(9, user.isDisabled_());
 					dm.executePstmt();
 					if (user.getChair_() != null) {
+						DataManagerPostgreSql dmPrivate = new DataManagerPostgreSql();
 						IntfUser newUser = this.getByLogin(user.getLogin_());
-						dm.prepare("INSERT INTO public.lecturer"
+						dmPrivate.prepare("INSERT INTO public.lecturer"
 								+ "(userid, chairid)"
 								+ "VALUES (?,?)");
-						dm.getPreparedStatement().setInt(1, newUser.getUserId_());
-						dm.getPreparedStatement().setInt(2, user.getChair_().getChairId_());
-						returnState = dm.executePstmt();
+						dmPrivate.getPreparedStatement().setInt(1, newUser.getUserId_());
+						dmPrivate.getPreparedStatement().setInt(2, user.getChair_().getChairId_());
+						returnState = dmPrivate.executePstmt();
+						dmPrivate.disposeNonSingleton();
 					}
 					this.update();
 				} catch (SQLException e) {
