@@ -92,6 +92,8 @@ public class UserCreateDialogBtns implements ActionListener {
 										"Der Lehrstuhl ist ungültig, geben Sie einen gültigen Lehrstuhl ein oder setzen Sie das Feld auf &lt;keiner&gt;, wenn sie keinen Lehrstuhl setzen möchten",
 										"Fehler!");
 					}
+				} else {
+					createUser.setChair_(null);
 				}
 				
 				// Handle the password (this depends if it is a new or an old user)

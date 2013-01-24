@@ -342,6 +342,10 @@ public class User implements IntfUser {
 			message = message + "Einem Dozenten muss ein Lehrstuhl zugeordnet werden!<br />";
 			check = false;
 		}
+		if (this.class_.equals("orga") && this.chair_ != null) {
+			message = message + "Ein Verwaltungsmitglied kann keinen Lehrstuhl haben!<br />";
+			check = false;
+		}
 		if (this.newPassword_ && this.newPasswordLength_ < 8) {
 			message = message + "Ein neues Passwort muss mindestens 8 Zeichen lang sein!<br />";
 			check = false;
