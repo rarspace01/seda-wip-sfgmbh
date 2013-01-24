@@ -35,7 +35,7 @@ import de.sfgmbh.comlayer.core.controller.BaseCmbboxFilter;
 import de.sfgmbh.comlayer.core.controller.BaseLogin;
 import de.sfgmbh.comlayer.core.controller.BaseRdbtnTopLeft;
 import de.sfgmbh.comlayer.core.controller.ViewManager;
-import de.sfgmbh.comlayer.core.model.CmbboxFilterChair;
+import de.sfgmbh.comlayer.core.model.CmbboxFilterChairAcronym;
 import de.sfgmbh.comlayer.core.model.CmbboxFilterCourse;
 import de.sfgmbh.comlayer.core.model.CmbboxFilterLecturer;
 import de.sfgmbh.comlayer.core.model.CmbboxFilterLevel;
@@ -59,7 +59,7 @@ public class BaseTab extends JFrame {
 	private JTabbedPane mainTabbedContainerPane;
 	private JPanel startScreenPanel;
 	private JComboBox<String> comboBoxChairFilter;
-	private CmbboxFilterChair comboBoxChairModel_;
+	private CmbboxFilterChairAcronym comboBoxChairModel_;
 	private JComboBox<String> comboBoxLecturerFilter;
 	private CmbboxFilterLecturer comboBoxLecturerModel_;
 	private JComboBox<String> comboBoxSemesterFilter;
@@ -277,7 +277,7 @@ public class BaseTab extends JFrame {
 			comboBoxChairFilter.setPreferredSize(new Dimension(100, 20));
 			comboBoxChairFilter.setMaximumSize(new Dimension(100,20));
 			comboBoxChairFilter.setMinimumSize(new Dimension(100,20));
-			comboBoxChairModel_=new CmbboxFilterChair(comboBoxChairFilter);
+			comboBoxChairModel_=new CmbboxFilterChairAcronym(comboBoxChairFilter);
 			comboBoxChairFilter.setModel(comboBoxChairModel_);
 			comboBoxChairFilter.addKeyListener(new BaseCmbboxFilter("allocations"));
 			comboBoxChairFilter.addActionListener(new BaseCmbboxFilter("allocations"));
