@@ -144,9 +144,9 @@ public class CtrlStartTab implements IntfCtrlStartTab {
 				if (roomAllocation.getConflictingAllocations_().isEmpty()) {
 					allowSave = true;
 				}
-				for (IntfRoomAllocation conflictRa : roomAllocation.getConflictingAllocations_()){
-					if (conflictRa.getApproved_().equals("waiting") || conflictRa.getApproved_().equals("denied")) {
-						if (conflictRa.getCourse_().getCourseId_() != roomAllocation.getCourse_().getCourseId_()) {
+				for (IntfRoomAllocation conflictRoomAllocations : roomAllocation.getConflictingAllocations_()){
+					if (conflictRoomAllocations.getApproved_().equals("waiting") || conflictRoomAllocations.getApproved_().equals("denied")) {
+						if (conflictRoomAllocations.getCourse_().getCourseId_() != roomAllocation.getCourse_().getCourseId_()) {
 							allowSave = true;
 						}
 					}
