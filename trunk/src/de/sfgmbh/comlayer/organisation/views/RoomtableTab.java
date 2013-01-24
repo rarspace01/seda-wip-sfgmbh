@@ -130,11 +130,15 @@ public class RoomtableTab extends JPanel {
 		this.roomId_=roomId;
 		IntfCtrlGenericTables genericTablesController=new CtrlGenericTables();
 		
-		//setting the filters
+		// setting the filters
 		HashMap<String,String> tableFilter = new HashMap<String,String> ();
+		// only show verified classes
+		tableFilter.put("status", "accepted");
+		tableFilter.put("courseenabled", "t");
+		// setting roomid&semester
 		tableFilter.put("roomid", ""+this.roomId_);
 		tableFilter.put("semester", semester);
-		//get Room allocations based on roomid + semester
+		// get Room allocations based on roomid + semester
 		List<IntfRoomAllocation> roomAllocationList=AppModel.getInstance().getRepositoryRoomAllocation().getByFilter(tableFilter);
 		//calling the controller for reloading the gui
 		genericTablesController.reloadTable(getStundenplanTable(), roomAllocationList,false,true);
