@@ -68,7 +68,7 @@ public class RequestTabTable extends DefaultTableModel implements IntfAppObserve
 			if (status.equals("wartend")) {
 				// UTF-8 Special invisible character to force ordering
 				// Character code: U+200D
-				status = "‍‍‍‍wartend";
+				status = "wartend";
 			}
 			
 			try {

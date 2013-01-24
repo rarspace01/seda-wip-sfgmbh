@@ -5,8 +5,9 @@ import java.util.List;
 
 import de.sfgmbh.applayer.core.definitions.IntfChair;
 import de.sfgmbh.applayer.core.model.Chair;
+import de.sfgmbh.datalayer.core.daos.DataHandlerChair;
 /**
- * This is the interface for the {@link DataChair}
+ * This is the interface for the {@link DataHandlerChair}
  * @author denis
  *
  */	
