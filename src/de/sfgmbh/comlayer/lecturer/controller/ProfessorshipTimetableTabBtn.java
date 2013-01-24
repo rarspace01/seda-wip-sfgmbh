@@ -24,10 +24,18 @@ public class ProfessorshipTimetableTabBtn implements ActionListener {
 	private String navAction_;
 	protected InfoDialog infoWindow;
 
+	/**
+	 * Create the action listener
+	 */
 	public ProfessorshipTimetableTabBtn() {
 		this.navAction_ = "default";
 	}
 
+	/**
+	 * Create the action listener based on an action string
+	 * Supported action strings are "createpdf"
+	 * @param action
+	 */
 	public ProfessorshipTimetableTabBtn(String action) {
 		this.navAction_ = action;
 	}

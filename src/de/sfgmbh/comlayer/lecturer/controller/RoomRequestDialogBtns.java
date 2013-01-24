@@ -36,6 +36,8 @@ public class RoomRequestDialogBtns implements ActionListener {
 	
 	/**
 	 * Create the action listener for a special action
+	 * Supported action strings are:<br>
+	 * "cancel", "send" and "newSuggestion"
 	 * @param motherDialog
 	 * @param action
 	 */
@@ -45,6 +47,10 @@ public class RoomRequestDialogBtns implements ActionListener {
 		this.motherDialog = motherDialog;
 	}
 	
+	/*
+	 * (non-Javadoc)
+	 * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		AppException exceptionHandler = AppModel.getInstance().getExceptionHandler();

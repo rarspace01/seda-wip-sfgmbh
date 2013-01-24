@@ -5,6 +5,11 @@ import javax.swing.table.DefaultTableModel;
 import de.sfgmbh.applayer.core.definitions.IntfAppObserver;
 import de.sfgmbh.comlayer.core.controller.ViewManager;
 
+/**
+ * Table model of the timetable tab table
+ * @author denis
+ *
+ */
 public class TimetableTabTable extends DefaultTableModel implements IntfAppObserver  {
 
 	private static final long serialVersionUID = 1L;
@@ -13,7 +18,9 @@ public class TimetableTabTable extends DefaultTableModel implements IntfAppObser
 		};
 	private String[] preFillHeader = {"Uhrzeit", "Montag", "Dienstag", "Mittwoch", "Donnerstag", "Freitag"};
 	
-	
+	/**
+	 * Create the model
+	 */
 	public TimetableTabTable() {
 		this.setDataVector(preFill, preFillHeader);
 	}
@@ -28,6 +35,10 @@ public class TimetableTabTable extends DefaultTableModel implements IntfAppObser
 		return false;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see de.sfgmbh.applayer.core.definitions.IntfAppObserver#change()
+	 */
 	@Override
 	public void change() {
 

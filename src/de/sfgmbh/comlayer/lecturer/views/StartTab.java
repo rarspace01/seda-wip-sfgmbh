@@ -31,6 +31,13 @@ import de.sfgmbh.comlayer.lecturer.controller.StartTabBtnsControl;
 import de.sfgmbh.comlayer.lecturer.controller.StartTabCmbboxFilter;
 import de.sfgmbh.comlayer.lecturer.controller.StartTabTableTop;
 
+/**
+ * Start tab panel
+ * 
+ * @author anna
+ * @author christian
+ *
+ */
 public class StartTab extends JPanel implements IntfComDialogObserver {
 
 	private static final long serialVersionUID = 1L;

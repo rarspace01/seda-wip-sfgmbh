@@ -2,6 +2,11 @@ package de.sfgmbh.comlayer.lecturer.model;
 
 import javax.swing.table.DefaultTableModel;
 
+/**
+ * Table model for the professorship timetable tab table
+ * @author denis
+ *
+ */
 public class ProfessorshipTimetableTabTable extends DefaultTableModel {
 
 	private static final long serialVersionUID = 1L;
@@ -18,6 +23,9 @@ public class ProfessorshipTimetableTabTable extends DefaultTableModel {
 			private String[] preFillHeader = {"Uhrzeit", "Montag", "Dienstag", "Mittwoch", "Donnerstag", "Freitag"};
 	
 	
+	/**
+	 * Create the model
+	 */
 	public ProfessorshipTimetableTabTable() {
 		this.setDataVector(preFill, preFillHeader);
 	}
