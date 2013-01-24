@@ -55,6 +55,8 @@ public class InfoDialog extends JDialog implements IntfAppObserver {
 	/**
 	 * Create the dialog with a custom text, title and settings
 	 * The settings (like a custom logo or buttons) are set depending on the submitted variant string.
+	 * Supported variant strings are:<br>
+	 * "success", "info", "warn" and "error" where "error" is the default variant.
 	 * @param text
 	 * @param title
 	 * @param variant
@@ -143,6 +145,10 @@ public class InfoDialog extends JDialog implements IntfAppObserver {
 		return lblIcon;
 	}
 	
+	/*
+	 * (non-Javadoc)
+	 * @see de.sfgmbh.applayer.core.definitions.IntfAppObserver#change()
+	 */
 	@Override
 	public void change() {
 		String msg = AppModel.getInstance().getExceptionHandler().getExceptionMsg_();

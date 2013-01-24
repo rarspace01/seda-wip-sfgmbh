@@ -36,6 +36,10 @@ public class CmbboxFilterCourse extends DefaultComboBoxModel<String> implements 
 		}
 	}
 	
+	/*
+	 * (non-Javadoc)
+	 * @see de.sfgmbh.applayer.core.definitions.IntfAppObserver#change()
+	 */
 	@Override
 	public void change() {
 		

@@ -11,6 +11,7 @@ import de.sfgmbh.applayer.core.model.AppModel;
  * Model for chair combo boxes
  * 
  * @author hannes
+ * @author anna
  *
  */
 public class CmbboxFilterChair extends DefaultComboBoxModel<String> implements IntfAppObserver {
@@ -28,6 +29,9 @@ public class CmbboxFilterChair extends DefaultComboBoxModel<String> implements I
 		this.build();
 	}
 
+	/**
+	 * Create the model object
+	 */
 	public CmbboxFilterChair() {
 		this.build();
 	}
@@ -40,6 +44,10 @@ public class CmbboxFilterChair extends DefaultComboBoxModel<String> implements I
 		}
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see de.sfgmbh.applayer.core.definitions.IntfAppObserver#change()
+	 */
 	@Override
 	public void change() {
 		

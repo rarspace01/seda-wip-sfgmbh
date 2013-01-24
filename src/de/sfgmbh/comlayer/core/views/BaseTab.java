@@ -34,7 +34,6 @@ import de.sfgmbh.comlayer.core.controller.BaseBtns;
 import de.sfgmbh.comlayer.core.controller.BaseCmbboxFilter;
 import de.sfgmbh.comlayer.core.controller.BaseLogin;
 import de.sfgmbh.comlayer.core.controller.BaseRdbtnTopLeft;
-import de.sfgmbh.comlayer.core.controller.BaseTable;
 import de.sfgmbh.comlayer.core.controller.ViewManager;
 import de.sfgmbh.comlayer.core.model.CmbboxFilterChair;
 import de.sfgmbh.comlayer.core.model.CmbboxFilterCourse;
@@ -105,7 +104,6 @@ public class BaseTab extends JFrame {
 	/**
 	 * Create the frame. v.175
 	 */
-	@SuppressWarnings({})
 	public BaseTab() {
 		setIconImage(Toolkit
 				.getDefaultToolkit()
@@ -391,7 +389,6 @@ public class BaseTab extends JFrame {
 			center.setHorizontalAlignment(SwingConstants.CENTER);
 
 			organisationTable = new JTable();
-			organisationTable.addMouseListener(new BaseTable(this, "allocation"));
 			organisationTable.setBackground(SystemColor.activeCaption);
 			organisationTable.setShowVerticalLines(false);
 			organisationTable.setModel(ViewManager.getInstance()
@@ -424,7 +421,6 @@ public class BaseTab extends JFrame {
 			center.setHorizontalAlignment(SwingConstants.CENTER);
 
 			roomTable = new JTable();
-			roomTable.addMouseListener(new BaseTable(this, "room"));
 			roomTable.setShowVerticalLines(false);
 			roomTable.setModel(ViewManager.getInstance()
 					.getCoreRoomTableModel());
@@ -641,11 +637,18 @@ public class BaseTab extends JFrame {
 		return btnRoomplan;
 	}
 	
+	/**
+	 * Switch to next tab
+	 */
 	public void switchToNextTab(){
 		this.getMainTabbedContainerPane()
 		.setSelectedIndex(this.getMainTabbedContainerPane()
 				.getTabCount() - 1);
 	}
+	
+	/**
+	 * @return the btnTimetable
+	 */
 	public JButton getBtnTimetable() {
 		if (btnTimetable == null) {
 			btnTimetable = new JButton("Stundenplan");

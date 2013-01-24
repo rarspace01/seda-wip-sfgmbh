@@ -5,6 +5,14 @@ import java.util.Date;
 
 import de.sfgmbh.applayer.core.model.AppModel;
 
+/**
+ * View helper to always display certain formats and similar stuff in the GUI the same way
+ * 
+ * 
+ * @author hannes
+ * @author denis
+ *
+ */
 public class ViewHelper {
 
 	/**

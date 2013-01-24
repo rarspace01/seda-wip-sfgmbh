@@ -33,14 +33,19 @@ public class BaseLogin implements ActionListener {
 	}
 	
 	/**
-	 * Creates a BaseBtnLogin object based on a submitted variant string
-	 * @param version
+	 * Creates a BaseBtnLogin object based on a submitted variant string<br>
+	 * Supported variants are "login" and "logout".
+	 * @param variant
 	 */
-	public BaseLogin(String version) {
-		this.version = version;
+	public BaseLogin(String variant) {
+		this.version = variant;
 		this.ctrlBaseTab = new CtrlBaseTab();
 	}
 	
+	/*
+	 * (non-Javadoc)
+	 * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		

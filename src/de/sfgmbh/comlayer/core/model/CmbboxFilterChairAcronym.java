@@ -53,6 +53,10 @@ public class CmbboxFilterChairAcronym extends DefaultComboBoxModel<String> imple
 		}
 	}
 	
+	/*
+	 * (non-Javadoc)
+	 * @see de.sfgmbh.applayer.core.definitions.IntfAppObserver#change()
+	 */
 	@Override
 	public void change() {
 		

@@ -54,19 +54,6 @@ public class QuestionDialog extends JDialog implements IntfComDialogObserver, In
 		this.setDialog(text, title);
 	}
 	
-	/**
-	 * Create the dialog with a custom text, title and settings
-	 * The settings (like a custom logo or buttons) are set depending on the submitted variant string.
-	 * @param text
-	 * @param title
-	 * @param variant
-	 */
-	public QuestionDialog(String text, String title, String variant) {
-		this.setDialog(text, title);
-		// yet to be implemented
-	}
-	
-	
 	private void setDialog(String info) {
 		this.getTxtpnInfoWindowText().setText("<div style='font-family: Calibri, monospace; text-align: left;'>" + info + "</div>");
 		createContents();
@@ -131,7 +118,7 @@ public class QuestionDialog extends JDialog implements IntfComDialogObserver, In
 		}
 		return lblNewLabel;
 	}
-	public JButton getBtnNo() {
+	private JButton getBtnNo() {
 		if (btnNo == null) {
 			btnNo = new JButton("Nein");
 			btnNo.addActionListener(new QuestionDialogBtns(this, "no"));
@@ -140,22 +127,38 @@ public class QuestionDialog extends JDialog implements IntfComDialogObserver, In
 		return btnNo;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see de.sfgmbh.comlayer.core.definitions.IntfComDialogObservable#register(de.sfgmbh.comlayer.core.definitions.IntfComDialogObserver)
+	 */
 	@Override
 	public void register(IntfComDialogObserver observer) {
 		this.currentObserver_ = observer;
 	}
 	
+	/*
+	 * (non-Javadoc)
+	 * @see de.sfgmbh.comlayer.core.definitions.IntfComDialogObservable#unregister(de.sfgmbh.comlayer.core.definitions.IntfComDialogObserver)
+	 */
 	@Override
 	public void unregister(IntfComDialogObserver observer) {
 		this.currentObserver_ = null;
 		
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see de.sfgmbh.comlayer.core.definitions.IntfComDialogObservable#update(java.lang.String)
+	 */
 	@Override
 	public void update(String answer) {
 			(this.currentObserver_).answered(answer);
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see de.sfgmbh.comlayer.core.definitions.IntfComDialogObserver#answered(java.lang.String)
+	 */
 	@Override
 	public void answered(String answer) {
 		this.update(answer);

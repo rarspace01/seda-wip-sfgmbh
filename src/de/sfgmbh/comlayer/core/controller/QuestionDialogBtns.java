@@ -31,6 +31,9 @@ public class QuestionDialogBtns implements ActionListener, IntfComDialogObservab
 		this.register((IntfComDialogObserver) this.infoWinwod_);
 	}
 	
+	/**
+	 * Update the observer and close on action
+	 */
 	public void actionPerformed(ActionEvent e) {
 		if (this.variant_.equals("no")){
 			infoWinwod_.dispose();
@@ -42,19 +45,29 @@ public class QuestionDialogBtns implements ActionListener, IntfComDialogObservab
 		}
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see de.sfgmbh.comlayer.core.definitions.IntfComDialogObservable#register(de.sfgmbh.comlayer.core.definitions.IntfComDialogObserver)
+	 */
 	@Override
 	public void register(IntfComDialogObserver observer) {
 			this.currentObserver_ = observer;
-		
-		
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see de.sfgmbh.comlayer.core.definitions.IntfComDialogObservable#unregister(de.sfgmbh.comlayer.core.definitions.IntfComDialogObserver)
+	 */
 	@Override
 	public void unregister(IntfComDialogObserver observer) {
 		// TODO Auto-generated method stub
 		
 	}
 	
+	/*
+	 * (non-Javadoc)
+	 * @see de.sfgmbh.comlayer.core.definitions.IntfComDialogObservable#update(java.lang.String)
+	 */
 	@Override
 	public void update(String answer) {
 			((IntfComDialogObserver) this.currentObserver_).answered(answer);
