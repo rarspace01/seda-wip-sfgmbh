@@ -34,22 +34,22 @@ import de.sfgmbh.comlayer.organisation.controller.UserTabCmbboxFilter;
 public class UserTab extends JPanel {
 
 	private static final long serialVersionUID = 1L;
-	private JTable userOrgaTable;
-	private JTextField textFieldUserLogin;
-	private JTextField textFieldMail;
-	private JLabel lblUserclass;
-	private JLabel lblLecturer;
-	private JLabel lblAuthentification;
-	private JLabel lblEmail;
-	private JComboBox<String> comboBoxUserclass;
-	private JComboBox<String> comboBoxChair;
-	private JScrollPane userTableScrollPane;
-	private JPanel buttonPanel;
-	private JButton btnEdit;
-	private JButton btnDelete;
-	private JPanel uniIconPanel;
-	private JLabel lblUniIcon;
-	private TableRowSorter<TableModel> rowSorter;
+	private JTable userOrgaTable_;
+	private JTextField textFieldUserLogin_;
+	private JTextField textFieldMail_;
+	private JLabel lblUserclass_;
+	private JLabel lblLecturer_;
+	private JLabel lblAuthentification_;
+	private JLabel lblEmail_;
+	private JComboBox<String> comboBoxUserclass_;
+	private JComboBox<String> comboBoxChair_;
+	private JScrollPane userTableScrollPane_;
+	private JPanel buttonPanel_;
+	private JButton btnEdit_;
+	private JButton btnDelete_;
+	private JPanel uniIconPanel_;
+	private JLabel lblUniIcon_;
+	private TableRowSorter<TableModel> rowSorter_;
 
 	/**
 	 * Create the frame.
@@ -68,88 +68,88 @@ public class UserTab extends JPanel {
 		lblNutzerverwaltung.setFont(new Font("SansSerif", Font.BOLD, 13));
 		add(lblNutzerverwaltung, "cell 0 0,alignx center,aligny bottom");
 		
-		lblUserclass = new JLabel("Benutzerklasse:");
-		add(lblUserclass, "cell 2 0,aligny bottom");
+		lblUserclass_ = new JLabel("Benutzerklasse:");
+		add(lblUserclass_, "cell 2 0,aligny bottom");
 		
-		lblLecturer = new JLabel("Lehrstuhl (falls Dozent):");
-		add(lblLecturer, "cell 3 0,aligny bottom");
+		lblLecturer_ = new JLabel("Lehrstuhl (falls Dozent):");
+		add(lblLecturer_, "cell 3 0,aligny bottom");
 		
-		lblAuthentification = new JLabel("Benutzerkennung:");
-		add(lblAuthentification, "cell 4 0,aligny bottom");
+		lblAuthentification_ = new JLabel("Benutzerkennung:");
+		add(lblAuthentification_, "cell 4 0,aligny bottom");
 		
-		lblEmail = new JLabel("E-Mail:");
-		add(lblEmail, "cell 5 0,aligny bottom");
+		lblEmail_ = new JLabel("E-Mail:");
+		add(lblEmail_, "cell 5 0,aligny bottom");
 		
-		comboBoxUserclass = new JComboBox<String>();
-		comboBoxUserclass.setModel(new CmbboxFilterUserClass());
-		comboBoxUserclass.addActionListener(new UserTabCmbboxFilter());
+		comboBoxUserclass_ = new JComboBox<String>();
+		comboBoxUserclass_.setModel(new CmbboxFilterUserClass());
+		comboBoxUserclass_.addActionListener(new UserTabCmbboxFilter());
 		
-		uniIconPanel = new JPanel();
-		add(uniIconPanel, "cell 6 0,alignx right,aligny top");
-		lblUniIcon = new JLabel("");
-		lblUniIcon.setIcon(new ImageIcon(BaseTab.class.getResource("/de/sfgmbh/comlayer/core/images/UniBA_logo.png")));
-		lblUniIcon.setMaximumSize(new Dimension(50,50));
-		uniIconPanel.add(lblUniIcon);
-		comboBoxUserclass.setEditable(true);
-		comboBoxUserclass.setAutoscrolls(true);
-		add(comboBoxUserclass, "cell 2 1,growx");
+		uniIconPanel_ = new JPanel();
+		add(uniIconPanel_, "cell 6 0,alignx right,aligny top");
+		lblUniIcon_ = new JLabel("");
+		lblUniIcon_.setIcon(new ImageIcon(BaseTab.class.getResource("/de/sfgmbh/comlayer/core/images/UniBA_logo.png")));
+		lblUniIcon_.setMaximumSize(new Dimension(50,50));
+		uniIconPanel_.add(lblUniIcon_);
+		comboBoxUserclass_.setEditable(true);
+		comboBoxUserclass_.setAutoscrolls(true);
+		add(comboBoxUserclass_, "cell 2 1,growx");
 		
-		comboBoxChair = new JComboBox<String>();
-		comboBoxChair.setModel(new CmbboxFilterChairAcronym(comboBoxChair));
-		comboBoxChair.addActionListener(new UserTabCmbboxFilter());
-		comboBoxChair.setEditable(true);
-		comboBoxChair.setAutoscrolls(true);
-		add(comboBoxChair, "cell 3 1,growx");
+		comboBoxChair_ = new JComboBox<String>();
+		comboBoxChair_.setModel(new CmbboxFilterChairAcronym(comboBoxChair_));
+		comboBoxChair_.addActionListener(new UserTabCmbboxFilter());
+		comboBoxChair_.setEditable(true);
+		comboBoxChair_.setAutoscrolls(true);
+		add(comboBoxChair_, "cell 3 1,growx");
 		
-		textFieldUserLogin = new JTextField();
-		textFieldUserLogin.addActionListener(new UserTabCmbboxFilter());
-		add(textFieldUserLogin, "cell 4 1,growx");
-		textFieldUserLogin.setColumns(10);
+		textFieldUserLogin_ = new JTextField();
+		textFieldUserLogin_.addActionListener(new UserTabCmbboxFilter());
+		add(textFieldUserLogin_, "cell 4 1,growx");
+		textFieldUserLogin_.setColumns(10);
 		
-		textFieldMail = new JTextField();
-		textFieldMail.addActionListener(new UserTabCmbboxFilter());
-		textFieldMail.setColumns(10);
-		add(textFieldMail, "cell 5 1,growx");
+		textFieldMail_ = new JTextField();
+		textFieldMail_.addActionListener(new UserTabCmbboxFilter());
+		textFieldMail_.setColumns(10);
+		add(textFieldMail_, "cell 5 1,growx");
 		
 		add(ViewManager.getInstance().getCoreLiveTickerPanel(), "cell 0 2,grow, aligny top");
 		
-		userTableScrollPane = new JScrollPane();
-		add(userTableScrollPane, "flowx,cell 2 2 4 1,grow");
+		userTableScrollPane_ = new JScrollPane();
+		add(userTableScrollPane_, "flowx,cell 2 2 4 1,grow");
 		
-		userOrgaTable = new JTable();
-		userOrgaTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		userOrgaTable.setModel(ViewManager.getInstance().getOrgaUserTableModel());
-		userOrgaTable.setShowVerticalLines(false);
-		userOrgaTable.setBackground(SystemColor.activeCaption);
-		userOrgaTable.getColumnModel().removeColumn(userOrgaTable.getColumn("Hidden"));
-		userTableScrollPane.setViewportView(userOrgaTable);
+		userOrgaTable_ = new JTable();
+		userOrgaTable_.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		userOrgaTable_.setModel(ViewManager.getInstance().getOrgaUserTableModel());
+		userOrgaTable_.setShowVerticalLines(false);
+		userOrgaTable_.setBackground(SystemColor.activeCaption);
+		userOrgaTable_.getColumnModel().removeColumn(userOrgaTable_.getColumn("Hidden"));
+		userTableScrollPane_.setViewportView(userOrgaTable_);
 		
 		// Enable table sorting for the model
-		rowSorter = new TableRowSorter<TableModel>();
-		userOrgaTable.setRowSorter(rowSorter);
-		rowSorter.setModel(ViewManager.getInstance().getOrgaUserTableModel());
-		rowSorter.sort();
+		rowSorter_ = new TableRowSorter<TableModel>();
+		userOrgaTable_.setRowSorter(rowSorter_);
+		rowSorter_.setModel(ViewManager.getInstance().getOrgaUserTableModel());
+		rowSorter_.sort();
 		
-		buttonPanel = new JPanel();
-		buttonPanel.setLayout(null);
-		buttonPanel.setMinimumSize(new Dimension(80, 10));
-		buttonPanel.setMaximumSize(new Dimension(100, 32767));
-		add(buttonPanel, "cell 6 2,grow");
+		buttonPanel_ = new JPanel();
+		buttonPanel_.setLayout(null);
+		buttonPanel_.setMinimumSize(new Dimension(80, 10));
+		buttonPanel_.setMaximumSize(new Dimension(100, 32767));
+		add(buttonPanel_, "cell 6 2,grow");
 		
-		btnEdit = new JButton("hinzuf\u00FCgen");
-		btnEdit.addActionListener(new UserTabBtnsControl("add"));
-		btnEdit.setBounds(6, 11, 88, 23);
-		buttonPanel.add(btnEdit);
+		btnEdit_ = new JButton("hinzuf\u00FCgen");
+		btnEdit_.addActionListener(new UserTabBtnsControl("add"));
+		btnEdit_.setBounds(6, 11, 88, 23);
+		buttonPanel_.add(btnEdit_);
 		
 		JButton btnEdit = new JButton("bearbeiten");
 		btnEdit.addActionListener(new UserTabBtnsControl("edit"));
 		btnEdit.setBounds(6, 45, 88, 23);
-		buttonPanel.add(btnEdit);
+		buttonPanel_.add(btnEdit);
 		
-		btnDelete = new JButton("l\u00F6schen");
-		btnDelete.addActionListener(new UserTabBtnsControl("delete"));
-		btnDelete.setBounds(6, 79, 88, 23);
-		buttonPanel.add(btnDelete);
+		btnDelete_ = new JButton("l\u00F6schen");
+		btnDelete_.addActionListener(new UserTabBtnsControl("delete"));
+		btnDelete_.setBounds(6, 79, 88, 23);
+		buttonPanel_.add(btnDelete_);
 		
 	}
 	
@@ -157,49 +157,49 @@ public class UserTab extends JPanel {
 	 * @return the roomOrgaTable
 	 */
 	public JTable getRoomOrgaTable() {
-		return userOrgaTable;
+		return userOrgaTable_;
 	}
 	/**
 	 * @return the textFieldUserLogin
 	 */
 	public JTextField getTextFieldUserLogin() {
-		return textFieldUserLogin;
+		return textFieldUserLogin_;
 	}
 	/**
 	 * @return the textFieldMail
 	 */
 	public JTextField getTextFieldMail() {
-		return textFieldMail;
+		return textFieldMail_;
 	}
 	/**
 	 * @return the comboBoxUserclass
 	 */
 	public JComboBox<String> getComboBoxUserclass() {
-		return comboBoxUserclass;
+		return comboBoxUserclass_;
 	}
 	/**
 	 * @return the comboBoxChair
 	 */
 	public JComboBox<String> getComboBoxChair() {
-		return comboBoxChair;
+		return comboBoxChair_;
 	}
 	/**
 	 * @return the userOrgaTable
 	 */
 	public JTable getUserOrgaTable() {
-		return userOrgaTable;
+		return userOrgaTable_;
 	}
 	/**
 	 * @return the rowSorter
 	 */
 	public TableRowSorter<TableModel> getRowSorter() {
-		return rowSorter;
+		return rowSorter_;
 	}
 	/**
 	 * @param rowSorter the rowSorter to set
 	 */
 	public void setRowSorter(TableRowSorter<TableModel> rowSorter) {
-		this.rowSorter = rowSorter;
+		this.rowSorter_ = rowSorter;
 	}
 	
 	

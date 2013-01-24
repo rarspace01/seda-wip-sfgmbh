@@ -20,7 +20,7 @@ public class ChairTabTable extends DefaultTableModel implements
 
 	private static final long serialVersionUID = 1L;
 
-	private String[] header = { "Lehrstuhlname", "Lehrstuhlkürzel", "Inhaber",
+	private String[] header_ = { "Lehrstuhlname", "Lehrstuhlkürzel", "Inhaber",
 			"Fakultät", "Hidden" };
 
 	/**
@@ -28,7 +28,7 @@ public class ChairTabTable extends DefaultTableModel implements
 	 */
 	public ChairTabTable() {
 		AppModel.getInstance().getRepositoryChair().register(this);
-		this.setColumnIdentifiers(header);
+		this.setColumnIdentifiers(header_);
 		this.change("init");
 	}
 

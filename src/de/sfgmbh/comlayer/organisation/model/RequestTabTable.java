@@ -20,14 +20,14 @@ import de.sfgmbh.comlayer.organisation.views.RequestTab;
 public class RequestTabTable extends DefaultTableModel implements IntfAppObserver {
 
 	private static final long serialVersionUID = 1L;
-	private String[] header = {"Dozent", "Veranstaltung", "Tag", "Zeit", "Raum", "Semester", "Status", "Konflikt", "Hidden"};
+	private String[] header_ = {"Dozent", "Veranstaltung", "Tag", "Zeit", "Raum", "Semester", "Status", "Konflikt", "Hidden"};
 	
 	/**
 	 * Creates an initial table model object
 	 */
 	public RequestTabTable() {
 		AppModel.getInstance().getRepositoryRoomAllocation().register(this);
-		this.setColumnIdentifiers(header);
+		this.setColumnIdentifiers(header_);
 		this.change("init");
 	}
 	

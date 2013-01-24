@@ -26,28 +26,28 @@ import de.sfgmbh.comlayer.organisation.controller.ChairCreateDialogBtns;
 public class ChairCreateDialog extends JDialog {
 
 	private static final long serialVersionUID = 1L;
-	private final JPanel contentPanel = new JPanel();
-	private JLabel lblAcronym;
-	private JLabel lblName;
-	private JLabel lblFaculty;
-	private JLabel lblLevel;
-	private JLabel lblLecturer;
-	private JButton btnCancel;
-	private JButton btnSave;
-	private JTextField txtAcronym;
-	private JTextField txtName;
-	private JComboBox<String> cmbboxLecturer;
-	private JTextField txtFaculity;
-	private JTextField txtLevel;
-	private String variant;
-	private IntfChair chair;
+	private final JPanel contentPanel_ = new JPanel();
+	private JLabel lblAcronym_;
+	private JLabel lblName_;
+	private JLabel lblFaculty_;
+	private JLabel lblLevel_;
+	private JLabel lblLecturer_;
+	private JButton btnCancel_;
+	private JButton btnSave_;
+	private JTextField txtAcronym_;
+	private JTextField txtName_;
+	private JComboBox<String> cmbboxLecturer_;
+	private JTextField txtFaculity_;
+	private JTextField txtLevel_;
+	private String variant_;
+	private IntfChair chair_;
 
 	/**
 	 * Create the dialog
 	 */
 	public ChairCreateDialog() {
-		this.variant = "default";
-		this.chair = new Chair();
+		this.variant_ = "default";
+		this.chair_ = new Chair();
 		this.init();
 	}
 	
@@ -55,8 +55,8 @@ public class ChairCreateDialog extends JDialog {
 	 * Create the dialog based on a variant with no chair (create)
 	 */
 	public ChairCreateDialog(String variant) {
-		this.variant = variant;
-		this.chair = new Chair();
+		this.variant_ = variant;
+		this.chair_ = new Chair();
 		this.init();
 	}
 	
@@ -66,13 +66,13 @@ public class ChairCreateDialog extends JDialog {
 	 * @param chair
 	 */
 	public ChairCreateDialog(String variant, IntfChair chair) {
-		this.variant = variant;
-		this.chair = chair;
+		this.variant_ = variant;
+		this.chair_ = chair;
 		this.init();
 	}
 	
 	private void init() {
-		if (this.variant.equals("edit")) {
+		if (this.variant_.equals("edit")) {
 			setTitle("Lehrstuhlinfo bearbeiten");
 		} else {
 			setTitle("Neuen Lehrstuhl anlegen");
@@ -83,24 +83,24 @@ public class ChairCreateDialog extends JDialog {
 		setBounds(100, 100, 283, 246);
 		getContentPane().setLayout(new BorderLayout());
 		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
-		getContentPane().add(contentPanel, BorderLayout.CENTER);
-		contentPanel.setLayout(null);
-		contentPanel.add(getLblAcronym());
-		contentPanel.add(getLblName());
-		contentPanel.add(getLblFaculty());
-		contentPanel.add(getLblLevel());
-		contentPanel.add(getLblLecturer());
-		contentPanel.add(getBtnCancel());
-		contentPanel.add(getBtnSave());
-		contentPanel.add(getTxtAcronym());
-		contentPanel.add(getTxtName());
-		contentPanel.add(getCmbboxLecturer());
-		contentPanel.add(getTxtFaculity());
-		contentPanel.add(getTxtLevel());
+		contentPanel_.setBorder(new EmptyBorder(5, 5, 5, 5));
+		getContentPane().add(contentPanel_, BorderLayout.CENTER);
+		contentPanel_.setLayout(null);
+		contentPanel_.add(getLblAcronym());
+		contentPanel_.add(getLblName());
+		contentPanel_.add(getLblFaculty());
+		contentPanel_.add(getLblLevel());
+		contentPanel_.add(getLblLecturer());
+		contentPanel_.add(getBtnCancel());
+		contentPanel_.add(getBtnSave());
+		contentPanel_.add(getTxtAcronym());
+		contentPanel_.add(getTxtName());
+		contentPanel_.add(getCmbboxLecturer());
+		contentPanel_.add(getTxtFaculity());
+		contentPanel_.add(getTxtLevel());
 		
 		// Customize the create frame
-		if (this.variant.equals("create")) {
+		if (this.variant_.equals("create")) {
 			this.getLblLecturer().setVisible(false);
 			this.getCmbboxLecturer().setVisible(false);
 		}
@@ -108,122 +108,122 @@ public class ChairCreateDialog extends JDialog {
 		setLocationRelativeTo(null);
 		
 		// Customize if there is an old course and we are in edit mode
-		if (this.variant.equals("edit")) {
-			this.getTxtAcronym().setText(this.chair.getAcronym_());
-			this.getTxtName().setText(this.chair.getChairName_());
-			if (this.chair.getChairOwner_() != null) {
-				this.getCmbboxLecturer().setSelectedItem(this.chair.getChairOwner_().getlName_());
+		if (this.variant_.equals("edit")) {
+			this.getTxtAcronym().setText(this.chair_.getAcronym_());
+			this.getTxtName().setText(this.chair_.getChairName_());
+			if (this.chair_.getChairOwner_() != null) {
+				this.getCmbboxLecturer().setSelectedItem(this.chair_.getChairOwner_().getlName_());
 			}
-			this.getTxtFaculity().setText(this.chair.getFaculty_());
-			this.getTxtLevel().setText(this.chair.getChairLevel_());
+			this.getTxtFaculity().setText(this.chair_.getFaculty_());
+			this.getTxtLevel().setText(this.chair_.getChairLevel_());
 		}
 	}
 	
 	public JLabel getLblAcronym() {
-		if (lblAcronym == null) {
-			lblAcronym = new JLabel("Kurzbezeichnung:");
-			lblAcronym.setBounds(22, 22, 106, 14);
+		if (lblAcronym_ == null) {
+			lblAcronym_ = new JLabel("Kurzbezeichnung:");
+			lblAcronym_.setBounds(22, 22, 106, 14);
 		}
-		return lblAcronym;
+		return lblAcronym_;
 	}
 	public JLabel getLblName() {
-		if (lblName == null) {
-			lblName = new JLabel("Langer Name:");
-			lblName.setBounds(22, 47, 84, 14);
+		if (lblName_ == null) {
+			lblName_ = new JLabel("Langer Name:");
+			lblName_.setBounds(22, 47, 84, 14);
 		}
-		return lblName;
+		return lblName_;
 	}
 	public JLabel getLblFaculty() {
-		if (lblFaculty == null) {
-			lblFaculty = new JLabel("Fakultät:");
-			lblFaculty.setBounds(22, 73, 46, 14);
+		if (lblFaculty_ == null) {
+			lblFaculty_ = new JLabel("Fakultät:");
+			lblFaculty_.setBounds(22, 73, 46, 14);
 		}
-		return lblFaculty;
+		return lblFaculty_;
 	}
 	public JLabel getLblLevel() {
-		if (lblLevel == null) {
-			lblLevel = new JLabel("Haupt-Stockwerk:");
-			lblLevel.setBounds(22, 98, 106, 14);
+		if (lblLevel_ == null) {
+			lblLevel_ = new JLabel("Haupt-Stockwerk:");
+			lblLevel_.setBounds(22, 98, 106, 14);
 		}
-		return lblLevel;
+		return lblLevel_;
 	}
 	public JLabel getLblLecturer() {
-		if (lblLecturer == null) {
-			lblLecturer = new JLabel("Inhaber:");
-			lblLecturer.setBounds(22, 123, 46, 14);
+		if (lblLecturer_ == null) {
+			lblLecturer_ = new JLabel("Inhaber:");
+			lblLecturer_.setBounds(22, 123, 46, 14);
 		}
-		return lblLecturer;
+		return lblLecturer_;
 	}
 	public JButton getBtnCancel() {
-		if (btnCancel == null) {
-			btnCancel = new JButton("Abbrechen");
-			btnCancel.addActionListener(new ChairCreateDialogBtns(this, "cancel"));
-			btnCancel.setBounds(56, 162, 89, 23);
+		if (btnCancel_ == null) {
+			btnCancel_ = new JButton("Abbrechen");
+			btnCancel_.addActionListener(new ChairCreateDialogBtns(this, "cancel"));
+			btnCancel_.setBounds(56, 162, 89, 23);
 		}
-		return btnCancel;
+		return btnCancel_;
 	}
 	public JButton getBtnSave() {
-		if (btnSave == null) {
-			btnSave = new JButton("Speichern");
-			btnSave.addActionListener(new ChairCreateDialogBtns(this, "save"));
-			btnSave.setBounds(155, 162, 89, 23);
+		if (btnSave_ == null) {
+			btnSave_ = new JButton("Speichern");
+			btnSave_.addActionListener(new ChairCreateDialogBtns(this, "save"));
+			btnSave_.setBounds(155, 162, 89, 23);
 		}
-		return btnSave;
+		return btnSave_;
 	}
 	public JTextField getTxtAcronym() {
-		if (txtAcronym == null) {
-			txtAcronym = new JTextField();
-			txtAcronym.setBounds(138, 19, 106, 20);
-			txtAcronym.setColumns(10);
+		if (txtAcronym_ == null) {
+			txtAcronym_ = new JTextField();
+			txtAcronym_.setBounds(138, 19, 106, 20);
+			txtAcronym_.setColumns(10);
 		}
-		return txtAcronym;
+		return txtAcronym_;
 	}
 	public JTextField getTxtName() {
-		if (txtName == null) {
-			txtName = new JTextField();
-			txtName.setBounds(138, 44, 106, 20);
-			txtName.setColumns(10);
+		if (txtName_ == null) {
+			txtName_ = new JTextField();
+			txtName_.setBounds(138, 44, 106, 20);
+			txtName_.setColumns(10);
 		}
-		return txtName;
+		return txtName_;
 	}
 	public JComboBox<String> getCmbboxLecturer() {
-		if (cmbboxLecturer == null) {
-			cmbboxLecturer = new JComboBox<String>();
-			cmbboxLecturer.setModel(new CmbboxFilterLecturer(cmbboxLecturer, "create"));
-			cmbboxLecturer.setBounds(138, 120, 106, 20);
+		if (cmbboxLecturer_ == null) {
+			cmbboxLecturer_ = new JComboBox<String>();
+			cmbboxLecturer_.setModel(new CmbboxFilterLecturer(cmbboxLecturer_, "create"));
+			cmbboxLecturer_.setBounds(138, 120, 106, 20);
 		}
-		return cmbboxLecturer;
+		return cmbboxLecturer_;
 	}
 	public JTextField getTxtFaculity() {
-		if (txtFaculity == null) {
-			txtFaculity = new JTextField();
-			txtFaculity.setText("WI");
-			txtFaculity.setEnabled(false);
-			txtFaculity.setBounds(138, 70, 106, 20);
-			txtFaculity.setColumns(10);
+		if (txtFaculity_ == null) {
+			txtFaculity_ = new JTextField();
+			txtFaculity_.setText("WI");
+			txtFaculity_.setEnabled(false);
+			txtFaculity_.setBounds(138, 70, 106, 20);
+			txtFaculity_.setColumns(10);
 		}
-		return txtFaculity;
+		return txtFaculity_;
 	}
 	public JTextField getTxtLevel() {
-		if (txtLevel == null) {
-			txtLevel = new JTextField();
-			txtLevel.setBounds(138, 95, 106, 20);
-			txtLevel.setColumns(10);
+		if (txtLevel_ == null) {
+			txtLevel_ = new JTextField();
+			txtLevel_.setBounds(138, 95, 106, 20);
+			txtLevel_.setColumns(10);
 		}
-		return txtLevel;
+		return txtLevel_;
 	}
 
 	/**
 	 * @return the chair
 	 */
 	public IntfChair getChair() {
-		return chair;
+		return chair_;
 	}
 
 	/**
 	 * @param chair - the chair to set
 	 */
 	public void setChair(IntfChair chair) {
-		this.chair = chair;
+		this.chair_ = chair;
 	}
 }
