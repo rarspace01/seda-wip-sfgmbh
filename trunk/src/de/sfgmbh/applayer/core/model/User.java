@@ -145,7 +145,7 @@ public class User implements IntfUser {
 	 * @see de.sfgmbh.applayer.core.model.IntfUser#getfName_()
 	 */
 	@Override
-	public String getfName_() {
+	public String getFirstName_() {
 		return firstName_;
 	}
 
@@ -153,7 +153,7 @@ public class User implements IntfUser {
 	 * @see de.sfgmbh.applayer.core.model.IntfUser#setfName_(java.lang.String)
 	 */
 	@Override
-	public void setfName_(String fName_) {
+	public void setFirstName_(String fName_) {
 		this.firstName_ = this.cleanString(fName_);
 	}
 

@@ -71,7 +71,7 @@ public class UserCreateDialog extends JDialog {
 		this.getChckbxUserDisabled().setVisible(true);
 		this.setEditUser(userToEdit);
 		this.getTxtLogin().setText(userToEdit.getLogin_());
-		this.getTxtFirstName().setText(userToEdit.getfName_());
+		this.getTxtFirstName().setText(userToEdit.getFirstName_());
 		this.getTxtLastName().setText(userToEdit.getlName_());
 		this.getTxtEmail().setText(userToEdit.getMail_());
 		if (userToEdit.getChair_() != null) {

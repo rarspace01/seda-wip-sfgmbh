@@ -31,7 +31,7 @@ public interface IntfCtrlRoomAllocation {
 	 * Deny a room allocation if possible
 	 * @param roomAllocation
 	 */
-	public abstract boolean denyRoomAllocation(IntfRoomAllocation ra);
+	public abstract boolean denyRoomAllocation(IntfRoomAllocation roomAllocation);
 
 	/**
 	 * Suggest a time slot for a room allocation. Currently set time slot is, expect the semester, ignored. Expected attendees of the course are taken into account.

@@ -20,13 +20,13 @@ import com.itextpdf.text.pdf.PdfWriter;
  * @author denis
  *
  */
-public class DataManagerPDF implements IntfDataManagerPDF {
+public class DataManagerPdf implements IntfDataManagerPdf {
 
 	private String filename_="";
 	private PdfWriter writer_ = null;
 	private Document document_ = null;
 	
-	public DataManagerPDF(String filename) {
+	public DataManagerPdf(String filename) {
 		
 		filename_=filename;
 		
