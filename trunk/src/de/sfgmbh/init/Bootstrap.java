@@ -70,11 +70,12 @@ public class Bootstrap {
 	
 	
 	private static boolean hasDbConnection(){
-		boolean hasDbConnection=false;		
+		boolean hasDbConnection=false;
 		try {
-			DataManagerPostgreSql.getInstance().select("SELECT 1;");
+			DataManagerPostgreSql dataManager = new DataManagerPostgreSql();
+			dataManager.select("SELECT 1;");
 			hasDbConnection=true;
-			DataManagerPostgreSql.getInstance().dispose();
+			dataManager.dispose();
 		} catch (SQLException e) {
 			DataModel.getInstance().getExceptionsHandler().setNewException(("Keine Verbindung zur Datenbank möglich:<br /><br />" + e.toString()), "Verbindungs-Fehler!");
 			e.printStackTrace();

@@ -31,6 +31,7 @@ public class DataHandlerRoomAllocation implements IntfDataObservable, IntfDataFi
 	 */
 	@Override
 	public List<IntfRoomAllocation> getAll() {
+		DataManagerPostgreSql dataManager = new DataManagerPostgreSql();
 		List<IntfRoomAllocation> listRoomAllocation = new ArrayList<IntfRoomAllocation>();
 
 		String SqlStatement = "SELECT public.roomallocation.*, public.course.*, public.user.*, public.room.*, public.chair.* " +
@@ -45,7 +46,7 @@ public class DataHandlerRoomAllocation implements IntfDataObservable, IntfDataFi
 
 		try {
 
-			ResultSet resultSet = DataManagerPostgreSql.getInstance().select(
+			ResultSet resultSet = dataManager.select(
 					SqlStatement);
 
 			while (resultSet.next()) {
@@ -59,7 +60,7 @@ public class DataHandlerRoomAllocation implements IntfDataObservable, IntfDataFi
 			e.printStackTrace();
 			DataModel.getInstance().getExceptionsHandler().setNewException(("Es ist ein unbekannter Fehler (DataHandlerRoomAllocation-02) in der Datenhaltung aufgetreten:<br /><br />" + e.toString()), "Fehler!");
 		}finally{
-			DataManagerPostgreSql.getInstance().dispose();
+			dataManager.dispose();
 		}
 
 		return this.setConflicts(listRoomAllocation);
@@ -70,6 +71,7 @@ public class DataHandlerRoomAllocation implements IntfDataObservable, IntfDataFi
 	 */
 	@Override
 	public List<IntfRoomAllocation> getAllOpen() {
+		DataManagerPostgreSql dataManager = new DataManagerPostgreSql();
 		List<IntfRoomAllocation> listRoomAllocation = new ArrayList<IntfRoomAllocation>();
 
 		String SqlStatement = "SELECT public.roomallocation.*, public.course.*, public.user.*, public.room.*, public.chair.* " +
@@ -85,7 +87,7 @@ public class DataHandlerRoomAllocation implements IntfDataObservable, IntfDataFi
 
 		try {
 
-			ResultSet resultSet = DataManagerPostgreSql.getInstance().select(
+			ResultSet resultSet = dataManager.select(
 					SqlStatement);
 
 			while (resultSet.next()) {
@@ -99,7 +101,7 @@ public class DataHandlerRoomAllocation implements IntfDataObservable, IntfDataFi
 			e.printStackTrace();
 			DataModel.getInstance().getExceptionsHandler().setNewException(("Es ist ein unbekannter Fehler (DataHandlerRoomAllocation-02) in der Datenhaltung aufgetreten:<br /><br />" + e.toString()), "Fehler!");
 		}finally{
-			DataManagerPostgreSql.getInstance().dispose();
+			dataManager.dispose();
 		}
 
 		return this.setConflicts(listRoomAllocation);
@@ -131,7 +133,7 @@ public class DataHandlerRoomAllocation implements IntfDataObservable, IntfDataFi
 		
 		try {
 			if (filterDm == null) { 
-				filterDm = DataManagerPostgreSql.getInstance();
+				filterDm = new DataManagerPostgreSql();
 				if(filter.containsKey("courseenabled")){
 					filterDm.prepare(
 							"SELECT public.roomallocation.*, public.course.*, public.user.*, public.room.*, public.chair.* " +
@@ -254,7 +256,7 @@ public class DataHandlerRoomAllocation implements IntfDataObservable, IntfDataFi
 			e.printStackTrace();
 			DataModel.getInstance().getExceptionsHandler().setNewException(("Es ist ein unbekannter Fehler in der Datenhaltung aufgetreten:<br /><br />Fehler DataHandlerRoomAllocation-18:<br />" + e.toString()), "Fehler!");
 		}finally{
-			DataManagerPostgreSql.getInstance().dispose();
+			filterDm.dispose();
 		}
 		
 		return this.setConflicts(listRoomAllocation);
@@ -270,7 +272,7 @@ public class DataHandlerRoomAllocation implements IntfDataObservable, IntfDataFi
 		List<IntfRoomAllocation> listRoomAllocation = new ArrayList<IntfRoomAllocation>();
 		try {
 			if (conflictingAllocationDm == null) { 
-				conflictingAllocationDm = DataManagerPostgreSql.getInstance(); 
+				conflictingAllocationDm = new DataManagerPostgreSql(); 
 				conflictingAllocationDm.prepare(
 						"SELECT public.roomallocation.*, public.course.*, public.user.*, public.room.*, public.chair.* " +
 						"FROM public.roomallocation, public.room, public.course, public.user, public.chair, public.lecturer " +
@@ -305,7 +307,7 @@ public class DataHandlerRoomAllocation implements IntfDataObservable, IntfDataFi
 			e.printStackTrace();
 			DataModel.getInstance().getExceptionsHandler().setNewException(("Es ist ein unbekannter Fehler in der Datenhaltung aufgetreten:<br /><br />Fehler DataHandlerRoomAllocation-16:<br />" + e.toString()), "Fehler!");
 		}finally{
-			DataManagerPostgreSql.getInstance().dispose();
+			conflictingAllocationDm.dispose();
 		}
 		return this.setConflicts(listRoomAllocation);
 	}
@@ -315,6 +317,7 @@ public class DataHandlerRoomAllocation implements IntfDataObservable, IntfDataFi
 	 */
 	@Override
 	public List<HashMap<String, Object>> getConflictingDates() {
+		DataManagerPostgreSql dataManager = new DataManagerPostgreSql();
 		List<HashMap<String, Object>> conflictingDates = new ArrayList<HashMap<String, Object>>();
 
 		String SqlStatement = "SELECT COUNT(*), public.roomallocation.roomid, public.roomallocation.time, public.roomallocation.day, public.roomallocation.semester " +
@@ -325,7 +328,7 @@ public class DataHandlerRoomAllocation implements IntfDataObservable, IntfDataFi
 
 		try {
 
-			ResultSet resultSet = DataManagerPostgreSql.getInstance().select(
+			ResultSet resultSet = dataManager.select(
 					SqlStatement);
 
 			while (resultSet.next()) {
@@ -344,7 +347,7 @@ public class DataHandlerRoomAllocation implements IntfDataObservable, IntfDataFi
 			e.printStackTrace();
 			DataModel.getInstance().getExceptionsHandler().setNewException(("Es ist ein unbekannter Fehler (DataHandlerRoomAllocation-02) in der Datenhaltung aufgetreten:<br /><br />" + e.toString()), "Fehler!");
 		}finally{
-			DataManagerPostgreSql.getInstance().dispose();
+			dataManager.dispose();
 		}
 
 		return conflictingDates;
@@ -379,8 +382,9 @@ public class DataHandlerRoomAllocation implements IntfDataObservable, IntfDataFi
 	 */
 	@Override
 	public IntfRoomAllocation get(int id) {
+		DataManagerPostgreSql dataManager = new DataManagerPostgreSql();
 		try {
-			DataManagerPostgreSql.getInstance().prepare("SELECT public.roomallocation.*, public.course.*, public.user.*, public.room.*, public.chair.* " +
+			dataManager.prepare("SELECT public.roomallocation.*, public.course.*, public.user.*, public.room.*, public.chair.* " +
 														"FROM public.roomallocation, public.room, public.course, public.user, public.chair, public.lecturer " +
 														"WHERE public.roomallocation.courseid = public.course.courseid " +
 														"AND public.course.lecturerid = public.user.userid " +
@@ -389,8 +393,8 @@ public class DataHandlerRoomAllocation implements IntfDataObservable, IntfDataFi
 														"AND public.roomallocation.roomid = public.room.roomid " +
 														"AND roomallocationid = ? " +
 														"ORDER BY public.roomallocation.day ASC, public.roomallocation.time ASC");
-			DataManagerPostgreSql.getInstance().getPreparedStatement().setInt(1, id);
-			ResultSet rs = DataManagerPostgreSql.getInstance().selectPreparedStatement();
+			dataManager.getPreparedStatement().setInt(1, id);
+			ResultSet rs = dataManager.selectPreparedStatement();
 			while (rs.next()) {
 				IntfRoomAllocation roomAllocation = this.makeRoomAllocation(rs, "normal");
 				for (HashMap<String, Object> conflict : this.getConflictingDates()) {
@@ -411,7 +415,7 @@ public class DataHandlerRoomAllocation implements IntfDataObservable, IntfDataFi
 			e.printStackTrace();
 			DataModel.getInstance().getExceptionsHandler().setNewException(("Es ist ein unbekannter Fehler in der Datenhaltung aufgetreten:<br /><br />Fehler DataHandlerRoomAllocation-21:<br />" + e.toString()), "Fehler!");
 		}finally{
-			DataManagerPostgreSql.getInstance().dispose();
+			dataManager.dispose();
 		}
 		
 		return null;
@@ -422,24 +426,23 @@ public class DataHandlerRoomAllocation implements IntfDataObservable, IntfDataFi
 	 */
 	@Override
 	public boolean save(IntfRoomAllocation ra) {
+		DataManagerPostgreSql dataManager = new DataManagerPostgreSql();
 		boolean returnStatus = false;
 		if (ra.getRoomAllocationId_() == -1) {
 			try {
 				
-				DataManagerPostgreSql dm=DataManagerPostgreSql.getInstance();
-				
-				dm.prepare("INSERT INTO public.roomallocation"
+				dataManager.prepare("INSERT INTO public.roomallocation"
 						+ "(courseid, roomid, semester, day, time, approved, orgamessage, comment)"
 						+ "VALUES (?,?,?,?,?,?,?,?)");
-				dm.getPreparedStatement().setInt(1, ra.getCourse_().getCourseId_());
-				dm.getPreparedStatement().setInt(2, ra.getRoom_().getRoomId_());
-				dm.getPreparedStatement().setString(3, ra.getSemester_());
-				dm.getPreparedStatement().setInt(4, ra.getDay_());
-				dm.getPreparedStatement().setInt(5, ra.getTime_());
-				dm.getPreparedStatement().setString(6, ra.getApproved_());
-				dm.getPreparedStatement().setString(7, ra.getOrgaMessage_());
-				dm.getPreparedStatement().setString(8, ra.getComment_());
-				returnStatus = dm.executePreparedStatement();
+				dataManager.getPreparedStatement().setInt(1, ra.getCourse_().getCourseId_());
+				dataManager.getPreparedStatement().setInt(2, ra.getRoom_().getRoomId_());
+				dataManager.getPreparedStatement().setString(3, ra.getSemester_());
+				dataManager.getPreparedStatement().setInt(4, ra.getDay_());
+				dataManager.getPreparedStatement().setInt(5, ra.getTime_());
+				dataManager.getPreparedStatement().setString(6, ra.getApproved_());
+				dataManager.getPreparedStatement().setString(7, ra.getOrgaMessage_());
+				dataManager.getPreparedStatement().setString(8, ra.getComment_());
+				returnStatus = dataManager.executePreparedStatement();
 				this.update();
 			} catch (SQLException e) {
 				e.printStackTrace();
@@ -448,24 +451,24 @@ public class DataHandlerRoomAllocation implements IntfDataObservable, IntfDataFi
 				e.printStackTrace();
 				DataModel.getInstance().getExceptionsHandler().setNewException(("Es ist ein unbekannter Fehler in der Datenhaltung aufgetreten:<br /><br />Fehler DataHandlerRoomAllocation-22:<br />" + e.toString()), "Fehler!");
 			}finally{
-				DataManagerPostgreSql.getInstance().dispose();
+				dataManager.dispose();
 			}
 		} else {
 			try {
-				DataManagerPostgreSql dm=DataManagerPostgreSql.getInstance();
-				dm.prepare("UPDATE public.roomallocation SET "
+
+				dataManager.prepare("UPDATE public.roomallocation SET "
 						+ "courseid = ?, roomid = ?, semester = ?, day = ?, time = ?, approved = ?, orgamessage = ?, comment = ? "
 						+ "WHERE roomallocationid = ?");
-				dm.getPreparedStatement().setInt(1, ra.getCourse_().getCourseId_());
-				dm.getPreparedStatement().setInt(2, ra.getRoom_().getRoomId_());
-				dm.getPreparedStatement().setString(3, ra.getSemester_());
-				dm.getPreparedStatement().setInt(4, ra.getDay_());
-				dm.getPreparedStatement().setInt(5, ra.getTime_());
-				dm.getPreparedStatement().setString(6, ra.getApproved_());
-				dm.getPreparedStatement().setString(7, ra.getOrgaMessage_());
-				dm.getPreparedStatement().setString(8, ra.getComment_());
-				dm.getPreparedStatement().setInt(9, ra.getRoomAllocationId_());
-				returnStatus = dm.executePreparedStatement();
+				dataManager.getPreparedStatement().setInt(1, ra.getCourse_().getCourseId_());
+				dataManager.getPreparedStatement().setInt(2, ra.getRoom_().getRoomId_());
+				dataManager.getPreparedStatement().setString(3, ra.getSemester_());
+				dataManager.getPreparedStatement().setInt(4, ra.getDay_());
+				dataManager.getPreparedStatement().setInt(5, ra.getTime_());
+				dataManager.getPreparedStatement().setString(6, ra.getApproved_());
+				dataManager.getPreparedStatement().setString(7, ra.getOrgaMessage_());
+				dataManager.getPreparedStatement().setString(8, ra.getComment_());
+				dataManager.getPreparedStatement().setInt(9, ra.getRoomAllocationId_());
+				returnStatus = dataManager.executePreparedStatement();
 				this.update();
 			} catch (SQLException e) {
 				e.printStackTrace();
@@ -474,7 +477,7 @@ public class DataHandlerRoomAllocation implements IntfDataObservable, IntfDataFi
 				e.printStackTrace();
 				DataModel.getInstance().getExceptionsHandler().setNewException(("Es ist ein unbekannter Fehler in der Datenhaltung aufgetreten:<br /><br />Fehler DataHandlerRoomAllocation-24:<br />" + e.toString()), "Fehler!");
 			}finally{
-				DataManagerPostgreSql.getInstance().dispose();
+				dataManager.dispose();
 			}
 		}
 		return returnStatus;
@@ -563,12 +566,12 @@ public class DataHandlerRoomAllocation implements IntfDataObservable, IntfDataFi
 	 */
 	@Override
 	public boolean clean() {
+		DataManagerPostgreSql dataManager = new DataManagerPostgreSql();
 		boolean returnState = false;
 		try {
-			DataManagerPostgreSql dm=DataManagerPostgreSql.getInstance();
-			dm.prepare("DELETE FROM  public.roomallocation " +
+			dataManager.prepare("DELETE FROM  public.roomallocation " +
 						"WHERE public.roomallocation.approved LIKE 'denied' ");
-			dm.executePreparedStatement();
+			dataManager.executePreparedStatement();
 			returnState = true;
 			this.update();
 		} catch (SQLException e) {
@@ -580,7 +583,7 @@ public class DataHandlerRoomAllocation implements IntfDataObservable, IntfDataFi
 			e.printStackTrace();
 			DataModel.getInstance().getExceptionsHandler().setNewException(("Es ist ein unbekannter Fehler in der Datenhaltung aufgetreten:<br /><br />" + e.toString()), "Fehler!");
 		}finally{
-			DataManagerPostgreSql.getInstance().dispose();
+			dataManager.dispose();
 		}
 		return returnState;
 	}

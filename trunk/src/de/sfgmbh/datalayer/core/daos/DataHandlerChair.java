@@ -32,10 +32,11 @@ public class DataHandlerChair implements IntfDataChair, IntfDataFilter,
 				"SELECT public.user.*, public.chair.* " + 
 				"FROM  public.chair LEFT JOIN public.user " +
 				"ON public.chair.chairowner =  public.user.userid ";
-
+		
+		DataManagerPostgreSql dataManager = new DataManagerPostgreSql();
 		try {
-
-			ResultSet resultSet = DataManagerPostgreSql.getInstance().select(
+			
+			ResultSet resultSet = dataManager.select(
 					SqlStatement);
 
 			while (resultSet.next()) {
@@ -61,7 +62,7 @@ public class DataHandlerChair implements IntfDataChair, IntfDataFilter,
 							("Es ist ein unbekannter Fehler in der Datenhaltung aufgetreten:<br /><br />" + e
 									.toString()), "Fehler!");
 		}finally{
-			DataManagerPostgreSql.getInstance().dispose();
+			dataManager.dispose();
 		}
 
 		return listChair;
@@ -69,15 +70,16 @@ public class DataHandlerChair implements IntfDataChair, IntfDataFilter,
 
 	@Override
 	public IntfChair get(int chairId) {
+		DataManagerPostgreSql dataManager = new DataManagerPostgreSql();
 		try {
-			DataManagerPostgreSql.getInstance().prepare(
+			dataManager.prepare(
 					"SELECT public.user.*, public.chair.* " + 
 					"FROM  public.chair LEFT JOIN public.user " +
 					"ON public.chair.chairowner =  public.user.userid " +
 					"WHERE public.chair.chairid = ?");
-			DataManagerPostgreSql.getInstance().getPreparedStatement()
+			dataManager.getPreparedStatement()
 					.setInt(1, chairId);
-			ResultSet rs = DataManagerPostgreSql.getInstance().selectPreparedStatement();
+			ResultSet rs = dataManager.selectPreparedStatement();
 			while (rs.next()) {
 				return this.makeChair(rs);
 			}
@@ -99,7 +101,7 @@ public class DataHandlerChair implements IntfDataChair, IntfDataFilter,
 							("Es ist ein unbekannter Fehler in der Datenhaltung aufgetreten:<br /><br />Fehler DataHandlerUser-16:<br />" + e
 									.toString()), "Fehler!");
 		}finally{
-			DataManagerPostgreSql.getInstance().dispose();
+			dataManager.dispose();
 		}
 
 		return null;
@@ -113,18 +115,17 @@ public class DataHandlerChair implements IntfDataChair, IntfDataFilter,
 	 *         otherwise returns null
 	 */
 	public IntfChair getForUser(int userId) {
+		DataManagerPostgreSql dataManager = new DataManagerPostgreSql();
 		try {
-			DataManagerPostgreSql
-					.getInstance()
-					.prepare(
+			dataManager.prepare(
 							"SELECT public.user.*, public.chair.* " +
 							"FROM public.lecturer, public.chair LEFT JOIN public.user " +
 							"ON public.chair.chairowner =  public.user.userid " +
 							"WHERE public.lecturer.chairid = public.chair.chairid " +
 							"AND public.lecturer.userid = ? ");
-			DataManagerPostgreSql.getInstance().getPreparedStatement()
+			dataManager.getPreparedStatement()
 					.setInt(1, userId);
-			ResultSet rs = DataManagerPostgreSql.getInstance().selectPreparedStatement();
+			ResultSet rs = dataManager.selectPreparedStatement();
 			while (rs.next()) {
 				return this.makeChair(rs);
 			}
@@ -146,7 +147,7 @@ public class DataHandlerChair implements IntfDataChair, IntfDataFilter,
 							("Es ist ein unbekannter Fehler in der Datenhaltung aufgetreten:<br /><br />Fehler DataHandlerChair-07:<br />" + e
 									.toString()), "Fehler!");
 		}finally{
-			DataManagerPostgreSql.getInstance().dispose();
+			dataManager.dispose();
 		}
 
 		return null;
@@ -160,15 +161,16 @@ public class DataHandlerChair implements IntfDataChair, IntfDataFilter,
 	 *         otherwise returns null
 	 */
 	public IntfChair getForAcronym(String acronym) {
+		DataManagerPostgreSql dataManager = new DataManagerPostgreSql();
 		try {
-			DataManagerPostgreSql.getInstance().prepare(
+			dataManager.prepare(
 					"SELECT public.user.*, public.chair.* " + 
 					"FROM public.chair  LEFT JOIN public.user " +
 					"ON public.chair.chairowner =  public.user.userid " +
 					"WHERE public.chair.chairacronym = ? ");
-			DataManagerPostgreSql.getInstance().getPreparedStatement()
+			dataManager.getPreparedStatement()
 					.setString(1, acronym);
-			ResultSet rs = DataManagerPostgreSql.getInstance().selectPreparedStatement();
+			ResultSet rs = dataManager.selectPreparedStatement();
 			while (rs.next()) {
 				return this.makeChair(rs);
 			}
@@ -190,7 +192,7 @@ public class DataHandlerChair implements IntfDataChair, IntfDataFilter,
 							("Es ist ein unbekannter Fehler in der Datenhaltung aufgetreten:<br /><br />Fehler DataHandlerChair-09:<br />" + e
 									.toString()), "Fehler!");
 		}finally{
-			DataManagerPostgreSql.getInstance().dispose();
+			dataManager.dispose();
 		}
 
 		return null;
@@ -198,20 +200,21 @@ public class DataHandlerChair implements IntfDataChair, IntfDataFilter,
 
 	@Override
 	public boolean delete(IntfChair toBeDeletedChair) {
+		
 		if (toBeDeletedChair != null) {
 			boolean returnState = true;
 
 			// Now delete the chair
 			if (returnState) {
 				try {
-					DataManagerPostgreSql dm = DataManagerPostgreSql
-							.getInstance();
+					DataManagerPostgreSql dataManager = new DataManagerPostgreSql();
 
-					dm.prepare("DELETE FROM public.chair "
+					dataManager.prepare("DELETE FROM public.chair "
 							+ "WHERE public.chair.chairid = ?");
-					dm.getPreparedStatement().setInt(1,
+					dataManager.getPreparedStatement().setInt(1,
 							toBeDeletedChair.getChairId_());
-					returnState = dm.executePreparedStatement();
+					returnState = dataManager.executePreparedStatement();
+					dataManager.dispose();
 					this.update();
 				} catch (SQLException e) {
 					returnState = false;
@@ -231,8 +234,6 @@ public class DataHandlerChair implements IntfDataChair, IntfDataFilter,
 							.setNewException(
 									("Es ist ein unbekannter Fehler in der Klasse DataHandlerUser in der Datenhaltung aufgetreten:<br /><br />" + e
 											.toString()), "Fehler!");
-				}finally{
-					DataManagerPostgreSql.getInstance().dispose();
 				}
 			}
 			return returnState;
@@ -242,26 +243,25 @@ public class DataHandlerChair implements IntfDataChair, IntfDataFilter,
 
 	@Override
 	public boolean save(IntfChair chair) {
+		DataManagerPostgreSql dataManager = new DataManagerPostgreSql();
 		if (chair.getChairId_() == -1) {
 			boolean returnState = true;
 				try {
 					
-					DataManagerPostgreSql dm=DataManagerPostgreSql.getInstance();
-					
-					dm.prepare("INSERT INTO public.chair"
+					dataManager.prepare("INSERT INTO public.chair"
 							+ "(chairname, chairowner, buildingid, chairlevel, faculty, chairacronym)"
 							+ "VALUES (?,?,?,?,?,?)");
-					dm.getPreparedStatement().setString(1, chair.getChairName_());
+					dataManager.getPreparedStatement().setString(1, chair.getChairName_());
 					if (chair.getChairOwner_() != null) {
-						dm.getPreparedStatement().setInt(2, chair.getChairOwner_().getUserId_());
+						dataManager.getPreparedStatement().setInt(2, chair.getChairOwner_().getUserId_());
 					} else {
-						dm.getPreparedStatement().setNull(2, java.sql.Types.INTEGER);
+						dataManager.getPreparedStatement().setNull(2, java.sql.Types.INTEGER);
 					}
-					dm.getPreparedStatement().setInt(3, chair.getBuildingId_());
-					dm.getPreparedStatement().setString(4, chair.getChairLevel_());
-					dm.getPreparedStatement().setString(5, chair.getFaculty_());
-					dm.getPreparedStatement().setString(6, chair.getAcronym_());
-					dm.executePreparedStatement();
+					dataManager.getPreparedStatement().setInt(3, chair.getBuildingId_());
+					dataManager.getPreparedStatement().setString(4, chair.getChairLevel_());
+					dataManager.getPreparedStatement().setString(5, chair.getFaculty_());
+					dataManager.getPreparedStatement().setString(6, chair.getAcronym_());
+					dataManager.executePreparedStatement();
 					this.update();
 				} catch (SQLException e) {
 					e.printStackTrace();
@@ -271,29 +271,28 @@ public class DataHandlerChair implements IntfDataChair, IntfDataFilter,
 					e.printStackTrace();
 					DataModel.getInstance().getExceptionsHandler().setNewException(("Es ist ein unbekannter Fehler in der Datenhaltung aufgetreten:<br /><br />" + e.toString()), "Fehler!");
 					returnState =  false;
-				}finally{
-					DataManagerPostgreSql.getInstance().dispose();
 				}
+
+				dataManager.dispose();
 				return returnState;
 		} else {
 			boolean returnState = true;
 			try {
-				DataManagerPostgreSql dm=DataManagerPostgreSql.getInstance();
-				dm.prepare("UPDATE public.chair SET "
+				dataManager.prepare("UPDATE public.chair SET "
 						+ "chairname = ?, chairowner = ?, buildingid = ?, chairlevel = ?, faculty = ?, chairacronym = ? "
 						+ "WHERE chairid = ?");
-				dm.getPreparedStatement().setString(1, chair.getChairName_());
+				dataManager.getPreparedStatement().setString(1, chair.getChairName_());
 				if (chair.getChairOwner_() != null) {
-					dm.getPreparedStatement().setInt(2, chair.getChairOwner_().getUserId_());
+					dataManager.getPreparedStatement().setInt(2, chair.getChairOwner_().getUserId_());
 				} else {
-					dm.getPreparedStatement().setNull(2, java.sql.Types.INTEGER);
+					dataManager.getPreparedStatement().setNull(2, java.sql.Types.INTEGER);
 				}
-				dm.getPreparedStatement().setInt(3, chair.getBuildingId_());
-				dm.getPreparedStatement().setString(4, chair.getChairLevel_());
-				dm.getPreparedStatement().setString(5, chair.getFaculty_());
-				dm.getPreparedStatement().setString(6, chair.getAcronym_());
-				dm.getPreparedStatement().setInt(7, chair.getChairId_());
-				returnState = dm.executePreparedStatement();
+				dataManager.getPreparedStatement().setInt(3, chair.getBuildingId_());
+				dataManager.getPreparedStatement().setString(4, chair.getChairLevel_());
+				dataManager.getPreparedStatement().setString(5, chair.getFaculty_());
+				dataManager.getPreparedStatement().setString(6, chair.getAcronym_());
+				dataManager.getPreparedStatement().setInt(7, chair.getChairId_());
+				returnState = dataManager.executePreparedStatement();
 				this.update();
 			} catch (SQLException e) {
 				e.printStackTrace();
@@ -303,24 +302,25 @@ public class DataHandlerChair implements IntfDataChair, IntfDataFilter,
 				e.printStackTrace();
 				DataModel.getInstance().getExceptionsHandler().setNewException(("Es ist ein unbekannter Fehler (in der Datenhaltung aufgetreten:<br /><br />" + e.toString()), "Fehler!");
 				returnState = false;
-			}finally{
-				DataManagerPostgreSql.getInstance().dispose();
 			}
+			
+			dataManager.dispose();
 			return returnState;
 		}
 	}
 
 	@Override
 	public List<IntfChair> getByFilter(HashMap<String, String> filter) {
+
 		DataManagerPostgreSql filterDm = null;
 		List<IntfChair> listChair = new ArrayList<IntfChair>();
-		// TODO Auto-generated method stub
+
 		try {
 
 			ResultSet rs = null;
 
 			if (filterDm == null) {
-				filterDm = DataManagerPostgreSql.getInstance();
+				filterDm = new DataManagerPostgreSql();
 				filterDm.prepare("SELECT public.user.*, public.chair.* "
 						+ "FROM public.chair LEFT JOIN public.user "
 						+ "ON public.chair.chairowner =  public.user.userid "
@@ -343,6 +343,7 @@ public class DataHandlerChair implements IntfDataChair, IntfDataFilter,
 				listChair.add(makeChair(rs));
 			}
 
+			filterDm.dispose();
 		} catch (SQLException e) {
 			e.printStackTrace();
 			DataModel
@@ -359,8 +360,6 @@ public class DataHandlerChair implements IntfDataChair, IntfDataFilter,
 					.setNewException(
 							("Es ist ein unbekannter Fehler in der Datenhaltung aufgetreten:<br /><br />" + e
 									.toString()), "Fehler!");
-		}finally{
-			DataManagerPostgreSql.getInstance().dispose();
 		}
 
 		return listChair;
@@ -374,6 +373,7 @@ public class DataHandlerChair implements IntfDataChair, IntfDataFilter,
 	 * @return  - a Chair object
 	 */
 	public IntfChair makeChair(ResultSet resultSet) {
+
 		IntfChair returnChair = new Chair();
 
 		try {

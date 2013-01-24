@@ -31,6 +31,8 @@ public class DataHandlerCourse implements IntfDataFilter, IntfDataObservable, In
 	 */
 	@Override
 	public List<Course> getAll() {
+		DataManagerPostgreSql dataManager = new DataManagerPostgreSql();
+		
 		List<Course> listCourse = new ArrayList<Course>();
 		Course returnCourse = null;
 
@@ -42,7 +44,7 @@ public class DataHandlerCourse implements IntfDataFilter, IntfDataObservable, In
 
 		try {
 
-			ResultSet resultSet = DataManagerPostgreSql.getInstance().select(
+			ResultSet resultSet = dataManager.select(
 					SqlStatement);
 
 			while (resultSet.next()) {
@@ -57,10 +59,9 @@ public class DataHandlerCourse implements IntfDataFilter, IntfDataObservable, In
 		} catch (Exception e) {
 			e.printStackTrace();
 			DataModel.getInstance().getExceptionsHandler().setNewException(("Es ist ein unbekannter Fehler (DataHandlerCourse-03) in der Datenhaltung aufgetreten:<br /><br />" + e.toString()), "Fehler!");
-		}finally{
-			DataManagerPostgreSql.getInstance().dispose();
 		}
 
+		dataManager.dispose();
 		return listCourse;
 	}
 	
@@ -74,7 +75,7 @@ public class DataHandlerCourse implements IntfDataFilter, IntfDataObservable, In
 		
 		try {
 			if (filterDm == null) { 
-				filterDm = DataManagerPostgreSql.getInstance(); 
+				filterDm = new DataManagerPostgreSql();
 					filterDm.prepare("SELECT public.course.*, public.user.*, public.chair.* " +
 									"FROM public.course, public.user, public.chair, public.lecturer " +
 									"WHERE public.course.lecturerid = public.user.userid " +
@@ -109,6 +110,7 @@ public class DataHandlerCourse implements IntfDataFilter, IntfDataObservable, In
 				listCourse.add(makeCourse(rs));
 			}
 			
+			filterDm.dispose();
 		} catch (SQLException e) {
 			e.printStackTrace();
 			DataModel.getInstance().getExceptionsHandler().setNewException(("Es ist ein SQL-Fehler (DataHandlerCourse-09) aufgetreten:<br /><br />" + e.toString()), "Datenbank-Fehler!");
@@ -116,7 +118,7 @@ public class DataHandlerCourse implements IntfDataFilter, IntfDataObservable, In
 			e.printStackTrace();
 			DataModel.getInstance().getExceptionsHandler().setNewException(("Es ist ein unbekannter Fehler (DataHandlerCourse-10) in der Datenhaltung aufgetreten:<br /><br />" + e.toString()), "Fehler!");
 		}finally{
-			DataManagerPostgreSql.getInstance().dispose();
+			filterDm.dispose();
 		}
 		
 		return listCourse;
@@ -127,16 +129,17 @@ public class DataHandlerCourse implements IntfDataFilter, IntfDataObservable, In
 	 */
 	@Override
 	public IntfCourse get(int id) {
+		DataManagerPostgreSql dataManager = new DataManagerPostgreSql();
 		
 		try {
-			DataManagerPostgreSql.getInstance().prepare("SELECT public.course.*, public.user.*, public.chair.* " +
+			dataManager.prepare("SELECT public.course.*, public.user.*, public.chair.* " +
 														"FROM public.course, public.user, public.chair, public.lecturer " +
 														"WHERE public.course.lecturerid = public.user.userid " +
 														"AND public.course.lecturerid = public.lecturer.userid " +
 														"AND public.chair.chairid = public.lecturer.chairid " +
 														"AND courseid = ? ");
-			DataManagerPostgreSql.getInstance().getPreparedStatement().setInt(1, id);
-			ResultSet rs = DataManagerPostgreSql.getInstance().selectPreparedStatement();
+			dataManager.getPreparedStatement().setInt(1, id);
+			ResultSet rs = dataManager.selectPreparedStatement();
 			while (rs.next()) {
 				return this.makeCourse(rs);
 			}
@@ -148,7 +151,7 @@ public class DataHandlerCourse implements IntfDataFilter, IntfDataObservable, In
 			e.printStackTrace();
 			DataModel.getInstance().getExceptionsHandler().setNewException(("Es ist ein unbekannter Fehler (DataHandlerCourse-08) in der Datenhaltung aufgetreten:<br /><br />" + e.toString()), "Fehler!");
 		}finally{
-			DataManagerPostgreSql.getInstance().dispose();
+			dataManager.dispose();
 		}
 		
 		return null;
@@ -225,25 +228,24 @@ public class DataHandlerCourse implements IntfDataFilter, IntfDataObservable, In
 	 */
 	@Override
 	public boolean save(IntfCourse course) {
+		DataManagerPostgreSql dataManager = new DataManagerPostgreSql();
 		
 		if (course.getCourseId_() == -1) {
 			boolean returnState = true;
 				try {
 					
-					DataManagerPostgreSql dm=DataManagerPostgreSql.getInstance();
-					
-					dm.prepare("INSERT INTO public.course"
+					dataManager.prepare("INSERT INTO public.course"
 							+ "(lecturerid, courseacronym, coursename, sws, coursekind, coursedescription, expectedattendees, lecturerenabled)"
 							+ "VALUES (?,?,?,?,?,?,?,?)");
-					dm.getPreparedStatement().setInt(1, course.getLecturer_().getUserId_());
-					dm.getPreparedStatement().setString(2, course.getCourseAcronym_());
-					dm.getPreparedStatement().setString(3, course.getCourseName_());
-					dm.getPreparedStatement().setFloat(4, course.getSws_());
-					dm.getPreparedStatement().setString(5, course.getCourseKind_());
-					dm.getPreparedStatement().setString(6, course.getCourseDescription_());
-					dm.getPreparedStatement().setInt(7, course.getExpectedAttendees_());
-					dm.getPreparedStatement().setBoolean(8, course.isLecturerEnabled_());
-					dm.executePreparedStatement();
+					dataManager.getPreparedStatement().setInt(1, course.getLecturer_().getUserId_());
+					dataManager.getPreparedStatement().setString(2, course.getCourseAcronym_());
+					dataManager.getPreparedStatement().setString(3, course.getCourseName_());
+					dataManager.getPreparedStatement().setFloat(4, course.getSws_());
+					dataManager.getPreparedStatement().setString(5, course.getCourseKind_());
+					dataManager.getPreparedStatement().setString(6, course.getCourseDescription_());
+					dataManager.getPreparedStatement().setInt(7, course.getExpectedAttendees_());
+					dataManager.getPreparedStatement().setBoolean(8, course.isLecturerEnabled_());
+					dataManager.executePreparedStatement();
 					this.update();
 				} catch (SQLException e) {
 					e.printStackTrace();
@@ -254,26 +256,26 @@ public class DataHandlerCourse implements IntfDataFilter, IntfDataObservable, In
 					DataModel.getInstance().getExceptionsHandler().setNewException(("Es ist ein unbekannter Fehler in der Datenhaltung aufgetreten:<br /><br />" + e.toString()), "Fehler!");
 					returnState =  false;
 				}finally{
-					DataManagerPostgreSql.getInstance().dispose();
+					dataManager.dispose();
 				}
 				return returnState;
 		} else {
 			boolean returnState = true;
 			try {
-				DataManagerPostgreSql dm=DataManagerPostgreSql.getInstance();
-				dm.prepare("UPDATE public.course SET "
+
+				dataManager.prepare("UPDATE public.course SET "
 						+ "lecturerid = ?, courseacronym = ?, coursename = ?, sws = ?, coursekind = ?, coursedescription = ?, expectedattendees = ?, lecturerenabled = ? "
 						+ "WHERE courseid = ?");
-				dm.getPreparedStatement().setInt(1, course.getLecturer_().getUserId_());
-				dm.getPreparedStatement().setString(2, course.getCourseAcronym_());
-				dm.getPreparedStatement().setString(3, course.getCourseName_());
-				dm.getPreparedStatement().setFloat(4, course.getSws_());
-				dm.getPreparedStatement().setString(5, course.getCourseKind_());
-				dm.getPreparedStatement().setString(6, course.getCourseDescription_());
-				dm.getPreparedStatement().setInt(7, course.getExpectedAttendees_());
-				dm.getPreparedStatement().setBoolean(8, course.isLecturerEnabled_());
-				dm.getPreparedStatement().setInt(9, course.getCourseId_());
-				returnState = dm.executePreparedStatement();
+				dataManager.getPreparedStatement().setInt(1, course.getLecturer_().getUserId_());
+				dataManager.getPreparedStatement().setString(2, course.getCourseAcronym_());
+				dataManager.getPreparedStatement().setString(3, course.getCourseName_());
+				dataManager.getPreparedStatement().setFloat(4, course.getSws_());
+				dataManager.getPreparedStatement().setString(5, course.getCourseKind_());
+				dataManager.getPreparedStatement().setString(6, course.getCourseDescription_());
+				dataManager.getPreparedStatement().setInt(7, course.getExpectedAttendees_());
+				dataManager.getPreparedStatement().setBoolean(8, course.isLecturerEnabled_());
+				dataManager.getPreparedStatement().setInt(9, course.getCourseId_());
+				returnState = dataManager.executePreparedStatement();
 				this.update();
 			} catch (SQLException e) {
 				e.printStackTrace();
@@ -284,8 +286,10 @@ public class DataHandlerCourse implements IntfDataFilter, IntfDataObservable, In
 				DataModel.getInstance().getExceptionsHandler().setNewException(("Es ist ein unbekannter Fehler (in der Datenhaltung aufgetreten:<br /><br />" + e.toString()), "Fehler!");
 				returnState = false;
 			}finally{
-				DataManagerPostgreSql.getInstance().dispose();
+				dataManager.dispose();
 			}
+			
+			dataManager.dispose();
 			return returnState;
 			
 		}
@@ -296,16 +300,17 @@ public class DataHandlerCourse implements IntfDataFilter, IntfDataObservable, In
 	 */
 	@Override
 	public boolean delete(IntfCourse course) {
+		
+		DataManagerPostgreSql dataManager = new DataManagerPostgreSql();
 		if (course != null) {
 			boolean returnState = true;
 			
 			try {
-				DataManagerPostgreSql dm=DataManagerPostgreSql.getInstance();
 				
-				dm.prepare("DELETE FROM public.course "
+				dataManager.prepare("DELETE FROM public.course "
 						+ "WHERE public.course.courseid = ?");
-				dm.getPreparedStatement().setInt(1, course.getCourseId_());
-				returnState = dm.executePreparedStatement();
+				dataManager.getPreparedStatement().setInt(1, course.getCourseId_());
+				returnState = dataManager.executePreparedStatement();
 				this.update();
 			} catch (SQLException e) {
 				returnState = false;
@@ -316,10 +321,12 @@ public class DataHandlerCourse implements IntfDataFilter, IntfDataObservable, In
 				e.printStackTrace();
 				DataModel.getInstance().getExceptionsHandler().setNewException(("Es ist ein unbekannter Fehler in der Datenhaltung aufgetreten:<br /><br />" + e.toString()), "Fehler!");
 			}finally{
-				DataManagerPostgreSql.getInstance().dispose();
+				dataManager.dispose();
 			}
 			return returnState;
 		}
+		
+		dataManager.dispose();
 		return false;
 	}
 
