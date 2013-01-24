@@ -19,21 +19,21 @@ import de.sfgmbh.comlayer.core.views.InfoDialog;
  */
 public class RoomFrameBtns implements ActionListener {
 
-	private String ctrlAction;
-	protected InfoDialog infoWindow;
-	protected IntfCtrlRoom ctrlRoom;
+	private String ctrlAction_;
+	protected InfoDialog infoWindow_;
+	protected IntfCtrlRoom ctrlRoom_;
 
 	public RoomFrameBtns() {
-		this.ctrlAction = "default";
-		if (this.ctrlRoom == null) {
-			this.ctrlRoom = new CtrlRoom();
+		this.ctrlAction_ = "default";
+		if (this.ctrlRoom_ == null) {
+			this.ctrlRoom_ = new CtrlRoom();
 		}
 	}
 
 	public RoomFrameBtns(String action) {
-		this.ctrlAction = action;
-		if (this.ctrlRoom == null) {
-			this.ctrlRoom = new CtrlRoom();
+		this.ctrlAction_ = action;
+		if (this.ctrlRoom_ == null) {
+			this.ctrlRoom_ = new CtrlRoom();
 		}
 	}
 
@@ -41,12 +41,12 @@ public class RoomFrameBtns implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 
 		// Abbrechen button is pressed
-		if (this.ctrlAction.equals("cancle")) {
+		if (this.ctrlAction_.equals("cancle")) {
 			ViewManager.getInstance().getOrgaRoomFrame().setVisible(false);
 		}
 
 		// Speichern button is pressed
-		if (this.ctrlAction.equals("save")) {
+		if (this.ctrlAction_.equals("save")) {
 
 			// valide the individual fields with regex patterns
 			if (ViewManager.getInstance().getOrgaRoomFrame().getTxtLevel()
@@ -161,8 +161,8 @@ public class RoomFrameBtns implements ActionListener {
 				toBeSavedRoom.setWhiteboards_(Integer.parseInt(ViewManager
 						.getInstance().getOrgaRoomFrame().getTxtWhiteboards()
 						.getText()));
-
-				this.ctrlRoom.addRoom(toBeSavedRoom);
+				//save room object to database
+				this.ctrlRoom_.addRoom(toBeSavedRoom);
 			}
 		}
 	}

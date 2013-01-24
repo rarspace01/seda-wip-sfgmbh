@@ -14,7 +14,7 @@ import de.sfgmbh.comlayer.core.controller.ViewManager;
 import de.sfgmbh.comlayer.core.views.InfoDialog;
 
 /**
- * action listener for room management tab
+ * pdf action listener for room management tab
  * 
  * @author denis
  * 

@@ -11,10 +11,10 @@ import java.awt.event.WindowListener;
  */
 public class UserCreateDialogWin implements WindowListener {
 	
-	private Window window;
+	private Window window_;
 	
 	public UserCreateDialogWin (Window window){
-		this.window = window;
+		this.window_ = window;
 	}
 
 	@Override
@@ -25,7 +25,7 @@ public class UserCreateDialogWin implements WindowListener {
 
 	@Override
 	public void windowClosed(WindowEvent arg0) {
-		this.window.dispose();
+		this.window_.dispose();
 	}
 
 	@Override
