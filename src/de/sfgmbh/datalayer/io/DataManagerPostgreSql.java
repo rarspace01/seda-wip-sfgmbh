@@ -26,7 +26,7 @@ public class DataManagerPostgreSql {
 	 * have to be allowed for some special cases. Remember to dispose
 	 * connections from those with disposeNonSingleton().)
 	 */
-	private DataManagerPostgreSql() {
+	public DataManagerPostgreSql() {
 		DataManagerConfig dbconfig = new DataManagerConfig();
 		try {
 			Class.forName("org.postgresql.Driver");
