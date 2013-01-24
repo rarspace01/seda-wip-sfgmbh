@@ -11,24 +11,35 @@ import java.util.List;
 
 import de.sfgmbh.datalayer.io.DataManagerPostgreSql;
 
+/**
+ * class for reseting the database based on the included sql file
+ * @author denis
+ *
+ */
 public class ResetDb {
-	
+	// List with Strings
 	List<String> sqlStatements=new ArrayList<String>();
 	
 	public ResetDb() {
 	}
 	
+	/***
+	 * starts the "factory" reset
+	 */
 	public void factoryReset(){
 		runSqlScript();
 	}
 
+	// defines the explicit method for running the sql File
 	private void runSqlScript() {
 		
 		String fileLine="";
 		String puffer="";
 		
+		// use a buffered Stream for the resource - we can't access the sql file directly
 		BufferedInputStream bufferedStream;
 		bufferedStream=new BufferedInputStream(this.getClass().getResourceAsStream("/de/sfgmbh/init/reset.sql"));
+		// transform the  
 		InputStreamReader inputstream=new InputStreamReader(bufferedStream);
 		BufferedReader bufferedReader  = new BufferedReader(inputstream);
 		
@@ -47,7 +58,6 @@ public class ResetDb {
 				}
 			}
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			//e.printStackTrace();
 		}
 		try {
@@ -62,10 +72,9 @@ public class ResetDb {
 			DataManagerPostgreSql.getInstance().dispose();
 		} catch (BatchUpdateException e) {
 			//ignore errors on resetting
-			e.printStackTrace();
+			//e.printStackTrace();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			//e.printStackTrace();
 		}	
 			
 		
