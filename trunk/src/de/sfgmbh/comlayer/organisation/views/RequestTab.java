@@ -83,6 +83,7 @@ public class RequestTab extends JPanel {
 		add(lblLecturer_, "cell 2 0,aligny bottom");
 		
 		comboBoxLecturer_ = new JComboBox<String>();
+		comboBoxLecturer_.setToolTipText("<html>Sie können die Liste der <br> Raumanfrage über <br> diese Filter begrenzen</html>");
 		comboBoxLecturer_.addActionListener(new RequestTabCmbboxFilter());
 		
 		lblPCSeats_ = new JLabel("Semester:");
@@ -104,6 +105,7 @@ public class RequestTab extends JPanel {
 		add(getFilterTop(), "cell 3 0,alignx left,aligny bottom");
 		
 		comboBoxSemester_ = new JComboBox<String>();
+		comboBoxSemester_.setToolTipText("<html>Sie können die Liste der <br> Raumanfrage über <br> diese Filter begrenzen</html>");
 		comboBoxSemester_.addActionListener(new RequestTabCmbboxFilter());
 		comboBoxSemester_.setModel(new CmbboxFilterSemester());
 		comboBoxSemester_.setEditable(true);
@@ -140,16 +142,19 @@ public class RequestTab extends JPanel {
 		add(buttonPanel_, "cell 6 2,grow");
 		
 		btnFreigeben_ = new JButton("freigeben");
+		btnFreigeben_.setToolTipText("<html>Selektieren Sie eine Raumanfrage <br> und Klicken Sie hier <br> um den Raum für die <br> Lehrveranstaltung freizugeben</html>");
 		btnFreigeben_.setBounds(6, 11, 88, 23);
 		btnFreigeben_.addActionListener(new RequestTabBtnsControl("accept"));
 		buttonPanel_.add(btnFreigeben_);
 		
 		JButton btnAblehnen = new JButton("ablehnen");
+		btnAblehnen.setToolTipText("<html>Selektieren Sie eine Raumanfrage <br> und Klicken Sie hier <br> um sie abzulehnen</html>");
 		btnAblehnen.setBounds(6, 45, 88, 23);
 		btnAblehnen.addActionListener(new RequestTabBtnsControl("deny"));
 		buttonPanel_.add(btnAblehnen);
 		
 		JButton btnGegenvorschlag = new JButton("lösen");
+		btnGegenvorschlag.setToolTipText("<html>Selektieren Sie eine Raumanfrage <br> und Klicken Sie hier <br> um die Konfliktlösung für <br>konfliktäre Anfragen zu starten</html>");
 		btnGegenvorschlag.setMinimumSize(new Dimension(90, 23));
 		btnGegenvorschlag.setMaximumSize(new Dimension(90, 23));
 		btnGegenvorschlag.setPreferredSize(new Dimension(50, 23));
@@ -210,6 +215,7 @@ public class RequestTab extends JPanel {
 			filterBottom_.setLayout(new MigLayout("insets 0", "[200px:200px:200px][120px:120px:120px]", "[]"));
 			
 			comboBoxChair_ = new JComboBox<String>();
+			comboBoxChair_.setToolTipText("<html>Sie können die Liste der <br> Raumanfrage über <br> diese Filter begrenzen</html>");
 			comboBoxChair_.setMaximumSize(new Dimension(200, 50));
 			filterBottom_.add(comboBoxChair_, "cell 0 0,aligny center");
 			comboBoxChair_.addActionListener(new RequestTabCmbboxFilter());
@@ -218,6 +224,7 @@ public class RequestTab extends JPanel {
 			comboBoxChair_.setAutoscrolls(true);
 			
 			comboBoxStatus_ = new JComboBox<String>();
+			comboBoxStatus_.setToolTipText("<html>Sie können die Liste der <br> Raumanfrage über <br> diese Filter begrenzen</html>");
 			filterBottom_.add(comboBoxStatus_, "cell 1 0,aligny center");
 			comboBoxStatus_.addActionListener(new RequestTabCmbboxFilter());
 			comboBoxStatus_.setModel(new CmbboxFilterAllocationStatus());
@@ -235,6 +242,7 @@ public class RequestTab extends JPanel {
 	public JTextField getTxtRoom() {
 		if (txtRoom_ == null) {
 			txtRoom_ = new JTextField();
+			txtRoom_.setToolTipText("<html>Sie können die Liste der <br> Raumanfrage über <br> diese Filter begrenzen</html>");
 			txtRoom_.setColumns(10);
 			txtRoom_.addActionListener(new RequestTabCmbboxFilter());
 		}
@@ -255,6 +263,7 @@ public class RequestTab extends JPanel {
 	public JButton getBtnClean() {
 		if (btnClean_ == null) {
 			btnClean_ = new JButton("aufräumen");
+			btnClean_.setToolTipText("<html>Hier können Sie schon abgelehnte Raumanfragen <br>von der Liste löschen lassen</html>");
 			btnClean_.setBounds(5, 161, 89, 23);
 			btnClean_.addActionListener(new RequestTabBtnsControl("clean"));
 		}

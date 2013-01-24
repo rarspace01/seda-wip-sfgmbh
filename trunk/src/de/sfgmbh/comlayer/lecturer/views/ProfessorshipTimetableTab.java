@@ -53,7 +53,7 @@ public class ProfessorshipTimetableTab extends JPanel{
 	}
 	private void createContents() {
 		setAutoscrolls(true);
-		setLayout(new MigLayout("", "[14.00,grow][][10px][112px][][][10.00,grow][right]", "[][][383px]"));
+		setLayout(new MigLayout("", "[14.00,grow][][10px][112px][][][10.00,grow][right]", "[68px][][383px][grow]"));
 		
 		JLabel lblWeekplanforTheChair = new JLabel("<html><h3>Wochenplan f\u00FCr den Lehrstuhl</h3></html>");
 		lblWeekplanforTheChair.setFont(new Font("Arial", Font.PLAIN, 11));
@@ -70,6 +70,7 @@ public class ProfessorshipTimetableTab extends JPanel{
 		add(lblSemester, "flowx,cell 1 1,alignx left,aligny bottom");
 		
 		JButton btnPdfErzeugen = new JButton("PDF Erzeugen");
+		btnPdfErzeugen.setToolTipText("<html>Hier können Sie den <br> unten stehenden<br>Wochenplan im <br> PDF Format ausdrucken<br>");
 		btnPdfErzeugen.addActionListener(new ProfessorshipTimetableTabBtn("createpdf"));
 		add(btnPdfErzeugen, "cell 3 1,growx,aligny bottom");
 		

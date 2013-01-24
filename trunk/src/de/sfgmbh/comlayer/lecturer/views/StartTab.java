@@ -89,6 +89,7 @@ public class StartTab extends JPanel implements IntfComDialogObserver {
 		tablePanel_.add(lblLecturer_, "cell 0 0");
 		
 		comboLecturer_ = new JComboBox<String>();
+		comboLecturer_.setToolTipText("<html>Sie können die Liste der <br> Lehrveranstaltungen über <br> diese Filter begrenzen</html>");
 		comboLecturer_.addActionListener(new StartTabCmbboxFilter());
 		tablePanel_.add(comboLecturer_, "cell 0 1,growx");
 		comboLecturer_.setModel(new CmbboxFilterLecturer(comboLecturer_));
@@ -127,6 +128,7 @@ public class StartTab extends JPanel implements IntfComDialogObserver {
 		tablePanel_.add(labelSemester, "cell 2 4");
 		
 		comboBoxLecturerBottom_ = new JComboBox<String>();
+		comboBoxLecturerBottom_.setToolTipText("<html>Sie können die Liste der <br> Raumanfrage über <br> diese Filter begrenzen</html>");
 		comboBoxLecturerBottom_.setModel(new CmbboxFilterLecturer(comboBoxLecturerBottom_));
 		comboBoxLecturerBottom_.addActionListener(new StartTabCmbboxFilter());
 		
@@ -137,6 +139,7 @@ public class StartTab extends JPanel implements IntfComDialogObserver {
 		tablePanel_.add(comboBoxLecturerBottom_, "cell 0 5,growx");
 		
 		comboBoxCourse_ = new JComboBox<String>();
+		comboBoxCourse_.setToolTipText("<html>Sie können die Liste der <br> Raumanfrage über <br> diese Filter begrenzen</html>");
 		comboBoxCourse_.addActionListener(new StartTabCmbboxFilter());
 		comboBoxCourse_.setModel(new CmbboxFilterCourse(comboBoxCourse_));
 		comboBoxCourse_.setEditable(true);
@@ -144,6 +147,7 @@ public class StartTab extends JPanel implements IntfComDialogObserver {
 		tablePanel_.add(comboBoxCourse_, "cell 1 5,growx");
 		
 		comboBoxSemesterBottom_ = new JComboBox<String>();
+		comboBoxSemesterBottom_.setToolTipText("<html>Sie können die Liste der <br> Raumanfrage über <br> diese Filter begrenzen</html>");
 		comboBoxSemesterBottom_.addActionListener(new StartTabCmbboxFilter());
 		comboBoxSemesterBottom_.setModel(new CmbboxFilterSemester());
 		comboBoxSemesterBottom_.setEditable(true);
@@ -151,6 +155,7 @@ public class StartTab extends JPanel implements IntfComDialogObserver {
 		tablePanel_.add(comboBoxSemesterBottom_, "cell 2 5,growx");
 		
 		comboBoxStatus_ = new JComboBox<String>();
+		comboBoxStatus_.setToolTipText("<html>Sie können die Liste der <br> Raumanfrage über <br> diese Filter begrenzen</html>");
 		comboBoxStatus_.addActionListener(new StartTabCmbboxFilter());
 		comboBoxStatus_.setModel(new CmbboxFilterAllocationStatus());
 		tablePanel_.add(comboBoxStatus_, "cell 3 5");

@@ -47,10 +47,7 @@ public class CoreTimetableTab extends JPanel {
 
 	private void initialize() {
 		setAutoscrolls(true);
-		setLayout(new MigLayout(
-				"",
-				"[20px:20px,grow][131px][50px][92.00px][461px][20px:20px,grow][right]",
-				"[68px][grow,shrink 0]"));
+		setLayout(new MigLayout("", "[20px:20px,grow][131px][50px][92.00px][461px][20px:20px,grow][right]", "[68px][grow,shrink 0][grow]"));
 
 		btnTimetableReset_ = new JButton("Stundenplan zurücksetzen");
 		btnTimetableReset_
@@ -86,6 +83,7 @@ public class CoreTimetableTab extends JPanel {
 				.register(ViewManager.getInstance().getCoreTimetableTabTable());
 
 		JButton btnPdfErzeugen = new JButton("PDF erzeugen");
+		btnPdfErzeugen.setToolTipText("<html>Hier können Sie den <br> unten stehenden<br>Wochenplan im <br> PDF Format ausdrucken<br>");
 		btnPdfErzeugen
 				.addActionListener(new CoreTimetableTabBtnPdf("pdfCreate"));
 		add(btnPdfErzeugen, "cell 1 0,growx,aligny center");

@@ -130,7 +130,7 @@ public class BaseTab extends JFrame {
 		startScreenPanel.setMaximumSize(new Dimension(10, 32767));
 		contentPane.setLayer(startScreenPanel, 1);
 		contentPane.add(startScreenPanel, "name_5256771068822");
-		startScreenPanel.setLayout(new MigLayout("", "[][][600px:600px,grow][]", "[][][grow]"));
+		startScreenPanel.setLayout(new MigLayout("", "[][][600px:600px,grow][]", "[][][grow][10px]"));
 		startScreenPanel.add(ViewManager.getInstance().getCoreLiveTickerPanel(), "cell 0 2, grow, aligny top");
 
 		mainFilterPanel = new JPanel();
@@ -257,6 +257,7 @@ public class BaseTab extends JFrame {
 	public JComboBox<String> getComboBoxOrgaFilter() {
 		if (comboBoxOrgaFilter == null) {
 			comboBoxOrgaFilter = new JComboBox<String>();
+			comboBoxOrgaFilter.setToolTipText("<html>Sie können die Liste der <br> Lehrveranstaltungen über <br> diese Filter begrenzen</html>");
 			comboBoxOrgaFilter.setPreferredSize(new Dimension(110, 20));
 			comboBoxOrgaFilter.addKeyListener(new BaseCmbboxFilter("allocations"));
 			comboBoxOrgaFilter.addActionListener(new BaseCmbboxFilter("allocations"));
@@ -274,6 +275,7 @@ public class BaseTab extends JFrame {
 	public JComboBox<String> getComboBoxChairFilter() {
 		if (comboBoxChairFilter == null) {
 			comboBoxChairFilter = new JComboBox<String>();
+			comboBoxChairFilter.setToolTipText("<html>Sie können die Liste der <br> Lehrveranstaltungen über <br> diese Filter begrenzen</html>");
 			comboBoxChairFilter.setPreferredSize(new Dimension(100, 20));
 			comboBoxChairFilter.setMaximumSize(new Dimension(100,20));
 			comboBoxChairFilter.setMinimumSize(new Dimension(100,20));
@@ -294,6 +296,7 @@ public class BaseTab extends JFrame {
 	public JComboBox<String> getComboBoxLecturerFilter() {
 		if (comboBoxLecturerFilter == null) {
 			comboBoxLecturerFilter = new JComboBox<String>();
+			comboBoxLecturerFilter.setToolTipText("<html>Sie können die Liste der <br> Lehrveranstaltungen über <br> diese Filter begrenzen</html>");
 			comboBoxLecturerFilter.setPreferredSize(new Dimension(110, 20));
 			comboBoxLecturerModel_= new CmbboxFilterLecturer(comboBoxLecturerFilter);
 			comboBoxLecturerFilter.setModel(comboBoxLecturerModel_);
@@ -312,6 +315,7 @@ public class BaseTab extends JFrame {
 	public JComboBox<String> getComboBoxSemesterFilter() {
 		if (comboBoxSemesterFilter == null) {
 			comboBoxSemesterFilter = new JComboBox<String>();
+			comboBoxSemesterFilter.setToolTipText("<html>Sie können die Liste der <br> Lehrveranstaltungen über <br> diese Filter begrenzen</html>");
 			comboBoxSemesterFilter.setPreferredSize(new Dimension(110, 20));
 			comboBoxSemesterModel_ = new CmbboxFilterSemester();
 			comboBoxSemesterFilter.setModel(comboBoxSemesterModel_);
@@ -481,6 +485,7 @@ public class BaseTab extends JFrame {
 	public JButton getBtnLogout() {
 		if (btnLogout == null) {
 			btnLogout = new JButton("Logout");
+			btnLogout.setToolTipText("<html>Hier können Sie sich <br> wieder ausloggen.</html>");
 			btnLogout.setBackground(SystemColor.activeCaption);
 			btnLogout.addActionListener(new BaseLogin("logout"));
 		}

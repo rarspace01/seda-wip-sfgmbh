@@ -83,6 +83,7 @@ public class RoomTab extends JPanel {
 		add(lblPcseats_, "cell 5 0,aligny bottom");
 
 		comboBoxLevel_ = new JComboBox<String>();
+		comboBoxLevel_.setToolTipText("<html>Sie können die Liste der <br> Räume über diesen<br>Filter begrenzen</html>");
 		comboBoxLevel_.setModel(new CmbboxFilterLevel(comboBoxLevel_));
 		comboBoxLevel_.addActionListener(new RoomTabCmbboxFilter());
 
@@ -99,6 +100,7 @@ public class RoomTab extends JPanel {
 		add(comboBoxLevel_, "cell 2 1,growx");
 
 		textFieldSeats_ = new JTextField();
+		textFieldSeats_.setToolTipText("<html>Sie können die Liste der <br> Räume über diesen<br>Filter begrenzen</html>");
 		textFieldSeats_.setText("0");
 		textFieldSeats_.addActionListener(new RoomTabCmbboxFilter());
 		add(getTxtRoom(), "cell 3 1,growx");
@@ -106,6 +108,7 @@ public class RoomTab extends JPanel {
 		textFieldSeats_.setColumns(10);
 
 		textFieldPCSeats_ = new JTextField();
+		textFieldPCSeats_.setToolTipText("<html>Sie können die Liste der <br> Räume über diesen<br>Filter begrenzen</html>");
 		textFieldPCSeats_.setText("0");
 		textFieldPCSeats_.addActionListener(new RoomTabCmbboxFilter());
 		textFieldPCSeats_.setColumns(10);
@@ -152,19 +155,19 @@ public class RoomTab extends JPanel {
 		add(buttonPanel_, "cell 6 2,grow");
 
 		btnEdit_ = new JButton("hinzuf\u00FCgen");
-		btnEdit_.setToolTipText("<html>Klicken Sie hier, <br>um einen neuen Raum hinzuzufügen</html>");
+		btnEdit_.setToolTipText("<html>Klicken Sie hier <br>um einen neuen Raum anzulegen</html>");
 		btnEdit_.addActionListener(new RoomTabActionListener("add"));
 		btnEdit_.setBounds(6, 11, 88, 23);
 		buttonPanel_.add(btnEdit_);
 
 		JButton btnBearbeiten = new JButton("bearbeiten");
-		btnBearbeiten.setToolTipText("<html>Selektieren Sie einen Raum <br> und klicken Sie auf bearbeiten um Eigenschaften zu ändern</html>");
+		btnBearbeiten.setToolTipText("<html>Selektieren Sie einen Raum <br> und klicken Sie hier um dessen Eigenschaften zu ändern</html>");
 		btnBearbeiten.addActionListener(new RoomTabActionListener("edit"));
 		btnBearbeiten.setBounds(6, 45, 88, 23);
 		buttonPanel_.add(btnBearbeiten);
 
 		btnDelete_ = new JButton("l\u00F6schen");
-		btnDelete_.setToolTipText("<html>Selektieren Sie einen Raum um ihn zu löschen</html>");
+		btnDelete_.setToolTipText("<html>Selektieren Sie einen Raum<br> um ihn zu löschen</html>");
 		btnDelete_.addActionListener(new RoomTabActionListener("del"));
 		btnDelete_.setBounds(6, 79, 88, 23);
 		buttonPanel_.add(btnDelete_);
@@ -234,6 +237,7 @@ public class RoomTab extends JPanel {
 	public JTextField getTxtRoom() {
 		if (txtRoom_ == null) {
 			txtRoom_ = new JTextField();
+			txtRoom_.setToolTipText("<html>Sie können die Liste der <br> Räume über diesen<br>Filter begrenzen</html>");
 			txtRoom_.setColumns(10);
 			txtRoom_.addActionListener(new RoomTabCmbboxFilter());
 		}
