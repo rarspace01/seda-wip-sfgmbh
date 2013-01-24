@@ -40,7 +40,7 @@ public class CmbboxFilterChair extends DefaultComboBoxModel<String> implements I
 		
 		this.addElement("<alle>");
 		for (IntfChair chair : AppModel.getInstance().getRepositoryChair().getAll()){
-			this.addElement(chair.getChairName_());
+			this.addElement(chair.getChairName());
 		}
 	}
 

@@ -45,10 +45,10 @@ public class StartTabTableTop extends DefaultTableModel implements IntfAppObserv
 			this.setRowCount(0);
 			
 			if (variant.equals("init")) {
-				filter.put("chair", sessionChair.getAcronym_());
+				filter.put("chair", sessionChair.getAcronym());
 				filter.put("login", sessionUser.getLogin_());
 			} else {
-				filter.put("chair", sessionChair.getAcronym_());
+				filter.put("chair", sessionChair.getAcronym());
 				filter.put("lecturer", ViewManager.getInstance().getLecturerStartTab().getComboLecturer().getSelectedItem().toString());
 			}
 			

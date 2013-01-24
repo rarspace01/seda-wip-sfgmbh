@@ -49,7 +49,7 @@ public class CmbboxFilterChairAcronym extends DefaultComboBoxModel<String> imple
 			this.addElement("<keiner>");
 		}
 		for (IntfChair chair : AppModel.getInstance().getRepositoryChair().getAll()){
-			this.addElement(chair.getAcronym_());
+			this.addElement(chair.getAcronym());
 		}
 	}
 	

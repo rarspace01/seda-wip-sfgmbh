@@ -75,7 +75,7 @@ public class UserCreateDialog extends JDialog {
 		this.getTxtLastName().setText(userToEdit.getlName_());
 		this.getTxtEmail().setText(userToEdit.getMail_());
 		if (userToEdit.getChair_() != null) {
-			this.getComboBoxLehrstuhl().setSelectedItem(userToEdit.getChair_().getAcronym_());
+			this.getComboBoxLehrstuhl().setSelectedItem(userToEdit.getChair_().getAcronym());
 		} 
 		if (!userToEdit.getClass_().equals("lecturer")) {
 			this.getComboBoxLehrstuhl().setVisible(false);

@@ -69,7 +69,7 @@ public class UserCreateDialogBtns implements ActionListener {
 			try {
 				createUser.setLogin_(this.motherDialog_.getTxtLogin().getText());
 				createUser.setMail_(this.motherDialog_.getTxtEmail().getText());
-				createUser.setfName_(this.motherDialog_.getTxtFirstName().getText());
+				createUser.setFirstName_(this.motherDialog_.getTxtFirstName().getText());
 				createUser.setlName_(this.motherDialog_.getTxtLastName().getText());
 				
 				// Only overwrite the class if a user gets created
