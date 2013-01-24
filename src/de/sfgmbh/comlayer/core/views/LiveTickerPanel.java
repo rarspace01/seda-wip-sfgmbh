@@ -35,7 +35,7 @@ public class LiveTickerPanel extends JPanel {
 	private IntfCtrlLiveTicker ctrlLiverTicker = new CtrlLiveTicker();
 	private List<IntfRoomAllocation> displayAllocations;
 	private boolean isTooLong;
-	private int cycles;
+	private ScrollTicker scrollTicker = new ScrollTicker();
 	
 	/**
 	 * Create the panel.
@@ -45,32 +45,34 @@ public class LiveTickerPanel extends JPanel {
 		setMaximumSize(new Dimension(140, 530));
 		createContents();
 		this.refresh();
-		this.cycles = 0;
-		ScrollTicker scrollTicker = new ScrollTicker();
 		scrollTicker.execute();
 	}
 	
 	/**
 	 * Refresh the live ticker with current values
 	 */
-	public void refresh() {
+	public synchronized void refresh() {
 		try {
 			this.displayAllocations = this.ctrlLiverTicker.getTickerAllocations();
 		} catch (Exception e) {
 			// This would be a good place for logging - but normally nothing should happen here
 		}
 		
-		// Set a fix top text message
-		String textToSet = "<strong>Logindaten:</strong><br />" +
-				"Doz // Doz <br />" +
-				"Verw // Verw <br /><br/>";
-		
-		// Get the text for the room allocations
-		String allocationText = this.getRoomAllocationText(this.displayAllocations);
-		
-		// Merge and set text
-		textToSet = textToSet + allocationText;
-		this.setTickerText(textToSet);
+		try {
+			// Set a fix top text message
+			String textToSet = "<strong>Logindaten:</strong><br />" +
+					"Doz // Doz <br />" +
+					"Verw // Verw <br /><br/>";
+			
+			// Get the text for the room allocations
+			String allocationText = this.getRoomAllocationText(this.displayAllocations);
+			
+			// Merge and set text
+			textToSet = textToSet + allocationText;
+			this.setTickerText(textToSet);
+		} catch (Exception e) {
+			// This would be a good place for logging - but normally nothing should happen here
+		}
 	}
 	
 	private void createContents() {
@@ -118,22 +120,28 @@ public class LiveTickerPanel extends JPanel {
 	 * Set a ticker text which may be HTML-formated but doesn't need the initial style (font-family and size is already set)
 	 * @param text - as text/html
 	 */
-	public void setTickerText(String text) {
-		this.getTxtTicker().setText("<div style=\"font-family: Tahoma, Calibri, monospace; font-size: 11pt;\">" +
-				text +
-				"</div>");
-		
-		// Adjust the height
-		Double heightDouble = this.getTxtTicker().getPreferredSize().getHeight();
-		int height = heightDouble.intValue();
-		int x = this.getTxtTicker().getBounds().x;
-		int y = this.getTxtTicker().getBounds().y;
-		int width = this.getTxtTicker().getBounds().width;
-		this.getTxtTicker().setBounds(x, y, width, height);
-		if (height > 325) {
-			this.isTooLong = true;
-		} else {
-			this.isTooLong = false;
+	public synchronized void setTickerText(String text) {
+		try {
+			this.remove(getTxtTicker());
+			this.getTxtTicker().setText("<div style=\"font-family: Tahoma, Calibri, monospace; font-size: 11pt;\">" +
+					text +
+					"</div>");
+			
+			// Adjust the height
+			Double heightDouble = this.getTxtTicker().getPreferredSize().getHeight();
+			int height = heightDouble.intValue();
+			int x = this.getTxtTicker().getBounds().x;
+			int y = this.getTxtTicker().getBounds().y;
+			int width = this.getTxtTicker().getBounds().width;
+			this.getTxtTicker().setBounds(x, y, width, height);
+			if (height > 325) {
+				this.isTooLong = true;
+			} else {
+				this.isTooLong = false;
+			}
+			this.add(getTxtTicker());
+		} catch (Exception e) {
+			// This would be a good place for logging - but normally nothing should happen here
 		}
 	}
 	
@@ -148,27 +156,32 @@ public class LiveTickerPanel extends JPanel {
 					"<strong>" + ra.getCourse_().getCourseAcronym_() + "</strong> (" + ra.getCourse_().getCourseKind_() + ")<br /><br />";
  		}
 		
-		/*
+		
 		for (int i = 0; i < 10; i++) {
 			returnString = returnString + "Test Test<br><strong>Test</strong><br><br>";
 		}
-		*/
+		
+		
 		
 		return returnString;
 	}
 	
-	private void scroll() {
+	private synchronized void scroll() {
 		// Get current size and scroll by one pixel if the text is too long
 		if (this.isTooLong) {
-			int x = this.getTxtTicker().getBounds().x;
-			int y = this.getTxtTicker().getBounds().y;
-			int width = this.getTxtTicker().getBounds().width;
-			int height = this.getTxtTicker().getBounds().height;
-			if (-y == height-30) {
-				// Start from this low with a new scroll up
-				y = 490;
+			try {
+				int x = this.getTxtTicker().getBounds().x;
+				int y = this.getTxtTicker().getBounds().y;
+				int width = this.getTxtTicker().getBounds().width;
+				int height = this.getTxtTicker().getBounds().height;
+				if (-y == height-30) {
+					// Start from this low with a new scroll up
+					y = 490;
+				}
+				this.getTxtTicker().setBounds(x, y-1, width, height);
+			} catch (Exception e) {
+				// This would be a good place for logging - but normally nothing should happen here
 			}
-			this.getTxtTicker().setBounds(x, y-1, width, height);
 		}
 	}
 	
@@ -186,6 +199,8 @@ public class LiveTickerPanel extends JPanel {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
+
+			int cycles = 0;
 			
 			// Start the loop
 			while (true) {
@@ -194,13 +209,15 @@ public class LiveTickerPanel extends JPanel {
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
-				LiveTickerPanel.this.scroll();
-				// Refresh the ticker every two minutes (1091 cycles as one cycle takes 110 ms)
-				LiveTickerPanel.this.cycles++;
-				if (LiveTickerPanel.this.cycles > 1091) {
-					LiveTickerPanel.this.cycles = 0;
+				// 545.5 cycles are 60 seconds (with 110ms per cycle)
+				if (cycles < 550) {
+					LiveTickerPanel.this.scroll();
+					cycles++;
+				} else {
 					LiveTickerPanel.this.refresh();
+					cycles = 0;
 				}
+					
 			}
 		}
 	}
