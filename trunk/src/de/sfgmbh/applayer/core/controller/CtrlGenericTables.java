@@ -62,7 +62,7 @@ public class CtrlGenericTables implements IntfCtrlGenericTables {
 	 * @see de.sfgmbh.applayer.core.definitions.IntfCtrlGenericTables#reloadTable(javax.swing.JTable, java.util.List, boolean)
 	 */
 	@Override
-	public void reloadTable(JTable table, List<IntfRoomAllocation> roomAllocationList, boolean showRoomName){
+	public void reloadTable(JTable table, List<IntfRoomAllocation> roomAllocationList, boolean showRoomName, boolean markDuplicates){
 		IntfCtrlRoomAllocation roomAllocationController=new CtrlRoomAllocation();
 		// clear all rows
 		if(table.getModel() instanceof DefaultTableModel){
@@ -72,7 +72,7 @@ public class CtrlGenericTables implements IntfCtrlGenericTables {
 					Object[] rowData= {ViewHelper.getTime(i)+" Uhr", "","", "", "", ""}; // inital data values
 					((DefaultTableModel) table.getModel()).addRow(rowData);
 					for(int j=1; j<=5; j++){
-						((DefaultTableModel) table.getModel()).setValueAt(roomAllocationController.getLectureOnTime(roomAllocationList,j,i,showRoomName), i-1, j);
+						((DefaultTableModel) table.getModel()).setValueAt(roomAllocationController.getLectureOnTime(roomAllocationList,j,i,showRoomName,markDuplicates), i-1, j);
 					}
 				}
 		}

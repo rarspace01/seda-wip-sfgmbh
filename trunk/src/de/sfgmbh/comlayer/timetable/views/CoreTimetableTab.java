@@ -116,7 +116,7 @@ public class CoreTimetableTab extends JPanel {
 		//get the room allocations from the temprary storage
 		List<IntfRoomAllocation> roomAllocationList=this.roomAllocList_;
 		//call the reload method
-		genericTablesController.reloadTable(getStundenplanTable(), roomAllocationList,true);
+		genericTablesController.reloadTable(getStundenplanTable(), roomAllocationList,true,true);
 		
 		// Set the maximum size of the scroll pane (don't forget to add the table header!)
 		scrollPane_.setMaximumSize(new Dimension(32767, ((int) timetableTable.getPreferredSize().getHeight() + 26)));

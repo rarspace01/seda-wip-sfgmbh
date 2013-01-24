@@ -137,7 +137,7 @@ public class RoomtableTab extends JPanel {
 		//get Room allocations based on roomid + semester
 		List<IntfRoomAllocation> roomAllocationList=AppModel.getInstance().getRepositoryRoomAllocation().getByFilter(tableFilter);
 		//calling the controller for reloading the gui
-		genericTablesController.reloadTable(getStundenplanTable(), roomAllocationList,false);
+		genericTablesController.reloadTable(getStundenplanTable(), roomAllocationList,false,true);
 		
 		// Set the maximum size of the scroll pane (don't forget to add the table header!)
 		scrollPane_.setMaximumSize(new Dimension(32767, ((int) timetableTable.getPreferredSize().getHeight() + 26)));

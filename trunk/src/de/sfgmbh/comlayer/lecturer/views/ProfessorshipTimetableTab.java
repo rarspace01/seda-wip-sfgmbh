@@ -142,7 +142,7 @@ public class ProfessorshipTimetableTab extends JPanel{
 		// get the roomAllocations from the repository
 		List<IntfRoomAllocation> roomAllocationList=AppModel.getInstance().getRepositoryRoomAllocation().getByFilter(tableFilter);
 		// reload Table based on roomAllocations
-		genericTablesController.reloadTable(chairTimetableTable_, roomAllocationList,true);
+		genericTablesController.reloadTable(chairTimetableTable_, roomAllocationList,true,false);
 		
 		// Set the maximum size of the scroll pane (don't forget to add the table header!)
 		scrollPane_.setMaximumSize(new Dimension(32767, ((int) chairTimetableTable_.getPreferredSize().getHeight() + 26)));

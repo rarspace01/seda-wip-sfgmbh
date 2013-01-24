@@ -3,6 +3,7 @@ package de.sfgmbh.applayer.organisation.controller;
 import java.util.HashMap;
 import java.util.List;
 
+import de.sfgmbh.applayer.core.controller.CtrlGenericTables;
 import de.sfgmbh.applayer.core.definitions.IntfRoom;
 import de.sfgmbh.applayer.core.definitions.IntfRoomAllocation;
 import de.sfgmbh.applayer.core.model.AppModel;
@@ -166,8 +167,9 @@ public class CtrlRoomAllocation implements IntfCtrlRoomAllocation {
 
 	@Override
 	public String getLectureOnTime(List<IntfRoomAllocation> roomAllocations,
-			int day, int time, boolean showRoomName) {
-		String textualRepresentation="<html>";
+			int day, int time, boolean showRoomName, boolean markDuplicates) {
+		String textStart="<html>";
+		String textualRepresentation="";
 		//check for room allocations on given time
 		for(int i=0;i<roomAllocations.size();i++){
 			if(roomAllocations.get(i).getDay_()==day && roomAllocations.get(i).getTime_()==time){
@@ -179,7 +181,10 @@ public class CtrlRoomAllocation implements IntfCtrlRoomAllocation {
 				
 			}
 		}
-		return textualRepresentation+"</html>";
+		if(new CtrlGenericTables().countBreaklines(textualRepresentation)>1&&markDuplicates){
+			textualRepresentation="<font color='red'>"+textualRepresentation+"</font>";
+		}
+		return textStart+textualRepresentation+"</html>";
 	}
 	
 }
