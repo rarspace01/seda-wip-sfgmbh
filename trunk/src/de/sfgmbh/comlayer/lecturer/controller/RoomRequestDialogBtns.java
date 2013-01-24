@@ -37,7 +37,7 @@ public class RoomRequestDialogBtns implements ActionListener {
 	/**
 	 * Create the action listener for a special action
 	 * Supported action strings are:<br>
-	 * "cancel", "send" and "newSuggestion"
+	 * "cancel", "send", "combo" and "newSuggestion"
 	 * @param motherDialog
 	 * @param action
 	 */
