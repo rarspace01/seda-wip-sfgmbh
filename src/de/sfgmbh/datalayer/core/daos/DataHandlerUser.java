@@ -155,7 +155,7 @@ public class DataHandlerUser implements IntfDataUser, IntfDataObservable, IntfDa
 					filterWithChairDm.getPreparedStatement().setString(7, "%");
 				}
 
-				rs = filterWithChairDm.selectPstmt();
+				rs = filterWithChairDm.selectPreparedStatement();
 				
 			} else {
 			
@@ -191,7 +191,7 @@ public class DataHandlerUser implements IntfDataUser, IntfDataObservable, IntfDa
 					filterDm.getPreparedStatement().setString(5, "%");
 				}
 				
-				rs = filterDm.selectPstmt();
+				rs = filterDm.selectPreparedStatement();
 			}
 			
 			while (rs.next()) {
@@ -219,7 +219,7 @@ public class DataHandlerUser implements IntfDataUser, IntfDataObservable, IntfDa
 															"ON public.user.userid = public.lecturer.userid " +
 														"WHERE public.user.userid = ?");
 			DataManagerPostgreSql.getInstance().getPreparedStatement().setInt(1, id);
-			ResultSet rs = DataManagerPostgreSql.getInstance().selectPstmt();
+			ResultSet rs = DataManagerPostgreSql.getInstance().selectPreparedStatement();
 			while (rs.next()) {
 				return this.makeUser(rs);
 			}
@@ -251,7 +251,7 @@ public class DataHandlerUser implements IntfDataUser, IntfDataObservable, IntfDa
 															"ON public.user.userid = public.lecturer.userid " +
 														"WHERE public.user.login = ?");
 			DataManagerPostgreSql.getInstance().getPreparedStatement().setString(1, login);
-			ResultSet rs = DataManagerPostgreSql.getInstance().selectPstmt();
+			ResultSet rs = DataManagerPostgreSql.getInstance().selectPreparedStatement();
 			while (rs.next()) {
 				return this.makeUser(rs);
 			}
@@ -288,7 +288,7 @@ public class DataHandlerUser implements IntfDataUser, IntfDataObservable, IntfDa
 					dm.prepare("DELETE FROM public.lecturer "
 							+ "WHERE public.lecturer.userid = ?");
 					dm.getPreparedStatement().setInt(1, toBeDeletedUser.getUserId_());
-					returnState = dm.executePstmt();
+					returnState = dm.executePreparedStatement();
 					
 				} catch (SQLException e) {
 					returnState = false;
@@ -311,7 +311,7 @@ public class DataHandlerUser implements IntfDataUser, IntfDataObservable, IntfDa
 					dm.prepare("DELETE FROM public.user "
 							+ "WHERE public.user.userid = ?");
 					dm.getPreparedStatement().setInt(1, toBeDeletedUser.getUserId_());
-					returnState = dm.executePstmt();
+					returnState = dm.executePreparedStatement();
 					this.update();
 				} catch (SQLException e) {
 					returnState = false;
@@ -356,17 +356,15 @@ public class DataHandlerUser implements IntfDataUser, IntfDataObservable, IntfDa
 					dm.getPreparedStatement().setString(7, user.getlName_());
 					dm.getPreparedStatement().setLong(8, user.getLastLogin_());
 					dm.getPreparedStatement().setBoolean(9, user.isDisabled_());
-					dm.executePstmt();
+					dm.executePreparedStatement();
 					if (user.getChair_() != null) {
-						DataManagerPostgreSql dmPrivate = new DataManagerPostgreSql();
+						//DataManagerPostgreSql dmPrivate = new DataManagerPostgreSql();
 						IntfUser newUser = this.getByLogin(user.getLogin_());
-						dmPrivate.prepare("INSERT INTO public.lecturer"
+						DataManagerPostgreSql.getInstance().execute("INSERT INTO public.lecturer"
 								+ "(userid, chairid)"
-								+ "VALUES (?,?)");
-						dmPrivate.getPreparedStatement().setInt(1, newUser.getUserId_());
-						dmPrivate.getPreparedStatement().setInt(2, user.getChair_().getChairId_());
-						returnState = dmPrivate.executePstmt();
-						dmPrivate.disposeNonSingleton();
+								+ "VALUES ("+newUser.getUserId_()+","
+								+ user.getChair_().getChairId_()+")");
+						returnState = true;
 					}
 					this.update();
 				} catch (SQLException e) {
@@ -398,7 +396,7 @@ public class DataHandlerUser implements IntfDataUser, IntfDataObservable, IntfDa
 				dm.getPreparedStatement().setLong(8, user.getLastLogin_());
 				dm.getPreparedStatement().setBoolean(9, user.isDisabled_());
 				dm.getPreparedStatement().setInt(10, user.getUserId_());
-				returnState = dm.executePstmt();
+				returnState = dm.executePreparedStatement();
 				if (user.getChair_() != null) {
 					
 					// Frist check if the user already exists in the lecturer table
@@ -406,7 +404,7 @@ public class DataHandlerUser implements IntfDataUser, IntfDataObservable, IntfDa
 								"FROM public.lecturer " +
 								"WHERE public.lecturer.userid = ? ");
 					dm.getPreparedStatement().setInt(1, user.getUserId_());
-					ResultSet resultSet = dm.selectPstmt();
+					ResultSet resultSet = dm.selectPreparedStatement();
 					
 					// Update if there is already an entry...
 					if (resultSet.next()) {
@@ -415,18 +413,15 @@ public class DataHandlerUser implements IntfDataUser, IntfDataObservable, IntfDa
 								+ "WHERE userid = ?");
 						dm.getPreparedStatement().setInt(1, user.getChair_().getChairId_());
 						dm.getPreparedStatement().setInt(2, user.getUserId_());
-						returnState = dm.executePstmt();
+						returnState = dm.executePreparedStatement();
 						
 					// Create if not...
 					} else {
-						DataManagerPostgreSql dmPrivate = new DataManagerPostgreSql();
-						dmPrivate.prepare("INSERT INTO public.lecturer"
+						DataManagerPostgreSql.getInstance().execute("INSERT INTO public.lecturer"
 								+ "(userid, chairid)"
-								+ "VALUES (?,?)");
-						dmPrivate.getPreparedStatement().setInt(1, user.getUserId_());
-						dmPrivate.getPreparedStatement().setInt(2, user.getChair_().getChairId_());
-						returnState = dmPrivate.executePstmt();
-						dmPrivate.disposeNonSingleton();
+								+ "VALUES ("+user.getUserId_()+","
+								+ user.getChair_().getChairId_()+")");
+						returnState = true;
 					}
 				}
 				this.update();

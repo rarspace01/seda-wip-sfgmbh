@@ -81,7 +81,7 @@ public class DataHandlerRoom implements IntfDataRoom, IntfDataFilter,
 					"SELECT * FROM public.room WHERE roomid = ?");
 			DataManagerPostgreSql.getInstance().getPreparedStatement()
 					.setInt(1, roomId);
-			ResultSet rs = DataManagerPostgreSql.getInstance().selectPstmt();
+			ResultSet rs = DataManagerPostgreSql.getInstance().selectPreparedStatement();
 			//take the first result and save it to the room object
 			while (rs.next()) {
 				returnRoom=this.makeRoom(rs);
@@ -144,23 +144,35 @@ public class DataHandlerRoom implements IntfDataRoom, IntfDataFilter,
 	 */
 	@Override
 	public void save(IntfRoom room) {
+		DataManagerPostgreSql dataManager = null;
 
 		/* check if room has already an valid id
 		 * incase of <0 its a new Room and we use an INSERT otherwise we use an UPDATE
 		 */
 		if (room.getRoomId_() < 0) {
-			String SqlStatement = "INSERT INTO public.room "
-					+ "(roomnumber, buildingid, level, seats, pcseats, beamer, visualizer, overheads, chalkboards, whiteboards) "
-					+ "VALUES ('" + room.getRoomNumber_() + "','"
-					+ room.getBuildingId_() + "','" + room.getLevel_() + "','"
-					+ room.getSeats_() + "','" + room.getPcseats_() + "','"
-					+ room.getBeamer_() + "','" + room.getVisualizer_() + "','"
-					+ room.getOverheads_() + "','" + room.getChalkboards_()
-					+ "','" + room.getWhiteboards_() + "');";
+			
 
 			try {
-
-				DataManagerPostgreSql.getInstance().execute(SqlStatement);
+				if (dataManager == null) {
+					dataManager = DataManagerPostgreSql.getInstance();
+					// build the prepared statement
+					dataManager.prepare("INSERT INTO public.room "
+						+ "(roomnumber, buildingid, level, seats, pcseats, beamer, visualizer, overheads, chalkboards, whiteboards) "
+						+ "VALUES (?,?,?,?,?,?,?,?,?,?);");
+					dataManager.getPreparedStatement().setString(1, room.getRoomNumber_());
+					dataManager.getPreparedStatement().setInt(2, room.getBuildingId_());
+					dataManager.getPreparedStatement().setString(3, room.getLevel_());
+					dataManager.getPreparedStatement().setInt(4, room.getSeats_());
+					dataManager.getPreparedStatement().setInt(5, room.getPcseats_());
+					dataManager.getPreparedStatement().setInt(6, room.getBeamer_());
+					dataManager.getPreparedStatement().setInt(7, room.getVisualizer_());
+					dataManager.getPreparedStatement().setInt(8, room.getOverheads_());
+					dataManager.getPreparedStatement().setInt(9, room.getChalkboards_());
+					dataManager.getPreparedStatement().setInt(10, room.getWhiteboards_());
+					// execute the prepared statement
+					dataManager.executePreparedStatement();
+					
+				}
 
 			} catch (SQLException e) {
 				e.printStackTrace();
@@ -171,24 +183,36 @@ public class DataHandlerRoom implements IntfDataRoom, IntfDataFilter,
 						("Es ist ein SQL-Fehler (DataHandlerRoom-07a) aufgetreten:<br /><br />" + e
 								.toString()), "Datenbank-Fehler!");
 			} finally {
+				dataManager=null;
 				DataManagerPostgreSql.getInstance().dispose();
 			}
 		} else {
-			String sqlStatement = "UPDATE public.room SET " + "roomnumber ='"
-					+ room.getRoomNumber_() + "', " + "buildingid ='"
-					+ room.getBuildingId_() + "', " + "level ='"
-					+ room.getLevel_() + "', " + "seats ='" + room.getSeats_()
-					+ "', " + "pcseats ='" + room.getPcseats_() + "', "
-					+ "beamer ='" + room.getBeamer_() + "', " + "visualizer ='"
-					+ room.getVisualizer_() + "', " + "overheads ='"
-					+ room.getOverheads_() + "', " + "chalkboards ='"
-					+ room.getChalkboards_() + "', " + "whiteboards ='"
-					+ room.getWhiteboards_() + "' " + "WHERE roomid='"
-					+ room.getRoomId_() + "';";
 
 			try {
 
-				DataManagerPostgreSql.getInstance().execute(sqlStatement);
+				if (dataManager == null) {
+					dataManager = DataManagerPostgreSql.getInstance();
+					// build the prepared statement
+					dataManager.prepare("UPDATE public.room SET roomnumber = ?,"+
+					" buildingid = ?, level = ?, seats = ?, pcseats = ?," +
+							" beamer = ?, visualizer = ?, overheads = ?, chalkboards = ?," +
+					" whiteboards = ? WHERE roomid= ?;");
+					dataManager.getPreparedStatement().setString(1, room.getRoomNumber_());
+					dataManager.getPreparedStatement().setInt(2, room.getBuildingId_());
+					dataManager.getPreparedStatement().setString(3, room.getLevel_());
+					dataManager.getPreparedStatement().setInt(4, room.getSeats_());
+					dataManager.getPreparedStatement().setInt(5, room.getPcseats_());
+					dataManager.getPreparedStatement().setInt(6, room.getBeamer_());
+					dataManager.getPreparedStatement().setInt(7, room.getVisualizer_());
+					dataManager.getPreparedStatement().setInt(8, room.getOverheads_());
+					dataManager.getPreparedStatement().setInt(9, room.getChalkboards_());
+					dataManager.getPreparedStatement().setInt(10, room.getWhiteboards_());
+					dataManager.getPreparedStatement().setInt(11, room.getRoomId_());
+					// execute the statement
+					dataManager.executePreparedStatement();
+					
+					
+				}
 
 			} catch (SQLException e) {
 				e.printStackTrace();
@@ -199,6 +223,7 @@ public class DataHandlerRoom implements IntfDataRoom, IntfDataFilter,
 						("Es ist ein SQL-Fehler (DataHandlerRoom-07b) aufgetreten:<br /><br />" + e
 								.toString()), "Datenbank-Fehler!");
 			} finally {
+				dataManager=null;
 				DataManagerPostgreSql.getInstance().dispose();
 			}
 		}
@@ -210,13 +235,13 @@ public class DataHandlerRoom implements IntfDataRoom, IntfDataFilter,
 	 */
 	@Override
 	public List<IntfRoom> getByFilter(HashMap<String, String> filter) {
-		DataManagerPostgreSql filterDm = null;
+		DataManagerPostgreSql filterDataManager = null;
 		List<IntfRoom> listRoom = new ArrayList<IntfRoom>();
 
 		try {
-			if (filterDm == null) {
-				filterDm = DataManagerPostgreSql.getInstance();
-				filterDm.prepare("SELECT public.room.* " + "FROM public.room "
+			if (filterDataManager == null) {
+				filterDataManager = DataManagerPostgreSql.getInstance();
+				filterDataManager.prepare("SELECT public.room.* " + "FROM public.room "
 						+ "WHERE public.room.roomnumber LIKE ? "
 						+ "AND public.room.seats >= ? "
 						+ "AND public.room.level LIKE ? "
@@ -234,97 +259,97 @@ public class DataHandlerRoom implements IntfDataRoom, IntfDataFilter,
 			if (filter.containsKey("room") && filter.get("room") != null
 					&& filter.get("room") != ""
 					&& filter.get("room") != "<alle>") {
-				filterDm.getPreparedStatement().setString(1,
+				filterDataManager.getPreparedStatement().setString(1,
 						"%" + filter.get("room") + "%");
 			} else {
-				filterDm.getPreparedStatement().setString(1, "%");
+				filterDataManager.getPreparedStatement().setString(1, "%");
 			}
 			if (filter.containsKey("seats") && filter.get("seats") != null
 					&& filter.get("seats") != ""
 					&& filter.get("seats") != "<alle>") {
-				filterDm.getPreparedStatement()
+				filterDataManager.getPreparedStatement()
 						.setInt(2,
 								Integer.parseInt(filter.get("seats").replace(
 										">= ", "")));
 			} else {
-				filterDm.getPreparedStatement().setInt(2, 0);
+				filterDataManager.getPreparedStatement().setInt(2, 0);
 			}
 			if (filter.containsKey("level") && filter.get("level") != null
 					&& filter.get("level") != ""
 					&& filter.get("level") != "<alle>") {
-				filterDm.getPreparedStatement().setString(3,
+				filterDataManager.getPreparedStatement().setString(3,
 						"%" + filter.get("level") + "%");
 			} else {
-				filterDm.getPreparedStatement().setString(3, "%");
+				filterDataManager.getPreparedStatement().setString(3, "%");
 			}
 			if (filter.containsKey("pcseats") && filter.get("pcseats") != null
 					&& filter.get("pcseats") != ""
 					&& filter.get("pcseats") != "<alle>") {
-				filterDm.getPreparedStatement().setInt(
+				filterDataManager.getPreparedStatement().setInt(
 						4,
 						Integer.parseInt(filter.get("pcseats").replace(">= ",
 								"")));
 			} else {
-				filterDm.getPreparedStatement().setInt(4, 0);
+				filterDataManager.getPreparedStatement().setInt(4, 0);
 			}
 			if (filter.containsKey("beamer") && filter.get("beamer") != null
 					&& filter.get("beamer") != ""
 					&& filter.get("beamer") != "<alle>") {
-				filterDm.getPreparedStatement().setInt(
+				filterDataManager.getPreparedStatement().setInt(
 						5,
 						Integer.parseInt(filter.get("beamer")
 								.replace(">= ", "")));
 			} else {
-				filterDm.getPreparedStatement().setInt(5, 0);
+				filterDataManager.getPreparedStatement().setInt(5, 0);
 			}
 			if (filter.containsKey("visualizer")
 					&& filter.get("visualizer") != null
 					&& filter.get("visualizer") != ""
 					&& filter.get("visualizer") != "<alle>") {
-				filterDm.getPreparedStatement().setInt(
+				filterDataManager.getPreparedStatement().setInt(
 						6,
 						Integer.parseInt(filter.get("visualizer").replace(
 								">= ", "")));
 			} else {
-				filterDm.getPreparedStatement().setInt(6, 0);
+				filterDataManager.getPreparedStatement().setInt(6, 0);
 			}
 			if (filter.containsKey("overheads")
 					&& filter.get("overheads") != null
 					&& filter.get("overheads") != ""
 					&& filter.get("overheads") != "<alle>") {
-				filterDm.getPreparedStatement().setInt(
+				filterDataManager.getPreparedStatement().setInt(
 						7,
 						Integer.parseInt(filter.get("overheads").replace(">= ",
 								"")));
 			} else {
-				filterDm.getPreparedStatement().setInt(7, 0);
+				filterDataManager.getPreparedStatement().setInt(7, 0);
 			}
 			if (filter.containsKey("chalkboards")
 					&& filter.get("chalkboards") != null
 					&& filter.get("chalkboards") != ""
 					&& filter.get("chalkboards") != "<alle>") {
-				filterDm.getPreparedStatement().setInt(
+				filterDataManager.getPreparedStatement().setInt(
 						8,
 						Integer.parseInt(filter.get("chalkboards").replace(
 								">= ", "")));
 			} else {
-				filterDm.getPreparedStatement().setInt(8, 0);
+				filterDataManager.getPreparedStatement().setInt(8, 0);
 			}
 			if (filter.containsKey("whiteboards")
 					&& filter.get("whiteboards") != null
 					&& filter.get("whiteboards") != ""
 					&& filter.get("whiteboards") != "<alle>") {
-				filterDm.getPreparedStatement().setInt(
+				filterDataManager.getPreparedStatement().setInt(
 						9,
 						Integer.parseInt(filter.get("whiteboards").replace(
 								">= ", "")));
 			} else {
-				filterDm.getPreparedStatement().setInt(9, 0);
+				filterDataManager.getPreparedStatement().setInt(9, 0);
 			}
 
-			ResultSet rs = filterDm.selectPstmt();
-			while (rs.next()) {
-				listRoom.add(this.makeRoom(rs));
+			ResultSet resultSet = filterDataManager.selectPreparedStatement();
+			while (resultSet.next()) {
+				listRoom.add(this.makeRoom(resultSet));
 			}
 
 		} catch (SQLException e) {

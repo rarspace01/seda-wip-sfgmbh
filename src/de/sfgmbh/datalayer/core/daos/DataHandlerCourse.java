@@ -104,7 +104,7 @@ public class DataHandlerCourse implements IntfDataFilter, IntfDataObservable, In
 				filterDm.getPreparedStatement().setString(5, "%");
 			}
 			
-			ResultSet rs = filterDm.selectPstmt();
+			ResultSet rs = filterDm.selectPreparedStatement();
 			while (rs.next()) {
 				listCourse.add(makeCourse(rs));
 			}
@@ -136,7 +136,7 @@ public class DataHandlerCourse implements IntfDataFilter, IntfDataObservable, In
 														"AND public.chair.chairid = public.lecturer.chairid " +
 														"AND courseid = ? ");
 			DataManagerPostgreSql.getInstance().getPreparedStatement().setInt(1, id);
-			ResultSet rs = DataManagerPostgreSql.getInstance().selectPstmt();
+			ResultSet rs = DataManagerPostgreSql.getInstance().selectPreparedStatement();
 			while (rs.next()) {
 				return this.makeCourse(rs);
 			}
@@ -243,7 +243,7 @@ public class DataHandlerCourse implements IntfDataFilter, IntfDataObservable, In
 					dm.getPreparedStatement().setString(6, course.getCourseDescription_());
 					dm.getPreparedStatement().setInt(7, course.getExpectedAttendees_());
 					dm.getPreparedStatement().setBoolean(8, course.isLecturerEnabled_());
-					dm.executePstmt();
+					dm.executePreparedStatement();
 					this.update();
 				} catch (SQLException e) {
 					e.printStackTrace();
@@ -273,7 +273,7 @@ public class DataHandlerCourse implements IntfDataFilter, IntfDataObservable, In
 				dm.getPreparedStatement().setInt(7, course.getExpectedAttendees_());
 				dm.getPreparedStatement().setBoolean(8, course.isLecturerEnabled_());
 				dm.getPreparedStatement().setInt(9, course.getCourseId_());
-				returnState = dm.executePstmt();
+				returnState = dm.executePreparedStatement();
 				this.update();
 			} catch (SQLException e) {
 				e.printStackTrace();
@@ -305,7 +305,7 @@ public class DataHandlerCourse implements IntfDataFilter, IntfDataObservable, In
 				dm.prepare("DELETE FROM public.course "
 						+ "WHERE public.course.courseid = ?");
 				dm.getPreparedStatement().setInt(1, course.getCourseId_());
-				returnState = dm.executePstmt();
+				returnState = dm.executePreparedStatement();
 				this.update();
 			} catch (SQLException e) {
 				returnState = false;
