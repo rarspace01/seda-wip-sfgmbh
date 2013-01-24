@@ -3,7 +3,12 @@ import java.awt.Window;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 
-
+/**
+ * 
+ * @author anna
+ * @author hannes
+ *
+ */
 public class UserCreateDialogWin implements WindowListener {
 	
 	private Window window;

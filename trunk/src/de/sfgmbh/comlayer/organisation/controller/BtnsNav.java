@@ -6,10 +6,11 @@ import java.awt.event.ActionListener;
 import de.sfgmbh.comlayer.core.controller.ViewManager;
 import de.sfgmbh.comlayer.core.views.InfoDialog;
 
-
-
-
-
+/**
+ * 
+ * @author hannes
+ *
+ */
 public class BtnsNav implements ActionListener {
 	
 	private String navAction;

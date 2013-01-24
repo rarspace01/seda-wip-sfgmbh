@@ -12,11 +12,17 @@ class FirstColumnGrayRenderer extends DefaultTableCellRenderer
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	/**
+	 * @author denis
+	 */
 	public FirstColumnGrayRenderer() 
     {
         super();
         setOpaque(true);
     } 
+	/**
+	 * @author denis
+	 */
     public Component getTableCellRendererComponent(JTable table, Object value, 
             boolean isSelected, boolean hasFocus, int row, int column) 
     { 

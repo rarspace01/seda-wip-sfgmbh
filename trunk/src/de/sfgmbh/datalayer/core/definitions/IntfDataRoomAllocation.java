@@ -4,7 +4,12 @@ import java.util.HashMap;
 import java.util.List;
 
 import de.sfgmbh.applayer.core.definitions.IntfRoomAllocation;
-
+/**
+ * This is the interface for the {@link DataRoomAllocation}
+ * 
+ * @author denis
+ *
+ */
 public interface IntfDataRoomAllocation {
 
 	/**

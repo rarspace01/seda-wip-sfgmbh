@@ -1,5 +1,10 @@
 package de.sfgmbh.datalayer.core.definitions;
-
+/**
+ * This is the interface for the {@link DataObersvable}
+ * 
+ * @author hannes
+ *
+ */
 public interface IntfDataObservable {
 
 	/**

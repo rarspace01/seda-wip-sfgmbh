@@ -8,8 +8,8 @@ import javax.swing.JFileChooser;
 
 import de.sfgmbh.applayer.core.controller.CtrlPdf;
 import de.sfgmbh.applayer.core.definitions.IntfCtrlPdf;
+import de.sfgmbh.comlayer.core.controller.FileFilters;
 import de.sfgmbh.comlayer.core.controller.ViewManager;
-import de.sfgmbh.comlayer.organisation.views.FileFilters;
 
 /**
  * action listener for the lecturer time table

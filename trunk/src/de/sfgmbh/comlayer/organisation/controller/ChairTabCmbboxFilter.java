@@ -7,7 +7,12 @@ import java.awt.event.KeyListener;
 
 import de.sfgmbh.comlayer.core.controller.ViewManager;
 
-
+/**
+ * 
+ * @author hannes
+ * @author mario
+ *
+ */
 public class ChairTabCmbboxFilter implements KeyListener, ActionListener {
 	
 	

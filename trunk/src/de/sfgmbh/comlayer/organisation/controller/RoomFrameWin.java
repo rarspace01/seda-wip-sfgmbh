@@ -4,7 +4,12 @@ import java.awt.event.WindowListener;
 
 import de.sfgmbh.comlayer.core.controller.ViewManager;
 
-
+/**
+ * 
+ * @author hannes
+ * @author anna
+ *
+ */
 public class RoomFrameWin implements WindowListener {
 
 	@Override

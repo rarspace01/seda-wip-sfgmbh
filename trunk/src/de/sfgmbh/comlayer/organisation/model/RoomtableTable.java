@@ -4,7 +4,12 @@ import javax.swing.table.DefaultTableModel;
 
 import de.sfgmbh.applayer.core.definitions.IntfAppObserver;
 import de.sfgmbh.comlayer.core.controller.ViewManager;
-
+/**
+ * 
+ * @author hannes
+ * @author denis
+ *
+ */
 public class RoomtableTable extends DefaultTableModel implements IntfAppObserver {
 
 	private static final long serialVersionUID = 1L;
