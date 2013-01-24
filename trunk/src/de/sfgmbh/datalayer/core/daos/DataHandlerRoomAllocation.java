@@ -242,7 +242,7 @@ public class DataHandlerRoomAllocation implements IntfDataObservable, IntfDataFi
 				filterDm.getPreparedStatement().setBoolean(17, true);
 			}
 			
-			ResultSet rs = filterDm.selectPstmt();
+			ResultSet rs = filterDm.selectPreparedStatement();
 			while (rs.next()) {
 				listRoomAllocation.add(this.makeRoomAllocation(rs, "normal"));
 			}
@@ -294,7 +294,7 @@ public class DataHandlerRoomAllocation implements IntfDataObservable, IntfDataFi
 			conflictingAllocationDm.getPreparedStatement().setString(4, ra.getSemester_());
 			conflictingAllocationDm.getPreparedStatement().setInt(5, ra.getRoomAllocationId_());
 			
-			ResultSet rs = conflictingAllocationDm.selectPstmt();
+			ResultSet rs = conflictingAllocationDm.selectPreparedStatement();
 			while (rs.next()) {
 				listRoomAllocation.add(this.makeRoomAllocation(rs, "conflictingChildObject"));
 			}
@@ -390,7 +390,7 @@ public class DataHandlerRoomAllocation implements IntfDataObservable, IntfDataFi
 														"AND roomallocationid = ? " +
 														"ORDER BY public.roomallocation.day ASC, public.roomallocation.time ASC");
 			DataManagerPostgreSql.getInstance().getPreparedStatement().setInt(1, id);
-			ResultSet rs = DataManagerPostgreSql.getInstance().selectPstmt();
+			ResultSet rs = DataManagerPostgreSql.getInstance().selectPreparedStatement();
 			while (rs.next()) {
 				IntfRoomAllocation roomAllocation = this.makeRoomAllocation(rs, "normal");
 				for (HashMap<String, Object> conflict : this.getConflictingDates()) {
@@ -439,7 +439,7 @@ public class DataHandlerRoomAllocation implements IntfDataObservable, IntfDataFi
 				dm.getPreparedStatement().setString(6, ra.getApproved_());
 				dm.getPreparedStatement().setString(7, ra.getOrgaMessage_());
 				dm.getPreparedStatement().setString(8, ra.getComment_());
-				returnStatus = dm.executePstmt();
+				returnStatus = dm.executePreparedStatement();
 				this.update();
 			} catch (SQLException e) {
 				e.printStackTrace();
@@ -465,7 +465,7 @@ public class DataHandlerRoomAllocation implements IntfDataObservable, IntfDataFi
 				dm.getPreparedStatement().setString(7, ra.getOrgaMessage_());
 				dm.getPreparedStatement().setString(8, ra.getComment_());
 				dm.getPreparedStatement().setInt(9, ra.getRoomAllocationId_());
-				returnStatus = dm.executePstmt();
+				returnStatus = dm.executePreparedStatement();
 				this.update();
 			} catch (SQLException e) {
 				e.printStackTrace();
@@ -568,7 +568,7 @@ public class DataHandlerRoomAllocation implements IntfDataObservable, IntfDataFi
 			DataManagerPostgreSql dm=DataManagerPostgreSql.getInstance();
 			dm.prepare("DELETE FROM  public.roomallocation " +
 						"WHERE public.roomallocation.approved LIKE 'denied' ");
-			dm.executePstmt();
+			dm.executePreparedStatement();
 			returnState = true;
 			this.update();
 		} catch (SQLException e) {

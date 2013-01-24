@@ -77,7 +77,7 @@ public class DataHandlerChair implements IntfDataChair, IntfDataFilter,
 					"WHERE public.chair.chairid = ?");
 			DataManagerPostgreSql.getInstance().getPreparedStatement()
 					.setInt(1, chairId);
-			ResultSet rs = DataManagerPostgreSql.getInstance().selectPstmt();
+			ResultSet rs = DataManagerPostgreSql.getInstance().selectPreparedStatement();
 			while (rs.next()) {
 				return this.makeChair(rs);
 			}
@@ -124,7 +124,7 @@ public class DataHandlerChair implements IntfDataChair, IntfDataFilter,
 							"AND public.lecturer.userid = ? ");
 			DataManagerPostgreSql.getInstance().getPreparedStatement()
 					.setInt(1, userId);
-			ResultSet rs = DataManagerPostgreSql.getInstance().selectPstmt();
+			ResultSet rs = DataManagerPostgreSql.getInstance().selectPreparedStatement();
 			while (rs.next()) {
 				return this.makeChair(rs);
 			}
@@ -168,7 +168,7 @@ public class DataHandlerChair implements IntfDataChair, IntfDataFilter,
 					"WHERE public.chair.chairacronym = ? ");
 			DataManagerPostgreSql.getInstance().getPreparedStatement()
 					.setString(1, acronym);
-			ResultSet rs = DataManagerPostgreSql.getInstance().selectPstmt();
+			ResultSet rs = DataManagerPostgreSql.getInstance().selectPreparedStatement();
 			while (rs.next()) {
 				return this.makeChair(rs);
 			}
@@ -211,7 +211,7 @@ public class DataHandlerChair implements IntfDataChair, IntfDataFilter,
 							+ "WHERE public.chair.chairid = ?");
 					dm.getPreparedStatement().setInt(1,
 							toBeDeletedChair.getChairId_());
-					returnState = dm.executePstmt();
+					returnState = dm.executePreparedStatement();
 					this.update();
 				} catch (SQLException e) {
 					returnState = false;
@@ -261,7 +261,7 @@ public class DataHandlerChair implements IntfDataChair, IntfDataFilter,
 					dm.getPreparedStatement().setString(4, chair.getChairLevel_());
 					dm.getPreparedStatement().setString(5, chair.getFaculty_());
 					dm.getPreparedStatement().setString(6, chair.getAcronym_());
-					dm.executePstmt();
+					dm.executePreparedStatement();
 					this.update();
 				} catch (SQLException e) {
 					e.printStackTrace();
@@ -293,7 +293,7 @@ public class DataHandlerChair implements IntfDataChair, IntfDataFilter,
 				dm.getPreparedStatement().setString(5, chair.getFaculty_());
 				dm.getPreparedStatement().setString(6, chair.getAcronym_());
 				dm.getPreparedStatement().setInt(7, chair.getChairId_());
-				returnState = dm.executePstmt();
+				returnState = dm.executePreparedStatement();
 				this.update();
 			} catch (SQLException e) {
 				e.printStackTrace();
@@ -338,7 +338,7 @@ public class DataHandlerChair implements IntfDataChair, IntfDataFilter,
 				filterDm.getPreparedStatement().setString(2, "%");
 			}
 
-			rs = filterDm.selectPstmt();
+			rs = filterDm.selectPreparedStatement();
 			while (rs.next()) {
 				listChair.add(makeChair(rs));
 			}
