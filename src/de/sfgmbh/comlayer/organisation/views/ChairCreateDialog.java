@@ -109,13 +109,13 @@ public class ChairCreateDialog extends JDialog {
 		
 		// Customize if there is an old course and we are in edit mode
 		if (this.variant_.equals("edit")) {
-			this.getTxtAcronym().setText(this.chair_.getAcronym_());
-			this.getTxtName().setText(this.chair_.getChairName_());
-			if (this.chair_.getChairOwner_() != null) {
-				this.getCmbboxLecturer().setSelectedItem(this.chair_.getChairOwner_().getlName_());
+			this.getTxtAcronym().setText(this.chair_.getAcronym());
+			this.getTxtName().setText(this.chair_.getChairName());
+			if (this.chair_.getChairOwner() != null) {
+				this.getCmbboxLecturer().setSelectedItem(this.chair_.getChairOwner().getlName_());
 			}
-			this.getTxtFaculity().setText(this.chair_.getFaculty_());
-			this.getTxtLevel().setText(this.chair_.getChairLevel_());
+			this.getTxtFaculity().setText(this.chair_.getFaculty());
+			this.getTxtLevel().setText(this.chair_.getChairLevel());
 		}
 	}
 	

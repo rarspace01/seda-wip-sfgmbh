@@ -61,12 +61,12 @@ public class ChairCreateDialogBtns implements ActionListener {
 		if (this.ctrlAction_.equals("save")) {
 			IntfChair newChair = motherDialog_.getChair();
 			try {
-				newChair.setAcronym_(motherDialog_.getTxtAcronym()
+				newChair.setAcronym(motherDialog_.getTxtAcronym()
 						.getText());
-				newChair.setChairName_(motherDialog_
+				newChair.setChairName(motherDialog_
 						.getTxtName().getText());
-				newChair.setChairLevel_(motherDialog_.getTxtLevel().getText());
-				newChair.setFaculty_(motherDialog_.getTxtFaculity().getText());
+				newChair.setChairLevel(motherDialog_.getTxtLevel().getText());
+				newChair.setFaculty(motherDialog_.getTxtFaculity().getText());
 				// Get the lecturer object out of the model as a sql query on
 				// the last name which should not be unique would not be a good
 				// idea
@@ -74,7 +74,7 @@ public class ChairCreateDialogBtns implements ActionListener {
 				// only could find the 'right' one by trial and error...
 				// But as per default the currently logged in lecturer is
 				// selected in most of the cases this should be no big problem.
-				newChair.setChairOwner_(cmbboxModel.getLecturerForModel().get(
+				newChair.setChairOwner(cmbboxModel.getLecturerForModel().get(
 						motherDialog_.getCmbboxLecturer().getSelectedIndex()));
 			} catch (Exception ex) {
 				exceptionHandler

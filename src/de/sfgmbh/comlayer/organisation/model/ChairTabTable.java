@@ -56,15 +56,15 @@ public class ChairTabTable extends DefaultTableModel implements
 				.getByFilter(filter)) {
 			
 			String owner = "";
-			if (chair.getChairOwner_() != null ){
-				owner = chair.getChairOwner_().getlName_();
+			if (chair.getChairOwner() != null ){
+				owner = chair.getChairOwner().getlName_();
 			}
 			try {
 				Object[] row = { 
-						chair.getChairName_(), 
-						chair.getAcronym_(),
+						chair.getChairName(), 
+						chair.getAcronym(),
 						owner, 
-						chair.getFaculty_(),
+						chair.getFaculty(),
 						chair };
 				this.addRow(row);
 

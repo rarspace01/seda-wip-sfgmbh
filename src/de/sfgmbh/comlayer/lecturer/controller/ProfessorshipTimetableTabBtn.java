@@ -68,7 +68,7 @@ public class ProfessorshipTimetableTabBtn implements ActionListener {
 				// setting the chairtitle and semster as the header for the
 				// PDF-document
 				chairTitle = SessionManager.getInstance().getSession()
-						.getChair_().getAcronym_();
+						.getChair_().getAcronym();
 				semester = ViewManager.getInstance().getOrgaRoomtableTab()
 						.getComboBoxSemesterFilter().getSelectedItem()
 						.toString();

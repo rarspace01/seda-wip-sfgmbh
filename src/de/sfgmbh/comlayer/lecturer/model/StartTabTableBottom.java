@@ -57,7 +57,7 @@ public class StartTabTableBottom extends DefaultTableModel implements IntfAppObs
 			this.setRowCount(0);
 			
 			if (variant.equals("init")) {
-				filter.put("chair", sessionChair.getAcronym_());
+				filter.put("chair", sessionChair.getAcronym());
 				filter.put("status", "<alle>");
 				filter.put("login", sessionUser.getLogin_());
 				filter.put("semester", "<alle>");
@@ -72,7 +72,7 @@ public class StartTabTableBottom extends DefaultTableModel implements IntfAppObs
 					} catch (Exception ex) {
 						AppModel.getInstance().getExceptionHandler().setNewException("Ein unerwarteter Fehler ist aufgetreten.<br /><br >" + ex.toString(), "Fehler!");
 					}
-					filter.put("chair", sessionChair.getAcronym_());
+					filter.put("chair", sessionChair.getAcronym());
 					filter.put("login", selectedCourse.getLecturer_().getLogin_());
 					filter.put("course", selectedCourse.getCourseAcronym_());
 					
@@ -89,7 +89,7 @@ public class StartTabTableBottom extends DefaultTableModel implements IntfAppObs
 					
 				}
 			} else {
-				filter.put("chair", sessionChair.getAcronym_());
+				filter.put("chair", sessionChair.getAcronym());
 				filter.put("status", ViewManager.getInstance().getLecturerStartTab().getComboBoxStatus().getSelectedItem().toString());
 				filter.put("lecturer", ViewManager.getInstance().getLecturerStartTab().getComboBoxLecturerBottom().getSelectedItem().toString());
 				filter.put("semester", ViewManager.getInstance().getLecturerStartTab().getComboBoxSemesterBottom().getSelectedItem().toString());
