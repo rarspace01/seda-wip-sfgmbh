@@ -43,20 +43,20 @@ public class RoomtableTabBtnPdf implements ActionListener {
 			String sFilename = "";
 			String roomtitle = "";
 			String semester = "";
-			JFileChooser fc = new JFileChooser();
+			JFileChooser fileChooser = new JFileChooser();
 
 			// setting *.pdf filter for save dialog
 			FileFilters filter = new FileFilters();
 			filter.addExtension("pdf");
 			filter.setDescription("PDF - Portable Document Format");
-			fc.setFileFilter(filter);
+			fileChooser.setFileFilter(filter);
 
-			fc.setSelectedFile(new File(sFilename));
-			if (fc.showSaveDialog(fc) == JFileChooser.APPROVE_OPTION) {
+			fileChooser.setSelectedFile(new File(sFilename));
+			if (fileChooser.showSaveDialog(fileChooser) == JFileChooser.APPROVE_OPTION) {
 				// if the user hasn't typed .pdf, we'll do it for him
-				if (!fc.getSelectedFile().getPath().toLowerCase()
+				if (!fileChooser.getSelectedFile().getPath().toLowerCase()
 						.endsWith(".pdf")) {
-					fc.setSelectedFile(new File(fc.getSelectedFile() + ".pdf"));
+					fileChooser.setSelectedFile(new File(fileChooser.getSelectedFile() + ".pdf"));
 				}
 				// setting roomtitle and semeseter for the header of the PDF
 				// document
@@ -71,7 +71,7 @@ public class RoomtableTabBtnPdf implements ActionListener {
 						.toString();
 
 				// create the PDF
-				pdfController=new CtrlPdf(fc.getSelectedFile()
+				pdfController=new CtrlPdf(fileChooser.getSelectedFile()
 						.getAbsolutePath());
 				// adding the panel as the content of the document
 				pdfController.addContent(roomtitle + " - " + semester, ViewManager

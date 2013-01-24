@@ -50,27 +50,27 @@ public class CoreTimetableTabBtnPdf implements ActionListener {
 		if (this.navAction_.equals("pdfCreate")) {
 
 			String sFilename = "";
-			JFileChooser fc = new JFileChooser();
+			JFileChooser fileChooser = new JFileChooser();
 
 			// setting *.pdf filter for save dialog
 			FileFilters filter = new FileFilters();
 			filter.addExtension("pdf");
 			filter.setDescription("PDF - Portable Document Format");
-			fc.setFileFilter(filter);
+			fileChooser.setFileFilter(filter);
 
-			fc.setSelectedFile(new File(sFilename));
-			if (fc.showSaveDialog(fc) == JFileChooser.APPROVE_OPTION) {
+			fileChooser.setSelectedFile(new File(sFilename));
+			if (fileChooser.showSaveDialog(fileChooser) == JFileChooser.APPROVE_OPTION) {
 				// if the user hasn't typed .pdf, we'll do it for him
-				if (!fc.getSelectedFile().getPath().toLowerCase()
+				if (!fileChooser.getSelectedFile().getPath().toLowerCase()
 						.endsWith(".pdf")) {
-					fc.setSelectedFile(new File(fc.getSelectedFile() + ".pdf"));
+					fileChooser.setSelectedFile(new File(fileChooser.getSelectedFile() + ".pdf"));
 				}
 				String semester = ViewManager.getInstance().getCoreBaseTab()
 						.getComboBoxSemesterFilter().getSelectedItem()
 						.toString();
 
 				// setPDF
-				pdfController = new CtrlPdf(fc.getSelectedFile()
+				pdfController = new CtrlPdf(fileChooser.getSelectedFile()
 						.getAbsolutePath());
 				// add the specific content
 				pdfController.addContent("Vorlesungsplan - Semester: "

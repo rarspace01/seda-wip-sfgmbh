@@ -41,26 +41,26 @@ import de.sfgmbh.comlayer.lecturer.controller.StartTabTableTop;
 public class StartTab extends JPanel implements IntfComDialogObserver {
 
 	private static final long serialVersionUID = 1L;
-	private JTable tableCourseTop;
-	private JLabel lblLecturer;
-	private JComboBox<String> comboLecturer;
-	private JScrollPane lvOrganisationTableScrollPane;
-	private JPanel buttonPanel;
-	private JButton btnAdd;
-	private JButton btnRoomRequest;
-	private JButton btnEdit;
-	private JButton btnDelete;
-	private JComboBox<String> comboBoxStatus;
-	private JLabel lblStatus;
-	private JPanel tablePanel;
-	private JTable tableRoomAllocationBottom;
-	private JComboBox<String> comboBoxLecturerBottom;
-	private JComboBox<String> comboBoxCourse;
-	private JComboBox<String> comboBoxSemesterBottom;
-	private TableRowSorter<TableModel> rowSorterTop;
-	private TableRowSorter<TableModel> rowSorterBottom;
-	private IntfRoomAllocation roomAllocation;
-	private IntfCtrlStartTab ctrlStartTab = new CtrlStartTab();
+	private JTable tableCourseTop_;
+	private JLabel lblLecturer_;
+	private JComboBox<String> comboLecturer_;
+	private JScrollPane lvOrganisationTableScrollPane_;
+	private JPanel buttonPanel_;
+	private JButton btnAdd_;
+	private JButton btnRoomRequest_;
+	private JButton btnEdit_;
+	private JButton btnDelete_;
+	private JComboBox<String> comboBoxStatus_;
+	private JLabel lblStatus_;
+	private JPanel tablePanel_;
+	private JTable tableRoomAllocationBottom_;
+	private JComboBox<String> comboBoxLecturerBottom_;
+	private JComboBox<String> comboBoxCourse_;
+	private JComboBox<String> comboBoxSemesterBottom_;
+	private TableRowSorter<TableModel> rowSorterTop_;
+	private TableRowSorter<TableModel> rowSorterBottom_;
+	private IntfRoomAllocation roomAllocation_;
+	private IntfCtrlStartTab ctrlStartTab_ = new CtrlStartTab();
 
 	/**
 	 * Create the panel.
@@ -81,146 +81,146 @@ public class StartTab extends JPanel implements IntfComDialogObserver {
 		
 		add(ViewManager.getInstance().getCoreLiveTickerPanel(), "cell 0 1, grow, aligny top");
 		
-		tablePanel = new JPanel();
-		add(tablePanel, "cell 1 1 5 1,grow");
-		tablePanel.setLayout(new MigLayout("", "[grow][grow][grow][grow][grow]", "[][][150px:n:200px,grow][][][][100px:n:200px,grow][]"));
+		tablePanel_ = new JPanel();
+		add(tablePanel_, "cell 1 1 5 1,grow");
+		tablePanel_.setLayout(new MigLayout("", "[grow][grow][grow][grow][grow]", "[][][150px:n:200px,grow][][][][100px:n:200px,grow][]"));
 		
-		lblLecturer = new JLabel("Dozent:");
-		tablePanel.add(lblLecturer, "cell 0 0");
+		lblLecturer_ = new JLabel("Dozent:");
+		tablePanel_.add(lblLecturer_, "cell 0 0");
 		
-		comboLecturer = new JComboBox<String>();
-		comboLecturer.addActionListener(new StartTabCmbboxFilter());
-		tablePanel.add(comboLecturer, "cell 0 1,growx");
-		comboLecturer.setModel(new CmbboxFilterLecturer(comboLecturer));
-		comboLecturer.setEditable(true);
-		comboLecturer.setAutoscrolls(true);
+		comboLecturer_ = new JComboBox<String>();
+		comboLecturer_.addActionListener(new StartTabCmbboxFilter());
+		tablePanel_.add(comboLecturer_, "cell 0 1,growx");
+		comboLecturer_.setModel(new CmbboxFilterLecturer(comboLecturer_));
+		comboLecturer_.setEditable(true);
+		comboLecturer_.setAutoscrolls(true);
 		
-		lvOrganisationTableScrollPane = new JScrollPane();
-		tablePanel.add(lvOrganisationTableScrollPane, "cell 0 2 5 1,grow");
+		lvOrganisationTableScrollPane_ = new JScrollPane();
+		tablePanel_.add(lvOrganisationTableScrollPane_, "cell 0 2 5 1,grow");
 		
-		tableCourseTop = new JTable();
-		tableCourseTop.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		tableCourseTop.addMouseListener(new StartTabTableTop());
-		tableCourseTop.setModel(ViewManager.getInstance().getLecturerStartTabTableTop());
-		tableCourseTop.getColumnModel().removeColumn(tableCourseTop.getColumn("Hidden"));
-		tableCourseTop.setShowVerticalLines(false);
-		tableCourseTop.setBackground(SystemColor.activeCaption);
-		lvOrganisationTableScrollPane.setViewportView(tableCourseTop);
+		tableCourseTop_ = new JTable();
+		tableCourseTop_.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		tableCourseTop_.addMouseListener(new StartTabTableTop());
+		tableCourseTop_.setModel(ViewManager.getInstance().getLecturerStartTabTableTop());
+		tableCourseTop_.getColumnModel().removeColumn(tableCourseTop_.getColumn("Hidden"));
+		tableCourseTop_.setShowVerticalLines(false);
+		tableCourseTop_.setBackground(SystemColor.activeCaption);
+		lvOrganisationTableScrollPane_.setViewportView(tableCourseTop_);
 		
 		// Enable table sorting for the top table model
-		rowSorterTop = new TableRowSorter<TableModel>();
-		tableCourseTop.setRowSorter(rowSorterTop);
-		rowSorterTop.setModel(ViewManager.getInstance().getLecturerStartTabTableTop());
-		rowSorterTop.sort();
+		rowSorterTop_ = new TableRowSorter<TableModel>();
+		tableCourseTop_.setRowSorter(rowSorterTop_);
+		rowSorterTop_.setModel(ViewManager.getInstance().getLecturerStartTabTableTop());
+		rowSorterTop_.sort();
 		
 		JLabel lblRoomallocations = new JLabel("Raumzuordnungen:");
 		lblRoomallocations.setFont(new Font("Tahoma", Font.BOLD, 12));
-		tablePanel.add(lblRoomallocations, "cell 0 3");
+		tablePanel_.add(lblRoomallocations, "cell 0 3");
 		
 		JLabel lblLecturerBottom = new JLabel("Dozent:");
-		tablePanel.add(lblLecturerBottom, "cell 0 4");
+		tablePanel_.add(lblLecturerBottom, "cell 0 4");
 		
 		JLabel lblCourse = new JLabel("Lehrveranstaltung:");
-		tablePanel.add(lblCourse, "cell 1 4");
+		tablePanel_.add(lblCourse, "cell 1 4");
 		
 		JLabel labelSemester = new JLabel("Semester:");
-		tablePanel.add(labelSemester, "cell 2 4");
+		tablePanel_.add(labelSemester, "cell 2 4");
 		
-		comboBoxLecturerBottom = new JComboBox<String>();
-		comboBoxLecturerBottom.setModel(new CmbboxFilterLecturer(comboBoxLecturerBottom));
-		comboBoxLecturerBottom.addActionListener(new StartTabCmbboxFilter());
+		comboBoxLecturerBottom_ = new JComboBox<String>();
+		comboBoxLecturerBottom_.setModel(new CmbboxFilterLecturer(comboBoxLecturerBottom_));
+		comboBoxLecturerBottom_.addActionListener(new StartTabCmbboxFilter());
 		
-		lblStatus = new JLabel("Ver\u00F6ffentlichungsstatus:");
-		tablePanel.add(lblStatus, "cell 3 4");
-		comboBoxLecturerBottom.setEditable(true);
-		comboBoxLecturerBottom.setAutoscrolls(true);
-		tablePanel.add(comboBoxLecturerBottom, "cell 0 5,growx");
+		lblStatus_ = new JLabel("Ver\u00F6ffentlichungsstatus:");
+		tablePanel_.add(lblStatus_, "cell 3 4");
+		comboBoxLecturerBottom_.setEditable(true);
+		comboBoxLecturerBottom_.setAutoscrolls(true);
+		tablePanel_.add(comboBoxLecturerBottom_, "cell 0 5,growx");
 		
-		comboBoxCourse = new JComboBox<String>();
-		comboBoxCourse.addActionListener(new StartTabCmbboxFilter());
-		comboBoxCourse.setModel(new CmbboxFilterCourse(comboBoxCourse));
-		comboBoxCourse.setEditable(true);
-		comboBoxCourse.setAutoscrolls(true);
-		tablePanel.add(comboBoxCourse, "cell 1 5,growx");
+		comboBoxCourse_ = new JComboBox<String>();
+		comboBoxCourse_.addActionListener(new StartTabCmbboxFilter());
+		comboBoxCourse_.setModel(new CmbboxFilterCourse(comboBoxCourse_));
+		comboBoxCourse_.setEditable(true);
+		comboBoxCourse_.setAutoscrolls(true);
+		tablePanel_.add(comboBoxCourse_, "cell 1 5,growx");
 		
-		comboBoxSemesterBottom = new JComboBox<String>();
-		comboBoxSemesterBottom.addActionListener(new StartTabCmbboxFilter());
-		comboBoxSemesterBottom.setModel(new CmbboxFilterSemester());
-		comboBoxSemesterBottom.setEditable(true);
-		comboBoxSemesterBottom.setAutoscrolls(true);
-		tablePanel.add(comboBoxSemesterBottom, "cell 2 5,growx");
+		comboBoxSemesterBottom_ = new JComboBox<String>();
+		comboBoxSemesterBottom_.addActionListener(new StartTabCmbboxFilter());
+		comboBoxSemesterBottom_.setModel(new CmbboxFilterSemester());
+		comboBoxSemesterBottom_.setEditable(true);
+		comboBoxSemesterBottom_.setAutoscrolls(true);
+		tablePanel_.add(comboBoxSemesterBottom_, "cell 2 5,growx");
 		
-		comboBoxStatus = new JComboBox<String>();
-		comboBoxStatus.addActionListener(new StartTabCmbboxFilter());
-		comboBoxStatus.setModel(new CmbboxFilterAllocationStatus());
-		tablePanel.add(comboBoxStatus, "cell 3 5");
-		comboBoxStatus.setEditable(true);
-		comboBoxStatus.setAutoscrolls(true);
+		comboBoxStatus_ = new JComboBox<String>();
+		comboBoxStatus_.addActionListener(new StartTabCmbboxFilter());
+		comboBoxStatus_.setModel(new CmbboxFilterAllocationStatus());
+		tablePanel_.add(comboBoxStatus_, "cell 3 5");
+		comboBoxStatus_.setEditable(true);
+		comboBoxStatus_.setAutoscrolls(true);
 		
 		JScrollPane raumanfragenScrollPane = new JScrollPane();
-		tablePanel.add(raumanfragenScrollPane, "cell 0 6 5 1,grow");
+		tablePanel_.add(raumanfragenScrollPane, "cell 0 6 5 1,grow");
 		
-		tableRoomAllocationBottom = new JTable();
-		tableRoomAllocationBottom.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		tableRoomAllocationBottom.setModel(ViewManager.getInstance().getLecturerStartTabTableBottom());
-		tableRoomAllocationBottom.setShowVerticalLines(false);
-		tableRoomAllocationBottom.getColumnModel().removeColumn(tableRoomAllocationBottom.getColumn("Hidden"));
-		tableRoomAllocationBottom.setBackground(SystemColor.activeCaption);
-		raumanfragenScrollPane.setViewportView(tableRoomAllocationBottom);
+		tableRoomAllocationBottom_ = new JTable();
+		tableRoomAllocationBottom_.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		tableRoomAllocationBottom_.setModel(ViewManager.getInstance().getLecturerStartTabTableBottom());
+		tableRoomAllocationBottom_.setShowVerticalLines(false);
+		tableRoomAllocationBottom_.getColumnModel().removeColumn(tableRoomAllocationBottom_.getColumn("Hidden"));
+		tableRoomAllocationBottom_.setBackground(SystemColor.activeCaption);
+		raumanfragenScrollPane.setViewportView(tableRoomAllocationBottom_);
 		
 		// Enable table sorting for the bottom table model
-		rowSorterBottom = new TableRowSorter<TableModel>();
-		tableRoomAllocationBottom.setRowSorter(rowSorterBottom);
-		rowSorterBottom.setModel(ViewManager.getInstance().getLecturerStartTabTableBottom());
-		rowSorterBottom.sort();
+		rowSorterBottom_ = new TableRowSorter<TableModel>();
+		tableRoomAllocationBottom_.setRowSorter(rowSorterBottom_);
+		rowSorterBottom_.setModel(ViewManager.getInstance().getLecturerStartTabTableBottom());
+		rowSorterBottom_.sort();
 		
-		buttonPanel = new JPanel();
-		buttonPanel.setLayout(null);
-		buttonPanel.setMinimumSize(new Dimension(80, 10));
-		buttonPanel.setMaximumSize(new Dimension(100, 32767));
-		add(buttonPanel, "cell 6 1,grow");
+		buttonPanel_ = new JPanel();
+		buttonPanel_.setLayout(null);
+		buttonPanel_.setMinimumSize(new Dimension(80, 10));
+		buttonPanel_.setMaximumSize(new Dimension(100, 32767));
+		add(buttonPanel_, "cell 6 1,grow");
 		
-		btnAdd = new JButton("hinzuf\u00FCgen");
-		btnAdd.setToolTipText("<html>Hier klicken um eine Lehrveranstaltung zu erstellen</html>");
-		btnAdd.addActionListener(new StartTabBtnsControl("add"));
-		btnAdd.setBounds(0, 54, 88, 23);
-		buttonPanel.add(btnAdd);
+		btnAdd_ = new JButton("hinzuf\u00FCgen");
+		btnAdd_.setToolTipText("<html>Hier klicken um eine Lehrveranstaltung zu erstellen</html>");
+		btnAdd_.addActionListener(new StartTabBtnsControl("add"));
+		btnAdd_.setBounds(0, 54, 88, 23);
+		buttonPanel_.add(btnAdd_);
 		
-		btnEdit = new JButton("bearbeiten");
-		btnEdit.setToolTipText("<html>Selektieren Sie eine Lehrveranstaltung um sie zu bearbeiten</html>");
-		btnEdit.addActionListener(new StartTabBtnsControl("edit"));
-		btnEdit.setBounds(0, 79, 88, 23);
-		buttonPanel.add(btnEdit);
+		btnEdit_ = new JButton("bearbeiten");
+		btnEdit_.setToolTipText("<html>Selektieren Sie eine Lehrveranstaltung um sie zu bearbeiten</html>");
+		btnEdit_.addActionListener(new StartTabBtnsControl("edit"));
+		btnEdit_.setBounds(0, 79, 88, 23);
+		buttonPanel_.add(btnEdit_);
 		
-		btnDelete = new JButton("löschen");
-		btnDelete.setToolTipText("<html>Selektieren Sie eine Lehrveranstaltung um sie zu löschen</html>");
-		btnDelete.addActionListener(new StartTabBtnsControl("delete"));
-		btnDelete.setBounds(0, 106, 88, 23);
-		buttonPanel.add(btnDelete);
+		btnDelete_ = new JButton("löschen");
+		btnDelete_.setToolTipText("<html>Selektieren Sie eine Lehrveranstaltung um sie zu löschen</html>");
+		btnDelete_.addActionListener(new StartTabBtnsControl("delete"));
+		btnDelete_.setBounds(0, 106, 88, 23);
+		buttonPanel_.add(btnDelete_);
 		
 		JButton btnPublish = new JButton("freigeben");
 		btnPublish.setToolTipText("<html>Selektieren Sie eine Lehrveranstaltung um sie frei zu geben</html>");
 		btnPublish.addActionListener(new StartTabBtnsControl("publish"));
 		btnPublish.setBounds(0, 194, 88, 23);
-		buttonPanel.add(btnPublish);
+		buttonPanel_.add(btnPublish);
 		
 		//Ist hier die Schreibweise gem�� der java code conventions?mit RoomRequest?
-		btnRoomRequest = new JButton("Anfrage");
-		btnRoomRequest.setToolTipText("<html> Für erstellte Lehrveranstaltungen können Sie <br> eine Raumanfrage an die Verwaltung senden</html>");
-		btnRoomRequest.addActionListener(new StartTabBtnsControl("roomrequest"));
-		btnRoomRequest.setBounds(0, 160, 88, 23);
-		buttonPanel.add(btnRoomRequest);
+		btnRoomRequest_ = new JButton("Anfrage");
+		btnRoomRequest_.setToolTipText("<html> Für erstellte Lehrveranstaltungen können Sie <br> eine Raumanfrage an die Verwaltung senden</html>");
+		btnRoomRequest_.addActionListener(new StartTabBtnsControl("roomrequest"));
+		btnRoomRequest_.setBounds(0, 160, 88, 23);
+		buttonPanel_.add(btnRoomRequest_);
 		
 		JPanel panel = new JPanel();
 		panel.setBorder(UIManager.getBorder("FormattedTextField.border"));
 		panel.setBounds(-20, 232, 110, 1);
-		buttonPanel.add(panel);
+		buttonPanel_.add(panel);
 		
 		JButton btnRecall = new JButton("widerrufen");
 		btnRecall.setToolTipText("<html> abgelehnte oder nicht mehr benötigte <br> Raumanfragen widerrufen </html>");
 		btnRecall.addActionListener(new StartTabBtnsControl("back"));
 		btnRecall.setBounds(0, 260, 90, 23);
-		buttonPanel.add(btnRecall);
+		buttonPanel_.add(btnRecall);
 		
 		JLabel lbluniIcon = new JLabel("");
 		uniIconPanel.add(lbluniIcon);
@@ -232,75 +232,75 @@ public class StartTab extends JPanel implements IntfComDialogObserver {
 	 * @return the comboLecturer
 	 */
 	public JComboBox<String> getComboLecturer() {
-		return comboLecturer;
+		return comboLecturer_;
 	}
 
 	/**
 	 * @return the comboBoxStatus
 	 */
 	public JComboBox<String> getComboBoxStatus() {
-		return comboBoxStatus;
+		return comboBoxStatus_;
 	}
 
 	/**
 	 * @return the comboBoxLecturerBottom
 	 */
 	public JComboBox<String> getComboBoxLecturerBottom() {
-		return comboBoxLecturerBottom;
+		return comboBoxLecturerBottom_;
 	}
 
 	/**
 	 * @return the comboBoxCourse
 	 */
 	public JComboBox<String> getComboBoxCourse() {
-		return comboBoxCourse;
+		return comboBoxCourse_;
 	}
 
 	/**
 	 * @return the comboBoxSemesterBottom
 	 */
 	public JComboBox<String> getComboBoxSemesterBottom() {
-		return comboBoxSemesterBottom;
+		return comboBoxSemesterBottom_;
 	}
 
 	/**
 	 * @return the tableCourseTop
 	 */
 	public JTable getTableCourseTop() {
-		return tableCourseTop;
+		return tableCourseTop_;
 	}
 
 	/**
 	 * @return the tableRoomAllocationBottom
 	 */
 	public JTable getTableRoomAllocationBottom() {
-		return tableRoomAllocationBottom;
+		return tableRoomAllocationBottom_;
 	}
 
 	/**
 	 * @return the rowSorterTop
 	 */
 	public TableRowSorter<TableModel> getRowSorterTop() {
-		return rowSorterTop;
+		return rowSorterTop_;
 	}
 
 	/**
 	 * @return the rowSorterBottom
 	 */
 	public TableRowSorter<TableModel> getRowSorterBottom() {
-		return rowSorterBottom;
+		return rowSorterBottom_;
 	}
 
 	@Override
 	public void answered(String answer) {
 		if (answer.equals("yes")) {
-			if (this.roomAllocation != null) {
-				this.ctrlStartTab.counterRoomAllocation(roomAllocation, true);
-				this.roomAllocation = null;
+			if (this.roomAllocation_ != null) {
+				this.ctrlStartTab_.counterRoomAllocation(roomAllocation_, true);
+				this.roomAllocation_ = null;
 			}
 		} else if (answer.equals("no")) {
-			this.ctrlStartTab.counterRoomAllocation(roomAllocation, false);
-			this.roomAllocation = null;
+			this.ctrlStartTab_.counterRoomAllocation(roomAllocation_, false);
+			this.roomAllocation_ = null;
 		}
 	}
 
@@ -308,13 +308,13 @@ public class StartTab extends JPanel implements IntfComDialogObserver {
 	 * @return the roomAllocation
 	 */
 	public IntfRoomAllocation getRoomAllocation() {
-		return roomAllocation;
+		return roomAllocation_;
 	}
 
 	/**
 	 * @param roomAllocation the roomAllocation to set
 	 */
 	public void setRoomAllocation(IntfRoomAllocation roomAllocation) {
-		this.roomAllocation = roomAllocation;
+		this.roomAllocation_ = roomAllocation;
 	}
 }
