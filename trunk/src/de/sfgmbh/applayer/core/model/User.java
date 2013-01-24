@@ -23,8 +23,8 @@ public class User implements IntfUser {
 	private String salt_;
 	private String mail_;
 	private String class_;
-	private String fName_;
-	private String lName_;
+	private String firstName_;
+	private String lastName_;
 	private long lastLogin_;
 	private boolean disabled_;
 	private IntfChair chair_;
@@ -146,7 +146,7 @@ public class User implements IntfUser {
 	 */
 	@Override
 	public String getfName_() {
-		return fName_;
+		return firstName_;
 	}
 
 	/* (non-Javadoc)
@@ -154,7 +154,7 @@ public class User implements IntfUser {
 	 */
 	@Override
 	public void setfName_(String fName_) {
-		this.fName_ = this.cleanString(fName_);
+		this.firstName_ = this.cleanString(fName_);
 	}
 
 	/* (non-Javadoc)
@@ -162,7 +162,7 @@ public class User implements IntfUser {
 	 */
 	@Override
 	public String getlName_() {
-		return lName_;
+		return lastName_;
 	}
 
 	/* (non-Javadoc)
@@ -170,7 +170,7 @@ public class User implements IntfUser {
 	 */
 	@Override
 	public void setlName_(String lName_) {
-		this.lName_ = this.cleanString(lName_);
+		this.lastName_ = this.cleanString(lName_);
 	}
 
 	/* (non-Javadoc)
@@ -326,11 +326,11 @@ public class User implements IntfUser {
 			message = message + "Die E-Mail Adresse ist ungültig!<br />";
 			check = false;
 		}
-		if (this.fName_.length() > 64 ) {
+		if (this.firstName_.length() > 64 ) {
 			message = message + "Der Vorname darf maximal 64 Zeichen lang sein!<br />";
 			check = false;
 		}
-		if (this.lName_.length() > 64 || this.lName_.length() < 1) {
+		if (this.lastName_.length() > 64 || this.lastName_.length() < 1) {
 			message = message + "Der Nachname muss zwischen 1 und 64 Zeichen lang sein!<br />";
 			check = false;
 		}
