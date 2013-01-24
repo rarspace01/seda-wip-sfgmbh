@@ -63,15 +63,17 @@ public class ResetDb {
 			//e.printStackTrace();
 		}
 		try {
+			DataManagerPostgreSql dataManager = new DataManagerPostgreSql();
+			
 			for(int i=0;i<sqlStatements.size();i++){
 				if(sqlStatements.get(i)!=null){
-					DataManagerPostgreSql.getInstance().silentexecute(sqlStatements.get(i));
+					dataManager.silentexecute(sqlStatements.get(i));
 				}
 			}
 			
-			DataManagerPostgreSql.getInstance().getStatement().executeBatch();
+			dataManager.getStatement().executeBatch();
 			
-			DataManagerPostgreSql.getInstance().dispose();
+			dataManager.dispose();
 		} catch (BatchUpdateException e) {
 			//ignore errors on resetting
 			//e.printStackTrace();

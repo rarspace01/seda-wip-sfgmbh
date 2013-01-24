@@ -15,8 +15,6 @@ import de.sfgmbh.datalayer.core.model.DataModel;
  * @hannes hannes
  */
 public class DataManagerPostgreSql {
-	private static DataManagerPostgreSql uniqueInstance_ = null;
-
 	private java.sql.Connection connection_;
 	private Statement statement_;
 	private PreparedStatement preparedStatement_;
@@ -58,18 +56,6 @@ public class DataManagerPostgreSql {
 	}
 
 	/**
-	 * Get a singleton data manger object
-	 * 
-	 * @return {@link DataManagerPostgreSql}
-	 */
-	public static DataManagerPostgreSql getInstance() {
-		if (uniqueInstance_ == null) {
-			uniqueInstance_ = new DataManagerPostgreSql();
-		}
-		return uniqueInstance_;
-	}
-
-	/**
 	 * Dispatch the singleton data manger object
 	 */
 	public void dispose() {
@@ -91,26 +77,6 @@ public class DataManagerPostgreSql {
 					.setNewException(
 							("Es ist ein unbekannter Fehler in der Datenhaltung aufgetreten.<br /><br />DataManagerPostgreSql-032:<br />" + e
 									.toString()), "Fehler!");
-		}
-		uniqueInstance_ = null;
-	}
-
-	/**
-	 * Dispatch an instance of this object without touching the singleton
-	 */
-	public void disposeNonSingleton() {
-		try {
-			if (this.preparedStatement_ != null) {
-				this.preparedStatement_.close();
-			}
-			if (this.statement_ != null) {
-				this.statement_.close();
-			}
-			if (this.connection_ != null) {
-				this.connection_.close();
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
 		}
 	}
 
