@@ -75,14 +75,14 @@ public class CtrlRoomAllocation implements IntfCtrlRoomAllocation {
 	 */
 	@Override
 	public boolean denyRoomAllocation(IntfRoomAllocation roomAllocation) {
-		IntfRoomAllocation currentRa = AppModel.getInstance().getRepositoryRoomAllocation().get(roomAllocation.getRoomAllocationId_());
-		if (currentRa.getApproved_().equals("accepted") || currentRa.getApproved_().equals("waiting") || currentRa.getApproved_().equals("counter")){
-			currentRa.setApproved_("denied");
+		IntfRoomAllocation currentRoomAllocation = AppModel.getInstance().getRepositoryRoomAllocation().get(roomAllocation.getRoomAllocationId_());
+		if (currentRoomAllocation.getApproved_().equals("accepted") || currentRoomAllocation.getApproved_().equals("waiting") || currentRoomAllocation.getApproved_().equals("counter")){
+			currentRoomAllocation.setApproved_("denied");
 			long currentTime = System.currentTimeMillis() / 1000L;
 			String comment = "denied_at_" + String.valueOf(currentTime);
-			currentRa.setComment_(comment);
-			return currentRa.save();
-		} else if (currentRa.getApproved_().equals("denied")) {
+			currentRoomAllocation.setComment_(comment);
+			return currentRoomAllocation.save();
+		} else if (currentRoomAllocation.getApproved_().equals("denied")) {
 			AppModel.getInstance().getExceptionHandler().setNewException("Diese Raumbelegung ist bereits abgelehnt!", "Fehler!");
 		}
 		return false;
@@ -148,8 +148,8 @@ public class CtrlRoomAllocation implements IntfCtrlRoomAllocation {
 		} else {
 			boolean allowSave = false;
 			roomAllocation.setConflictingAllocations_();
-			for (IntfRoomAllocation conflictRa : roomAllocation.getConflictingAllocations_()){
-				if (conflictRa.getApproved_().equals("waiting") || conflictRa.getApproved_().equals("denied")) {
+			for (IntfRoomAllocation conflictRoomAllocations : roomAllocation.getConflictingAllocations_()){
+				if (conflictRoomAllocations.getApproved_().equals("waiting") || conflictRoomAllocations.getApproved_().equals("denied")) {
 					allowSave = true;
 				}
 			}
