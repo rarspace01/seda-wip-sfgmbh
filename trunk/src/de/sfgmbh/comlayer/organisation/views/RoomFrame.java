@@ -14,7 +14,6 @@ import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
 import de.sfgmbh.comlayer.organisation.controller.RoomFrameBtns;
-import de.sfgmbh.comlayer.organisation.controller.RoomFrameWin;
 
 /**
  * Dialog/Frame to create and edit rooms
@@ -59,8 +58,7 @@ public class RoomFrame extends JDialog {
 		gbl_contentPane.columnWeights = new double[]{0.0, 0.0, 0.0, Double.MIN_VALUE};
 		gbl_contentPane.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		contentPane_.setLayout(gbl_contentPane);
-		
-		addWindowListener(new RoomFrameWin());
+		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 		
 		JButton btnSave = new JButton("Speichern");
 		btnSave.addActionListener(new RoomFrameBtns("save"));
