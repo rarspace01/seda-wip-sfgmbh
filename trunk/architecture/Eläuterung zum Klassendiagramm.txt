@@ -1,0 +1,44 @@
+Erläuterung zum Klassendiagramm:
+
+Im Applayer befinden sich alle Klassen der Anwendungslogik,
+untergliedert in die programmtypischen Module "core", "lecturer",
+"organization" und "timetable". Wobei der Hauptteil im "core"-
+Bereich liegt, da er von allen Modulen benötigt wird. Hierzu
+gehören die Modelle der benötigten Datentypen (wie "User" für den
+Typ der Benutzer oder "Chair" für den Lehrstuhl-Typ), deren
+Repository-Klassen, die dafür verantwortlich sind, den aktuellen
+Stand aller Daten abzubilden, und eine Hauptmodell-Klasse als
+Singleton, das diese hält.
+Diese Hauptmodellklasse sowie die Repository-Klassen selbst
+bieten über das Interface IntfAppObservable die Möglichkeit,
+interessierte Klassen aus angrenzenden Schichten, die das
+Interface IntfAppObserver implementieren, über Änderungen am
+Modell zu informieren.
+Ebenso gibt es für alle Controller, Modell und Repository-Klassen
+Interfaces, so dass die darüber liegende Schicht (der Comlayer)
+die Methoden des Applayer nutzen kann, ohne dass der Applayer
+die andere Schicht kennen muss (es liegt also eine rein
+unidirektionale Verbindung zwischen App- und Comlayer vor).
+Die Methoden der Controller sind hierbei für den Fall von
+Benutzer-Eingaben und Aktionen vorgesehen, die Repository-
+Methoden können genutzt werden, wenn der aktuelle Daten-Stand
+abgefragt werden soll, ohne dass eine Eingabevalidierung nach
+Logik oder Rückschreibung nötig ist und die Datentypen sollen
+dem Comlayer ermöglichen diese sinnvoll in z. B. Listen, Tabellen
+und Formularen anzeigen zu können und ggf. deren Bearbeitung zu
+erlauben.
+
+Zwischen Applayer und Datalayer liegt dagegen eine bidirektionale
+Verbindung vor, da den Klassen des Datalayer die Interfaces der
+Datentyp-Modelle bekannt sein sollen, damit sie entsprechende
+Objekte direkt bilden können.
+Ähnlich wie das Applayer bietet auch das Datalayer ein Haupt-
+modell, welche als Singleton existiert und zu allen Tabellen
+die Data-Handler-Klassen vorhält. Hier könne sich interessierte
+Objekte, die das Interface IntfDataObserver implementieren,
+registrieren und werden so über jede Änderung am entsprechenden
+Teil der Datenschicht (also auch in der Datenbank selbst)
+informiert. Die Data-Handler-Klassen stellen jeweils Interfaces,
+damit die darüber liegende Schicht deren Methoden zum Aufrufen
+und Zurückschreiben von Datenobjekten bzw. deren Datensätzen
+nutzen können.
