@@ -178,7 +178,15 @@ public class RoomRequestDialog extends JDialog {
 		if (this.proposalAllocation_.getConflictingAllocations_().isEmpty()) {
 			getLblSelectedStatus().setText("frei");
 		} else {
-			getLblSelectedStatus().setText("belegt");
+			String messageToSet = "vorgemerkt";
+			for (IntfRoomAllocation conflictingRoomAllocation : this.proposalAllocation_.getConflictingAllocations_()) {
+				if (conflictingRoomAllocation.getApproved_().equals("waiting")) {
+				
+				} else if (conflictingRoomAllocation.getApproved_().equals("accepted")) {
+					messageToSet = "belegt";
+				}
+			}
+			getLblSelectedStatus().setText(messageToSet);
 		}
 	}
 
@@ -354,7 +362,7 @@ public class RoomRequestDialog extends JDialog {
 	public JLabel getLblSelectedStatus() {
 		if (lblSelectedStatus_ == null) {
 			lblSelectedStatus_ = new JLabel("n/a");
-			lblSelectedStatus_.setBounds(249, 153, 46, 14);
+			lblSelectedStatus_.setBounds(249, 153, 89, 14);
 		}
 		return lblSelectedStatus_;
 	}
