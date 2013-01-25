@@ -132,7 +132,7 @@ public class StartTab extends JPanel implements IntfComDialogObserver {
 		comboBoxCourse_ = new JComboBox<String>();
 		comboBoxCourse_.setToolTipText("<html>Sie können die Liste der <br> Raumzuordnungen über <br> diese Filter begrenzen</html>");
 		comboBoxCourse_.addActionListener(new StartTabCmbboxFilter());
-		comboBoxCourse_.setModel(new CmbboxFilterCourse(comboBoxCourse_));
+		comboBoxCourse_.setModel(new CmbboxFilterCourse(comboBoxCourse_, true));
 		comboBoxCourse_.setEditable(true);
 		comboBoxCourse_.setAutoscrolls(true);
 		tablePanel_.add(comboBoxCourse_, "cell 1 5,growx");
