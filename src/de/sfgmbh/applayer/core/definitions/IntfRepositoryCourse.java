@@ -7,7 +7,7 @@ import de.sfgmbh.applayer.core.model.Course;
 
 /**
  * Interface for the course repository
- * @author hannes
+ * @author denis
  *
  */
 public interface IntfRepositoryCourse {

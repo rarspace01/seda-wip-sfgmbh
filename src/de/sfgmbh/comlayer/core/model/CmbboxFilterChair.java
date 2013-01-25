@@ -10,7 +10,6 @@ import de.sfgmbh.applayer.core.model.AppModel;
 /**
  * Model for chair combo boxes
  * 
- * @author hannes
  * @author anna
  *
  */

@@ -9,7 +9,7 @@ import de.sfgmbh.applayer.core.model.User;
 import de.sfgmbh.comlayer.core.controller.ViewManager;
 /**
  * ComboboxFilter to select the {@link User}
- * @author hannes
+ * @author anna
  *
  */
 public class UserTabCmbboxFilter implements KeyListener, ActionListener {

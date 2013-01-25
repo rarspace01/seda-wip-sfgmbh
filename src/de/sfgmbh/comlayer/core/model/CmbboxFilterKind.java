@@ -6,7 +6,6 @@ import javax.swing.DefaultComboBoxModel;
  * Model for course kind combo boxes
  * 
  * @author mario
- * @author hannes
  *
  */
 public class CmbboxFilterKind extends DefaultComboBoxModel<String>{

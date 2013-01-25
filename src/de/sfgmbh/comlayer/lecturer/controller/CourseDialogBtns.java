@@ -14,7 +14,6 @@ import de.sfgmbh.comlayer.lecturer.views.CourseDialog;
 /**
  * Action listener for the course edit/create dialog
  * 
- * @author hannes
  * @author christian
  * 
  */

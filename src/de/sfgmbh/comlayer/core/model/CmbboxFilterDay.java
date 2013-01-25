@@ -5,7 +5,6 @@ import javax.swing.DefaultComboBoxModel;
 /**
  * Model for day combo boxes
  * 
- * @author hannes
  * @author mario
  *
  */

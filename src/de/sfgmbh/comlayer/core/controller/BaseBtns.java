@@ -17,7 +17,7 @@ import de.sfgmbh.comlayer.core.views.BaseTab;
 /**
  * Action listener for the buttons on the base tab
  * 
- * @author hannes
+ * @author mario
  * 
  */
 public class BaseBtns implements ActionListener {

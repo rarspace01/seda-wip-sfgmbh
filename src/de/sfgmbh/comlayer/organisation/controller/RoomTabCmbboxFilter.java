@@ -10,7 +10,7 @@ import de.sfgmbh.comlayer.core.controller.ViewManager;
 /**
  * Action listener for the combobox (and text field) filters on the organisation room tab
  * 
- * @author hannes
+ * @author denis
  *
  */
 public class RoomTabCmbboxFilter implements KeyListener, ActionListener {

@@ -4,7 +4,7 @@ import de.sfgmbh.applayer.core.model.User;
 
 /**
  * Interface for {@link User} object
- * @author hannes
+ * @author denis
  *
  */
 public interface IntfUser {

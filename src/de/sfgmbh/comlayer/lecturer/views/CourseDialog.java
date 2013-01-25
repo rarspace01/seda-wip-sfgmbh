@@ -24,7 +24,6 @@ import de.sfgmbh.comlayer.organisation.views.CounterproposalDialog;
 /**
  * Dialog to edit and create courses
  * 
- * @author hannes
  * @author christian
  *
  */
