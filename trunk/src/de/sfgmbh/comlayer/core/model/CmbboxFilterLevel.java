@@ -20,7 +20,7 @@ public class CmbboxFilterLevel extends DefaultComboBoxModel<String> implements I
 	private JComboBox<String> dependentComboBox_;
 	/**
 	 * Create the model object
-	 * @param dependentCombobox
+	 * @param dependentComboBox
 	 */
 	public CmbboxFilterLevel(JComboBox<String> dependentComboBox) {
 		AppModel.getInstance().getRepositoryRoom().register(this);

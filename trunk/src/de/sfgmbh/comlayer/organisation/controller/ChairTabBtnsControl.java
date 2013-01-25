@@ -108,7 +108,6 @@ public class ChairTabBtnsControl implements ActionListener, IntfComDialogObserve
 	/**
 	 * Delete a chair
 	 * @param chair
-	 * @return true if the deletion was successful
 	 */
 	public void deleteChair(IntfChair chair) {
 		

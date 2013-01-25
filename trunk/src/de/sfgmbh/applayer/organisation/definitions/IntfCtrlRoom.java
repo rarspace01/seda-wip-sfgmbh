@@ -20,7 +20,7 @@ public interface IntfCtrlRoom {
 
 	/**
 	 * Retrieve all rooms from the model
-	 * @return
+	 * @return rooms
 	 */
 	public abstract List<IntfRoom> getAllRooms();
 
@@ -32,7 +32,7 @@ public interface IntfCtrlRoom {
 	
 	/**
 	 * get a room by hsi id
-	 * @param int
+	 * @param roomId
 	 */
 	public abstract IntfRoom get(int roomId);
 	

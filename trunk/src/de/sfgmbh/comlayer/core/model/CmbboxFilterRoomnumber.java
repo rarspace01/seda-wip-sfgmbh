@@ -22,7 +22,7 @@ public class CmbboxFilterRoomnumber extends DefaultComboBoxModel<String> impleme
 	
 	/**
 	 * Create the model object
-	 * @param dependentCombobox
+	 * @param dependentComboBox
 	 */
 	public CmbboxFilterRoomnumber(JComboBox<String> dependentComboBox) {
 		this.variant_ = "default";
@@ -33,8 +33,8 @@ public class CmbboxFilterRoomnumber extends DefaultComboBoxModel<String> impleme
 	
 	/**
 	 * Create the model object based on a variant
+	 * @param dependentComboBox
 	 * @param variant
-	 * @param dependentCombobox
 	 */
 	public CmbboxFilterRoomnumber(JComboBox<String> dependentComboBox, String variant) {
 		this.variant_ = variant;

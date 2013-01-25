@@ -12,7 +12,7 @@ import de.sfgmbh.datalayer.core.model.DataModel;
  * Class is used for the PostgreSQL DB connection
  * 
  * @author denis
- * @hannes hannes
+ * @author hannes
  */
 public class DataManagerPostgreSql {
 	private java.sql.Connection connection_;

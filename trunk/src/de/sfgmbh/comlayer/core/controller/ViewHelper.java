@@ -72,8 +72,8 @@ public class ViewHelper {
 	 * @param boolean
 	 * @return a formated boolean string
 	 */
-	public static String getBoolean(boolean b) {
-		if(b){
+	public static String getTextForBoolean(boolean booleanValue) {
+		if(booleanValue){
 			return "ja";
 		} else {
 			return "nein";
@@ -82,13 +82,13 @@ public class ViewHelper {
 	
 	/**
 	 * Returns the German value for a given user class
-	 * @param uuserClass
+	 * @param userClass
 	 * @return the German value for a given user class
 	 */
-	public static String getUserClass(String uc) {
-		if (uc.equals("orga")) {
+	public static String getUserClass(String userClass) {
+		if (userClass.equals("orga")) {
 			return "Verwaltung";
-		} else if (uc.equals("lecturer")) {
+		} else if (userClass.equals("lecturer")) {
 			return "Dozenten";
 		} else {
 			AppModel.getInstance().getExceptionHandler().setNewException("Eine unbekannte Nutzerklasse wurde verwendet.", "Achtung!");
@@ -101,14 +101,14 @@ public class ViewHelper {
 	 * @param status
 	 * @return the formated string for a status
 	 */
-	public static String getAllocationStatus(String s) {
-		if (s.equals("waiting")) {
+	public static String getAllocationStatus(String status) {
+		if (status.equals("waiting")) {
 			return "wartend";
-		} else if (s.equals("accepted")) {
+		} else if (status.equals("accepted")) {
 			return "freigegeben";
-		} else if (s.equals("denied")) {
+		} else if (status.equals("denied")) {
 			return "abgelehnt";
-		} else if (s.equals("counter")) {
+		} else if (status.equals("counter")) {
 			return "Gegenvorschlag";
 		} else {
 			AppModel.getInstance().getExceptionHandler().setNewException("Eine unbekannter Status wurde verwendet.", "Achtung!");
@@ -116,8 +116,8 @@ public class ViewHelper {
 		}
 	}
 	
-	public static String getGlobalDateFormat(Date d) {
-		String newDate = new SimpleDateFormat("dd.MM.yy 'um' HH:mm:ss").format(d);
+	public static String getGlobalDateFormat(Date date) {
+		String newDate = new SimpleDateFormat("dd.MM.yy 'um' HH:mm:ss").format(date);
 		return newDate;
 	}
 }

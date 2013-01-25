@@ -55,7 +55,7 @@ public class UserCreateDialog extends JDialog {
 	
 	/**
 	 * Create the frame in a modified version with a user that shall be edited
-	 * @param userToEdits
+	 * @param userToEdit
 	 */
 	public UserCreateDialog(IntfUser userToEdit) {
 		setModal(true);

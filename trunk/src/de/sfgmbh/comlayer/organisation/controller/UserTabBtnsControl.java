@@ -114,7 +114,6 @@ public class UserTabBtnsControl implements ActionListener, IntfComDialogObserver
 	/**
 	 * Delete a user
 	 * @param user
-	 * @return true if the deletion was successful
 	 */
 	public void deleteUser(IntfUser user) {
 		

@@ -4,8 +4,9 @@ import java.util.HashMap;
 import java.util.List;
 
 import de.sfgmbh.applayer.core.definitions.IntfRoomAllocation;
+import de.sfgmbh.datalayer.core.daos.DataHandlerRoomAllocation;
 /**
- * This is the interface for the {@link DataRoomAllocation}
+ * This is the interface for the {@link DataHandlerRoomAllocation}
  * 
  * @author denis
  *

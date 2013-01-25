@@ -52,8 +52,8 @@ public interface IntfDataUser {
 
 	/**
 	 * Saves a new user in the DB if the user doesn't exist already and updates an existing user in the DB otherwise
-	 * @param user
-	 * @return ture on success
+	 * @param toBeSavedUser
+	 * @return true on success
 	 */
 	public boolean save(IntfUser toBeSavedUser);
 	
