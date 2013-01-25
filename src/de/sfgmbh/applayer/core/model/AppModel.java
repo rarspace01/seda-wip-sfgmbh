@@ -5,6 +5,11 @@ import java.util.ArrayList;
 import de.sfgmbh.applayer.core.definitions.IntfAppModel;
 import de.sfgmbh.applayer.core.definitions.IntfAppObservable;
 import de.sfgmbh.applayer.core.definitions.IntfAppObserver;
+import de.sfgmbh.applayer.core.definitions.IntfRepositoryChair;
+import de.sfgmbh.applayer.core.definitions.IntfRepositoryCourse;
+import de.sfgmbh.applayer.core.definitions.IntfRepositoryRoom;
+import de.sfgmbh.applayer.core.definitions.IntfRepositoryRoomAllocation;
+import de.sfgmbh.applayer.core.definitions.IntfRepositoryUser;
 
 /**
  * This is the main application layer model class
@@ -17,11 +22,11 @@ public class AppModel implements IntfAppObservable, IntfAppModel {
 	private static IntfAppModel uniqueInstance_ = new AppModel(); // declare on first access through JVM (thread-safe)
 	private ArrayList<Object> observer_ = new ArrayList<Object>();
 	private AppException exceptionHandler_ = new AppException();
-	private RepositoryChair repositoryChair_ = new RepositoryChair();
-	private RepositoryUser repositoryUser_ = new RepositoryUser();
-	private RepositoryCourse repositoryCourse_ = new RepositoryCourse();
-	private RepositoryRoom repositoryRoom_ = new RepositoryRoom();
-	private RepositoryRoomAllocation repositoryRoomAllocation_ = new RepositoryRoomAllocation();
+	private IntfRepositoryChair repositoryChair_ = new RepositoryChair();
+	private IntfRepositoryUser repositoryUser_ = new RepositoryUser();
+	private IntfRepositoryCourse repositoryCourse_ = new RepositoryCourse();
+	private IntfRepositoryRoom repositoryRoom_ = new RepositoryRoom();
+	private IntfRepositoryRoomAllocation repositoryRoomAllocation_ = new RepositoryRoomAllocation();
 	
 	private AppModel() {} // class may only call itself via declaration
 	
@@ -37,7 +42,7 @@ public class AppModel implements IntfAppObservable, IntfAppModel {
 	 * @see de.sfgmbh.applayer.core.model.IntfAppModel#getRepositoryChair()
 	 */
 	@Override
-	public RepositoryChair getRepositoryChair() {
+	public IntfRepositoryChair getRepositoryChair() {
 		return repositoryChair_;
 	}
 
@@ -45,7 +50,7 @@ public class AppModel implements IntfAppObservable, IntfAppModel {
 	 * @see de.sfgmbh.applayer.core.model.IntfAppModel#getRepositoryUser()
 	 */
 	@Override
-	public RepositoryUser getRepositoryUser() {
+	public IntfRepositoryUser getRepositoryUser() {
 		return repositoryUser_;
 	}
 
@@ -53,7 +58,7 @@ public class AppModel implements IntfAppObservable, IntfAppModel {
 	 * @see de.sfgmbh.applayer.core.model.IntfAppModel#getRepositoryCourse()
 	 */
 	@Override
-	public RepositoryCourse getRepositoryCourse() {
+	public IntfRepositoryCourse getRepositoryCourse() {
 		return repositoryCourse_;
 	}
 
@@ -61,7 +66,7 @@ public class AppModel implements IntfAppObservable, IntfAppModel {
 	 * @see de.sfgmbh.applayer.core.model.IntfAppModel#getRepositoryRoom()
 	 */
 	@Override
-	public RepositoryRoom getRepositoryRoom() {
+	public IntfRepositoryRoom getRepositoryRoom() {
 		return repositoryRoom_;
 	}
 
@@ -69,7 +74,7 @@ public class AppModel implements IntfAppObservable, IntfAppModel {
 	 * @see de.sfgmbh.applayer.core.model.IntfAppModel#getRepositoryRoomAllocation()
 	 */
 	@Override
-	public RepositoryRoomAllocation getRepositoryRoomAllocation() {
+	public IntfRepositoryRoomAllocation getRepositoryRoomAllocation() {
 		return repositoryRoomAllocation_;
 	}
 

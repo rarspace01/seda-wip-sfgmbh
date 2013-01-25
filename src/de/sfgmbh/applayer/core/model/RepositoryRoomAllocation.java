@@ -6,6 +6,7 @@ import java.util.List;
 
 import de.sfgmbh.applayer.core.definitions.IntfAppObservable;
 import de.sfgmbh.applayer.core.definitions.IntfAppObserver;
+import de.sfgmbh.applayer.core.definitions.IntfRepositoryRoomAllocation;
 import de.sfgmbh.applayer.core.definitions.IntfRoomAllocation;
 import de.sfgmbh.datalayer.core.definitions.IntfDataObserver;
 import de.sfgmbh.datalayer.core.model.DataModel;
@@ -17,7 +18,7 @@ import de.sfgmbh.datalayer.core.model.DataModel;
  * @author denis
  *
  */
-public class RepositoryRoomAllocation implements IntfAppObservable, IntfDataObserver {
+public class RepositoryRoomAllocation implements IntfAppObservable, IntfDataObserver, IntfRepositoryRoomAllocation {
 	
 	private ArrayList<Object> observer_ = new ArrayList<Object>();
 	
@@ -28,52 +29,50 @@ public class RepositoryRoomAllocation implements IntfAppObservable, IntfDataObse
 		DataModel.getInstance().getDataHandlerRoomAllocation().register(this);
 	}
 	
-	/**
-	 * Return all room allocations
-	 * @return a list of all room allocations
+	/* (non-Javadoc)
+	 * @see de.sfgmbh.applayer.core.model.IntfRepositoryRoomAllocation#getAll()
 	 */
+	@Override
 	public List<IntfRoomAllocation> getAll() {
 		return DataModel.getInstance().getDataHandlerRoomAllocation().getAll();
 	}
 	
-	/**
-	 * Get all room allocations which are not already denied 
-	 * @return a list with all open room allocations
+	/* (non-Javadoc)
+	 * @see de.sfgmbh.applayer.core.model.IntfRepositoryRoomAllocation#getAllOpen()
 	 */
+	@Override
 	public List<IntfRoomAllocation> getAllOpen() {
 		return DataModel.getInstance().getDataHandlerRoomAllocation().getAllOpen();
 	}
 		
-	/**
-	 * Return filtered courses
-	 * @return a list of filtered courses
+	/* (non-Javadoc)
+	 * @see de.sfgmbh.applayer.core.model.IntfRepositoryRoomAllocation#getByFilter(java.util.HashMap)
 	 */
+	@Override
 	public List<IntfRoomAllocation> getByFilter(HashMap<String, String> filter) {
 		return DataModel.getInstance().getDataHandlerRoomAllocation().getByFilter(filter);
 	}
 
-	/**
-	 * Checks for conflicting room allocations
-	 * @param roomAllocation
-	 * @return a list of all conflicting room allocations
+	/* (non-Javadoc)
+	 * @see de.sfgmbh.applayer.core.model.IntfRepositoryRoomAllocation#getConflictingAllocation(de.sfgmbh.applayer.core.definitions.IntfRoomAllocation)
 	 */
+	@Override
 	public List<IntfRoomAllocation> getConflictingAllocation(IntfRoomAllocation roomAllocation) {
 		return DataModel.getInstance().getDataHandlerRoomAllocation().getConflictingAllocation(roomAllocation);
 	}
 	
-	/**
-	 * Get a room allocation by its id
-	 * @param id
-	 * @return a room allocation by its id
+	/* (non-Javadoc)
+	 * @see de.sfgmbh.applayer.core.model.IntfRepositoryRoomAllocation#get(int)
 	 */
+	@Override
 	public IntfRoomAllocation get(int id) {
 		return DataModel.getInstance().getDataHandlerRoomAllocation().get(id);
 	}
 	
-	/**
-	 * Save this user object in the DB (this will update a database entry if there is already one and create one if there is none)
-	 * @return true on success
+	/* (non-Javadoc)
+	 * @see de.sfgmbh.applayer.core.model.IntfRepositoryRoomAllocation#save(de.sfgmbh.applayer.core.definitions.IntfRoomAllocation)
 	 */
+	@Override
 	public boolean save(IntfRoomAllocation roomAllocation) {
 		return DataModel.getInstance().getDataHandlerRoomAllocation().save(roomAllocation);
 	}
@@ -81,6 +80,9 @@ public class RepositoryRoomAllocation implements IntfAppObservable, IntfDataObse
 	/*
 	 * (non-Javadoc)
 	 * @see de.sfgmbh.datalayer.core.definitions.IntfDataObserver#change()
+	 */
+	/* (non-Javadoc)
+	 * @see de.sfgmbh.applayer.core.model.IntfRepositoryRoomAllocation#change()
 	 */
 	@Override
 	public void change() {
@@ -90,6 +92,9 @@ public class RepositoryRoomAllocation implements IntfAppObservable, IntfDataObse
 	/*
 	 * (non-Javadoc)
 	 * @see de.sfgmbh.applayer.core.definitions.IntfAppObservable#update()
+	 */
+	/* (non-Javadoc)
+	 * @see de.sfgmbh.applayer.core.model.IntfRepositoryRoomAllocation#update()
 	 */
 	@Override
 	public void update() {
@@ -109,6 +114,9 @@ public class RepositoryRoomAllocation implements IntfAppObservable, IntfDataObse
 	 * (non-Javadoc)
 	 * @see de.sfgmbh.applayer.core.definitions.IntfAppObservable#register(de.sfgmbh.applayer.core.definitions.IntfAppObserver)
 	 */
+	/* (non-Javadoc)
+	 * @see de.sfgmbh.applayer.core.model.IntfRepositoryRoomAllocation#register(de.sfgmbh.applayer.core.definitions.IntfAppObserver)
+	 */
 	@Override
 	public void register(IntfAppObserver observer) {
 		if (observer instanceof IntfAppObserver) {
@@ -122,15 +130,18 @@ public class RepositoryRoomAllocation implements IntfAppObservable, IntfDataObse
 	 * (non-Javadoc)
 	 * @see de.sfgmbh.applayer.core.definitions.IntfAppObservable#unregister(de.sfgmbh.applayer.core.definitions.IntfAppObserver)
 	 */
+	/* (non-Javadoc)
+	 * @see de.sfgmbh.applayer.core.model.IntfRepositoryRoomAllocation#unregister(de.sfgmbh.applayer.core.definitions.IntfAppObserver)
+	 */
 	@Override
 	public void unregister(IntfAppObserver observer) {
 		observer_.remove(observer);
 	}
 
-	/**
-	 * Delete all denied allocations
-	 * @return true on success
+	/* (non-Javadoc)
+	 * @see de.sfgmbh.applayer.core.model.IntfRepositoryRoomAllocation#clean()
 	 */
+	@Override
 	public boolean clean() {
 		return DataModel.getInstance().getDataHandlerRoomAllocation().clean();
 	}

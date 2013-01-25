@@ -7,6 +7,7 @@ import java.util.List;
 import de.sfgmbh.applayer.core.definitions.IntfAppObservable;
 import de.sfgmbh.applayer.core.definitions.IntfAppObserver;
 import de.sfgmbh.applayer.core.definitions.IntfCourse;
+import de.sfgmbh.applayer.core.definitions.IntfRepositoryCourse;
 import de.sfgmbh.datalayer.core.definitions.IntfDataObserver;
 import de.sfgmbh.datalayer.core.model.DataModel;
 
@@ -16,7 +17,7 @@ import de.sfgmbh.datalayer.core.model.DataModel;
  * @author hannes
  *
  */
-public class RepositoryCourse implements IntfAppObservable, IntfDataObserver {
+public class RepositoryCourse implements IntfAppObservable, IntfDataObserver, IntfRepositoryCourse {
 	
 	private ArrayList<Object> observer_ = new ArrayList<Object>();
 	
@@ -27,19 +28,18 @@ public class RepositoryCourse implements IntfAppObservable, IntfDataObserver {
 		DataModel.getInstance().getDataHandlerCourse().register(this);
 	}
 	
-	/**
-	 * Return all courses
-	 * @return a list of all courses
+	/* (non-Javadoc)
+	 * @see de.sfgmbh.applayer.core.model.IntfRepositoryCourse#getAll()
 	 */
+	@Override
 	public List<Course> getAll() {
 		return DataModel.getInstance().getDataHandlerCourse().getAll();
 	}
 	
-	/**
-	 * Get course objects based on a filter
-	 * @param filter
-	 * @return course objects based on a filter
+	/* (non-Javadoc)
+	 * @see de.sfgmbh.applayer.core.model.IntfRepositoryCourse#getByFilter(java.util.HashMap)
 	 */
+	@Override
 	public List<Course> getByFilter(HashMap<String, String> filter) {
 		return DataModel.getInstance().getDataHandlerCourse().getByFilter(filter);
 	}
@@ -47,6 +47,9 @@ public class RepositoryCourse implements IntfAppObservable, IntfDataObserver {
 	/*
 	 * (non-Javadoc)
 	 * @see de.sfgmbh.datalayer.core.definitions.IntfDataObserver#change()
+	 */
+	/* (non-Javadoc)
+	 * @see de.sfgmbh.applayer.core.model.IntfRepositoryCourse#change()
 	 */
 	@Override
 	public void change() {
@@ -56,6 +59,9 @@ public class RepositoryCourse implements IntfAppObservable, IntfDataObserver {
 	/*
 	 * (non-Javadoc)
 	 * @see de.sfgmbh.applayer.core.definitions.IntfAppObservable#update()
+	 */
+	/* (non-Javadoc)
+	 * @see de.sfgmbh.applayer.core.model.IntfRepositoryCourse#update()
 	 */
 	@Override
 	public void update() {
@@ -75,6 +81,9 @@ public class RepositoryCourse implements IntfAppObservable, IntfDataObserver {
 	 * (non-Javadoc)
 	 * @see de.sfgmbh.applayer.core.definitions.IntfAppObservable#register(de.sfgmbh.applayer.core.definitions.IntfAppObserver)
 	 */
+	/* (non-Javadoc)
+	 * @see de.sfgmbh.applayer.core.model.IntfRepositoryCourse#register(de.sfgmbh.applayer.core.definitions.IntfAppObserver)
+	 */
 	@Override
 	public void register(IntfAppObserver observer) {
 		if (observer instanceof IntfAppObserver) {
@@ -88,25 +97,26 @@ public class RepositoryCourse implements IntfAppObservable, IntfDataObserver {
 	 * (non-Javadoc)
 	 * @see de.sfgmbh.applayer.core.definitions.IntfAppObservable#unregister(de.sfgmbh.applayer.core.definitions.IntfAppObserver)
 	 */
+	/* (non-Javadoc)
+	 * @see de.sfgmbh.applayer.core.model.IntfRepositoryCourse#unregister(de.sfgmbh.applayer.core.definitions.IntfAppObserver)
+	 */
 	@Override
 	public void unregister(IntfAppObserver observer) {
 		observer_.remove(observer);
 	}
 
-	/**
-	 * Save a course in the DB
-	 * @param course
-	 * @return true on success
+	/* (non-Javadoc)
+	 * @see de.sfgmbh.applayer.core.model.IntfRepositoryCourse#save(de.sfgmbh.applayer.core.definitions.IntfCourse)
 	 */
+	@Override
 	public boolean save(IntfCourse course) {
 		return DataModel.getInstance().getDataHandlerCourse().save(course);
 	}
 
-	/**
-	 * Delete a course from the DB
-	 * @param course
-	 * @return true on success
+	/* (non-Javadoc)
+	 * @see de.sfgmbh.applayer.core.model.IntfRepositoryCourse#delete(de.sfgmbh.applayer.core.definitions.IntfCourse)
 	 */
+	@Override
 	public boolean delete(IntfCourse course) {
 		return DataModel.getInstance().getDataHandlerCourse().delete(course);
 	}

@@ -6,6 +6,7 @@ import java.util.List;
 
 import de.sfgmbh.applayer.core.definitions.IntfAppObservable;
 import de.sfgmbh.applayer.core.definitions.IntfAppObserver;
+import de.sfgmbh.applayer.core.definitions.IntfRepositoryUser;
 import de.sfgmbh.applayer.core.definitions.IntfUser;
 import de.sfgmbh.datalayer.core.definitions.IntfDataObserver;
 import de.sfgmbh.datalayer.core.model.DataModel;
@@ -17,7 +18,7 @@ import de.sfgmbh.datalayer.core.model.DataModel;
  * @author denis
  *
  */
-public class RepositoryUser implements IntfAppObservable, IntfDataObserver {
+public class RepositoryUser implements IntfAppObservable, IntfDataObserver, IntfRepositoryUser {
 	
 	private ArrayList<Object> observer_ = new ArrayList<Object>();
 	
@@ -28,34 +29,34 @@ public class RepositoryUser implements IntfAppObservable, IntfDataObserver {
 		DataModel.getInstance().getDataHandlerUser().register(this);
 	}
 	
-	/**
-	 * Return all users
-	 * @return a list of all users
+	/* (non-Javadoc)
+	 * @see de.sfgmbh.applayer.core.model.IntfRepositoryUser#getAll()
 	 */
+	@Override
 	public List<User> getAll() {
 		return DataModel.getInstance().getDataHandlerUser().getAll();
 	}
 	
-	/**
-	 * Return all users of the class lecturer
-	 * @return a list of all users of the class lecturer
+	/* (non-Javadoc)
+	 * @see de.sfgmbh.applayer.core.model.IntfRepositoryUser#getAllLecturer()
 	 */
+	@Override
 	public List<User> getAllLecturer() {
 		return DataModel.getInstance().getDataHandlerUser().getAllLecturer();
 	}
 	
-	/**
-	 * Return filtered users
-	 * @return a list of filtered users
+	/* (non-Javadoc)
+	 * @see de.sfgmbh.applayer.core.model.IntfRepositoryUser#getByFilter(java.util.HashMap)
 	 */
+	@Override
 	public List<User> getByFilter(HashMap<String, String> filter) {
 		return DataModel.getInstance().getDataHandlerUser().getByFilter(filter);
 	}
 	
-	/**
-	 * Save this user object in the DB (this will update a database entry if there is already one and create one if there is none)
-	 * @return true on success
+	/* (non-Javadoc)
+	 * @see de.sfgmbh.applayer.core.model.IntfRepositoryUser#save(de.sfgmbh.applayer.core.definitions.IntfUser)
 	 */
+	@Override
 	public boolean save(IntfUser user) {
 		if (DataModel.getInstance().getDataHandlerUser().save(user)) {
 			return true;
@@ -67,6 +68,9 @@ public class RepositoryUser implements IntfAppObservable, IntfDataObserver {
 	 * (non-Javadoc)
 	 * @see de.sfgmbh.datalayer.core.definitions.IntfDataObserver#change()
 	 */
+	/* (non-Javadoc)
+	 * @see de.sfgmbh.applayer.core.model.IntfRepositoryUser#change()
+	 */
 	@Override
 	public void change() {
 		this.update();
@@ -75,6 +79,9 @@ public class RepositoryUser implements IntfAppObservable, IntfDataObserver {
 	/*
 	 * (non-Javadoc)
 	 * @see de.sfgmbh.applayer.core.definitions.IntfAppObservable#update()
+	 */
+	/* (non-Javadoc)
+	 * @see de.sfgmbh.applayer.core.model.IntfRepositoryUser#update()
 	 */
 	@Override
 	public void update() {
@@ -95,6 +102,9 @@ public class RepositoryUser implements IntfAppObservable, IntfDataObserver {
 	 * (non-Javadoc)
 	 * @see de.sfgmbh.applayer.core.definitions.IntfAppObservable#register(de.sfgmbh.applayer.core.definitions.IntfAppObserver)
 	 */
+	/* (non-Javadoc)
+	 * @see de.sfgmbh.applayer.core.model.IntfRepositoryUser#register(de.sfgmbh.applayer.core.definitions.IntfAppObserver)
+	 */
 	@Override
 	public void register(IntfAppObserver observer) {
 		if (observer instanceof IntfAppObserver) {
@@ -108,25 +118,26 @@ public class RepositoryUser implements IntfAppObservable, IntfDataObserver {
 	 * (non-Javadoc)
 	 * @see de.sfgmbh.applayer.core.definitions.IntfAppObservable#unregister(de.sfgmbh.applayer.core.definitions.IntfAppObserver)
 	 */
+	/* (non-Javadoc)
+	 * @see de.sfgmbh.applayer.core.model.IntfRepositoryUser#unregister(de.sfgmbh.applayer.core.definitions.IntfAppObserver)
+	 */
 	@Override
 	public void unregister(IntfAppObserver observer) {
 		observer_.remove(observer);
 	}
 	
-	/**
-	 * Get a user by its id
-	 * @param userId
-	 * @return the user for the id or null if it doesn't exist
+	/* (non-Javadoc)
+	 * @see de.sfgmbh.applayer.core.model.IntfRepositoryUser#get(int)
 	 */
+	@Override
 	public IntfUser get(int userId_) {
 		return DataModel.getInstance().getDataHandlerUser().get(userId_);
 	}
 
-	/**
-	 * Delete a user from the model if possible
-	 * @param userToDelete
-	 * @return true on success
+	/* (non-Javadoc)
+	 * @see de.sfgmbh.applayer.core.model.IntfRepositoryUser#delete(de.sfgmbh.applayer.core.definitions.IntfUser)
 	 */
+	@Override
 	public boolean delete(IntfUser delUser) {
 		return DataModel.getInstance().getDataHandlerUser().delete(delUser);
 	}

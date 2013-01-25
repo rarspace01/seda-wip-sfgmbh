@@ -6,6 +6,7 @@ import java.util.List;
 
 import de.sfgmbh.applayer.core.definitions.IntfAppObservable;
 import de.sfgmbh.applayer.core.definitions.IntfAppObserver;
+import de.sfgmbh.applayer.core.definitions.IntfRepositoryRoom;
 import de.sfgmbh.applayer.core.definitions.IntfRoom;
 import de.sfgmbh.datalayer.core.definitions.IntfDataObserver;
 import de.sfgmbh.datalayer.core.model.DataModel;
@@ -17,15 +18,14 @@ import de.sfgmbh.datalayer.core.model.DataModel;
  * @author hannes
  *
  */
-public class RepositoryRoom implements IntfAppObservable, IntfDataObserver {
+public class RepositoryRoom implements IntfAppObservable, IntfDataObserver, IntfRepositoryRoom {
 	
 	private ArrayList<IntfAppObserver> observer_ = new ArrayList<IntfAppObserver>();
 	
-	/**
-	 * Get rooms all rooms which match a HashMap filter
-	 * @param filter
-	 * @return a list of rooms
+	/* (non-Javadoc)
+	 * @see de.sfgmbh.applayer.core.model.IntfRepositoryRoom#getByFilter(java.util.HashMap)
 	 */
+	@Override
 	public List<IntfRoom> getByFilter(HashMap<String, String> filter) {
 		return DataModel.getInstance().getDataHandlerRoom().getByFilter(filter);
 	}	
@@ -37,36 +37,35 @@ public class RepositoryRoom implements IntfAppObservable, IntfDataObserver {
 		DataModel.getInstance().getDataHandlerRoom().register(this);
 	}
 	
-	/**
-	 * Return all courses
-	 * @return a list of all courses
+	/* (non-Javadoc)
+	 * @see de.sfgmbh.applayer.core.model.IntfRepositoryRoom#getAll()
 	 */
+	@Override
 	public List<IntfRoom> getAll() {
 		return DataModel.getInstance().getDataHandlerRoom().getAll();
 	}
 	
-	/**
-	 * Get a unique room by its id
-	 * @param roomId
-	 * @return a room
+	/* (non-Javadoc)
+	 * @see de.sfgmbh.applayer.core.model.IntfRepositoryRoom#getRoomById(int)
 	 */
+	@Override
 	public IntfRoom getRoomById(int roomId) {
 		return DataModel.getInstance().getDataHandlerRoom().get(roomId);
 	}
 	
-	/**
-	 * Save a room
-	 * @param room
+	/* (non-Javadoc)
+	 * @see de.sfgmbh.applayer.core.model.IntfRepositoryRoom#save(de.sfgmbh.applayer.core.definitions.IntfRoom)
 	 */
+	@Override
 	public void save(IntfRoom room){
 		DataModel.getInstance().getDataHandlerRoom().save(room);
 		this.change();
 	}
 	
-	/**
-	 * Delte a room
-	 * @param room
+	/* (non-Javadoc)
+	 * @see de.sfgmbh.applayer.core.model.IntfRepositoryRoom#delete(de.sfgmbh.applayer.core.definitions.IntfRoom)
 	 */
+	@Override
 	public void delete(IntfRoom room){
 		DataModel.getInstance().getDataHandlerRoom().delete(room);
 		this.change();
@@ -76,6 +75,9 @@ public class RepositoryRoom implements IntfAppObservable, IntfDataObserver {
 	 * (non-Javadoc)
 	 * @see de.sfgmbh.datalayer.core.definitions.IntfDataObserver#change()
 	 */
+	/* (non-Javadoc)
+	 * @see de.sfgmbh.applayer.core.model.IntfRepositoryRoom#change()
+	 */
 	@Override
 	public void change() {
 		this.update();
@@ -84,6 +86,9 @@ public class RepositoryRoom implements IntfAppObservable, IntfDataObserver {
 	/*
 	 * (non-Javadoc)
 	 * @see de.sfgmbh.applayer.core.definitions.IntfAppObservable#update()
+	 */
+	/* (non-Javadoc)
+	 * @see de.sfgmbh.applayer.core.model.IntfRepositoryRoom#update()
 	 */
 	@Override
 	public void update() {
@@ -103,6 +108,9 @@ public class RepositoryRoom implements IntfAppObservable, IntfDataObserver {
 	 * (non-Javadoc)
 	 * @see de.sfgmbh.applayer.core.definitions.IntfAppObservable#register(de.sfgmbh.applayer.core.definitions.IntfAppObserver)
 	 */
+	/* (non-Javadoc)
+	 * @see de.sfgmbh.applayer.core.model.IntfRepositoryRoom#register(de.sfgmbh.applayer.core.definitions.IntfAppObserver)
+	 */
 	@Override
 	public void register(IntfAppObserver observer) {
 		if (observer instanceof IntfAppObserver) {
@@ -116,16 +124,18 @@ public class RepositoryRoom implements IntfAppObservable, IntfDataObserver {
 	 * (non-Javadoc)
 	 * @see de.sfgmbh.applayer.core.definitions.IntfAppObservable#unregister(de.sfgmbh.applayer.core.definitions.IntfAppObserver)
 	 */
+	/* (non-Javadoc)
+	 * @see de.sfgmbh.applayer.core.model.IntfRepositoryRoom#unregister(de.sfgmbh.applayer.core.definitions.IntfAppObserver)
+	 */
 	@Override
 	public void unregister(IntfAppObserver observer) {
 		observer_.remove(observer);
 	}
 
-	/**
-	 * Get a room by its number
-	 * @param roomNumber
-	 * @return a room object
+	/* (non-Javadoc)
+	 * @see de.sfgmbh.applayer.core.model.IntfRepositoryRoom#getByNumber(java.lang.String)
 	 */
+	@Override
 	public IntfRoom getByNumber(String roomNumber_) {
 		IntfRoom room;
 		HashMap<String, String> filter=new HashMap<>();
