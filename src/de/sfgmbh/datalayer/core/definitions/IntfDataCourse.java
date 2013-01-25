@@ -6,8 +6,9 @@ import java.util.List;
 
 import de.sfgmbh.applayer.core.definitions.IntfCourse;
 import de.sfgmbh.applayer.core.model.Course;
+import de.sfgmbh.datalayer.core.daos.DataHandlerCourse;
 /**
- * This is the interface for the {@link DataCourse}
+ * This is the interface for the {@link DataHandlerCourse}
  * 
  * @author denis
  * @author hannes

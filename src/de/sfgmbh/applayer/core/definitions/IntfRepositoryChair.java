@@ -59,11 +59,11 @@ public interface IntfRepositoryChair {
 	 * @param chairId
 	 * @return the user for the id or null if it doesn't exist
 	 */
-	public abstract IntfChair get(int chairId_);
+	public abstract IntfChair get(int chairId);
 
 	/**
 	 * Delete a Chair from the model if possible
-	 * @param chairToDelete
+	 * @param delChair
 	 * @return true on success
 	 */
 	public abstract boolean delete(IntfChair delChair);

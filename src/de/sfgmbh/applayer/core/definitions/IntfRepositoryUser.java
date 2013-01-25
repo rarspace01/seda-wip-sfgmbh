@@ -64,11 +64,11 @@ public interface IntfRepositoryUser {
 	 * @param userId
 	 * @return the user for the id or null if it doesn't exist
 	 */
-	public abstract IntfUser get(int userId_);
+	public abstract IntfUser get(int userId);
 
 	/**
 	 * Delete a user from the model if possible
-	 * @param userToDelete
+	 * @param delUser
 	 * @return true on success
 	 */
 	public abstract boolean delete(IntfUser delUser);

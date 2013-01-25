@@ -92,7 +92,7 @@ public interface IntfRoomAllocation {
 	 * 
 	 * @param status
 	 */
-	public abstract void setApproved_(String approved_);
+	public abstract void setApproved_(String status);
 
 	/**
 	 * @return the orgaMessage_
@@ -122,13 +122,11 @@ public interface IntfRoomAllocation {
 
 	/**
 	 * Set conflicting room allocations when this room allocation doesn't already have any conflicting allocations
-	 * @param conflictingAllocations_ the conflictingAllocations_ to set
 	 */
 	public abstract void setConflictingAllocations_();
 
 	/**
 	 * Set conflicting room allocations regardless if there already are any set
-	 * @param conflictingAllocations_ the conflictingAllocations_ to set
 	 */
 	public abstract void setForceConflictingAllocations_();
 
