@@ -154,6 +154,8 @@ public class BaseLogin implements ActionListener {
 				baseTab.getPwdPasswort().setText("");
 				baseTab.getTxtUsername().setText("");
 				baseTab.getStartScreenPanel().setVisible(true);
+				baseTab.getComboBoxLecturerFilter().setSelectedItem("<alle>");
+				ViewManager.getInstance().getCoreBaseTableModel().change();
 				baseTab.getPanelLogin().setVisible(true);
 				baseTab.getPanelLogout().setVisible(false);
 			} catch (Exception ex) {
@@ -175,11 +177,15 @@ public class BaseLogin implements ActionListener {
 		baseTab.getMainTabbedContainerPane().removeAll();
 		baseTab.getMainTabbedContainerPane().addTab("Start", null, baseTab.getStartScreenPanel(), null);
 		baseTab.getMainTabbedContainerPane().addTab("Raumanfragenverwaltung", null, ViewManager.getInstance().getOrgaRquestTab(), null);
+		ViewManager.getInstance().getOrgaRequestTableModel().change();
 		baseTab.getMainTabbedContainerPane().setSelectedIndex(1);
 		baseTab.getStartScreenPanel().setVisible(false);
 		baseTab.getMainTabbedContainerPane().addTab("Nutzerverwaltung", null, ViewManager.getInstance().getOrgaUserTab(), null);
+		ViewManager.getInstance().getOrgaUserTableModel().change();
 		baseTab.getMainTabbedContainerPane().addTab("Lehrstuhlverwaltung", null, ViewManager.getInstance().getOrgaChairTab(), null);
+		ViewManager.getInstance().getOrgaChairTableModel().change();
 		baseTab.getMainTabbedContainerPane().addTab("Raumverwaltung", null, ViewManager.getInstance().getOrgaRoomTab(), null);
+		ViewManager.getInstance().getOrgaRoomtableTableModel().change();
 	}
 	
 	/**
@@ -191,6 +197,8 @@ public class BaseLogin implements ActionListener {
 		baseTab.getMainTabbedContainerPane().removeAll();
 		baseTab.getMainTabbedContainerPane().addTab("Start", null, baseTab.getStartScreenPanel(), null);
 		baseTab.getMainTabbedContainerPane().addTab("Dozenten Übersicht", null, ViewManager.getInstance().getLecturerStartTab(), null);
+		ViewManager.getInstance().getLecturerStartTabTableTop().change();
+		ViewManager.getInstance().getLecturerStartTabTableBottom().change();
 		baseTab.getMainTabbedContainerPane().setSelectedIndex(1);
 		baseTab.getStartScreenPanel().setVisible(false);
 		baseTab.getMainTabbedContainerPane().addTab("Dozentenstundenplan", null, ViewManager.getInstance().getLecturerTimetableTab(), null);
