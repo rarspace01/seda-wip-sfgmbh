@@ -20,7 +20,7 @@ public class CmbboxFilterCourse extends DefaultComboBoxModel<String> implements 
 	
 	/**
 	 * Create the model object
-	 * @param dependentCombobox
+	 * @param dependentComboBox
 	 */
 	public CmbboxFilterCourse(JComboBox<String> dependentComboBox) {
 		AppModel.getInstance().getRepositoryCourse().register(this);

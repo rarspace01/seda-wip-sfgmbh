@@ -60,7 +60,7 @@ public class StartTabTableTop extends DefaultTableModel implements IntfAppObserv
 							course.getLecturer_().getlName_(), 
 							course.getSws_(), 
 							course.getExpectedAttendees_(), 
-							ViewHelper.getBoolean(course.isLecturerEnabled_()),
+							ViewHelper.getTextForBoolean(course.isLecturerEnabled_()),
 							course
 							};
 					this.addRow(row);

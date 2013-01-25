@@ -301,7 +301,7 @@ public class RoomFrame extends JDialog {
 	
 	/**
 	 * 
-	 * @return the txtLevel
+	 * @return txtLevel_ - the txtLevel
 	 */
 	public JTextField getTxtLevel() {
 		return txtLevel_;
@@ -315,7 +315,7 @@ public class RoomFrame extends JDialog {
 	}
 	/**
 	 * 
-	 * @return the TxtRoomNumber
+	 * @return txtRoomNumber_ - the TxtRoomNumber
 	 */
 	public JTextField getTxtRoomNumber() {
 		return txtRoomNumber_;
@@ -329,21 +329,21 @@ public class RoomFrame extends JDialog {
 	}
 	/**
 	 * 
-	 * @return the txtBeamer
+	 * @return txtBeamer_ - the txtBeamer
 	 */
 	public JTextField getTxtBeamer() {
 		return txtBeamer_;
 	}
 	/**
 	 * 
-	 * @param the txtBeamer to set
+	 * @param txtBeamer - the txtBeamer to set
 	 */
 	public void setTxtBeamer(JTextField txtBeamer) {
 		this.txtBeamer_ = txtBeamer;
 	}
 	/**
 	 * 
-	 * @return the txtPcSeats
+	 * @return txtPcSeats_ - the txtPcSeats
 	 */
 	public JTextField getTxtPcSeats() {
 		return txtPcSeats_;
@@ -357,42 +357,42 @@ public class RoomFrame extends JDialog {
 	}
 	/**
 	 * 
-	 * @return the txtSeats
+	 * @return txtSeats_ - the txtSeats
 	 */
 	public JTextField getTxtSeats() {
 		return txtSeats_;
 	}
 	/**
 	 * 
-	 * @param the txtSeats to set
+	 * @param txtSeats - the txtSeats to set
 	 */
 	public void setTxtSeats(JTextField txtSeats) {
 		this.txtSeats_ = txtSeats;
 	}
 	/**
 	 * 
-	 * @return the txtVisualizer
+	 * @return txtVisualizer_ - the txtVisualizer
 	 */
 	public JTextField getTxtVisualizer() {
 		return txtVisualizer_;
 	}
 	/**
 	 * 
-	 * @param the txtVisualizer to set
+	 * @param txtVisualizer - the txtVisualizer to set
 	 */
 	public void setTxtVisualizer(JTextField txtVisualizer) {
 		this.txtVisualizer_ = txtVisualizer;
 	}
 	/**
 	 * 
-	 * @return the txtOverheads
+	 * @return txtOverheads - the txtOverheads
 	 */
 	public JTextField getTxtOverheads() {
 		return txtOverheads_;
 	}
 	/**
 	 * 
-	 * @param the txtOverheads to set
+	 * @param txtOverheads - the txtOverheads to set
 	 */
 	public void setTxtOverheads(JTextField txtOverheads) {
 		this.txtOverheads_ = txtOverheads;
@@ -406,7 +406,7 @@ public class RoomFrame extends JDialog {
 	}
 	/**
 	 * 
-	 * @param the txtChalkboards to set
+	 * @param txtChalkboards - the txtChalkboards to set
 	 */
 	public void setTxtChalkboards(JTextField txtChalkboards) {
 		this.txtChalkboards_ = txtChalkboards;
@@ -420,7 +420,7 @@ public class RoomFrame extends JDialog {
 	}
 	/**
 	 * 
-	 * @param the txtWhiteboards to set
+	 * @param txtWhiteboards - the txtWhiteboards to set
 	 */
 	public void setTxtWhiteboards(JTextField txtWhiteboards) {
 		this.txtWhiteboards_ = txtWhiteboards;

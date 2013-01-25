@@ -82,7 +82,7 @@ public class UserTabTable extends DefaultTableModel implements IntfAppObserver {
 						ViewHelper.getUserClass(user.getClass_()), 
 						chair,
 						ViewHelper.getGlobalDateFormat(date), 
-						ViewHelper.getBoolean(user.isDisabled_()),
+						ViewHelper.getTextForBoolean(user.isDisabled_()),
 						user };
 				this.addRow(row);
 

@@ -59,7 +59,7 @@ public interface IntfCtrlStartTab {
 	/**
 	 * Accept or deny a counter proposal where the boolean value decied which it should be
 	 * @param roomAllocation
-	 * @param accapt
+	 * @param accept
 	 * @return true on success
 	 */
 	public abstract boolean counterRoomAllocation(
