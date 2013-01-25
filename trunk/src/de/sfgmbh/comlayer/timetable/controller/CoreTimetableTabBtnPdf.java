@@ -61,7 +61,8 @@ public class CoreTimetableTabBtnPdf implements ActionListener {
 				// if the user hasn't typed .pdf, we'll do it for him
 				if (!fileChooser.getSelectedFile().getPath().toLowerCase()
 						.endsWith(".pdf")) {
-					fileChooser.setSelectedFile(new File(fileChooser.getSelectedFile() + ".pdf"));
+					fileChooser.setSelectedFile(new File(fileChooser
+							.getSelectedFile() + ".pdf"));
 				}
 				String semester = ViewManager.getInstance().getCoreBaseTab()
 						.getComboBoxSemesterFilter().getSelectedItem()

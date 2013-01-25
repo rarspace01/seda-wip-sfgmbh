@@ -25,7 +25,7 @@ import de.sfgmbh.comlayer.core.controller.ViewHelper;
  * Panel for the live ticker
  * 
  * @author hannes
- *
+ * 
  */
 public class LiveTickerPanel extends JPanel {
 
@@ -36,7 +36,7 @@ public class LiveTickerPanel extends JPanel {
 	private List<IntfRoomAllocation> displayAllocations_;
 	private boolean isTooLong_;
 	private ScrollTicker scrollTicker_ = new ScrollTicker();
-	
+
 	/**
 	 * Create the panel.
 	 */
@@ -47,34 +47,37 @@ public class LiveTickerPanel extends JPanel {
 		this.refresh();
 		scrollTicker_.execute();
 	}
-	
+
 	/**
 	 * Refresh the live ticker with current values
 	 */
 	public synchronized void refresh() {
 		try {
-			this.displayAllocations_ = this.ctrlLiverTicker_.getTickerAllocations();
+			this.displayAllocations_ = this.ctrlLiverTicker_
+					.getTickerAllocations();
 		} catch (Exception e) {
-			// This would be a good place for logging - but normally nothing should happen here
+			// This would be a good place for logging - but normally nothing
+			// should happen here
 		}
-		
+
 		try {
 			// Set a fix top text message
-			String textToSet = "<strong>Logindaten:</strong><br />" +
-					"Doz // Doz <br />" +
-					"Verw // Verw <br /><br/>";
-			
+			String textToSet = "<strong>Logindaten:</strong><br />"
+					+ "Doz // Doz <br />" + "Verw // Verw <br /><br/>";
+
 			// Get the text for the room allocations
-			String allocationText = this.getRoomAllocationText(this.displayAllocations_);
-			
+			String allocationText = this
+					.getRoomAllocationText(this.displayAllocations_);
+
 			// Merge and set text
 			textToSet = textToSet + allocationText;
 			this.setTickerText(textToSet);
 		} catch (Exception e) {
-			// This would be a good place for logging - but normally nothing should happen here
+			// This would be a good place for logging - but normally nothing
+			// should happen here
 		}
 	}
-	
+
 	private void createContents() {
 		setBorder(new MatteBorder(1, 1, 1, 1, (Color) SystemColor.activeCaption));
 		setLayout(null);
@@ -82,6 +85,7 @@ public class LiveTickerPanel extends JPanel {
 		add(getTxtHeader());
 		add(getTxtTicker());
 	}
+
 	/**
 	 * 
 	 * @return the txtHeader
@@ -98,7 +102,7 @@ public class LiveTickerPanel extends JPanel {
 		}
 		return txtHeader_;
 	}
-	
+
 	/**
 	 * 
 	 * @return the txtTicker
@@ -111,24 +115,29 @@ public class LiveTickerPanel extends JPanel {
 			txtTicker_.setEditable(false);
 			txtTicker_.setContentType("text/html");
 			txtTicker_.setBounds(5, 21, 130, 285);
-			txtTicker_.setText("<div style=\"font-family: Tahoma, Calibri, monospace; font-size: 11pt;\"></div>");
+			txtTicker_
+					.setText("<div style=\"font-family: Tahoma, Calibri, monospace; font-size: 11pt;\"></div>");
 		}
 		return txtTicker_;
 	}
-	
+
 	/**
-	 * Set a ticker text which may be HTML-formated but doesn't need the initial style (font-family and size is already set)
-	 * @param text - as text/html
+	 * Set a ticker text which may be HTML-formated but doesn't need the initial
+	 * style (font-family and size is already set)
+	 * 
+	 * @param text
+	 *            - as text/html
 	 */
 	public synchronized void setTickerText(String text) {
 		try {
 			this.remove(getTxtTicker());
-			this.getTxtTicker().setText("<div style=\"font-family: Tahoma, Calibri, monospace; font-size: 11pt;\">" +
-					text +
-					"</div>");
-			
+			this.getTxtTicker().setText(
+					"<div style=\"font-family: Tahoma, Calibri, monospace; font-size: 11pt;\">"
+							+ text + "</div>");
+
 			// Adjust the height
-			Double heightDouble = this.getTxtTicker().getPreferredSize().getHeight();
+			Double heightDouble = this.getTxtTicker().getPreferredSize()
+					.getHeight();
 			int height = heightDouble.intValue();
 			int x = this.getTxtTicker().getBounds().x;
 			int y = this.getTxtTicker().getBounds().y;
@@ -141,24 +150,31 @@ public class LiveTickerPanel extends JPanel {
 			}
 			this.add(getTxtTicker());
 		} catch (Exception e) {
-			// This would be a good place for logging - but normally nothing should happen here
+			// This would be a good place for logging - but normally nothing
+			// should happen here
 		}
 	}
-	
-	private String getRoomAllocationText (List<IntfRoomAllocation> roomAllocations) {
+
+	private String getRoomAllocationText(
+			List<IntfRoomAllocation> roomAllocations) {
 		String returnString = "";
-		
+
 		// Build the string for all allocations
 		for (IntfRoomAllocation roomAllocation : roomAllocations) {
-			returnString = 
-					returnString + ViewHelper.getTime(roomAllocation.getTime_()) + " Uhr<br />" +
-					"Raum: " + roomAllocation.getRoom_().getRoomNumber_() + "<br />" +
-					"<strong>" + roomAllocation.getCourse_().getCourseAcronym_() + "</strong> (" + roomAllocation.getCourse_().getCourseKind_() + ")<br /><br />";
- 		}
-		
+			returnString = returnString
+					+ ViewHelper.getTime(roomAllocation.getTime_())
+					+ " Uhr<br />" + "Raum: "
+					+ roomAllocation.getRoom_().getRoomNumber_() + "<br />"
+					+ "<strong>"
+					+ roomAllocation.getCourse_().getCourseAcronym_()
+					+ "</strong> ("
+					+ roomAllocation.getCourse_().getCourseKind_()
+					+ ")<br /><br />";
+		}
+
 		return returnString;
 	}
-	
+
 	private synchronized void scroll() {
 		// Get current size and scroll by one pixel if the text is too long
 		if (this.isTooLong_) {
@@ -167,40 +183,42 @@ public class LiveTickerPanel extends JPanel {
 				int y = this.getTxtTicker().getBounds().y;
 				int width = this.getTxtTicker().getBounds().width;
 				int height = this.getTxtTicker().getBounds().height;
-				if (-y == height-30) {
+				if (-y == height - 30) {
 					// Start from this low with a new scroll up
 					y = 490;
 				}
-				this.getTxtTicker().setBounds(x, y-1, width, height);
+				this.getTxtTicker().setBounds(x, y - 1, width, height);
 			} catch (Exception e) {
-				// This would be a good place for logging - but normally nothing should happen here
+				// This would be a good place for logging - but normally nothing
+				// should happen here
 			}
 		}
 	}
-	
+
 	/**
 	 * Swing worker to scroll in background
-	 *
+	 * 
 	 * @author hannes
 	 */
 	class ScrollTicker extends SwingWorker<Object, Object> {
-		
+
 		protected Object doInBackground() throws Exception {
-			// Wait a short time (3s) after the live ticker start before the scrolling starts
+			// Wait a short time (3s) after the live ticker start before the
+			// scrolling starts
 			try {
 				Thread.sleep(3000);
 			} catch (Exception e) {
-				
+
 			}
 
 			int cycles = 0;
-			
+
 			// Start the loop
 			while (true) {
 				try {
 					Thread.sleep(110);
 				} catch (Exception e) {
-					
+
 				}
 				// 545.5 cycles are 60 seconds (with 110ms per cycle)
 				if (cycles < 200) {
@@ -210,15 +228,15 @@ public class LiveTickerPanel extends JPanel {
 					LiveTickerPanel.this.refresh();
 					cycles = 0;
 				}
-					
+
 			}
 		}
 	}
-	
+
 	/**
-	 * Anti-aliasing for the text
-	 * Makes it a very little bit smoother while scrolling up.
-	 *
+	 * Anti-aliasing for the text Makes it a very little bit smoother while
+	 * scrolling up.
+	 * 
 	 * @author hannes
 	 */
 	public class JTextPaneAntiAliasing extends JTextPane {
@@ -226,9 +244,11 @@ public class LiveTickerPanel extends JPanel {
 
 		public void paintComponent(Graphics graphics) {
 			Graphics2D graphics2D = (Graphics2D) graphics;
-		    graphics2D.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
-		    graphics2D.setRenderingHint(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);
-		    super.paintComponent(graphics2D);
+			graphics2D.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING,
+					RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
+			graphics2D.setRenderingHint(RenderingHints.KEY_RENDERING,
+					RenderingHints.VALUE_RENDER_QUALITY);
+			super.paintComponent(graphics2D);
 		}
 	}
 }

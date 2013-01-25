@@ -25,7 +25,7 @@ import de.sfgmbh.comlayer.organisation.views.CounterproposalDialog;
  * Dialog to edit and create courses
  * 
  * @author christian
- *
+ * 
  */
 public class CourseDialog extends JDialog {
 
@@ -61,9 +61,10 @@ public class CourseDialog extends JDialog {
 		this.course_ = new Course();
 		this.init();
 	}
-	
+
 	/**
 	 * Create the dialog based on a variant
+	 * 
 	 * @param variant
 	 * @param course
 	 */
@@ -72,14 +73,18 @@ public class CourseDialog extends JDialog {
 		this.course_ = course;
 		this.init();
 	}
-	
+
 	private void init() {
 		if (this.variant_.equals("edit")) {
 			setTitle("Veranstaltung bearbeiten");
 		} else {
 			setTitle("Veranstaltung hinzufügen");
 		}
-		setIconImage(Toolkit.getDefaultToolkit().getImage(CounterproposalDialog.class.getResource("/de/sfgmbh/comlayer/core/images/HUT_klein.png")));
+		setIconImage(Toolkit
+				.getDefaultToolkit()
+				.getImage(
+						CounterproposalDialog.class
+								.getResource("/de/sfgmbh/comlayer/core/images/HUT_klein.png")));
 		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 		setModal(true);
 		setBounds(100, 100, 283, 362);
@@ -106,19 +111,24 @@ public class CourseDialog extends JDialog {
 		contentPanel_.add(getScrollPane());
 		contentPanel_.add(getChckbxPublic());
 		setLocationRelativeTo(null);
-		
+
 		// Customize if there is an old course and we are in edit mode
 		if (this.variant_.equals("edit")) {
 			this.getTxtAcronym().setText(this.course_.getCourseAcronym_());
 			this.getTxtName().setText(this.course_.getCourseName_());
 			this.getCmbboxKind().setSelectedItem(this.course_.getCourseKind_());
-			this.getCmbboxLecturer().setSelectedItem(this.course_.getLecturer_().getlName_());
+			this.getCmbboxLecturer().setSelectedItem(
+					this.course_.getLecturer_().getlName_());
 			this.getTxtSws().setText(Float.toString(this.course_.getSws_()));
-			this.getChckbxPublic().setSelected(this.course_.isLecturerEnabled_());
-			this.getTxtAttendees().setText(String.valueOf(this.course_.getExpectedAttendees_()));
-			this.getEditDescription().setText(this.course_.getCourseDescription_());
+			this.getChckbxPublic().setSelected(
+					this.course_.isLecturerEnabled_());
+			this.getTxtAttendees().setText(
+					String.valueOf(this.course_.getExpectedAttendees_()));
+			this.getEditDescription().setText(
+					this.course_.getCourseDescription_());
 		}
 	}
+
 	/**
 	 * 
 	 * @return the lblAcronym
@@ -130,6 +140,7 @@ public class CourseDialog extends JDialog {
 		}
 		return lblAcronym_;
 	}
+
 	/**
 	 * 
 	 * @return the lblName
@@ -141,6 +152,7 @@ public class CourseDialog extends JDialog {
 		}
 		return lblName_;
 	}
+
 	/**
 	 * 
 	 * @return the lblKind
@@ -152,6 +164,7 @@ public class CourseDialog extends JDialog {
 		}
 		return lblKind_;
 	}
+
 	/**
 	 * 
 	 * @return the lblSws
@@ -163,6 +176,7 @@ public class CourseDialog extends JDialog {
 		}
 		return lblSws_;
 	}
+
 	/**
 	 * 
 	 * @return the lblAttendees
@@ -174,6 +188,7 @@ public class CourseDialog extends JDialog {
 		}
 		return lblAttendees_;
 	}
+
 	/**
 	 * 
 	 * @return the lblLecturer
@@ -185,6 +200,7 @@ public class CourseDialog extends JDialog {
 		}
 		return lblLecturer_;
 	}
+
 	/**
 	 * 
 	 * @return the lblDescription
@@ -196,6 +212,7 @@ public class CourseDialog extends JDialog {
 		}
 		return lblDescription_;
 	}
+
 	/**
 	 * 
 	 * @return the btnCancel
@@ -203,12 +220,14 @@ public class CourseDialog extends JDialog {
 	public JButton getBtnCancel() {
 		if (btnCancel_ == null) {
 			btnCancel_ = new JButton("Abbrechen");
-			btnCancel_.setToolTipText("<html>Wenn Sie den Vorgang abbrechen wollen</html>");
+			btnCancel_
+					.setToolTipText("<html>Wenn Sie den Vorgang abbrechen wollen</html>");
 			btnCancel_.addActionListener(new CourseDialogBtns(this, "cancel"));
 			btnCancel_.setBounds(56, 284, 89, 23);
 		}
 		return btnCancel_;
 	}
+
 	/**
 	 * 
 	 * @return the btnSave
@@ -222,6 +241,7 @@ public class CourseDialog extends JDialog {
 		}
 		return btnSave_;
 	}
+
 	/**
 	 * 
 	 * @return the txtAcronym
@@ -229,12 +249,14 @@ public class CourseDialog extends JDialog {
 	public JTextField getTxtAcronym() {
 		if (txtAcronym_ == null) {
 			txtAcronym_ = new JTextField();
-			txtAcronym_.setToolTipText("<html>Bitte geben Sie eine <br>Kurzbezeichnung gemäß des<br> Lehrstuhlacronyms, <br>des Kürzels der Lehrveranstaltung sowie <br> des Abschlusses in folgender Form: ABCD-XYZ-M oder ABCD-XYZ-B</html>");
+			txtAcronym_
+					.setToolTipText("<html>Bitte geben Sie eine <br>Kurzbezeichnung gemäß des<br> Lehrstuhlacronyms, <br>des Kürzels der Lehrveranstaltung sowie <br> des Abschlusses in folgender Form: ABCD-XYZ-M oder ABCD-XYZ-B</html>");
 			txtAcronym_.setBounds(138, 19, 106, 20);
 			txtAcronym_.setColumns(10);
 		}
 		return txtAcronym_;
 	}
+
 	/**
 	 * 
 	 * @return the txtName
@@ -248,6 +270,7 @@ public class CourseDialog extends JDialog {
 		}
 		return txtName_;
 	}
+
 	/**
 	 * 
 	 * @return the cmbboxKind
@@ -260,6 +283,7 @@ public class CourseDialog extends JDialog {
 		}
 		return cmbboxKind_;
 	}
+
 	/**
 	 * 
 	 * @return the cmbboxLecturer
@@ -267,12 +291,15 @@ public class CourseDialog extends JDialog {
 	public JComboBox<String> getCmbboxLecturer() {
 		if (cmbboxLecturer_ == null) {
 			cmbboxLecturer_ = new JComboBox<String>();
-			cmbboxLecturer_.setToolTipText("<html>Wählen Sie den betreffenden <br>Dozenten für die Lehrveranstaltung aus</html>");
-			cmbboxLecturer_.setModel(new CmbboxFilterLecturer(cmbboxLecturer_, "select", true));
+			cmbboxLecturer_
+					.setToolTipText("<html>Wählen Sie den betreffenden <br>Dozenten für die Lehrveranstaltung aus</html>");
+			cmbboxLecturer_.setModel(new CmbboxFilterLecturer(cmbboxLecturer_,
+					"select", true));
 			cmbboxLecturer_.setBounds(138, 144, 106, 20);
 		}
 		return cmbboxLecturer_;
 	}
+
 	/**
 	 * 
 	 * @return the txtSws
@@ -286,6 +313,7 @@ public class CourseDialog extends JDialog {
 		}
 		return txtSws_;
 	}
+
 	/**
 	 * 
 	 * @return the txtAttendees
@@ -293,12 +321,14 @@ public class CourseDialog extends JDialog {
 	public JTextField getTxtAttendees() {
 		if (txtAttendees_ == null) {
 			txtAttendees_ = new JTextField();
-			txtAttendees_.setToolTipText("Geben Sie die erwartete Gesamtanzahl der Teilnehmer ein");
+			txtAttendees_
+					.setToolTipText("Geben Sie die erwartete Gesamtanzahl der Teilnehmer ein");
 			txtAttendees_.setBounds(138, 119, 106, 20);
 			txtAttendees_.setColumns(10);
 		}
 		return txtAttendees_;
 	}
+
 	/**
 	 * 
 	 * @return the scrollPane
@@ -311,6 +341,7 @@ public class CourseDialog extends JDialog {
 		}
 		return scrollPane_;
 	}
+
 	/**
 	 * 
 	 * @return the editDescription
@@ -318,18 +349,22 @@ public class CourseDialog extends JDialog {
 	public JEditorPane getEditDescription() {
 		if (editDescription_ == null) {
 			editDescription_ = new JEditorPane();
-			editDescription_.setToolTipText("<html>Geben Sie für die Studenten eine Beschreibung der Lehrveranstaltung ein</html>");
+			editDescription_
+					.setToolTipText("<html>Geben Sie für die Studenten eine Beschreibung der Lehrveranstaltung ein</html>");
 		}
 		return editDescription_;
 	}
+
 	/**
 	 * 
 	 * @return the chckbxPublic
 	 */
 	public JCheckBox getChckbxPublic() {
 		if (chckbxPublic_ == null) {
-			chckbxPublic_ = new JCheckBox("öffentlich (falls von Verwaltung freigegeben)");
-			chckbxPublic_.setToolTipText("<html>Wählen Sie hier, <br>wenn Sie im Anschluss an <br> eine erfolgreiche Raumanfrage <br> die Lehrveranstaltung automatisch<br>veröffentlichen wollen</html>");
+			chckbxPublic_ = new JCheckBox(
+					"öffentlich (falls von Verwaltung freigegeben)");
+			chckbxPublic_
+					.setToolTipText("<html>Wählen Sie hier, <br>wenn Sie im Anschluss an <br> eine erfolgreiche Raumanfrage <br> die Lehrveranstaltung automatisch<br>veröffentlichen wollen</html>");
 			chckbxPublic_.setBounds(16, 254, 244, 23);
 		}
 		return chckbxPublic_;
@@ -343,7 +378,8 @@ public class CourseDialog extends JDialog {
 	}
 
 	/**
-	 * @param course the course to set
+	 * @param course
+	 *            the course to set
 	 */
 	public void setCourse(IntfCourse course) {
 		this.course_ = course;

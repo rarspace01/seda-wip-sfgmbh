@@ -11,44 +11,55 @@ import de.sfgmbh.applayer.organisation.definitions.IntfCtrlRoom;
  * 
  * @author denis
  * @author hannes
- *
+ * 
  */
 public class CtrlRoom implements IntfCtrlRoom {
 
-	/* (non-Javadoc)
-	 * @see de.sfgmbh.applayer.organisation.controller.IntfCtrlRoom#addRoom(de.sfgmbh.applayer.core.model.Room)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * de.sfgmbh.applayer.organisation.controller.IntfCtrlRoom#addRoom(de.sfgmbh
+	 * .applayer.core.model.Room)
 	 */
 	@Override
-	public void addRoom(IntfRoom room){
-		
+	public void addRoom(IntfRoom room) {
+
 		AppModel.getInstance().getRepositoryRoom().save(room);
-		
+
 	}
-	
-	/* (non-Javadoc)
-	 * @see de.sfgmbh.applayer.organisation.controller.IntfCtrlRoom#getAllRooms()
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * de.sfgmbh.applayer.organisation.controller.IntfCtrlRoom#getAllRooms()
 	 */
 	@Override
-	public List<IntfRoom> getAllRooms(){
+	public List<IntfRoom> getAllRooms() {
 		return AppModel.getInstance().getRepositoryRoom().getAll();
 	}
-	
-	
-	/* (non-Javadoc)
-	 * @see de.sfgmbh.applayer.organisation.controller.IntfCtrlRoom#delete(de.sfgmbh.applayer.core.model.Room)
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * de.sfgmbh.applayer.organisation.controller.IntfCtrlRoom#delete(de.sfgmbh
+	 * .applayer.core.model.Room)
 	 */
 	@Override
-	public void delete(IntfRoom room){
+	public void delete(IntfRoom room) {
 		AppModel.getInstance().getRepositoryRoom().delete(room);
 	}
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see de.sfgmbh.applayer.organisation.definitions.IntfCtrlRoom#get(int)
 	 */
 	@Override
 	public IntfRoom get(int roomId) {
 		return AppModel.getInstance().getRepositoryRoom().getRoomById(roomId);
 	}
-	
+
 }

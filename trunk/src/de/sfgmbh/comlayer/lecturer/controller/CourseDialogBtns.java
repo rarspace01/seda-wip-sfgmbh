@@ -34,8 +34,9 @@ public class CourseDialogBtns implements ActionListener {
 	}
 
 	/**
-	 * Create the action listener based on an action string
-	 * Supported action strings are "cancel" and "save"
+	 * Create the action listener based on an action string Supported action
+	 * strings are "cancel" and "save"
+	 * 
 	 * @param motherDialog
 	 * @param action
 	 */
@@ -46,7 +47,9 @@ public class CourseDialogBtns implements ActionListener {
 
 	/*
 	 * (non-Javadoc)
-	 * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
+	 * 
+	 * @see
+	 * java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
 	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
@@ -89,11 +92,11 @@ public class CourseDialogBtns implements ActionListener {
 			} catch (Exception ex) {
 				exceptionHandler
 						.setNewException(
-								"Ihre Eingabe war ungültig. Überpfüen Sie diese bitte " +
-								"(stellen sie z. B. sicher,  dass Sie alle Felder ausgefüllt " +
-								"haben und dass Sie, wo dies vorgesehen ist, nur Zahlen ohne " +
-								"Buchstaben verwenden.",
-								"Fehler!", "error");
+								"Ihre Eingabe war ungültig. Überpfüen Sie diese bitte "
+										+ "(stellen sie z. B. sicher,  dass Sie alle Felder ausgefüllt "
+										+ "haben und dass Sie, wo dies vorgesehen ist, nur Zahlen ohne "
+										+ "Buchstaben verwenden.", "Fehler!",
+								"error");
 				return;
 			}
 

@@ -13,7 +13,7 @@ import de.sfgmbh.applayer.core.definitions.IntfUser;
  * Model for users
  * 
  * @author hannes
- *
+ * 
  */
 public class User implements IntfUser {
 
@@ -30,7 +30,7 @@ public class User implements IntfUser {
 	private IntfChair chair_;
 	private int newPasswordLength_;
 	private boolean newPassword_;
-	
+
 	/**
 	 * Create a default user
 	 */
@@ -39,7 +39,9 @@ public class User implements IntfUser {
 		newPassword_ = false;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see de.sfgmbh.applayer.core.model.IntfUser#getUserId_()
 	 */
 	@Override
@@ -47,7 +49,9 @@ public class User implements IntfUser {
 		return userId_;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see de.sfgmbh.applayer.core.model.IntfUser#setUserId_(int)
 	 */
 	@Override
@@ -55,7 +59,9 @@ public class User implements IntfUser {
 		this.userId_ = userId_;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see de.sfgmbh.applayer.core.model.IntfUser#getLogin_()
 	 */
 	@Override
@@ -63,7 +69,9 @@ public class User implements IntfUser {
 		return login_;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see de.sfgmbh.applayer.core.model.IntfUser#setLogin_(java.lang.String)
 	 */
 	@Override
@@ -71,7 +79,9 @@ public class User implements IntfUser {
 		this.login_ = this.cleanString(login_);
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see de.sfgmbh.applayer.core.model.IntfUser#getPass_()
 	 */
 	@Override
@@ -79,7 +89,9 @@ public class User implements IntfUser {
 		return pass_;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see de.sfgmbh.applayer.core.model.IntfUser#setPass_(java.lang.String)
 	 */
 	@Override
@@ -87,7 +99,9 @@ public class User implements IntfUser {
 		this.pass_ = pass_;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see de.sfgmbh.applayer.core.model.IntfUser#getSalt_()
 	 */
 	@Override
@@ -95,7 +109,9 @@ public class User implements IntfUser {
 		return salt_;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see de.sfgmbh.applayer.core.model.IntfUser#setSalt_(java.lang.String)
 	 */
 	@Override
@@ -103,7 +119,9 @@ public class User implements IntfUser {
 		this.salt_ = salt_;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see de.sfgmbh.applayer.core.model.IntfUser#getMail_()
 	 */
 	@Override
@@ -111,7 +129,9 @@ public class User implements IntfUser {
 		return mail_;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see de.sfgmbh.applayer.core.model.IntfUser#setMail_(java.lang.String)
 	 */
 	@Override
@@ -119,7 +139,9 @@ public class User implements IntfUser {
 		this.mail_ = mail_;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see de.sfgmbh.applayer.core.model.IntfUser#getClass_()
 	 */
 	@Override
@@ -127,21 +149,27 @@ public class User implements IntfUser {
 		return class_;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see de.sfgmbh.applayer.core.model.IntfUser#setClass_(java.lang.String)
 	 */
 	@Override
 	public void setClass_(String class_) {
 		if (class_.equals("Verwaltung") || class_.equals("orga")) {
 			this.class_ = "orga";
-		} else if (class_.equals("Dozenten") || class_.equals("Dozent") || class_.equals("lecturer")) {
+		} else if (class_.equals("Dozenten") || class_.equals("Dozent")
+				|| class_.equals("lecturer")) {
 			this.class_ = "lecturer";
-		} else if (class_.equals("Studenten") || class_.equals("Student") || class_.equals("stud")) {
+		} else if (class_.equals("Studenten") || class_.equals("Student")
+				|| class_.equals("stud")) {
 			this.class_ = "stud";
 		}
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see de.sfgmbh.applayer.core.model.IntfUser#getfName_()
 	 */
 	@Override
@@ -149,7 +177,9 @@ public class User implements IntfUser {
 		return firstName_;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see de.sfgmbh.applayer.core.model.IntfUser#setfName_(java.lang.String)
 	 */
 	@Override
@@ -157,7 +187,9 @@ public class User implements IntfUser {
 		this.firstName_ = this.cleanString(fName_);
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see de.sfgmbh.applayer.core.model.IntfUser#getlName_()
 	 */
 	@Override
@@ -165,7 +197,9 @@ public class User implements IntfUser {
 		return lastName_;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see de.sfgmbh.applayer.core.model.IntfUser#setlName_(java.lang.String)
 	 */
 	@Override
@@ -173,7 +207,9 @@ public class User implements IntfUser {
 		this.lastName_ = this.cleanString(lName_);
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see de.sfgmbh.applayer.core.model.IntfUser#getLastLogin_()
 	 */
 	@Override
@@ -181,15 +217,19 @@ public class User implements IntfUser {
 		return lastLogin_;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see de.sfgmbh.applayer.core.model.IntfUser#setLastLogin_(long)
 	 */
 	@Override
 	public void setLastLogin_(long lastLogin_) {
 		this.lastLogin_ = lastLogin_;
 	}
-	
-	/* (non-Javadoc)
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see de.sfgmbh.applayer.core.model.IntfUser#isDisabled_()
 	 */
 	@Override
@@ -197,88 +237,101 @@ public class User implements IntfUser {
 		return disabled_;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see de.sfgmbh.applayer.core.model.IntfUser#setDisabled_(boolean)
 	 */
 	@Override
 	public void setDisabled_(boolean disabled_) {
 		this.disabled_ = disabled_;
 	}
-	
-	/* (non-Javadoc)
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see de.sfgmbh.applayer.core.model.IntfUser#getChair_()
 	 */
 	@Override
 	public IntfChair getChair_() {
 		return chair_;
 	}
-	
-	/* (non-Javadoc)
-	 * @see de.sfgmbh.applayer.core.model.IntfUser#setChair_(de.sfgmbh.applayer.core.definitions.IntfChair)
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * de.sfgmbh.applayer.core.model.IntfUser#setChair_(de.sfgmbh.applayer.core
+	 * .definitions.IntfChair)
 	 */
 	@Override
 	public void setChair_(IntfChair chair_) {
 		this.chair_ = chair_;
 	}
 
-	/* (non-Javadoc)
-	 * @see de.sfgmbh.applayer.core.model.IntfUser#setPwHashAndSalt(java.lang.String)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * de.sfgmbh.applayer.core.model.IntfUser#setPwHashAndSalt(java.lang.String)
 	 */
 	@Override
-	public void setPasswordHashAndSalt (String pw) {
-		
+	public void setPasswordHashAndSalt(String pw) {
+
 		SecureRandom rand = new SecureRandom();
-		
+
 		this.salt_ = new BigInteger(32, rand).toString(32);
-		
+
 		String hashed = this.getSha256(this.salt_ + pw);
-		
+
 		if (hashed != null) {
 			this.pass_ = hashed;
 		}
-		
+
 		this.newPasswordLength_ = pw.length();
 		this.newPassword_ = true;
 	}
-	
-	/* (non-Javadoc)
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see de.sfgmbh.applayer.core.model.IntfUser#checkPw(java.lang.String)
 	 */
 	@Override
-	public boolean checkPassword (String pw) {
-		
+	public boolean checkPassword(String pw) {
+
 		String checkPhrase = this.salt_ + pw;
 		String checksum = this.getSha256(checkPhrase);
-		
+
 		if (checksum.equals(this.pass_)) {
 			return true;
 		}
-		
+
 		return false;
 	}
-	
-	private String getSha256 (String string) {
-		
-		MessageDigest messageDigest ;
-		
+
+	private String getSha256(String string) {
+
+		MessageDigest messageDigest;
+
 		try {
 			messageDigest = MessageDigest.getInstance("SHA-256");
 			byte[] hash = messageDigest.digest(string.getBytes());
-			
-		    StringBuffer sb = new StringBuffer();
-		    for(byte b : hash) {
-		    	sb.append(String.format("%02x", b));
-		    }
 
-		    return sb.toString();
-		    
+			StringBuffer sb = new StringBuffer();
+			for (byte b : hash) {
+				sb.append(String.format("%02x", b));
+			}
+
+			return sb.toString();
+
 		} catch (NoSuchAlgorithmException e) {
-			
+
 		}
-		
+
 		return null;
 	}
-	
+
 	private String cleanString(String string) {
 		String cleanString = string.trim();
 		if (cleanString.startsWith("\"") || cleanString.startsWith("'")) {
@@ -289,8 +342,10 @@ public class User implements IntfUser {
 		}
 		return cleanString;
 	}
-	
-	/* (non-Javadoc)
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see de.sfgmbh.applayer.core.model.IntfUser#save()
 	 */
 	@Override
@@ -300,61 +355,75 @@ public class User implements IntfUser {
 		}
 		return false;
 	}
-	
-	/* (non-Javadoc)
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see de.sfgmbh.applayer.core.model.IntfUser#validate()
 	 */
 	@Override
 	public boolean validate() {
 		boolean check = true;
 		String message = "";
-		Pattern validEmail = Pattern.compile("^[A-Za-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[A-Za-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[A-Za-z0-9](?:[A-Za-z0-9-]*[A-Za-z0-9])?\\.)+[A-Za-z0-9](?:[A-Za-z0-9-]*[A-Za-z0-9])?$");
-		
-		if (this.userId_ < -1 ) {
-			message = message + "Der Benutzer hat keine gültige Benutzer ID<br/>";
+		Pattern validEmail = Pattern
+				.compile("^[A-Za-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[A-Za-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[A-Za-z0-9](?:[A-Za-z0-9-]*[A-Za-z0-9])?\\.)+[A-Za-z0-9](?:[A-Za-z0-9-]*[A-Za-z0-9])?$");
+
+		if (this.userId_ < -1) {
+			message = message
+					+ "Der Benutzer hat keine gültige Benutzer ID<br/>";
 			check = false;
 		}
 		if (this.login_.length() > 32 || this.login_.length() < 3) {
-			message = message + "Die Benutzerkennung muss zwischen 3 und 32 Zeichen lang sein!<br />";
+			message = message
+					+ "Die Benutzerkennung muss zwischen 3 und 32 Zeichen lang sein!<br />";
 			check = false;
 		}
-		if (this.mail_.length() > 64 ) {
-			message = message + "Die E-Mail Adresse darf maximal 64 Zeichen lang sein!<br />";
+		if (this.mail_.length() > 64) {
+			message = message
+					+ "Die E-Mail Adresse darf maximal 64 Zeichen lang sein!<br />";
 			check = false;
 		}
 		if (!validEmail.matcher(this.mail_).matches()) {
 			message = message + "Die E-Mail Adresse ist ungültig!<br />";
 			check = false;
 		}
-		if (this.firstName_.length() > 64 ) {
-			message = message + "Der Vorname darf maximal 64 Zeichen lang sein!<br />";
+		if (this.firstName_.length() > 64) {
+			message = message
+					+ "Der Vorname darf maximal 64 Zeichen lang sein!<br />";
 			check = false;
 		}
 		if (this.lastName_.length() > 64 || this.lastName_.length() < 1) {
-			message = message + "Der Nachname muss zwischen 1 und 64 Zeichen lang sein!<br />";
+			message = message
+					+ "Der Nachname muss zwischen 1 und 64 Zeichen lang sein!<br />";
 			check = false;
 		}
-		if (!this.class_.equals("orga") && !this.class_.equals("lecturer") && !this.class_.equals("stud") ) {
-			message = message + "Der Benutzer ist einer ungültigen Benutzerklasse zugeordnet!<br />";
+		if (!this.class_.equals("orga") && !this.class_.equals("lecturer")
+				&& !this.class_.equals("stud")) {
+			message = message
+					+ "Der Benutzer ist einer ungültigen Benutzerklasse zugeordnet!<br />";
 			check = false;
 		}
 		if (this.class_.equals("lecturer") && this.chair_ == null) {
-			message = message + "Einem Dozenten muss ein Lehrstuhl zugeordnet werden!<br />";
+			message = message
+					+ "Einem Dozenten muss ein Lehrstuhl zugeordnet werden!<br />";
 			check = false;
 		}
 		if (this.class_.equals("orga") && this.chair_ != null) {
-			message = message + "Ein Verwaltungsmitglied kann keinen Lehrstuhl haben!<br />";
+			message = message
+					+ "Ein Verwaltungsmitglied kann keinen Lehrstuhl haben!<br />";
 			check = false;
 		}
 		if (this.newPassword_ && this.newPasswordLength_ < 8) {
-			message = message + "Ein neues Passwort muss mindestens 8 Zeichen lang sein!<br />";
+			message = message
+					+ "Ein neues Passwort muss mindestens 8 Zeichen lang sein!<br />";
 			check = false;
 		}
-		
+
 		if (check) {
 			return true;
 		} else {
-			AppModel.getInstance().getExceptionHandler().setNewException(message, "Fehler!");
+			AppModel.getInstance().getExceptionHandler()
+					.setNewException(message, "Fehler!");
 			return false;
 		}
 	}

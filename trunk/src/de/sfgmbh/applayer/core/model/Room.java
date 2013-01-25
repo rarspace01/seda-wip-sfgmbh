@@ -37,9 +37,10 @@ public class Room implements IntfRoom {
 		chalkboards_ = 0;
 		whiteboards_ = 0;
 	}
-	
+
 	/**
 	 * Create a room with specific values
+	 * 
 	 * @param roomId_
 	 * @param roomNumber_
 	 * @param buildingId_
@@ -69,9 +70,9 @@ public class Room implements IntfRoom {
 		this.whiteboards_ = whiteboards_;
 	}
 
-
-
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see de.sfgmbh.applayer.core.model.IntfRoom#getRoomId_()
 	 */
 	@Override
@@ -79,7 +80,9 @@ public class Room implements IntfRoom {
 		return roomId_;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see de.sfgmbh.applayer.core.model.IntfRoom#setRoomId_(int)
 	 */
 	@Override
@@ -87,7 +90,9 @@ public class Room implements IntfRoom {
 		this.roomId_ = roomId_;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see de.sfgmbh.applayer.core.model.IntfRoom#getRoomNumber_()
 	 */
 	@Override
@@ -95,15 +100,20 @@ public class Room implements IntfRoom {
 		return roomNumber_;
 	}
 
-	/* (non-Javadoc)
-	 * @see de.sfgmbh.applayer.core.model.IntfRoom#setRoomNumber_(java.lang.String)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * de.sfgmbh.applayer.core.model.IntfRoom#setRoomNumber_(java.lang.String)
 	 */
 	@Override
 	public void setRoomNumber_(String roomNumber_) {
 		this.roomNumber_ = roomNumber_;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see de.sfgmbh.applayer.core.model.IntfRoom#getBuildingId_()
 	 */
 	@Override
@@ -111,7 +121,9 @@ public class Room implements IntfRoom {
 		return buildingId_;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see de.sfgmbh.applayer.core.model.IntfRoom#setBuildingId_(int)
 	 */
 	@Override
@@ -119,7 +131,9 @@ public class Room implements IntfRoom {
 		this.buildingId_ = buildingId_;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see de.sfgmbh.applayer.core.model.IntfRoom#getLevel_()
 	 */
 	@Override
@@ -127,7 +141,9 @@ public class Room implements IntfRoom {
 		return level_;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see de.sfgmbh.applayer.core.model.IntfRoom#setLevel_(java.lang.String)
 	 */
 	@Override
@@ -135,7 +151,9 @@ public class Room implements IntfRoom {
 		this.level_ = level_;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see de.sfgmbh.applayer.core.model.IntfRoom#getSeats_()
 	 */
 	@Override
@@ -143,7 +161,9 @@ public class Room implements IntfRoom {
 		return seats_;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see de.sfgmbh.applayer.core.model.IntfRoom#setSeats_(int)
 	 */
 	@Override
@@ -151,7 +171,9 @@ public class Room implements IntfRoom {
 		this.seats_ = seats_;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see de.sfgmbh.applayer.core.model.IntfRoom#getPcseats_()
 	 */
 	@Override
@@ -159,7 +181,9 @@ public class Room implements IntfRoom {
 		return pcSeats_;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see de.sfgmbh.applayer.core.model.IntfRoom#setPcseats_(int)
 	 */
 	@Override
@@ -167,7 +191,9 @@ public class Room implements IntfRoom {
 		this.pcSeats_ = pcseats_;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see de.sfgmbh.applayer.core.model.IntfRoom#getBeamer_()
 	 */
 	@Override
@@ -175,7 +201,9 @@ public class Room implements IntfRoom {
 		return beamer_;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see de.sfgmbh.applayer.core.model.IntfRoom#setBeamer_(int)
 	 */
 	@Override
@@ -183,7 +211,9 @@ public class Room implements IntfRoom {
 		this.beamer_ = beamer_;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see de.sfgmbh.applayer.core.model.IntfRoom#getVisualizer_()
 	 */
 	@Override
@@ -191,7 +221,9 @@ public class Room implements IntfRoom {
 		return visualizer_;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see de.sfgmbh.applayer.core.model.IntfRoom#setVisualizer_(int)
 	 */
 	@Override
@@ -199,7 +231,9 @@ public class Room implements IntfRoom {
 		this.visualizer_ = visualizer_;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see de.sfgmbh.applayer.core.model.IntfRoom#getOverheads_()
 	 */
 	@Override
@@ -207,7 +241,9 @@ public class Room implements IntfRoom {
 		return overheads_;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see de.sfgmbh.applayer.core.model.IntfRoom#setOverheads_(int)
 	 */
 	@Override
@@ -215,7 +251,9 @@ public class Room implements IntfRoom {
 		this.overheads_ = overheads_;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see de.sfgmbh.applayer.core.model.IntfRoom#getChalkboards_()
 	 */
 	@Override
@@ -223,7 +261,9 @@ public class Room implements IntfRoom {
 		return chalkboards_;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see de.sfgmbh.applayer.core.model.IntfRoom#setChalkboards_(int)
 	 */
 	@Override
@@ -231,7 +271,9 @@ public class Room implements IntfRoom {
 		this.chalkboards_ = chalkboards_;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see de.sfgmbh.applayer.core.model.IntfRoom#getWhiteboards_()
 	 */
 	@Override
@@ -239,7 +281,9 @@ public class Room implements IntfRoom {
 		return whiteboards_;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see de.sfgmbh.applayer.core.model.IntfRoom#setWhiteboards_(int)
 	 */
 	@Override

@@ -32,8 +32,9 @@ public class ProfessorshipTimetableTabBtn implements ActionListener {
 	}
 
 	/**
-	 * Create the action listener based on an action string
-	 * Supported action strings are "createpdf"
+	 * Create the action listener based on an action string Supported action
+	 * strings are "createpdf"
+	 * 
 	 * @param action
 	 */
 	public ProfessorshipTimetableTabBtn(String action) {
@@ -46,7 +47,7 @@ public class ProfessorshipTimetableTabBtn implements ActionListener {
 		if (this.navAction_.equals("createpdf")) {
 
 			IntfCtrlPdf pdfController;
-			
+
 			String sFilename = "";
 			String chairTitle = "";
 			String semester = "";
@@ -63,7 +64,8 @@ public class ProfessorshipTimetableTabBtn implements ActionListener {
 				// if the user hasn't typed .pdf, we'll do it for him
 				if (!fileChooser.getSelectedFile().getPath().toLowerCase()
 						.endsWith(".pdf")) {
-					fileChooser.setSelectedFile(new File(fileChooser.getSelectedFile() + ".pdf"));
+					fileChooser.setSelectedFile(new File(fileChooser
+							.getSelectedFile() + ".pdf"));
 				}
 				// setting the chairtitle and semster as the header for the
 				// PDF-document
@@ -72,15 +74,15 @@ public class ProfessorshipTimetableTabBtn implements ActionListener {
 				semester = ViewManager.getInstance().getOrgaRoomtableTab()
 						.getComboBoxSemesterFilter().getSelectedItem()
 						.toString();
-				
-				//set the PDF
-				pdfController=new CtrlPdf(fileChooser.getSelectedFile()
+
+				// set the PDF
+				pdfController = new CtrlPdf(fileChooser.getSelectedFile()
 						.getAbsolutePath());
 				// adding the content to the pdf
-				pdfController.addContent("Lehrstuhl: " + chairTitle + " - Semester: "
-						+ semester, ViewManager.getInstance()
+				pdfController.addContent("Lehrstuhl: " + chairTitle
+						+ " - Semester: " + semester, ViewManager.getInstance()
 						.getChairTimetableTab().getPanel_());
-				//close the PDF file
+				// close the PDF file
 				pdfController.close();
 			}
 

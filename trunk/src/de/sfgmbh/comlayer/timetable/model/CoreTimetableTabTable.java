@@ -31,6 +31,7 @@ public class CoreTimetableTabTable extends DefaultTableModel implements
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see javax.swing.table.DefaultTableModel#isCellEditable(int, int)
 	 */
 	@Override
@@ -40,6 +41,7 @@ public class CoreTimetableTabTable extends DefaultTableModel implements
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see de.sfgmbh.applayer.core.definitions.IntfAppObserver#change()
 	 */
 	@Override

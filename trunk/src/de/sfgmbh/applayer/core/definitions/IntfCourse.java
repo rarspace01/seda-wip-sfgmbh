@@ -4,8 +4,9 @@ import de.sfgmbh.applayer.core.model.Course;
 
 /**
  * Interface for the {@link Course} object
+ * 
  * @author hannes
- *
+ * 
  */
 public interface IntfCourse {
 
@@ -15,7 +16,8 @@ public interface IntfCourse {
 	public abstract int getCourseId_();
 
 	/**
-	 * @param courseId_ the courseId_ to set
+	 * @param courseId_
+	 *            the courseId_ to set
 	 */
 	public abstract void setCourseId_(int courseId_);
 
@@ -25,7 +27,8 @@ public interface IntfCourse {
 	public abstract IntfUser getLecturer_();
 
 	/**
-	 * @param lecturer_ the lecturer_ to set
+	 * @param lecturer_
+	 *            the lecturer_ to set
 	 */
 	public abstract void setLecturer_(IntfUser lecturer_);
 
@@ -35,7 +38,8 @@ public interface IntfCourse {
 	public abstract String getCourseAcronym_();
 
 	/**
-	 * @param courseAcronym_ the courseAcronym_ to set
+	 * @param courseAcronym_
+	 *            the courseAcronym_ to set
 	 */
 	public abstract void setCourseAcronym_(String courseAcronym_);
 
@@ -45,7 +49,8 @@ public interface IntfCourse {
 	public abstract String getCourseName_();
 
 	/**
-	 * @param courseName_ the courseName_ to set
+	 * @param courseName_
+	 *            the courseName_ to set
 	 */
 	public abstract void setCourseName_(String courseName_);
 
@@ -55,7 +60,8 @@ public interface IntfCourse {
 	public abstract Float getSws_();
 
 	/**
-	 * @param sws_ the sws_ to set
+	 * @param sws_
+	 *            the sws_ to set
 	 */
 	public abstract void setSws_(Float sws_);
 
@@ -68,7 +74,9 @@ public interface IntfCourse {
 	 * Set the kind of a course.<br>
 	 * Valid course kinds currently are:<br>
 	 * "Vorlesung", "Übung" and "Tutorium" where "Vorlesung" is the default
-	 * @param courseKind_ the courseKind_ to set
+	 * 
+	 * @param courseKind_
+	 *            the courseKind_ to set
 	 */
 	public abstract void setCourseKind_(String courseKind_);
 
@@ -78,7 +86,8 @@ public interface IntfCourse {
 	public abstract String getCourseDescription_();
 
 	/**
-	 * @param courseDescription_ the courseDescription_ to set
+	 * @param courseDescription_
+	 *            the courseDescription_ to set
 	 */
 	public abstract void setCourseDescription_(String courseDescription_);
 
@@ -88,7 +97,8 @@ public interface IntfCourse {
 	public abstract int getExpectedAttendees_();
 
 	/**
-	 * @param expectedAttendees_ the expectedAttendees_ to set
+	 * @param expectedAttendees_
+	 *            the expectedAttendees_ to set
 	 */
 	public abstract void setExpectedAttendees_(int expectedAttendees_);
 
@@ -98,12 +108,15 @@ public interface IntfCourse {
 	public abstract boolean isLecturerEnabled_();
 
 	/**
-	 * @param lecturerEnabled_ the lecturerEnabled_ to set
+	 * @param lecturerEnabled_
+	 *            the lecturerEnabled_ to set
 	 */
 	public abstract void setLecturerEnabled_(boolean lecturerEnabled_);
 
 	/**
-	 * Validates the course object, calls an info dialog when one check fails and returns true if all checks are passed
+	 * Validates the course object, calls an info dialog when one check fails
+	 * and returns true if all checks are passed
+	 * 
 	 * @return true if all check attributes are valid
 	 */
 	public abstract boolean validate();

@@ -2,6 +2,7 @@ package de.sfgmbh.datalayer.core.definitions;
 
 import java.util.HashMap;
 import java.util.List;
+
 /**
  * 
  * @author denis
@@ -9,6 +10,6 @@ import java.util.List;
  */
 public interface IntfDataFilter {
 
-	public List<?> getByFilter(HashMap<String, String> filter); 
-	
+	public List<?> getByFilter(HashMap<String, String> filter);
+
 }

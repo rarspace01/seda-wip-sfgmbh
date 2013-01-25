@@ -32,7 +32,7 @@ import de.sfgmbh.comlayer.organisation.controller.RoomTabCmbboxFilter;
  * 
  * @author anna
  * @author denis
- *
+ * 
  */
 public class RoomTab extends JPanel {
 
@@ -52,7 +52,7 @@ public class RoomTab extends JPanel {
 	private JLabel lblRoom_;
 	private JTextField txtRoom_;
 	private TableRowSorter<TableModel> rowSorter_;
-	
+
 	/**
 	 * Create the frame.
 	 */
@@ -64,7 +64,10 @@ public class RoomTab extends JPanel {
 	private void initialize() {
 		setMinimumSize(new Dimension(100, 10));
 		setMaximumSize(new Dimension(100, 32767));
-		setLayout(new MigLayout("", "[140px:140px:140px][10px:10px:10px][grow][grow 118][grow][grow][100px:100px:100px,right]", "[][][grow]"));
+		setLayout(new MigLayout(
+				"",
+				"[140px:140px:140px][10px:10px:10px][grow][grow 118][grow][grow][100px:100px:100px,right]",
+				"[][][grow]"));
 
 		JLabel lblRoommanagement = new JLabel("Raumverwaltung");
 		lblRoommanagement.setFont(new Font("SansSerif", Font.BOLD, 13));
@@ -81,15 +84,16 @@ public class RoomTab extends JPanel {
 		add(lblPcseats_, "cell 5 0,aligny bottom");
 
 		comboBoxLevel_ = new JComboBox<String>();
-		comboBoxLevel_.setToolTipText("<html>Sie können die Liste der <br> Räume über diesen<br>Filter begrenzen</html>");
+		comboBoxLevel_
+				.setToolTipText("<html>Sie können die Liste der <br> Räume über diesen<br>Filter begrenzen</html>");
 		comboBoxLevel_.setModel(new CmbboxFilterLevel(comboBoxLevel_));
 		comboBoxLevel_.addActionListener(new RoomTabCmbboxFilter());
 
-
-		
 		JLabel lblUniIcon_ = new JLabel();
-		lblUniIcon_.setIcon(new ImageIcon(BaseTab.class
-				.getResource("/de/sfgmbh/comlayer/core/images/UniBA_logo.png")));
+		lblUniIcon_
+				.setIcon(new ImageIcon(
+						BaseTab.class
+								.getResource("/de/sfgmbh/comlayer/core/images/UniBA_logo.png")));
 		lblUniIcon_.setMaximumSize(new Dimension(50, 50));
 		add(lblUniIcon_, "cell 6 0,alignx right,aligny top");
 
@@ -98,7 +102,8 @@ public class RoomTab extends JPanel {
 		add(comboBoxLevel_, "cell 2 1,growx");
 
 		textFieldSeats_ = new JTextField();
-		textFieldSeats_.setToolTipText("<html>Sie können die Liste der <br> Räume über diesen<br>Filter begrenzen</html>");
+		textFieldSeats_
+				.setToolTipText("<html>Sie können die Liste der <br> Räume über diesen<br>Filter begrenzen</html>");
 		textFieldSeats_.setText("0");
 		textFieldSeats_.addActionListener(new RoomTabCmbboxFilter());
 		add(getTxtRoom(), "cell 3 1,growx");
@@ -106,13 +111,15 @@ public class RoomTab extends JPanel {
 		textFieldSeats_.setColumns(10);
 
 		textFieldPCSeats_ = new JTextField();
-		textFieldPCSeats_.setToolTipText("<html>Sie können die Liste der <br> Räume über diesen<br>Filter begrenzen</html>");
+		textFieldPCSeats_
+				.setToolTipText("<html>Sie können die Liste der <br> Räume über diesen<br>Filter begrenzen</html>");
 		textFieldPCSeats_.setText("0");
 		textFieldPCSeats_.addActionListener(new RoomTabCmbboxFilter());
 		textFieldPCSeats_.setColumns(10);
 		add(textFieldPCSeats_, "cell 5 1,growx");
 
-		add(ViewManager.getInstance().getCoreLiveTickerPanel(), "cell 0 2,grow, aligny top");
+		add(ViewManager.getInstance().getCoreLiveTickerPanel(),
+				"cell 0 2,grow, aligny top");
 
 		organisationTableScrollPane_ = new JScrollPane();
 		organisationTableScrollPane_.setToolTipText("");
@@ -133,17 +140,14 @@ public class RoomTab extends JPanel {
 		roommanagementTable_.getColumnModel().removeColumn(
 				roommanagementTable_.getColumn("roomid"));
 
-		
-
 		roommanagementTable_.setShowVerticalLines(false);
 		roommanagementTable_.setBackground(SystemColor.activeCaption);
 		organisationTableScrollPane_.setViewportView(roommanagementTable_);
-		
+
 		// Enable table sorting for the model
 		rowSorter_ = new TableRowSorter<TableModel>();
 		roommanagementTable_.setRowSorter(rowSorter_);
-		rowSorter_.setModel(ViewManager.getInstance()
-				.getOrgaRoomTableModel());
+		rowSorter_.setModel(ViewManager.getInstance().getOrgaRoomTableModel());
 		rowSorter_.sort();
 
 		buttonPanel_ = new JPanel();
@@ -159,26 +163,29 @@ public class RoomTab extends JPanel {
 		buttonPanel_.add(btnEdit_);
 
 		JButton btnBearbeiten = new JButton("bearbeiten");
-		btnBearbeiten.setToolTipText("<html>Selektieren Sie einen Raum <br> und klicken Sie hier um dessen Eigenschaften zu ändern</html>");
+		btnBearbeiten
+				.setToolTipText("<html>Selektieren Sie einen Raum <br> und klicken Sie hier um dessen Eigenschaften zu ändern</html>");
 		btnBearbeiten.addActionListener(new RoomTabActionListener("edit"));
 		btnBearbeiten.setBounds(6, 45, 88, 23);
 		buttonPanel_.add(btnBearbeiten);
 
 		btnDelete_ = new JButton("l\u00F6schen");
-		btnDelete_.setToolTipText("<html>Selektieren Sie einen Raum<br> um ihn zu löschen</html>");
+		btnDelete_
+				.setToolTipText("<html>Selektieren Sie einen Raum<br> um ihn zu löschen</html>");
 		btnDelete_.addActionListener(new RoomTabActionListener("del"));
 		btnDelete_.setBounds(6, 79, 88, 23);
 		buttonPanel_.add(btnDelete_);
 
 		btnRoomplanPrint_ = new JButton("Raumplan");
-		btnRoomplanPrint_.setToolTipText("<html>Selektieren Sie einen Raum<br> und klicken Sie hier um einen Wochenplan <br>zur Belegung des Raumes zu erhalten</html>");
 		btnRoomplanPrint_
-				.addActionListener(new RoomTabActionListener("plan"));
+				.setToolTipText("<html>Selektieren Sie einen Raum<br> und klicken Sie hier um einen Wochenplan <br>zur Belegung des Raumes zu erhalten</html>");
+		btnRoomplanPrint_.addActionListener(new RoomTabActionListener("plan"));
 		btnRoomplanPrint_.setBounds(6, 145, 88, 23);
 		buttonPanel_.add(btnRoomplanPrint_);
-		
+
 		this.loadRooms();
 	}
+
 	/**
 	 * loads all the {@link Room}s through the interface to the tablemodel
 	 */
@@ -186,10 +193,11 @@ public class RoomTab extends JPanel {
 
 		IntfCtrlRoom ctrlRoom = new CtrlRoom();
 
-		//reload Table modell
+		// reload Table modell
 		ViewManager.getInstance().getOrgaRoomTableModel()
 				.addRooms(ctrlRoom.getAllRooms());
 	}
+
 	/**
 	 * 
 	 * @return the raumverwaltungTable
@@ -218,6 +226,7 @@ public class RoomTab extends JPanel {
 	public JComboBox<String> getComboBoxLevel() {
 		return comboBoxLevel_;
 	}
+
 	/**
 	 * 
 	 * @return the lblRoom
@@ -228,6 +237,7 @@ public class RoomTab extends JPanel {
 		}
 		return lblRoom_;
 	}
+
 	/**
 	 * 
 	 * @return the txtRoom

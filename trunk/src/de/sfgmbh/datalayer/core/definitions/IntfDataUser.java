@@ -7,8 +7,9 @@ import de.sfgmbh.applayer.core.model.User;
 
 /**
  * Interface for handling the user table
+ * 
  * @author denis
- *
+ * 
  */
 public interface IntfDataUser {
 
@@ -25,9 +26,10 @@ public interface IntfDataUser {
 	 * @return User object
 	 */
 	public IntfUser get(int userId);
-	
+
 	/**
 	 * get {@link User} by Loin
+	 * 
 	 * @param login
 	 * @return user - {@link User}
 	 */
@@ -35,11 +37,12 @@ public interface IntfDataUser {
 
 	/**
 	 * 
-	 * @param searchQry - Search pattern
+	 * @param searchQry
+	 *            - Search pattern
 	 * @return User objects
 	 */
 	public List<User> search(String searchQry);
-	
+
 	/**
 	 * 
 	 * @param toBeDeletedUser
@@ -49,10 +52,12 @@ public interface IntfDataUser {
 	public boolean delete(IntfUser toBeDeletedUser);
 
 	/**
-	 * Saves a new user in the DB if the user doesn't exist already and updates an existing user in the DB otherwise
+	 * Saves a new user in the DB if the user doesn't exist already and updates
+	 * an existing user in the DB otherwise
+	 * 
 	 * @param toBeSavedUser
 	 * @return true on success
 	 */
 	public boolean save(IntfUser toBeSavedUser);
-	
+
 }

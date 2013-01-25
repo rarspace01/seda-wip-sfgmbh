@@ -76,14 +76,10 @@ public class UserTabTable extends DefaultTableModel implements IntfAppObserver {
 
 			// Build the row...
 			try {
-				Object[] row = { 
-						user.getLogin_(), 
-						user.getMail_(),
-						ViewHelper.getUserClass(user.getClass_()), 
-						chair,
-						ViewHelper.getGlobalDateFormat(date), 
-						ViewHelper.getTextForBoolean(user.isDisabled_()),
-						user };
+				Object[] row = { user.getLogin_(), user.getMail_(),
+						ViewHelper.getUserClass(user.getClass_()), chair,
+						ViewHelper.getGlobalDateFormat(date),
+						ViewHelper.getTextForBoolean(user.isDisabled_()), user };
 				this.addRow(row);
 
 			} catch (Exception e) {
@@ -98,6 +94,7 @@ public class UserTabTable extends DefaultTableModel implements IntfAppObserver {
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see javax.swing.table.DefaultTableModel#isCellEditable(int, int)
 	 */
 	@Override
@@ -107,6 +104,7 @@ public class UserTabTable extends DefaultTableModel implements IntfAppObserver {
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see de.sfgmbh.applayer.core.definitions.IntfAppObserver#change()
 	 */
 	@Override

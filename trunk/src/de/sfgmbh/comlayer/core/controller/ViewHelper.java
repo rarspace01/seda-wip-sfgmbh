@@ -6,17 +6,19 @@ import java.util.Date;
 import de.sfgmbh.applayer.core.model.AppModel;
 
 /**
- * View helper to always display certain formats and similar stuff in the GUI the same way
+ * View helper to always display certain formats and similar stuff in the GUI
+ * the same way
  * 
  * 
  * @author hannes
  * @author denis
- *
+ * 
  */
 public class ViewHelper {
 
 	/**
 	 * Returns a formated day string for a given integer (valid integer: 1 to 7)
+	 * 
 	 * @param day
 	 * @return a formated day string
 	 */
@@ -36,13 +38,19 @@ public class ViewHelper {
 		} else if (day == 7) {
 			return "So.";
 		} else {
-			AppModel.getInstance().getExceptionHandler().setNewException("Ein Tag mit einem nicht unterstützen Format konnte nicht angezeigt werden.", "Achtung!");
+			AppModel.getInstance()
+					.getExceptionHandler()
+					.setNewException(
+							"Ein Tag mit einem nicht unterstützen Format konnte nicht angezeigt werden.",
+							"Achtung!");
 			return null;
 		}
 	}
-	
+
 	/**
-	 * Returns a formated time string for a given integer (valid integer: 1 to 7)
+	 * Returns a formated time string for a given integer (valid integer: 1 to
+	 * 7)
+	 * 
 	 * @param time
 	 * @return a formated time string
 	 */
@@ -62,26 +70,32 @@ public class ViewHelper {
 		} else if (time == 7) {
 			return "20:00 - 22:00";
 		} else {
-			AppModel.getInstance().getExceptionHandler().setNewException("Eine Zeit mit einem nicht unterstützen Format konnte nicht angezeigt werden.", "Achtung!");
+			AppModel.getInstance()
+					.getExceptionHandler()
+					.setNewException(
+							"Eine Zeit mit einem nicht unterstützen Format konnte nicht angezeigt werden.",
+							"Achtung!");
 			return null;
 		}
 	}
-	
+
 	/**
 	 * Returns a formated boolean string for a given boolean value
+	 * 
 	 * @param booleanValue
 	 * @return a formated boolean string
 	 */
 	public static String getTextForBoolean(boolean booleanValue) {
-		if(booleanValue){
+		if (booleanValue) {
 			return "ja";
 		} else {
 			return "nein";
 		}
 	}
-	
+
 	/**
 	 * Returns the German value for a given user class
+	 * 
 	 * @param userClass
 	 * @return the German value for a given user class
 	 */
@@ -91,13 +105,18 @@ public class ViewHelper {
 		} else if (userClass.equals("lecturer")) {
 			return "Dozenten";
 		} else {
-			AppModel.getInstance().getExceptionHandler().setNewException("Eine unbekannte Nutzerklasse wurde verwendet.", "Achtung!");
+			AppModel.getInstance()
+					.getExceptionHandler()
+					.setNewException(
+							"Eine unbekannte Nutzerklasse wurde verwendet.",
+							"Achtung!");
 			return null;
 		}
 	}
-	
+
 	/**
 	 * Returns the formated string for a status
+	 * 
 	 * @param status
 	 * @return the formated string for a status
 	 */
@@ -111,13 +130,18 @@ public class ViewHelper {
 		} else if (status.equals("counter")) {
 			return "Gegenvorschlag";
 		} else {
-			AppModel.getInstance().getExceptionHandler().setNewException("Eine unbekannter Status wurde verwendet.", "Achtung!");
+			AppModel.getInstance()
+					.getExceptionHandler()
+					.setNewException(
+							"Eine unbekannter Status wurde verwendet.",
+							"Achtung!");
 			return null;
 		}
 	}
-	
+
 	public static String getGlobalDateFormat(Date date) {
-		String newDate = new SimpleDateFormat("dd.MM.yy 'um' HH:mm:ss").format(date);
+		String newDate = new SimpleDateFormat("dd.MM.yy 'um' HH:mm:ss")
+				.format(date);
 		return newDate;
 	}
 }

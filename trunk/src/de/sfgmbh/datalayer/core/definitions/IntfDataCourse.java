@@ -7,17 +7,19 @@ import java.util.List;
 import de.sfgmbh.applayer.core.definitions.IntfCourse;
 import de.sfgmbh.applayer.core.model.Course;
 import de.sfgmbh.datalayer.core.daos.DataHandlerCourse;
+
 /**
  * This is the interface for the {@link DataHandlerCourse}
  * 
  * @author denis
  * @author hannes
- *
+ * 
  */
 public interface IntfDataCourse {
 
 	/**
 	 * Get all courses
+	 * 
 	 * @return a list of all courses
 	 */
 	public abstract List<Course> getAll();
@@ -26,6 +28,7 @@ public interface IntfDataCourse {
 
 	/**
 	 * Get a course by its ID
+	 * 
 	 * @param id
 	 * @return a course
 	 */
@@ -33,7 +36,9 @@ public interface IntfDataCourse {
 
 	/**
 	 * Forms a course object out of a given result set
-	 * @param resultSet - {@link ResultSet}
+	 * 
+	 * @param resultSet
+	 *            - {@link ResultSet}
 	 * @return a course object
 	 */
 	public abstract IntfCourse makeCourse(ResultSet resultSet);
@@ -56,7 +61,9 @@ public interface IntfDataCourse {
 	public abstract void unregister(IntfDataObserver observer);
 
 	/**
-	 * Save a course in the DB (this creates a course if its ID is -1 and otherwise updates an existing one)
+	 * Save a course in the DB (this creates a course if its ID is -1 and
+	 * otherwise updates an existing one)
+	 * 
 	 * @param course
 	 * @return true on success
 	 */
@@ -64,6 +71,7 @@ public interface IntfDataCourse {
 
 	/**
 	 * Delete a course from the DB
+	 * 
 	 * @param course
 	 * @return true on success
 	 */

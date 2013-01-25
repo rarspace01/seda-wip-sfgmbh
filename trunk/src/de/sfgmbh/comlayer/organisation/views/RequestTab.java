@@ -1,4 +1,3 @@
-
 package de.sfgmbh.comlayer.organisation.views;
 
 import java.awt.Dimension;
@@ -36,7 +35,7 @@ import de.sfgmbh.comlayer.organisation.controller.RequestTabCmbboxFilter;
  * 
  * @author anna
  * @author hannes
- *
+ * 
  */
 public class RequestTab extends JPanel {
 
@@ -65,92 +64,109 @@ public class RequestTab extends JPanel {
 	 * Create the frame.
 	 */
 	public RequestTab() {
-		
+
 		initialize();
 	}
+
 	private void initialize() {
 		setMinimumSize(new Dimension(100, 10));
 		setMaximumSize(new Dimension(100, 32767));
-		setLayout(new MigLayout("", "[140px:140px:140px][10px:10px:10px][grow][grow][grow][grow][100px:100px:100px]", "[center][][419.00,grow][]"));
-		
+		setLayout(new MigLayout(
+				"",
+				"[140px:140px:140px][10px:10px:10px][grow][grow][grow][grow][100px:100px:100px]",
+				"[center][][419.00,grow][]"));
+
 		JLabel lblRaumverwaltung = new JLabel("Raumanfragen");
 		lblRaumverwaltung.setFont(new Font("SansSerif", Font.BOLD, 13));
 		add(lblRaumverwaltung, "cell 0 0,alignx center,aligny bottom");
-		
+
 		lblLecturer_ = new JLabel("Dozent:");
 		add(lblLecturer_, "cell 2 0,aligny bottom");
-		
+
 		comboBoxLecturer_ = new JComboBox<String>();
-		comboBoxLecturer_.setToolTipText("<html>Sie können die Liste der <br> Raumanfrage über <br> diese Filter begrenzen</html>");
+		comboBoxLecturer_
+				.setToolTipText("<html>Sie können die Liste der <br> Raumanfrage über <br> diese Filter begrenzen</html>");
 		comboBoxLecturer_.addActionListener(new RequestTabCmbboxFilter());
-		
+
 		lblPCSeats_ = new JLabel("Semester:");
 		add(lblPCSeats_, "cell 4 0,aligny bottom");
 		add(getLblRoom(), "cell 5 0,aligny bottom");
-		
+
 		lblUniIcon_ = new JLabel();
-		lblUniIcon_.setIcon(new ImageIcon(BaseTab.class.getResource("/de/sfgmbh/comlayer/core/images/UniBA_logo.png")));
-		lblUniIcon_.setMaximumSize(new Dimension(50,50));
-		add(lblUniIcon_, "cell 6 0,alignx right,aligny top");	
-		
+		lblUniIcon_
+				.setIcon(new ImageIcon(
+						BaseTab.class
+								.getResource("/de/sfgmbh/comlayer/core/images/UniBA_logo.png")));
+		lblUniIcon_.setMaximumSize(new Dimension(50, 50));
+		add(lblUniIcon_, "cell 6 0,alignx right,aligny top");
+
 		comboBoxLecturer_.setModel(new CmbboxFilterLecturer(comboBoxLecturer_));
 		comboBoxLecturer_.setEditable(true);
 		comboBoxLecturer_.setAutoscrolls(true);
 		add(comboBoxLecturer_, "cell 2 1,growx,aligny center");
 		add(getFilterBottom(), "cell 3 1,alignx left,aligny center");
 		add(getFilterTop(), "cell 3 0,alignx left,aligny bottom");
-		
+
 		comboBoxSemester_ = new JComboBox<String>();
-		comboBoxSemester_.setToolTipText("<html>Sie können die Liste der <br> Raumanfrage über <br> diese Filter begrenzen</html>");
+		comboBoxSemester_
+				.setToolTipText("<html>Sie können die Liste der <br> Raumanfrage über <br> diese Filter begrenzen</html>");
 		comboBoxSemester_.addActionListener(new RequestTabCmbboxFilter());
 		comboBoxSemester_.setModel(new CmbboxFilterSemester());
 		comboBoxSemester_.setEditable(true);
 		comboBoxSemester_.setAutoscrolls(true);
 		add(comboBoxSemester_, "cell 4 1,growx");
 		add(getTxtRoom(), "cell 5 1,growx");
-		
-		add(ViewManager.getInstance().getCoreLiveTickerPanel(), "cell 0 2,grow, aligny top");
-		
+
+		add(ViewManager.getInstance().getCoreLiveTickerPanel(),
+				"cell 0 2,grow, aligny top");
+
 		organisationTableScrollPane_ = new JScrollPane();
 		add(organisationTableScrollPane_, "flowx,cell 2 2 4 1,grow");
-		
+
 		roomAllocationTable_ = new JTable();
-		roomAllocationTable_.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		roomAllocationTable_.setModel(ViewManager.getInstance().getOrgaRequestTableModel());
+		roomAllocationTable_
+				.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		roomAllocationTable_.setModel(ViewManager.getInstance()
+				.getOrgaRequestTableModel());
 		roomAllocationTable_.setShowVerticalLines(false);
 		roomAllocationTable_.setBackground(SystemColor.activeCaption);
-		roomAllocationTable_.getColumnModel().removeColumn(roomAllocationTable_.getColumn("Hidden"));
+		roomAllocationTable_.getColumnModel().removeColumn(
+				roomAllocationTable_.getColumn("Hidden"));
 		organisationTableScrollPane_.setViewportView(roomAllocationTable_);
-		
+
 		// Enable table sorting for the model
 		rowSorter_ = new TableRowSorter<TableModel>();
 		roomAllocationTable_.setRowSorter(rowSorter_);
-		rowSorter_.setModel(ViewManager.getInstance().getOrgaRequestTableModel());
-		List <RowSorter.SortKey> sortKeys = new ArrayList<RowSorter.SortKey>();
+		rowSorter_.setModel(ViewManager.getInstance()
+				.getOrgaRequestTableModel());
+		List<RowSorter.SortKey> sortKeys = new ArrayList<RowSorter.SortKey>();
 		sortKeys.add(new RowSorter.SortKey(6, SortOrder.DESCENDING));
-		rowSorter_.setSortKeys(sortKeys); 
+		rowSorter_.setSortKeys(sortKeys);
 		rowSorter_.sort();
-		
+
 		buttonPanel_ = new JPanel();
 		buttonPanel_.setLayout(null);
 		buttonPanel_.setMinimumSize(new Dimension(80, 10));
 		buttonPanel_.setMaximumSize(new Dimension(120, 32767));
 		add(buttonPanel_, "cell 6 2,grow");
-		
+
 		btnFreigeben_ = new JButton("freigeben");
-		btnFreigeben_.setToolTipText("<html>Selektieren Sie eine Raumanfrage <br> und Klicken Sie hier <br> um den Raum für die <br> Lehrveranstaltung freizugeben</html>");
+		btnFreigeben_
+				.setToolTipText("<html>Selektieren Sie eine Raumanfrage <br> und Klicken Sie hier <br> um den Raum für die <br> Lehrveranstaltung freizugeben</html>");
 		btnFreigeben_.setBounds(6, 11, 88, 23);
 		btnFreigeben_.addActionListener(new RequestTabBtnsControl("accept"));
 		buttonPanel_.add(btnFreigeben_);
-		
+
 		JButton btnAblehnen = new JButton("ablehnen");
-		btnAblehnen.setToolTipText("<html>Selektieren Sie eine Raumanfrage <br> und Klicken Sie hier <br> um sie abzulehnen</html>");
+		btnAblehnen
+				.setToolTipText("<html>Selektieren Sie eine Raumanfrage <br> und Klicken Sie hier <br> um sie abzulehnen</html>");
 		btnAblehnen.setBounds(6, 45, 88, 23);
 		btnAblehnen.addActionListener(new RequestTabBtnsControl("deny"));
 		buttonPanel_.add(btnAblehnen);
-		
+
 		JButton btnGegenvorschlag = new JButton("lösen");
-		btnGegenvorschlag.setToolTipText("<html>Selektieren Sie eine Raumanfrage <br> und Klicken Sie hier <br> um die Konfliktlösung für <br>konfliktäre Anfragen zu starten</html>");
+		btnGegenvorschlag
+				.setToolTipText("<html>Selektieren Sie eine Raumanfrage <br> und Klicken Sie hier <br> um die Konfliktlösung für <br>konfliktäre Anfragen zu starten</html>");
 		btnGegenvorschlag.setMinimumSize(new Dimension(90, 23));
 		btnGegenvorschlag.setMaximumSize(new Dimension(90, 23));
 		btnGegenvorschlag.setPreferredSize(new Dimension(50, 23));
@@ -158,69 +174,81 @@ public class RequestTab extends JPanel {
 		btnGegenvorschlag.setBounds(6, 79, 88, 23);
 		buttonPanel_.add(btnGegenvorschlag);
 		buttonPanel_.add(getBtnClean());
-		
+
 	}
+
 	/**
 	 * @return the comboBoxLecturer
 	 */
 	public JComboBox<String> getComboBoxLecturer() {
 		return comboBoxLecturer_;
 	}
+
 	/**
 	 * @return the comboBoxChair
 	 */
 	public JComboBox<String> getComboBoxChair() {
 		return comboBoxChair_;
 	}
+
 	/**
 	 * @return the comboBoxStatus
 	 */
 	public JComboBox<String> getComboBoxStatus() {
 		return comboBoxStatus_;
 	}
+
 	/**
 	 * @return the comboBoxSemester
 	 */
 	public JComboBox<String> getComboBoxSemester() {
 		return comboBoxSemester_;
 	}
+
 	/**
 	 * @return the roomAllocationTable
 	 */
 	public JTable getRoomAllocationTable() {
 		return roomAllocationTable_;
 	}
+
 	public JPanel getFilterTop() {
 		if (filterTop_ == null) {
 			filterTop_ = new JPanel();
-			filterTop_.setLayout(new MigLayout("insets 0", "[200px:200px:200px][100px:100px]", "[]"));
-			
+			filterTop_.setLayout(new MigLayout("insets 0",
+					"[200px:200px:200px][100px:100px]", "[]"));
+
 			lblProfessorship_ = new JLabel("Lehrstuhl:");
 			filterTop_.add(lblProfessorship_, "cell 0 0");
-			
+
 			lblStatus_ = new JLabel("Freigabestatus:");
 			filterTop_.add(lblStatus_, "cell 1 0");
 		}
 		return filterTop_;
 	}
+
 	public JPanel getFilterBottom() {
 		if (filterBottom_ == null) {
 			filterBottom_ = new JPanel();
 			filterBottom_.setBorder(null);
 			filterBottom_.setAlignmentX(0.0f);
-			filterBottom_.setLayout(new MigLayout("insets 0", "[200px:200px:200px][120px:120px:120px]", "[]"));
-			
+			filterBottom_.setLayout(new MigLayout("insets 0",
+					"[200px:200px:200px][120px:120px:120px]", "[]"));
+
 			comboBoxChair_ = new JComboBox<String>();
-			comboBoxChair_.setToolTipText("<html>Sie können die Liste der <br> Raumanfrage über <br> diese Filter begrenzen</html>");
+			comboBoxChair_
+					.setToolTipText("<html>Sie können die Liste der <br> Raumanfrage über <br> diese Filter begrenzen</html>");
 			comboBoxChair_.setMaximumSize(new Dimension(200, 50));
 			filterBottom_.add(comboBoxChair_, "cell 0 0,aligny center");
 			comboBoxChair_.addActionListener(new RequestTabCmbboxFilter());
-			comboBoxChair_.setModel(new CmbboxFilterChairAcronym(comboBoxChair_));
+			comboBoxChair_
+					.setModel(new CmbboxFilterChairAcronym(comboBoxChair_));
 			comboBoxChair_.setEditable(true);
 			comboBoxChair_.setAutoscrolls(true);
-			
+
 			comboBoxStatus_ = new JComboBox<String>();
-			comboBoxStatus_.setToolTipText("<html>Sie können die Liste der <br> Raumanfrage über <br> diese Filter begrenzen</html>");
+			comboBoxStatus_
+					.setToolTipText("<html>Sie können die Liste der <br> Raumanfrage über <br> diese Filter begrenzen</html>");
 			filterBottom_.add(comboBoxStatus_, "cell 1 0,aligny center");
 			comboBoxStatus_.addActionListener(new RequestTabCmbboxFilter());
 			comboBoxStatus_.setModel(new CmbboxFilterAllocationStatus());
@@ -229,12 +257,14 @@ public class RequestTab extends JPanel {
 		}
 		return filterBottom_;
 	}
+
 	public JLabel getLblRoom() {
 		if (lblRoom_ == null) {
 			lblRoom_ = new JLabel("Raum:");
 		}
 		return lblRoom_;
 	}
+
 	public JTextField getTxtRoom() {
 		if (txtRoom_ == null) {
 			txtRoom_ = new JTextField();
@@ -244,22 +274,27 @@ public class RequestTab extends JPanel {
 		}
 		return txtRoom_;
 	}
+
 	/**
 	 * @return the rowSorter
 	 */
 	public TableRowSorter<TableModel> getRowSorter() {
 		return rowSorter_;
 	}
+
 	/**
-	 * @param rowSorter the rowSorter to set
+	 * @param rowSorter
+	 *            the rowSorter to set
 	 */
 	public void setRowSorter(TableRowSorter<TableModel> rowSorter) {
 		this.rowSorter_ = rowSorter;
 	}
+
 	public JButton getBtnClean() {
 		if (btnClean_ == null) {
 			btnClean_ = new JButton("aufräumen");
-			btnClean_.setToolTipText("<html>Hier können Sie schon abgelehnte Raumanfragen <br>von der Liste löschen lassen</html>");
+			btnClean_
+					.setToolTipText("<html>Hier können Sie schon abgelehnte Raumanfragen <br>von der Liste löschen lassen</html>");
 			btnClean_.setBounds(5, 161, 89, 23);
 			btnClean_.addActionListener(new RequestTabBtnsControl("clean"));
 		}

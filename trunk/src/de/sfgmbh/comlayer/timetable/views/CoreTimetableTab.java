@@ -50,23 +50,26 @@ public class CoreTimetableTab extends JPanel {
 
 	private void initialize() {
 		setAutoscrolls(true);
-		setLayout(new MigLayout("", "[20px:20px,grow][227px][50px][92.00px][461px][grow][]", "[][top][grow,shrink 0][grow]"));
+		setLayout(new MigLayout("",
+				"[20px:20px,grow][227px][50px][92.00px][461px][grow][]",
+				"[][top][grow,shrink 0][grow]"));
 
 		btnTimetableReset_ = new JButton("Stundenplan zurücksetzen");
-		btnTimetableReset_.setToolTipText("<html>Klicken Sie hier<br> um alle Lehrveranstaltungen aus <br> der Sammlung zu löschen <br>und um einen neuen Stundenplan <br> zu generieren</html>");
+		btnTimetableReset_
+				.setToolTipText("<html>Klicken Sie hier<br> um alle Lehrveranstaltungen aus <br> der Sammlung zu löschen <br>und um einen neuen Stundenplan <br> zu generieren</html>");
 		btnTimetableReset_
 				.addActionListener(new CoreTimetableTabBtnPdf("reset"));
-				
-				lblCoreTimetable = new JLabel("<html><h3>Stundenplan</h3></html>");
-				add(lblCoreTimetable, "cell 1 0,alignx left,aligny bottom");
-		
-				JLabel lblUniIcon = new JLabel();
-				lblUniIcon
-						.setIcon(new ImageIcon(
-								BaseTab.class
-										.getResource("/de/sfgmbh/comlayer/core/images/UniBA_logo.png")));
-				lblUniIcon.setMaximumSize(new Dimension(50, 50));
-				add(lblUniIcon, "cell 6 0,alignx right,aligny top");
+
+		lblCoreTimetable = new JLabel("<html><h3>Stundenplan</h3></html>");
+		add(lblCoreTimetable, "cell 1 0,alignx left,aligny bottom");
+
+		JLabel lblUniIcon = new JLabel();
+		lblUniIcon
+				.setIcon(new ImageIcon(
+						BaseTab.class
+								.getResource("/de/sfgmbh/comlayer/core/images/UniBA_logo.png")));
+		lblUniIcon.setMaximumSize(new Dimension(50, 50));
+		add(lblUniIcon, "cell 6 0,alignx right,aligny top");
 		add(btnTimetableReset_, "cell 4 1,aligny center");
 
 		scrollPane_ = new JScrollPane();
@@ -87,7 +90,8 @@ public class CoreTimetableTab extends JPanel {
 				.register(ViewManager.getInstance().getCoreTimetableTabTable());
 
 		JButton btnPdfErzeugen = new JButton("PDF erzeugen");
-		btnPdfErzeugen.setToolTipText("<html>Hier können Sie den <br> unten stehenden<br>Wochenplan im <br> PDF Format ausdrucken<br>");
+		btnPdfErzeugen
+				.setToolTipText("<html>Hier können Sie den <br> unten stehenden<br>Wochenplan im <br> PDF Format ausdrucken<br>");
 		btnPdfErzeugen
 				.addActionListener(new CoreTimetableTabBtnPdf("pdfCreate"));
 		add(btnPdfErzeugen, "cell 1 1,growx,aligny center");

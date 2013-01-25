@@ -36,6 +36,7 @@ public class RoomFrameBtns implements ActionListener {
 	/**
 	 * Generate the action listener based on an action string<br>
 	 * Supported action strings are "cancle" and "save".
+	 * 
 	 * @param action
 	 */
 	public RoomFrameBtns(String action) {
@@ -133,12 +134,13 @@ public class RoomFrameBtns implements ActionListener {
 								"Bitte geben Sie ein Whiteboardanzahl an.",
 								"Achtung!");
 			} else {
-				//if everythign is fine, we'll dismiss the window and store the room object
+				// if everythign is fine, we'll dismiss the window and store the
+				// room object
 				ViewManager.getInstance().getOrgaRoomFrame().setVisible(false);
 
 				// read Values, Create Room object, store to DB
-				IntfRoom toBeSavedRoom = new Room(); // 
-				
+				IntfRoom toBeSavedRoom = new Room(); //
+
 				toBeSavedRoom.setRoomId_(Integer.parseInt(ViewManager
 						.getInstance().getOrgaRoomFrame().getTxtroomid()
 						.getText()));
@@ -169,7 +171,7 @@ public class RoomFrameBtns implements ActionListener {
 				toBeSavedRoom.setWhiteboards_(Integer.parseInt(ViewManager
 						.getInstance().getOrgaRoomFrame().getTxtWhiteboards()
 						.getText()));
-				//save room object to database
+				// save room object to database
 				this.ctrlRoom_.addRoom(toBeSavedRoom);
 			}
 		}

@@ -8,10 +8,11 @@ import java.awt.event.KeyListener;
 import de.sfgmbh.comlayer.core.controller.ViewManager;
 
 /**
- * Action listener for the combobox (and text field) filters on the organisation room tab
+ * Action listener for the combobox (and text field) filters on the organisation
+ * room tab
  * 
  * @author denis
- *
+ * 
  */
 public class RoomTabCmbboxFilter implements KeyListener, ActionListener {
 
@@ -23,18 +24,18 @@ public class RoomTabCmbboxFilter implements KeyListener, ActionListener {
 	@Override
 	public void keyPressed(KeyEvent arg0) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void keyReleased(KeyEvent arg0) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		ViewManager.getInstance().getOrgaRoomTableModel().change();
 	}
-	
+
 }

@@ -11,7 +11,7 @@ import de.sfgmbh.applayer.core.definitions.IntfRoomAllocation;
  * 
  * @author denis
  * @author hannes
- *
+ * 
  */
 public class RoomAllocation implements IntfRoomAllocation {
 
@@ -26,7 +26,7 @@ public class RoomAllocation implements IntfRoomAllocation {
 	private String comment_;
 	private List<IntfRoomAllocation> conflictingAllocations_;
 	private boolean conflicting_;
-	
+
 	/**
 	 * Create a default room allocation
 	 */
@@ -34,24 +34,33 @@ public class RoomAllocation implements IntfRoomAllocation {
 		this.roomAllocationId_ = -1;
 		this.conflicting_ = false;
 	}
-	
-	/* (non-Javadoc)
-	 * @see de.sfgmbh.applayer.core.model.IntfRoomAllocation#getRoomAllocationId_()
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * de.sfgmbh.applayer.core.model.IntfRoomAllocation#getRoomAllocationId_()
 	 */
 	@Override
 	public int getRoomAllocationId_() {
 		return roomAllocationId_;
 	}
 
-	/* (non-Javadoc)
-	 * @see de.sfgmbh.applayer.core.model.IntfRoomAllocation#setRoomAllocationId_(int)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * de.sfgmbh.applayer.core.model.IntfRoomAllocation#setRoomAllocationId_
+	 * (int)
 	 */
 	@Override
 	public void setRoomAllocationId_(int roomAllocationId_) {
 		this.roomAllocationId_ = roomAllocationId_;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see de.sfgmbh.applayer.core.model.IntfRoomAllocation#getCourse_()
 	 */
 	@Override
@@ -59,15 +68,21 @@ public class RoomAllocation implements IntfRoomAllocation {
 		return course_;
 	}
 
-	/* (non-Javadoc)
-	 * @see de.sfgmbh.applayer.core.model.IntfRoomAllocation#setCourse_(de.sfgmbh.applayer.core.definitions.IntfCourse)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * de.sfgmbh.applayer.core.model.IntfRoomAllocation#setCourse_(de.sfgmbh
+	 * .applayer.core.definitions.IntfCourse)
 	 */
 	@Override
 	public void setCourse_(IntfCourse course_) {
 		this.course_ = course_;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see de.sfgmbh.applayer.core.model.IntfRoomAllocation#getRoom_()
 	 */
 	@Override
@@ -75,15 +90,21 @@ public class RoomAllocation implements IntfRoomAllocation {
 		return room_;
 	}
 
-	/* (non-Javadoc)
-	 * @see de.sfgmbh.applayer.core.model.IntfRoomAllocation#setRoom_(de.sfgmbh.applayer.core.definitions.IntfRoom)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * de.sfgmbh.applayer.core.model.IntfRoomAllocation#setRoom_(de.sfgmbh.applayer
+	 * .core.definitions.IntfRoom)
 	 */
 	@Override
 	public void setRoom_(IntfRoom room_) {
 		this.room_ = room_;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see de.sfgmbh.applayer.core.model.IntfRoomAllocation#getSemester_()
 	 */
 	@Override
@@ -91,15 +112,21 @@ public class RoomAllocation implements IntfRoomAllocation {
 		return semester_;
 	}
 
-	/* (non-Javadoc)
-	 * @see de.sfgmbh.applayer.core.model.IntfRoomAllocation#setSemester_(java.lang.String)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * de.sfgmbh.applayer.core.model.IntfRoomAllocation#setSemester_(java.lang
+	 * .String)
 	 */
 	@Override
 	public void setSemester_(String semester_) {
 		this.semester_ = semester_;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see de.sfgmbh.applayer.core.model.IntfRoomAllocation#getDay_()
 	 */
 	@Override
@@ -107,7 +134,9 @@ public class RoomAllocation implements IntfRoomAllocation {
 		return day_;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see de.sfgmbh.applayer.core.model.IntfRoomAllocation#setDay_(int)
 	 */
 	@Override
@@ -115,7 +144,9 @@ public class RoomAllocation implements IntfRoomAllocation {
 		this.day_ = day_;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see de.sfgmbh.applayer.core.model.IntfRoomAllocation#getTime_()
 	 */
 	@Override
@@ -123,7 +154,9 @@ public class RoomAllocation implements IntfRoomAllocation {
 		return time_;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see de.sfgmbh.applayer.core.model.IntfRoomAllocation#setTime_(int)
 	 */
 	@Override
@@ -131,7 +164,9 @@ public class RoomAllocation implements IntfRoomAllocation {
 		this.time_ = time_;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see de.sfgmbh.applayer.core.model.IntfRoomAllocation#getApproved_()
 	 */
 	@Override
@@ -139,8 +174,12 @@ public class RoomAllocation implements IntfRoomAllocation {
 		return approved_;
 	}
 
-	/* (non-Javadoc)
-	 * @see de.sfgmbh.applayer.core.model.IntfRoomAllocation#setApproved_(java.lang.String)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * de.sfgmbh.applayer.core.model.IntfRoomAllocation#setApproved_(java.lang
+	 * .String)
 	 */
 	@Override
 	public void setApproved_(String approved_) {
@@ -148,14 +187,16 @@ public class RoomAllocation implements IntfRoomAllocation {
 			this.approved_ = "accepted";
 		} else if (approved_.equals("denied")) {
 			this.approved_ = "denied";
-		}  else if (approved_.equals("counter")) {
+		} else if (approved_.equals("counter")) {
 			this.approved_ = "counter";
 		} else {
 			this.approved_ = "waiting";
 		}
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see de.sfgmbh.applayer.core.model.IntfRoomAllocation#getOrgaMessage_()
 	 */
 	@Override
@@ -163,8 +204,12 @@ public class RoomAllocation implements IntfRoomAllocation {
 		return orgaMessage_;
 	}
 
-	/* (non-Javadoc)
-	 * @see de.sfgmbh.applayer.core.model.IntfRoomAllocation#setOrgaMessage_(java.lang.String)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * de.sfgmbh.applayer.core.model.IntfRoomAllocation#setOrgaMessage_(java
+	 * .lang.String)
 	 */
 	@Override
 	public void setOrgaMessage_(String orgaMessage_) {
@@ -176,7 +221,9 @@ public class RoomAllocation implements IntfRoomAllocation {
 		this.orgaMessage_ = orgaMessage_;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see de.sfgmbh.applayer.core.model.IntfRoomAllocation#getComment_()
 	 */
 	@Override
@@ -184,44 +231,63 @@ public class RoomAllocation implements IntfRoomAllocation {
 		return comment_;
 	}
 
-	/* (non-Javadoc)
-	 * @see de.sfgmbh.applayer.core.model.IntfRoomAllocation#setComment_(java.lang.String)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * de.sfgmbh.applayer.core.model.IntfRoomAllocation#setComment_(java.lang
+	 * .String)
 	 */
 	@Override
 	public void setComment_(String comment_) {
 		this.comment_ = comment_;
 	}
-	
-	
-	/* (non-Javadoc)
-	 * @see de.sfgmbh.applayer.core.model.IntfRoomAllocation#getConflictingAllocations_()
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * de.sfgmbh.applayer.core.model.IntfRoomAllocation#getConflictingAllocations_
+	 * ()
 	 */
 	@Override
 	public List<IntfRoomAllocation> getConflictingAllocations_() {
 		return conflictingAllocations_;
 	}
 
-	/* (non-Javadoc)
-	 * @see de.sfgmbh.applayer.core.model.IntfRoomAllocation#setConflictingAllocations_()
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * de.sfgmbh.applayer.core.model.IntfRoomAllocation#setConflictingAllocations_
+	 * ()
 	 */
 	@Override
 	public void setConflictingAllocations_() {
 		if (this.conflictingAllocations_ == null) {
-			List<IntfRoomAllocation> roomAllocationList = AppModel.getInstance().getRepositoryRoomAllocation().getConflictingAllocation(this);
+			List<IntfRoomAllocation> roomAllocationList = AppModel
+					.getInstance().getRepositoryRoomAllocation()
+					.getConflictingAllocation(this);
 			this.conflictingAllocations_ = roomAllocationList;
 		}
 	}
-	
-	/* (non-Javadoc)
-	 * @see de.sfgmbh.applayer.core.model.IntfRoomAllocation#setForceConflictingAllocations_()
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see de.sfgmbh.applayer.core.model.IntfRoomAllocation#
+	 * setForceConflictingAllocations_()
 	 */
 	@Override
 	public void setForceConflictingAllocations_() {
-		List<IntfRoomAllocation> roomAllocationList = AppModel.getInstance().getRepositoryRoomAllocation().getConflictingAllocation(this);
+		List<IntfRoomAllocation> roomAllocationList = AppModel.getInstance()
+				.getRepositoryRoomAllocation().getConflictingAllocation(this);
 		this.conflictingAllocations_ = roomAllocationList;
 	}
-	
-	/* (non-Javadoc)
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see de.sfgmbh.applayer.core.model.IntfRoomAllocation#save()
 	 */
 	@Override
@@ -229,20 +295,25 @@ public class RoomAllocation implements IntfRoomAllocation {
 		return AppModel.getInstance().getRepositoryRoomAllocation().save(this);
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see de.sfgmbh.applayer.core.model.IntfRoomAllocation#isPublic()
 	 */
 	@Override
 	public boolean isPublic() {
-		
-		if (this.course_.isLecturerEnabled_() && this.approved_.equals("accepted")) {
+
+		if (this.course_.isLecturerEnabled_()
+				&& this.approved_.equals("accepted")) {
 			return true;
 		}
-		
+
 		return false;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see de.sfgmbh.applayer.core.model.IntfRoomAllocation#isConflicting_()
 	 */
 	@Override
@@ -250,8 +321,11 @@ public class RoomAllocation implements IntfRoomAllocation {
 		return conflicting_;
 	}
 
-	/* (non-Javadoc)
-	 * @see de.sfgmbh.applayer.core.model.IntfRoomAllocation#setConflicting_(boolean)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * de.sfgmbh.applayer.core.model.IntfRoomAllocation#setConflicting_(boolean)
 	 */
 	@Override
 	public void setConflicting_(boolean conflicting_) {

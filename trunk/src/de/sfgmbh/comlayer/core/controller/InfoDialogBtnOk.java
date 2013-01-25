@@ -9,20 +9,21 @@ import de.sfgmbh.comlayer.core.views.InfoDialog;
  * Action listener for the okay button in the info dialog
  * 
  * @author hannes
- *
+ * 
  */
 public class InfoDialogBtnOk implements ActionListener {
-	
+
 	protected InfoDialog infoWinwod_;
-	
+
 	/**
 	 * Create the action listener
+	 * 
 	 * @param transmittedInfoWindow
 	 */
 	public InfoDialogBtnOk(InfoDialog transmittedInfoWindow) {
 		this.infoWinwod_ = transmittedInfoWindow;
 	}
-	
+
 	/**
 	 * Close on action
 	 */

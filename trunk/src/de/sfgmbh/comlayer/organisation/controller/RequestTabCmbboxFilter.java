@@ -9,8 +9,9 @@ import de.sfgmbh.comlayer.core.controller.ViewManager;
 
 /**
  * Action listener for the request tab filters
+ * 
  * @author hannes
- *
+ * 
  */
 public class RequestTabCmbboxFilter implements KeyListener, ActionListener {
 
@@ -22,18 +23,18 @@ public class RequestTabCmbboxFilter implements KeyListener, ActionListener {
 	@Override
 	public void keyPressed(KeyEvent arg0) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void keyReleased(KeyEvent arg0) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		ViewManager.getInstance().getOrgaRequestTableModel().change();
 	}
-	
+
 }

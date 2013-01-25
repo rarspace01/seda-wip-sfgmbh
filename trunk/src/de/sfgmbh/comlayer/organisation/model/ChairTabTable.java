@@ -15,8 +15,7 @@ import de.sfgmbh.comlayer.core.controller.ViewManager;
  * @author anna
  * 
  */
-public class ChairTabTable extends DefaultTableModel implements
-		IntfAppObserver {
+public class ChairTabTable extends DefaultTableModel implements IntfAppObserver {
 
 	private static final long serialVersionUID = 1L;
 
@@ -46,26 +45,21 @@ public class ChairTabTable extends DefaultTableModel implements
 		if (variant.equals("init")) {
 
 		} else {
-			String textChair = ViewManager.getInstance()
-					.getOrgaChairTab().getTextFieldChairname()
-					.getText();
+			String textChair = ViewManager.getInstance().getOrgaChairTab()
+					.getTextFieldChairname().getText();
 			filter.put("chair", textChair);
 		}
 
 		for (IntfChair chair : AppModel.getInstance().getRepositoryChair()
 				.getByFilter(filter)) {
-			
+
 			String owner = "";
-			if (chair.getChairOwner() != null ){
+			if (chair.getChairOwner() != null) {
 				owner = chair.getChairOwner().getlName_();
 			}
 			try {
-				Object[] row = { 
-						chair.getChairName(), 
-						chair.getAcronym(),
-						owner, 
-						chair.getFaculty(),
-						chair };
+				Object[] row = { chair.getChairName(), chair.getAcronym(),
+						owner, chair.getFaculty(), chair };
 				this.addRow(row);
 
 			} catch (Exception e) {
@@ -80,6 +74,7 @@ public class ChairTabTable extends DefaultTableModel implements
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see de.sfgmbh.applayer.core.definitions.IntfAppObserver#change()
 	 */
 	@Override
@@ -87,12 +82,12 @@ public class ChairTabTable extends DefaultTableModel implements
 		this.change("update");
 
 	}
-	
+
 	/**
 	 * disables edits on the table cells
 	 */
 	@Override
-    public boolean isCellEditable(int row, int column) {
-        return false;
-    }
+	public boolean isCellEditable(int row, int column) {
+		return false;
+	}
 }

@@ -6,11 +6,13 @@ import java.util.List;
 import de.sfgmbh.applayer.core.definitions.IntfChair;
 import de.sfgmbh.applayer.core.model.Chair;
 import de.sfgmbh.datalayer.core.daos.DataHandlerChair;
+
 /**
  * This is the interface for the {@link DataHandlerChair}
+ * 
  * @author denis
- *
- */	
+ * 
+ */
 public interface IntfDataChair {
 
 	/**
@@ -42,14 +44,15 @@ public interface IntfDataChair {
 	 * @return - int for error handling
 	 */
 	public boolean save(IntfChair chair);
-	
+
 	/**
 	 * 
-	 * @param resultSet - {@link ResultSet}
+	 * @param resultSet
+	 *            - {@link ResultSet}
 	 * @return {@link IntfChair} - generates an {@link Chair} Object
 	 */
 	public IntfChair makeChair(ResultSet resultSet);
-	
+
 	/**
 	 * Get the chair of a user
 	 * 
@@ -58,7 +61,7 @@ public interface IntfDataChair {
 	 *         otherwise returns null
 	 */
 	public IntfChair getForUser(int userId);
-	
+
 	/**
 	 * Get the chair based on its acronym
 	 * 
@@ -67,7 +70,5 @@ public interface IntfDataChair {
 	 *         otherwise returns null
 	 */
 	public IntfChair getForAcronym(String acronym);
-	
-	
-	
+
 }
