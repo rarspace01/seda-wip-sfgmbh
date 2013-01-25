@@ -20,20 +20,20 @@ public class ViewHelper {
 	 * @param day
 	 * @return a formated day string
 	 */
-	public static String getDay(int d) {
-		if (d == 1) {
+	public static String getDay(int day) {
+		if (day == 1) {
 			return "Mo.";
-		} else if (d == 2) {
+		} else if (day == 2) {
 			return "Di.";
-		} else if (d == 3) {
+		} else if (day == 3) {
 			return "Mi.";
-		} else if (d == 4) {
+		} else if (day == 4) {
 			return "Do.";
-		} else if (d == 5) {
+		} else if (day == 5) {
 			return "Fr.";
-		} else if (d == 6) {
+		} else if (day == 6) {
 			return "Sa.";
-		} else if (d == 7) {
+		} else if (day == 7) {
 			return "So.";
 		} else {
 			AppModel.getInstance().getExceptionHandler().setNewException("Ein Tag mit einem nicht unterstützen Format konnte nicht angezeigt werden.", "Achtung!");
@@ -46,20 +46,20 @@ public class ViewHelper {
 	 * @param time
 	 * @return a formated time string
 	 */
-	public static String getTime(int t) {
-		if (t == 1) {
+	public static String getTime(int time) {
+		if (time == 1) {
 			return "08:00 - 10:00";
-		} else if (t == 2) {
+		} else if (time == 2) {
 			return "10:00 - 12:00";
-		} else if (t == 3) {
+		} else if (time == 3) {
 			return "12:00 - 14:00";
-		} else if (t == 4) {
+		} else if (time == 4) {
 			return "14:00 - 16:00";
-		} else if (t == 5) {
+		} else if (time == 5) {
 			return "16:00 - 18:00";
-		} else if (t == 6) {
+		} else if (time == 6) {
 			return "18:00 - 20:00";
-		} else if (t == 7) {
+		} else if (time == 7) {
 			return "20:00 - 22:00";
 		} else {
 			AppModel.getInstance().getExceptionHandler().setNewException("Eine Zeit mit einem nicht unterstützen Format konnte nicht angezeigt werden.", "Achtung!");
@@ -69,7 +69,7 @@ public class ViewHelper {
 	
 	/**
 	 * Returns a formated boolean string for a given boolean value
-	 * @param boolean
+	 * @param booleanValue
 	 * @return a formated boolean string
 	 */
 	public static String getTextForBoolean(boolean booleanValue) {

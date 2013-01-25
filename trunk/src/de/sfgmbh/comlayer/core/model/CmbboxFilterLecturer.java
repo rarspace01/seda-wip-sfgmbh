@@ -28,7 +28,7 @@ public class CmbboxFilterLecturer extends DefaultComboBoxModel<String> implement
 	
 	/**
 	 * Create the model object
-	 * @param dependentCombobox
+	 * @param dependentComboBox
 	 */
 	public CmbboxFilterLecturer(JComboBox<String> dependentComboBox) {
 		AppModel.getInstance().getRepositoryUser().register(this);
@@ -40,7 +40,7 @@ public class CmbboxFilterLecturer extends DefaultComboBoxModel<String> implement
 	
 	/**
 	 * Create the model object based on a variant
-	 * @param dependentCombobox
+	 * @param dependentComboBox
 	 * @param variant
 	 */
 	public CmbboxFilterLecturer(JComboBox<String> dependentComboBox, String variant) {
