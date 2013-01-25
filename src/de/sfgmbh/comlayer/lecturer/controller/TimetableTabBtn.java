@@ -14,6 +14,7 @@ import de.sfgmbh.comlayer.core.controller.ViewManager;
 /**
  * action listener for the lecturer time table
  * 
+ * @author christian
  * @author denis
  * 
  */

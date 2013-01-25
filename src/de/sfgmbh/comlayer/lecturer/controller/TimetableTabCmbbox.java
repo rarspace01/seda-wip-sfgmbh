@@ -8,6 +8,7 @@ import de.sfgmbh.comlayer.core.controller.ViewManager;
 /**
  * Action listener for the combobox on the timetable
  * 
+ * @author christian
  * @author denis
  *
  */
