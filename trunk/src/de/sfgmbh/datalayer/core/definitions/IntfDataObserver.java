@@ -1,6 +1,6 @@
 package de.sfgmbh.datalayer.core.definitions;
 /**
- * This is the interface for the {@link DataObserver}
+ * This is the interface for the {@link IntfDataObserver}
  * 
  * @author hannes
  * 	

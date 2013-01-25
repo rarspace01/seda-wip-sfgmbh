@@ -71,6 +71,6 @@ public interface IntfRepositoryRoom {
 	 * @param roomNumber
 	 * @return a room object
 	 */
-	public abstract IntfRoom getByNumber(String roomNumber_);
+	public abstract IntfRoom getByNumber(String roomNumber);
 
 }
