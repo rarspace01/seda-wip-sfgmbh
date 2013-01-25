@@ -9,7 +9,6 @@ import java.awt.event.KeyListener;
 /**
  * Action listener for comboboxes on the start tab
  * 
- * @author hannes
  * @author mario
  *
  */

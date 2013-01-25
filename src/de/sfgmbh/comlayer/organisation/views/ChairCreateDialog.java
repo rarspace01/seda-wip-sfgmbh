@@ -19,7 +19,6 @@ import de.sfgmbh.comlayer.organisation.controller.ChairCreateDialogBtns;
 /**
  * Dialog to edit and create chairs
  * 
- * @author hannes
  * @author anna
  *
  */
