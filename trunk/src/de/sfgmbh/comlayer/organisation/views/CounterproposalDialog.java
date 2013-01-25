@@ -24,7 +24,6 @@ import de.sfgmbh.comlayer.core.model.CmbboxFilterDay;
 import de.sfgmbh.comlayer.core.model.CmbboxFilterRoomnumber;
 import de.sfgmbh.comlayer.core.model.CmbboxFilterTime;
 import de.sfgmbh.comlayer.organisation.controller.CounterproposalFrameBtns;
-import de.sfgmbh.comlayer.organisation.controller.UserCreateDialogWin;
 
 /**
  * Modal Dialog for a counter proposal
@@ -109,6 +108,7 @@ public class CounterproposalDialog extends JDialog {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(CounterproposalDialog.class.getResource("/de/sfgmbh/comlayer/core/images/HUT_klein.png")));
 		setTitle("Konflikt lösen");
 		setBounds(100, 100, 320, 410);
+		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 		contentPane_ = new JPanel();
 		contentPane_.setBorder(new EtchedBorder(EtchedBorder.LOWERED, Color.WHITE, Color.LIGHT_GRAY));
 		setContentPane(contentPane_);
@@ -143,7 +143,6 @@ public class CounterproposalDialog extends JDialog {
 		contentPane_.add(getLblSelectedStudents());
 		contentPane_.add(getLblSelectedStatus());
 		
-		addWindowListener(new UserCreateDialogWin(this));
 	}
 	/**
 	 * 
