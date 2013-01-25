@@ -47,13 +47,7 @@ public class RoomtableTab extends JPanel {
 
 	private void initialize() {
 		setAutoscrolls(true);
-		setLayout(new MigLayout(
-				"",
-				"[20px:20px,grow][131px][50px][129px][461px][20px:20px,grow][right]",
-				"[68px][392px][grow]"));
-
-		JPanel uniIconPanel = new JPanel();
-		add(uniIconPanel, "cell 6 0,alignx right,aligny top");
+		setLayout(new MigLayout("", "[20px:20px,grow][131px][50px][129px][461px][20px:20px,grow][right]", "[][392px][grow]"));
 
 		JLabel lblUniIcon = new JLabel();
 		lblUniIcon
@@ -61,7 +55,7 @@ public class RoomtableTab extends JPanel {
 						BaseTab.class
 								.getResource("/de/sfgmbh/comlayer/core/images/UniBA_logo.png")));
 		lblUniIcon.setMaximumSize(new Dimension(50, 50));
-		uniIconPanel.add(lblUniIcon);
+		add(lblUniIcon, "cell 6 0,alignx right,aligny top");
 
 		scrollPane_ = new JScrollPane();
 		scrollPane_

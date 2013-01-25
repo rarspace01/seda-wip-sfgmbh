@@ -57,20 +57,19 @@ public class TimetableTab extends JPanel {
 		setAutoscrolls(true);
 		
 		comboBoxLecturer_ = new JComboBox<>();
+		comboBoxLecturer_.setToolTipText("<html>Wählen Sie einen Dozenten<br> für welchen Sie einen<br>Wochenplan anzeigen lassen möchten</html>");
 		
 		comboBoxLecturer_.addActionListener(new TimetableTabCmbbox());
-		setLayout(new MigLayout("", "[5.00,grow][][][][][][-1.00,grow][right]", "[68px][][364px][grow]"));
+		setLayout(new MigLayout("", "[5.00,grow][][][][][][-1.00,grow][right]", "[][][364px][grow]"));
 		
 		lblWeekplanLecturer = new JLabel("<html><h3>Wochenplan für Dozenten</h3></html>");
-		add(lblWeekplanLecturer, "cell 1 0");
-		
-		JPanel uniIconPanel = new JPanel();
-		add(uniIconPanel, "cell 7 0,alignx right,aligny top");
-		
+		add(lblWeekplanLecturer, "cell 1 0,aligny bottom");
+			
 		JLabel lblUniIcon = new JLabel("");
 		lblUniIcon.setIcon(new ImageIcon(BaseTab.class.getResource("/de/sfgmbh/comlayer/core/images/UniBA_logo.png")));
 		lblUniIcon.setMaximumSize(new Dimension(50,50));
-		uniIconPanel.add(lblUniIcon);
+		add(lblUniIcon, "cell 7 0,alignx right, aligny top");
+		
 		comboBoxLecturerModel_= new CmbboxFilterLecturer(comboBoxLecturer_, "select");
 		comboBoxLecturer_.setModel(comboBoxLecturerModel_);
 		add(comboBoxLecturer_, "cell 1 1,growx,aligny bottom");
@@ -79,6 +78,7 @@ public class TimetableTab extends JPanel {
 		add(lblSemester_, "flowx,cell 3 1,alignx left,aligny bottom");
 		
 		comboBoxSemesterFilter_= new JComboBox<>();
+		comboBoxSemesterFilter_.setToolTipText("<html>Wählen Sie ein Semester <br>um alle Lehrveranstaltungen des <br>Dozenten für dieses Semester<br> anzeigen zu lassen</html>");
 		
 		comboBoxSemesterFilter_.setModel(comboBoxSemesterModel_);
 		comboBoxSemesterFilter_.addActionListener(new TimetableTabCmbbox());

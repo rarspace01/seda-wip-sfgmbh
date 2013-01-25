@@ -47,15 +47,13 @@ public class CoreTimetableTab extends JPanel {
 
 	private void initialize() {
 		setAutoscrolls(true);
-		setLayout(new MigLayout("", "[20px:20px,grow][131px][50px][92.00px][461px][20px:20px,grow][right]", "[68px][grow,shrink 0][grow]"));
+		setLayout(new MigLayout("", "[20px:20px,grow][131px][50px][92.00px][461px][20px:20px,grow][]", "[top][grow,shrink 0][grow]"));
 
 		btnTimetableReset_ = new JButton("Stundenplan zurücksetzen");
+		btnTimetableReset_.setToolTipText("<html>Klicken Sie hier<br> um alle Lehrveranstaltungen aus <br> der Sammlung zu löschen <br>und um einen neuen Stundenplan <br> zu generieren</html>");
 		btnTimetableReset_
 				.addActionListener(new CoreTimetableTabBtnPdf("reset"));
-		add(btnTimetableReset_, "cell 4 0");
-
-		JPanel uniIconPanel = new JPanel();
-		add(uniIconPanel, "cell 6 0,alignx right,aligny top");
+		add(btnTimetableReset_, "cell 4 0,aligny center");
 
 		JLabel lblUniIcon = new JLabel();
 		lblUniIcon
@@ -63,7 +61,7 @@ public class CoreTimetableTab extends JPanel {
 						BaseTab.class
 								.getResource("/de/sfgmbh/comlayer/core/images/UniBA_logo.png")));
 		lblUniIcon.setMaximumSize(new Dimension(50, 50));
-		uniIconPanel.add(lblUniIcon);
+		add(lblUniIcon, "cell 6 0,alignx right,aligny top");
 
 		scrollPane_ = new JScrollPane();
 		scrollPane_
@@ -112,7 +110,7 @@ public class CoreTimetableTab extends JPanel {
 		add(lblSemester_, "flowx,cell 3 0,alignx left,aligny center");
 
 		lblvaluesemester_ = new JLabel("#valueSemester#");
-		add(lblvaluesemester_, "cell 3 0");
+		add(lblvaluesemester_, "cell 3 0,aligny center");
 
 		reloadRoomTable();
 	}

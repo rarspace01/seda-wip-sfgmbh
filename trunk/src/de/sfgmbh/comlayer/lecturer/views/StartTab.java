@@ -71,14 +71,12 @@ public class StartTab extends JPanel implements IntfComDialogObserver {
 	private void initialize() {	
 		
 		setMaximumSize(new Dimension(10, 32767));
-		setLayout(new MigLayout("", "[140px:n:140px,grow][][grow][grow][grow][grow][100px:100px:100px]", "[][385.00,grow][grow]"));
+		setLayout(new MigLayout("", "[140px:n:140px,grow][][grow][grow][grow][grow][100px:100px:100px,right]", "[68px][385.00,grow][grow]"));
 		
-		JLabel lblLehrveranstaltungen = new JLabel("Lehrveranstaltungen:");
+		JLabel lblLehrveranstaltungen = new JLabel(" Lehrveranstaltungen:");
 		lblLehrveranstaltungen.setFont(new Font("Tahoma", Font.BOLD, 12));
-		JPanel uniIconPanel = new JPanel();
 		add(lblLehrveranstaltungen, "cell 1 0,aligny bottom");
-		add(uniIconPanel, "cell 6 0,alignx right,aligny top");
-		
+				
 		add(ViewManager.getInstance().getCoreLiveTickerPanel(), "cell 0 1, grow, aligny top");
 		
 		tablePanel_ = new JPanel();
@@ -128,7 +126,7 @@ public class StartTab extends JPanel implements IntfComDialogObserver {
 		tablePanel_.add(labelSemester, "cell 2 4");
 		
 		comboBoxLecturerBottom_ = new JComboBox<String>();
-		comboBoxLecturerBottom_.setToolTipText("<html>Sie können die Liste der <br> Raumanfrage über <br> diese Filter begrenzen</html>");
+		comboBoxLecturerBottom_.setToolTipText("<html>Sie können die Liste der <br> Raumzuordnungen über <br> diese Filter begrenzen</html>");
 		comboBoxLecturerBottom_.setModel(new CmbboxFilterLecturer(comboBoxLecturerBottom_));
 		comboBoxLecturerBottom_.addActionListener(new StartTabCmbboxFilter());
 		
@@ -139,7 +137,7 @@ public class StartTab extends JPanel implements IntfComDialogObserver {
 		tablePanel_.add(comboBoxLecturerBottom_, "cell 0 5,growx");
 		
 		comboBoxCourse_ = new JComboBox<String>();
-		comboBoxCourse_.setToolTipText("<html>Sie können die Liste der <br> Raumanfrage über <br> diese Filter begrenzen</html>");
+		comboBoxCourse_.setToolTipText("<html>Sie können die Liste der <br> Raumzuordnungen über <br> diese Filter begrenzen</html>");
 		comboBoxCourse_.addActionListener(new StartTabCmbboxFilter());
 		comboBoxCourse_.setModel(new CmbboxFilterCourse(comboBoxCourse_));
 		comboBoxCourse_.setEditable(true);
@@ -147,7 +145,7 @@ public class StartTab extends JPanel implements IntfComDialogObserver {
 		tablePanel_.add(comboBoxCourse_, "cell 1 5,growx");
 		
 		comboBoxSemesterBottom_ = new JComboBox<String>();
-		comboBoxSemesterBottom_.setToolTipText("<html>Sie können die Liste der <br> Raumanfrage über <br> diese Filter begrenzen</html>");
+		comboBoxSemesterBottom_.setToolTipText("<html>Sie können die Liste der <br> Raumzuordnungen über <br> diese Filter begrenzen</html>");
 		comboBoxSemesterBottom_.addActionListener(new StartTabCmbboxFilter());
 		comboBoxSemesterBottom_.setModel(new CmbboxFilterSemester());
 		comboBoxSemesterBottom_.setEditable(true);
@@ -155,7 +153,7 @@ public class StartTab extends JPanel implements IntfComDialogObserver {
 		tablePanel_.add(comboBoxSemesterBottom_, "cell 2 5,growx");
 		
 		comboBoxStatus_ = new JComboBox<String>();
-		comboBoxStatus_.setToolTipText("<html>Sie können die Liste der <br> Raumanfrage über <br> diese Filter begrenzen</html>");
+		comboBoxStatus_.setToolTipText("<html>Sie können die Liste der <br> Raumzuordnungen über <br> diese Filter begrenzen</html>");
 		comboBoxStatus_.addActionListener(new StartTabCmbboxFilter());
 		comboBoxStatus_.setModel(new CmbboxFilterAllocationStatus());
 		tablePanel_.add(comboBoxStatus_, "cell 3 5");
@@ -186,32 +184,32 @@ public class StartTab extends JPanel implements IntfComDialogObserver {
 		add(buttonPanel_, "cell 6 1,grow");
 		
 		btnAdd_ = new JButton("hinzuf\u00FCgen");
-		btnAdd_.setToolTipText("<html>Hier klicken um eine Lehrveranstaltung zu erstellen</html>");
+		btnAdd_.setToolTipText("<html>Hier klicken um eine <br>Lehrveranstaltung zu erstellen</html>");
 		btnAdd_.addActionListener(new StartTabBtnsControl("add"));
 		btnAdd_.setBounds(0, 54, 88, 23);
 		buttonPanel_.add(btnAdd_);
 		
 		btnEdit_ = new JButton("bearbeiten");
-		btnEdit_.setToolTipText("<html>Selektieren Sie eine Lehrveranstaltung um sie zu bearbeiten</html>");
+		btnEdit_.setToolTipText("<html>Selektieren Sie eine Lehrveranstaltung<br> um sie zu bearbeiten</html>");
 		btnEdit_.addActionListener(new StartTabBtnsControl("edit"));
 		btnEdit_.setBounds(0, 79, 88, 23);
 		buttonPanel_.add(btnEdit_);
 		
 		btnDelete_ = new JButton("löschen");
-		btnDelete_.setToolTipText("<html>Selektieren Sie eine Lehrveranstaltung um sie zu löschen</html>");
+		btnDelete_.setToolTipText("<html>Selektieren Sie eine Lehrveranstaltung<br> um sie zu löschen</html>");
 		btnDelete_.addActionListener(new StartTabBtnsControl("delete"));
 		btnDelete_.setBounds(0, 106, 88, 23);
 		buttonPanel_.add(btnDelete_);
 		
 		JButton btnPublish = new JButton("freigeben");
-		btnPublish.setToolTipText("<html>Selektieren Sie eine Lehrveranstaltung um sie frei zu geben</html>");
+		btnPublish.setToolTipText("<html>Selektieren Sie eine Lehrveranstaltung<br> um sie frei zu geben</html>");
 		btnPublish.addActionListener(new StartTabBtnsControl("publish"));
 		btnPublish.setBounds(0, 194, 88, 23);
 		buttonPanel_.add(btnPublish);
 		
 		//Ist hier die Schreibweise gem�� der java code conventions?mit RoomRequest?
 		btnRoomRequest_ = new JButton("Anfrage");
-		btnRoomRequest_.setToolTipText("<html> Für erstellte Lehrveranstaltungen können Sie <br> eine Raumanfrage an die Verwaltung senden</html>");
+		btnRoomRequest_.setToolTipText("<html> Für erstellte Lehrveranstaltungen<br> können Sie eine Raumanfrage<br> an die Verwaltung senden</html>");
 		btnRoomRequest_.addActionListener(new StartTabBtnsControl("roomrequest"));
 		btnRoomRequest_.setBounds(0, 160, 88, 23);
 		buttonPanel_.add(btnRoomRequest_);
@@ -224,13 +222,13 @@ public class StartTab extends JPanel implements IntfComDialogObserver {
 		JButton btnRecall = new JButton("widerrufen");
 		btnRecall.setToolTipText("<html> abgelehnte oder nicht mehr benötigte <br> Raumanfragen widerrufen </html>");
 		btnRecall.addActionListener(new StartTabBtnsControl("back"));
-		btnRecall.setBounds(0, 260, 90, 23);
+		btnRecall.setBounds(0, 260, 88, 23);
 		buttonPanel_.add(btnRecall);
 		
 		JLabel lbluniIcon = new JLabel("");
-		uniIconPanel.add(lbluniIcon);
 		lbluniIcon.setIcon(new ImageIcon(BaseTab.class.getResource("/de/sfgmbh/comlayer/core/images/UniBA_logo.png")));
 		lbluniIcon.setMaximumSize(new Dimension(50,50));
+		add(lbluniIcon, "cell 6 0,alignx right,aligny top");
 	}
 
 	/**
