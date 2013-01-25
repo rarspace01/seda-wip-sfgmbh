@@ -56,15 +56,15 @@ public class RequestTabTable extends DefaultTableModel implements IntfAppObserve
 			filter.put("room", requestTab.getTxtRoom().getText());
 		}
 		
-		for (IntfRoomAllocation ra : AppModel.getInstance().getRepositoryRoomAllocation().getByFilter(filter)){
+		for (IntfRoomAllocation roomAllocation : AppModel.getInstance().getRepositoryRoomAllocation().getByFilter(filter)){
 			
 			// Set some speical Strings
 			String conflict = "-";
-			if (ra.isConflicting_()) {
+			if (roomAllocation.isConflicting_()) {
 				conflict = "JA!";
 			}
 			String status;
-			status = ViewHelper.getAllocationStatus(ra.getApproved_());
+			status = ViewHelper.getAllocationStatus(roomAllocation.getApproved_());
 			if (status.equals("wartend")) {
 				// UTF-8 Special invisible character to force ordering
 				// Character code: U+200D
@@ -73,15 +73,15 @@ public class RequestTabTable extends DefaultTableModel implements IntfAppObserve
 			
 			try {
 				Object[] row = {
-						ra.getCourse_().getLecturer_().getlName_(),
-						ra.getCourse_().getCourseAcronym_(),
-						ViewHelper.getDay(ra.getDay_()),
-						ViewHelper.getTime(ra.getTime_()),
-						ra.getRoom_().getRoomNumber_(),
-						ra.getSemester_(),
+						roomAllocation.getCourse_().getLecturer_().getlName_(),
+						roomAllocation.getCourse_().getCourseAcronym_(),
+						ViewHelper.getDay(roomAllocation.getDay_()),
+						ViewHelper.getTime(roomAllocation.getTime_()),
+						roomAllocation.getRoom_().getRoomNumber_(),
+						roomAllocation.getSemester_(),
 						status,
 						conflict,
-						ra
+						roomAllocation
 						};
 				this.addRow(row);
 				

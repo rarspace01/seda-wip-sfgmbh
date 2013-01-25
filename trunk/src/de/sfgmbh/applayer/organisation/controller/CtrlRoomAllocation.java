@@ -74,8 +74,8 @@ public class CtrlRoomAllocation implements IntfCtrlRoomAllocation {
 	 * @see de.sfgmbh.applayer.organisation.controller.IntfCtrlRoomAllocation#denyRoomAllocation(de.sfgmbh.applayer.core.model.RoomAllocation)
 	 */
 	@Override
-	public boolean denyRoomAllocation(IntfRoomAllocation ra) {
-		IntfRoomAllocation currentRa = AppModel.getInstance().getRepositoryRoomAllocation().get(ra.getRoomAllocationId_());
+	public boolean denyRoomAllocation(IntfRoomAllocation roomAllocation) {
+		IntfRoomAllocation currentRa = AppModel.getInstance().getRepositoryRoomAllocation().get(roomAllocation.getRoomAllocationId_());
 		if (currentRa.getApproved_().equals("accepted") || currentRa.getApproved_().equals("waiting") || currentRa.getApproved_().equals("counter")){
 			currentRa.setApproved_("denied");
 			long currentTime = System.currentTimeMillis() / 1000L;

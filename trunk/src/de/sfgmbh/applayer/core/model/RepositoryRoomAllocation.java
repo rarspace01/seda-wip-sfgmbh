@@ -54,11 +54,11 @@ public class RepositoryRoomAllocation implements IntfAppObservable, IntfDataObse
 
 	/**
 	 * Checks for conflicting room allocations
-	 * @param ra
+	 * @param roomAllocation
 	 * @return a list of all conflicting room allocations
 	 */
-	public List<IntfRoomAllocation> getConflictingAllocation(IntfRoomAllocation ra) {
-		return DataModel.getInstance().getDataHandlerRoomAllocation().getConflictingAllocation(ra);
+	public List<IntfRoomAllocation> getConflictingAllocation(IntfRoomAllocation roomAllocation) {
+		return DataModel.getInstance().getDataHandlerRoomAllocation().getConflictingAllocation(roomAllocation);
 	}
 	
 	/**
@@ -74,8 +74,8 @@ public class RepositoryRoomAllocation implements IntfAppObservable, IntfDataObse
 	 * Save this user object in the DB (this will update a database entry if there is already one and create one if there is none)
 	 * @return true on success
 	 */
-	public boolean save(IntfRoomAllocation ra) {
-		return DataModel.getInstance().getDataHandlerRoomAllocation().save(ra);
+	public boolean save(IntfRoomAllocation roomAllocation) {
+		return DataModel.getInstance().getDataHandlerRoomAllocation().save(roomAllocation);
 	}
 
 	/*

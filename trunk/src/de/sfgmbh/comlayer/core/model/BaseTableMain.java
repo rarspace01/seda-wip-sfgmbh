@@ -51,20 +51,20 @@ public class BaseTableMain extends DefaultTableModel implements IntfAppObserver 
 			filter.put("semester", ViewManager.getInstance().getCoreBaseTab().getComboBoxSemesterFilter().getSelectedItem().toString());
 		}
 		
-		for (IntfRoomAllocation ra : AppModel.getInstance().getRepositoryRoomAllocation().getByFilter(filter)){
-			if (ra.isPublic()) {
+		for (IntfRoomAllocation roomAllocation : AppModel.getInstance().getRepositoryRoomAllocation().getByFilter(filter)){
+			if (roomAllocation.isPublic()) {
 				try {
 					Object[] row = {
-							ra.getCourse_().getCourseAcronym_(), 
-							ra.getCourse_().getCourseName_(),
-							ra.getCourse_().getCourseKind_(),
-							ra.getCourse_().getLecturer_().getlName_(), 
-							ViewHelper.getDay(ra.getDay_()),
-							ViewHelper.getTime(ra.getTime_()), 
-							ra.getRoom_().getRoomNumber_(), 
-							ra.getSemester_(), 
-							ra.getCourse_().getSws_(),
-							ra
+							roomAllocation.getCourse_().getCourseAcronym_(), 
+							roomAllocation.getCourse_().getCourseName_(),
+							roomAllocation.getCourse_().getCourseKind_(),
+							roomAllocation.getCourse_().getLecturer_().getlName_(), 
+							ViewHelper.getDay(roomAllocation.getDay_()),
+							ViewHelper.getTime(roomAllocation.getTime_()), 
+							roomAllocation.getRoom_().getRoomNumber_(), 
+							roomAllocation.getSemester_(), 
+							roomAllocation.getCourse_().getSws_(),
+							roomAllocation
 							};
 					this.addRow(row);
 	

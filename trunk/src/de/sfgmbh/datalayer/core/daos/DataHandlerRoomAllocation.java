@@ -266,7 +266,7 @@ public class DataHandlerRoomAllocation implements IntfDataObservable, IntfDataFi
 	 * @see de.sfgmbh.datalayer.core.daos.IntfDataRoomAllocation#getConflictingAllocation(de.sfgmbh.applayer.core.model.RoomAllocation)
 	 */
 	@Override
-	public List<IntfRoomAllocation> getConflictingAllocation(IntfRoomAllocation ra) {
+	public List<IntfRoomAllocation> getConflictingAllocation(IntfRoomAllocation roomAllocation) {
 		// DataManagerPostgreSql filterDm = null;
 		DataManagerPostgreSql conflictingAllocationDm = null;
 		List<IntfRoomAllocation> listRoomAllocation = new ArrayList<IntfRoomAllocation>();
@@ -290,11 +290,11 @@ public class DataHandlerRoomAllocation implements IntfDataObservable, IntfDataFi
 						"ORDER BY public.roomallocation.day ASC, public.roomallocation.time ASC"
 						);
 			}
-			conflictingAllocationDm.getPreparedStatement().setInt(1, ra.getRoom_().getRoomId_());
-			conflictingAllocationDm.getPreparedStatement().setInt(2, ra.getDay_());
-			conflictingAllocationDm.getPreparedStatement().setInt(3, ra.getTime_());
-			conflictingAllocationDm.getPreparedStatement().setString(4, ra.getSemester_());
-			conflictingAllocationDm.getPreparedStatement().setInt(5, ra.getRoomAllocationId_());
+			conflictingAllocationDm.getPreparedStatement().setInt(1, roomAllocation.getRoom_().getRoomId_());
+			conflictingAllocationDm.getPreparedStatement().setInt(2, roomAllocation.getDay_());
+			conflictingAllocationDm.getPreparedStatement().setInt(3, roomAllocation.getTime_());
+			conflictingAllocationDm.getPreparedStatement().setString(4, roomAllocation.getSemester_());
+			conflictingAllocationDm.getPreparedStatement().setInt(5, roomAllocation.getRoomAllocationId_());
 			
 			ResultSet rs = conflictingAllocationDm.selectPreparedStatement();
 			while (rs.next()) {
@@ -425,23 +425,23 @@ public class DataHandlerRoomAllocation implements IntfDataObservable, IntfDataFi
 	 * @see de.sfgmbh.datalayer.core.daos.IntfDataRoomAllocation#save(de.sfgmbh.applayer.core.model.RoomAllocation)
 	 */
 	@Override
-	public boolean save(IntfRoomAllocation ra) {
+	public boolean save(IntfRoomAllocation roomAllocation) {
 		DataManagerPostgreSql dataManager = new DataManagerPostgreSql();
 		boolean returnStatus = false;
-		if (ra.getRoomAllocationId_() == -1) {
+		if (roomAllocation.getRoomAllocationId_() == -1) {
 			try {
 				
 				dataManager.prepare("INSERT INTO public.roomallocation"
 						+ "(courseid, roomid, semester, day, time, approved, orgamessage, comment)"
 						+ "VALUES (?,?,?,?,?,?,?,?)");
-				dataManager.getPreparedStatement().setInt(1, ra.getCourse_().getCourseId_());
-				dataManager.getPreparedStatement().setInt(2, ra.getRoom_().getRoomId_());
-				dataManager.getPreparedStatement().setString(3, ra.getSemester_());
-				dataManager.getPreparedStatement().setInt(4, ra.getDay_());
-				dataManager.getPreparedStatement().setInt(5, ra.getTime_());
-				dataManager.getPreparedStatement().setString(6, ra.getApproved_());
-				dataManager.getPreparedStatement().setString(7, ra.getOrgaMessage_());
-				dataManager.getPreparedStatement().setString(8, ra.getComment_());
+				dataManager.getPreparedStatement().setInt(1, roomAllocation.getCourse_().getCourseId_());
+				dataManager.getPreparedStatement().setInt(2, roomAllocation.getRoom_().getRoomId_());
+				dataManager.getPreparedStatement().setString(3, roomAllocation.getSemester_());
+				dataManager.getPreparedStatement().setInt(4, roomAllocation.getDay_());
+				dataManager.getPreparedStatement().setInt(5, roomAllocation.getTime_());
+				dataManager.getPreparedStatement().setString(6, roomAllocation.getApproved_());
+				dataManager.getPreparedStatement().setString(7, roomAllocation.getOrgaMessage_());
+				dataManager.getPreparedStatement().setString(8, roomAllocation.getComment_());
 				returnStatus = dataManager.executePreparedStatement();
 				this.update();
 			} catch (SQLException e) {
@@ -459,15 +459,15 @@ public class DataHandlerRoomAllocation implements IntfDataObservable, IntfDataFi
 				dataManager.prepare("UPDATE public.roomallocation SET "
 						+ "courseid = ?, roomid = ?, semester = ?, day = ?, time = ?, approved = ?, orgamessage = ?, comment = ? "
 						+ "WHERE roomallocationid = ?");
-				dataManager.getPreparedStatement().setInt(1, ra.getCourse_().getCourseId_());
-				dataManager.getPreparedStatement().setInt(2, ra.getRoom_().getRoomId_());
-				dataManager.getPreparedStatement().setString(3, ra.getSemester_());
-				dataManager.getPreparedStatement().setInt(4, ra.getDay_());
-				dataManager.getPreparedStatement().setInt(5, ra.getTime_());
-				dataManager.getPreparedStatement().setString(6, ra.getApproved_());
-				dataManager.getPreparedStatement().setString(7, ra.getOrgaMessage_());
-				dataManager.getPreparedStatement().setString(8, ra.getComment_());
-				dataManager.getPreparedStatement().setInt(9, ra.getRoomAllocationId_());
+				dataManager.getPreparedStatement().setInt(1, roomAllocation.getCourse_().getCourseId_());
+				dataManager.getPreparedStatement().setInt(2, roomAllocation.getRoom_().getRoomId_());
+				dataManager.getPreparedStatement().setString(3, roomAllocation.getSemester_());
+				dataManager.getPreparedStatement().setInt(4, roomAllocation.getDay_());
+				dataManager.getPreparedStatement().setInt(5, roomAllocation.getTime_());
+				dataManager.getPreparedStatement().setString(6, roomAllocation.getApproved_());
+				dataManager.getPreparedStatement().setString(7, roomAllocation.getOrgaMessage_());
+				dataManager.getPreparedStatement().setString(8, roomAllocation.getComment_());
+				dataManager.getPreparedStatement().setInt(9, roomAllocation.getRoomAllocationId_());
 				returnStatus = dataManager.executePreparedStatement();
 				this.update();
 			} catch (SQLException e) {
