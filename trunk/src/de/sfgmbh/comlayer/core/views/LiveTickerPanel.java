@@ -30,12 +30,12 @@ import de.sfgmbh.comlayer.core.controller.ViewHelper;
 public class LiveTickerPanel extends JPanel {
 
 	private static final long serialVersionUID = 1L;
-	private JTextArea txtHeader;
-	private JTextPane txtTicker;
-	private IntfCtrlLiveTicker ctrlLiverTicker = new CtrlLiveTicker();
-	private List<IntfRoomAllocation> displayAllocations;
-	private boolean isTooLong;
-	private ScrollTicker scrollTicker = new ScrollTicker();
+	private JTextArea txtHeader_;
+	private JTextPane txtTicker_;
+	private IntfCtrlLiveTicker ctrlLiverTicker_ = new CtrlLiveTicker();
+	private List<IntfRoomAllocation> displayAllocations_;
+	private boolean isTooLong_;
+	private ScrollTicker scrollTicker_ = new ScrollTicker();
 	
 	/**
 	 * Create the panel.
@@ -45,7 +45,7 @@ public class LiveTickerPanel extends JPanel {
 		setMaximumSize(new Dimension(140, 530));
 		createContents();
 		this.refresh();
-		scrollTicker.execute();
+		scrollTicker_.execute();
 	}
 	
 	/**
@@ -53,7 +53,7 @@ public class LiveTickerPanel extends JPanel {
 	 */
 	public synchronized void refresh() {
 		try {
-			this.displayAllocations = this.ctrlLiverTicker.getTickerAllocations();
+			this.displayAllocations_ = this.ctrlLiverTicker_.getTickerAllocations();
 		} catch (Exception e) {
 			// This would be a good place for logging - but normally nothing should happen here
 		}
@@ -65,7 +65,7 @@ public class LiveTickerPanel extends JPanel {
 					"Verw // Verw <br /><br/>";
 			
 			// Get the text for the room allocations
-			String allocationText = this.getRoomAllocationText(this.displayAllocations);
+			String allocationText = this.getRoomAllocationText(this.displayAllocations_);
 			
 			// Merge and set text
 			textToSet = textToSet + allocationText;
@@ -87,16 +87,16 @@ public class LiveTickerPanel extends JPanel {
 	 * @return the txtHeader
 	 */
 	public JTextArea getTxtHeader() {
-		if (txtHeader == null) {
-			txtHeader = new JTextArea();
-			txtHeader.setBorder(new LineBorder(SystemColor.activeCaption));
-			txtHeader.setBackground(SystemColor.activeCaption);
-			txtHeader.setFont(new Font("Tahoma", Font.PLAIN, 11));
-			txtHeader.setEditable(false);
-			txtHeader.setText(" Infos & nahe Termine:");
-			txtHeader.setBounds(0, 0, 140, 23);
+		if (txtHeader_ == null) {
+			txtHeader_ = new JTextArea();
+			txtHeader_.setBorder(new LineBorder(SystemColor.activeCaption));
+			txtHeader_.setBackground(SystemColor.activeCaption);
+			txtHeader_.setFont(new Font("Tahoma", Font.PLAIN, 11));
+			txtHeader_.setEditable(false);
+			txtHeader_.setText(" Infos & nahe Termine:");
+			txtHeader_.setBounds(0, 0, 140, 23);
 		}
-		return txtHeader;
+		return txtHeader_;
 	}
 	
 	/**
@@ -104,16 +104,16 @@ public class LiveTickerPanel extends JPanel {
 	 * @return the txtTicker
 	 */
 	public JTextPane getTxtTicker() {
-		if (txtTicker == null) {
-			txtTicker = new JTextPane();
-			txtTicker.setDragEnabled(true);
-			txtTicker.setOpaque(false);
-			txtTicker.setEditable(false);
-			txtTicker.setContentType("text/html");
-			txtTicker.setBounds(5, 21, 130, 285);
-			txtTicker.setText("<div style=\"font-family: Tahoma, Calibri, monospace; font-size: 11pt;\"></div>");
+		if (txtTicker_ == null) {
+			txtTicker_ = new JTextPane();
+			txtTicker_.setDragEnabled(true);
+			txtTicker_.setOpaque(false);
+			txtTicker_.setEditable(false);
+			txtTicker_.setContentType("text/html");
+			txtTicker_.setBounds(5, 21, 130, 285);
+			txtTicker_.setText("<div style=\"font-family: Tahoma, Calibri, monospace; font-size: 11pt;\"></div>");
 		}
-		return txtTicker;
+		return txtTicker_;
 	}
 	
 	/**
@@ -135,9 +135,9 @@ public class LiveTickerPanel extends JPanel {
 			int width = this.getTxtTicker().getBounds().width;
 			this.getTxtTicker().setBounds(x, y, width, height);
 			if (height > 325) {
-				this.isTooLong = true;
+				this.isTooLong_ = true;
 			} else {
-				this.isTooLong = false;
+				this.isTooLong_ = false;
 			}
 			this.add(getTxtTicker());
 		} catch (Exception e) {
@@ -161,7 +161,7 @@ public class LiveTickerPanel extends JPanel {
 	
 	private synchronized void scroll() {
 		// Get current size and scroll by one pixel if the text is too long
-		if (this.isTooLong) {
+		if (this.isTooLong_) {
 			try {
 				int x = this.getTxtTicker().getBounds().x;
 				int y = this.getTxtTicker().getBounds().y;

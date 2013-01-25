@@ -12,13 +12,13 @@ import javax.swing.DefaultComboBoxModel;
 public class CmbboxFilterKind extends DefaultComboBoxModel<String>{
 
 	private static final long serialVersionUID = 1L;
-	private String variant;
+	private String variant_;
 	
 	/**
 	 * Create the model object
 	 */
 	public CmbboxFilterKind() {
-		this.variant = "default";
+		this.variant_ = "default";
 		this.build();
 	}
 	
@@ -27,14 +27,14 @@ public class CmbboxFilterKind extends DefaultComboBoxModel<String>{
 	 * @param variant
 	 */
 	public CmbboxFilterKind(String variant) {
-		this.variant = variant;
+		this.variant_ = variant;
 		this.build();
 		
 	}
 
 	private void build() {
 		String[] elements = new String[] {"<alle>", "Vorlesung", "Übung", "Tutorium"};
-		if (this.variant.equals("select")) {
+		if (this.variant_.equals("select")) {
 			elements = new String[] {"Vorlesung", "Übung", "Tutorium"};
 		}
 		

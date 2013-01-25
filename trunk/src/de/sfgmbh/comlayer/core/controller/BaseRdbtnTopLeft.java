@@ -15,15 +15,15 @@ import de.sfgmbh.comlayer.core.views.InfoDialog;
  */
 public class BaseRdbtnTopLeft implements ActionListener {
 	
-	private String ctrlAction;
-	protected InfoDialog infoWindow;
-	protected IntfCtrlBaseTab ctrlBaseTab;
+	private String ctrlAction_;
+	protected InfoDialog infoWindow_;
+	protected IntfCtrlBaseTab ctrlBaseTab_;
 	
 	/**
 	 * Create the action listener 
 	 */
 	public BaseRdbtnTopLeft(){
-		this.ctrlAction ="default";
+		this.ctrlAction_ ="default";
 	}
 	
 	/**
@@ -34,7 +34,7 @@ public class BaseRdbtnTopLeft implements ActionListener {
 	 * Create the action listener based on an action string
 	 */
 	public BaseRdbtnTopLeft(String action){
-		this.ctrlAction = action;
+		this.ctrlAction_ = action;
 	}
 
 	/*
@@ -46,7 +46,7 @@ public class BaseRdbtnTopLeft implements ActionListener {
 		BaseTab baseTab = ViewManager.getInstance().getCoreBaseTab();
 
 		//room-JRadioButton is pressed
-		if (this.ctrlAction.equals("room")){
+		if (this.ctrlAction_.equals("room")){
 			baseTab.getRoomTable().setVisible(true);
 			baseTab.getOrganisationTable().setVisible(false);
 			baseTab.getMainTableScrollPane().setViewportView(baseTab.getRoomTable());
@@ -65,7 +65,7 @@ public class BaseRdbtnTopLeft implements ActionListener {
 		}
 		
 		//course-JRadioButton is pressed
-		if (this.ctrlAction.equals("course")){
+		if (this.ctrlAction_.equals("course")){
 			baseTab.getOrganisationTable().setVisible(true);
 			baseTab.getRoomTable().setVisible(false);
 			baseTab.getMainTableScrollPane().setViewportView(baseTab.getOrganisationTable());

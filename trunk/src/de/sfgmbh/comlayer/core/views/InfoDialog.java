@@ -24,9 +24,9 @@ import de.sfgmbh.comlayer.core.controller.InfoDialogBtnOk;
 public class InfoDialog extends JDialog implements IntfAppObserver {
 
 	private static final long serialVersionUID = 1L;
-	private JTextPane txtpnInfoDialogText;
-	private JButton btnOk;
-	private JLabel lblIcon;
+	private JTextPane txtpnInfoDialogText_;
+	private JButton btnOk_;
+	private JLabel lblIcon_;
 
 	/**
 	 * Create the dialog with default message, title and settings
@@ -114,35 +114,35 @@ public class InfoDialog extends JDialog implements IntfAppObserver {
 	}
 	
 	private JTextPane getTxtpnInfoWindowText() {
-		if (txtpnInfoDialogText == null) {
-			txtpnInfoDialogText = new JTextPane();
-			txtpnInfoDialogText.setEditable(false);
-			txtpnInfoDialogText.setContentType("text/html");
-			txtpnInfoDialogText.setSize(new Dimension(250, 150));
-			txtpnInfoDialogText.setBackground(SystemColor.control);
-			txtpnInfoDialogText.setText("<div style='font-family: Calibri, monospace; text-align: left;'>Info Window Text</div>");
+		if (txtpnInfoDialogText_ == null) {
+			txtpnInfoDialogText_ = new JTextPane();
+			txtpnInfoDialogText_.setEditable(false);
+			txtpnInfoDialogText_.setContentType("text/html");
+			txtpnInfoDialogText_.setSize(new Dimension(250, 150));
+			txtpnInfoDialogText_.setBackground(SystemColor.control);
+			txtpnInfoDialogText_.setText("<div style='font-family: Calibri, monospace; text-align: left;'>Info Window Text</div>");
 		}
-		return txtpnInfoDialogText;
+		return txtpnInfoDialogText_;
 	}
 	
 	
 	private JButton getBtnOk() {
-		if (btnOk == null) {
-			btnOk = new JButton("OK");
-			btnOk.setPreferredSize(new Dimension(75, 23));
-			btnOk.addActionListener(new InfoDialogBtnOk(this));
+		if (btnOk_ == null) {
+			btnOk_ = new JButton("OK");
+			btnOk_.setPreferredSize(new Dimension(75, 23));
+			btnOk_.addActionListener(new InfoDialogBtnOk(this));
 		}
-		return btnOk;
+		return btnOk_;
 	}
 	
 	private JLabel getLblIcon() {
-		if (lblIcon == null) {
-			lblIcon = new JLabel("");
-			lblIcon.setIcon(new ImageIcon(InfoDialog.class.getResource("/de/sfgmbh/comlayer/core/images/error.png")));
-			lblIcon.setMaximumSize(new Dimension(100, 100));
-			lblIcon.setMinimumSize(new Dimension(100, 100));
+		if (lblIcon_ == null) {
+			lblIcon_ = new JLabel("");
+			lblIcon_.setIcon(new ImageIcon(InfoDialog.class.getResource("/de/sfgmbh/comlayer/core/images/error.png")));
+			lblIcon_.setMaximumSize(new Dimension(100, 100));
+			lblIcon_.setMinimumSize(new Dimension(100, 100));
 		}
-		return lblIcon;
+		return lblIcon_;
 	}
 	
 	/*

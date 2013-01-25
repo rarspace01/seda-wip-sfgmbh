@@ -20,14 +20,14 @@ import de.sfgmbh.comlayer.core.controller.ViewManager;
 public class BaseTableMain extends DefaultTableModel implements IntfAppObserver {
 
 	private static final long serialVersionUID = 1L;
-	private String[] header = {"Bez.", "Name", "Art", "Dozent", "Tag", "Uhrzeit", "Raum", "Sem.", "SWS", "Hidden"};
+	private String[] header_ = {"Bez.", "Name", "Art", "Dozent", "Tag", "Uhrzeit", "Raum", "Sem.", "SWS", "Hidden"};
 	
 	/**
 	 * Creates an initial table model object
 	 */
 	public BaseTableMain() {
 		AppModel.getInstance().getRepositoryRoomAllocation().register(this);
-		this.setColumnIdentifiers(header);
+		this.setColumnIdentifiers(header_);
 		this.change("init");
 	}
 	

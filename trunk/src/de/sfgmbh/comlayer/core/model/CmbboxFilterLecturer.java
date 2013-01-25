@@ -20,9 +20,9 @@ import de.sfgmbh.applayer.core.model.User;
 public class CmbboxFilterLecturer extends DefaultComboBoxModel<String> implements IntfAppObserver {
 
 	private static final long serialVersionUID = 1L;
-	private JComboBox<String> dependentComboBox;
-	private String variant;
-	private ArrayList<User> lecturerForModel = new ArrayList<User>();
+	private JComboBox<String> dependentComboBox_;
+	private String variant_;
+	private ArrayList<User> lecturerForModel_ = new ArrayList<User>();
 	
 	/**
 	 * Create the model object
@@ -30,8 +30,8 @@ public class CmbboxFilterLecturer extends DefaultComboBoxModel<String> implement
 	 */
 	public CmbboxFilterLecturer(JComboBox<String> dependentComboBox) {
 		AppModel.getInstance().getRepositoryUser().register(this);
-		this.dependentComboBox = dependentComboBox;
-		this.variant = "default";
+		this.dependentComboBox_ = dependentComboBox;
+		this.variant_ = "default";
 		this.build();
 	}
 	
@@ -42,8 +42,8 @@ public class CmbboxFilterLecturer extends DefaultComboBoxModel<String> implement
 	 */
 	public CmbboxFilterLecturer(JComboBox<String> dependentComboBox, String variant) {
 		AppModel.getInstance().getRepositoryUser().register(this);
-		this.dependentComboBox = dependentComboBox;
-		this.variant = variant;
+		this.dependentComboBox_ = dependentComboBox;
+		this.variant_ = variant;
 		this.build();
 	}
 
@@ -51,26 +51,26 @@ public class CmbboxFilterLecturer extends DefaultComboBoxModel<String> implement
 	 * Create the model object
 	 */
 	public CmbboxFilterLecturer() {
-		this.variant = "default";
+		this.variant_ = "default";
 		this.build();
 	}
 
 	private void build() {
 		
-		if (this.variant.equals("select")) {
+		if (this.variant_.equals("select")) {
 			// currently nothing to add here
-		} else if (this.variant.equals("create")) {
+		} else if (this.variant_.equals("create")) {
 			this.addElement("<keiner>");
-			lecturerForModel.add(0, null);
+			lecturerForModel_.add(0, null);
 		} else {
 			this.addElement("<alle>");
-			lecturerForModel.add(0, null);
+			lecturerForModel_.add(0, null);
 		}
 		
 		for (User user : AppModel.getInstance().getRepositoryUser().getAllLecturer()){
 			this.addElement(user.getlName_());
 			int desiredIndex = this.getSize()-1;
-			lecturerForModel.add(desiredIndex, user);
+			lecturerForModel_.add(desiredIndex, user);
 		}
 
 		// Set the selected lecturer to the currently logged in lecturer if
@@ -91,8 +91,8 @@ public class CmbboxFilterLecturer extends DefaultComboBoxModel<String> implement
 	public void change() {
 		
 		// Build a new model (which will be up to date automatically) and set it
-		CmbboxFilterLecturer newModel = new CmbboxFilterLecturer(this.dependentComboBox);
-		this.dependentComboBox.setModel(newModel);
+		CmbboxFilterLecturer newModel = new CmbboxFilterLecturer(this.dependentComboBox_);
+		this.dependentComboBox_.setModel(newModel);
 		
 		// Unregister this model as it is no longer used and would cause unwanted additional queries
 		AppModel.getInstance().getRepositoryUser().unregister(this);
@@ -103,6 +103,6 @@ public class CmbboxFilterLecturer extends DefaultComboBoxModel<String> implement
 	 * @return the lecturerForModel
 	 */
 	public ArrayList<User> getLecturerForModel() {
-		return lecturerForModel;
+		return lecturerForModel_;
 	}
 }

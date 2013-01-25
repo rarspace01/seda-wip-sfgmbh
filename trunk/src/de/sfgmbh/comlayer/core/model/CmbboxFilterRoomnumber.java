@@ -17,17 +17,17 @@ import de.sfgmbh.applayer.core.model.AppModel;
 public class CmbboxFilterRoomnumber extends DefaultComboBoxModel<String> implements IntfAppObserver {
 
 	private static final long serialVersionUID = 1L;
-	private String variant;
-	private JComboBox<String> dependentComboBox;
+	private String variant_;
+	private JComboBox<String> dependentComboBox_;
 	
 	/**
 	 * Create the model object
 	 * @param dependentCombobox
 	 */
 	public CmbboxFilterRoomnumber(JComboBox<String> dependentComboBox) {
-		this.variant = "default";
+		this.variant_ = "default";
 		AppModel.getInstance().getRepositoryRoom().register(this);
-		this.dependentComboBox = dependentComboBox;
+		this.dependentComboBox_ = dependentComboBox;
 		this.build();
 	}
 	
@@ -37,17 +37,17 @@ public class CmbboxFilterRoomnumber extends DefaultComboBoxModel<String> impleme
 	 * @param dependentCombobox
 	 */
 	public CmbboxFilterRoomnumber(JComboBox<String> dependentComboBox, String variant) {
-		this.variant = variant;
-		this.dependentComboBox = dependentComboBox;
+		this.variant_ = variant;
+		this.dependentComboBox_ = dependentComboBox;
 		this.build();
 		
 	}
 
 	private void build() {
 		
-		if (this.variant.equals("default")) {
+		if (this.variant_.equals("default")) {
 			this.addElement("<alle>");
-		} else if (this.variant.equals("select")) {
+		} else if (this.variant_.equals("select")) {
 			this.addElement("");
 		}
 		for (IntfRoom room : AppModel.getInstance().getRepositoryRoom().getAll()){
@@ -63,8 +63,8 @@ public class CmbboxFilterRoomnumber extends DefaultComboBoxModel<String> impleme
 	public void change() {
 		
 		// Build a new model (which will be up to date automatically) and set it
-		CmbboxFilterRoomnumber newModel = new CmbboxFilterRoomnumber(this.dependentComboBox);
-		this.dependentComboBox.setModel(newModel);
+		CmbboxFilterRoomnumber newModel = new CmbboxFilterRoomnumber(this.dependentComboBox_);
+		this.dependentComboBox_.setModel(newModel);
 		
 		// Unregister this model as it is no longer used and would cause unwanted additional queries
 		AppModel.getInstance().getRepositoryRoom().unregister(this);

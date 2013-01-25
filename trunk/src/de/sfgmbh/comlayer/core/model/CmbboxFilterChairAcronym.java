@@ -17,7 +17,7 @@ public class CmbboxFilterChairAcronym extends DefaultComboBoxModel<String> imple
 
 	private static final long serialVersionUID = 1L;
 	private String variant_;
-	private JComboBox<String> dependentComboBox;
+	private JComboBox<String> dependentComboBox_;
 	
 	/**
 	 * Create the model object
@@ -26,7 +26,7 @@ public class CmbboxFilterChairAcronym extends DefaultComboBoxModel<String> imple
 	public CmbboxFilterChairAcronym(JComboBox<String> dependentComboBox) {
 		this.variant_ = "normal";
 		AppModel.getInstance().getRepositoryChair().register(this);
-		this.dependentComboBox = dependentComboBox;
+		this.dependentComboBox_ = dependentComboBox;
 		this.build();
 	}
 	
@@ -36,7 +36,7 @@ public class CmbboxFilterChairAcronym extends DefaultComboBoxModel<String> imple
 	public CmbboxFilterChairAcronym(JComboBox<String> dependentComboBox, String variant) {
 		this.variant_ = variant;
 		AppModel.getInstance().getRepositoryChair().register(this);
-		this.dependentComboBox = dependentComboBox;
+		this.dependentComboBox_ = dependentComboBox;
 		this.build();
 	}
 
@@ -61,8 +61,8 @@ public class CmbboxFilterChairAcronym extends DefaultComboBoxModel<String> imple
 	public void change() {
 		
 		// Build a new model (which will be up to date automatically) and set it
-		CmbboxFilterChairAcronym newModel = new CmbboxFilterChairAcronym(this.dependentComboBox);
-		this.dependentComboBox.setModel(newModel);
+		CmbboxFilterChairAcronym newModel = new CmbboxFilterChairAcronym(this.dependentComboBox_);
+		this.dependentComboBox_.setModel(newModel);
 		
 		// Unregister this model as it is no longer used and would cause unwanted additional queries
 		AppModel.getInstance().getRepositoryChair().unregister(this);

@@ -13,20 +13,20 @@ import de.sfgmbh.comlayer.core.views.InfoDialog;
  */
 public class InfoDialogBtnOk implements ActionListener {
 	
-	protected InfoDialog infoWinwod;
+	protected InfoDialog infoWinwod_;
 	
 	/**
 	 * Create the action listener
 	 * @param transmittedInfoWindow
 	 */
 	public InfoDialogBtnOk(InfoDialog transmittedInfoWindow) {
-		this.infoWinwod = transmittedInfoWindow;
+		this.infoWinwod_ = transmittedInfoWindow;
 	}
 	
 	/**
 	 * Close on action
 	 */
 	public void actionPerformed(ActionEvent e) {
-		infoWinwod.dispose();
+		infoWinwod_.dispose();
 	}
 }
