@@ -472,7 +472,7 @@ public class BaseTab extends JFrame {
 	public JButton getBtnLogin() {
 		if (btnLogin == null) {
 			btnLogin = new JButton("Einloggen");
-			btnLogin.setToolTipText("<html>Lehrstuhl- und Verwaltungsmitarbeitern<br> können sich hier anmelden</html>");
+			btnLogin.setToolTipText("");
 			btnLogin.addActionListener(new BaseLogin());
 		}
 		return btnLogin;

@@ -96,6 +96,7 @@ public class UserCreateDialog extends JDialog {
 		contentPane_.setLayout(null);
 		
 		JLabel lblNutzerkennung = new JLabel("Nutzerkennung:");
+		lblNutzerkennung.setToolTipText("");
 		lblNutzerkennung.setFont(new Font("SansSerif", Font.PLAIN, 12));
 		lblNutzerkennung.setBounds(12, 14, 120, 14);
 		contentPane_.add(lblNutzerkennung);
@@ -121,30 +122,35 @@ public class UserCreateDialog extends JDialog {
 		contentPane_.add(lblLehrstuhl_);
 		
 		txtNutzerkennung_ = new JTextField();
+		txtNutzerkennung_.setToolTipText("<html>Geben Sie eine Nutzerkennung<br> für den Nutzer ein</html>");
 		txtNutzerkennung_.setFont(new Font("SansSerif", Font.PLAIN, 12));
 		txtNutzerkennung_.setBounds(115, 11, 116, 20);
 		contentPane_.add(txtNutzerkennung_);
 		txtNutzerkennung_.setColumns(10);
 		
 		txtPasswort_ = new JTextField();
+		txtPasswort_.setToolTipText("<html>Geben Sie ein Passwort<br>für den Nutzer an</html>");
 		txtPasswort_.setFont(new Font("SansSerif", Font.PLAIN, 12));
 		txtPasswort_.setColumns(10);
 		txtPasswort_.setBounds(115, 121, 116, 20);
 		contentPane_.add(txtPasswort_);
 		
 		txtEmail_ = new JTextField();
+		txtEmail_.setToolTipText("<html>Geben Sie die E-Mail Adresse<br> des Nutzers an</html>");
 		txtEmail_.setFont(new Font("SansSerif", Font.PLAIN, 12));
 		txtEmail_.setColumns(10);
 		txtEmail_.setBounds(115, 40, 116, 20);
 		contentPane_.add(txtEmail_);
 		
 		comboBoxNutzerklasse_ = new JComboBox<String>();
+		comboBoxNutzerklasse_.setToolTipText("<html>Wählen Sie eine Nutzerklasse<br> für den Nutzers</html>");
 		comboBoxNutzerklasse_.setFont(new Font("SansSerif", Font.PLAIN, 12));
 		comboBoxNutzerklasse_.setModel(new CmbboxFilterUserClass("blank"));
 		comboBoxNutzerklasse_.setBounds(115, 150, 116, 20);
 		contentPane_.add(comboBoxNutzerklasse_);
 		
 		comboBoxLehrstuhl_ = new JComboBox<String>();
+		comboBoxLehrstuhl_.setToolTipText("<html>Ordnen Sie den Nutzer<br> einem Lehrstuhl zu</html>");
 		comboBoxLehrstuhl_.setEditable(true);
 		comboBoxLehrstuhl_.setFont(new Font("SansSerif", Font.PLAIN, 12));
 		comboBoxLehrstuhl_.setModel(new CmbboxFilterChairAcronym(comboBoxLehrstuhl_, "blank"));
@@ -152,12 +158,14 @@ public class UserCreateDialog extends JDialog {
 		contentPane_.add(comboBoxLehrstuhl_);
 		
 		JButton btnSpeichern = new JButton("Speichern");
-		btnSpeichern.setBounds(141, 233, 90, 28);
+		btnSpeichern.setToolTipText("<html>Klicken Sie hier, um<br> Ihre Eingaben zu speichern</html>");
+		btnSpeichern.setBounds(141, 233, 90, 23);
 		btnSpeichern.addActionListener(new UserCreateDialogBtns(this, "save"));
 		contentPane_.add(btnSpeichern);
 		
 		JButton btnAbbrechen = new JButton("Abbrechen");
-		btnAbbrechen.setBounds(42, 233, 90, 28);
+		btnAbbrechen.setToolTipText("<html>Wenn Sie den Vorgang abbrechen wollen</html>");
+		btnAbbrechen.setBounds(42, 233, 90, 23);
 		btnAbbrechen.addActionListener(new UserCreateDialogBtns(this, "cancle"));
 		contentPane_.add(btnAbbrechen);
 		contentPane_.add(getLblFirstName());
@@ -216,6 +224,7 @@ public class UserCreateDialog extends JDialog {
 	public JTextField getTxtFirstName() {
 		if (txtFirstName_ == null) {
 			txtFirstName_ = new JTextField();
+			txtFirstName_.setToolTipText("<html>Geben Sie den Vornamen<br> des neuen Nutzers an</html>");
 			txtFirstName_.setFont(new Font("SansSerif", Font.PLAIN, 12));
 			txtFirstName_.setColumns(10);
 			txtFirstName_.setBounds(115, 67, 116, 20);
@@ -229,6 +238,7 @@ public class UserCreateDialog extends JDialog {
 	public JTextField getTxtLastName() {
 		if (txtLastName_ == null) {
 			txtLastName_ = new JTextField();
+			txtLastName_.setToolTipText("<html>Geben Sie den Nachnamen<br> des neuen Nutzers an</html>");
 			txtLastName_.setFont(new Font("SansSerif", Font.PLAIN, 12));
 			txtLastName_.setColumns(10);
 			txtLastName_.setBounds(115, 94, 116, 20);
@@ -254,7 +264,7 @@ public class UserCreateDialog extends JDialog {
 	public JCheckBox getChckbxUserDisabled() {
 		if (chckbxUserDisabled_ == null) {
 			chckbxUserDisabled_ = new JCheckBox("Benutzer deaktiviert");
-			chckbxUserDisabled_.setBounds(61, 178, 151, 23);
+			chckbxUserDisabled_.setBounds(60, 178, 151, 23);
 			chckbxUserDisabled_.setVisible(false);
 		}
 		return chckbxUserDisabled_;

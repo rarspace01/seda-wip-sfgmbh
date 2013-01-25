@@ -204,6 +204,7 @@ public class CourseDialog extends JDialog {
 	public JButton getBtnCancel() {
 		if (btnCancel_ == null) {
 			btnCancel_ = new JButton("Abbrechen");
+			btnCancel_.setToolTipText("<html>Wenn Sie den Vorgang abbrechen wollen</html>");
 			btnCancel_.addActionListener(new CourseDialogBtns(this, "cancel"));
 			btnCancel_.setBounds(56, 284, 89, 23);
 		}
@@ -216,6 +217,7 @@ public class CourseDialog extends JDialog {
 	public JButton getBtnSave() {
 		if (btnSave_ == null) {
 			btnSave_ = new JButton("Speichern");
+			btnSave_.setToolTipText("<html>Klicken Sie hier, um<br> Ihre Eingaben zu speichern</html>");
 			btnSave_.addActionListener(new CourseDialogBtns(this, "save"));
 			btnSave_.setBounds(155, 284, 89, 23);
 		}
@@ -228,7 +230,7 @@ public class CourseDialog extends JDialog {
 	public JTextField getTxtAcronym() {
 		if (txtAcronym_ == null) {
 			txtAcronym_ = new JTextField();
-			txtAcronym_.setToolTipText("geben Sie eine gewünschte Kurzbezeichnung ein");
+			txtAcronym_.setToolTipText("<html>Bitte geben Sie eine <br>Kurzbezeichnung gemäß des<br> Lehrstuhlacronyms, <br>des Kürzels der Lehrveranstaltung sowie <br> des Abschlusses in folgender Form: ABCD-XYZ-M oder ABCD-XYZ-B</html>");
 			txtAcronym_.setBounds(138, 19, 106, 20);
 			txtAcronym_.setColumns(10);
 		}
@@ -241,7 +243,7 @@ public class CourseDialog extends JDialog {
 	public JTextField getTxtName() {
 		if (txtName_ == null) {
 			txtName_ = new JTextField();
-			txtName_.setToolTipText("geben Sie eine gewünschte Bezeichnung ein");
+			txtName_.setToolTipText("<html>Geben sie den Veranstaltungsnamen ausgeschrieben an</hmtl>");
 			txtName_.setBounds(138, 44, 106, 20);
 			txtName_.setColumns(10);
 		}
@@ -266,7 +268,7 @@ public class CourseDialog extends JDialog {
 	public JComboBox<String> getCmbboxLecturer() {
 		if (cmbboxLecturer_ == null) {
 			cmbboxLecturer_ = new JComboBox<String>();
-			cmbboxLecturer_.setToolTipText("wählen Sie den betreffenden Dozenten für die Lehrveranstaltung aus");
+			cmbboxLecturer_.setToolTipText("<html>Wählen Sie den betreffenden <br>Dozenten für die Lehrveranstaltung aus</html>");
 			cmbboxLecturer_.setModel(new CmbboxFilterLecturer(cmbboxLecturer_, "select"));
 			cmbboxLecturer_.setBounds(138, 144, 106, 20);
 		}
@@ -279,7 +281,7 @@ public class CourseDialog extends JDialog {
 	public JTextField getTxtSws() {
 		if (txtSws_ == null) {
 			txtSws_ = new JTextField();
-			txtSws_.setToolTipText("geben Sie die gesamten Semesterwochenstunden an");
+			txtSws_.setToolTipText("<html>Geben Sie die gesamten<br> Umfang der Lehrveranstaltung in <br>Semesterwochenstunden an</html>");
 			txtSws_.setBounds(138, 94, 106, 20);
 			txtSws_.setColumns(10);
 		}
@@ -317,7 +319,7 @@ public class CourseDialog extends JDialog {
 	public JEditorPane getEditDescription() {
 		if (editDescription_ == null) {
 			editDescription_ = new JEditorPane();
-			editDescription_.setToolTipText("geben Sie für die Studenten eine Beschreibung der Lehrveranstaltung ein");
+			editDescription_.setToolTipText("<html>Geben Sie für die Studenten eine Beschreibung der Lehrveranstaltung ein</html>");
 		}
 		return editDescription_;
 	}
@@ -328,6 +330,7 @@ public class CourseDialog extends JDialog {
 	public JCheckBox getChckbxPublic() {
 		if (chckbxPublic_ == null) {
 			chckbxPublic_ = new JCheckBox("öffentlich (falls von Verwaltung freigegeben)");
+			chckbxPublic_.setToolTipText("<html>Wählen Sie hier, <br>wenn Sie im Anschluss an <br> eine erfolgreiche Raumanfrage <br> die Lehrveranstaltung automatisch<br>veröffentlichen wollen</html>");
 			chckbxPublic_.setBounds(16, 254, 244, 23);
 		}
 		return chckbxPublic_;
