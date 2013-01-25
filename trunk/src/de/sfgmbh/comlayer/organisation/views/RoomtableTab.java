@@ -28,6 +28,7 @@ import de.sfgmbh.comlayer.organisation.controller.RoomtableTabBtnPdf;
 /**
  * Table for the room allocation overview on a specific room
  * @author denis
+ * @author christian
  * 
  */
 public class RoomtableTab extends JPanel {

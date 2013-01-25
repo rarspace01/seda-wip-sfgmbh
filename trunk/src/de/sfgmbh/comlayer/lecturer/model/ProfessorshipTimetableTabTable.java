@@ -5,7 +5,7 @@ import javax.swing.table.DefaultTableModel;
 /**
  * Table model for the professorship timetable tab table
  * @author denis
- *
+ * @author christian
  */
 public class ProfessorshipTimetableTabTable extends DefaultTableModel {
 
