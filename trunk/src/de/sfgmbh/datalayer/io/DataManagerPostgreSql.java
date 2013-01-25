@@ -35,7 +35,7 @@ public class DataManagerPostgreSql {
 			statement_ = connection_.createStatement();
 
 		} catch (SQLException e) {
-			e.printStackTrace();
+			
 			DataModel
 					.getInstance()
 					.getExceptionsHandler()
@@ -45,7 +45,7 @@ public class DataManagerPostgreSql {
 							"Datenbank-Fehler!");
 			System.exit(0);
 		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
+			
 			DataModel
 					.getInstance()
 					.getExceptionsHandler()
@@ -70,7 +70,7 @@ public class DataManagerPostgreSql {
 				this.connection_.close();
 			}
 		} catch (SQLException e) {
-			e.printStackTrace();
+			
 			DataModel
 					.getInstance()
 					.getExceptionsHandler()
@@ -118,7 +118,7 @@ public class DataManagerPostgreSql {
 			resultSet = statement_.executeQuery(SQLString);
 
 		} catch (SQLException e) {
-			e.printStackTrace();
+			
 			DataModel
 					.getInstance()
 					.getExceptionsHandler()
@@ -149,7 +149,7 @@ public class DataManagerPostgreSql {
 			i = statement_.executeUpdate(SQLString);
 
 		} catch (SQLException e) {
-			e.printStackTrace();
+			
 			DataModel
 					.getInstance()
 					.getExceptionsHandler()
@@ -180,7 +180,7 @@ public class DataManagerPostgreSql {
 			i = statement_.executeUpdate(SQLString);
 
 		} catch (Exception e) {
-			// e.printStackTrace();
+			// 
 			// DataModel.getInstance().getExceptionsHandler().setNewException(("Es ist ein SQL-Fehler (DataManagerPostgreSql-04) aufgetreten:<br /><br />"
 			// + e.toString()), "Datenbank-Fehler!");
 		}
@@ -202,7 +202,7 @@ public class DataManagerPostgreSql {
 			this.preparedStatement_ = connection_
 					.prepareStatement(prepareSqlString);
 		} catch (Exception e) {
-			e.printStackTrace();
+			
 			DataModel
 					.getInstance()
 					.getExceptionsHandler()
@@ -229,7 +229,7 @@ public class DataManagerPostgreSql {
 			rs = this.getPreparedStatement().executeQuery();
 
 		} catch (SQLException e) {
-			e.printStackTrace();
+			
 			DataModel
 					.getInstance()
 					.getExceptionsHandler()
@@ -254,7 +254,7 @@ public class DataManagerPostgreSql {
 			this.getPreparedStatement().executeUpdate();
 
 		} catch (SQLException e) {
-			e.printStackTrace();
+			
 			DataModel
 					.getInstance()
 					.getExceptionsHandler()

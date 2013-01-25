@@ -47,7 +47,7 @@ public class DataHandlerRoom implements IntfDataRoom, IntfDataFilter,
 			}
 
 		} catch (SQLException e) {
-			e.printStackTrace();
+			
 			DataModel
 					.getInstance()
 					.getExceptionsHandler()
@@ -55,7 +55,7 @@ public class DataHandlerRoom implements IntfDataRoom, IntfDataFilter,
 							("Es ist ein SQL-Fehler (DataHandlerRoom-06) aufgetreten:<br /><br />" + e
 									.toString()), "Datenbank-Fehler!");
 		} catch (Exception e) {
-			e.printStackTrace();
+			
 			DataModel
 					.getInstance()
 					.getExceptionsHandler()
@@ -90,7 +90,7 @@ public class DataHandlerRoom implements IntfDataRoom, IntfDataFilter,
 			}
 		//exception handling
 		} catch (SQLException e) {
-			e.printStackTrace();
+			
 			DataModel
 					.getInstance()
 					.getExceptionsHandler()
@@ -98,7 +98,7 @@ public class DataHandlerRoom implements IntfDataRoom, IntfDataFilter,
 							("Es ist ein SQL-Fehler (DataHandlerRoom-04) aufgetreten:<br /><br />" + e
 									.toString()), "Datenbank-Fehler!");
 		} catch (Exception e) {
-			e.printStackTrace();
+			
 			DataModel
 					.getInstance()
 					.getExceptionsHandler()
@@ -127,7 +127,7 @@ public class DataHandlerRoom implements IntfDataRoom, IntfDataFilter,
 			dataManager.execute(SqlStatement);
 
 		} catch (SQLException e) {
-			e.printStackTrace();
+			
 			DataModel
 			.getInstance()
 			.getExceptionsHandler()
@@ -174,7 +174,7 @@ public class DataHandlerRoom implements IntfDataRoom, IntfDataFilter,
 
 
 			} catch (SQLException e) {
-				e.printStackTrace();
+				
 				DataModel
 				.getInstance()
 				.getExceptionsHandler()
@@ -208,7 +208,7 @@ public class DataHandlerRoom implements IntfDataRoom, IntfDataFilter,
 				dataManager.executePreparedStatement();
 
 			} catch (SQLException e) {
-				e.printStackTrace();
+				
 				DataModel
 				.getInstance()
 				.getExceptionsHandler()
@@ -345,7 +345,7 @@ public class DataHandlerRoom implements IntfDataRoom, IntfDataFilter,
 			}
 
 		} catch (SQLException e) {
-			e.printStackTrace();
+			
 			DataModel
 					.getInstance()
 					.getExceptionsHandler()
@@ -353,7 +353,7 @@ public class DataHandlerRoom implements IntfDataRoom, IntfDataFilter,
 							("Es ist ein SQL-Fehler aufgetreten.<br /><br />Fehler DataHandlerRoom-17:<br />" + e
 									.toString()), "Datenbank-Fehler!");
 		} catch (Exception e) {
-			e.printStackTrace();
+			
 			DataModel
 					.getInstance()
 					.getExceptionsHandler()
@@ -391,7 +391,7 @@ public class DataHandlerRoom implements IntfDataRoom, IntfDataFilter,
 			returnRoom.setVisualizer_(resultSet.getInt("visualizer"));
 			returnRoom.setWhiteboards_(resultSet.getInt("whiteboards"));
 		} catch (SQLException e) {
-			e.printStackTrace();
+			
 			DataModel
 					.getInstance()
 					.getExceptionsHandler()
@@ -399,7 +399,7 @@ public class DataHandlerRoom implements IntfDataRoom, IntfDataFilter,
 							("Es ist ein SQL-Fehler (DataHandlerRoom-02) aufgetreten:<br /><br />" + e
 									.toString()), "Datenbank-Fehler!");
 		} catch (Exception e) {
-			e.printStackTrace();
+			
 			DataModel
 					.getInstance()
 					.getExceptionsHandler()

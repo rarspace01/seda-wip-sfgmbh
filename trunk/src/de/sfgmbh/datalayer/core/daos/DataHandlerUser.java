@@ -50,10 +50,10 @@ public class DataHandlerUser implements IntfDataUser, IntfDataObservable, IntfDa
 			}
 
 		} catch (SQLException e) {
-			e.printStackTrace();
+			
 			DataModel.getInstance().getExceptionsHandler().setNewException(("Es ist ein SQL-Fehler (DataHandlerUser-01) aufgetreten:<br /><br />" + e.toString()), "Datenbank-Fehler!");
 		} catch (Exception e) {
-			e.printStackTrace();
+			
 			DataModel.getInstance().getExceptionsHandler().setNewException(("Es ist ein unbekannter Fehler (DataHandlerUser-02) in der Datenhaltung aufgetreten:<br /><br />" + e.toString()), "Fehler!");
 		}finally{
 			dataManager.dispose();
@@ -86,10 +86,10 @@ public class DataHandlerUser implements IntfDataUser, IntfDataObservable, IntfDa
 			}
 
 		} catch (SQLException e) {
-			e.printStackTrace();
+			
 			DataModel.getInstance().getExceptionsHandler().setNewException(("Es ist ein SQL-Fehler (DataHandlerUser-01) aufgetreten:<br /><br />" + e.toString()), "Datenbank-Fehler!");
 		} catch (Exception e) {
-			e.printStackTrace();
+			
 			DataModel.getInstance().getExceptionsHandler().setNewException(("Es ist ein unbekannter Fehler (DataHandlerUser-02) in der Datenhaltung aufgetreten:<br /><br />" + e.toString()), "Fehler!");
 		}finally{
 			dataManager.dispose();
@@ -210,10 +210,10 @@ public class DataHandlerUser implements IntfDataUser, IntfDataObservable, IntfDa
 			}
 			
 		} catch (SQLException e) {
-			e.printStackTrace();
+			
 			DataModel.getInstance().getExceptionsHandler().setNewException(("Es ist ein SQL-Fehler aufgetreten.<br /><br />Fehler DataHandlerRoomAllocation-17:<br />" + e.toString()), "Datenbank-Fehler!");
 		} catch (Exception e) {
-			e.printStackTrace();
+			
 			DataModel.getInstance().getExceptionsHandler().setNewException(("Es ist ein unbekannter Fehler in der Datenhaltung aufgetreten:<br /><br />Fehler DataHandlerRoomAllocation-18:<br />" + e.toString()), "Fehler!");
 		} finally {
 			if (filterDm != null) {
@@ -247,10 +247,10 @@ public class DataHandlerUser implements IntfDataUser, IntfDataObservable, IntfDa
 			}
 			
 		} catch (SQLException e) {
-			e.printStackTrace();
+			
 			DataModel.getInstance().getExceptionsHandler().setNewException(("Es ist ein SQL-Fehler aufgetreten.<br /><br />Fehler DataHandlerUser-15:<br />" + e.toString()), "Datenbank-Fehler!");
 		} catch (Exception e) {
-			e.printStackTrace();
+			
 			DataModel.getInstance().getExceptionsHandler().setNewException(("Es ist ein unbekannter Fehler in der Datenhaltung aufgetreten:<br /><br />Fehler DataHandlerUser-16:<br />" + e.toString()), "Fehler!");
 		}finally{
 			dataManager.dispose();
@@ -279,10 +279,10 @@ public class DataHandlerUser implements IntfDataUser, IntfDataObservable, IntfDa
 			}
 			
 		} catch (SQLException e) {
-			e.printStackTrace();
+			
 			DataModel.getInstance().getExceptionsHandler().setNewException(("Es ist ein SQL-Fehler aufgetreten:<br /><br />Fehler DataHandlerUser-10:<br />" + e.toString()), "Datenbank-Fehler!");
 		} catch (Exception e) {
-			e.printStackTrace();
+			
 			DataModel.getInstance().getExceptionsHandler().setNewException(("Es ist ein unbekannter Fehler in der Datenhaltung aufgetreten:<br /><br />Fehler DataHandlerUser-11:<br />" + e.toString()), "Fehler!");
 		}finally{
 			dataManager.dispose();
@@ -321,11 +321,11 @@ public class DataHandlerUser implements IntfDataUser, IntfDataObservable, IntfDa
 					
 				} catch (SQLException e) {
 					returnState = false;
-					e.printStackTrace();
+					
 					DataModel.getInstance().getExceptionsHandler().setNewException(("Es ist ein SQL-Fehler in der Klasse DataHandlerUser aufgetreten:<br /><br />" + e.toString()), "Datenbank-Fehler!");
 				} catch (Exception e) {
 					returnState = false;
-					e.printStackTrace();
+					
 					DataModel.getInstance().getExceptionsHandler().setNewException(("Es ist ein unbekannter Fehler in der Klasse DataHandlerUser in der Datenhaltung aufgetreten:<br /><br />" + e.toString()), "Fehler!");
 				}finally{
 					dataManager.dispose();
@@ -344,11 +344,11 @@ public class DataHandlerUser implements IntfDataUser, IntfDataObservable, IntfDa
 					this.update();
 				} catch (SQLException e) {
 					returnState = false;
-					e.printStackTrace();
+					
 					DataModel.getInstance().getExceptionsHandler().setNewException(("Es ist ein SQL-Fehler in der Klasse DataHandlerUser aufgetreten:<br /><br />" + e.toString()), "Datenbank-Fehler!");
 				} catch (Exception e) {
 					returnState = false;
-					e.printStackTrace();
+					
 					DataModel.getInstance().getExceptionsHandler().setNewException(("Es ist ein unbekannter Fehler in der Klasse DataHandlerUser in der Datenhaltung aufgetreten:<br /><br />" + e.toString()), "Fehler!");
 				}finally{
 					dataManager.dispose();
@@ -396,11 +396,11 @@ public class DataHandlerUser implements IntfDataUser, IntfDataObservable, IntfDa
 					}
 					this.update();
 				} catch (SQLException e) {
-					e.printStackTrace();
+					
 					DataModel.getInstance().getExceptionsHandler().setNewException(("Es ist ein SQL-Fehler (DataHandlerUser-05) aufgetreten:<br /><br />" + e.toString()), "Datenbank-Fehler!");
 					returnState =  false;
 				} catch (Exception e) {
-					e.printStackTrace();
+					
 					DataModel.getInstance().getExceptionsHandler().setNewException(("Es ist ein unbekannter Fehler (DataHandlerUser-06) in der Datenhaltung aufgetreten:<br /><br />" + e.toString()), "Fehler!");
 					returnState =  false;
 				}finally{
@@ -456,11 +456,11 @@ public class DataHandlerUser implements IntfDataUser, IntfDataObservable, IntfDa
 				}
 				this.update();
 			} catch (SQLException e) {
-				e.printStackTrace();
+				
 				DataModel.getInstance().getExceptionsHandler().setNewException(("Es ist ein SQL-Fehler (DataHandlerUser-07) aufgetreten:<br /><br />" + e.toString()), "Datenbank-Fehler!");
 				returnState = false;
 			} catch (Exception e) {
-				e.printStackTrace();
+				
 				DataModel.getInstance().getExceptionsHandler().setNewException(("Es ist ein unbekannter Fehler (DataHandlerUser-08) in der Datenhaltung aufgetreten:<br /><br />" + e.toString()), "Fehler!");
 				returnState = false;
 			}finally{
@@ -495,10 +495,10 @@ public class DataHandlerUser implements IntfDataUser, IntfDataObservable, IntfDa
 				returnUser.setChair_(DataModel.getInstance().getDataHandlerChair().makeChair(resultSet));
 			}
 		} catch (SQLException e) {
-			e.printStackTrace();
+			
 			DataModel.getInstance().getExceptionsHandler().setNewException(("Es ist ein SQL-Fehler (DataHandlerUser-13) aufgetreten:<br /><br />" + e.toString()), "Datenbank-Fehler!");
 		} catch (Exception e) {
-			e.printStackTrace();
+			
 			DataModel.getInstance().getExceptionsHandler().setNewException(("Es ist ein unbekannter Fehler (DataHandlerUser-14) in der Datenhaltung aufgetreten:<br /><br />" + e.toString()), "Fehler!");
 		}
 		

@@ -119,7 +119,7 @@ public class UserCreateDialogBtns implements ActionListener {
 				}
 			} catch (Exception ex) {
 				AppModel.getInstance().getExceptionHandler().setNewException("Es ist ein unerwartetes Problem aufgetreten.<br /><br />Fehler:<br />" + ex.toString(), "Fehler!" );
-				ex.printStackTrace();
+				
 			}
 		} else {
 			
