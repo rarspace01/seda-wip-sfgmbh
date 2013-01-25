@@ -232,4 +232,22 @@ public class CtrlStartTab implements IntfCtrlStartTab {
 		
 		return false;
 	}
+
+	/*
+	 * (non-Javadoc)
+	 * @see de.sfgmbh.applayer.lecturer.definitions.IntfCtrlStartTab#hasBeenSeenAllocation(de.sfgmbh.applayer.core.definitions.IntfRoomAllocation)
+	 */
+	@Override
+	public boolean hasBeenSeenAllocation(IntfRoomAllocation roomAllocation) {
+		
+		// Check for current room location
+		roomAllocation = AppModel.getInstance().getRepositoryRoomAllocation().get(roomAllocation.getRoomAllocationId_());
+		
+		// Generate tag
+		long currentTime = System.currentTimeMillis() / 1000L;
+		String commentTag = "seen_at_" + (String.valueOf(currentTime));
+		roomAllocation.setComment_(commentTag);
+		
+		return roomAllocation.save();
+	}
 }

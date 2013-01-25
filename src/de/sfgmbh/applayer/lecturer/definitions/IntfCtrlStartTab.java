@@ -48,6 +48,13 @@ public interface IntfCtrlStartTab {
 	 * @return true on success
 	 */
 	public abstract boolean revokeRoomAllocation(IntfRoomAllocation roomAllocation);
+	
+	/**
+	 * Saves a room allocation with an indicator comment that the lecturer has seen its status
+	 * @param roomAllocation
+	 * @return true on success
+	 */
+	public abstract boolean hasBeenSeenAllocation(IntfRoomAllocation roomAllocation);
 
 	/**
 	 * Accept or deny a counter proposal where the boolean value decied which it should be

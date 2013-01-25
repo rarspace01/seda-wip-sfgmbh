@@ -158,7 +158,7 @@ public class RoomRequestDialog extends JDialog {
 	public void setSuggestRoomAllocation(IntfRoomAllocation roomAllocation, HashMap<String,String> filter) {
 		IntfRoomAllocation suggestRoomAllocation = ctrlStartTab_.suggest(roomAllocation, filter);
 		if (suggestRoomAllocation == null) {
-			AppModel.getInstance().getExceptionHandler().setNewException("Scheinbar gibt es für diese Veranstaltung dieses Semester keinen freien Raum mehr, der groß genug wäre.<br />Sie können allerdings noch versuchen einen Raum außerhalb der regulären Vorelsungszeiten zu belegen, da diese vom Vorschlagsystem nicht berücksichtigt wurden (ab 20 Uhr sowie Sa. und So.).", "Information", "info");
+			AppModel.getInstance().getExceptionHandler().setNewException("Scheinbar gibt es für diese Veranstaltung dieses Semester keinen freien Raum mehr, der groß genug wäre.<br />", "Information", "info");
 			this.setRoomAllocation(roomAllocation);
 		} else {
 			this.setRoomAllocation(suggestRoomAllocation);

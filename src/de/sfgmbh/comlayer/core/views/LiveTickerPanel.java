@@ -156,13 +156,6 @@ public class LiveTickerPanel extends JPanel {
 					"<strong>" + ra.getCourse_().getCourseAcronym_() + "</strong> (" + ra.getCourse_().getCourseKind_() + ")<br /><br />";
  		}
 		
-		
-		for (int i = 0; i < 10; i++) {
-			returnString = returnString + "Test Test<br><strong>Test</strong><br><br>";
-		}
-		
-		
-		
 		return returnString;
 	}
 	
