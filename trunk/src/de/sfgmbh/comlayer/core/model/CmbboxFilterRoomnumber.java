@@ -10,7 +10,6 @@ import de.sfgmbh.applayer.core.model.AppModel;
 /**
  * Model for roomnumber combo boxes
  * 
- * @author hannes
  * @author mario
  *
  */

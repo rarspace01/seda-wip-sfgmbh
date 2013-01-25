@@ -14,7 +14,6 @@ import de.sfgmbh.comlayer.core.views.BaseTab;
  * Model of the room list table
  * 
  * @author mario
- * @author hannes
  *
  */
 public class RoomTableMain extends DefaultTableModel implements IntfAppObserver {

@@ -5,7 +5,7 @@ import java.util.List;
 
 /**
  * Interface for the room alloaction repository
- * @author hannes
+ * @author denis
  *
  */
 public interface IntfRepositoryRoomAllocation {

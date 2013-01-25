@@ -1,5 +1,8 @@
 package de.sfgmbh.comlayer.core.model;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import javax.swing.DefaultComboBoxModel;
 
 /**
@@ -33,6 +36,11 @@ public class CmbboxFilterSemester extends DefaultComboBoxModel<String>{
 	}
 
 	public void build() {
+		Date currentDate = new Date();
+		String dayInYear = new SimpleDateFormat("M").format(currentDate);
+		String year = new SimpleDateFormat("yy").format(currentDate);
+		System.out.println(dayInYear + " | " +  year);
+		
 		
 		String[] elements;
 		if (this.variant_.equals("select")) {

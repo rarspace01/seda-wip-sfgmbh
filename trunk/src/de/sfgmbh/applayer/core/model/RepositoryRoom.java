@@ -15,7 +15,6 @@ import de.sfgmbh.datalayer.core.model.DataModel;
  * Repository for {@link Room} objects in the application model
  * 
  * @author denis
- * @author hannes
  *
  */
 public class RepositoryRoom implements IntfAppObservable, IntfDataObserver, IntfRepositoryRoom {

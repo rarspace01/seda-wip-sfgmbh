@@ -6,6 +6,7 @@ import de.sfgmbh.applayer.core.model.AppException;
  * Interfaces for the application model
  * 
  * @author hannes
+ * @author denis
  *
  */
 public interface IntfAppModel {

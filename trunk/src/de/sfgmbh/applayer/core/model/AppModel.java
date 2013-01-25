@@ -15,6 +15,7 @@ import de.sfgmbh.applayer.core.definitions.IntfRepositoryUser;
  * This is the main application layer model class
  * 
  * @author hannes
+ * @author denis
  *
  */
 public class AppModel implements IntfAppObservable, IntfAppModel {
