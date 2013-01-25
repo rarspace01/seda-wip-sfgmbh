@@ -23,7 +23,7 @@ public class CtrlBaseTab implements IntfCtrlBaseTab {
 		IntfUser checkUser = dhu.getByLogin(login);
 		
 		if (checkUser != null) {
-			if (checkUser.checkPw(pw) == true) {
+			if (checkUser.checkPassword(pw) == true) {
 				
 				// Don't log in when user is disabled
 				if (checkUser.isDisabled_()) {

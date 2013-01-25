@@ -225,7 +225,7 @@ public class User implements IntfUser {
 	 * @see de.sfgmbh.applayer.core.model.IntfUser#setPwHashAndSalt(java.lang.String)
 	 */
 	@Override
-	public void setPwHashAndSalt (String pw) {
+	public void setPasswordHashAndSalt (String pw) {
 		
 		SecureRandom rand = new SecureRandom();
 		
@@ -245,7 +245,7 @@ public class User implements IntfUser {
 	 * @see de.sfgmbh.applayer.core.model.IntfUser#checkPw(java.lang.String)
 	 */
 	@Override
-	public boolean checkPw (String pw) {
+	public boolean checkPassword (String pw) {
 		
 		String checkPhrase = this.salt_ + pw;
 		String checksum = this.getSha256(checkPhrase);
