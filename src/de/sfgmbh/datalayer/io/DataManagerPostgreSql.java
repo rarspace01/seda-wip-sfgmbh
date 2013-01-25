@@ -30,7 +30,7 @@ public class DataManagerPostgreSql {
 			Class.forName("org.postgresql.Driver");
 			connection_ = DriverManager.getConnection("jdbc:postgresql://"
 					+ dbconfig.getIp() + ":" + dbconfig.getPort() + "/"
-					+ dbconfig.getDatabase(), dbconfig.getUsername(),
+					+ dbconfig.getDatabase()+"?charSet=UTF8", dbconfig.getUsername(),
 					dbconfig.getPassword());
 			statement_ = connection_.createStatement();
 
