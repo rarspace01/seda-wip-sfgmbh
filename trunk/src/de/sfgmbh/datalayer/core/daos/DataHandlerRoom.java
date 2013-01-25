@@ -22,8 +22,7 @@ import de.sfgmbh.datalayer.io.DataManagerPostgreSql;
  * @author denis
  * 
  */
-public class DataHandlerRoom implements IntfDataRoom, IntfDataFilter,
-		IntfDataObservable {
+public class DataHandlerRoom implements IntfDataRoom, IntfDataFilter, IntfDataObservable {
 
 	private ArrayList<Object> observer_ = new ArrayList<Object>();
 

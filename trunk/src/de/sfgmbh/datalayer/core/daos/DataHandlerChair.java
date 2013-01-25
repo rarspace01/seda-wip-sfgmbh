@@ -21,8 +21,7 @@ import de.sfgmbh.datalayer.io.DataManagerPostgreSql;
  * @author anna
  *
  */
-public class DataHandlerChair implements IntfDataChair, IntfDataFilter,
-		IntfDataObservable {
+public class DataHandlerChair implements IntfDataChair, IntfDataFilter, IntfDataObservable {
 
 	private ArrayList<Object> observer_ = new ArrayList<Object>();
 
