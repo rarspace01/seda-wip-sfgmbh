@@ -40,6 +40,7 @@ public class RoomtableTab extends JPanel {
 	private JComboBox<String> comboBoxSemesterFilter_;
 	private CmbboxFilterSemester comboBoxSemesterModel_ = new CmbboxFilterSemester(
 			"select");
+	private JLabel lblRoomplan;
 
 	public RoomtableTab() {
 		initialize();
@@ -47,20 +48,23 @@ public class RoomtableTab extends JPanel {
 
 	private void initialize() {
 		setAutoscrolls(true);
-		setLayout(new MigLayout("", "[20px:20px,grow][131px][50px][129px][461px][20px:20px,grow][right]", "[][392px][grow]"));
-
-		JLabel lblUniIcon = new JLabel();
-		lblUniIcon
-				.setIcon(new ImageIcon(
-						BaseTab.class
-								.getResource("/de/sfgmbh/comlayer/core/images/UniBA_logo.png")));
-		lblUniIcon.setMaximumSize(new Dimension(50, 50));
-		add(lblUniIcon, "cell 6 0,alignx right,aligny top");
+		setLayout(new MigLayout("", "[20px:20px,grow][131px][50px][129px][461px][20px:20px,grow][100px:100px:100px,right]", "[][][383px][grow]"));
+				
+				lblRoomplan = new JLabel("<html><h3>Raumplan</h3></html>");
+				add(lblRoomplan, "cell 1 0,aligny bottom");
+		
+				JLabel lblUniIcon = new JLabel();
+				lblUniIcon
+						.setIcon(new ImageIcon(
+								BaseTab.class
+										.getResource("/de/sfgmbh/comlayer/core/images/UniBA_logo.png")));
+				lblUniIcon.setMaximumSize(new Dimension(50, 50));
+				add(lblUniIcon, "cell 6 0,alignx right,aligny top");
 
 		scrollPane_ = new JScrollPane();
 		scrollPane_
 				.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
-		add(scrollPane_, "cell 1 1 4 1,grow");
+		add(scrollPane_, "cell 1 2 4 1,growx,aligny top");
 
 		timetableTable_ = new JTable();
 
@@ -79,7 +83,7 @@ public class RoomtableTab extends JPanel {
 		JButton btnPdfErzeugen = new JButton("PDF erzeugen");
 		btnPdfErzeugen.setToolTipText("<html>Hier können Sie den <br> unten stehenden<br>Wochenplan im <br> PDF Format ausdrucken<br>");
 		btnPdfErzeugen.addActionListener(new RoomtableTabBtnPdf("pdfCreate"));
-		add(btnPdfErzeugen, "cell 1 0,growx,aligny center");
+		add(btnPdfErzeugen, "cell 1 1,growx,aligny center");
 		timetableTable_.getColumnModel().getColumn(0).setResizable(false);
 		timetableTable_.getColumnModel().getColumn(0).setPreferredWidth(70);
 		timetableTable_.getColumnModel().getColumn(0).setMinWidth(50);
@@ -108,8 +112,8 @@ public class RoomtableTab extends JPanel {
 		comboBoxSemesterFilter_.setEditable(true);
 		comboBoxSemesterFilter_.setAutoscrolls(true);
 
-		add(lblSemester_, "cell 3 0,alignx left,aligny center");
-		add(comboBoxSemesterFilter_, "cell 3 0,alignx right,aligny center");
+		add(lblSemester_, "cell 3 1,alignx left,aligny center");
+		add(comboBoxSemesterFilter_, "cell 3 1,alignx right,aligny center");
 	}
 
 	/**

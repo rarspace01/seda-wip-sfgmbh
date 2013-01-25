@@ -36,7 +36,6 @@ public class ChairTab extends JPanel {
 	private JPanel buttonPanel_;
 	private JButton btnAdd_;
 	private JButton btnDelete_;
-	private JPanel uniIconPanel_;
 	private JLabel lblUniIcon_;
 	private TableRowSorter<TableModel> rowSorter_;
 
@@ -63,19 +62,19 @@ public class ChairTab extends JPanel {
 		textFieldChairname_.setToolTipText("<html>Sie können die Liste der <br> Lehrstühle über diesen<br>Filter begrenzen</html>");
 		textFieldChairname_.addActionListener(new ChairTabCmbboxFilter());
 		
-		uniIconPanel_ = new JPanel();
-		add(uniIconPanel_, "cell 6 0,alignx right,aligny top");
+		
 		lblUniIcon_ = new JLabel();
 		lblUniIcon_.setIcon(new ImageIcon(BaseTab.class.getResource("/de/sfgmbh/comlayer/core/images/UniBA_logo.png")));
 		lblUniIcon_.setMaximumSize(new Dimension(50,50));
-		uniIconPanel_.add(lblUniIcon_);
+		add(lblUniIcon_, "cell 6 0,alignx right,aligny top");
 		textFieldChairname_.setColumns(10);
 		add(textFieldChairname_, "cell 2 1,growx");
 		
 		add(ViewManager.getInstance().getCoreLiveTickerPanel(), "cell 0 2,grow");
 		
 		organisationTableScrollPane_ = new JScrollPane();
-		organisationTableScrollPane_.setMinimumSize(new Dimension(400, 25));
+		organisationTableScrollPane_.setMinimumSize(new Dimension(600, 500));
+		organisationTableScrollPane_.setPreferredSize(new Dimension(600, 500));
 		add(organisationTableScrollPane_, "flowx,cell 2 2 4 1,grow");
 		
 		chairOrgaTable_ = new JTable();

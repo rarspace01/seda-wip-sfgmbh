@@ -47,7 +47,6 @@ public class UserTab extends JPanel {
 	private JPanel buttonPanel_;
 	private JButton btnEdit_;
 	private JButton btnDelete_;
-	private JPanel uniIconPanel_;
 	private JLabel lblUniIcon_;
 	private TableRowSorter<TableModel> rowSorter_;
 
@@ -79,17 +78,16 @@ public class UserTab extends JPanel {
 		lblEmail_ = new JLabel("E-Mail:");
 		add(lblEmail_, "cell 5 0,aligny bottom");
 		
+		lblUniIcon_ = new JLabel("");
+		lblUniIcon_.setIcon(new ImageIcon(BaseTab.class.getResource("/de/sfgmbh/comlayer/core/images/UniBA_logo.png")));
+		lblUniIcon_.setMaximumSize(new Dimension(50,50));
+		add(lblUniIcon_, "cell 6 0,alignx right,aligny top");
+		
 		comboBoxUserclass_ = new JComboBox<String>();
 		comboBoxUserclass_.setToolTipText("<html>Sie können die Liste der <br> Benutzer über <br> diese Filter begrenzen</html>");
 		comboBoxUserclass_.setModel(new CmbboxFilterUserClass());
 		comboBoxUserclass_.addActionListener(new UserTabCmbboxFilter());
 		
-		uniIconPanel_ = new JPanel();
-		add(uniIconPanel_, "cell 6 0,alignx right,aligny top");
-		lblUniIcon_ = new JLabel("");
-		lblUniIcon_.setIcon(new ImageIcon(BaseTab.class.getResource("/de/sfgmbh/comlayer/core/images/UniBA_logo.png")));
-		lblUniIcon_.setMaximumSize(new Dimension(50,50));
-		uniIconPanel_.add(lblUniIcon_);
 		comboBoxUserclass_.setEditable(true);
 		comboBoxUserclass_.setAutoscrolls(true);
 		add(comboBoxUserclass_, "cell 2 1,growx");

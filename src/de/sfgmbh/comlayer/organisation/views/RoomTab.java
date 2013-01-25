@@ -49,7 +49,6 @@ public class RoomTab extends JPanel {
 	private JButton btnEdit_;
 	private JButton btnDelete_;
 	private JButton btnRoomplanPrint_;
-	private JPanel uniIconPanel_;
 	private JLabel lblRoom_;
 	private JTextField txtRoom_;
 	private TableRowSorter<TableModel> rowSorter_;
@@ -65,7 +64,7 @@ public class RoomTab extends JPanel {
 	private void initialize() {
 		setMinimumSize(new Dimension(100, 10));
 		setMaximumSize(new Dimension(100, 32767));
-		setLayout(new MigLayout("", "[140px:140px:140px][10px:10px:10px][grow][grow 118][grow][grow][100px:100px:100px]", "[][][grow]"));
+		setLayout(new MigLayout("", "[140px:140px:140px][10px:10px:10px][grow][grow 118][grow][grow][100px:100px:100px,right]", "[][][grow]"));
 
 		JLabel lblRoommanagement = new JLabel("Raumverwaltung");
 		lblRoommanagement.setFont(new Font("SansSerif", Font.BOLD, 13));
@@ -86,13 +85,13 @@ public class RoomTab extends JPanel {
 		comboBoxLevel_.setModel(new CmbboxFilterLevel(comboBoxLevel_));
 		comboBoxLevel_.addActionListener(new RoomTabCmbboxFilter());
 
-		uniIconPanel_ = new JPanel();
-		add(uniIconPanel_, "cell 6 0,alignx right,aligny top");
-		JLabel lblUniIcon = new JLabel();
-		lblUniIcon.setIcon(new ImageIcon(BaseTab.class
+
+		
+		JLabel lblUniIcon_ = new JLabel();
+		lblUniIcon_.setIcon(new ImageIcon(BaseTab.class
 				.getResource("/de/sfgmbh/comlayer/core/images/UniBA_logo.png")));
-		lblUniIcon.setMaximumSize(new Dimension(50, 50));
-		uniIconPanel_.add(lblUniIcon);
+		lblUniIcon_.setMaximumSize(new Dimension(50, 50));
+		add(lblUniIcon_, "cell 6 0,alignx right,aligny top");
 
 		comboBoxLevel_.setEditable(true);
 		comboBoxLevel_.setAutoscrolls(true);

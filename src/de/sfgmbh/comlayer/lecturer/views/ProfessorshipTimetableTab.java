@@ -32,6 +32,7 @@ import de.sfgmbh.comlayer.lecturer.controller.ProfessorshipTimetableTabCmbbox;
  * 
  * @author hannes
  * @author denis
+ * @author anna
  *
  */
 public class ProfessorshipTimetableTab extends JPanel{
@@ -53,7 +54,7 @@ public class ProfessorshipTimetableTab extends JPanel{
 	}
 	private void createContents() {
 		setAutoscrolls(true);
-		setLayout(new MigLayout("", "[14.00,grow][][10px][112px][][][10.00,grow][right]", "[][][383px][grow]"));
+		setLayout(new MigLayout("", "[14.00,grow][][10px][112px][][][grow][50px:50px:50px]", "[top][][383px][grow]"));
 		
 		JLabel lblWeekplanforTheChair = new JLabel("<html><h3>Wochenplan f\u00FCr den Lehrstuhl</h3></html>");
 		lblWeekplanforTheChair.setFont(new Font("Tahoma", Font.PLAIN, 11));
@@ -117,12 +118,25 @@ public class ProfessorshipTimetableTab extends JPanel{
 			chairTimetableTable_.setBackground(Color.WHITE);
 			chairTimetableTable_.setModel(ViewManager.getInstance().getLecturerChairimetableTabTable());
 		
-			chairTimetableTable_.getColumnModel().getColumn(0).setPreferredWidth(50);
-			chairTimetableTable_.getColumnModel().getColumn(1).setPreferredWidth(70);
-			chairTimetableTable_.getColumnModel().getColumn(2).setPreferredWidth(70);
-			chairTimetableTable_.getColumnModel().getColumn(3).setPreferredWidth(70);
+			chairTimetableTable_.getColumnModel().getColumn(0).setResizable(false);
+			chairTimetableTable_.getColumnModel().getColumn(0).setPreferredWidth(70);
+			chairTimetableTable_.getColumnModel().getColumn(0).setMinWidth(50);
+			chairTimetableTable_.getColumnModel().getColumn(0).setMaxWidth(105);
+			chairTimetableTable_.getColumnModel().getColumn(1).setResizable(false);
+			chairTimetableTable_.getColumnModel().getColumn(1).setPreferredWidth(50);
+			chairTimetableTable_.getColumnModel().getColumn(1).setMinWidth(50);
+			chairTimetableTable_.getColumnModel().getColumn(1).setMaxWidth(145);
+			chairTimetableTable_.getColumnModel().getColumn(2).setResizable(false);
+			chairTimetableTable_.getColumnModel().getColumn(2).setMinWidth(75);
+			chairTimetableTable_.getColumnModel().getColumn(2).setMaxWidth(145);
+			chairTimetableTable_.getColumnModel().getColumn(3).setPreferredWidth(80);
+			chairTimetableTable_.getColumnModel().getColumn(3).setMinWidth(80);
+			chairTimetableTable_.getColumnModel().getColumn(3).setMaxWidth(145);
 			chairTimetableTable_.getColumnModel().getColumn(4).setPreferredWidth(70);
-			chairTimetableTable_.getColumnModel().getColumn(5).setPreferredWidth(70);
+			chairTimetableTable_.getColumnModel().getColumn(4).setMinWidth(70);
+			chairTimetableTable_.getColumnModel().getColumn(4).setMaxWidth(145);
+			chairTimetableTable_.getColumnModel().getColumn(5).setMinWidth(70);
+			chairTimetableTable_.getColumnModel().getColumn(5).setMaxWidth(145);
 			
 		}
 		return panelProfessorshipPanel_;
