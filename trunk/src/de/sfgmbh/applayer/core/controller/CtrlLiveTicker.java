@@ -105,7 +105,8 @@ public class CtrlLiveTicker implements IntfCtrlLiveTicker {
 			return 6;
 		} else if (hour <= 22) {
 			return 7;
+		} else {
+			return 8;
 		}
-		return 0;
 	}
 }
