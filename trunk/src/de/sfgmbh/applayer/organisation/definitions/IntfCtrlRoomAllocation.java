@@ -8,6 +8,7 @@ import de.sfgmbh.comlayer.core.controller.ViewHelper;
 /**
  * Room allocation Interface
  * @author hannes
+ * @author denis - getLectureOnTime
  *
  */
 public interface IntfCtrlRoomAllocation {
@@ -59,7 +60,6 @@ public interface IntfCtrlRoomAllocation {
 	 * @param day - @see {@link ViewHelper}
 	 * @param time - @see {@link ViewHelper}
 	 * @return textualRepresentation - Textual HTML Representation as a {@link String} 
-	 * @author denis
 	 * @param showRoomName  - shows the roomname on output
 	 */
 	public String getLectureOnTime(List<IntfRoomAllocation> roomAllocations,int day, int time, boolean showRoomName, boolean markDuplicates);
