@@ -120,7 +120,7 @@ public class StartTab extends JPanel implements IntfComDialogObserver {
 		
 		comboBoxLecturerBottom_ = new JComboBox<String>();
 		comboBoxLecturerBottom_.setToolTipText("<html>Sie können die Liste der <br> Raumzuordnungen über <br> diese Filter begrenzen</html>");
-		comboBoxLecturerBottom_.setModel(new CmbboxFilterLecturer(comboBoxLecturerBottom_));
+		comboBoxLecturerBottom_.setModel(new CmbboxFilterLecturer(comboBoxLecturerBottom_, "default", true));
 		comboBoxLecturerBottom_.addActionListener(new StartTabCmbboxFilter());
 		
 		lblStatus_ = new JLabel("Ver\u00F6ffentlichungsstatus:");
@@ -226,7 +226,7 @@ public class StartTab extends JPanel implements IntfComDialogObserver {
 		add(comboLecturer_, "cell 1 2,alignx left,aligny bottom");
 		comboLecturer_.setToolTipText("<html>Sie können die Liste der <br> Lehrveranstaltungen über <br> diese Filter begrenzen</html>");
 		comboLecturer_.addActionListener(new StartTabCmbboxFilter());
-		comboLecturer_.setModel(new CmbboxFilterLecturer(comboLecturer_));
+		comboLecturer_.setModel(new CmbboxFilterLecturer(comboLecturer_, "default", true));
 		comboLecturer_.setEditable(true);
 		comboLecturer_.setAutoscrolls(true);
 	}
