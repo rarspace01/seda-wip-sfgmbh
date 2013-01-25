@@ -41,9 +41,10 @@ public interface IntfCtrlGenericTables {
 	
 	/**
 	 * manages the reload process of a table, based on a given {@link RoomAllocation} {@link List}
-	 * @param table
+	 * @param stundenplanTable
 	 * @param roomAllocationList
 	 * @param showRoomName - enables the Room output
+	 * @param markDuplicates - enables the marking of duplicates
 	 */
 	public abstract void reloadTable(JTable stundenplanTable,
 			List<IntfRoomAllocation> roomAllocationList, boolean showRoomName, boolean markDuplicates);

@@ -102,9 +102,9 @@ public class UserCreateDialogBtns implements ActionListener {
 				
 				// Handle the password (this depends if it is a new or an old user)
 				if (create) {
-					createUser.setPwHashAndSalt(this.motherDialog_.getTxtPasswort().getText());
+					createUser.setPasswordHashAndSalt(this.motherDialog_.getTxtPasswort().getText());
 				} else if (this.motherDialog_.getTxtPasswort().getText().length() > 0) {
-					createUser.setPwHashAndSalt(this.motherDialog_.getTxtPasswort().getText());
+					createUser.setPasswordHashAndSalt(this.motherDialog_.getTxtPasswort().getText());
 				}
 				
 				// Handle disabling of users (only for old users)

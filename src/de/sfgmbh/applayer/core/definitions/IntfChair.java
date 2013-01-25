@@ -1,7 +1,9 @@
 package de.sfgmbh.applayer.core.definitions;
 
+import de.sfgmbh.applayer.core.model.Chair;
+
 /**
- * Interface for the {@link Chair} object
+ * Interface for the {@link Chair}
  * 
  * @author anna
  * @author hannes
