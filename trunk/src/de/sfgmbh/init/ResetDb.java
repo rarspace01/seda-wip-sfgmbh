@@ -20,6 +20,9 @@ public class ResetDb {
 	// List with Strings
 	List<String> sqlStatements=new ArrayList<String>();
 	
+	/**
+	 * Construct the class
+	 */
 	public ResetDb() {
 	}
 	

@@ -50,4 +50,24 @@ public interface IntfDataChair {
 	 */
 	public IntfChair makeChair(ResultSet resultSet);
 	
+	/**
+	 * Get the chair of a user
+	 * 
+	 * @param userId
+	 * @return a Chair if the submitted user (id) can be associated with one,
+	 *         otherwise returns null
+	 */
+	public IntfChair getForUser(int userId);
+	
+	/**
+	 * Get the chair based on its acronym
+	 * 
+	 * @param acronym
+	 * @return a chair if the submitted acronym can be associated with one,
+	 *         otherwise returns null
+	 */
+	public IntfChair getForAcronym(String acronym);
+	
+	
+	
 }

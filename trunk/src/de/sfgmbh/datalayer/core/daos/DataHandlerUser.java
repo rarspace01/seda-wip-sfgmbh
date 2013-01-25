@@ -26,6 +26,10 @@ public class DataHandlerUser implements IntfDataUser, IntfDataObservable, IntfDa
 	
 	private ArrayList<IntfDataObserver> observer_ = new ArrayList<IntfDataObserver>();
 	
+	/*
+	 * (non-Javadoc)
+	 * @see de.sfgmbh.datalayer.core.definitions.IntfDataUser#getAll()
+	 */
 	@Override
 	public List<User> getAll() {
 		DataManagerPostgreSql dataManager = new DataManagerPostgreSql();
@@ -94,6 +98,10 @@ public class DataHandlerUser implements IntfDataUser, IntfDataObservable, IntfDa
 		return listUser;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see de.sfgmbh.datalayer.core.definitions.IntfDataFilter#getByFilter(java.util.HashMap)
+	 */
 	@Override
 	public List<User> getByFilter(HashMap<String, String> filter) {
 		
@@ -219,6 +227,10 @@ public class DataHandlerUser implements IntfDataUser, IntfDataObservable, IntfDa
 		return listUser;
 	}
 	
+	/*
+	 * (non-Javadoc)
+	 * @see de.sfgmbh.datalayer.core.definitions.IntfDataUser#get(int)
+	 */
 	@Override
 	public IntfUser get(int id) {
 		DataManagerPostgreSql dataManager = new DataManagerPostgreSql();
@@ -279,12 +291,20 @@ public class DataHandlerUser implements IntfDataUser, IntfDataObservable, IntfDa
 		return null;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see de.sfgmbh.datalayer.core.definitions.IntfDataUser#search(java.lang.String)
+	 */
 	@Override
 	public List<User> search(String searchQry) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see de.sfgmbh.datalayer.core.definitions.IntfDataUser#delete(de.sfgmbh.applayer.core.definitions.IntfUser)
+	 */
 	@Override
 	public boolean delete(IntfUser toBeDeletedUser) {
 		DataManagerPostgreSql dataManager = new DataManagerPostgreSql();
@@ -339,10 +359,9 @@ public class DataHandlerUser implements IntfDataUser, IntfDataObservable, IntfDa
 		return false;
 	}
 
-	/**
-	 * Saves a new user in the DB if the user doesn't exist already and updates an existing user in the DB otherwise
-	 * @param user
-	 * @return ture on success
+	/*
+	 * (non-Javadoc)
+	 * @see de.sfgmbh.datalayer.core.definitions.IntfDataUser#save(de.sfgmbh.applayer.core.definitions.IntfUser)
 	 */
 	@Override
 	public boolean save(IntfUser user) {
@@ -495,8 +514,9 @@ public class DataHandlerUser implements IntfDataUser, IntfDataObservable, IntfDa
 		return this.makeUser(rs, "default");
 	}
 
-	/**
-	 * 
+	/*
+	 * (non-Javadoc)
+	 * @see de.sfgmbh.datalayer.core.definitions.IntfDataObservable#update()
 	 */
 	@Override
 	public void update() {
@@ -512,9 +532,9 @@ public class DataHandlerUser implements IntfDataUser, IntfDataObservable, IntfDa
 		}
 	}
 	
-	/**
-	 * 
-	 * @param observer
+	/*
+	 * (non-Javadoc)
+	 * @see de.sfgmbh.datalayer.core.definitions.IntfDataObservable#register(de.sfgmbh.datalayer.core.definitions.IntfDataObserver)
 	 */
 	@Override
 	public void register(IntfDataObserver observer) {
@@ -525,9 +545,9 @@ public class DataHandlerUser implements IntfDataUser, IntfDataObservable, IntfDa
 		}
 	}
 	
-	/**
-	 * 
-	 * @param observer
+	/*
+	 * (non-Javadoc)
+	 * @see de.sfgmbh.datalayer.core.definitions.IntfDataObservable#unregister(de.sfgmbh.datalayer.core.definitions.IntfDataObserver)
 	 */
 	@Override
 	public void unregister(IntfDataObserver observer) {

@@ -42,10 +42,9 @@ public interface IntfDataUser {
 	public boolean delete(IntfUser toBeDeletedUser);
 
 	/**
-	 * 
-	 * @param toBeSavedUser
-	 *            - object of type User to be saved in DB
-	 * @return true on success
+	 * Saves a new user in the DB if the user doesn't exist already and updates an existing user in the DB otherwise
+	 * @param user
+	 * @return ture on success
 	 */
 	public boolean save(IntfUser toBeSavedUser);
 	
