@@ -37,6 +37,8 @@ public class CmbboxFilterSemester extends DefaultComboBoxModel<String>{
 	}
 
 	public void build() {
+		
+		// Build the last, the current and the next 3 semesters dynamically
 		Date currentDate = new Date();
 		String month = new SimpleDateFormat("M").format(currentDate);
 		String year = new SimpleDateFormat("yy").format(currentDate);
@@ -47,6 +49,7 @@ public class CmbboxFilterSemester extends DefaultComboBoxModel<String>{
 			summer = false;
 		}
 		
+		// Do the actual string generation
 		ArrayList<String> semester = new ArrayList<String>();
 		for (int run = 0; run < 5; run++) {
 			if (summer) {
@@ -68,44 +71,61 @@ public class CmbboxFilterSemester extends DefaultComboBoxModel<String>{
 			} else {
 				if (run == 0) {
 					if (Integer.parseInt(month) == 10 || Integer.parseInt(month) == 11 || Integer.parseInt(month) == 12) {
-						semester.add("SS " + (Integer.parseInt(year) - 1));
+						semester.add("SS " + (Integer.parseInt(year)));
 					} else {
-						semester.add("SS " + (Integer.parseInt(year) - 2));
+						semester.add("SS " + (Integer.parseInt(year) - 1));
 					}
 				}
 				if (run == 1) {
 					if (Integer.parseInt(month) == 10 || Integer.parseInt(month) == 11 || Integer.parseInt(month) == 12) {
-						semester.add("SS " + (Integer.parseInt(year) - 1));
+						semester.add("WS " + (Integer.parseInt(year)) + "/" + (Integer.parseInt(year) + 1));
 					} else {
-						semester.add("SS " + (Integer.parseInt(year) - 2));
+						semester.add("WS " + (Integer.parseInt(year) - 1) + "/" + (Integer.parseInt(year)));
 					}
-					semester.add("WS " + (Integer.parseInt(year) - 1) + "/" + Integer.parseInt(year));
-					semester.add("SS " + Integer.parseInt(year));
 				}
 				if (run == 2) {
-					semester.add("WS " + Integer.parseInt(year) + "/" + (Integer.parseInt(year) + 1));
+					if (Integer.parseInt(month) == 10 || Integer.parseInt(month) == 11 || Integer.parseInt(month) == 12) {
+						semester.add("SS " + (Integer.parseInt(year) + 1));
+					} else {
+						semester.add("SS " + (Integer.parseInt(year)));
+					}
 				}
 				if (run == 3) {
-					semester.add("SS " + (Integer.parseInt(year) + 1));
+					if (Integer.parseInt(month) == 10 || Integer.parseInt(month) == 11 || Integer.parseInt(month) == 12) {
+						semester.add("WS " + (Integer.parseInt(year) + 1) + "/" + (Integer.parseInt(year) + 2));
+					} else {
+						semester.add("WS " + (Integer.parseInt(year) ) + "/" + (Integer.parseInt(year) + 1));
+					}
 				}
 				if (run == 4) {
-					semester.add("WS " + (Integer.parseInt(year) + 1) + "/" + (Integer.parseInt(year) + 2));
+					if (Integer.parseInt(month) == 10 || Integer.parseInt(month) == 11 || Integer.parseInt(month) == 12) {
+						semester.add("SS " + (Integer.parseInt(year) + 2));
+					} else {
+						semester.add("SS " + (Integer.parseInt(year) + 1));
+					}
 				}
 			}
 		}
 		
 		
-		String[] elements;
+		// Generate the actual model entries
+		ArrayList<String> elemtens = new ArrayList<String>();
 		if (this.variant_.equals("select")) {
-			elements = new String[] {"WS 12/13", "SS 13", "WS 13/14", "SS 14"};
+			for (String sem : semester) {
+				elemtens.add(sem);
+			}
 		} else {
-			elements = new String[] {"<alle>", "WS 12/13", "SS 13", "WS 13/14", "SS 14"};
+			elemtens.add("<alle>");
+			for (String sem : semester) {
+				elemtens.add(sem);
+			}
 		}
 		
-		for (String element : elements) {
+		for (String element : elemtens) {
 			this.addElement(element);
 		}
 		
+		// Preselect currently hardcoded
 		if (this.variant_.equals("select")) {
 			this.setSelectedItem("SS 13");
 		}
