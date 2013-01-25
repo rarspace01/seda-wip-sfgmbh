@@ -418,8 +418,6 @@ ALTER TABLE ONLY "user" ALTER COLUMN userid SET DEFAULT nextval('user_userid_seq
 -- Data for Name: building; Type: TABLE DATA; Schema: public; Owner: WIP-SFGmbH
 --
 
-INSERT INTO building VALUES (1, 'An der Weberei 5', 'ERBA');
-INSERT INTO building VALUES (2, 'Feldkirchen Str.17', 'FEKI');
 
 
 --
@@ -433,172 +431,214 @@ SELECT pg_catalog.setval('building_bulidingid_seq', 1, false);
 -- Data for Name: chair; Type: TABLE DATA; Schema: public; Owner: WIP-SFGmbH
 --
 
-INSERT INTO chair VALUES (2, 'Industrielle Informationssysteme', 38, 1, '4', 'WI', 'IIS');
-INSERT INTO chair VALUES (3, 'Soziale Netzwerke', NULL, 1, NULL, 'WIAI', 'SNA');
-INSERT INTO chair VALUES (4, 'Systementwicklung und Datenbankanwendung', NULL, 1, NULL, 'WIAI', 'SEDA');
-INSERT INTO chair VALUES (5, 'Kommunikationsdienste, Telekommunikationsdienste und Rechnernetze', NULL, 1, NULL, 'WIAI', 'KTR');
-INSERT INTO chair VALUES (6, 'Grundlagen der Informatik', NULL, 1, NULL, 'WIAI', 'GDI');
-INSERT INTO chair VALUES (7, 'Softwaretechnik und Programmiersprachen', NULL, 1, 'R4', 'WI', 'SWT');
-INSERT INTO chair VALUES (14, 'Mobile Systeme', 42, -1, '5', 'WI', 'MOBSYS');
-INSERT INTO chair VALUES (15, 'Tödliches Spielen', NULL, -1, '666', 'WI', 'TS');
-INSERT INTO chair VALUES (19, 'Informationssysteme in Dienstleistungsbereichen', NULL, -1, '04', 'WI', 'ISDL');
-INSERT INTO chair VALUES (16, 'Binäres Treiben', 65, -1, '04', 'WI', 'BTR');
+INSERT INTO chair VALUES (103, 'Lehrstuhl für Wirtschaftsinformatik, insb. Informationssysteme in Dienstleistungsbereichen', 105, -1, '4.1', 'WI', 'ISDL');
+INSERT INTO chair VALUES (107, 'Lehrstuhl für Wirtschaftsinformatik, insb. Industrielle Informationssysteme', 150, -1, '4.1', 'WI', 'IIS');
+INSERT INTO chair VALUES (100, 'Lehrstuhl für Informatik, insbesondere Kommunikationsdienste, Telekommunikationssysteme und Rechnernetze', 101, -1, '', 'WI', 'KTR');
+INSERT INTO chair VALUES (110, 'Lehrstuhl für Angewandte Informatik, insb. Kulturinformatik', 152, -1, '', 'WI', 'KInf');
+INSERT INTO chair VALUES (108, 'Lehrstuhl für Angewandte Informatik, insb. Kognitive Systeme', 151, -1, '', 'WI', 'KogSys');
+INSERT INTO chair VALUES (105, 'Lehrstuhl für Angewandte Informatik, insb.Human Computer Interaction', 153, -1, '', 'WI', 'HCI');
+INSERT INTO chair VALUES (109, 'Lehrstuhl für Angewandte Informatik, insb. Medieninformatik', 154, -1, '', 'WI', 'MI');
+INSERT INTO chair VALUES (104, 'Lehrstuhl für Wirtschaftsinformatik, insb. Systementwicklung und Datenbankanwendung', 112, -1, '1', 'WI', 'SEDA');
+INSERT INTO chair VALUES (111, 'Lehrstuhl für Informatik, insb. Distributed Systems Group', 157, -1, '', 'WI', 'DSG');
+INSERT INTO chair VALUES (112, 'Lehrstuhl für Informatik, insb. Softwaretechnik', 158, -1, '', 'WI', 'SWT');
+INSERT INTO chair VALUES (101, 'Lehrstuhl für Informatik, insb. Grundlagen der Informatik', 159, -1, '', 'WI', 'GdI');
 
 
 --
 -- Name: chair_chairid_seq; Type: SEQUENCE SET; Schema: public; Owner: WIP-SFGmbH
 --
 
-SELECT pg_catalog.setval('chair_chairid_seq', 99, true);
+SELECT pg_catalog.setval('chair_chairid_seq', 112, true);
 
 
 --
 -- Data for Name: course; Type: TABLE DATA; Schema: public; Owner: WIP-SFGmbH
 --
 
-INSERT INTO course VALUES (5, 2, 'AN1', 'Spezielles Lernen', 4, 'Vorlesung', 'k. A.', 2, true);
-INSERT INTO course VALUES (6, 2, 'AN2', 'Spezielles Lernen', 2, 'Tutorium', 'k. A.', 2, true);
-INSERT INTO course VALUES (2, 1, 'PARA2', 'Paranormales Training', 2, 'Übung', 'Keine Angaben', 33, false);
-INSERT INTO course VALUES (1, 1, 'PARA1', 'Paranormales Training', 12, 'Vorlesung', 'Keine Angaben', 250, true);
-INSERT INTO course VALUES (8, 1, 'TEST2', 'Karaoke', 6, 'Übung', 'Test', 9, false);
-INSERT INTO course VALUES (9, 38, 'TT2', 'Karaoke2', 0, 'Vorlesung', 'asfd
-sdf', 666, true);
-INSERT INTO course VALUES (7, 22, 'TEST', 'Test', 2, 'Tutorium', '', 4, true);
-INSERT INTO course VALUES (11, 22, 'Test2', 'sdaf', 1, 'Vorlesung', '', 1, true);
-INSERT INTO course VALUES (13, 22, 'KiWi', 'Kein Name', 3, 'Übung', '', 333, true);
-INSERT INTO course VALUES (14, 43, 'TEST', 'TEST', 4, 'Vorlesung', 'TEST', 50, false);
-INSERT INTO course VALUES (15, 43, 'TEST', 'Testveranstaltung', 2, 'Übung', '', 20, false);
-INSERT INTO course VALUES (16, 43, 'TEST3', 'Testtutorium', 4, 'Tutorium', '', 15, true);
-INSERT INTO course VALUES (17, 43, 'FERT', 'Fertigungstechnik', 2, 'Vorlesung', '', 100, false);
-INSERT INTO course VALUES (18, 43, 'FEST', 'Festigkeitslehre', 2, 'Übung', '', 30, false);
-INSERT INTO course VALUES (12, 42, 'JUT1', 'JUnit Tests', 4, 'Vorlesung', 'JUnit Tests', 10, true);
+INSERT INTO course VALUES (129, 134, 'SEDA-EbIS-1', 'Entwicklung betrieblicher Informationssysteme', 2, 'Übung', '', 25, true);
+INSERT INTO course VALUES (130, 154, 'MI-AuD-B', 'Algorithmen und Datenstrukturen	', 2, 'Vorlesung', '', 25, true);
+INSERT INTO course VALUES (131, 154, 'MI-IR1-M', ' Information Retrieval 1 (Grundlagen, Modelle und Anwendungen)', 2, 'Vorlesung', '', 25, true);
+INSERT INTO course VALUES (132, 157, 'DSG-EidI-M', 'Einführung in die Informatik', 2, 'Vorlesung', '', 50, true);
+INSERT INTO course VALUES (133, 157, 'DSG-DSAM-M', 'Distributed Systems Architecture and Middleware', 2, 'Vorlesung', '', 25, true);
+INSERT INTO course VALUES (102, 22, 'WG-B', 'Wissenschaftliche Grundlagen', 2, 'Vorlesung', '', 30, true);
+INSERT INTO course VALUES (103, 22, 'BA-B', 'Boolische Algebra', 6, 'Vorlesung', '', 90, true);
+INSERT INTO course VALUES (134, 112, 'SEDA-EbIS2-M', 'Entwicklung betrieblicher Informationssysteme', 2, 'Vorlesung', '', 25, true);
+INSERT INTO course VALUES (108, 22, 'EinfMi-B', 'Einführung in die Medieninformatik', 4, 'Vorlesung', '', 120, true);
+INSERT INTO course VALUES (106, 22, 'BA-Ü-B', 'Boolische Algebra Übung', 4, 'Übung', '', 25, true);
+INSERT INTO course VALUES (107, 22, 'BA-T-B', 'Boolische Algebra TUtorium', 4, 'Tutorium', '', 40, true);
+INSERT INTO course VALUES (135, 112, 'SEDA-EbIS3-M', 'Entwicklung betrieblicher Informationssysteme', 2, 'Vorlesung', '', 25, true);
+INSERT INTO course VALUES (115, 101, 'KTR-MAKV-M', 'Modellierung und Analyse von Kommunikationsnetzen und Verteilten Systemen', 4, 'Vorlesung', '', 10, false);
+INSERT INTO course VALUES (114, 101, 'KTR-Mobi-M', 'Mobilkommunikation', 4, 'Vorlesung', '', 10, false);
+INSERT INTO course VALUES (113, 101, 'KTR-MMK-M', 'Multimedia-Kommunikation in Hochgeschwindigkeitsnetzen', 4, 'Vorlesung', '', 5, false);
+INSERT INTO course VALUES (116, 101, 'KTR-GIK-M', 'Grundbausteine der Internet-Kommunikation', 4, 'Vorlesung', '', 8, false);
+INSERT INTO course VALUES (112, 105, 'ISDL-SOA', 'SOA-Governance and Evaluation', 4, 'Vorlesung', '', 25, true);
+INSERT INTO course VALUES (136, 101, 'KTR-DatK-B', 'Datenkommunikation', 2, 'Vorlesung', '', 2, true);
+INSERT INTO course VALUES (111, 105, 'ISDL-SaaS', 'Cloud, Consumerization, In-memory Computing', 2, 'Vorlesung', '', 20, true);
+INSERT INTO course VALUES (117, 150, 'IIS-E-Biz-E', 'Electronic Business', 2, 'Vorlesung', '', 50, true);
+INSERT INTO course VALUES (119, 150, 'IIS-IBS-M', 'Innerbetriebliche Systeme', 2, 'Vorlesung', '', 50, true);
+INSERT INTO course VALUES (120, 150, 'IIS-IOS-M', 'Interorganisationssysteme', 2, 'Vorlesung', '', 50, true);
+INSERT INTO course VALUES (121, 150, 'IIS-MODS-M', 'Modulare und On-Demand-Systeme', 2, 'Vorlesung', '	', 50, true);
+INSERT INTO course VALUES (118, 150, 'IIS-EAM-B', 'Enterprise Architecture Management', 2, 'Vorlesung', '', 50, true);
+INSERT INTO course VALUES (110, 105, 'ISDL-3-M', 'IT-Wertschöpfung', 4, 'Vorlesung', '', 60, true);
+INSERT INTO course VALUES (109, 105, 'ISDL-2-M', 'Optimierung IT-lastiger Geschäftsprozesse', 4, 'Vorlesung', '', 60, true);
+INSERT INTO course VALUES (100, 105, 'ISDL-1-M', 'Standards und Netzwerke', 4, 'Vorlesung', 'Dezentrales Standardisierungsproblem', 60, true);
+INSERT INTO course VALUES (122, 153, 'HCI-IS-B', 'Interaktive Systeme', 2, 'Vorlesung', '', 50, true);
+INSERT INTO course VALUES (123, 153, 'HCI-IS-B', 'Interaktive Systeme', 2, 'Übung', '', 50, true);
+INSERT INTO course VALUES (124, 151, 'KogSys-IA-B', 'Intelligente Agenten', 2, 'Vorlesung', '', 25, true);
+INSERT INTO course VALUES (125, 151, 'KogSys-IA-B', 'Intelligente Agenten', 2, 'Übung', '', 25, true);
+INSERT INTO course VALUES (126, 112, 'SEDA-DMS-B', 'Datenmanagementsysteme', 2, 'Vorlesung', '', 50, true);
+INSERT INTO course VALUES (127, 137, 'SEDA-DMS-B', 'Datenmanagementsysteme', 2, 'Übung', '', 25, true);
+INSERT INTO course VALUES (128, 112, 'SEDA-EbIS1-M', 'Entwicklung betrieblicher Informationssysteme', 2, 'Übung', '', 25, true);
 
 
 --
 -- Name: course_courseid_seq; Type: SEQUENCE SET; Schema: public; Owner: WIP-SFGmbH
 --
 
-SELECT pg_catalog.setval('course_courseid_seq', 99, true);
+SELECT pg_catalog.setval('course_courseid_seq', 137, true);
 
 
 --
 -- Data for Name: lecturer; Type: TABLE DATA; Schema: public; Owner: WIP-SFGmbH
 --
 
-INSERT INTO lecturer VALUES (1, 1, 5);
-INSERT INTO lecturer VALUES (2, 2, 6);
-INSERT INTO lecturer VALUES (8, 27, 7);
-INSERT INTO lecturer VALUES (10, 29, 4);
-INSERT INTO lecturer VALUES (14, 35, 3);
-INSERT INTO lecturer VALUES (15, 36, 5);
-INSERT INTO lecturer VALUES (16, 38, 2);
-INSERT INTO lecturer VALUES (25, 65, 16);
-INSERT INTO lecturer VALUES (20, 43, 4);
-INSERT INTO lecturer VALUES (4, 22, 2);
-INSERT INTO lecturer VALUES (19, 42, 14);
-INSERT INTO lecturer VALUES (23, 63, 14);
-INSERT INTO lecturer VALUES (24, 64, 16);
+INSERT INTO lecturer VALUES (104, 102, 103);
+INSERT INTO lecturer VALUES (105, 103, 103);
+INSERT INTO lecturer VALUES (106, 104, 103);
+INSERT INTO lecturer VALUES (108, 106, 103);
+INSERT INTO lecturer VALUES (152, 150, 107);
+INSERT INTO lecturer VALUES (155, 153, 105);
+INSERT INTO lecturer VALUES (153, 151, 108);
+INSERT INTO lecturer VALUES (116, 114, 104);
+INSERT INTO lecturer VALUES (123, 121, 104);
+INSERT INTO lecturer VALUES (156, 154, 109);
+INSERT INTO lecturer VALUES (160, 158, 112);
+INSERT INTO lecturer VALUES (161, 159, 101);
+INSERT INTO lecturer VALUES (114, 112, 104);
+INSERT INTO lecturer VALUES (101, 42, 103);
+INSERT INTO lecturer VALUES (159, 157, 111);
+INSERT INTO lecturer VALUES (107, 105, 103);
+INSERT INTO lecturer VALUES (103, 101, 100);
+INSERT INTO lecturer VALUES (102, 22, 100);
+INSERT INTO lecturer VALUES (158, 156, 100);
+INSERT INTO lecturer VALUES (136, 134, 104);
+INSERT INTO lecturer VALUES (148, 146, 103);
+INSERT INTO lecturer VALUES (154, 152, 110);
+INSERT INTO lecturer VALUES (139, 137, 104);
 
 
 --
 -- Name: lecturer_lecturerid_seq; Type: SEQUENCE SET; Schema: public; Owner: WIP-SFGmbH
 --
 
-SELECT pg_catalog.setval('lecturer_lecturerid_seq', 99, true);
+SELECT pg_catalog.setval('lecturer_lecturerid_seq', 161, true);
 
 
 --
 -- Data for Name: room; Type: TABLE DATA; Schema: public; Owner: WIP-SFGmbH
 --
 
-INSERT INTO room VALUES ('WE5/01.003', 1, '1.99', 30, 30, 2, 0, 0, 0, 0, 3);
-INSERT INTO room VALUES ('WE5/02.068', 1, '2.1', 20, 0, 0, 0, 0, 0, 0, 27);
-INSERT INTO room VALUES ('DD3/9', 1, '1.44', 33, 0, 0, 0, 0, 4, 0, 33);
-INSERT INTO room VALUES ('DD3/99', 1, '1.55', 600, 50, 1, 1, 5, 1, 1, 35);
-INSERT INTO room VALUES ('WE5/02.069', 1, '2.1', 20, 0, 0, 0, 0, 0, 0, 36);
-INSERT INTO room VALUES ('WE5/0.019', 1, 'EG', 180, 0, 2, 0, 0, 0, 0, 5);
-INSERT INTO room VALUES ('WE5/0.020', 1, 'EG', 120, 0, 2, 0, 0, 0, 0, 4);
-INSERT INTO room VALUES ('WE5/05.005', 1, '5.0', 20, 0, 1, 0, 0, 0, 0, 2);
+INSERT INTO room VALUES ('WE5/1.003', 0, '1', 60, 30, 2, 0, 0, 0, 0, 102);
+INSERT INTO room VALUES ('WE5/2.068', 0, '2.1', 20, 0, 2, 0, 0, 0, 0, 100);
+INSERT INTO room VALUES ('WE5/0.019', 0, '0', 250, 0, 2, 0, 1, 0, 0, 101);
+INSERT INTO room VALUES ('WE5/5.005', 0, '5', 20, 0, 1, 0, 0, 1, 0, 104);
+INSERT INTO room VALUES ('WE5/4.016', 0, '4', 60, 30, 2, 0, 0, 0, 1, 105);
+INSERT INTO room VALUES ('WE5/2.020', 0, '2.1', 20, 0, 2, 0, 0, 0, 0, 106);
+INSERT INTO room VALUES ('WE5/2.003', 0, '2.2', 15, 0, 2, 0, 0, 0, 0, 108);
 
 
 --
 -- Name: room_roomid_seq; Type: SEQUENCE SET; Schema: public; Owner: WIP-SFGmbH
 --
 
-SELECT pg_catalog.setval('room_roomid_seq', 99, true);
+SELECT pg_catalog.setval('room_roomid_seq', 108, true);
 
 
 --
 -- Data for Name: roomallocation; Type: TABLE DATA; Schema: public; Owner: WIP-SFGmbH
 --
 
-INSERT INTO roomallocation VALUES (11, 11, 3, 'SS 13', 1, 1, 'accepted', NULL, NULL);
-INSERT INTO roomallocation VALUES (12, 11, 3, 'SS 13', 1, 5, 'accepted', '', NULL);
-INSERT INTO roomallocation VALUES (16, 7, 3, 'SS 13', 2, 1, 'accepted', NULL, NULL);
-INSERT INTO roomallocation VALUES (9, 2, 3, 'SS 13', 1, 3, 'accepted', NULL, NULL);
-INSERT INTO roomallocation VALUES (13, 11, 3, 'SS 13', 2, 3, 'denied', 'Dies ist ein Test...
-Test!', NULL);
-INSERT INTO roomallocation VALUES (15, 7, 3, 'SS 13', 2, 2, 'denied', 'Test', NULL);
-INSERT INTO roomallocation VALUES (25, 18, 33, 'SS 13', 1, 2, 'waiting', NULL, NULL);
-INSERT INTO roomallocation VALUES (22, 17, 35, 'SS 13', 1, 4, 'accepted', 'Test, Test', NULL);
-INSERT INTO roomallocation VALUES (8, 5, 4, 'SS 13', 3, 3, 'denied', NULL, NULL);
-INSERT INTO roomallocation VALUES (1, 1, 3, 'SS 13', 1, 2, 'accepted', NULL, NULL);
-INSERT INTO roomallocation VALUES (2, 1, 3, 'SS 13', 1, 3, 'accepted', NULL, NULL);
-INSERT INTO roomallocation VALUES (5, 6, 2, 'SS 13', 2, 5, 'accepted', NULL, NULL);
-INSERT INTO roomallocation VALUES (3, 2, 5, 'SS 13', 1, 1, 'counter', '', NULL);
-INSERT INTO roomallocation VALUES (4, 5, 3, 'SS 13', 1, 4, 'counter', 'blub', NULL);
-INSERT INTO roomallocation VALUES (10, 11, 3, 'SS 13', 1, 1, 'denied', NULL, NULL);
-INSERT INTO roomallocation VALUES (17, 12, 27, 'SS 13', 1, 2, 'accepted', NULL, NULL);
-INSERT INTO roomallocation VALUES (18, 13, 35, 'SS 13', 7, 7, 'accepted', NULL, NULL);
-INSERT INTO roomallocation VALUES (21, 16, 2, 'SS 13', 6, 1, 'accepted', NULL, NULL);
-INSERT INTO roomallocation VALUES (19, 14, 35, 'SS 13', 1, 1, 'denied', NULL, NULL);
-INSERT INTO roomallocation VALUES (14, 7, 3, 'SS 13', 1, 1, 'denied', 'GG!', NULL);
-INSERT INTO roomallocation VALUES (20, 15, 3, 'SS 13', 3, 6, 'accepted', 'Sehr geehrter Herr Serno,
-anbei ein Vorschlag zur Konfliktlösung.
-MfG
-Ihr Verwaltungsteam', NULL);
-INSERT INTO roomallocation VALUES (23, 17, 35, 'SS 13', 1, 2, 'accepted', 'Sehr geehrter Herr Serno,
-anbei ein Gegenvorschlag', NULL);
-INSERT INTO roomallocation VALUES (24, 18, 35, 'SS 13', 1, 1, 'waiting', NULL, NULL);
+INSERT INTO roomallocation VALUES (100, 100, 101, 'SS 13', 1, 1, 'accepted', NULL, NULL);
+INSERT INTO roomallocation VALUES (129, 117, 102, 'WS 13/14', 2, 4, 'accepted', NULL, 'accepted_at_1359118687');
+INSERT INTO roomallocation VALUES (127, 119, 102, 'WS 13/14', 1, 1, 'denied', 'Sehr geehrter Prof.Overhage, leider gab es einen Konflift für Ihre Anfrage, daher sende ich Ihnen diese Gegenvorschlag.', 'counter_at_1359118724');
+INSERT INTO roomallocation VALUES (133, 125, 102, 'SS 13', 3, 2, 'accepted', NULL, NULL);
+INSERT INTO roomallocation VALUES (130, 118, 102, 'SS 13', 2, 4, 'accepted', NULL, NULL);
+INSERT INTO roomallocation VALUES (131, 122, 102, 'SS 13', 2, 5, 'accepted', NULL, NULL);
+INSERT INTO roomallocation VALUES (132, 123, 102, 'SS 13', 3, 1, 'accepted', NULL, NULL);
+INSERT INTO roomallocation VALUES (134, 124, 102, 'SS 13', 3, 3, 'accepted', NULL, NULL);
+INSERT INTO roomallocation VALUES (135, 128, 102, 'SS 13', 3, 4, 'waiting', NULL, NULL);
+INSERT INTO roomallocation VALUES (137, 127, 102, 'SS 13', 4, 5, 'accepted', NULL, 'accepted_at_1359125513');
+INSERT INTO roomallocation VALUES (138, 129, 102, 'SS 13', 4, 1, 'counter', 'SgH Teusch, leider kann Ihnen dieser Raum zugewiesen werden. Ich unterbreite Ihnen hiermit einen Gegenvorschlag.MfG', 'counter_at_1359125569');
+INSERT INTO roomallocation VALUES (139, 130, 102, 'SS 13', 5, 5, 'accepted', NULL, NULL);
+INSERT INTO roomallocation VALUES (140, 131, 102, 'SS 13', 5, 6, 'accepted', NULL, NULL);
+INSERT INTO roomallocation VALUES (105, 102, 108, 'SS 13', 1, 4, 'accepted', NULL, NULL);
+INSERT INTO roomallocation VALUES (111, 108, 101, 'SS 13', 1, 5, 'denied', 'Das geht hier nicht!', 'counter_at_1359082542');
+INSERT INTO roomallocation VALUES (117, 109, 102, 'SS 13', 1, 1, 'accepted', NULL, NULL);
+INSERT INTO roomallocation VALUES (109, 103, 101, 'SS 13', 1, 2, 'accepted', NULL, NULL);
+INSERT INTO roomallocation VALUES (118, 111, 102, 'SS 13', 1, 2, 'accepted', NULL, NULL);
+INSERT INTO roomallocation VALUES (121, 113, 104, 'SS 13', 1, 3, 'accepted', NULL, NULL);
+INSERT INTO roomallocation VALUES (120, 112, 102, 'SS 13', 1, 3, 'accepted', NULL, NULL);
+INSERT INTO roomallocation VALUES (122, 114, 102, 'SS 13', 1, 4, 'accepted', NULL, NULL);
+INSERT INTO roomallocation VALUES (123, 115, 102, 'SS 13', 1, 5, 'accepted', NULL, NULL);
+INSERT INTO roomallocation VALUES (124, 116, 101, 'SS 13', 2, 1, 'accepted', NULL, NULL);
+INSERT INTO roomallocation VALUES (119, 111, 102, 'SS 13', 2, 3, 'accepted', NULL, NULL);
+INSERT INTO roomallocation VALUES (116, 109, 101, 'SS 13', 5, 1, 'accepted', NULL, NULL);
+INSERT INTO roomallocation VALUES (125, 121, 102, 'SS 13', 2, 1, 'accepted', NULL, NULL);
+INSERT INTO roomallocation VALUES (126, 120, 102, 'SS 13', 2, 2, 'accepted', NULL, NULL);
+INSERT INTO roomallocation VALUES (128, 119, 100, 'WS 13/14', 2, 4, 'accepted', NULL, NULL);
+INSERT INTO roomallocation VALUES (141, 133, 102, 'SS 13', 4, 6, 'accepted', NULL, NULL);
+INSERT INTO roomallocation VALUES (142, 132, 102, 'SS 13', 5, 1, 'accepted', NULL, NULL);
+INSERT INTO roomallocation VALUES (143, 135, 102, 'SS 13', 4, 3, 'accepted', NULL, 'accepted_at_1359127568');
+INSERT INTO roomallocation VALUES (144, 134, 102, 'SS 13', 3, 5, 'counter', 'SgH Prof.Sinz,
+leider gab es für Ihre Raumanfrage schon eine andere reservieren. Aus diesem Grund sende ich Ihnen hiermit einen Gegenvorschlag.
+MfG Verwaltung', 'counter_at_1359127623');
+INSERT INTO roomallocation VALUES (136, 126, 102, 'SS 13', 3, 4, 'accepted', NULL, 'accepted_at_1359128162');
+INSERT INTO roomallocation VALUES (145, 136, 102, 'SS 13', 3, 4, 'waiting', NULL, NULL);
 
 
 --
 -- Name: roomallocation_roomallocationid_seq; Type: SEQUENCE SET; Schema: public; Owner: WIP-SFGmbH
 --
 
-SELECT pg_catalog.setval('roomallocation_roomallocationid_seq', 99, true);
+SELECT pg_catalog.setval('roomallocation_roomallocationid_seq', 145, true);
 
 
 --
 -- Data for Name: user; Type: TABLE DATA; Schema: public; Owner: WIP-SFGmbH
 --
 
-INSERT INTO "user" VALUES (1, 'hstad', '3d22f87a9655e2bc971e4f53bb623006dbc2fc9ab57b03e52df964895573d2c1', '10p06od', 'h@s.de', 'lecturer', 'Hannes', 'Stadler', 1358291445, true);
-INSERT INTO "user" VALUES (2, 'akupf', 'none_set', 'none_set', 'test@test.de', 'lecturer', 'Anna', 'Kupfer', 0, false);
-INSERT INTO "user" VALUES (27, 'profTest', 'd410260b4b689f52160aeefc2ef4e11d174695febbafd01ea634ec5fb5380ed0', '3e80ttk', 'p@te.st', 'lecturer', 'P', 'Test', 0, false);
-INSERT INTO "user" VALUES (29, 'Sinz', '591d162438cd1528aadbe9784f8d0f84d3400faf1fbfba3f8038d772ed73c192', '3f16lft', 'e.sinz@uni-bamberg.de', 'lecturer', 'Elmar J.', 'Sinz', 1358874274, false);
-INSERT INTO "user" VALUES (35, 'Test3', '28c5d2b2dded3936f260680b5f282a9033cc143601d42a9aa0ec060fd00a2bda', '257tar8', 'asfd@test.de', 'lecturer', '', 'asfd', 0, true);
-INSERT INTO "user" VALUES (36, 'asdfasdf', 'c340602c1f1927da5e8d79f6481207a95f2aed7d296aaf852433b60f7e209560', '8vbtha', 'asdf@asfd.de', 'lecturer', '', 'asdf', 0, true);
-INSERT INTO "user" VALUES (38, 'Ferstl', '5a20d7a5dfc82ab6f50506e215cbc348f6f2685c8b209cdd1282566a7604b1ba', '36vkv0a', 'o.ferstl@uni-bamberg.de', 'lecturer', 'Otto', 'Ferstl', 0, false);
-INSERT INTO "user" VALUES (44, 'KK-', 'db45d1fd08471b1314c48745ea426b7d34a3f3f2edec1a182ded3495ccb6c786', '2svufgk', 'asdf@test.de', 'orga', 'TestK1', 'TestK1', 0, false);
-INSERT INTO "user" VALUES (45, 'KK2', 'fd9f64014d81ffeb273b5699837834631d09d01064cd23b33ace75e2d8b87194', '1kbptcc', 'alskfdj@asdfk.de', 'orga', 'asdfkl', 'lökö', 0, true);
-INSERT INTO "user" VALUES (46, 'asfdasfd', '2689c8c6109329f2d5ebebb99eb5011c9ed351fddfb8b17b784ca958f7cc773f', '2qsb6fb', 'asfd@kkd.de', 'orga', 'sadf', 'safdsf', 0, false);
-INSERT INTO "user" VALUES (47, 'asfdFFö>', '2520dd66a06643dd0918a254f3fa6a7f6375cec4fcfe62b88a189bcbac7aa9cf', '3u3mf9k', 'ssdE3@asdlf.de', 'orga', 'as', 'asdf', 0, true);
-INSERT INTO "user" VALUES (65, 'ANNKU', 'd9c857191f291eb5e546693de69ec800e01470356c635bd43af719acb3b9e6f9', '190i8jj', 'Anna@abc.de', 'lecturer', 'Ana', 'Kupfer2', 1359021948, false);
-INSERT INTO "user" VALUES (63, 'TestDoz10', '0a22012836cdfb6b0225be23a6af1495e44f72dccf672743b54ae5b50155d747', 'ho3d6u', 'sadflk@asfd.de', 'lecturer', 'sdf', 'asdf', 0, true);
-INSERT INTO "user" VALUES (43, 'mserno', 'a940b2c9112014c03cbd92d4cc7ddfbe332a5d5ce7b93df1c6a02662213a7919', '1emk244', 'mario.serno@uni-bamberg.de', 'lecturer', 'Mario', 'Serno', 1359032024, false);
-INSERT INTO "user" VALUES (42, 'denis2', '3635aab2c8de16602d81c6c1eade9fea7d99514819a678d0e00639cef4ebce62', '3fghbln', 'denis2@test.com', 'lecturer', 'Denis', 'Hamann', 1358975101, false);
-INSERT INTO "user" VALUES (8, 'Verw', '3e280c39a065b49322088ae34b31fdb9052374b07764e65e2bbee279705a410e', 'j2t66r', 'Verwaltung@uni-bamberg.de', 'orga', '', '', 1359033693, false);
-INSERT INTO "user" VALUES (64, 'ANKU', '182d6c07afd7cf9fd7d7b5853205404834b3ff9498ebb1fae509d695ed4edf33', '2r3l6a5', 'abc@anna.de', 'lecturer', 'Anna', 'Kupfer1', 1359021111, false);
-INSERT INTO "user" VALUES (22, 'Doz', '8430df002cc316b8d8973aa1f749958a6fdf43eb250179f127fae755868f7665', '3ki7555', 'asf@asdf.de', 'lecturer', 'DozVorname', 'DozNachname', 1359036097, false);
-INSERT INTO "user" VALUES (39, 'denis', '0daa5f04411e3f93a75e7a7172dc234ad23806166be0c14173128af39b1e3f9a', '1aqqf1p', 'denis.hamann@stud.uni-bamberg.de', 'orga', 'Denis', 'Hamann', 1359040018, false);
+INSERT INTO "user" VALUES (137, 'matthiasW', '8c035d72f049a6a0dec0f5f6e358599094657e45e4a27d19d256314766c2fa80', '3cafob9', 'matthias.wolf@uni-bamberg.de', 'lecturer', 'Matthias', 'Wolf', 0, false);
+INSERT INTO "user" VALUES (101, 'udoK', '2128c84a8c133adae9e752dab0bb51909cb5dc43080c56af399ac7f6dfe9df2f', '2hrtspv', 'udo.krieger@uni-bamberg.de', 'lecturer', 'Udo', 'Krieger', 1359128237, false);
+INSERT INTO "user" VALUES (8, 'Verw', '3e280c39a065b49322088ae34b31fdb9052374b07764e65e2bbee279705a410e', 'j2t66r', 'Verwaltung@uni-bamberg.de', 'orga', '', '', 1359128316, false);
+INSERT INTO "user" VALUES (39, 'denis', '0daa5f04411e3f93a75e7a7172dc234ad23806166be0c14173128af39b1e3f9a', '1aqqf1p', 'denis.hamann@stud.uni-bamberg.de', 'orga', 'Denis', 'Hamann', 1359125685, false);
+INSERT INTO "user" VALUES (159, 'michaelM', '2003e49b27670c9e45bb9b5b57f1eb89ba9cf75a2684d61f553cc16a9de4b913', '2h99199', 'michael.mendler@uni-bamberg.de', 'lecturer', 'Michael', 'Mendler', 0, false);
+INSERT INTO "user" VALUES (112, 'elmarS', '783c38e90dd3446445392a32e172e7dd56e7f886a1016ee1a887e2ca4c503b3d', '1qf33p', 'elmar.sinz@uni-bamberg.de', 'lecturer', 'Elmar', 'Sinz', 1359126278, false);
+INSERT INTO "user" VALUES (42, 'denis2', '3635aab2c8de16602d81c6c1eade9fea7d99514819a678d0e00639cef4ebce62', '3fghbln', 'denis2@test.com', 'lecturer', 'Denis', 'Hamann', 1359126373, false);
+INSERT INTO "user" VALUES (157, 'guidoW', '6dada59fd582886e276306826b355ee811a72bfb0a412d4194b2f39944424151', '3p4dqmh', 'guido.wirtz@uni-bamberg.de', 'lecturer', 'Gudio', 'Wirtz', 1359127081, false);
+INSERT INTO "user" VALUES (102, 'svenL', '47e6ac51400553504c9fcfd090ce6803bc2ca6b7df217c04cfb9f43a27971cb1', '57p86s', 'sven.laumer@uni-bamberg.de', 'lecturer', 'Sven', 'Laumer', 0, false);
+INSERT INTO "user" VALUES (105, 'timW', '48f68bc3b26081484d226c9cb237f1883e3374a3ec55fadedba5ef0095e1b984', '28gsurs', 'tim.weitzel@uni-bamberg.de', 'lecturer', 'Tim', 'Weitzel', 1359127841, false);
+INSERT INTO "user" VALUES (134, 'andreeT', 'ee40588357f9fbf64baee787b57246116302c3d40958effa29db3360caf75200', '3o8fi2m', 'andree.teusch@uni-bamberg.de', 'lecturer', 'Andree', 'Teusch', 0, false);
+INSERT INTO "user" VALUES (156, 'marcelG', '8e6bd610a0ac2c34d6fe1cbc85611c894f1c983ab9ba30d4082265e7bbb9b85d', 'csaduc', 'marcel.grossmann@uni-bamberg.de', 'lecturer', 'Marcel', 'Grossmann', 1359107248, false);
+INSERT INTO "user" VALUES (114, 'domenikB', '25e93280bb71a0b193ec491a8bebfc6c9f8d23af742d9214f3b496dba132563f', '3hpjogd', 'domenik.bork@uni-bamberg.de', 'lecturer', 'Domenik', 'Bork', 0, false);
+INSERT INTO "user" VALUES (103, 'bernhardM', '4758170464d9e842fc6abc1f5e0739877e535dfa10b60a4eda6bd6712189b3d6', '2uttqlj', 'bernhard.moos@uni-bamberg.de', 'lecturer', 'Bernhard', 'Moos', 0, false);
+INSERT INTO "user" VALUES (104, 'frankS', '5ff2d5a930b84908e744082b1b5c46b21a9644f22ca61db0806673adbeda6b77', '1o8amr2', 'frank.schlosser@uni-bamberg.de', 'lecturer', 'Frank', 'Schlosser', 0, false);
+INSERT INTO "user" VALUES (106, 'danielB', '8636deb6a7ad9f7d0140b16fba72e5ede465071e353641e4a2d62ceda14f47c3', 'uign0i', 'daniel.beimborn@uni-bamberg.de', 'lecturer', 'Daniel', 'Beimborn', 0, false);
+INSERT INTO "user" VALUES (121, 'reginaH', '7c4d8bb89720a945cc060677050a91bdeedc724c13893dc4cfb896d7da58049d', '2eilvrp', 'regina.henninges@uni-bamberg.de', 'lecturer', 'Regina', 'Henninges', 0, false);
+INSERT INTO "user" VALUES (153, 'tomG', '27a650d7a85f1648b14c5da929914151007061e4eb697acb0c93f83e1b4e9912', 'ij6lfi', 'tom.gross@uni-bamberg.de', 'lecturer', 'Tom', 'Gross', 1359119392, false);
+INSERT INTO "user" VALUES (151, 'uteS', '528960c1fcacf3bdfcd17e4a3ad13cfde223e378e7e79c8c819ae2e9337390c6', '3acp6v9', 'ute.schmid@uni-bamberg.de', 'lecturer', 'Ute', 'Schmid', 1359120036, false);
+INSERT INTO "user" VALUES (146, 'jochenM', '4cb4e8392275534f37210a673be315fc9b8f3d94fa07252efc61768d88de839c', '3snl18g', 'jochen.Malinowski@uni-bamberg.de', 'lecturer', 'Jochen', 'Malinowski', 0, false);
+INSERT INTO "user" VALUES (152, 'christophS', '16c7fa67e4cbac34e20b455c9b9c5cecffd770bba7d09f4f04f4e7838c76612a', '1umpscq', 'christoph.schlieder@uni-bamberg.de', 'lecturer', 'Christoph', 'Schliederer', 0, false);
+INSERT INTO "user" VALUES (154, 'andreasH', '0db07c2a3282ad24c1f7da28fa13f4e09c969ebc5e1743a9f4c945be5d3018b6', '1idre8k', 'andreas.henrich@uni-bamberg.de', 'lecturer', 'Andres', 'Henrich', 1359125764, false);
+INSERT INTO "user" VALUES (158, 'geraldL', 'ad979d05bafa9d82a2c2d8f97edf0118bdc57c8fb901efe5976bf9f07fca28b1', 'bsd193', 'gerald.luettgen@uni-bamberg.de', 'lecturer', 'Gerald', 'Lüttgen', 0, false);
+INSERT INTO "user" VALUES (22, 'Doz', '8430df002cc316b8d8973aa1f749958a6fdf43eb250179f127fae755868f7665', '3ki7555', 'max@mustermann.de', 'lecturer', 'Max', 'Mustermann', 1359128332, false);
+INSERT INTO "user" VALUES (150, 'svenO', 'b8f64c69d9249787e6de1c64a80a2e0af16c0d21864df30f178c7fb8b819dd51', '3tockeq', 'sven.overhage@uni-bamberg.de', 'lecturer', 'Sven', 'Overhage', 1359118752, false);
 
 
 --
 -- Name: user_userid_seq; Type: SEQUENCE SET; Schema: public; Owner: WIP-SFGmbH
 --
 
-SELECT pg_catalog.setval('user_userid_seq', 99, true);
+SELECT pg_catalog.setval('user_userid_seq', 159, true);
 
 
 --
