@@ -6,6 +6,7 @@ import javax.swing.DefaultComboBoxModel;
  * Model for allocation status combo boxes
  * 
  * @author hannes
+ * @author mario
  *
  */
 public class CmbboxFilterAllocationStatus extends DefaultComboBoxModel<String> {

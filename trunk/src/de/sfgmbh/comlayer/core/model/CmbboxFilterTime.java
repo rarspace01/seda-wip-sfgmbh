@@ -5,6 +5,7 @@ import javax.swing.DefaultComboBoxModel;
 /**
  * Model for time combo boxes
  * 
+ * @author mario
  * @author hannes
  *
  */

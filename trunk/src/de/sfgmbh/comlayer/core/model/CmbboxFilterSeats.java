@@ -5,6 +5,7 @@ import javax.swing.DefaultComboBoxModel;
 /**
  * Model for allocation status combo boxes
  * 
+ * @author hannes
  * @author mario
  *
  */

@@ -10,6 +10,7 @@ import de.sfgmbh.comlayer.core.controller.ViewManager;
 /**
  * Filter actions for the start tab
  * 
+ * @author mario
  * @author christian
  *
  */

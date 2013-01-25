@@ -6,6 +6,7 @@ import javax.swing.DefaultComboBoxModel;
  * Model for day combo boxes
  * 
  * @author hannes
+ * @author mario
  *
  */
 public class CmbboxFilterDay extends DefaultComboBoxModel<String>{

@@ -14,6 +14,7 @@ import de.sfgmbh.comlayer.core.controller.ViewManager;
  * Table model for the very first table users see after program start with all courses, their times and rooms (RoomAllocation objects) 
  * 
  * @author hannes
+ * @author mario
  *
  */
 public class BaseTableMain extends DefaultTableModel implements IntfAppObserver {
