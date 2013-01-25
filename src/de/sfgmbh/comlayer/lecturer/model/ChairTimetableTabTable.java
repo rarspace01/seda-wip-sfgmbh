@@ -28,7 +28,6 @@ public class ChairTimetableTabTable extends DefaultTableModel implements IntfApp
 	/**
 	 * disables edits on the table cells
 	 * 
-	 * @author denis
 	 */
 	@Override
 	public boolean isCellEditable(int row, int column) {

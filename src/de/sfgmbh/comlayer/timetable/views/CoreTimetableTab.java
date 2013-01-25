@@ -124,7 +124,6 @@ public class CoreTimetableTab extends JPanel {
 	/**
 	 * reloads the timetable corresponding to the selection on the basetab
 	 * 
-	 * @author denis
 	 */
 	public void reloadRoomTable() {
 		// controller for table methods
@@ -149,7 +148,6 @@ public class CoreTimetableTab extends JPanel {
 	/**
 	 * adds an room allocation to he table, stores it locally
 	 * 
-	 * @author denis
 	 * @param roomallocations
 	 *            - {@link RoomAllocation}
 	 */
@@ -166,7 +164,6 @@ public class CoreTimetableTab extends JPanel {
 	/**
 	 * resets the collectedAllocations
 	 * 
-	 * @author denis
 	 */
 	public void resetPlan() {
 		roomAllocList_.clear();

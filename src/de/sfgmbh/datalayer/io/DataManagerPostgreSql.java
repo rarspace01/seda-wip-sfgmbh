@@ -207,7 +207,6 @@ public class DataManagerPostgreSql {
 	 * 
 	 * @param prepareSqlString
 	 * @return the prepared statement object
-	 * @author hannes
 	 */
 	public PreparedStatement prepare(String prepareSqlString) {
 

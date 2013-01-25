@@ -85,7 +85,6 @@ public class StartTabTableTop extends DefaultTableModel implements IntfAppObserv
 	/**
 	 * disables edits on the table cells
 	 * 
-	 * @author denis
 	 */
 	@Override
 	public boolean isCellEditable(int row, int column) {

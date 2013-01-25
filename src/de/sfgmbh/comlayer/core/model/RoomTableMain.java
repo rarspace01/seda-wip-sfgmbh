@@ -94,7 +94,6 @@ public class RoomTableMain extends DefaultTableModel implements IntfAppObserver 
 	/**
 	 * disables edits on the table cells
 	 * 
-	 * @author denis
 	 */
 	@Override
 	public boolean isCellEditable(int row, int column) {
