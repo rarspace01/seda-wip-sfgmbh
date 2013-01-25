@@ -72,10 +72,10 @@ public class RequestTabBtnsControl implements ActionListener,
 			} else {
 				try {
 					row = requestTab.getRowSorter().convertRowIndexToModel(row);
-					IntfRoomAllocation selectedRa = (IntfRoomAllocation) requestTableModel
+					IntfRoomAllocation selectedRoomAllocation = (IntfRoomAllocation) requestTableModel
 							.getValueAt(row, 8);
 
-					if (selectedRa.getApproved_().equals("denied")) {
+					if (selectedRoomAllocation.getApproved_().equals("denied")) {
 						exceptionHandler
 								.setNewException(
 										"Zu bereits abgelehnten Raumbelegungen gibt es kein Verfahren für Lösungen bzw. Gegenvorschläge. Hier muss der Dozent eine neue Raumbelegung erstellen.",
@@ -83,18 +83,18 @@ public class RequestTabBtnsControl implements ActionListener,
 						return;
 					}
 
-					if (selectedRa.getApproved_().equals("accepted")) {
+					if (selectedRoomAllocation.getApproved_().equals("accepted")) {
 						QuestionDialog dialog = new QuestionDialog(
 								"Sie sind im Begriff für eine bereits freigegebene Raumbelegung einen Gegenvorschlag zu erstellen. Dies ist möglich, kommt allerdings einer Verschiebung gleich. Die Raumbelegung wird dann nicht mehr öffentlich angezeigt werden, bis der Dozent den neuen Termin freigibt. <br /><br /> Wollen Sie das wirklich?",
 								"Achtung!");
-						this.solveApprovedAllocation_ = selectedRa;
+						this.solveApprovedAllocation_ = selectedRoomAllocation;
 						dialog.register(this);
 						dialog.setVisible(true);
 						return;
 					}
 
 					CounterproposalDialog counterproposalDialog = new CounterproposalDialog(
-							selectedRa);
+							selectedRoomAllocation);
 					counterproposalDialog.setVisible(true);
 				} catch (Exception ex) {
 					exceptionHandler.setNewException(
@@ -114,9 +114,9 @@ public class RequestTabBtnsControl implements ActionListener,
 			} else {
 				try {
 					row = requestTab.getRowSorter().convertRowIndexToModel(row);
-					IntfRoomAllocation selectedRa = (IntfRoomAllocation) requestTableModel
+					IntfRoomAllocation selectedRoomAllocation = (IntfRoomAllocation) requestTableModel
 							.getValueAt(row, 8);
-					ctrlRoomAllocation_.acceptRoomAllocation(selectedRa);
+					ctrlRoomAllocation_.acceptRoomAllocation(selectedRoomAllocation);
 				} catch (Exception ex) {
 					exceptionHandler.setNewException(
 							"Ein unerwarteter Fehler ist aufgetreten.<br /><br >"
