@@ -30,8 +30,8 @@ import de.sfgmbh.comlayer.organisation.controller.RoomTabCmbboxFilter;
 /**
  * Tab for the room organization
  * 
- * @author anna - main parts of the gui
- * @author denis - methods/action listener
+ * @author anna
+ * @author denis
  *
  */
 public class RoomTab extends JPanel {
@@ -57,7 +57,6 @@ public class RoomTab extends JPanel {
 	/**
 	 * Create the frame.
 	 */
-	@SuppressWarnings({})
 	public RoomTab() {
 
 		initialize();

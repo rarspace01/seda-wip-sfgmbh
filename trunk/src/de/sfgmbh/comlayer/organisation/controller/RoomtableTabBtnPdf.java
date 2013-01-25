@@ -24,10 +24,19 @@ public class RoomtableTabBtnPdf implements ActionListener {
 	private String navAction_;
 	protected InfoDialog infoWindow;
 
+	/**
+	 * Create the action listener
+	 */
 	public RoomtableTabBtnPdf() {
 		this.navAction_ = "default";
 	}
 
+	/**
+	 * Create the action listener based on an action string<br>
+	 * Supported action strings are:<br>
+	 * "pdfCreate"
+	 * @param action
+	 */
 	public RoomtableTabBtnPdf(String action) {
 		this.navAction_ = action;
 	}

@@ -45,6 +45,10 @@ public class ChairCreateDialogBtns implements ActionListener {
 		this.ctrlAction_ = action;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		AppException exceptionHandler = AppModel.getInstance()

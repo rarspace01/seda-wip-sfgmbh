@@ -22,7 +22,7 @@ import de.sfgmbh.comlayer.organisation.controller.ChairTabBtnsControl;
 import de.sfgmbh.comlayer.organisation.controller.ChairTabCmbboxFilter;
 
 /**
- * 
+ * The tab for the chair organization
  * @author anna
  *
  */

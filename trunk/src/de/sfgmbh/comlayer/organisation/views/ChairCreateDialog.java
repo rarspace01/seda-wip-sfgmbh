@@ -82,7 +82,6 @@ public class ChairCreateDialog extends JDialog {
 		setModal(true);
 		setBounds(100, 100, 283, 246);
 		getContentPane().setLayout(new BorderLayout());
-		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 		contentPanel_.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel_, BorderLayout.CENTER);
 		contentPanel_.setLayout(null);

@@ -8,7 +8,7 @@ import java.awt.event.KeyListener;
 import de.sfgmbh.comlayer.core.controller.ViewManager;
 
 /**
- * 
+ * Action listener for the request tab filters
  * @author hannes
  *
  */

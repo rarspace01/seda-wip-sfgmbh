@@ -91,15 +91,19 @@ public class RequestTabTable extends DefaultTableModel implements IntfAppObserve
 		}
 	}
 
-	/**
-	 * disables edits on the table cells
-	 * @author denis
+	/*
+	 * (non-Javadoc)
+	 * @see javax.swing.table.DefaultTableModel#isCellEditable(int, int)
 	 */
 	@Override
     public boolean isCellEditable(int row, int column) {
         return false;
     }
 	
+	/*
+	 * (non-Javadoc)
+	 * @see de.sfgmbh.applayer.core.definitions.IntfAppObserver#change()
+	 */
 	@Override
 	public void change() {
 		this.change("update");

@@ -42,6 +42,10 @@ public class UserTabBtnsControl implements ActionListener, IntfComDialogObserver
 		this.navAction_ = action;
 	}
 	
+	/*
+	 * (non-Javadoc)
+	 * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		
@@ -94,6 +98,10 @@ public class UserTabBtnsControl implements ActionListener, IntfComDialogObserver
 		}
 	}
 	
+	/*
+	 * (non-Javadoc)
+	 * @see de.sfgmbh.comlayer.core.definitions.IntfComDialogObserver#answered(java.lang.String)
+	 */
 	@Override
 	public void answered(String answer) {
 		if (answer.equals("yes")) {

@@ -54,7 +54,6 @@ public class UserTab extends JPanel {
 	/**
 	 * Create the frame.
 	 */
-	@SuppressWarnings({ })
 	public UserTab() {
 		
 		initialize();

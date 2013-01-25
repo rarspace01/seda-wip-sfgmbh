@@ -8,10 +8,8 @@ import java.awt.event.KeyListener;
 import de.sfgmbh.comlayer.core.controller.ViewManager;
 
 /**
- * 
- * @author hannes
+ * Action listener for the chair tab comboboxes and text field filters
  * @author mario
- *
  */
 public class ChairTabCmbboxFilter implements KeyListener, ActionListener {
 	
@@ -19,31 +17,20 @@ public class ChairTabCmbboxFilter implements KeyListener, ActionListener {
 	
 	@Override
 	public void keyTyped(KeyEvent arg0) {
-		//
 	}
 
 	@Override
 	public void keyPressed(KeyEvent arg0) {
-		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void keyReleased(KeyEvent arg0) {
-		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		ViewManager.getInstance().getOrgaChairTableModel().change();
 	} 
-	
-	/*public InfoDialog getInfoWindow() {
-		if (this.infoWindow == null) {
-			this.infoWindow = new InfoDialog("Filterfunktionen sind hier noch nicht implementiert");
-		}
-		return this.infoWindow;
-	}
-	*/
 }

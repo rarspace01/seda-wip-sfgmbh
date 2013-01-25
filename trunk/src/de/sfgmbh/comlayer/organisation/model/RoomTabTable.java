@@ -22,11 +22,17 @@ public class RoomTabTable extends DefaultTableModel implements IntfAppObserver {
 	private static final long serialVersionUID = 1L;
 	private String[] preFillHeader_ = {"roomid","Raum", "Geb\u00E4ude", "Stock", "Pl\u00E4tze", "PC-Pl\u00E4tze", "Beamer", "Visualizer", "Overheads", "Tafeln", "Whiteboards"};
 	
-	
+	/**
+	 * Create the model
+	 */
 	public RoomTabTable() {
 		this.setDataVector(null, preFillHeader_);
 	}
 	
+	/**
+	 * Add a room to the model
+	 * @param room
+	 */
 	public void addRoom(IntfRoom room) {
 		
 		Object[] rowVector= {room.getRoomId_(),room.getRoomNumber_(),"ERBA",room.getLevel_(),room.getSeats_(), room.getPcseats_(), room.getBeamer_(), room.getVisualizer_(), room.getOverheads_(), room.getChalkboards_(), room.getWhiteboards_()};
@@ -34,6 +40,10 @@ public class RoomTabTable extends DefaultTableModel implements IntfAppObserver {
 		this.addRow(rowVector);
 	}
 
+	/**
+	 * Add a list of rooms to the model
+	 * @param allRooms
+	 */
 	public void addRooms(List<IntfRoom> allRooms) {
 		
 		for(int i=0; i<allRooms.size();i++){
@@ -42,6 +52,10 @@ public class RoomTabTable extends DefaultTableModel implements IntfAppObserver {
 		
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see de.sfgmbh.applayer.core.definitions.IntfAppObserver#change()
+	 */
 	@Override
 	public void change() {
 		
@@ -73,9 +87,9 @@ public class RoomTabTable extends DefaultTableModel implements IntfAppObserver {
 		
 	}
 	
-	/**
-	 * disables edits on the table cells
-	 * @author denis
+	/*
+	 * (non-Javadoc)
+	 * @see javax.swing.table.DefaultTableModel#isCellEditable(int, int)
 	 */
 	@Override
     public boolean isCellEditable(int row, int column) {
