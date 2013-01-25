@@ -116,7 +116,7 @@ public class BaseTab extends JFrame {
 
 	private void createContents() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 950, 640);
+		setBounds(100, 100, 950, 675);
 		contentPane = new JLayeredPane();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -130,11 +130,11 @@ public class BaseTab extends JFrame {
 		startScreenPanel.setMaximumSize(new Dimension(10, 32767));
 		contentPane.setLayer(startScreenPanel, 1);
 		contentPane.add(startScreenPanel, "name_5256771068822");
-		startScreenPanel.setLayout(new MigLayout("", "[][][600px:600px,grow][]", "[][][grow][10px]"));
+		startScreenPanel.setLayout(new MigLayout("", "[][][600px:600px,grow][]", "[68px][][grow][10px:10px:10px,grow,bottom]"));
 		startScreenPanel.add(ViewManager.getInstance().getCoreLiveTickerPanel(), "cell 0 2, grow, aligny top");
 
 		mainFilterPanel = new JPanel();
-		startScreenPanel.add(mainFilterPanel, "cell 2 0,grow");
+		startScreenPanel.add(mainFilterPanel, "cell 2 1,grow");
 		mainFilterPanel.setLayout(new MigLayout("", "[grow][100px:100px:100px,grow][grow][grow]", "[][]"));
 
 		mainFilterPanel
@@ -150,11 +150,11 @@ public class BaseTab extends JFrame {
 		startScreenPanel.add(getRdbtnCourse(),
 				"cell 0 0,aligny bottom");
 		
-				startScreenPanel.add(getLblUniicon(), "cell 3 0,alignx right,aligny top");
-		startScreenPanel.add(getRdbtnRooms(), "cell 0 1");
+				startScreenPanel.add(getLblUniicon(), "cell 3 0 1 2,alignx right,aligny top");
+		startScreenPanel.add(getRdbtnRooms(), "cell 0 1,aligny top");
 		
 		mainTableScrollPane = new JScrollPane();
-		startScreenPanel.add(mainTableScrollPane, "cell 2 2,alignx left,aligny top,grow");
+		startScreenPanel.add(mainTableScrollPane, "cell 2 2,growx,alignx left,aligny center");
 
 		mainTableScrollPane.setViewportView(getOrganisationTable());
 		mainTableScrollPane.setMinimumSize(new Dimension(600, 500));
@@ -520,6 +520,7 @@ public class BaseTab extends JFrame {
 	public JRadioButton getRdbtnCourse() {
 		if (rdbtnCourse == null) {
 			rdbtnCourse = new JRadioButton("Lehrveranstaltungen");
+			rdbtnCourse.setToolTipText("<html>Über diese Einstellung können Sie <br> Lehrveranstaltungen suchen<br>sowie diese sammen und <br> diese in einem Stundenplan ausgeben</html>");
 			rdbtnCourse.addActionListener(new BaseRdbtnTopLeft(
 					"course"));
 			buttonGroup.add(rdbtnCourse);
@@ -535,6 +536,7 @@ public class BaseTab extends JFrame {
 	public JRadioButton getRdbtnRooms() {
 		if (rdbtnRoom == null) {
 			rdbtnRoom = new JRadioButton("R\u00E4ume");
+			rdbtnRoom.setToolTipText("<html>Hier können Sie alle belegten Räume anzeigen lassen<br>sowie einen Wocheplan für die <br>Belegungen dieses Raumes<br> anzeigen lassen</html>");
 			rdbtnRoom.addActionListener(new BaseRdbtnTopLeft("room"));
 			buttonGroup.add(rdbtnRoom);
 			rdbtnRoom.setMargin(new Insets(0, 0, 0, 0));
@@ -564,7 +566,7 @@ public class BaseTab extends JFrame {
 			panelLogin.setBorder(new LineBorder(new Color(153, 180, 209), 2));
 			panelLogin.setBackground(SystemColor.activeCaptionBorder);
 			panelLogin.setToolTipText("<html>Dozenten und Verwaltungsmitarbeiter können sich hier <br>zu ihrem persönlichen Funktionsbereich einloggen</html>");
-			panelLogin.setBounds(0, 356, 119, 121);
+			panelLogin.setBounds(0, 379, 119, 121);
 			panelLogin.setAlignmentX(BOTTOM_ALIGNMENT);
 			panelLogin.setLayout(new MigLayout("", "[grow,center]", "[][][][][]"));
 			panelLogin.add(getLblUsername(), "cell 0 0,alignx left");
@@ -585,7 +587,7 @@ public class BaseTab extends JFrame {
 			panelLogout = new JPanel();
 			panelLogout.setBorder(new LineBorder(new Color(153, 180, 209), 2));
 			panelLogout.setBackground(SystemColor.activeCaptionBorder);
-			panelLogout.setBounds(0, 422, 119, 55);
+			panelLogout.setBounds(0, 445, 119, 55);
 			panelLogout.setLayout(new MigLayout("", "[140px:140px:140px,center]", "[][]"));
 			lblLoggedIn = new JLabel("Sie sind eingeloggt!");
 			panelLogout.add(lblLoggedIn, "cell 0 0,alignx left");
