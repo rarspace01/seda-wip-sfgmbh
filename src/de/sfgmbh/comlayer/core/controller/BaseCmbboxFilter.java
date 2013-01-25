@@ -15,7 +15,7 @@ import java.awt.event.KeyListener;
  */
 public class BaseCmbboxFilter implements KeyListener, ActionListener {
 
-	private String variant;
+	private String variant_;
 	
 	/**
 	 * Create the action listener based on a variant<br>
@@ -25,7 +25,7 @@ public class BaseCmbboxFilter implements KeyListener, ActionListener {
 	 * @param variant
 	 */
 	public BaseCmbboxFilter (String variant) {
-		this.variant = variant;
+		this.variant_ = variant;
 	}
 
 	/*
@@ -64,11 +64,11 @@ public class BaseCmbboxFilter implements KeyListener, ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		
-		if (this.variant.equals("rooms")) {
+		if (this.variant_.equals("rooms")) {
 			ViewManager.getInstance().getCoreRoomTableModel().change();
 		}
 		
-		if (this.variant.equals("allocations")) {
+		if (this.variant_.equals("allocations")) {
 			ViewManager.getInstance().getCoreBaseTableModel().change();
 		}
 	}

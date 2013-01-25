@@ -17,14 +17,14 @@ import de.sfgmbh.applayer.core.model.AppModel;
 public class CmbboxFilterLevel extends DefaultComboBoxModel<String> implements IntfAppObserver{
 
 	private static final long serialVersionUID = 1L;
-	private JComboBox<String> dependentComboBox;
+	private JComboBox<String> dependentComboBox_;
 	/**
 	 * Create the model object
 	 * @param dependentCombobox
 	 */
 	public CmbboxFilterLevel(JComboBox<String> dependentComboBox) {
 		AppModel.getInstance().getRepositoryRoom().register(this);
-		this.dependentComboBox = dependentComboBox;
+		this.dependentComboBox_ = dependentComboBox;
 		this.build();
 	}
 
@@ -47,8 +47,8 @@ public class CmbboxFilterLevel extends DefaultComboBoxModel<String> implements I
 	public void change() {
 		
 		// Build a new model (which will be up to date automatically) and set it
-		CmbboxFilterLevel newModel = new CmbboxFilterLevel(this.dependentComboBox);
-		this.dependentComboBox.setModel(newModel);
+		CmbboxFilterLevel newModel = new CmbboxFilterLevel(this.dependentComboBox_);
+		this.dependentComboBox_.setModel(newModel);
 		
 		// Unregister this model as it is no longer used and would cause unwanted additional queries
 		AppModel.getInstance().getRepositoryRoom().unregister(this);

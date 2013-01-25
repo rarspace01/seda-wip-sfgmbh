@@ -12,13 +12,13 @@ import javax.swing.DefaultComboBoxModel;
 public class CmbboxFilterDay extends DefaultComboBoxModel<String>{
 
 	private static final long serialVersionUID = 1L;
-	private String variant;
+	private String variant_;
 	
 	/**
 	 * Create the model object
 	 */
 	public CmbboxFilterDay() {
-		this.variant = "default";
+		this.variant_ = "default";
 		this.build();
 	}
 	
@@ -27,14 +27,14 @@ public class CmbboxFilterDay extends DefaultComboBoxModel<String>{
 	 * @param variant
 	 */
 	public CmbboxFilterDay(String variant) {
-		this.variant = variant;
+		this.variant_ = variant;
 		this.build();
 		
 	}
 
 	private void build() {
 		String[] elements = new String[] {"<alle>", "Montag", "Dienstag", "Mittwoch", "Donnerstag", "Freitag"};
-		if (this.variant.equals("select")) {
+		if (this.variant_.equals("select")) {
 			elements = new String[] {"Montag", "Dienstag", "Mittwoch", "Donnerstag", "Freitag"};
 		}
 		

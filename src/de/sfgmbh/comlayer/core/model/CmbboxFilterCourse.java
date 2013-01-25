@@ -16,7 +16,7 @@ import de.sfgmbh.applayer.core.model.AppModel;
 public class CmbboxFilterCourse extends DefaultComboBoxModel<String> implements IntfAppObserver {
 
 	private static final long serialVersionUID = 1L;
-	private JComboBox<String> dependentComboBox;
+	private JComboBox<String> dependentComboBox_;
 	
 	/**
 	 * Create the model object
@@ -24,7 +24,7 @@ public class CmbboxFilterCourse extends DefaultComboBoxModel<String> implements 
 	 */
 	public CmbboxFilterCourse(JComboBox<String> dependentComboBox) {
 		AppModel.getInstance().getRepositoryCourse().register(this);
-		this.dependentComboBox = dependentComboBox;
+		this.dependentComboBox_ = dependentComboBox;
 		this.build();
 	}
 
@@ -44,8 +44,8 @@ public class CmbboxFilterCourse extends DefaultComboBoxModel<String> implements 
 	public void change() {
 		
 		// Build a new model (which will be up to date automatically) and set it
-		CmbboxFilterCourse newModel = new CmbboxFilterCourse(this.dependentComboBox);
-		this.dependentComboBox.setModel(newModel);
+		CmbboxFilterCourse newModel = new CmbboxFilterCourse(this.dependentComboBox_);
+		this.dependentComboBox_.setModel(newModel);
 		
 		// Unregister this model as it is no longer used and would cause unwanted additional queries
 		AppModel.getInstance().getRepositoryCourse().unregister(this);

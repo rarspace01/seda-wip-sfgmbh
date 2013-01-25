@@ -24,10 +24,10 @@ import de.sfgmbh.comlayer.core.definitions.IntfComDialogObserver;
 public class QuestionDialog extends JDialog implements IntfComDialogObserver, IntfComDialogObservable {
 
 	private static final long serialVersionUID = 1L;
-	private JTextPane txtpnInfoDialogText;
-	private JButton btnYes;
-	private JLabel lblNewLabel;
-	private JButton btnNo;
+	private JTextPane txtpnInfoDialogText_;
+	private JButton btnYes_;
+	private JLabel lblNewLabel_;
+	private JButton btnNo_;
 	private IntfComDialogObserver currentObserver_;
 
 	/**
@@ -89,42 +89,42 @@ public class QuestionDialog extends JDialog implements IntfComDialogObserver, In
 	}
 	
 	private JTextPane getTxtpnInfoWindowText() {
-		if (txtpnInfoDialogText == null) {
-			txtpnInfoDialogText = new JTextPane();
-			txtpnInfoDialogText.setEditable(false);
-			txtpnInfoDialogText.setContentType("text/html");
-			txtpnInfoDialogText.setSize(new Dimension(250, 150));
-			txtpnInfoDialogText.setBackground(SystemColor.control);
-			txtpnInfoDialogText.setText("<div style='font-family: Calibri, monospace; text-align: left;'>Info Window Text</div>");
+		if (txtpnInfoDialogText_ == null) {
+			txtpnInfoDialogText_ = new JTextPane();
+			txtpnInfoDialogText_.setEditable(false);
+			txtpnInfoDialogText_.setContentType("text/html");
+			txtpnInfoDialogText_.setSize(new Dimension(250, 150));
+			txtpnInfoDialogText_.setBackground(SystemColor.control);
+			txtpnInfoDialogText_.setText("<div style='font-family: Calibri, monospace; text-align: left;'>Info Window Text</div>");
 		}
-		return txtpnInfoDialogText;
+		return txtpnInfoDialogText_;
 	}
 	
 	
 	private JButton getBtnYes() {
-		if (btnYes == null) {
-			btnYes = new JButton("Ja");
-			btnYes.addActionListener(new QuestionDialogBtns(this, "yes"));
-			btnYes.setPreferredSize(new Dimension(75, 23));
+		if (btnYes_ == null) {
+			btnYes_ = new JButton("Ja");
+			btnYes_.addActionListener(new QuestionDialogBtns(this, "yes"));
+			btnYes_.setPreferredSize(new Dimension(75, 23));
 		}
-		return btnYes;
+		return btnYes_;
 	}
 	
 	private JLabel getLblNewLabel() {
-		if (lblNewLabel == null) {
-			lblNewLabel = new JLabel("");
-			lblNewLabel.setIcon(new ImageIcon(QuestionDialog.class.getResource("/de/sfgmbh/comlayer/core/images/Question.png")));
-			lblNewLabel.setMaximumSize(new Dimension(100, 100));
+		if (lblNewLabel_ == null) {
+			lblNewLabel_ = new JLabel("");
+			lblNewLabel_.setIcon(new ImageIcon(QuestionDialog.class.getResource("/de/sfgmbh/comlayer/core/images/Question.png")));
+			lblNewLabel_.setMaximumSize(new Dimension(100, 100));
 		}
-		return lblNewLabel;
+		return lblNewLabel_;
 	}
 	private JButton getBtnNo() {
-		if (btnNo == null) {
-			btnNo = new JButton("Nein");
-			btnNo.addActionListener(new QuestionDialogBtns(this, "no"));
-			btnNo.setPreferredSize(new Dimension(75, 23));
+		if (btnNo_ == null) {
+			btnNo_ = new JButton("Nein");
+			btnNo_.addActionListener(new QuestionDialogBtns(this, "no"));
+			btnNo_.setPreferredSize(new Dimension(75, 23));
 		}
-		return btnNo;
+		return btnNo_;
 	}
 
 	/*

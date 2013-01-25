@@ -20,14 +20,14 @@ import de.sfgmbh.comlayer.core.views.BaseTab;
 public class RoomTableMain extends DefaultTableModel implements IntfAppObserver {
 
 	private static final long serialVersionUID = 1L;
-	private String[] header = {"Raum", "Gebäude", "Stock.", "Plätze", "PC-Plätze", "Beamer", "Visualizer", "Overheads", "Tafeln", "Whiteboards", "Hidden"};
+	private String[] header_ = {"Raum", "Gebäude", "Stock.", "Plätze", "PC-Plätze", "Beamer", "Visualizer", "Overheads", "Tafeln", "Whiteboards", "Hidden"};
 	
 	/**
 	 * Create the room table model
 	 */
 	public RoomTableMain() {
 		AppModel.getInstance().getRepositoryRoom().register(this);
-		this.setColumnIdentifiers(header);
+		this.setColumnIdentifiers(header_);
 		this.change("init");
 	}
 
