@@ -43,9 +43,11 @@ public interface IntfDataRoom {
 	public void save(IntfRoom room);
 	
 	/**
-	 * creates Room objects from a given {@link ResultSet}
-	 * @param resultSet
-	 * @return {@link Room}
+	 * Forms a {@link Room} object out of a given {@link ResultSet}
+	 * 
+	 * @param resultSet - {@link ResultSet}
+	 *            
+	 * @return a {@link Room} object
 	 */
 	public IntfRoom makeRoom(ResultSet resultSet);
 	

@@ -15,8 +15,10 @@ import de.sfgmbh.datalayer.core.definitions.IntfDataObserver;
 import de.sfgmbh.datalayer.core.model.DataModel;
 import de.sfgmbh.datalayer.io.DataManagerPostgreSql;
 /**
+ * DataHandler for chairs
  * 
  * @author denis
+ * @author anna
  *
  */
 public class DataHandlerChair implements IntfDataChair, IntfDataFilter,
@@ -24,6 +26,10 @@ public class DataHandlerChair implements IntfDataChair, IntfDataFilter,
 
 	private ArrayList<Object> observer_ = new ArrayList<Object>();
 
+	/*
+	 * (non-Javadoc)
+	 * @see de.sfgmbh.datalayer.core.definitions.IntfDataChair#getAll()
+	 */
 	@Override
 	public List<IntfChair> getAll() {
 		List<IntfChair> listChair = new ArrayList<IntfChair>();
@@ -68,6 +74,10 @@ public class DataHandlerChair implements IntfDataChair, IntfDataFilter,
 		return listChair;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see de.sfgmbh.datalayer.core.definitions.IntfDataChair#get(int)
+	 */
 	@Override
 	public IntfChair get(int chairId) {
 		DataManagerPostgreSql dataManager = new DataManagerPostgreSql();
@@ -107,13 +117,11 @@ public class DataHandlerChair implements IntfDataChair, IntfDataFilter,
 		return null;
 	}
 
-	/**
-	 * Get the chair of a user
-	 * 
-	 * @param userId
-	 * @return a Chair if the submitted user (id) can be associated with one,
-	 *         otherwise returns null
+	/*
+	 * (non-Javadoc)
+	 * @see de.sfgmbh.datalayer.core.definitions.IntfDataChair#getForUser(int)
 	 */
+	@Override
 	public IntfChair getForUser(int userId) {
 		DataManagerPostgreSql dataManager = new DataManagerPostgreSql();
 		try {
@@ -153,13 +161,11 @@ public class DataHandlerChair implements IntfDataChair, IntfDataFilter,
 		return null;
 	}
 
-	/**
-	 * Get the chair based on its acronym
-	 * 
-	 * @param acronym
-	 * @return a chair if the submitted acronym can be associated with one,
-	 *         otherwise returns null
+	/*
+	 * (non-Javadoc)
+	 * @see de.sfgmbh.datalayer.core.definitions.IntfDataChair#getForAcronym(java.lang.String)
 	 */
+	@Override
 	public IntfChair getForAcronym(String acronym) {
 		DataManagerPostgreSql dataManager = new DataManagerPostgreSql();
 		try {
@@ -198,6 +204,10 @@ public class DataHandlerChair implements IntfDataChair, IntfDataFilter,
 		return null;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see de.sfgmbh.datalayer.core.definitions.IntfDataChair#delete(de.sfgmbh.applayer.core.definitions.IntfChair)
+	 */
 	@Override
 	public boolean delete(IntfChair toBeDeletedChair) {
 		
@@ -241,6 +251,10 @@ public class DataHandlerChair implements IntfDataChair, IntfDataFilter,
 		return false;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see de.sfgmbh.datalayer.core.definitions.IntfDataChair#save(de.sfgmbh.applayer.core.definitions.IntfChair)
+	 */
 	@Override
 	public boolean save(IntfChair chair) {
 		DataManagerPostgreSql dataManager = new DataManagerPostgreSql();
@@ -309,6 +323,10 @@ public class DataHandlerChair implements IntfDataChair, IntfDataFilter,
 		}
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see de.sfgmbh.datalayer.core.definitions.IntfDataFilter#getByFilter(java.util.HashMap)
+	 */
 	@Override
 	public List<IntfChair> getByFilter(HashMap<String, String> filter) {
 
@@ -365,13 +383,11 @@ public class DataHandlerChair implements IntfDataChair, IntfDataFilter,
 		return listChair;
 	}
 
-	/**
-	 * Forms a Chair object out of a given result set
-	 * 
-	 * @param resultSet - {@link ResultSet} for creatign the CHair Objects
-	 *            rs
-	 * @return  - a Chair object
+	/*
+	 * (non-Javadoc)
+	 * @see de.sfgmbh.datalayer.core.definitions.IntfDataChair#makeChair(java.sql.ResultSet)
 	 */
+	@Override
 	public IntfChair makeChair(ResultSet resultSet) {
 
 		IntfChair returnChair = new Chair();
@@ -407,8 +423,9 @@ public class DataHandlerChair implements IntfDataChair, IntfDataFilter,
 		return returnChair;
 	}
 
-	/**
-	 * 
+	/*
+	 * (non-Javadoc)
+	 * @see de.sfgmbh.datalayer.core.definitions.IntfDataObservable#update()
 	 */
 	@Override
 	public void update() {
@@ -424,9 +441,9 @@ public class DataHandlerChair implements IntfDataChair, IntfDataFilter,
 		}
 	}
 
-	/**
-	 * 
-	 * @param observer
+	/*
+	 * (non-Javadoc)
+	 * @see de.sfgmbh.datalayer.core.definitions.IntfDataObservable#register(de.sfgmbh.datalayer.core.definitions.IntfDataObserver)
 	 */
 	@Override
 	public void register(IntfDataObserver observer) {
@@ -442,9 +459,9 @@ public class DataHandlerChair implements IntfDataChair, IntfDataFilter,
 		}
 	}
 
-	/**
-	 * 
-	 * @param observer
+	/*
+	 * (non-Javadoc)
+	 * @see de.sfgmbh.datalayer.core.definitions.IntfDataObservable#unregister(de.sfgmbh.datalayer.core.definitions.IntfDataObserver)
 	 */
 	@Override
 	public void unregister(IntfDataObserver observer) {

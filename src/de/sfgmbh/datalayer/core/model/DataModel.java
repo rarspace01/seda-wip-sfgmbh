@@ -10,14 +10,18 @@ import de.sfgmbh.datalayer.core.daos.DataHandlerRoom;
 import de.sfgmbh.datalayer.core.daos.DataHandlerRoomAllocation;
 import de.sfgmbh.datalayer.core.daos.DataHandlerUser;
 import de.sfgmbh.datalayer.core.definitions.IntfDataCourse;
+
 /**
+ * The main class to manage the data handler in which interested objects that
+ * implement the IntfAppOberserver interfaces may register and get updated on
+ * any relevant changes from the corresponding data handler.
  * 
  * @author hannes
- *
+ * 
  */
 public class DataModel implements IntfAppObservable {
 
-	private static DataModel uniqueInstance_; 
+	private static DataModel uniqueInstance_;
 	private ArrayList<Object> observer_ = new ArrayList<Object>();
 	private DataExceptions exceptionsHandler_ = new DataExceptions();
 	private DataHandlerChair dataHandlerChair_ = new DataHandlerChair();
@@ -35,8 +39,8 @@ public class DataModel implements IntfAppObservable {
 	 * @return {@link DataModel}
 	 */
 	public static DataModel getInstance() {
-		if(uniqueInstance_==null){
-			uniqueInstance_=new DataModel();
+		if (uniqueInstance_ == null) {
+			uniqueInstance_ = new DataModel();
 		}
 		return uniqueInstance_;
 	}
@@ -83,15 +87,19 @@ public class DataModel implements IntfAppObservable {
 		return dataHandlerRoomAllocation_;
 	}
 
-	/**
+	/*
+	 * (non-Javadoc)
 	 * 
+	 * @see de.sfgmbh.applayer.core.definitions.IntfAppObservable#update()
 	 */
 	@Override
 	public void update() {
-		// Create a private observer list to avoid ConcurrentModificationException
+		// Create a private observer list to avoid
+		// ConcurrentModificationException
 		@SuppressWarnings("unchecked")
-		ArrayList<IntfAppObserver> currentObservers = (ArrayList<IntfAppObserver>) observer_.clone();
-		
+		ArrayList<IntfAppObserver> currentObservers = (ArrayList<IntfAppObserver>) observer_
+				.clone();
+
 		for (IntfAppObserver observer : currentObservers) {
 			if (observer instanceof IntfAppObserver) {
 				observer.change();
@@ -99,9 +107,12 @@ public class DataModel implements IntfAppObservable {
 		}
 	}
 
-	/**
+	/*
+	 * (non-Javadoc)
 	 * 
-	 * @param observer
+	 * @see
+	 * de.sfgmbh.applayer.core.definitions.IntfAppObservable#register(de.sfgmbh
+	 * .applayer.core.definitions.IntfAppObserver)
 	 */
 	@Override
 	public void register(IntfAppObserver observer) {
@@ -116,9 +127,12 @@ public class DataModel implements IntfAppObservable {
 
 	}
 
-	/**
+	/*
+	 * (non-Javadoc)
 	 * 
-	 * @param observer
+	 * @see
+	 * de.sfgmbh.applayer.core.definitions.IntfAppObservable#unregister(de.sfgmbh
+	 * .applayer.core.definitions.IntfAppObserver)
 	 */
 	@Override
 	public void unregister(IntfAppObserver observer) {

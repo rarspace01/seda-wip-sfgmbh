@@ -483,11 +483,6 @@ public class DataHandlerRoomAllocation implements IntfDataObservable, IntfDataFi
 		return returnStatus;
 	}
 	
-	/**
-	 * Forms a RoomAllocation object out of a given result set
-	 * @param resultSet
-	 * @return a RoomAllocation object
-	 */
 	private RoomAllocation makeRoomAllocation(ResultSet rs, String variant) {
 		RoomAllocation returnRoomAllocation = new RoomAllocation();
 		

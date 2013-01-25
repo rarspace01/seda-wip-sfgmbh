@@ -19,6 +19,9 @@ public class DataManagerConfig {
 	
 	private String fileName_="db.cfg";
 	
+	/**
+	 * Create the configuration manager
+	 */
 	public DataManagerConfig() {
 		loadSettings();
 	}

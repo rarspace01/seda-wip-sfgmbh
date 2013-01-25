@@ -26,6 +26,10 @@ public class DataManagerPdf implements IntfDataManagerPdf {
 	private PdfWriter writer_ = null;
 	private Document document_ = null;
 	
+	/**
+	 * Create the PDF manager
+	 * @param filename
+	 */
 	public DataManagerPdf(String filename) {
 		
 		filename_=filename;
