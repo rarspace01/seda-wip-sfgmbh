@@ -222,11 +222,11 @@ public class DataManagerPostgreSql {
 	 */
 	public ResultSet selectPreparedStatement() throws SQLException {
 
-		ResultSet rs = null;
+		ResultSet resultSet = null;
 
 		try {
 
-			rs = this.getPreparedStatement().executeQuery();
+			resultSet = this.getPreparedStatement().executeQuery();
 
 		} catch (SQLException e) {
 			
@@ -238,7 +238,7 @@ public class DataManagerPostgreSql {
 									.toString()), "Datenbank-Fehler!");
 		}
 
-		return rs;
+		return resultSet;
 	}
 
 	/**

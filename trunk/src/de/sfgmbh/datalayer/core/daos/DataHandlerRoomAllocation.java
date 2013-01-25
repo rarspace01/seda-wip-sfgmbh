@@ -244,9 +244,9 @@ public class DataHandlerRoomAllocation implements IntfDataObservable, IntfDataFi
 				filterDm.getPreparedStatement().setBoolean(17, true);
 			}
 			
-			ResultSet rs = filterDm.selectPreparedStatement();
-			while (rs.next()) {
-				listRoomAllocation.add(this.makeRoomAllocation(rs, "normal"));
+			ResultSet resultSet = filterDm.selectPreparedStatement();
+			while (resultSet.next()) {
+				listRoomAllocation.add(this.makeRoomAllocation(resultSet, "normal"));
 			}
 			
 		} catch (SQLException e) {
@@ -296,9 +296,9 @@ public class DataHandlerRoomAllocation implements IntfDataObservable, IntfDataFi
 			conflictingAllocationDm.getPreparedStatement().setString(4, roomAllocation.getSemester_());
 			conflictingAllocationDm.getPreparedStatement().setInt(5, roomAllocation.getRoomAllocationId_());
 			
-			ResultSet rs = conflictingAllocationDm.selectPreparedStatement();
-			while (rs.next()) {
-				listRoomAllocation.add(this.makeRoomAllocation(rs, "conflictingChildObject"));
+			ResultSet resultSet = conflictingAllocationDm.selectPreparedStatement();
+			while (resultSet.next()) {
+				listRoomAllocation.add(this.makeRoomAllocation(resultSet, "conflictingChildObject"));
 			}
 		} catch (SQLException e) {
 			
@@ -394,9 +394,9 @@ public class DataHandlerRoomAllocation implements IntfDataObservable, IntfDataFi
 														"AND roomallocationid = ? " +
 														"ORDER BY public.roomallocation.day ASC, public.roomallocation.time ASC");
 			dataManager.getPreparedStatement().setInt(1, id);
-			ResultSet rs = dataManager.selectPreparedStatement();
-			while (rs.next()) {
-				IntfRoomAllocation roomAllocation = this.makeRoomAllocation(rs, "normal");
+			ResultSet resultSet = dataManager.selectPreparedStatement();
+			while (resultSet.next()) {
+				IntfRoomAllocation roomAllocation = this.makeRoomAllocation(resultSet, "normal");
 				for (HashMap<String, Object> conflict : this.getConflictingDates()) {
 					if (roomAllocation.getRoom_().getRoomId_() == (int) conflict.get("roomid") && 
 							roomAllocation.getDay_() == (int) conflict.get("day") &&
@@ -483,23 +483,23 @@ public class DataHandlerRoomAllocation implements IntfDataObservable, IntfDataFi
 		return returnStatus;
 	}
 	
-	private RoomAllocation makeRoomAllocation(ResultSet rs, String variant) {
+	private RoomAllocation makeRoomAllocation(ResultSet resultSet, String variant) {
 		RoomAllocation returnRoomAllocation = new RoomAllocation();
 		
 		try {
 			returnRoomAllocation = new RoomAllocation();
 
-			returnRoomAllocation.setRoomAllocationId_(rs.getInt("roomallocationid"));
+			returnRoomAllocation.setRoomAllocationId_(resultSet.getInt("roomallocationid"));
 			returnRoomAllocation.setCourse_(
-					DataModel.getInstance().getDataHandlerCourse().makeCourse(rs));
+					DataModel.getInstance().getDataHandlerCourse().makeCourse(resultSet));
 			returnRoomAllocation.setRoom_(
-					DataModel.getInstance().getDataHandlerRoom().makeRoom(rs));
-			returnRoomAllocation.setSemester_(rs.getString("semester"));
-			returnRoomAllocation.setDay_(rs.getInt("day"));
-			returnRoomAllocation.setTime_(rs.getInt("time"));
-			returnRoomAllocation.setApproved_(rs.getString("approved"));
-			returnRoomAllocation.setOrgaMessage_(rs.getString("orgamessage"));
-			returnRoomAllocation.setComment_(rs.getString("comment"));
+					DataModel.getInstance().getDataHandlerRoom().makeRoom(resultSet));
+			returnRoomAllocation.setSemester_(resultSet.getString("semester"));
+			returnRoomAllocation.setDay_(resultSet.getInt("day"));
+			returnRoomAllocation.setTime_(resultSet.getInt("time"));
+			returnRoomAllocation.setApproved_(resultSet.getString("approved"));
+			returnRoomAllocation.setOrgaMessage_(resultSet.getString("orgamessage"));
+			returnRoomAllocation.setComment_(resultSet.getString("comment"));
 			/* Do net set conflicting allocations here as it causes a lot of SQL queries when building lists - use setConflicts(List<RoomAllocation> roomAllocations) instead
 			// Avoid loops
 			if (variant.equals("conflictingChildObject")) {

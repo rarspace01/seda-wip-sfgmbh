@@ -83,10 +83,10 @@ public class DataHandlerRoom implements IntfDataRoom, IntfDataFilter,
 					"SELECT * FROM public.room WHERE roomid = ?");
 			dataManager.getPreparedStatement()
 					.setInt(1, roomId);
-			ResultSet rs = dataManager.selectPreparedStatement();
+			ResultSet resultSet = dataManager.selectPreparedStatement();
 			//take the first result and save it to the room object
-			while (rs.next()) {
-				returnRoom=this.makeRoom(rs);
+			while (resultSet.next()) {
+				returnRoom=this.makeRoom(resultSet);
 			}
 		//exception handling
 		} catch (SQLException e) {
