@@ -35,7 +35,7 @@ import de.sfgmbh.comlayer.lecturer.controller.StartTabTableTop;
  * Start tab panel
  * 
  * @author anna
- * @author christian
+ * @author mario
  *
  */
 public class StartTab extends JPanel implements IntfComDialogObserver {
