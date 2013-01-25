@@ -70,7 +70,7 @@ public class ChairTab extends JPanel {
 		textFieldChairname_.setColumns(10);
 		add(textFieldChairname_, "cell 2 1,growx");
 		
-		add(ViewManager.getInstance().getCoreLiveTickerPanel(), "cell 0 2,grow");
+		add(ViewManager.getInstance().getCoreLiveTickerPanel(), "cell 0 2,grow, aligny top");
 		
 		organisationTableScrollPane_ = new JScrollPane();
 		organisationTableScrollPane_.setMinimumSize(new Dimension(600, 500));
