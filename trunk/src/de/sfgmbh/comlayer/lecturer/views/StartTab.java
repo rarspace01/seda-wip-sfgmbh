@@ -72,16 +72,16 @@ public class StartTab extends JPanel implements IntfComDialogObserver {
 	private void initialize() {	
 		
 		setMaximumSize(new Dimension(10, 32767));
-		setLayout(new MigLayout("", "[140px:n:140px,grow][][grow][grow][grow][grow][100px:100px:100px,right]", "[][][][385.00,grow][grow]"));
+		setLayout(new MigLayout("", "[140px:n:140px,grow][][grow][grow][grow][grow][100px:100px:100px,right]", "[30.00][][][grow][grow]"));
 		
 		JLabel lblLehrveranstaltungen = new JLabel("Lehrveranstaltungen:");
 		lblLehrveranstaltungen.setFont(new Font("Tahoma", Font.BOLD, 12));
-		add(lblLehrveranstaltungen, "cell 1 0,aligny bottom");
+		add(lblLehrveranstaltungen, "cell 1 0,alignx right,aligny bottom");
 				
 		add(ViewManager.getInstance().getCoreLiveTickerPanel(), "cell 0 3, grow, aligny top");
 		
 		lblLecturer_ = new JLabel("Dozent:");
-		add(lblLecturer_, "cell 1 1,alignx left,aligny top");
+		add(lblLecturer_, "cell 1 1,alignx left,aligny bottom");
 		
 		tablePanel_ = new JPanel();
 		add(tablePanel_, "cell 1 3 5 1,grow");
@@ -220,7 +220,7 @@ public class StartTab extends JPanel implements IntfComDialogObserver {
 		JLabel lblUniIcon = new JLabel("");
 		lblUniIcon.setIcon(new ImageIcon(BaseTab.class.getResource("/de/sfgmbh/comlayer/core/images/UniBA_logo.png")));
 		lblUniIcon.setMaximumSize(new Dimension(50,50));
-		add(lblUniIcon, "cell 6 0,alignx right,aligny top");
+		add(lblUniIcon, "cell 6 0 1 2,alignx right,aligny top");
 		
 		comboLecturer_ = new JComboBox<String>();
 		add(comboLecturer_, "cell 1 2,alignx left,aligny bottom");

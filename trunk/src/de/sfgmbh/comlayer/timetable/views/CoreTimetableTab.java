@@ -50,7 +50,7 @@ public class CoreTimetableTab extends JPanel {
 
 	private void initialize() {
 		setAutoscrolls(true);
-		setLayout(new MigLayout("", "[20px:20px,grow][131px][50px][92.00px][461px][43.00,grow][]", "[][top][grow,shrink 0][grow]"));
+		setLayout(new MigLayout("", "[20px:20px,grow][227px][50px][92.00px][461px][grow][]", "[][top][grow,shrink 0][grow]"));
 
 		btnTimetableReset_ = new JButton("Stundenplan zurücksetzen");
 		btnTimetableReset_.setToolTipText("<html>Klicken Sie hier<br> um alle Lehrveranstaltungen aus <br> der Sammlung zu löschen <br>und um einen neuen Stundenplan <br> zu generieren</html>");
