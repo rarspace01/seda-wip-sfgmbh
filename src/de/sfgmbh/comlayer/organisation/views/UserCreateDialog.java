@@ -16,7 +16,6 @@ import de.sfgmbh.applayer.core.definitions.IntfUser;
 import de.sfgmbh.comlayer.core.model.CmbboxFilterChairAcronym;
 import de.sfgmbh.comlayer.core.model.CmbboxFilterUserClass;
 import de.sfgmbh.comlayer.organisation.controller.UserCreateDialogBtns;
-import de.sfgmbh.comlayer.organisation.controller.UserCreateDialogWin;
 
 /**
  * Dialog to create (and also edit) users
@@ -90,6 +89,7 @@ public class UserCreateDialog extends JDialog {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(UserCreateDialog.class.getResource("/de/sfgmbh/comlayer/core/images/HUT_klein.png")));
 		setTitle("Neuen Nutzer anlegen");
 		setBounds(100, 100, 266, 309);
+		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 		contentPane_ = new JPanel();
 		contentPane_.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane_);
@@ -166,7 +166,6 @@ public class UserCreateDialog extends JDialog {
 		contentPane_.add(getLblLastName());
 		contentPane_.add(getChckbxUserDisabled());
 		
-		addWindowListener(new UserCreateDialogWin(this));
 	}
 	/**
 	 * @return the txtNutzerkennung
