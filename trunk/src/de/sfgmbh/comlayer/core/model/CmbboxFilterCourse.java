@@ -11,6 +11,7 @@ import de.sfgmbh.applayer.core.model.AppModel;
  * Model for course combo boxes
  * 
  * @author hannes
+ * @author mario
  *
  */
 public class CmbboxFilterCourse extends DefaultComboBoxModel<String> implements IntfAppObserver {
