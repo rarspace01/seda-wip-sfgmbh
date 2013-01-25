@@ -4,6 +4,7 @@ import de.sfgmbh.applayer.core.definitions.IntfCtrlBaseTab;
 import de.sfgmbh.applayer.core.definitions.IntfUser;
 import de.sfgmbh.applayer.core.model.AppModel;
 import de.sfgmbh.datalayer.core.daos.DataHandlerUser;
+import de.sfgmbh.datalayer.core.definitions.IntfDataUser;
 
 /**
  * BaseTab Controller
@@ -19,8 +20,8 @@ public class CtrlBaseTab implements IntfCtrlBaseTab {
 	@Override
 	public IntfUser login(String login, String pw) {
 		
-		DataHandlerUser dhu = new DataHandlerUser();
-		IntfUser checkUser = dhu.getByLogin(login);
+		IntfDataUser dataHandlerUser = new DataHandlerUser();
+		IntfUser checkUser = dataHandlerUser.getByLogin(login);
 		
 		if (checkUser != null) {
 			if (checkUser.checkPassword(pw) == true) {

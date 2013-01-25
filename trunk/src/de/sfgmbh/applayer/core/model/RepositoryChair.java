@@ -56,9 +56,6 @@ public class RepositoryChair implements IntfAppObservable, IntfDataObserver, Int
 	 * (non-Javadoc)
 	 * @see de.sfgmbh.datalayer.core.definitions.IntfDataObserver#change()
 	 */
-	/* (non-Javadoc)
-	 * @see de.sfgmbh.applayer.core.model.IntfRepositoryChair#change()
-	 */
 	@Override
 	public void change() {
 		this.update();
@@ -67,9 +64,6 @@ public class RepositoryChair implements IntfAppObservable, IntfDataObserver, Int
 	/*
 	 * (non-Javadoc)
 	 * @see de.sfgmbh.applayer.core.definitions.IntfAppObservable#update()
-	 */
-	/* (non-Javadoc)
-	 * @see de.sfgmbh.applayer.core.model.IntfRepositoryChair#update()
 	 */
 	@Override
 	public void update() {
@@ -89,9 +83,6 @@ public class RepositoryChair implements IntfAppObservable, IntfDataObserver, Int
 	 * (non-Javadoc)
 	 * @see de.sfgmbh.applayer.core.definitions.IntfAppObservable#register(de.sfgmbh.applayer.core.definitions.IntfAppObserver)
 	 */
-	/* (non-Javadoc)
-	 * @see de.sfgmbh.applayer.core.model.IntfRepositoryChair#register(de.sfgmbh.applayer.core.definitions.IntfAppObserver)
-	 */
 	@Override
 	public void register(IntfAppObserver observer) {
 		if (observer instanceof IntfAppObserver) {
@@ -104,9 +95,6 @@ public class RepositoryChair implements IntfAppObservable, IntfDataObserver, Int
 	/*
 	 * (non-Javadoc)
 	 * @see de.sfgmbh.applayer.core.definitions.IntfAppObservable#unregister(de.sfgmbh.applayer.core.definitions.IntfAppObserver)
-	 */
-	/* (non-Javadoc)
-	 * @see de.sfgmbh.applayer.core.model.IntfRepositoryChair#unregister(de.sfgmbh.applayer.core.definitions.IntfAppObserver)
 	 */
 	@Override
 	public void unregister(IntfAppObserver observer) {
