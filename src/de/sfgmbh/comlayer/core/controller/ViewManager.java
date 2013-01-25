@@ -36,33 +36,35 @@ import de.sfgmbh.comlayer.timetable.views.CoreTimetableTab;
  * 
  */
 public class ViewManager {
-	
+
 	private static ViewManager uniqueInstance_ = new ViewManager();
-	
+
 	private ViewManager() {
 	}
-	
+
 	/**
 	 * Get the singleton instance of the view manager
+	 * 
 	 * @return the view manager
 	 */
 	public static ViewManager getInstance() {
-		if(uniqueInstance_==null){
-			uniqueInstance_=new ViewManager();
+		if (uniqueInstance_ == null) {
+			uniqueInstance_ = new ViewManager();
 		}
 		return uniqueInstance_;
 	}
 
 	/**
-	* Module: Core (global area - all other modules have dependencies to this one)
-	*/
+	 * Module: Core (global area - all other modules have dependencies to this
+	 * one)
+	 */
 	private BaseTab baseTab;
 	private BaseTableMain baseTableMain;
 	private RoomTableMain roomTableMain;
 	private LiveTickerPanel liveTickerPanel;
-	private CoreTimetableTab coreTimetableTab_; 
+	private CoreTimetableTab coreTimetableTab_;
 	private CoreTimetableTabTable coreTimetableTabTable_;
-	
+
 	/**
 	 * @return the core base tab
 	 */
@@ -72,41 +74,42 @@ public class ViewManager {
 		}
 		return this.baseTab;
 	}
-	
+
 	/**
 	 * @return a live ticker panel
 	 */
 	public LiveTickerPanel getCoreLiveTickerPanel() {
-		// Always return a new instance as one Swing component my only be registered in one single Frame.
-		// Later here needs to be a logic to sync the sliding position of all created instances.
+		// Always return a new instance as one Swing component my only be
+		// registered in one single Frame.
+		// Later here needs to be a logic to sync the sliding position of all
+		// created instances.
 		this.liveTickerPanel = new LiveTickerPanel();
 		return this.liveTickerPanel;
 	}
-	
+
 	/**
 	 * @return the table model of the core base table
 	 */
-	public BaseTableMain getCoreBaseTableModel(){
+	public BaseTableMain getCoreBaseTableModel() {
 		if (this.baseTableMain == null) {
 			this.baseTableMain = new BaseTableMain();
 		}
 		return this.baseTableMain;
 	}
-	
+
 	/**
 	 * @return the table model of the core room table
 	 */
-	public RoomTableMain getCoreRoomTableModel(){
+	public RoomTableMain getCoreRoomTableModel() {
 		if (this.roomTableMain == null) {
 			this.roomTableMain = new RoomTableMain();
 		}
 		return this.roomTableMain;
 	}
-	
-	
+
 	/**
-	* Module: Timetable
-	*/
+	 * Module: Timetable
+	 */
 	/**
 	 * @return the timetable tab
 	 */
@@ -116,7 +119,7 @@ public class ViewManager {
 		}
 		return this.coreTimetableTab_;
 	}
-	
+
 	/**
 	 * @return the table of the timetable tab
 	 */
@@ -126,10 +129,10 @@ public class ViewManager {
 		}
 		return this.coreTimetableTabTable_;
 	}
-	
+
 	/**
-	* Module: Organization
-	*/
+	 * Module: Organization
+	 */
 	private RoomTab roomTab;
 	private UserTab userTab;
 	private ChairTab chairTab;
@@ -141,6 +144,7 @@ public class ViewManager {
 	private ChairTabTable chairTabTable;
 	private RoomtableTab roomtableTab;
 	private RoomtableTable roomtableTable;
+
 	/**
 	 * @return the roomtableTable
 	 */
@@ -150,7 +154,7 @@ public class ViewManager {
 		}
 		return this.roomtableTable;
 	}
-	
+
 	/**
 	 * @return the roomtableTab
 	 */
@@ -160,7 +164,7 @@ public class ViewManager {
 		}
 		return this.roomtableTab;
 	}
-	
+
 	/**
 	 * @return the chairTabTable
 	 */
@@ -170,7 +174,7 @@ public class ViewManager {
 		}
 		return this.chairTabTable;
 	}
-	
+
 	/**
 	 * @return the roomTabTable
 	 */
@@ -180,7 +184,7 @@ public class ViewManager {
 		}
 		return this.roomTabTable;
 	}
-	
+
 	/**
 	 * @return the userTabTable
 	 */
@@ -190,7 +194,7 @@ public class ViewManager {
 		}
 		return this.userTabTable;
 	}
-	
+
 	/**
 	 * @return the requestTabTable
 	 */
@@ -200,7 +204,7 @@ public class ViewManager {
 		}
 		return this.requestTabTable;
 	}
-	
+
 	/**
 	 * @return the roomTab
 	 */
@@ -210,7 +214,7 @@ public class ViewManager {
 		}
 		return this.roomTab;
 	}
-	
+
 	/**
 	 * @return the userTab
 	 */
@@ -220,7 +224,7 @@ public class ViewManager {
 		}
 		return this.userTab;
 	}
-	
+
 	/**
 	 * @return the requestTab
 	 */
@@ -230,7 +234,7 @@ public class ViewManager {
 		}
 		return this.requestTab;
 	}
-	
+
 	/**
 	 * @return the chairTab
 	 */
@@ -240,7 +244,7 @@ public class ViewManager {
 		}
 		return this.chairTab;
 	}
-	
+
 	/**
 	 * @return roomFrame
 	 */
@@ -250,10 +254,10 @@ public class ViewManager {
 		}
 		return this.roomFrame;
 	}
-	
+
 	/**
-	* Module: Lecturer
-	*/
+	 * Module: Lecturer
+	 */
 	private StartTab startTab;
 	private StartTabTableTop startTabTableTop;
 	private StartTabTableBottom startTabTableBottom;
@@ -261,7 +265,7 @@ public class ViewManager {
 	private TimetableTab timetableTab;
 	private ChairTimetableTabTable chairTimetableTabTable;
 	private ProfessorshipTimetableTab chairTimetableTab;
-	
+
 	/**
 	 * @return the lecturer start tab
 	 */
@@ -271,7 +275,7 @@ public class ViewManager {
 		}
 		return this.startTab;
 	}
-	
+
 	/**
 	 * @return the lecturer start tab top table
 	 */
@@ -281,7 +285,7 @@ public class ViewManager {
 		}
 		return this.startTabTableTop;
 	}
-	
+
 	/**
 	 * @return the lecturer start tab bottom table
 	 */
@@ -291,7 +295,7 @@ public class ViewManager {
 		}
 		return this.startTabTableBottom;
 	}
-	
+
 	/**
 	 * @return the lecturer start tab
 	 */
@@ -301,7 +305,7 @@ public class ViewManager {
 		}
 		return this.timetableTabTable;
 	}
-	
+
 	/**
 	 * @return the lecturer timetable tab
 	 */
@@ -311,7 +315,7 @@ public class ViewManager {
 		}
 		return this.timetableTab;
 	}
-	
+
 	/**
 	 * @return the lecturer chair timetable tab
 	 */
@@ -321,7 +325,7 @@ public class ViewManager {
 		}
 		return this.chairTimetableTab;
 	}
-	
+
 	/**
 	 * @return the lecturer chair timetable table
 	 */
@@ -332,21 +336,14 @@ public class ViewManager {
 		return this.chairTimetableTabTable;
 	}
 
-
-	
-	
-	
 	/**
-	* Module: Student Profile - will probably not be implemented in the first version of the program
-	*/
+	 * Module: Student Profile - will probably not be implemented in the first
+	 * version of the program
+	 */
 	/*
-	private StudProfil studProfilGui;
-	
-	public StudProfil getStudProfil() {
-		if (this.studProfilGui == null) {
-			this.studProfilGui = new StudProfil();
-		}
-		return this.studProfilGui;
-	}
-	*/
+	 * private StudProfil studProfilGui;
+	 * 
+	 * public StudProfil getStudProfil() { if (this.studProfilGui == null) {
+	 * this.studProfilGui = new StudProfil(); } return this.studProfilGui; }
+	 */
 }

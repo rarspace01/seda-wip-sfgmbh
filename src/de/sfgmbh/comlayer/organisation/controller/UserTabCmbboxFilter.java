@@ -7,10 +7,12 @@ import java.awt.event.KeyListener;
 
 import de.sfgmbh.applayer.core.model.User;
 import de.sfgmbh.comlayer.core.controller.ViewManager;
+
 /**
  * ComboboxFilter to select the {@link User}
+ * 
  * @author anna
- *
+ * 
  */
 public class UserTabCmbboxFilter implements KeyListener, ActionListener {
 
@@ -22,18 +24,18 @@ public class UserTabCmbboxFilter implements KeyListener, ActionListener {
 	@Override
 	public void keyPressed(KeyEvent arg0) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void keyReleased(KeyEvent arg0) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		ViewManager.getInstance().getOrgaUserTableModel().change();
 	}
-	
+
 }

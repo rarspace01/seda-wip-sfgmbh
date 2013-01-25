@@ -41,7 +41,9 @@ public class BaseBtns implements ActionListener {
 
 	/*
 	 * (non-Javadoc)
-	 * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
+	 * 
+	 * @see
+	 * java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
 	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
@@ -103,7 +105,7 @@ public class BaseBtns implements ActionListener {
 							.switchToNextTab();
 
 				} catch (Exception ex) {
-					
+
 					AppModel.getInstance()
 							.getExceptionHandler()
 							.setNewException(

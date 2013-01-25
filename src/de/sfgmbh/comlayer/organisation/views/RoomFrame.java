@@ -19,7 +19,7 @@ import de.sfgmbh.comlayer.organisation.controller.RoomFrameBtns;
  * Dialog/Frame to create and edit rooms
  * 
  * @author denis
- *
+ * 
  */
 public class RoomFrame extends JDialog {
 
@@ -44,29 +44,38 @@ public class RoomFrame extends JDialog {
 		initialize();
 		setLocationRelativeTo(null);
 	}
+
 	private void initialize() {
-		setIconImage(Toolkit.getDefaultToolkit().getImage(RoomFrame.class.getResource("/de/sfgmbh/comlayer/core/images/HUT_klein.png")));
+		setIconImage(Toolkit
+				.getDefaultToolkit()
+				.getImage(
+						RoomFrame.class
+								.getResource("/de/sfgmbh/comlayer/core/images/HUT_klein.png")));
 		setTitle("Neuen Raum anlegen");
 		setBounds(100, 100, 266, 400);
 		contentPane_ = new JPanel();
 		contentPane_.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane_);
 		GridBagLayout gbl_contentPane = new GridBagLayout();
-		gbl_contentPane.columnWidths = new int[]{101, 17, 98, 0};
-		gbl_contentPane.rowHeights = new int[]{20, 20, 20, 20, 20, 20, 20, 20, 28, 0, 0, 0, 0};
-		gbl_contentPane.columnWeights = new double[]{0.0, 0.0, 0.0, Double.MIN_VALUE};
-		gbl_contentPane.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+		gbl_contentPane.columnWidths = new int[] { 101, 17, 98, 0 };
+		gbl_contentPane.rowHeights = new int[] { 20, 20, 20, 20, 20, 20, 20,
+				20, 28, 0, 0, 0, 0 };
+		gbl_contentPane.columnWeights = new double[] { 0.0, 0.0, 0.0,
+				Double.MIN_VALUE };
+		gbl_contentPane.rowWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0,
+				0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE };
 		contentPane_.setLayout(gbl_contentPane);
 		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-		
+
 		JButton btnSave = new JButton("Speichern");
 		btnSave.setToolTipText("<html>Klicken Sie hier, um<br> Ihre Eingaben zu speichern</html>");
 		btnSave.addActionListener(new RoomFrameBtns("save"));
-		
+
 		JButton btnCancel = new JButton("Abbrechen");
-		btnCancel.setToolTipText("<html>Wenn Sie den Vorgang abbrechen wollen</html>");
+		btnCancel
+				.setToolTipText("<html>Wenn Sie den Vorgang abbrechen wollen</html>");
 		btnCancel.addActionListener(new RoomFrameBtns("cancle"));
-		
+
 		JLabel lblLevel = new JLabel("Stockwerk:");
 		lblLevel.setFont(new Font("SansSerif", Font.PLAIN, 12));
 		GridBagConstraints gbc_lblLevel = new GridBagConstraints();
@@ -76,11 +85,12 @@ public class RoomFrame extends JDialog {
 		gbc_lblLevel.gridx = 0;
 		gbc_lblLevel.gridy = 1;
 		contentPane_.add(lblLevel, gbc_lblLevel);
-		
-		txtRoomid_=new JTextField("-1");
-		
+
+		txtRoomid_ = new JTextField("-1");
+
 		txtLevel_ = new JTextField();
-		txtLevel_.setToolTipText("<html>Geben Sie das Stockwerk<br> des Raumes an</html>");
+		txtLevel_
+				.setToolTipText("<html>Geben Sie das Stockwerk<br> des Raumes an</html>");
 		txtLevel_.setFont(new Font("SansSerif", Font.PLAIN, 12));
 		GridBagConstraints gbc_txtLevel = new GridBagConstraints();
 		gbc_txtLevel.fill = GridBagConstraints.BOTH;
@@ -89,7 +99,7 @@ public class RoomFrame extends JDialog {
 		gbc_txtLevel.gridx = 1;
 		gbc_txtLevel.gridy = 1;
 		contentPane_.add(txtLevel_, gbc_txtLevel);
-		
+
 		JLabel lblRoomnumber = new JLabel("Raumnummer:");
 		lblRoomnumber.setFont(new Font("SansSerif", Font.PLAIN, 12));
 		GridBagConstraints gbc_lblRoomnumber = new GridBagConstraints();
@@ -100,9 +110,10 @@ public class RoomFrame extends JDialog {
 		gbc_lblRoomnumber.gridx = 0;
 		gbc_lblRoomnumber.gridy = 2;
 		contentPane_.add(lblRoomnumber, gbc_lblRoomnumber);
-		
+
 		txtRoomNumber_ = new JTextField();
-		txtRoomNumber_.setToolTipText("<html>Geben Sie die Raumnummer<br> des Raumes an</html>");
+		txtRoomNumber_
+				.setToolTipText("<html>Geben Sie die Raumnummer<br> des Raumes an</html>");
 		txtRoomNumber_.setFont(new Font("SansSerif", Font.PLAIN, 12));
 		GridBagConstraints gbc_txtRoomName = new GridBagConstraints();
 		gbc_txtRoomName.fill = GridBagConstraints.BOTH;
@@ -111,7 +122,7 @@ public class RoomFrame extends JDialog {
 		gbc_txtRoomName.gridx = 1;
 		gbc_txtRoomName.gridy = 2;
 		contentPane_.add(txtRoomNumber_, gbc_txtRoomName);
-		
+
 		JLabel lblSeats = new JLabel("Pl\u00E4tze:");
 		lblSeats.setFont(new Font("SansSerif", Font.PLAIN, 12));
 		GridBagConstraints gbc_lblSeats = new GridBagConstraints();
@@ -121,9 +132,10 @@ public class RoomFrame extends JDialog {
 		gbc_lblSeats.gridx = 0;
 		gbc_lblSeats.gridy = 3;
 		contentPane_.add(lblSeats, gbc_lblSeats);
-		
+
 		txtSeats_ = new JTextField();
-		txtSeats_.setToolTipText("<html>Geben Sie die möglichen<br> Sitz- und Arbeitsplätze<br> des Raumes an</html>");
+		txtSeats_
+				.setToolTipText("<html>Geben Sie die möglichen<br> Sitz- und Arbeitsplätze<br> des Raumes an</html>");
 		txtSeats_.setText("0");
 		txtSeats_.setFont(new Font("SansSerif", Font.PLAIN, 12));
 		GridBagConstraints gbc_txtSeats = new GridBagConstraints();
@@ -133,7 +145,7 @@ public class RoomFrame extends JDialog {
 		gbc_txtSeats.gridx = 1;
 		gbc_txtSeats.gridy = 3;
 		contentPane_.add(txtSeats_, gbc_txtSeats);
-		
+
 		JLabel lblPcSeats = new JLabel("PC-Pl\u00E4tze:");
 		lblPcSeats.setFont(new Font("SansSerif", Font.PLAIN, 12));
 		GridBagConstraints gbc_lblPcSeats = new GridBagConstraints();
@@ -143,9 +155,10 @@ public class RoomFrame extends JDialog {
 		gbc_lblPcSeats.gridx = 0;
 		gbc_lblPcSeats.gridy = 4;
 		contentPane_.add(lblPcSeats, gbc_lblPcSeats);
-		
+
 		txtPcSeats_ = new JTextField();
-		txtPcSeats_.setToolTipText("<html>Geben Sie die PC-Plätze<br> des Raumes an</html>");
+		txtPcSeats_
+				.setToolTipText("<html>Geben Sie die PC-Plätze<br> des Raumes an</html>");
 		txtPcSeats_.setText("0");
 		txtPcSeats_.setFont(new Font("SansSerif", Font.PLAIN, 12));
 		GridBagConstraints gbc_txtPcSeats = new GridBagConstraints();
@@ -155,7 +168,7 @@ public class RoomFrame extends JDialog {
 		gbc_txtPcSeats.gridx = 1;
 		gbc_txtPcSeats.gridy = 4;
 		contentPane_.add(txtPcSeats_, gbc_txtPcSeats);
-		
+
 		JLabel lblBeamer = new JLabel("Beamer:");
 		lblBeamer.setFont(new Font("SansSerif", Font.PLAIN, 12));
 		GridBagConstraints gbc_lblBeamer = new GridBagConstraints();
@@ -165,9 +178,10 @@ public class RoomFrame extends JDialog {
 		gbc_lblBeamer.gridx = 0;
 		gbc_lblBeamer.gridy = 5;
 		contentPane_.add(lblBeamer, gbc_lblBeamer);
-		
+
 		txtBeamer_ = new JTextField();
-		txtBeamer_.setToolTipText("<html>Geben Sie die Anzahl der Beamer<br>im Raum an</html>");
+		txtBeamer_
+				.setToolTipText("<html>Geben Sie die Anzahl der Beamer<br>im Raum an</html>");
 		txtBeamer_.setText("0");
 		txtBeamer_.setFont(new Font("SansSerif", Font.PLAIN, 12));
 		GridBagConstraints gbc_txtBeamer = new GridBagConstraints();
@@ -177,7 +191,7 @@ public class RoomFrame extends JDialog {
 		gbc_txtBeamer.gridx = 1;
 		gbc_txtBeamer.gridy = 5;
 		contentPane_.add(txtBeamer_, gbc_txtBeamer);
-		
+
 		JLabel lblVisualizer = new JLabel("Visualizer:");
 		lblVisualizer.setFont(new Font("SansSerif", Font.PLAIN, 12));
 		GridBagConstraints gbc_lblVisualizer = new GridBagConstraints();
@@ -188,9 +202,10 @@ public class RoomFrame extends JDialog {
 		gbc_lblVisualizer.gridx = 0;
 		gbc_lblVisualizer.gridy = 6;
 		contentPane_.add(lblVisualizer, gbc_lblVisualizer);
-		
+
 		txtVisualizer_ = new JTextField();
-		txtVisualizer_.setToolTipText("<html>Geben Sie die Anzahl der Visualizer<br>im Raum an</html>");
+		txtVisualizer_
+				.setToolTipText("<html>Geben Sie die Anzahl der Visualizer<br>im Raum an</html>");
 		txtVisualizer_.setText("0");
 		txtVisualizer_.setFont(new Font("SansSerif", Font.PLAIN, 12));
 		GridBagConstraints gbc_txtVisualizer = new GridBagConstraints();
@@ -200,7 +215,7 @@ public class RoomFrame extends JDialog {
 		gbc_txtVisualizer.gridx = 1;
 		gbc_txtVisualizer.gridy = 6;
 		contentPane_.add(txtVisualizer_, gbc_txtVisualizer);
-		
+
 		JLabel lblOverheads = new JLabel("Overheads:");
 		lblOverheads.setFont(new Font("SansSerif", Font.PLAIN, 12));
 		GridBagConstraints gbc_lblOverheads = new GridBagConstraints();
@@ -211,9 +226,10 @@ public class RoomFrame extends JDialog {
 		gbc_lblOverheads.gridx = 0;
 		gbc_lblOverheads.gridy = 7;
 		contentPane_.add(lblOverheads, gbc_lblOverheads);
-		
+
 		txtOverheads_ = new JTextField();
-		txtOverheads_.setToolTipText("<html>Geben Sie die Anzahl der Overheads<br>im Raum an</html>");
+		txtOverheads_
+				.setToolTipText("<html>Geben Sie die Anzahl der Overheads<br>im Raum an</html>");
 		txtOverheads_.setText("0");
 		txtOverheads_.setFont(new Font("SansSerif", Font.PLAIN, 12));
 		GridBagConstraints gbc_txtOverheads = new GridBagConstraints();
@@ -223,7 +239,7 @@ public class RoomFrame extends JDialog {
 		gbc_txtOverheads.gridx = 1;
 		gbc_txtOverheads.gridy = 7;
 		contentPane_.add(txtOverheads_, gbc_txtOverheads);
-		
+
 		JLabel lblTafeln = new JLabel("Tafeln:");
 		lblTafeln.setFont(new Font("SansSerif", Font.PLAIN, 12));
 		GridBagConstraints gbc_lblTafeln = new GridBagConstraints();
@@ -234,9 +250,10 @@ public class RoomFrame extends JDialog {
 		gbc_lblTafeln.gridx = 0;
 		gbc_lblTafeln.gridy = 8;
 		contentPane_.add(lblTafeln, gbc_lblTafeln);
-		
+
 		txtChalkboards_ = new JTextField();
-		txtChalkboards_.setToolTipText("<html>Geben Sie die Anzahl der Tafeln<br>im Raum an</html>");
+		txtChalkboards_
+				.setToolTipText("<html>Geben Sie die Anzahl der Tafeln<br>im Raum an</html>");
 		txtChalkboards_.setText("0");
 		txtChalkboards_.setFont(new Font("SansSerif", Font.PLAIN, 12));
 		GridBagConstraints gbc_txtChalkboards = new GridBagConstraints();
@@ -246,7 +263,7 @@ public class RoomFrame extends JDialog {
 		gbc_txtChalkboards.gridx = 1;
 		gbc_txtChalkboards.gridy = 8;
 		contentPane_.add(txtChalkboards_, gbc_txtChalkboards);
-		
+
 		JLabel lblWhiteboards = new JLabel("Whiteboards:");
 		lblWhiteboards.setFont(new Font("SansSerif", Font.PLAIN, 12));
 		GridBagConstraints gbc_lblWhiteboards = new GridBagConstraints();
@@ -257,9 +274,10 @@ public class RoomFrame extends JDialog {
 		gbc_lblWhiteboards.gridx = 0;
 		gbc_lblWhiteboards.gridy = 9;
 		contentPane_.add(lblWhiteboards, gbc_lblWhiteboards);
-		
+
 		txtWhiteboards_ = new JTextField();
-		txtWhiteboards_.setToolTipText("<html>Geben Sie die Anzahl der Whiteboards<br>im Raum an</html>");
+		txtWhiteboards_
+				.setToolTipText("<html>Geben Sie die Anzahl der Whiteboards<br>im Raum an</html>");
 		txtWhiteboards_.setText("0");
 		txtWhiteboards_.setFont(new Font("SansSerif", Font.PLAIN, 12));
 		GridBagConstraints gbc_txtWhiteboards = new GridBagConstraints();
@@ -282,11 +300,11 @@ public class RoomFrame extends JDialog {
 		gbc_btnSave.gridy = 11;
 		contentPane_.add(btnSave, gbc_btnSave);
 	}
-	
+
 	/**
 	 * resets the values from the frame
 	 */
-	public void reset(){
+	public void reset() {
 		this.getTxtroomid().setText("-1");
 		this.getTxtRoomNumber().setText("");
 		this.getTxtLevel().setText("");
@@ -298,7 +316,7 @@ public class RoomFrame extends JDialog {
 		this.getTxtVisualizer().setText("");
 		this.getTxtWhiteboards().setText("");
 	}
-	
+
 	/**
 	 * 
 	 * @return txtLevel_ - the txtLevel
@@ -306,13 +324,16 @@ public class RoomFrame extends JDialog {
 	public JTextField getTxtLevel() {
 		return txtLevel_;
 	}
+
 	/**
 	 * 
-	 * @param txtLevel - the txtLevel to set
+	 * @param txtLevel
+	 *            - the txtLevel to set
 	 */
 	public void setTxtLevel(JTextField txtLevel) {
 		this.txtLevel_ = txtLevel;
 	}
+
 	/**
 	 * 
 	 * @return txtRoomNumber_ - the TxtRoomNumber
@@ -320,13 +341,16 @@ public class RoomFrame extends JDialog {
 	public JTextField getTxtRoomNumber() {
 		return txtRoomNumber_;
 	}
+
 	/**
 	 * 
-	 * @param txtRoomNumber - the txtRoomNumber to set
+	 * @param txtRoomNumber
+	 *            - the txtRoomNumber to set
 	 */
 	public void setTxtRoomNumber(JTextField txtRoomNumber) {
 		this.txtRoomNumber_ = txtRoomNumber;
 	}
+
 	/**
 	 * 
 	 * @return txtBeamer_ - the txtBeamer
@@ -334,13 +358,16 @@ public class RoomFrame extends JDialog {
 	public JTextField getTxtBeamer() {
 		return txtBeamer_;
 	}
+
 	/**
 	 * 
-	 * @param txtBeamer - the txtBeamer to set
+	 * @param txtBeamer
+	 *            - the txtBeamer to set
 	 */
 	public void setTxtBeamer(JTextField txtBeamer) {
 		this.txtBeamer_ = txtBeamer;
 	}
+
 	/**
 	 * 
 	 * @return txtPcSeats_ - the txtPcSeats
@@ -348,13 +375,16 @@ public class RoomFrame extends JDialog {
 	public JTextField getTxtPcSeats() {
 		return txtPcSeats_;
 	}
+
 	/**
 	 * 
-	 * @param txtPcSeats - the txtPcSeats to set
+	 * @param txtPcSeats
+	 *            - the txtPcSeats to set
 	 */
 	public void setTxtPcSeats(JTextField txtPcSeats) {
 		this.txtPcSeats_ = txtPcSeats;
 	}
+
 	/**
 	 * 
 	 * @return txtSeats_ - the txtSeats
@@ -362,13 +392,16 @@ public class RoomFrame extends JDialog {
 	public JTextField getTxtSeats() {
 		return txtSeats_;
 	}
+
 	/**
 	 * 
-	 * @param txtSeats - the txtSeats to set
+	 * @param txtSeats
+	 *            - the txtSeats to set
 	 */
 	public void setTxtSeats(JTextField txtSeats) {
 		this.txtSeats_ = txtSeats;
 	}
+
 	/**
 	 * 
 	 * @return txtVisualizer_ - the txtVisualizer
@@ -376,13 +409,16 @@ public class RoomFrame extends JDialog {
 	public JTextField getTxtVisualizer() {
 		return txtVisualizer_;
 	}
+
 	/**
 	 * 
-	 * @param txtVisualizer - the txtVisualizer to set
+	 * @param txtVisualizer
+	 *            - the txtVisualizer to set
 	 */
 	public void setTxtVisualizer(JTextField txtVisualizer) {
 		this.txtVisualizer_ = txtVisualizer;
 	}
+
 	/**
 	 * 
 	 * @return txtOverheads - the txtOverheads
@@ -390,13 +426,16 @@ public class RoomFrame extends JDialog {
 	public JTextField getTxtOverheads() {
 		return txtOverheads_;
 	}
+
 	/**
 	 * 
-	 * @param txtOverheads - the txtOverheads to set
+	 * @param txtOverheads
+	 *            - the txtOverheads to set
 	 */
 	public void setTxtOverheads(JTextField txtOverheads) {
 		this.txtOverheads_ = txtOverheads;
 	}
+
 	/**
 	 * 
 	 * @return the txtChalkboards
@@ -404,13 +443,16 @@ public class RoomFrame extends JDialog {
 	public JTextField getTxtChalkboards() {
 		return txtChalkboards_;
 	}
+
 	/**
 	 * 
-	 * @param txtChalkboards - the txtChalkboards to set
+	 * @param txtChalkboards
+	 *            - the txtChalkboards to set
 	 */
 	public void setTxtChalkboards(JTextField txtChalkboards) {
 		this.txtChalkboards_ = txtChalkboards;
 	}
+
 	/**
 	 * 
 	 * @return the txtWhiteboards
@@ -418,13 +460,16 @@ public class RoomFrame extends JDialog {
 	public JTextField getTxtWhiteboards() {
 		return txtWhiteboards_;
 	}
+
 	/**
 	 * 
-	 * @param txtWhiteboards - the txtWhiteboards to set
+	 * @param txtWhiteboards
+	 *            - the txtWhiteboards to set
 	 */
 	public void setTxtWhiteboards(JTextField txtWhiteboards) {
 		this.txtWhiteboards_ = txtWhiteboards;
 	}
+
 	/**
 	 * 
 	 * @return the txtRoomid
@@ -432,5 +477,5 @@ public class RoomFrame extends JDialog {
 	public JTextField getTxtroomid() {
 		return txtRoomid_;
 	}
-	
+
 }

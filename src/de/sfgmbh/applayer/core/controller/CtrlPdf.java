@@ -8,41 +8,45 @@ import de.sfgmbh.datalayer.io.IntfDataManagerPdf;
 
 /**
  * controller class for the PDF handling
+ * 
  * @author denis
- *
+ * 
  */
 public class CtrlPdf implements IntfCtrlPdf {
 
 	private IntfDataManagerPdf pdfManager_;
 	private String filename_;
-	
-	
+
 	public CtrlPdf(String filename) {
-		this.filename_=filename;
-		
-		pdfManager_=new DataManagerPdf(this.filename_);
-		
+		this.filename_ = filename;
+
+		pdfManager_ = new DataManagerPdf(this.filename_);
+
 	}
-	
-	/* (non-Javadoc)
-	 * @see de.sfgmbh.applayer.core.controller.IntfCtrlPdf#addContent(java.lang.String, javax.swing.JComponent)
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * de.sfgmbh.applayer.core.controller.IntfCtrlPdf#addContent(java.lang.String
+	 * , javax.swing.JComponent)
 	 */
 	@Override
-	public void addContent(String paragraphtitle, JComponent component){
-		if(filename_.length()>0){
+	public void addContent(String paragraphtitle, JComponent component) {
+		if (filename_.length() > 0) {
 			pdfManager_.addContent(paragraphtitle, component);
 		}
 	}
-	
-	
-	/* (non-Javadoc)
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see de.sfgmbh.applayer.core.controller.IntfCtrlPdf#close()
 	 */
 	@Override
-	public void close(){
+	public void close() {
 		pdfManager_.close();
-		pdfManager_=null;
+		pdfManager_ = null;
 	}
 
-	
 }

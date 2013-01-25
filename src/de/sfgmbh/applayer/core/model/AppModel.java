@@ -16,11 +16,16 @@ import de.sfgmbh.applayer.core.definitions.IntfRepositoryUser;
  * 
  * @author hannes
  * @author denis
- *
+ * 
  */
 public class AppModel implements IntfAppObservable, IntfAppModel {
-	
-	private static IntfAppModel uniqueInstance_ = new AppModel(); // declare on first access through JVM (thread-safe)
+
+	private static IntfAppModel uniqueInstance_ = new AppModel(); // declare on
+																	// first
+																	// access
+																	// through
+																	// JVM
+																	// (thread-safe)
 	private ArrayList<Object> observer_ = new ArrayList<Object>();
 	private AppException exceptionHandler_ = new AppException();
 	private IntfRepositoryChair repositoryChair_ = new RepositoryChair();
@@ -28,10 +33,13 @@ public class AppModel implements IntfAppObservable, IntfAppModel {
 	private IntfRepositoryCourse repositoryCourse_ = new RepositoryCourse();
 	private IntfRepositoryRoom repositoryRoom_ = new RepositoryRoom();
 	private IntfRepositoryRoomAllocation repositoryRoomAllocation_ = new RepositoryRoomAllocation();
-	
-	private AppModel() {} // class may only call itself via declaration
-	
-	/* (non-Javadoc)
+
+	private AppModel() {
+	} // class may only call itself via declaration
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see de.sfgmbh.applayer.core.model.IntfAppModel#getExceptionHandler()
 	 */
 	@Override
@@ -39,7 +47,9 @@ public class AppModel implements IntfAppObservable, IntfAppModel {
 		return exceptionHandler_;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see de.sfgmbh.applayer.core.model.IntfAppModel#getRepositoryChair()
 	 */
 	@Override
@@ -47,7 +57,9 @@ public class AppModel implements IntfAppObservable, IntfAppModel {
 		return repositoryChair_;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see de.sfgmbh.applayer.core.model.IntfAppModel#getRepositoryUser()
 	 */
 	@Override
@@ -55,7 +67,9 @@ public class AppModel implements IntfAppObservable, IntfAppModel {
 		return repositoryUser_;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see de.sfgmbh.applayer.core.model.IntfAppModel#getRepositoryCourse()
 	 */
 	@Override
@@ -63,7 +77,9 @@ public class AppModel implements IntfAppObservable, IntfAppModel {
 		return repositoryCourse_;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see de.sfgmbh.applayer.core.model.IntfAppModel#getRepositoryRoom()
 	 */
 	@Override
@@ -71,8 +87,11 @@ public class AppModel implements IntfAppObservable, IntfAppModel {
 		return repositoryRoom_;
 	}
 
-	/* (non-Javadoc)
-	 * @see de.sfgmbh.applayer.core.model.IntfAppModel#getRepositoryRoomAllocation()
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * de.sfgmbh.applayer.core.model.IntfAppModel#getRepositoryRoomAllocation()
 	 */
 	@Override
 	public IntfRepositoryRoomAllocation getRepositoryRoomAllocation() {
@@ -81,22 +100,26 @@ public class AppModel implements IntfAppObservable, IntfAppModel {
 
 	/**
 	 * Returns the singleton instance
+	 * 
 	 * @return uniqueInstance_ - Instance of the singelton
 	 */
 	public static IntfAppModel getInstance() {
 		return uniqueInstance_;
 	}
-	
+
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see de.sfgmbh.applayer.core.definitions.IntfAppObservable#update()
 	 */
 	@Override
 	public void update() {
-		// Create a private observer list to avoid ConcurrentModificationException
+		// Create a private observer list to avoid
+		// ConcurrentModificationException
 		@SuppressWarnings("unchecked")
-		ArrayList<IntfAppObserver> currentObservers = (ArrayList<IntfAppObserver>) observer_.clone();
-				
+		ArrayList<IntfAppObserver> currentObservers = (ArrayList<IntfAppObserver>) observer_
+				.clone();
+
 		for (IntfAppObserver observer : currentObservers) {
 			if (observer instanceof IntfAppObserver) {
 				observer.change();
@@ -106,21 +129,30 @@ public class AppModel implements IntfAppObservable, IntfAppModel {
 
 	/*
 	 * (non-Javadoc)
-	 * @see de.sfgmbh.applayer.core.definitions.IntfAppObservable#register(de.sfgmbh.applayer.core.definitions.IntfAppObserver)
+	 * 
+	 * @see
+	 * de.sfgmbh.applayer.core.definitions.IntfAppObservable#register(de.sfgmbh
+	 * .applayer.core.definitions.IntfAppObserver)
 	 */
 	@Override
 	public void register(IntfAppObserver observer) {
 		if (observer instanceof IntfAppObserver) {
 			observer_.add(observer);
 		} else {
-			this.exceptionHandler_.setNewException("Das Objekt implementiert nicht das Observer-Interface und kann daher nicht hinzugef�gt werden!", "Fehler!");
+			this.exceptionHandler_
+					.setNewException(
+							"Das Objekt implementiert nicht das Observer-Interface und kann daher nicht hinzugef�gt werden!",
+							"Fehler!");
 		}
-		
+
 	}
-	
+
 	/*
 	 * (non-Javadoc)
-	 * @see de.sfgmbh.applayer.core.definitions.IntfAppObservable#unregister(de.sfgmbh.applayer.core.definitions.IntfAppObserver)
+	 * 
+	 * @see
+	 * de.sfgmbh.applayer.core.definitions.IntfAppObservable#unregister(de.sfgmbh
+	 * .applayer.core.definitions.IntfAppObserver)
 	 */
 	@Override
 	public void unregister(IntfAppObserver observer) {

@@ -4,8 +4,9 @@ import de.sfgmbh.applayer.core.model.Room;
 
 /**
  * Interface for {@link Room} object
+ * 
  * @author denis
- *
+ * 
  */
 public interface IntfRoom {
 

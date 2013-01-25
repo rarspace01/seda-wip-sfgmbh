@@ -9,12 +9,11 @@ import de.sfgmbh.comlayer.core.controller.ViewManager;
 
 /**
  * Action listener for the chair tab comboboxes and text field filters
+ * 
  * @author mario
  */
 public class ChairTabCmbboxFilter implements KeyListener, ActionListener {
-	
-	
-	
+
 	@Override
 	public void keyTyped(KeyEvent arg0) {
 	}
@@ -32,5 +31,5 @@ public class ChairTabCmbboxFilter implements KeyListener, ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		ViewManager.getInstance().getOrgaChairTableModel().change();
-	} 
+	}
 }

@@ -10,17 +10,19 @@ import de.sfgmbh.comlayer.core.controller.ViewManager;
  * 
  * @author christian
  * @author denis
- *
+ * 
  */
 public class TimetableTabCmbbox implements ActionListener {
-	
+
 	/*
 	 * (non-Javadoc)
-	 * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
+	 * 
+	 * @see
+	 * java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
 	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		ViewManager.getInstance().getLecturerTimetableTab().reloadPlan();
 	}
-	
+
 }

@@ -8,7 +8,7 @@ import de.sfgmbh.applayer.core.definitions.IntfUser;
  * 
  * @author christian
  * @author hannes
- *
+ * 
  */
 public class Course implements IntfCourse {
 
@@ -21,12 +21,14 @@ public class Course implements IntfCourse {
 	private String courseDescription_;
 	private int expectedAttendees_;
 	private boolean lecturerEnabled_;
-	
+
 	public Course() {
 		courseId_ = -1;
 	}
-	
-	/* (non-Javadoc)
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see de.sfgmbh.applayer.core.model.IntfCourse#getCourseId_()
 	 */
 	@Override
@@ -34,7 +36,9 @@ public class Course implements IntfCourse {
 		return courseId_;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see de.sfgmbh.applayer.core.model.IntfCourse#setCourseId_(int)
 	 */
 	@Override
@@ -42,7 +46,9 @@ public class Course implements IntfCourse {
 		this.courseId_ = courseId_;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see de.sfgmbh.applayer.core.model.IntfCourse#getLecturer_()
 	 */
 	@Override
@@ -50,15 +56,21 @@ public class Course implements IntfCourse {
 		return lecturer_;
 	}
 
-	/* (non-Javadoc)
-	 * @see de.sfgmbh.applayer.core.model.IntfCourse#setLecturer_(de.sfgmbh.applayer.core.model.User)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * de.sfgmbh.applayer.core.model.IntfCourse#setLecturer_(de.sfgmbh.applayer
+	 * .core.model.User)
 	 */
 	@Override
 	public void setLecturer_(IntfUser lecturer_) {
 		this.lecturer_ = lecturer_;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see de.sfgmbh.applayer.core.model.IntfCourse#getCourseAcronym_()
 	 */
 	@Override
@@ -66,15 +78,21 @@ public class Course implements IntfCourse {
 		return courseAcronym_;
 	}
 
-	/* (non-Javadoc)
-	 * @see de.sfgmbh.applayer.core.model.IntfCourse#setCourseAcronym_(java.lang.String)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * de.sfgmbh.applayer.core.model.IntfCourse#setCourseAcronym_(java.lang.
+	 * String)
 	 */
 	@Override
 	public void setCourseAcronym_(String courseAcronym_) {
 		this.courseAcronym_ = courseAcronym_;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see de.sfgmbh.applayer.core.model.IntfCourse#getCourseName_()
 	 */
 	@Override
@@ -82,15 +100,20 @@ public class Course implements IntfCourse {
 		return courseName_;
 	}
 
-	/* (non-Javadoc)
-	 * @see de.sfgmbh.applayer.core.model.IntfCourse#setCourseName_(java.lang.String)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * de.sfgmbh.applayer.core.model.IntfCourse#setCourseName_(java.lang.String)
 	 */
 	@Override
 	public void setCourseName_(String courseName_) {
 		this.courseName_ = courseName_;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see de.sfgmbh.applayer.core.model.IntfCourse#getSws_()
 	 */
 	@Override
@@ -98,7 +121,9 @@ public class Course implements IntfCourse {
 		return sws_;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see de.sfgmbh.applayer.core.model.IntfCourse#setSws_(java.lang.Float)
 	 */
 	@Override
@@ -106,7 +131,9 @@ public class Course implements IntfCourse {
 		this.sws_ = sws_;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see de.sfgmbh.applayer.core.model.IntfCourse#getCourseKind_()
 	 */
 	@Override
@@ -114,19 +141,25 @@ public class Course implements IntfCourse {
 		return courseKind_;
 	}
 
-	/* (non-Javadoc)
-	 * @see de.sfgmbh.applayer.core.model.IntfCourse#setCourseKind_(java.lang.String)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * de.sfgmbh.applayer.core.model.IntfCourse#setCourseKind_(java.lang.String)
 	 */
 	@Override
 	public void setCourseKind_(String courseKind_) {
-		if (courseKind_.equals("Vorlesung") || courseKind_.equals("Übung") || courseKind_.equals("Tutorium")) {
+		if (courseKind_.equals("Vorlesung") || courseKind_.equals("Übung")
+				|| courseKind_.equals("Tutorium")) {
 			this.courseKind_ = courseKind_;
 		} else {
 			this.courseKind_ = "Vorlesung";
 		}
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see de.sfgmbh.applayer.core.model.IntfCourse#getCourseDescription_()
 	 */
 	@Override
@@ -134,15 +167,21 @@ public class Course implements IntfCourse {
 		return courseDescription_;
 	}
 
-	/* (non-Javadoc)
-	 * @see de.sfgmbh.applayer.core.model.IntfCourse#setCourseDescription_(java.lang.String)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * de.sfgmbh.applayer.core.model.IntfCourse#setCourseDescription_(java.lang
+	 * .String)
 	 */
 	@Override
 	public void setCourseDescription_(String courseDescription_) {
 		this.courseDescription_ = courseDescription_;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see de.sfgmbh.applayer.core.model.IntfCourse#getExpectedAttendees_()
 	 */
 	@Override
@@ -150,7 +189,9 @@ public class Course implements IntfCourse {
 		return expectedAttendees_;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see de.sfgmbh.applayer.core.model.IntfCourse#setExpectedAttendees_(int)
 	 */
 	@Override
@@ -158,7 +199,9 @@ public class Course implements IntfCourse {
 		this.expectedAttendees_ = expectedAttendees_;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see de.sfgmbh.applayer.core.model.IntfCourse#isLecturerEnabled_()
 	 */
 	@Override
@@ -166,56 +209,69 @@ public class Course implements IntfCourse {
 		return lecturerEnabled_;
 	}
 
-	/* (non-Javadoc)
-	 * @see de.sfgmbh.applayer.core.model.IntfCourse#setLecturerEnabled_(boolean)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * de.sfgmbh.applayer.core.model.IntfCourse#setLecturerEnabled_(boolean)
 	 */
 	@Override
 	public void setLecturerEnabled_(boolean lecturerEnabled_) {
 		this.lecturerEnabled_ = lecturerEnabled_;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see de.sfgmbh.applayer.core.model.IntfCourse#validate()
 	 */
 	@Override
 	public boolean validate() {
 		boolean check = true;
 		String message = "";
-		
-		if (this.courseId_ < -1 ) {
+
+		if (this.courseId_ < -1) {
 			message = message + "Die Veranstaltung hat keine gültige ID!<br/>";
 			check = false;
 		}
-		if (this.courseAcronym_.length() > 16 || this.courseAcronym_.length() < 2) {
-			message = message + "Die Kennung einer Veranstaltung muss zwischen 2 und 16 Zeichen lang sein!<br />";
+		if (this.courseAcronym_.length() > 16
+				|| this.courseAcronym_.length() < 2) {
+			message = message
+					+ "Die Kennung einer Veranstaltung muss zwischen 2 und 16 Zeichen lang sein!<br />";
 			check = false;
 		}
-		if (this.courseDescription_.length() > 256 ) {
-			message = message + "Die Beschreibung einer Veranstaltung darf 256 Zeichen nicht überschreiten!<br />";
+		if (this.courseDescription_.length() > 256) {
+			message = message
+					+ "Die Beschreibung einer Veranstaltung darf 256 Zeichen nicht überschreiten!<br />";
 			check = false;
 		}
 		if (this.courseName_.length() > 256 || this.courseName_.length() < 1) {
-			message = message + "Der ausführliche Name einer Veranstaltung muss zwischen 1 und 256 Zeichen lang sein!<br />";
+			message = message
+					+ "Der ausführliche Name einer Veranstaltung muss zwischen 1 und 256 Zeichen lang sein!<br />";
 			check = false;
 		}
-		if (this.expectedAttendees_ < 0 ) {
-			message = message + "Die erwartete Teilnehmerzahl darf nicht negativ sein!<br />";
+		if (this.expectedAttendees_ < 0) {
+			message = message
+					+ "Die erwartete Teilnehmerzahl darf nicht negativ sein!<br />";
 			check = false;
 		}
 		if (this.sws_ < 0 || this.sws_ > 100) {
 			message = message + "Die SWS müssen ziwsch 0 und 100 liegen!<br />";
 			check = false;
 		}
-		
+
 		if (check) {
 			return true;
 		} else {
-			AppModel.getInstance().getExceptionHandler().setNewException(message, "Fehler!");
+			AppModel.getInstance().getExceptionHandler()
+					.setNewException(message, "Fehler!");
 			return false;
 		}
 	}
-	
-	/* (non-Javadoc)
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see de.sfgmbh.applayer.core.model.IntfCourse#save()
 	 */
 	@Override
@@ -225,5 +281,5 @@ public class Course implements IntfCourse {
 		}
 		return false;
 	}
-	
+
 }

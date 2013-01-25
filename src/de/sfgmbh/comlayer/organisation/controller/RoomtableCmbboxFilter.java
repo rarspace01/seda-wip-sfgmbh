@@ -11,12 +11,10 @@ import de.sfgmbh.comlayer.core.controller.ViewManager;
  * Action listener for the combobox on the roomtable tab
  * 
  * @author denis
- *
+ * 
  */
 public class RoomtableCmbboxFilter implements KeyListener, ActionListener {
-	
-	
-	
+
 	@Override
 	public void keyTyped(KeyEvent arg0) {
 		//
@@ -25,17 +23,17 @@ public class RoomtableCmbboxFilter implements KeyListener, ActionListener {
 	@Override
 	public void keyPressed(KeyEvent arg0) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void keyReleased(KeyEvent arg0) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		ViewManager.getInstance().getOrgaRoomtableTableModel().change();
-	} 
+	}
 }

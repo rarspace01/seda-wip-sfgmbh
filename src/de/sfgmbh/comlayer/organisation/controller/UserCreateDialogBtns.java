@@ -15,26 +15,27 @@ import de.sfgmbh.comlayer.organisation.views.UserCreateDialog;
  * Action listener for the create and edit user dialog
  * 
  * @author hannes
- *
+ * 
  */
 public class UserCreateDialogBtns implements ActionListener {
-	
+
 	private String ctrlAction_;
 	private IntfCtrlUser ctrlUser_ = new CtrlUser();
 	private UserCreateDialog motherDialog_;
-	
-	
+
 	/**
 	 * Create the action listener
+	 * 
 	 * @param motherDialog
 	 */
 	public UserCreateDialogBtns(UserCreateDialog motherDialog) {
 		this.ctrlAction_ = "default";
 		this.motherDialog_ = motherDialog;
 	}
-	
+
 	/**
 	 * Create the action listener for e specific submitted action
+	 * 
 	 * @param motherDialog
 	 * @param action
 	 */
@@ -42,25 +43,27 @@ public class UserCreateDialogBtns implements ActionListener {
 		this.ctrlAction_ = action;
 		this.motherDialog_ = motherDialog;
 	}
-	
+
 	/*
 	 * (non-Javadoc)
-	 * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
+	 * 
+	 * @see
+	 * java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
 	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		
+
 		// Cancel button is pressed
-		if (this.ctrlAction_.equals("cancle")){
+		if (this.ctrlAction_.equals("cancle")) {
 			this.motherDialog_.dispose();
 		}
-		
+
 		// Save button is pressed
-		if (this.ctrlAction_.equals("save")){
-			
+		if (this.ctrlAction_.equals("save")) {
+
 			IntfUser createUser = null;
 			boolean create;
-			
+
 			// When there is no editUser this is the create frame
 			if (this.motherDialog_.getEditUser() == null) {
 				create = true;
@@ -69,24 +72,35 @@ public class UserCreateDialogBtns implements ActionListener {
 				create = false;
 				createUser = this.motherDialog_.getEditUser();
 			}
-			
+
 			try {
-				createUser.setLogin_(this.motherDialog_.getTxtLogin().getText());
+				createUser
+						.setLogin_(this.motherDialog_.getTxtLogin().getText());
 				createUser.setMail_(this.motherDialog_.getTxtEmail().getText());
-				createUser.setFirstName_(this.motherDialog_.getTxtFirstName().getText());
-				createUser.setlName_(this.motherDialog_.getTxtLastName().getText());
-				
+				createUser.setFirstName_(this.motherDialog_.getTxtFirstName()
+						.getText());
+				createUser.setlName_(this.motherDialog_.getTxtLastName()
+						.getText());
+
 				// Only overwrite the class if a user gets created
 				// Already existent user currently cannot get a class change.
-				// Though it would be possible it could get a complicated so it probably will not make it in v. 1.0
+				// Though it would be possible it could get a complicated so it
+				// probably will not make it in v. 1.0
 				if (create) {
-					createUser.setClass_(this.motherDialog_.getComboBoxUserClass().getSelectedItem().toString());
+					createUser.setClass_(this.motherDialog_
+							.getComboBoxUserClass().getSelectedItem()
+							.toString());
 				}
-				
+
 				// Handle the chair of a user
-				if (!this.motherDialog_.getComboBoxLehrstuhl().getSelectedItem().toString().equals("<keiner>")) {
-					IntfChair newChair = AppModel.getInstance().getRepositoryChair().getForAcronym(
-							this.motherDialog_.getComboBoxLehrstuhl().getSelectedItem().toString());
+				if (!this.motherDialog_.getComboBoxLehrstuhl()
+						.getSelectedItem().toString().equals("<keiner>")) {
+					IntfChair newChair = AppModel
+							.getInstance()
+							.getRepositoryChair()
+							.getForAcronym(
+									this.motherDialog_.getComboBoxLehrstuhl()
+											.getSelectedItem().toString());
 					if (newChair != null) {
 						createUser.setChair_(newChair);
 					} else {
@@ -99,31 +113,43 @@ public class UserCreateDialogBtns implements ActionListener {
 				} else {
 					createUser.setChair_(null);
 				}
-				
-				// Handle the password (this depends if it is a new or an old user)
+
+				// Handle the password (this depends if it is a new or an old
+				// user)
 				if (create) {
-					createUser.setPasswordHashAndSalt(this.motherDialog_.getTxtPasswort().getText());
-				} else if (this.motherDialog_.getTxtPasswort().getText().length() > 0) {
-					createUser.setPasswordHashAndSalt(this.motherDialog_.getTxtPasswort().getText());
+					createUser.setPasswordHashAndSalt(this.motherDialog_
+							.getTxtPasswort().getText());
+				} else if (this.motherDialog_.getTxtPasswort().getText()
+						.length() > 0) {
+					createUser.setPasswordHashAndSalt(this.motherDialog_
+							.getTxtPasswort().getText());
 				}
-				
+
 				// Handle disabling of users (only for old users)
 				if (!create) {
-					createUser.setDisabled_(this.motherDialog_.getChckbxUserDisabled().isSelected());
-				} 
-				
+					createUser.setDisabled_(this.motherDialog_
+							.getChckbxUserDisabled().isSelected());
+				}
+
 				// Try to save the edited or new user
 				if (ctrlUser_.saveUser(createUser)) {
-					AppModel.getInstance().getExceptionHandler().setNewException("Der Benutzer wurde gespeichert!", "Erfolg!", "success" );
+					AppModel.getInstance()
+							.getExceptionHandler()
+							.setNewException("Der Benutzer wurde gespeichert!",
+									"Erfolg!", "success");
 					this.motherDialog_.setVisible(false);
 				}
 			} catch (Exception ex) {
-				AppModel.getInstance().getExceptionHandler().setNewException("Es ist ein unerwartetes Problem aufgetreten.<br /><br />Fehler:<br />" + ex.toString(), "Fehler!" );
-				
+				AppModel.getInstance()
+						.getExceptionHandler()
+						.setNewException(
+								"Es ist ein unerwartetes Problem aufgetreten.<br /><br />Fehler:<br />"
+										+ ex.toString(), "Fehler!");
+
 			}
 		} else {
-			
+
 		}
-		
+
 	}
 }

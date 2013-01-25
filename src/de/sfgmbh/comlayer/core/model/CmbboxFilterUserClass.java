@@ -6,13 +6,13 @@ import javax.swing.DefaultComboBoxModel;
  * Model for user class combo boxes
  * 
  * @author mario
- *
+ * 
  */
 public class CmbboxFilterUserClass extends DefaultComboBoxModel<String> {
 
 	private static final long serialVersionUID = 1L;
 	private String variant_;
-	
+
 	/**
 	 * Create the model object
 	 */
@@ -20,7 +20,7 @@ public class CmbboxFilterUserClass extends DefaultComboBoxModel<String> {
 		this.variant_ = "normal";
 		this.build();
 	}
-	
+
 	/**
 	 * Create the model object based on a variant string
 	 */
@@ -30,15 +30,15 @@ public class CmbboxFilterUserClass extends DefaultComboBoxModel<String> {
 	}
 
 	private void build() {
-		
+
 		String[] elements;
-		
+
 		if (!this.variant_.equals("blank")) {
-			elements = new String[] {"<alle>", "Dozenten", "Verwaltung"};
+			elements = new String[] { "<alle>", "Dozenten", "Verwaltung" };
 		} else {
-			elements = new String[] {"Dozenten", "Verwaltung"};
+			elements = new String[] { "Dozenten", "Verwaltung" };
 		}
-		
+
 		for (String element : elements) {
 			this.addElement(element);
 		}

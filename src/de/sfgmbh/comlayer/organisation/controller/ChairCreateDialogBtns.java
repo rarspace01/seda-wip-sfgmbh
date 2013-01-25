@@ -47,7 +47,9 @@ public class ChairCreateDialogBtns implements ActionListener {
 
 	/*
 	 * (non-Javadoc)
-	 * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
+	 * 
+	 * @see
+	 * java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
 	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
@@ -65,10 +67,8 @@ public class ChairCreateDialogBtns implements ActionListener {
 		if (this.ctrlAction_.equals("save")) {
 			IntfChair newChair = motherDialog_.getChair();
 			try {
-				newChair.setAcronym(motherDialog_.getTxtAcronym()
-						.getText());
-				newChair.setChairName(motherDialog_
-						.getTxtName().getText());
+				newChair.setAcronym(motherDialog_.getTxtAcronym().getText());
+				newChair.setChairName(motherDialog_.getTxtName().getText());
 				newChair.setChairLevel(motherDialog_.getTxtLevel().getText());
 				newChair.setFaculty(motherDialog_.getTxtFaculity().getText());
 				// Get the lecturer object out of the model as a sql query on
@@ -83,11 +83,11 @@ public class ChairCreateDialogBtns implements ActionListener {
 			} catch (Exception ex) {
 				exceptionHandler
 						.setNewException(
-								"Ihre Eingabe war ungültig. Überpfüen Sie diese bitte " +
-								"(stellen sie z. B. sicher,  dass Sie alle notwendigen Felder ausgefüllt " +
-								"haben und dass Sie, wo dies vorgesehen ist, nur Zahlen ohne " +
-								"Buchstaben verwenden.",
-								"Fehler!", "error");
+								"Ihre Eingabe war ungültig. Überpfüen Sie diese bitte "
+										+ "(stellen sie z. B. sicher,  dass Sie alle notwendigen Felder ausgefüllt "
+										+ "haben und dass Sie, wo dies vorgesehen ist, nur Zahlen ohne "
+										+ "Buchstaben verwenden.", "Fehler!",
+								"error");
 				return;
 			}
 

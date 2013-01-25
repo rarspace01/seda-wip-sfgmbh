@@ -52,7 +52,9 @@ public class RequestTabBtnsControl implements ActionListener,
 
 	/*
 	 * (non-Javadoc)
-	 * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
+	 * 
+	 * @see
+	 * java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
 	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
@@ -83,7 +85,8 @@ public class RequestTabBtnsControl implements ActionListener,
 						return;
 					}
 
-					if (selectedRoomAllocation.getApproved_().equals("accepted")) {
+					if (selectedRoomAllocation.getApproved_()
+							.equals("accepted")) {
 						QuestionDialog dialog = new QuestionDialog(
 								"Sie sind im Begriff für eine bereits freigegebene Raumbelegung einen Gegenvorschlag zu erstellen. Dies ist möglich, kommt allerdings einer Verschiebung gleich. Die Raumbelegung wird dann nicht mehr öffentlich angezeigt werden, bis der Dozent den neuen Termin freigibt. <br /><br /> Wollen Sie das wirklich?",
 								"Achtung!");
@@ -116,7 +119,8 @@ public class RequestTabBtnsControl implements ActionListener,
 					row = requestTab.getRowSorter().convertRowIndexToModel(row);
 					IntfRoomAllocation selectedRoomAllocation = (IntfRoomAllocation) requestTableModel
 							.getValueAt(row, 8);
-					ctrlRoomAllocation_.acceptRoomAllocation(selectedRoomAllocation);
+					ctrlRoomAllocation_
+							.acceptRoomAllocation(selectedRoomAllocation);
 				} catch (Exception ex) {
 					exceptionHandler.setNewException(
 							"Ein unerwarteter Fehler ist aufgetreten.<br /><br >"
@@ -190,7 +194,10 @@ public class RequestTabBtnsControl implements ActionListener,
 
 	/*
 	 * (non-Javadoc)
-	 * @see de.sfgmbh.comlayer.core.definitions.IntfComDialogObserver#answered(java.lang.String)
+	 * 
+	 * @see
+	 * de.sfgmbh.comlayer.core.definitions.IntfComDialogObserver#answered(java
+	 * .lang.String)
 	 */
 	@Override
 	public void answered(String answer) {

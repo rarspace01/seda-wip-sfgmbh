@@ -2,8 +2,9 @@ package de.sfgmbh.applayer.core.definitions;
 
 /**
  * Interface for the session manager
+ * 
  * @author hannes
- *
+ * 
  */
 public interface IntfSessionManager {
 
@@ -14,18 +15,21 @@ public interface IntfSessionManager {
 
 	/**
 	 * Get the currently logged in user
+	 * 
 	 * @return the logged in use
 	 */
 	public abstract IntfUser getSession();
 
 	/**
 	 * Start a user session
+	 * 
 	 * @param user
 	 */
 	public abstract void setSession(IntfUser user);
 
 	/**
 	 * Check if there currently is a session
+	 * 
 	 * @return true or false
 	 */
 	public abstract boolean checkSession();

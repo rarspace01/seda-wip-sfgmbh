@@ -35,6 +35,7 @@ public class RoomtableTabBtnPdf implements ActionListener {
 	 * Create the action listener based on an action string<br>
 	 * Supported action strings are:<br>
 	 * "pdfCreate"
+	 * 
 	 * @param action
 	 */
 	public RoomtableTabBtnPdf(String action) {
@@ -45,7 +46,7 @@ public class RoomtableTabBtnPdf implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 
 		IntfCtrlPdf pdfController;
-		
+
 		// Pdf Button is pressed
 		if (this.navAction_.equals("pdfCreate")) {
 
@@ -65,7 +66,8 @@ public class RoomtableTabBtnPdf implements ActionListener {
 				// if the user hasn't typed .pdf, we'll do it for him
 				if (!fileChooser.getSelectedFile().getPath().toLowerCase()
 						.endsWith(".pdf")) {
-					fileChooser.setSelectedFile(new File(fileChooser.getSelectedFile() + ".pdf"));
+					fileChooser.setSelectedFile(new File(fileChooser
+							.getSelectedFile() + ".pdf"));
 				}
 				// setting roomtitle and semeseter for the header of the PDF
 				// document
@@ -80,11 +82,12 @@ public class RoomtableTabBtnPdf implements ActionListener {
 						.toString();
 
 				// create the PDF
-				pdfController=new CtrlPdf(fileChooser.getSelectedFile()
+				pdfController = new CtrlPdf(fileChooser.getSelectedFile()
 						.getAbsolutePath());
 				// adding the panel as the content of the document
-				pdfController.addContent(roomtitle + " - " + semester, ViewManager
-						.getInstance().getOrgaRoomtableTab().getScrollPane_());
+				pdfController.addContent(roomtitle + " - " + semester,
+						ViewManager.getInstance().getOrgaRoomtableTab()
+								.getScrollPane_());
 				pdfController.close();
 			}
 		}

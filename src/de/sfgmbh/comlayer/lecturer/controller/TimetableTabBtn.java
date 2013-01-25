@@ -30,9 +30,10 @@ public class TimetableTabBtn implements ActionListener {
 	}
 
 	/**
-	 * Create the action listener based on a action string
-	 * Supported action strings are:<br>
+	 * Create the action listener based on a action string Supported action
+	 * strings are:<br>
 	 * "createpdf"
+	 * 
 	 * @param action
 	 */
 	public TimetableTabBtn(String action) {
@@ -60,7 +61,8 @@ public class TimetableTabBtn implements ActionListener {
 				// if the user hasn't typed .pdf, we'll do it for him
 				if (!fileChooser.getSelectedFile().getPath().toLowerCase()
 						.endsWith(".pdf")) {
-					fileChooser.setSelectedFile(new File(fileChooser.getSelectedFile() + ".pdf"));
+					fileChooser.setSelectedFile(new File(fileChooser
+							.getSelectedFile() + ".pdf"));
 				}
 				lecturerTitle = ViewManager.getInstance()
 						.getLecturerTimetableTab().getcomboBoxLecturer_()
@@ -68,13 +70,14 @@ public class TimetableTabBtn implements ActionListener {
 				semester = ViewManager.getInstance().getLecturerTimetableTab()
 						.getComboBoxSemesterFilter().getSelectedItem()
 						.toString();
-				
-				pdfController=new CtrlPdf(fileChooser.getSelectedFile()
+
+				pdfController = new CtrlPdf(fileChooser.getSelectedFile()
 						.getAbsolutePath());
 				// adding the content
-				pdfController.addContent(lecturerTitle + " - " + semester, ViewManager
-						.getInstance().getLecturerTimetableTab().getPanel_());
-				//close the PDF file
+				pdfController.addContent(lecturerTitle + " - " + semester,
+						ViewManager.getInstance().getLecturerTimetableTab()
+								.getPanel_());
+				// close the PDF file
 				pdfController.close();
 			}
 

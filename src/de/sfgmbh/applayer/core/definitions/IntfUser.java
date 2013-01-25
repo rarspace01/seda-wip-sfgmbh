@@ -4,8 +4,9 @@ import de.sfgmbh.applayer.core.model.User;
 
 /**
  * Interface for {@link User} object
+ * 
  * @author denis
- *
+ * 
  */
 public interface IntfUser {
 
@@ -55,24 +56,30 @@ public interface IntfUser {
 
 	/**
 	 * Set hash for a plain text password string salted by a random string
+	 * 
 	 * @param password
 	 */
 	public abstract void setPasswordHashAndSalt(String password);
 
 	/**
-	 * Check if a plain text password string together with the users salt matches its hash
+	 * Check if a plain text password string together with the users salt
+	 * matches its hash
+	 * 
 	 * @param password
 	 * @return true if the submitted plain text password is correct
 	 */
 	public abstract boolean checkPassword(String password);
 
 	/**
-	 * Save this user object in the DB (this will update a database entry if there is already one and create one if there is none)
+	 * Save this user object in the DB (this will update a database entry if
+	 * there is already one and create one if there is none)
 	 */
 	public abstract boolean save();
 
 	/**
-	 * Validates the user object, calls an info dialog when one check fails and returns true if all checks are passed
+	 * Validates the user object, calls an info dialog when one check fails and
+	 * returns true if all checks are passed
+	 * 
 	 * @return true if all check attributes are valid user attributes
 	 */
 	public abstract boolean validate();

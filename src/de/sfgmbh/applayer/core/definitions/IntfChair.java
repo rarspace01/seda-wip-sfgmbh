@@ -7,7 +7,7 @@ import de.sfgmbh.applayer.core.model.Chair;
  * 
  * @author anna
  * @author hannes
- *
+ * 
  */
 public interface IntfChair {
 
@@ -17,7 +17,8 @@ public interface IntfChair {
 	public abstract int getChairId_();
 
 	/**
-	 * @param chairId the chairId_ to set
+	 * @param chairId
+	 *            the chairId_ to set
 	 */
 	public abstract void setChairId(int chairId);
 
@@ -27,7 +28,8 @@ public interface IntfChair {
 	public abstract String getChairName();
 
 	/**
-	 * @param chairName the chairName_ to set
+	 * @param chairName
+	 *            the chairName_ to set
 	 */
 	public abstract void setChairName(String chairName);
 
@@ -37,7 +39,8 @@ public interface IntfChair {
 	public abstract IntfUser getChairOwner();
 
 	/**
-	 * @param chairOwner the chairOwner_ to set
+	 * @param chairOwner
+	 *            the chairOwner_ to set
 	 */
 	public abstract void setChairOwner(IntfUser chairOwner);
 
@@ -47,7 +50,8 @@ public interface IntfChair {
 	public abstract int getBuildingId();
 
 	/**
-	 * @param buildingId the buildingId_ to set
+	 * @param buildingId
+	 *            the buildingId_ to set
 	 */
 	public abstract void setBuildingId(int buildingId);
 
@@ -57,7 +61,8 @@ public interface IntfChair {
 	public abstract String getChairLevel();
 
 	/**
-	 * @param chairLevel the chairLevel_ to set
+	 * @param chairLevel
+	 *            the chairLevel_ to set
 	 */
 	public abstract void setChairLevel(String chairLevel);
 
@@ -68,7 +73,9 @@ public interface IntfChair {
 
 	/**
 	 * Set the faculty - currently only "WI" is supported
-	 * @param faculty_ the faculty_ to set
+	 * 
+	 * @param faculty_
+	 *            the faculty_ to set
 	 */
 	public abstract void setFaculty(String faculty_);
 
@@ -78,18 +85,22 @@ public interface IntfChair {
 	public abstract String getAcronym();
 
 	/**
-	 * @param acronym_ the acronym_ to set
+	 * @param acronym_
+	 *            the acronym_ to set
 	 */
 	public abstract void setAcronym(String acronym_);
 
 	/**
-	 * Validates the chair object, calls an info dialog when one check fails and returns true if all checks are passed
+	 * Validates the chair object, calls an info dialog when one check fails and
+	 * returns true if all checks are passed
+	 * 
 	 * @return true if all check attributes are valid
 	 */
 	public abstract boolean validate();
 
 	/**
 	 * Save this chair in the DB
+	 * 
 	 * @return true on success
 	 */
 	public abstract boolean save();

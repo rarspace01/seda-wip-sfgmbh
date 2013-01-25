@@ -9,8 +9,8 @@ import de.sfgmbh.datalayer.core.definitions.IntfDataObserver;
  * Exception handler for Data Layer. <br>
  * This class is capable to store user friendly messages as well as variants
  * (like "error", "info" and so on). Those may be used by interested objects
- * from neighboring layers which implement the IntfDataObserver interface in any way
- * they see it fit.
+ * from neighboring layers which implement the IntfDataObserver interface in any
+ * way they see it fit.
  * 
  * @author hannes
  * 
@@ -91,6 +91,7 @@ public class DataExceptions implements IntfDataObservable {
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see de.sfgmbh.datalayer.core.definitions.IntfDataObservable#update()
 	 */
 	@Override
@@ -110,7 +111,10 @@ public class DataExceptions implements IntfDataObservable {
 
 	/*
 	 * (non-Javadoc)
-	 * @see de.sfgmbh.datalayer.core.definitions.IntfDataObservable#register(de.sfgmbh.datalayer.core.definitions.IntfDataObserver)
+	 * 
+	 * @see
+	 * de.sfgmbh.datalayer.core.definitions.IntfDataObservable#register(de.sfgmbh
+	 * .datalayer.core.definitions.IntfDataObserver)
 	 */
 	@Override
 	public void register(IntfDataObserver observer) {
@@ -126,7 +130,10 @@ public class DataExceptions implements IntfDataObservable {
 
 	/*
 	 * (non-Javadoc)
-	 * @see de.sfgmbh.datalayer.core.definitions.IntfDataObservable#unregister(de.sfgmbh.datalayer.core.definitions.IntfDataObserver)
+	 * 
+	 * @see
+	 * de.sfgmbh.datalayer.core.definitions.IntfDataObservable#unregister(de
+	 * .sfgmbh.datalayer.core.definitions.IntfDataObserver)
 	 */
 	@Override
 	public void unregister(IntfDataObserver observer) {

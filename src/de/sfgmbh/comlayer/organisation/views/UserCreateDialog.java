@@ -22,7 +22,7 @@ import de.sfgmbh.comlayer.organisation.controller.UserCreateDialogBtns;
  * 
  * @author anna
  * @author hannes
- *
+ * 
  */
 public class UserCreateDialog extends JDialog {
 
@@ -52,9 +52,10 @@ public class UserCreateDialog extends JDialog {
 		setLocationRelativeTo(null);
 		this.setEditUser(null);
 	}
-	
+
 	/**
 	 * Create the frame in a modified version with a user that shall be edited
+	 * 
 	 * @param userToEdit
 	 */
 	public UserCreateDialog(IntfUser userToEdit) {
@@ -74,19 +75,23 @@ public class UserCreateDialog extends JDialog {
 		this.getTxtLastName().setText(userToEdit.getlName_());
 		this.getTxtEmail().setText(userToEdit.getMail_());
 		if (userToEdit.getChair_() != null) {
-			this.getComboBoxLehrstuhl().setSelectedItem(userToEdit.getChair_().getAcronym());
-		} 
+			this.getComboBoxLehrstuhl().setSelectedItem(
+					userToEdit.getChair_().getAcronym());
+		}
 		if (!userToEdit.getClass_().equals("lecturer")) {
 			this.getComboBoxLehrstuhl().setVisible(false);
 			this.lblLehrstuhl_.setVisible(false);
 		}
 		this.getChckbxUserDisabled().setSelected(userToEdit.isDisabled_());
-		
+
 	}
-	
-	
+
 	private void initialize() {
-		setIconImage(Toolkit.getDefaultToolkit().getImage(UserCreateDialog.class.getResource("/de/sfgmbh/comlayer/core/images/HUT_klein.png")));
+		setIconImage(Toolkit
+				.getDefaultToolkit()
+				.getImage(
+						UserCreateDialog.class
+								.getResource("/de/sfgmbh/comlayer/core/images/HUT_klein.png")));
 		setTitle("Neuen Nutzer anlegen");
 		setBounds(100, 100, 266, 309);
 		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
@@ -94,117 +99,132 @@ public class UserCreateDialog extends JDialog {
 		contentPane_.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane_);
 		contentPane_.setLayout(null);
-		
+
 		JLabel lblNutzerkennung = new JLabel("Nutzerkennung:");
 		lblNutzerkennung.setToolTipText("");
 		lblNutzerkennung.setFont(new Font("SansSerif", Font.PLAIN, 12));
 		lblNutzerkennung.setBounds(12, 14, 120, 14);
 		contentPane_.add(lblNutzerkennung);
-		
+
 		JLabel lblEmail = new JLabel("E-Mail:");
 		lblEmail.setFont(new Font("SansSerif", Font.PLAIN, 12));
 		lblEmail.setBounds(12, 42, 120, 14);
 		contentPane_.add(lblEmail);
-		
+
 		lblPasswort_ = new JLabel("Passwort:");
 		lblPasswort_.setFont(new Font("SansSerif", Font.PLAIN, 12));
 		lblPasswort_.setBounds(12, 123, 120, 14);
 		contentPane_.add(lblPasswort_);
-		
+
 		lblNutzerklasse_ = new JLabel("Nutzerklasse:");
 		lblNutzerklasse_.setFont(new Font("SansSerif", Font.PLAIN, 12));
 		lblNutzerklasse_.setBounds(12, 152, 120, 14);
 		contentPane_.add(lblNutzerklasse_);
-		
+
 		lblLehrstuhl_ = new JLabel("Lehrstuhl:");
 		lblLehrstuhl_.setFont(new Font("SansSerif", Font.PLAIN, 12));
 		lblLehrstuhl_.setBounds(12, 181, 120, 14);
 		contentPane_.add(lblLehrstuhl_);
-		
+
 		txtNutzerkennung_ = new JTextField();
-		txtNutzerkennung_.setToolTipText("<html>Geben Sie eine Nutzerkennung<br> für den Nutzer ein</html>");
+		txtNutzerkennung_
+				.setToolTipText("<html>Geben Sie eine Nutzerkennung<br> für den Nutzer ein</html>");
 		txtNutzerkennung_.setFont(new Font("SansSerif", Font.PLAIN, 12));
 		txtNutzerkennung_.setBounds(115, 11, 116, 20);
 		contentPane_.add(txtNutzerkennung_);
 		txtNutzerkennung_.setColumns(10);
-		
+
 		txtPasswort_ = new JTextField();
-		txtPasswort_.setToolTipText("<html>Geben Sie ein Passwort<br>für den Nutzer an</html>");
+		txtPasswort_
+				.setToolTipText("<html>Geben Sie ein Passwort<br>für den Nutzer an</html>");
 		txtPasswort_.setFont(new Font("SansSerif", Font.PLAIN, 12));
 		txtPasswort_.setColumns(10);
 		txtPasswort_.setBounds(115, 121, 116, 20);
 		contentPane_.add(txtPasswort_);
-		
+
 		txtEmail_ = new JTextField();
-		txtEmail_.setToolTipText("<html>Geben Sie die E-Mail Adresse<br> des Nutzers an</html>");
+		txtEmail_
+				.setToolTipText("<html>Geben Sie die E-Mail Adresse<br> des Nutzers an</html>");
 		txtEmail_.setFont(new Font("SansSerif", Font.PLAIN, 12));
 		txtEmail_.setColumns(10);
 		txtEmail_.setBounds(115, 40, 116, 20);
 		contentPane_.add(txtEmail_);
-		
+
 		comboBoxNutzerklasse_ = new JComboBox<String>();
-		comboBoxNutzerklasse_.setToolTipText("<html>Wählen Sie eine Nutzerklasse<br> für den Nutzers</html>");
+		comboBoxNutzerklasse_
+				.setToolTipText("<html>Wählen Sie eine Nutzerklasse<br> für den Nutzers</html>");
 		comboBoxNutzerklasse_.setFont(new Font("SansSerif", Font.PLAIN, 12));
 		comboBoxNutzerklasse_.setModel(new CmbboxFilterUserClass("blank"));
 		comboBoxNutzerklasse_.setBounds(115, 150, 116, 20);
 		contentPane_.add(comboBoxNutzerklasse_);
-		
+
 		comboBoxLehrstuhl_ = new JComboBox<String>();
-		comboBoxLehrstuhl_.setToolTipText("<html>Ordnen Sie den Nutzer<br> einem Lehrstuhl zu</html>");
+		comboBoxLehrstuhl_
+				.setToolTipText("<html>Ordnen Sie den Nutzer<br> einem Lehrstuhl zu</html>");
 		comboBoxLehrstuhl_.setEditable(true);
 		comboBoxLehrstuhl_.setFont(new Font("SansSerif", Font.PLAIN, 12));
-		comboBoxLehrstuhl_.setModel(new CmbboxFilterChairAcronym(comboBoxLehrstuhl_, "blank"));
+		comboBoxLehrstuhl_.setModel(new CmbboxFilterChairAcronym(
+				comboBoxLehrstuhl_, "blank"));
 		comboBoxLehrstuhl_.setBounds(115, 179, 116, 20);
 		contentPane_.add(comboBoxLehrstuhl_);
-		
+
 		JButton btnSpeichern = new JButton("Speichern");
-		btnSpeichern.setToolTipText("<html>Klicken Sie hier, um<br> Ihre Eingaben zu speichern</html>");
+		btnSpeichern
+				.setToolTipText("<html>Klicken Sie hier, um<br> Ihre Eingaben zu speichern</html>");
 		btnSpeichern.setBounds(141, 233, 90, 23);
 		btnSpeichern.addActionListener(new UserCreateDialogBtns(this, "save"));
 		contentPane_.add(btnSpeichern);
-		
+
 		JButton btnAbbrechen = new JButton("Abbrechen");
-		btnAbbrechen.setToolTipText("<html>Wenn Sie den Vorgang abbrechen wollen</html>");
+		btnAbbrechen
+				.setToolTipText("<html>Wenn Sie den Vorgang abbrechen wollen</html>");
 		btnAbbrechen.setBounds(42, 233, 90, 23);
-		btnAbbrechen.addActionListener(new UserCreateDialogBtns(this, "cancle"));
+		btnAbbrechen
+				.addActionListener(new UserCreateDialogBtns(this, "cancle"));
 		contentPane_.add(btnAbbrechen);
 		contentPane_.add(getLblFirstName());
 		contentPane_.add(getTxtFirstName());
 		contentPane_.add(getTxtLastName());
 		contentPane_.add(getLblLastName());
 		contentPane_.add(getChckbxUserDisabled());
-		
+
 	}
+
 	/**
 	 * @return the txtNutzerkennung
 	 */
 	public JTextField getTxtLogin() {
 		return txtNutzerkennung_;
 	}
+
 	/**
 	 * @return the txtPasswort
 	 */
 	public JTextField getTxtPasswort() {
 		return txtPasswort_;
 	}
+
 	/**
 	 * @return the txtEmail
 	 */
 	public JTextField getTxtEmail() {
 		return txtEmail_;
 	}
+
 	/**
 	 * @return the comboBoxNutzerklasse
 	 */
 	public JComboBox<String> getComboBoxUserClass() {
 		return comboBoxNutzerklasse_;
 	}
+
 	/**
 	 * @return the comboBoxLehrstuhl
 	 */
 	public JComboBox<String> getComboBoxLehrstuhl() {
 		return comboBoxLehrstuhl_;
 	}
+
 	/**
 	 * 
 	 * @return the lblFirstName
@@ -217,6 +237,7 @@ public class UserCreateDialog extends JDialog {
 		}
 		return lblFirstName_;
 	}
+
 	/**
 	 * 
 	 * @return he txtFirstName
@@ -224,13 +245,15 @@ public class UserCreateDialog extends JDialog {
 	public JTextField getTxtFirstName() {
 		if (txtFirstName_ == null) {
 			txtFirstName_ = new JTextField();
-			txtFirstName_.setToolTipText("<html>Geben Sie den Vornamen<br> des neuen Nutzers an</html>");
+			txtFirstName_
+					.setToolTipText("<html>Geben Sie den Vornamen<br> des neuen Nutzers an</html>");
 			txtFirstName_.setFont(new Font("SansSerif", Font.PLAIN, 12));
 			txtFirstName_.setColumns(10);
 			txtFirstName_.setBounds(115, 67, 116, 20);
 		}
 		return txtFirstName_;
 	}
+
 	/**
 	 * 
 	 * @return the txtLastName
@@ -238,13 +261,15 @@ public class UserCreateDialog extends JDialog {
 	public JTextField getTxtLastName() {
 		if (txtLastName_ == null) {
 			txtLastName_ = new JTextField();
-			txtLastName_.setToolTipText("<html>Geben Sie den Nachnamen<br> des neuen Nutzers an</html>");
+			txtLastName_
+					.setToolTipText("<html>Geben Sie den Nachnamen<br> des neuen Nutzers an</html>");
 			txtLastName_.setFont(new Font("SansSerif", Font.PLAIN, 12));
 			txtLastName_.setColumns(10);
 			txtLastName_.setBounds(115, 94, 116, 20);
 		}
 		return txtLastName_;
 	}
+
 	/**
 	 * 
 	 * @return the lblLastName
@@ -257,6 +282,7 @@ public class UserCreateDialog extends JDialog {
 		}
 		return lblLastName_;
 	}
+
 	/**
 	 * 
 	 * @return the chckbxUserDisabled
@@ -278,7 +304,8 @@ public class UserCreateDialog extends JDialog {
 	}
 
 	/**
-	 * @param editUser the editUser to set
+	 * @param editUser
+	 *            the editUser to set
 	 */
 	public void setEditUser(IntfUser editUser) {
 		this.editUser_ = editUser;

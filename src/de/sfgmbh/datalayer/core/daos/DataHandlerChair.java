@@ -14,44 +14,43 @@ import de.sfgmbh.datalayer.core.definitions.IntfDataObservable;
 import de.sfgmbh.datalayer.core.definitions.IntfDataObserver;
 import de.sfgmbh.datalayer.core.model.DataModel;
 import de.sfgmbh.datalayer.io.DataManagerPostgreSql;
+
 /**
  * DataHandler for chairs
  * 
  * @author denis
  * @author anna
- *
+ * 
  */
-public class DataHandlerChair implements IntfDataChair, IntfDataFilter, IntfDataObservable {
+public class DataHandlerChair implements IntfDataChair, IntfDataFilter,
+		IntfDataObservable {
 
 	private ArrayList<Object> observer_ = new ArrayList<Object>();
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see de.sfgmbh.datalayer.core.definitions.IntfDataChair#getAll()
 	 */
 	@Override
 	public List<IntfChair> getAll() {
 		List<IntfChair> listChair = new ArrayList<IntfChair>();
 
-		String SqlStatement = 
-				"SELECT public.user.*, public.chair.* " + 
-				"FROM  public.chair LEFT JOIN public.user " +
-				"ON public.chair.chairowner =  public.user.userid ";
-		
+		String SqlStatement = "SELECT public.user.*, public.chair.* "
+				+ "FROM  public.chair LEFT JOIN public.user "
+				+ "ON public.chair.chairowner =  public.user.userid ";
+
 		DataManagerPostgreSql dataManager = new DataManagerPostgreSql();
 		try {
-			
-			ResultSet resultSet = dataManager.select(
-					SqlStatement);
+
+			ResultSet resultSet = dataManager.select(SqlStatement);
 
 			while (resultSet.next()) {
 				listChair.add(this.makeChair(resultSet));
 			}
 
-			
-			
 		} catch (SQLException e) {
-			
+
 			DataModel
 					.getInstance()
 					.getExceptionsHandler()
@@ -59,14 +58,14 @@ public class DataHandlerChair implements IntfDataChair, IntfDataFilter, IntfData
 							("Es ist ein SQL-Fehler aufgetreten:<br /><br />" + e
 									.toString()), "Datenbank-Fehler!");
 		} catch (Exception e) {
-			
+
 			DataModel
 					.getInstance()
 					.getExceptionsHandler()
 					.setNewException(
 							("Es ist ein unbekannter Fehler in der Datenhaltung aufgetreten:<br /><br />" + e
 									.toString()), "Fehler!");
-		}finally{
+		} finally {
 			dataManager.dispose();
 		}
 
@@ -75,26 +74,25 @@ public class DataHandlerChair implements IntfDataChair, IntfDataFilter, IntfData
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see de.sfgmbh.datalayer.core.definitions.IntfDataChair#get(int)
 	 */
 	@Override
 	public IntfChair get(int chairId) {
 		DataManagerPostgreSql dataManager = new DataManagerPostgreSql();
 		try {
-			dataManager.prepare(
-					"SELECT public.user.*, public.chair.* " + 
-					"FROM  public.chair LEFT JOIN public.user " +
-					"ON public.chair.chairowner =  public.user.userid " +
-					"WHERE public.chair.chairid = ?");
-			dataManager.getPreparedStatement()
-					.setInt(1, chairId);
+			dataManager.prepare("SELECT public.user.*, public.chair.* "
+					+ "FROM  public.chair LEFT JOIN public.user "
+					+ "ON public.chair.chairowner =  public.user.userid "
+					+ "WHERE public.chair.chairid = ?");
+			dataManager.getPreparedStatement().setInt(1, chairId);
 			ResultSet resultSet = dataManager.selectPreparedStatement();
 			while (resultSet.next()) {
 				return this.makeChair(resultSet);
 			}
 
 		} catch (SQLException e) {
-			
+
 			DataModel
 					.getInstance()
 					.getExceptionsHandler()
@@ -102,14 +100,14 @@ public class DataHandlerChair implements IntfDataChair, IntfDataFilter, IntfData
 							("Es ist ein SQL-Fehler aufgetreten.<br /><br />Fehler DataHandlerUser-15:<br />" + e
 									.toString()), "Datenbank-Fehler!");
 		} catch (Exception e) {
-			
+
 			DataModel
 					.getInstance()
 					.getExceptionsHandler()
 					.setNewException(
 							("Es ist ein unbekannter Fehler in der Datenhaltung aufgetreten:<br /><br />Fehler DataHandlerUser-16:<br />" + e
 									.toString()), "Fehler!");
-		}finally{
+		} finally {
 			dataManager.dispose();
 		}
 
@@ -118,27 +116,27 @@ public class DataHandlerChair implements IntfDataChair, IntfDataFilter, IntfData
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see de.sfgmbh.datalayer.core.definitions.IntfDataChair#getForUser(int)
 	 */
 	@Override
 	public IntfChair getForUser(int userId) {
 		DataManagerPostgreSql dataManager = new DataManagerPostgreSql();
 		try {
-			dataManager.prepare(
-							"SELECT public.user.*, public.chair.* " +
-							"FROM public.lecturer, public.chair LEFT JOIN public.user " +
-							"ON public.chair.chairowner =  public.user.userid " +
-							"WHERE public.lecturer.chairid = public.chair.chairid " +
-							"AND public.lecturer.userid = ? ");
-			dataManager.getPreparedStatement()
-					.setInt(1, userId);
+			dataManager
+					.prepare("SELECT public.user.*, public.chair.* "
+							+ "FROM public.lecturer, public.chair LEFT JOIN public.user "
+							+ "ON public.chair.chairowner =  public.user.userid "
+							+ "WHERE public.lecturer.chairid = public.chair.chairid "
+							+ "AND public.lecturer.userid = ? ");
+			dataManager.getPreparedStatement().setInt(1, userId);
 			ResultSet resultSet = dataManager.selectPreparedStatement();
 			while (resultSet.next()) {
 				return this.makeChair(resultSet);
 			}
 
 		} catch (SQLException e) {
-			
+
 			DataModel
 					.getInstance()
 					.getExceptionsHandler()
@@ -146,14 +144,14 @@ public class DataHandlerChair implements IntfDataChair, IntfDataFilter, IntfData
 							("Es ist ein SQL-Fehler aufgetreten.<br /><br />Fehler DataHandlerChair-06:<br />" + e
 									.toString()), "Datenbank-Fehler!");
 		} catch (Exception e) {
-			
+
 			DataModel
 					.getInstance()
 					.getExceptionsHandler()
 					.setNewException(
 							("Es ist ein unbekannter Fehler in der Datenhaltung aufgetreten:<br /><br />Fehler DataHandlerChair-07:<br />" + e
 									.toString()), "Fehler!");
-		}finally{
+		} finally {
 			dataManager.dispose();
 		}
 
@@ -162,26 +160,27 @@ public class DataHandlerChair implements IntfDataChair, IntfDataFilter, IntfData
 
 	/*
 	 * (non-Javadoc)
-	 * @see de.sfgmbh.datalayer.core.definitions.IntfDataChair#getForAcronym(java.lang.String)
+	 * 
+	 * @see
+	 * de.sfgmbh.datalayer.core.definitions.IntfDataChair#getForAcronym(java
+	 * .lang.String)
 	 */
 	@Override
 	public IntfChair getForAcronym(String acronym) {
 		DataManagerPostgreSql dataManager = new DataManagerPostgreSql();
 		try {
-			dataManager.prepare(
-					"SELECT public.user.*, public.chair.* " + 
-					"FROM public.chair  LEFT JOIN public.user " +
-					"ON public.chair.chairowner =  public.user.userid " +
-					"WHERE public.chair.chairacronym = ? ");
-			dataManager.getPreparedStatement()
-					.setString(1, acronym);
+			dataManager.prepare("SELECT public.user.*, public.chair.* "
+					+ "FROM public.chair  LEFT JOIN public.user "
+					+ "ON public.chair.chairowner =  public.user.userid "
+					+ "WHERE public.chair.chairacronym = ? ");
+			dataManager.getPreparedStatement().setString(1, acronym);
 			ResultSet resultSet = dataManager.selectPreparedStatement();
 			while (resultSet.next()) {
 				return this.makeChair(resultSet);
 			}
 
 		} catch (SQLException e) {
-			
+
 			DataModel
 					.getInstance()
 					.getExceptionsHandler()
@@ -189,14 +188,14 @@ public class DataHandlerChair implements IntfDataChair, IntfDataFilter, IntfData
 							("Es ist ein SQL-Fehler aufgetreten.<br /><br />Fehler DataHandlerChair-08:<br />" + e
 									.toString()), "Datenbank-Fehler!");
 		} catch (Exception e) {
-			
+
 			DataModel
 					.getInstance()
 					.getExceptionsHandler()
 					.setNewException(
 							("Es ist ein unbekannter Fehler in der Datenhaltung aufgetreten:<br /><br />Fehler DataHandlerChair-09:<br />" + e
 									.toString()), "Fehler!");
-		}finally{
+		} finally {
 			dataManager.dispose();
 		}
 
@@ -205,11 +204,14 @@ public class DataHandlerChair implements IntfDataChair, IntfDataFilter, IntfData
 
 	/*
 	 * (non-Javadoc)
-	 * @see de.sfgmbh.datalayer.core.definitions.IntfDataChair#delete(de.sfgmbh.applayer.core.definitions.IntfChair)
+	 * 
+	 * @see
+	 * de.sfgmbh.datalayer.core.definitions.IntfDataChair#delete(de.sfgmbh.applayer
+	 * .core.definitions.IntfChair)
 	 */
 	@Override
 	public boolean delete(IntfChair toBeDeletedChair) {
-		
+
 		if (toBeDeletedChair != null) {
 			boolean returnState = true;
 
@@ -227,7 +229,7 @@ public class DataHandlerChair implements IntfDataChair, IntfDataFilter, IntfData
 					this.update();
 				} catch (SQLException e) {
 					returnState = false;
-					
+
 					DataModel
 							.getInstance()
 							.getExceptionsHandler()
@@ -236,7 +238,7 @@ public class DataHandlerChair implements IntfDataChair, IntfDataFilter, IntfData
 											.toString()), "Datenbank-Fehler!");
 				} catch (Exception e) {
 					returnState = false;
-					
+
 					DataModel
 							.getInstance()
 							.getExceptionsHandler()
@@ -252,71 +254,111 @@ public class DataHandlerChair implements IntfDataChair, IntfDataFilter, IntfData
 
 	/*
 	 * (non-Javadoc)
-	 * @see de.sfgmbh.datalayer.core.definitions.IntfDataChair#save(de.sfgmbh.applayer.core.definitions.IntfChair)
+	 * 
+	 * @see
+	 * de.sfgmbh.datalayer.core.definitions.IntfDataChair#save(de.sfgmbh.applayer
+	 * .core.definitions.IntfChair)
 	 */
 	@Override
 	public boolean save(IntfChair chair) {
 		DataManagerPostgreSql dataManager = new DataManagerPostgreSql();
 		if (chair.getChairId_() == -1) {
 			boolean returnState = true;
-				try {
-					
-					dataManager.prepare("INSERT INTO public.chair"
-							+ "(chairname, chairowner, buildingid, chairlevel, faculty, chairacronym)"
-							+ "VALUES (?,?,?,?,?,?)");
-					dataManager.getPreparedStatement().setString(1, chair.getChairName());
-					if (chair.getChairOwner() != null) {
-						dataManager.getPreparedStatement().setInt(2, chair.getChairOwner().getUserId_());
-					} else {
-						dataManager.getPreparedStatement().setNull(2, java.sql.Types.INTEGER);
-					}
-					dataManager.getPreparedStatement().setInt(3, chair.getBuildingId());
-					dataManager.getPreparedStatement().setString(4, chair.getChairLevel());
-					dataManager.getPreparedStatement().setString(5, chair.getFaculty());
-					dataManager.getPreparedStatement().setString(6, chair.getAcronym());
-					dataManager.executePreparedStatement();
-					this.update();
-				} catch (SQLException e) {
-					
-					DataModel.getInstance().getExceptionsHandler().setNewException(("Es ist ein SQL-Fehler aufgetreten:<br /><br />" + e.toString()), "Datenbank-Fehler!");
-					returnState =  false;
-				} catch (Exception e) {
-					
-					DataModel.getInstance().getExceptionsHandler().setNewException(("Es ist ein unbekannter Fehler in der Datenhaltung aufgetreten:<br /><br />" + e.toString()), "Fehler!");
-					returnState =  false;
-				}
+			try {
 
-				dataManager.dispose();
-				return returnState;
+				dataManager
+						.prepare("INSERT INTO public.chair"
+								+ "(chairname, chairowner, buildingid, chairlevel, faculty, chairacronym)"
+								+ "VALUES (?,?,?,?,?,?)");
+				dataManager.getPreparedStatement().setString(1,
+						chair.getChairName());
+				if (chair.getChairOwner() != null) {
+					dataManager.getPreparedStatement().setInt(2,
+							chair.getChairOwner().getUserId_());
+				} else {
+					dataManager.getPreparedStatement().setNull(2,
+							java.sql.Types.INTEGER);
+				}
+				dataManager.getPreparedStatement().setInt(3,
+						chair.getBuildingId());
+				dataManager.getPreparedStatement().setString(4,
+						chair.getChairLevel());
+				dataManager.getPreparedStatement().setString(5,
+						chair.getFaculty());
+				dataManager.getPreparedStatement().setString(6,
+						chair.getAcronym());
+				dataManager.executePreparedStatement();
+				this.update();
+			} catch (SQLException e) {
+
+				DataModel
+						.getInstance()
+						.getExceptionsHandler()
+						.setNewException(
+								("Es ist ein SQL-Fehler aufgetreten:<br /><br />" + e
+										.toString()), "Datenbank-Fehler!");
+				returnState = false;
+			} catch (Exception e) {
+
+				DataModel
+						.getInstance()
+						.getExceptionsHandler()
+						.setNewException(
+								("Es ist ein unbekannter Fehler in der Datenhaltung aufgetreten:<br /><br />" + e
+										.toString()), "Fehler!");
+				returnState = false;
+			}
+
+			dataManager.dispose();
+			return returnState;
 		} else {
 			boolean returnState = true;
 			try {
-				dataManager.prepare("UPDATE public.chair SET "
-						+ "chairname = ?, chairowner = ?, buildingid = ?, chairlevel = ?, faculty = ?, chairacronym = ? "
-						+ "WHERE chairid = ?");
-				dataManager.getPreparedStatement().setString(1, chair.getChairName());
+				dataManager
+						.prepare("UPDATE public.chair SET "
+								+ "chairname = ?, chairowner = ?, buildingid = ?, chairlevel = ?, faculty = ?, chairacronym = ? "
+								+ "WHERE chairid = ?");
+				dataManager.getPreparedStatement().setString(1,
+						chair.getChairName());
 				if (chair.getChairOwner() != null) {
-					dataManager.getPreparedStatement().setInt(2, chair.getChairOwner().getUserId_());
+					dataManager.getPreparedStatement().setInt(2,
+							chair.getChairOwner().getUserId_());
 				} else {
-					dataManager.getPreparedStatement().setNull(2, java.sql.Types.INTEGER);
+					dataManager.getPreparedStatement().setNull(2,
+							java.sql.Types.INTEGER);
 				}
-				dataManager.getPreparedStatement().setInt(3, chair.getBuildingId());
-				dataManager.getPreparedStatement().setString(4, chair.getChairLevel());
-				dataManager.getPreparedStatement().setString(5, chair.getFaculty());
-				dataManager.getPreparedStatement().setString(6, chair.getAcronym());
-				dataManager.getPreparedStatement().setInt(7, chair.getChairId_());
+				dataManager.getPreparedStatement().setInt(3,
+						chair.getBuildingId());
+				dataManager.getPreparedStatement().setString(4,
+						chair.getChairLevel());
+				dataManager.getPreparedStatement().setString(5,
+						chair.getFaculty());
+				dataManager.getPreparedStatement().setString(6,
+						chair.getAcronym());
+				dataManager.getPreparedStatement().setInt(7,
+						chair.getChairId_());
 				returnState = dataManager.executePreparedStatement();
 				this.update();
 			} catch (SQLException e) {
-				
-				DataModel.getInstance().getExceptionsHandler().setNewException(("Es ist ein SQL-Fehler aufgetreten:<br /><br />" + e.toString()), "Datenbank-Fehler!");
+
+				DataModel
+						.getInstance()
+						.getExceptionsHandler()
+						.setNewException(
+								("Es ist ein SQL-Fehler aufgetreten:<br /><br />" + e
+										.toString()), "Datenbank-Fehler!");
 				returnState = false;
 			} catch (Exception e) {
-				
-				DataModel.getInstance().getExceptionsHandler().setNewException(("Es ist ein unbekannter Fehler (in der Datenhaltung aufgetreten:<br /><br />" + e.toString()), "Fehler!");
+
+				DataModel
+						.getInstance()
+						.getExceptionsHandler()
+						.setNewException(
+								("Es ist ein unbekannter Fehler (in der Datenhaltung aufgetreten:<br /><br />" + e
+										.toString()), "Fehler!");
 				returnState = false;
 			}
-			
+
 			dataManager.dispose();
 			return returnState;
 		}
@@ -324,7 +366,10 @@ public class DataHandlerChair implements IntfDataChair, IntfDataFilter, IntfData
 
 	/*
 	 * (non-Javadoc)
-	 * @see de.sfgmbh.datalayer.core.definitions.IntfDataFilter#getByFilter(java.util.HashMap)
+	 * 
+	 * @see
+	 * de.sfgmbh.datalayer.core.definitions.IntfDataFilter#getByFilter(java.
+	 * util.HashMap)
 	 */
 	@Override
 	public List<IntfChair> getByFilter(HashMap<String, String> filter) {
@@ -362,7 +407,7 @@ public class DataHandlerChair implements IntfDataChair, IntfDataFilter, IntfData
 
 			filterDm.dispose();
 		} catch (SQLException e) {
-			
+
 			DataModel
 					.getInstance()
 					.getExceptionsHandler()
@@ -370,7 +415,7 @@ public class DataHandlerChair implements IntfDataChair, IntfDataFilter, IntfData
 							("Es ist ein SQL-Fehler aufgetreten:<br /><br />" + e
 									.toString()), "Datenbank-Fehler!");
 		} catch (Exception e) {
-			
+
 			DataModel
 					.getInstance()
 					.getExceptionsHandler()
@@ -384,7 +429,10 @@ public class DataHandlerChair implements IntfDataChair, IntfDataFilter, IntfData
 
 	/*
 	 * (non-Javadoc)
-	 * @see de.sfgmbh.datalayer.core.definitions.IntfDataChair#makeChair(java.sql.ResultSet)
+	 * 
+	 * @see
+	 * de.sfgmbh.datalayer.core.definitions.IntfDataChair#makeChair(java.sql
+	 * .ResultSet)
 	 */
 	@Override
 	public IntfChair makeChair(ResultSet resultSet) {
@@ -395,14 +443,15 @@ public class DataHandlerChair implements IntfDataChair, IntfDataFilter, IntfData
 			returnChair.setChairId(resultSet.getInt("chairid"));
 			returnChair.setChairName(resultSet.getString("chairname"));
 			if (resultSet.getInt("chairowner") > 0) {
-				returnChair.setChairOwner(DataModel.getInstance().getDataHandlerUser().makeUser(resultSet, "nochair"));
+				returnChair.setChairOwner(DataModel.getInstance()
+						.getDataHandlerUser().makeUser(resultSet, "nochair"));
 			}
 			returnChair.setBuildingId(resultSet.getInt("buildingid"));
 			returnChair.setChairLevel(resultSet.getString("chairlevel"));
 			returnChair.setFaculty(resultSet.getString("faculty"));
 			returnChair.setAcronym(resultSet.getString("chairacronym"));
 		} catch (SQLException e) {
-			
+
 			DataModel
 					.getInstance()
 					.getExceptionsHandler()
@@ -410,7 +459,7 @@ public class DataHandlerChair implements IntfDataChair, IntfDataFilter, IntfData
 							("Es ist ein SQL-Fehler (DataHandlerChair-04) aufgetreten:<br /><br />" + e
 									.toString()), "Datenbank-Fehler!");
 		} catch (Exception e) {
-			
+
 			DataModel
 					.getInstance()
 					.getExceptionsHandler()
@@ -424,15 +473,18 @@ public class DataHandlerChair implements IntfDataChair, IntfDataFilter, IntfData
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see de.sfgmbh.datalayer.core.definitions.IntfDataObservable#update()
 	 */
 	@Override
 	public void update() {
-		
-		// Create a private observer list to avoid ConcurrentModificationException
+
+		// Create a private observer list to avoid
+		// ConcurrentModificationException
 		@SuppressWarnings("unchecked")
-		ArrayList<IntfDataObserver> currentObservers = (ArrayList<IntfDataObserver>) observer_.clone();
-		
+		ArrayList<IntfDataObserver> currentObservers = (ArrayList<IntfDataObserver>) observer_
+				.clone();
+
 		for (IntfDataObserver observer : currentObservers) {
 			if (observer instanceof IntfDataObserver) {
 				observer.change();
@@ -442,7 +494,10 @@ public class DataHandlerChair implements IntfDataChair, IntfDataFilter, IntfData
 
 	/*
 	 * (non-Javadoc)
-	 * @see de.sfgmbh.datalayer.core.definitions.IntfDataObservable#register(de.sfgmbh.datalayer.core.definitions.IntfDataObserver)
+	 * 
+	 * @see
+	 * de.sfgmbh.datalayer.core.definitions.IntfDataObservable#register(de.sfgmbh
+	 * .datalayer.core.definitions.IntfDataObserver)
 	 */
 	@Override
 	public void register(IntfDataObserver observer) {
@@ -460,7 +515,10 @@ public class DataHandlerChair implements IntfDataChair, IntfDataFilter, IntfData
 
 	/*
 	 * (non-Javadoc)
-	 * @see de.sfgmbh.datalayer.core.definitions.IntfDataObservable#unregister(de.sfgmbh.datalayer.core.definitions.IntfDataObserver)
+	 * 
+	 * @see
+	 * de.sfgmbh.datalayer.core.definitions.IntfDataObservable#unregister(de
+	 * .sfgmbh.datalayer.core.definitions.IntfDataObserver)
 	 */
 	@Override
 	public void unregister(IntfDataObserver observer) {
