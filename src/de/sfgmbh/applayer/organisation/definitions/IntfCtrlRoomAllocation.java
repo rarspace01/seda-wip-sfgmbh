@@ -17,7 +17,7 @@ public interface IntfCtrlRoomAllocation {
 	 * @param roomAllocation
 	 * @return true on successful accept
 	 */
-	public abstract boolean acceptRoomAllocation(IntfRoomAllocation ra);
+	public abstract boolean acceptRoomAllocation(IntfRoomAllocation roomAllocation);
 
 	/**
 	 * Get all room allocations

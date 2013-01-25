@@ -207,8 +207,8 @@ public class RoomAllocation implements IntfRoomAllocation {
 	@Override
 	public void setConflictingAllocations_() {
 		if (this.conflictingAllocations_ == null) {
-			List<IntfRoomAllocation> ral = AppModel.getInstance().getRepositoryRoomAllocation().getConflictingAllocation(this);
-			this.conflictingAllocations_ = ral;
+			List<IntfRoomAllocation> roomAllocationList = AppModel.getInstance().getRepositoryRoomAllocation().getConflictingAllocation(this);
+			this.conflictingAllocations_ = roomAllocationList;
 		}
 	}
 	
@@ -217,8 +217,8 @@ public class RoomAllocation implements IntfRoomAllocation {
 	 */
 	@Override
 	public void setForceConflictingAllocations_() {
-		List<IntfRoomAllocation> ral = AppModel.getInstance().getRepositoryRoomAllocation().getConflictingAllocation(this);
-		this.conflictingAllocations_ = ral;
+		List<IntfRoomAllocation> roomAllocationList = AppModel.getInstance().getRepositoryRoomAllocation().getConflictingAllocation(this);
+		this.conflictingAllocations_ = roomAllocationList;
 	}
 	
 	/* (non-Javadoc)

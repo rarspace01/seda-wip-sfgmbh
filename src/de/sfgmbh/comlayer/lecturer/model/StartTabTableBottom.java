@@ -96,17 +96,17 @@ public class StartTabTableBottom extends DefaultTableModel implements IntfAppObs
 				filter.put("course", ViewManager.getInstance().getLecturerStartTab().getComboBoxCourse().getSelectedItem().toString());
 			}
 			
-			for (IntfRoomAllocation ra : AppModel.getInstance().getRepositoryRoomAllocation().getByFilter(filter)){
+			for (IntfRoomAllocation roomAllocation : AppModel.getInstance().getRepositoryRoomAllocation().getByFilter(filter)){
 				try {
 					Object[] row = {
-							ra.getCourse_().getCourseAcronym_(), 
-							ra.getCourse_().getLecturer_().getlName_(), 
-							ViewHelper.getTime(ra.getTime_()), 
-							ViewHelper.getDay(ra.getDay_()), 
-							ra.getSemester_(), 
-							ra.getRoom_().getRoomNumber_(),
-							ViewHelper.getAllocationStatus(ra.getApproved_()),
-							ra
+							roomAllocation.getCourse_().getCourseAcronym_(), 
+							roomAllocation.getCourse_().getLecturer_().getlName_(), 
+							ViewHelper.getTime(roomAllocation.getTime_()), 
+							ViewHelper.getDay(roomAllocation.getDay_()), 
+							roomAllocation.getSemester_(), 
+							roomAllocation.getRoom_().getRoomNumber_(),
+							ViewHelper.getAllocationStatus(roomAllocation.getApproved_()),
+							roomAllocation
 							};
 					this.addRow(row);
 	

@@ -149,11 +149,11 @@ public class LiveTickerPanel extends JPanel {
 		String returnString = "";
 		
 		// Build the string for all allocations
-		for (IntfRoomAllocation ra : roomAllocations) {
+		for (IntfRoomAllocation roomAllocation : roomAllocations) {
 			returnString = 
-					returnString + ViewHelper.getTime(ra.getTime_()) + " Uhr<br />" +
-					"Raum: " + ra.getRoom_().getRoomNumber_() + "<br />" +
-					"<strong>" + ra.getCourse_().getCourseAcronym_() + "</strong> (" + ra.getCourse_().getCourseKind_() + ")<br /><br />";
+					returnString + ViewHelper.getTime(roomAllocation.getTime_()) + " Uhr<br />" +
+					"Raum: " + roomAllocation.getRoom_().getRoomNumber_() + "<br />" +
+					"<strong>" + roomAllocation.getCourse_().getCourseAcronym_() + "</strong> (" + roomAllocation.getCourse_().getCourseKind_() + ")<br /><br />";
  		}
 		
 		return returnString;

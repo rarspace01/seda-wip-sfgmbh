@@ -176,8 +176,8 @@ public class RequestTabBtnsControl implements ActionListener,
 		}
 	}
 
-	private void denyAllocation(IntfRoomAllocation ra) {
-		if (ra == null) {
+	private void denyAllocation(IntfRoomAllocation roomAllocation) {
+		if (roomAllocation == null) {
 			AppModel.getInstance()
 					.getExceptionHandler()
 					.setNewException(
@@ -185,7 +185,7 @@ public class RequestTabBtnsControl implements ActionListener,
 							"Fehler!");
 			return;
 		}
-		ctrlRoomAllocation_.denyRoomAllocation(ra);
+		ctrlRoomAllocation_.denyRoomAllocation(roomAllocation);
 	}
 
 	/*

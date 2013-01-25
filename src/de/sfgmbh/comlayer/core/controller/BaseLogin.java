@@ -85,25 +85,25 @@ public class BaseLogin implements ActionListener {
 					List<IntfRoomAllocation> roomAllocationsForLogin = AppModel.getInstance().getRepositoryRoomAllocation().getByFilter(filter);
 					
 					// Check the counter proposals
-					for (IntfRoomAllocation ra : roomAllocationsForLogin) {
-						if (ra.getApproved_().equals("counter")) {
+					for (IntfRoomAllocation roomAllocation : roomAllocationsForLogin) {
+						if (roomAllocation.getApproved_().equals("counter")) {
 							String orgaMsg = "";
-							if (ra.getOrgaMessage_().length() > 1) {
+							if (roomAllocation.getOrgaMessage_().length() > 1) {
 								orgaMsg = "Folgende Nachricht wurde Ihnen von der Verwaltung dazu hinterlegt:<br /><span style='font-style:italic;'>" +
-										ra.getOrgaMessage_().replace("\r", "<br />") + "</span><br /><br />";
+										roomAllocation.getOrgaMessage_().replace("\r", "<br />") + "</span><br /><br />";
 							}
 							QuestionDialog dialog = new QuestionDialog("Zu Ihrer Veranstaltung <strong>" +
-									ra.getCourse_().getCourseAcronym_() + " / " + ra.getCourse_().getCourseKind_() + " im " + ra.getSemester_() +
+									roomAllocation.getCourse_().getCourseAcronym_() + " / " + roomAllocation.getCourse_().getCourseKind_() + " im " + roomAllocation.getSemester_() +
 									"</strong> konnte der Termin nicht gewährt werden. Die Verwaltung schlägt Ihnen stattdessen folgenden Termin vor:<br /><br /><strong>" +
-									ViewHelper.getDay(ra.getDay_()) + " von " +
-									ViewHelper.getTime(ra.getTime_()) + " Uhr<br />" +
-									ra.getRoom_().getRoomNumber_() + "<br /></strong> (Plätze: " + ra.getRoom_().getSeats_() +
-									", PC-Plätze: " + ra.getRoom_().getPcseats_() +
-									", Beamer: " + ra.getRoom_().getBeamer_() + 
-									", Visualizer: " + ra.getRoom_().getVisualizer_() +
-									", Overheads: " + ra.getRoom_().getOverheads_() +
-									", Tafeln: " + ra.getRoom_().getChalkboards_() + 
-									", Whiteboards: " + ra.getRoom_().getWhiteboards_() + ")<br /><br />" +
+									ViewHelper.getDay(roomAllocation.getDay_()) + " von " +
+									ViewHelper.getTime(roomAllocation.getTime_()) + " Uhr<br />" +
+									roomAllocation.getRoom_().getRoomNumber_() + "<br /></strong> (Plätze: " + roomAllocation.getRoom_().getSeats_() +
+									", PC-Plätze: " + roomAllocation.getRoom_().getPcseats_() +
+									", Beamer: " + roomAllocation.getRoom_().getBeamer_() + 
+									", Visualizer: " + roomAllocation.getRoom_().getVisualizer_() +
+									", Overheads: " + roomAllocation.getRoom_().getOverheads_() +
+									", Tafeln: " + roomAllocation.getRoom_().getChalkboards_() + 
+									", Whiteboards: " + roomAllocation.getRoom_().getWhiteboards_() + ")<br /><br />" +
 									orgaMsg +
 									"Wollen Sie diesen Termin annehmen?<br /> " +
 									"Wenn Sie sich noch nicht sicher sind, so verneinen Sie dies bitte. " +
@@ -111,7 +111,7 @@ public class BaseLogin implements ActionListener {
 									"kommt. Nehmen Sie den Termin jetzt an, so ist er sofort freigeben!", 
 									"Gegenvorschlag!");
 							StartTab startTab = ViewManager.getInstance().getLecturerStartTab();
-							startTab.setRoomAllocation(ra);
+							startTab.setRoomAllocation(roomAllocation);
 							dialog.register(startTab);
 							dialog.setVisible(true);
 						}
@@ -122,15 +122,15 @@ public class BaseLogin implements ActionListener {
 					boolean hasUnseenDenied = false;
 					String message = "Leider konnte ein oder mehrerer Ihrer gewünschten Veranstaltungstermine nicht genehmigt werden.<br />" +
 							"Dies betrifft folgende Veranstaltung(en):<br /><br />";
-					for (IntfRoomAllocation ra : roomAllocationsForLogin) {
-						if (ra.getApproved_().equals("denied") && ra.getComment_().contains("denied_at_")) {
+					for (IntfRoomAllocation roomAllocation : roomAllocationsForLogin) {
+						if (roomAllocation.getApproved_().equals("denied") && roomAllocation.getComment_().contains("denied_at_")) {
 							hasUnseenDenied = true;
-							ctrlStartTab.hasBeenSeenAllocation(ra);
+							ctrlStartTab.hasBeenSeenAllocation(roomAllocation);
 							
-							message = message + ra.getCourse_().getCourseAcronym_() + " in " +
-									ra.getRoom_().getRoomNumber_() + " am " +
-									ViewHelper.getDay(ra.getDay_()) + " von " +
-									ViewHelper.getTime(ra.getTime_()) + "Uhr<br />";
+							message = message + roomAllocation.getCourse_().getCourseAcronym_() + " in " +
+									roomAllocation.getRoom_().getRoomNumber_() + " am " +
+									ViewHelper.getDay(roomAllocation.getDay_()) + " von " +
+									ViewHelper.getTime(roomAllocation.getTime_()) + "Uhr<br />";
 						}
 					}
 					if (hasUnseenDenied) {
