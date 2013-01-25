@@ -31,6 +31,7 @@ import de.sfgmbh.comlayer.lecturer.controller.TimetableTabCmbbox;
  * 
  * @author denis
  * @author christian
+ * @author anna
  *
  */
 public class TimetableTab extends JPanel {
