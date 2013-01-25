@@ -26,9 +26,8 @@ import de.sfgmbh.comlayer.timetable.controller.CoreTimetableTabBtnPdf;
 /**
  * Tab for the Students to let them view their colelcted Tiemtable
  * 
- * @author anna - guiparts
- * @author denis - methods
- * 
+ * @author anna
+ * @author denis
  */
 public class CoreTimetableTab extends JPanel {
 
@@ -41,6 +40,9 @@ public class CoreTimetableTab extends JPanel {
 	private JLabel lblvaluesemester_;
 	private JButton btnTimetableReset_;
 
+	/**
+	 * Create the tab
+	 */
 	public CoreTimetableTab() {
 		initialize();
 	}

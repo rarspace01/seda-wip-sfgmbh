@@ -10,7 +10,6 @@ import de.sfgmbh.applayer.core.controller.CtrlPdf;
 import de.sfgmbh.applayer.core.definitions.IntfCtrlPdf;
 import de.sfgmbh.comlayer.core.controller.FileFilters;
 import de.sfgmbh.comlayer.core.controller.ViewManager;
-import de.sfgmbh.comlayer.core.views.InfoDialog;
 
 /**
  * Action listener class for the PDF output
@@ -21,7 +20,6 @@ import de.sfgmbh.comlayer.core.views.InfoDialog;
 public class CoreTimetableTabBtnPdf implements ActionListener {
 
 	private String navAction_;
-	protected InfoDialog infoWindow;
 
 	/**
 	 * constructor
@@ -84,11 +82,5 @@ public class CoreTimetableTabBtnPdf implements ActionListener {
 		if (this.navAction_.equals("reset")) {
 			ViewManager.getInstance().getCoreTimetableTab().resetPlan();
 		}
-	}
-
-	// Manage InfoWindow instance
-	public InfoDialog getInfoWindow(String msg) {
-		this.infoWindow = new InfoDialog(msg);
-		return this.infoWindow;
 	}
 }
