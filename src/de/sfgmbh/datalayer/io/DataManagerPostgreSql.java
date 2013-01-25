@@ -163,7 +163,7 @@ public class DataManagerPostgreSql {
 				dataBaseErrorOutput = "Ein Raum kann nicht gelöscht werden, solange es noch Raumanfragen gibt, die ihm zugeordnet sind. Dies betrifft auch schon abgelehnte Raumanfragen - räumen Sie also ggf. die Raumanfragen in der Raumanfragenverwaltung auf.";
 			}
 			if (dataBaseError.contains("FK_courseid") && dataBaseError.contains("course") && dataBaseError.contains("courseid") && dataBaseError.contains("roomallocation")) {
-				dataBaseErrorOutput = "Eine Veranstaltung die noch Raumanfragen hat, kann nicht gelöscht werden. Wiederrufen Sie alle Raumanfragen und bitten sie die Verwaltung, diese mit der Aufräumen-Funktion aus dem System zu entfernen.";
+				dataBaseErrorOutput = "Eine Veranstaltung die noch Raumanfragen hat, kann nicht gelöscht werden. Widerrufen Sie alle Raumanfragen und bitten sie die Verwaltung, diese mit der Aufräumen-Funktion aus dem System zu entfernen.";
 			}
 			
 			DataModel
@@ -280,7 +280,7 @@ public class DataManagerPostgreSql {
 				dataBaseErrorOutput = "Ein Raum kann nicht gelöscht werden, solange es noch Raumanfragen gibt, die ihm zugeordnet sind. Dies betrifft auch schon abgelehnte Raumanfragen - räumen Sie also ggf. die Raumanfragen in der Raumanfragenverwaltung auf.";
 			}
 			if (dataBaseError.contains("FK_courseid") && dataBaseError.contains("course") && dataBaseError.contains("courseid") && dataBaseError.contains("roomallocation")) {
-				dataBaseErrorOutput = "Eine Veranstaltung die noch Raumanfragen hat, kann nicht gelöscht werden. Wiederrufen Sie alle Raumanfragen und bitten sie die Verwaltung, diese mit der Aufräumen-Funktion aus dem System zu entfernen.";
+				dataBaseErrorOutput = "Eine Veranstaltung die noch Raumanfragen hat, kann nicht gelöscht werden. Widerrufen Sie alle Raumanfragen und bitten sie die Verwaltung, diese mit der Aufräumen-Funktion aus dem System zu entfernen.";
 			}
 			
 			DataModel
