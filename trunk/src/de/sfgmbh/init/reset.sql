@@ -431,17 +431,17 @@ SELECT pg_catalog.setval('building_bulidingid_seq', 1, false);
 -- Data for Name: chair; Type: TABLE DATA; Schema: public; Owner: WIP-SFGmbH
 --
 
-INSERT INTO chair VALUES (103, 'Lehrstuhl für Wirtschaftsinformatik, insb. Informationssysteme in Dienstleistungsbereichen', 105, -1, '4.1', 'WI', 'ISDL');
-INSERT INTO chair VALUES (107, 'Lehrstuhl für Wirtschaftsinformatik, insb. Industrielle Informationssysteme', 150, -1, '4.1', 'WI', 'IIS');
-INSERT INTO chair VALUES (100, 'Lehrstuhl für Informatik, insbesondere Kommunikationsdienste, Telekommunikationssysteme und Rechnernetze', 101, -1, '', 'WI', 'KTR');
-INSERT INTO chair VALUES (110, 'Lehrstuhl für Angewandte Informatik, insb. Kulturinformatik', 152, -1, '', 'WI', 'KInf');
-INSERT INTO chair VALUES (108, 'Lehrstuhl für Angewandte Informatik, insb. Kognitive Systeme', 151, -1, '', 'WI', 'KogSys');
-INSERT INTO chair VALUES (105, 'Lehrstuhl für Angewandte Informatik, insb.Human Computer Interaction', 153, -1, '', 'WI', 'HCI');
-INSERT INTO chair VALUES (109, 'Lehrstuhl für Angewandte Informatik, insb. Medieninformatik', 154, -1, '', 'WI', 'MI');
-INSERT INTO chair VALUES (104, 'Lehrstuhl für Wirtschaftsinformatik, insb. Systementwicklung und Datenbankanwendung', 112, -1, '1', 'WI', 'SEDA');
-INSERT INTO chair VALUES (111, 'Lehrstuhl für Informatik, insb. Distributed Systems Group', 157, -1, '', 'WI', 'DSG');
-INSERT INTO chair VALUES (112, 'Lehrstuhl für Informatik, insb. Softwaretechnik', 158, -1, '', 'WI', 'SWT');
-INSERT INTO chair VALUES (101, 'Lehrstuhl für Informatik, insb. Grundlagen der Informatik', 159, -1, '', 'WI', 'GdI');
+INSERT INTO chair VALUES (103, 'Informationssysteme in Dienstleistungsbereichen', 105, -1, '4.1', 'WI', 'ISDL');
+INSERT INTO chair VALUES (107, 'Industrielle Informationssysteme', 150, -1, '4.1', 'WI', 'IIS');
+INSERT INTO chair VALUES (100, 'Kommunikationsdienste, Telekommunikationssysteme und Rechnernetze', 101, -1, '', 'WI', 'KTR');
+INSERT INTO chair VALUES (110, 'Kulturinformatik', 152, -1, '', 'WI', 'KInf');
+INSERT INTO chair VALUES (108, 'Kognitive Systeme', 151, -1, '', 'WI', 'KogSys');
+INSERT INTO chair VALUES (105, 'Human Computer Interaction', 153, -1, '', 'WI', 'HCI');
+INSERT INTO chair VALUES (109, 'Medieninformatik', 154, -1, '', 'WI', 'MI');
+INSERT INTO chair VALUES (104, 'Systementwicklung und Datenbankanwendung', 112, -1, '1', 'WI', 'SEDA');
+INSERT INTO chair VALUES (111, 'Distributed Systems Group', 157, -1, '', 'WI', 'DSG');
+INSERT INTO chair VALUES (112, 'Softwaretechnik', 158, -1, '', 'WI', 'SWT');
+INSERT INTO chair VALUES (101, 'Grundlagen der Informatik', 159, -1, '', 'WI', 'GdI');
 
 
 --
@@ -455,17 +455,17 @@ SELECT pg_catalog.setval('chair_chairid_seq', 112, true);
 -- Data for Name: course; Type: TABLE DATA; Schema: public; Owner: WIP-SFGmbH
 --
 
-INSERT INTO course VALUES (129, 134, 'SEDA-EbIS-1', 'Entwicklung betrieblicher Informationssysteme', 2, 'Übung', '', 25, true);
+INSERT INTO course VALUES (129, 134, 'SEDA-EbIS-1', 'Entwicklung betrieblicher Informationssysteme', 2, 'Tutorium', '', 25, true);
 INSERT INTO course VALUES (130, 154, 'MI-AuD-B', 'Algorithmen und Datenstrukturen	', 2, 'Vorlesung', '', 25, true);
 INSERT INTO course VALUES (131, 154, 'MI-IR1-M', ' Information Retrieval 1 (Grundlagen, Modelle und Anwendungen)', 2, 'Vorlesung', '', 25, true);
-INSERT INTO course VALUES (132, 157, 'DSG-EidI-M', 'Einführung in die Informatik', 2, 'Vorlesung', '', 50, true);
+INSERT INTO course VALUES (132, 157, 'DSG-EidI-M', 'Einf. in die Informatik', 2, 'Vorlesung', '', 50, true);
 INSERT INTO course VALUES (133, 157, 'DSG-DSAM-M', 'Distributed Systems Architecture and Middleware', 2, 'Vorlesung', '', 25, true);
 INSERT INTO course VALUES (102, 22, 'WG-B', 'Wissenschaftliche Grundlagen', 2, 'Vorlesung', '', 30, true);
 INSERT INTO course VALUES (103, 22, 'BA-B', 'Boolische Algebra', 6, 'Vorlesung', '', 90, true);
 INSERT INTO course VALUES (134, 112, 'SEDA-EbIS2-M', 'Entwicklung betrieblicher Informationssysteme', 2, 'Vorlesung', '', 25, true);
-INSERT INTO course VALUES (108, 22, 'EinfMi-B', 'Einführung in die Medieninformatik', 4, 'Vorlesung', '', 120, true);
-INSERT INTO course VALUES (106, 22, 'BA-Ü-B', 'Boolische Algebra Übung', 4, 'Übung', '', 25, true);
-INSERT INTO course VALUES (107, 22, 'BA-T-B', 'Boolische Algebra TUtorium', 4, 'Tutorium', '', 40, true);
+INSERT INTO course VALUES (108, 22, 'EinfMi-B', 'Einf. in die Medieninformatik', 4, 'Vorlesung', '', 120, true);
+INSERT INTO course VALUES (106, 22, 'BA-T-B', 'Boolische Algebra Tutorium', 4, 'Tutorium', '', 25, true);
+INSERT INTO course VALUES (107, 22, 'BA-T-B', 'Boolische Algebra Tutorium', 4, 'Tutorium', '', 40, true);
 INSERT INTO course VALUES (135, 112, 'SEDA-EbIS3-M', 'Entwicklung betrieblicher Informationssysteme', 2, 'Vorlesung', '', 25, true);
 INSERT INTO course VALUES (115, 101, 'KTR-MAKV-M', 'Modellierung und Analyse von Kommunikationsnetzen und Verteilten Systemen', 4, 'Vorlesung', '', 10, false);
 INSERT INTO course VALUES (114, 101, 'KTR-Mobi-M', 'Mobilkommunikation', 4, 'Vorlesung', '', 10, false);
@@ -479,16 +479,16 @@ INSERT INTO course VALUES (119, 150, 'IIS-IBS-M', 'Innerbetriebliche Systeme', 2
 INSERT INTO course VALUES (120, 150, 'IIS-IOS-M', 'Interorganisationssysteme', 2, 'Vorlesung', '', 50, true);
 INSERT INTO course VALUES (121, 150, 'IIS-MODS-M', 'Modulare und On-Demand-Systeme', 2, 'Vorlesung', '	', 50, true);
 INSERT INTO course VALUES (118, 150, 'IIS-EAM-B', 'Enterprise Architecture Management', 2, 'Vorlesung', '', 50, true);
-INSERT INTO course VALUES (110, 105, 'ISDL-3-M', 'IT-Wertschöpfung', 4, 'Vorlesung', '', 60, true);
-INSERT INTO course VALUES (109, 105, 'ISDL-2-M', 'Optimierung IT-lastiger Geschäftsprozesse', 4, 'Vorlesung', '', 60, true);
+INSERT INTO course VALUES (110, 105, 'ISDL-3-M', 'IT-Value', 4, 'Vorlesung', '', 60, true);
+INSERT INTO course VALUES (109, 105, 'ISDL-2-M', 'Optimierung IT-lastiger Prozesse', 4, 'Vorlesung', '', 60, true);
 INSERT INTO course VALUES (100, 105, 'ISDL-1-M', 'Standards und Netzwerke', 4, 'Vorlesung', 'Dezentrales Standardisierungsproblem', 60, true);
 INSERT INTO course VALUES (122, 153, 'HCI-IS-B', 'Interaktive Systeme', 2, 'Vorlesung', '', 50, true);
-INSERT INTO course VALUES (123, 153, 'HCI-IS-B', 'Interaktive Systeme', 2, 'Übung', '', 50, true);
+INSERT INTO course VALUES (123, 153, 'HCI-IS-B', 'Interaktive Systeme', 2, 'Tutorium', '', 50, true);
 INSERT INTO course VALUES (124, 151, 'KogSys-IA-B', 'Intelligente Agenten', 2, 'Vorlesung', '', 25, true);
-INSERT INTO course VALUES (125, 151, 'KogSys-IA-B', 'Intelligente Agenten', 2, 'Übung', '', 25, true);
+INSERT INTO course VALUES (125, 151, 'KogSys-IA-B', 'Intelligente Agenten', 2, 'Tutorium', '', 25, true);
 INSERT INTO course VALUES (126, 112, 'SEDA-DMS-B', 'Datenmanagementsysteme', 2, 'Vorlesung', '', 50, true);
-INSERT INTO course VALUES (127, 137, 'SEDA-DMS-B', 'Datenmanagementsysteme', 2, 'Übung', '', 25, true);
-INSERT INTO course VALUES (128, 112, 'SEDA-EbIS1-M', 'Entwicklung betrieblicher Informationssysteme', 2, 'Übung', '', 25, true);
+INSERT INTO course VALUES (127, 137, 'SEDA-DMS-B', 'Datenmanagementsysteme', 2, 'Tutorium', '', 25, true);
+INSERT INTO course VALUES (128, 112, 'SEDA-EbIS1-M', 'Entwicklung betrieblicher Informationssysteme', 2, 'Tutorium', '', 25, true);
 
 
 --
@@ -560,7 +560,7 @@ SELECT pg_catalog.setval('room_roomid_seq', 108, true);
 
 INSERT INTO roomallocation VALUES (100, 100, 101, 'SS 13', 1, 1, 'accepted', NULL, NULL);
 INSERT INTO roomallocation VALUES (129, 117, 102, 'WS 13/14', 2, 4, 'accepted', NULL, 'accepted_at_1359118687');
-INSERT INTO roomallocation VALUES (127, 119, 102, 'WS 13/14', 1, 1, 'denied', 'Sehr geehrter Prof.Overhage, leider gab es einen Konflift für Ihre Anfrage, daher sende ich Ihnen diese Gegenvorschlag.', 'counter_at_1359118724');
+INSERT INTO roomallocation VALUES (127, 119, 102, 'WS 13/14', 1, 1, 'denied', 'Sehr geehrter Prof.Overhage, leider gab es einen Konflift, daher sende ich Ihnen diese Gegenvorschlag.', 'counter_at_1359118724');
 INSERT INTO roomallocation VALUES (133, 125, 102, 'SS 13', 3, 2, 'accepted', NULL, NULL);
 INSERT INTO roomallocation VALUES (130, 118, 102, 'SS 13', 2, 4, 'accepted', NULL, NULL);
 INSERT INTO roomallocation VALUES (131, 122, 102, 'SS 13', 2, 5, 'accepted', NULL, NULL);
@@ -590,7 +590,7 @@ INSERT INTO roomallocation VALUES (141, 133, 102, 'SS 13', 4, 6, 'accepted', NUL
 INSERT INTO roomallocation VALUES (142, 132, 102, 'SS 13', 5, 1, 'accepted', NULL, NULL);
 INSERT INTO roomallocation VALUES (143, 135, 102, 'SS 13', 4, 3, 'accepted', NULL, 'accepted_at_1359127568');
 INSERT INTO roomallocation VALUES (144, 134, 102, 'SS 13', 3, 5, 'counter', 'SgH Prof.Sinz,
-leider gab es für Ihre Raumanfrage schon eine andere reservieren. Aus diesem Grund sende ich Ihnen hiermit einen Gegenvorschlag.
+leider gab es bereits eine Raumanfrage zu diesem Raum. Aus diesem Grund sende ich Ihnen hiermit einen Gegenvorschlag.
 MfG Verwaltung', 'counter_at_1359127623');
 INSERT INTO roomallocation VALUES (136, 126, 102, 'SS 13', 3, 4, 'accepted', NULL, 'accepted_at_1359128162');
 INSERT INTO roomallocation VALUES (145, 136, 102, 'SS 13', 3, 4, 'waiting', NULL, NULL);
@@ -629,7 +629,7 @@ INSERT INTO "user" VALUES (151, 'uteS', '528960c1fcacf3bdfcd17e4a3ad13cfde223e37
 INSERT INTO "user" VALUES (146, 'jochenM', '4cb4e8392275534f37210a673be315fc9b8f3d94fa07252efc61768d88de839c', '3snl18g', 'jochen.Malinowski@uni-bamberg.de', 'lecturer', 'Jochen', 'Malinowski', 0, false);
 INSERT INTO "user" VALUES (152, 'christophS', '16c7fa67e4cbac34e20b455c9b9c5cecffd770bba7d09f4f04f4e7838c76612a', '1umpscq', 'christoph.schlieder@uni-bamberg.de', 'lecturer', 'Christoph', 'Schliederer', 0, false);
 INSERT INTO "user" VALUES (154, 'andreasH', '0db07c2a3282ad24c1f7da28fa13f4e09c969ebc5e1743a9f4c945be5d3018b6', '1idre8k', 'andreas.henrich@uni-bamberg.de', 'lecturer', 'Andres', 'Henrich', 1359125764, false);
-INSERT INTO "user" VALUES (158, 'geraldL', 'ad979d05bafa9d82a2c2d8f97edf0118bdc57c8fb901efe5976bf9f07fca28b1', 'bsd193', 'gerald.luettgen@uni-bamberg.de', 'lecturer', 'Gerald', 'Lüttgen', 0, false);
+INSERT INTO "user" VALUES (158, 'geraldL', 'ad979d05bafa9d82a2c2d8f97edf0118bdc57c8fb901efe5976bf9f07fca28b1', 'bsd193', 'gerald.luettgen@uni-bamberg.de', 'lecturer', 'Gerald', 'L.', 0, false);
 INSERT INTO "user" VALUES (22, 'Doz', '8430df002cc316b8d8973aa1f749958a6fdf43eb250179f127fae755868f7665', '3ki7555', 'max@mustermann.de', 'lecturer', 'Max', 'Mustermann', 1359128332, false);
 INSERT INTO "user" VALUES (150, 'svenO', 'b8f64c69d9249787e6de1c64a80a2e0af16c0d21864df30f178c7fb8b819dd51', '3tockeq', 'sven.overhage@uni-bamberg.de', 'lecturer', 'Sven', 'Overhage', 1359118752, false);
 
