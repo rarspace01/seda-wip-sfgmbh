@@ -221,7 +221,7 @@ public class LiveTickerPanel extends JPanel {
 
 				}
 				// 545.5 cycles are 60 seconds (with 110ms per cycle)
-				if (cycles < 200) {
+				if (cycles < 500) {
 					LiveTickerPanel.this.scroll();
 					cycles++;
 				} else {
