@@ -71,7 +71,7 @@ public class StartTab extends JPanel implements IntfComDialogObserver {
 	private void initialize() {	
 		
 		setMaximumSize(new Dimension(10, 32767));
-		setLayout(new MigLayout("", "[140px:n:140px,grow][][grow][grow][grow][grow][100px:100px:100px,right]", "[68px][385.00,grow][grow]"));
+		setLayout(new MigLayout("", "[140px:n:140px,grow][][grow][grow][grow][grow][100px:100px:100px,right]", "[][385.00,grow][grow]"));
 		
 		JLabel lblLehrveranstaltungen = new JLabel(" Lehrveranstaltungen:");
 		lblLehrveranstaltungen.setFont(new Font("Tahoma", Font.BOLD, 12));
@@ -225,10 +225,10 @@ public class StartTab extends JPanel implements IntfComDialogObserver {
 		btnRecall.setBounds(0, 260, 88, 23);
 		buttonPanel_.add(btnRecall);
 		
-		JLabel lbluniIcon = new JLabel("");
-		lbluniIcon.setIcon(new ImageIcon(BaseTab.class.getResource("/de/sfgmbh/comlayer/core/images/UniBA_logo.png")));
-		lbluniIcon.setMaximumSize(new Dimension(50,50));
-		add(lbluniIcon, "cell 6 0,alignx right,aligny top");
+		JLabel lblUniIcon = new JLabel("");
+		lblUniIcon.setIcon(new ImageIcon(BaseTab.class.getResource("/de/sfgmbh/comlayer/core/images/UniBA_logo.png")));
+		lblUniIcon.setMaximumSize(new Dimension(50,50));
+		add(lblUniIcon, "cell 6 0,alignx right,aligny top");
 	}
 
 	/**

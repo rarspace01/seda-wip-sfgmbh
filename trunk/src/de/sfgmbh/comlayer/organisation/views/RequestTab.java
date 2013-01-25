@@ -53,7 +53,6 @@ public class RequestTab extends JPanel {
 	private JButton btnFreigeben_;
 	private JComboBox<String> comboBoxStatus_;
 	private JComboBox<String> comboBoxSemester_;
-	private JPanel uniIconPanel_;
 	private JLabel lblUniIcon_;
 	private JPanel filterTop_;
 	private JPanel filterBottom_;
@@ -72,7 +71,7 @@ public class RequestTab extends JPanel {
 	private void initialize() {
 		setMinimumSize(new Dimension(100, 10));
 		setMaximumSize(new Dimension(100, 32767));
-		setLayout(new MigLayout("", "[140px:140px:140px][10px:10px:10px][grow][grow][grow][grow][100px:100px:100px]", "[::40px,grow,center][][419.00,grow][]"));
+		setLayout(new MigLayout("", "[140px:140px:140px][10px:10px:10px][grow][grow][grow][grow][100px:100px:100px]", "[center][][419.00,grow][]"));
 		
 		JLabel lblRaumverwaltung = new JLabel("Raumanfragen");
 		lblRaumverwaltung.setFont(new Font("SansSerif", Font.BOLD, 13));
@@ -89,12 +88,10 @@ public class RequestTab extends JPanel {
 		add(lblPCSeats_, "cell 4 0,aligny bottom");
 		add(getLblRoom(), "cell 5 0,aligny bottom");
 		
-		uniIconPanel_ = new JPanel();
-		add(uniIconPanel_, "cell 6 0,alignx right,aligny top");	
 		lblUniIcon_ = new JLabel();
 		lblUniIcon_.setIcon(new ImageIcon(BaseTab.class.getResource("/de/sfgmbh/comlayer/core/images/UniBA_logo.png")));
 		lblUniIcon_.setMaximumSize(new Dimension(50,50));
-		uniIconPanel_.add(lblUniIcon_);
+		add(lblUniIcon_, "cell 6 0,alignx right,aligny top");	
 		
 		comboBoxLecturer_.setModel(new CmbboxFilterLecturer(comboBoxLecturer_));
 		comboBoxLecturer_.setEditable(true);

@@ -60,7 +60,7 @@ public class TimetableTab extends JPanel {
 		comboBoxLecturer_.setToolTipText("<html>Wählen Sie einen Dozenten<br> für welchen Sie einen<br>Wochenplan anzeigen lassen möchten</html>");
 		
 		comboBoxLecturer_.addActionListener(new TimetableTabCmbbox());
-		setLayout(new MigLayout("", "[5.00,grow][][][][][][-1.00,grow][right]", "[][][364px][grow]"));
+		setLayout(new MigLayout("", "[5.00,grow][][][][][][grow][50px:50px:50px]", "[][][364px][grow]"));
 		
 		lblWeekplanLecturer = new JLabel("<html><h3>Wochenplan für Dozenten</h3></html>");
 		add(lblWeekplanLecturer, "cell 1 0,aligny bottom");

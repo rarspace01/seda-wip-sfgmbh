@@ -94,7 +94,7 @@ public class BaseBtns implements ActionListener {
 							.getInstance()
 							.getCoreBaseTab()
 							.getMainTabbedContainerPane()
-							.addTab("Vorlesungsplan",
+							.addTab("Stundenplan",
 									null,
 									ViewManager.getInstance()
 											.getCoreTimetableTab(), null);
