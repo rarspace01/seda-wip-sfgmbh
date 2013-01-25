@@ -255,12 +255,19 @@ public class DataManagerPostgreSql {
 
 		} catch (SQLException e) {
 			
+			String dataBaseError = e.toString();
+			String dataBaseErrorOutput = e.toString();
+			
+			if (dataBaseError.contains("FK_lecturerid") && dataBaseError.contains("course") && dataBaseError.contains("lecturer") && dataBaseError.contains("userid")) {
+				dataBaseErrorOutput = "Der Nutzer konnte nicht gelöscht werden, da ihm noch Veranstaltungen zugewiesen sind. Es können nur Benutzer aus dem System entfernt werden, die keine Veranstaltungen mehr haben.";
+			}
+			
+			
 			DataModel
 					.getInstance()
 					.getExceptionsHandler()
 					.setNewException(
-							("Es ist ein SQL-Fehler (DataManagerPostgreSql-07) aufgetreten:<br /><br />" + e
-									.toString()), "Datenbank-Fehler!");
+							("Diese Aktion konnte nicht durchgeführt werden. Folgendes Problem ist aufgetreten:<br /><br />" + dataBaseErrorOutput), "Datenbank-Fehler!", "error");
 			return false;
 		}
 
