@@ -150,12 +150,27 @@ public class DataManagerPostgreSql {
 
 		} catch (SQLException e) {
 			
+			String dataBaseError = e.toString();
+			String dataBaseErrorOutput = e.toString();
+			
+			if (dataBaseError.contains("FK_lecturerid") && dataBaseError.contains("course") && dataBaseError.contains("lecturer") && dataBaseError.contains("userid")) {
+				dataBaseErrorOutput = "Der Nutzer konnte nicht gelöscht werden, da ihm noch Veranstaltungen zugewiesen sind. Es können nur Benutzer aus dem System entfernt werden, die keine Veranstaltungen mehr haben.";
+			}
+			if (dataBaseError.contains("FK_chairid") && dataBaseError.contains("lecturer") && dataBaseError.contains("chair") && dataBaseError.contains("chairid")) {
+				dataBaseErrorOutput = "Ein Lehrstuhl kann nicht gelöscht werden, solange ihm noch Dozenten zugeordnet sind.";
+			}
+			if (dataBaseError.contains("FK_roomid") && dataBaseError.contains("roomid") && dataBaseError.contains("room") && dataBaseError.contains("roomallocation")) {
+				dataBaseErrorOutput = "Ein Raum kann nicht gelöscht werden, solange es noch Raumanfragen gibt, die ihm zugeordnet sind. Dies betrifft auch schon abgelehnte Raumanfragen - räumen Sie also ggf. die Raumanfragen in der Raumanfragenverwaltung auf.";
+			}
+			if (dataBaseError.contains("FK_courseid") && dataBaseError.contains("course") && dataBaseError.contains("courseid") && dataBaseError.contains("roomallocation")) {
+				dataBaseErrorOutput = "Eine Veranstaltung die noch Raumanfragen hat, kann nicht gelöscht werden. Wiederrufen Sie alle Raumanfragen und bitten sie die Verwaltung, diese mit der Aufräumen-Funktion aus dem System zu entfernen.";
+			}
+			
 			DataModel
 					.getInstance()
 					.getExceptionsHandler()
 					.setNewException(
-							("Es ist ein SQL-Fehler (DataManagerPostgreSql-04) aufgetreten:<br /><br />" + e
-									.toString()), "Datenbank-Fehler!");
+							("Diese Aktion kann nicht durchgeführt werden. Folgendes Problem besteht:<br /><br />" + dataBaseErrorOutput), "Datenbank-Fehler!");
 		}
 
 		return i;
@@ -180,9 +195,7 @@ public class DataManagerPostgreSql {
 			i = statement_.executeUpdate(SQLString);
 
 		} catch (Exception e) {
-			// 
-			// DataModel.getInstance().getExceptionsHandler().setNewException(("Es ist ein SQL-Fehler (DataManagerPostgreSql-04) aufgetreten:<br /><br />"
-			// + e.toString()), "Datenbank-Fehler!");
+			//
 		}
 
 		return i;
@@ -261,7 +274,15 @@ public class DataManagerPostgreSql {
 			if (dataBaseError.contains("FK_lecturerid") && dataBaseError.contains("course") && dataBaseError.contains("lecturer") && dataBaseError.contains("userid")) {
 				dataBaseErrorOutput = "Der Nutzer konnte nicht gelöscht werden, da ihm noch Veranstaltungen zugewiesen sind. Es können nur Benutzer aus dem System entfernt werden, die keine Veranstaltungen mehr haben.";
 			}
-			
+			if (dataBaseError.contains("FK_chairid") && dataBaseError.contains("lecturer") && dataBaseError.contains("chair") && dataBaseError.contains("chairid")) {
+				dataBaseErrorOutput = "Ein Lehrstuhl kann nicht gelöscht werden, solange ihm noch Dozenten zugeordnet sind.";
+			}
+			if (dataBaseError.contains("FK_roomid") && dataBaseError.contains("roomid") && dataBaseError.contains("room") && dataBaseError.contains("roomallocation")) {
+				dataBaseErrorOutput = "Ein Raum kann nicht gelöscht werden, solange es noch Raumanfragen gibt, die ihm zugeordnet sind. Dies betrifft auch schon abgelehnte Raumanfragen - räumen Sie also ggf. die Raumanfragen in der Raumanfragenverwaltung auf.";
+			}
+			if (dataBaseError.contains("FK_courseid") && dataBaseError.contains("course") && dataBaseError.contains("courseid") && dataBaseError.contains("roomallocation")) {
+				dataBaseErrorOutput = "Eine Veranstaltung die noch Raumanfragen hat, kann nicht gelöscht werden. Wiederrufen Sie alle Raumanfragen und bitten sie die Verwaltung, diese mit der Aufräumen-Funktion aus dem System zu entfernen.";
+			}
 			
 			DataModel
 					.getInstance()
