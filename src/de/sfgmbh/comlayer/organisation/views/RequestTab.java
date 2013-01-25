@@ -109,7 +109,7 @@ public class RequestTab extends JPanel {
 		add(comboBoxSemester_, "cell 4 1,growx");
 		add(getTxtRoom(), "cell 5 1,growx");
 		
-		add(ViewManager.getInstance().getCoreLiveTickerPanel(), "cell 0 2,grow");
+		add(ViewManager.getInstance().getCoreLiveTickerPanel(), "cell 0 2,grow, aligny top");
 		
 		organisationTableScrollPane_ = new JScrollPane();
 		add(organisationTableScrollPane_, "flowx,cell 2 2 4 1,grow");

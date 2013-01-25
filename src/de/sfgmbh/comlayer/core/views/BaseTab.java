@@ -130,7 +130,7 @@ public class BaseTab extends JFrame {
 		startScreenPanel.setMaximumSize(new Dimension(10, 32767));
 		contentPane.setLayer(startScreenPanel, 1);
 		contentPane.add(startScreenPanel, "name_5256771068822");
-		startScreenPanel.setLayout(new MigLayout("", "[][][600px:600px,grow][100px:100px:100px]", "[68px][][grow][10px:10px:10px,grow,bottom]"));
+		startScreenPanel.setLayout(new MigLayout("", "[140px:140px:140px][][600px:600px,grow][110px:110px:110px]", "[68px][][grow][10px:10px:10px,grow,bottom]"));
 		startScreenPanel.add(ViewManager.getInstance().getCoreLiveTickerPanel(), "cell 0 2, grow, aligny top");
 
 		mainFilterPanel = new JPanel();
@@ -154,11 +154,10 @@ public class BaseTab extends JFrame {
 		startScreenPanel.add(getRdbtnRooms(), "cell 0 1,aligny top");
 		
 		mainTableScrollPane = new JScrollPane();
-		startScreenPanel.add(mainTableScrollPane, "cell 2 2,growx,alignx left,aligny center");
+		startScreenPanel.add(mainTableScrollPane, "cell 2 2,growx,alignx left,aligny top");
 
 		mainTableScrollPane.setViewportView(getOrganisationTable());
-		mainTableScrollPane.setMinimumSize(new Dimension(600, 500));
-		mainTableScrollPane.setPreferredSize(new Dimension(600, 500));
+		mainTableScrollPane.setPreferredSize(new Dimension(600, 2000));
 		
 
 		JPanel buttonPanel = new JPanel();
@@ -566,7 +565,7 @@ public class BaseTab extends JFrame {
 			panelLogin.setBorder(new LineBorder(new Color(153, 180, 209), 2));
 			panelLogin.setBackground(SystemColor.activeCaptionBorder);
 			panelLogin.setToolTipText("<html>Dozenten und Verwaltungsmitarbeiter können sich hier <br>zu ihrem persönlichen Funktionsbereich einloggen</html>");
-			panelLogin.setBounds(0, 379, 110, 121);
+			panelLogin.setBounds(0, 367, 115, 121);
 			panelLogin.setAlignmentX(BOTTOM_ALIGNMENT);
 			panelLogin.setLayout(new MigLayout("", "[grow,center]", "[][][][][]"));
 			panelLogin.add(getLblUsername(), "cell 0 0,alignx left");
@@ -587,7 +586,7 @@ public class BaseTab extends JFrame {
 			panelLogout = new JPanel();
 			panelLogout.setBorder(new LineBorder(new Color(153, 180, 209), 2));
 			panelLogout.setBackground(SystemColor.activeCaptionBorder);
-			panelLogout.setBounds(0, 445, 110, 55);
+			panelLogout.setBounds(0, 432, 115, 55);
 			panelLogout.setLayout(new MigLayout("", "[140px:140px:140px,center]", "[][]"));
 			lblLoggedIn = new JLabel("Sie sind eingeloggt!");
 			panelLogout.add(lblLoggedIn, "cell 0 0,alignx left");

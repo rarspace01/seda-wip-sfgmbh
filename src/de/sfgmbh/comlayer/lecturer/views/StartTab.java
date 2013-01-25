@@ -71,31 +71,23 @@ public class StartTab extends JPanel implements IntfComDialogObserver {
 	private void initialize() {	
 		
 		setMaximumSize(new Dimension(10, 32767));
-		setLayout(new MigLayout("", "[140px:n:140px,grow][][grow][grow][grow][grow][100px:100px:100px,right]", "[][385.00,grow][grow]"));
+		setLayout(new MigLayout("", "[140px:n:140px,grow][][grow][grow][grow][grow][100px:100px:100px,right]", "[][][][385.00,grow][grow]"));
 		
-		JLabel lblLehrveranstaltungen = new JLabel(" Lehrveranstaltungen:");
+		JLabel lblLehrveranstaltungen = new JLabel("Lehrveranstaltungen:");
 		lblLehrveranstaltungen.setFont(new Font("Tahoma", Font.BOLD, 12));
 		add(lblLehrveranstaltungen, "cell 1 0,aligny bottom");
 				
-		add(ViewManager.getInstance().getCoreLiveTickerPanel(), "cell 0 1, grow, aligny top");
-		
-		tablePanel_ = new JPanel();
-		add(tablePanel_, "cell 1 1 5 1,grow");
-		tablePanel_.setLayout(new MigLayout("", "[grow][grow][grow][grow][grow]", "[][][150px:n:200px,grow][][][][100px:n:200px,grow][]"));
+		add(ViewManager.getInstance().getCoreLiveTickerPanel(), "cell 0 3, grow, aligny top");
 		
 		lblLecturer_ = new JLabel("Dozent:");
-		tablePanel_.add(lblLecturer_, "cell 0 0");
+		add(lblLecturer_, "cell 1 1,alignx left,aligny top");
 		
-		comboLecturer_ = new JComboBox<String>();
-		comboLecturer_.setToolTipText("<html>Sie können die Liste der <br> Lehrveranstaltungen über <br> diese Filter begrenzen</html>");
-		comboLecturer_.addActionListener(new StartTabCmbboxFilter());
-		tablePanel_.add(comboLecturer_, "cell 0 1,growx");
-		comboLecturer_.setModel(new CmbboxFilterLecturer(comboLecturer_));
-		comboLecturer_.setEditable(true);
-		comboLecturer_.setAutoscrolls(true);
+		tablePanel_ = new JPanel();
+		add(tablePanel_, "cell 1 3 5 1,grow");
+		tablePanel_.setLayout(new MigLayout("", "[grow][grow][grow]", "[][-43.00][150px:n:200px,grow][][][][100px:n:200px,grow][]"));
 		
 		lvOrganisationTableScrollPane_ = new JScrollPane();
-		tablePanel_.add(lvOrganisationTableScrollPane_, "cell 0 2 5 1,grow");
+		tablePanel_.add(lvOrganisationTableScrollPane_, "cell 0 2 5 1,aligny top, grow");
 		
 		tableCourseTop_ = new JTable();
 		tableCourseTop_.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
@@ -181,7 +173,7 @@ public class StartTab extends JPanel implements IntfComDialogObserver {
 		buttonPanel_.setLayout(null);
 		buttonPanel_.setMinimumSize(new Dimension(80, 10));
 		buttonPanel_.setMaximumSize(new Dimension(100, 32767));
-		add(buttonPanel_, "cell 6 1,grow");
+		add(buttonPanel_, "cell 6 3,grow");
 		
 		btnAdd_ = new JButton("hinzuf\u00FCgen");
 		btnAdd_.setToolTipText("<html>Hier klicken um eine <br>Lehrveranstaltung zu erstellen</html>");
@@ -207,7 +199,6 @@ public class StartTab extends JPanel implements IntfComDialogObserver {
 		btnPublish.setBounds(0, 194, 88, 23);
 		buttonPanel_.add(btnPublish);
 		
-		//Ist hier die Schreibweise gem�� der java code conventions?mit RoomRequest?
 		btnRoomRequest_ = new JButton("Anfrage");
 		btnRoomRequest_.setToolTipText("<html> Für erstellte Lehrveranstaltungen<br> können Sie eine Raumanfrage<br> an die Verwaltung senden</html>");
 		btnRoomRequest_.addActionListener(new StartTabBtnsControl("roomrequest"));
@@ -229,6 +220,14 @@ public class StartTab extends JPanel implements IntfComDialogObserver {
 		lblUniIcon.setIcon(new ImageIcon(BaseTab.class.getResource("/de/sfgmbh/comlayer/core/images/UniBA_logo.png")));
 		lblUniIcon.setMaximumSize(new Dimension(50,50));
 		add(lblUniIcon, "cell 6 0,alignx right,aligny top");
+		
+		comboLecturer_ = new JComboBox<String>();
+		add(comboLecturer_, "cell 1 2,alignx left,aligny bottom");
+		comboLecturer_.setToolTipText("<html>Sie können die Liste der <br> Lehrveranstaltungen über <br> diese Filter begrenzen</html>");
+		comboLecturer_.addActionListener(new StartTabCmbboxFilter());
+		comboLecturer_.setModel(new CmbboxFilterLecturer(comboLecturer_));
+		comboLecturer_.setEditable(true);
+		comboLecturer_.setAutoscrolls(true);
 	}
 
 	/**
