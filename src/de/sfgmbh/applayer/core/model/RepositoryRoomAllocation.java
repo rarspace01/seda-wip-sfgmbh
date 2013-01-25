@@ -81,9 +81,6 @@ public class RepositoryRoomAllocation implements IntfAppObservable, IntfDataObse
 	 * (non-Javadoc)
 	 * @see de.sfgmbh.datalayer.core.definitions.IntfDataObserver#change()
 	 */
-	/* (non-Javadoc)
-	 * @see de.sfgmbh.applayer.core.model.IntfRepositoryRoomAllocation#change()
-	 */
 	@Override
 	public void change() {
 		this.update();
@@ -92,9 +89,6 @@ public class RepositoryRoomAllocation implements IntfAppObservable, IntfDataObse
 	/*
 	 * (non-Javadoc)
 	 * @see de.sfgmbh.applayer.core.definitions.IntfAppObservable#update()
-	 */
-	/* (non-Javadoc)
-	 * @see de.sfgmbh.applayer.core.model.IntfRepositoryRoomAllocation#update()
 	 */
 	@Override
 	public void update() {

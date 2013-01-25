@@ -259,11 +259,11 @@ public class User implements IntfUser {
 	
 	private String getSha256 (String string) {
 		
-		MessageDigest md ;
+		MessageDigest messageDigest ;
 		
 		try {
-			md = MessageDigest.getInstance("SHA-256");
-			byte[] hash = md.digest(string.getBytes());
+			messageDigest = MessageDigest.getInstance("SHA-256");
+			byte[] hash = messageDigest.digest(string.getBytes());
 			
 		    StringBuffer sb = new StringBuffer();
 		    for(byte b : hash) {

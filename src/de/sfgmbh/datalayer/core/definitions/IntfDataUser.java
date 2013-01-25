@@ -2,6 +2,8 @@ package de.sfgmbh.datalayer.core.definitions;
 
 import java.util.List;
 
+import javax.security.auth.login.LoginContext;
+
 import de.sfgmbh.applayer.core.definitions.IntfUser;
 import de.sfgmbh.applayer.core.model.User;
 
@@ -25,6 +27,13 @@ public interface IntfDataUser {
 	 * @return User object
 	 */
 	public IntfUser get(int userId);
+	
+	/**
+	 * get {@link User} by Loin
+	 * @param login
+	 * @return user - {@link User}
+	 */
+	public IntfUser getByLogin(String login);
 
 	/**
 	 * 

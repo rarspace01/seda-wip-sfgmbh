@@ -68,9 +68,6 @@ public class RepositoryUser implements IntfAppObservable, IntfDataObserver, Intf
 	 * (non-Javadoc)
 	 * @see de.sfgmbh.datalayer.core.definitions.IntfDataObserver#change()
 	 */
-	/* (non-Javadoc)
-	 * @see de.sfgmbh.applayer.core.model.IntfRepositoryUser#change()
-	 */
 	@Override
 	public void change() {
 		this.update();
@@ -79,9 +76,6 @@ public class RepositoryUser implements IntfAppObservable, IntfDataObserver, Intf
 	/*
 	 * (non-Javadoc)
 	 * @see de.sfgmbh.applayer.core.definitions.IntfAppObservable#update()
-	 */
-	/* (non-Javadoc)
-	 * @see de.sfgmbh.applayer.core.model.IntfRepositoryUser#update()
 	 */
 	@Override
 	public void update() {
@@ -102,9 +96,6 @@ public class RepositoryUser implements IntfAppObservable, IntfDataObserver, Intf
 	 * (non-Javadoc)
 	 * @see de.sfgmbh.applayer.core.definitions.IntfAppObservable#register(de.sfgmbh.applayer.core.definitions.IntfAppObserver)
 	 */
-	/* (non-Javadoc)
-	 * @see de.sfgmbh.applayer.core.model.IntfRepositoryUser#register(de.sfgmbh.applayer.core.definitions.IntfAppObserver)
-	 */
 	@Override
 	public void register(IntfAppObserver observer) {
 		if (observer instanceof IntfAppObserver) {
@@ -117,9 +108,6 @@ public class RepositoryUser implements IntfAppObservable, IntfDataObserver, Intf
 	/*
 	 * (non-Javadoc)
 	 * @see de.sfgmbh.applayer.core.definitions.IntfAppObservable#unregister(de.sfgmbh.applayer.core.definitions.IntfAppObserver)
-	 */
-	/* (non-Javadoc)
-	 * @see de.sfgmbh.applayer.core.model.IntfRepositoryUser#unregister(de.sfgmbh.applayer.core.definitions.IntfAppObserver)
 	 */
 	@Override
 	public void unregister(IntfAppObserver observer) {
