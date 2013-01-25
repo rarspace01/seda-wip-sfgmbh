@@ -105,9 +105,9 @@ public class DataHandlerCourse implements IntfDataFilter, IntfDataObservable, In
 				filterDm.getPreparedStatement().setString(5, "%");
 			}
 			
-			ResultSet rs = filterDm.selectPreparedStatement();
-			while (rs.next()) {
-				listCourse.add(makeCourse(rs));
+			ResultSet resultSet = filterDm.selectPreparedStatement();
+			while (resultSet.next()) {
+				listCourse.add(makeCourse(resultSet));
 			}
 			
 			filterDm.dispose();
@@ -139,9 +139,9 @@ public class DataHandlerCourse implements IntfDataFilter, IntfDataObservable, In
 														"AND public.chair.chairid = public.lecturer.chairid " +
 														"AND courseid = ? ");
 			dataManager.getPreparedStatement().setInt(1, id);
-			ResultSet rs = dataManager.selectPreparedStatement();
-			while (rs.next()) {
-				return this.makeCourse(rs);
+			ResultSet resultSet = dataManager.selectPreparedStatement();
+			while (resultSet.next()) {
+				return this.makeCourse(resultSet);
 			}
 			
 		} catch (SQLException e) {
@@ -161,20 +161,20 @@ public class DataHandlerCourse implements IntfDataFilter, IntfDataObservable, In
 	 * @see de.sfgmbh.datalayer.core.daos.IntfDataCourse#makeCourse(java.sql.ResultSet)
 	 */
 	@Override
-	public Course makeCourse(ResultSet rs) {
+	public Course makeCourse(ResultSet resultSet) {
 		Course returnCourse = new Course();
 		
 		try {
-			returnCourse.setCourseId_(rs.getInt("courseid"));
+			returnCourse.setCourseId_(resultSet.getInt("courseid"));
 			returnCourse.setLecturer_(
-					DataModel.getInstance().getDataHandlerUser().makeUser(rs));
-			returnCourse.setCourseAcronym_(rs.getString("courseacronym"));
-			returnCourse.setCourseName_(rs.getString("coursename"));
-			returnCourse.setSws_(rs.getFloat("sws"));
-			returnCourse.setCourseKind_(rs.getString("coursekind"));
-			returnCourse.setExpectedAttendees_(rs.getInt("expectedattendees"));
-			returnCourse.setCourseDescription_(rs.getString("coursedescription"));
-			returnCourse.setLecturerEnabled_(rs.getBoolean("lecturerenabled"));
+					DataModel.getInstance().getDataHandlerUser().makeUser(resultSet));
+			returnCourse.setCourseAcronym_(resultSet.getString("courseacronym"));
+			returnCourse.setCourseName_(resultSet.getString("coursename"));
+			returnCourse.setSws_(resultSet.getFloat("sws"));
+			returnCourse.setCourseKind_(resultSet.getString("coursekind"));
+			returnCourse.setExpectedAttendees_(resultSet.getInt("expectedattendees"));
+			returnCourse.setCourseDescription_(resultSet.getString("coursedescription"));
+			returnCourse.setLecturerEnabled_(resultSet.getBoolean("lecturerenabled"));
 		} catch (SQLException e) {
 			
 			DataModel.getInstance().getExceptionsHandler().setNewException(("Es ist ein SQL-Fehler (DataHandlerCourse-04) aufgetreten:<br /><br />" + e.toString()), "Datenbank-Fehler!");

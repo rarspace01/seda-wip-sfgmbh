@@ -120,7 +120,7 @@ public class DataHandlerUser implements IntfDataUser, IntfDataObservable, IntfDa
 		
 		try {
 			
-			ResultSet rs = null;
+			ResultSet resultSet = null;
 			
 			// Check for chair filter as we need another sql statement in that case
 			if (filter.containsKey("chair") && filter.get("chair") != null && filter.get("chair") != "" && filter.get("chair") != "<alle>") {
@@ -165,7 +165,7 @@ public class DataHandlerUser implements IntfDataUser, IntfDataObservable, IntfDa
 					filterWithChairDm.getPreparedStatement().setString(7, "%");
 				}
 
-				rs = filterWithChairDm.selectPreparedStatement();
+				resultSet = filterWithChairDm.selectPreparedStatement();
 				
 				
 			} else {
@@ -202,11 +202,11 @@ public class DataHandlerUser implements IntfDataUser, IntfDataObservable, IntfDa
 					filterDm.getPreparedStatement().setString(5, "%");
 				}
 				
-				rs = filterDm.selectPreparedStatement();
+				resultSet = filterDm.selectPreparedStatement();
 			}
 			
-			while (rs.next()) {
-				listUser.add(this.makeUser(rs));
+			while (resultSet.next()) {
+				listUser.add(this.makeUser(resultSet));
 			}
 			
 		} catch (SQLException e) {
@@ -241,9 +241,9 @@ public class DataHandlerUser implements IntfDataUser, IntfDataObservable, IntfDa
 															"ON public.user.userid = public.lecturer.userid " +
 														"WHERE public.user.userid = ?");
 			dataManager.getPreparedStatement().setInt(1, id);
-			ResultSet rs = dataManager.selectPreparedStatement();
-			while (rs.next()) {
-				return this.makeUser(rs);
+			ResultSet resultSet = dataManager.selectPreparedStatement();
+			while (resultSet.next()) {
+				return this.makeUser(resultSet);
 			}
 			
 		} catch (SQLException e) {
@@ -273,9 +273,9 @@ public class DataHandlerUser implements IntfDataUser, IntfDataObservable, IntfDa
 															"ON public.user.userid = public.lecturer.userid " +
 														"WHERE public.user.login = ?");
 			dataManager.getPreparedStatement().setString(1, login);
-			ResultSet rs = dataManager.selectPreparedStatement();
-			while (rs.next()) {
-				return this.makeUser(rs);
+			ResultSet resultSet = dataManager.selectPreparedStatement();
+			while (resultSet.next()) {
+				return this.makeUser(resultSet);
 			}
 			
 		} catch (SQLException e) {
@@ -507,11 +507,11 @@ public class DataHandlerUser implements IntfDataUser, IntfDataObservable, IntfDa
 	
 	/**
 	 * Forms a User object out of a given result set
-	 * @param rs
+	 * @param resultSet
 	 * @return a User object
 	 */
-	public User makeUser(ResultSet rs) {
-		return this.makeUser(rs, "default");
+	public User makeUser(ResultSet resultSet) {
+		return this.makeUser(resultSet, "default");
 	}
 
 	/*

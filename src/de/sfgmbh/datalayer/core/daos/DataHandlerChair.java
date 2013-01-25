@@ -89,9 +89,9 @@ public class DataHandlerChair implements IntfDataChair, IntfDataFilter,
 					"WHERE public.chair.chairid = ?");
 			dataManager.getPreparedStatement()
 					.setInt(1, chairId);
-			ResultSet rs = dataManager.selectPreparedStatement();
-			while (rs.next()) {
-				return this.makeChair(rs);
+			ResultSet resultSet = dataManager.selectPreparedStatement();
+			while (resultSet.next()) {
+				return this.makeChair(resultSet);
 			}
 
 		} catch (SQLException e) {
@@ -133,9 +133,9 @@ public class DataHandlerChair implements IntfDataChair, IntfDataFilter,
 							"AND public.lecturer.userid = ? ");
 			dataManager.getPreparedStatement()
 					.setInt(1, userId);
-			ResultSet rs = dataManager.selectPreparedStatement();
-			while (rs.next()) {
-				return this.makeChair(rs);
+			ResultSet resultSet = dataManager.selectPreparedStatement();
+			while (resultSet.next()) {
+				return this.makeChair(resultSet);
 			}
 
 		} catch (SQLException e) {
@@ -176,9 +176,9 @@ public class DataHandlerChair implements IntfDataChair, IntfDataFilter,
 					"WHERE public.chair.chairacronym = ? ");
 			dataManager.getPreparedStatement()
 					.setString(1, acronym);
-			ResultSet rs = dataManager.selectPreparedStatement();
-			while (rs.next()) {
-				return this.makeChair(rs);
+			ResultSet resultSet = dataManager.selectPreparedStatement();
+			while (resultSet.next()) {
+				return this.makeChair(resultSet);
 			}
 
 		} catch (SQLException e) {
@@ -335,7 +335,7 @@ public class DataHandlerChair implements IntfDataChair, IntfDataFilter,
 
 		try {
 
-			ResultSet rs = null;
+			ResultSet resultSet = null;
 
 			if (filterDm == null) {
 				filterDm = new DataManagerPostgreSql();
@@ -356,9 +356,9 @@ public class DataHandlerChair implements IntfDataChair, IntfDataFilter,
 				filterDm.getPreparedStatement().setString(2, "%");
 			}
 
-			rs = filterDm.selectPreparedStatement();
-			while (rs.next()) {
-				listChair.add(makeChair(rs));
+			resultSet = filterDm.selectPreparedStatement();
+			while (resultSet.next()) {
+				listChair.add(makeChair(resultSet));
 			}
 
 			filterDm.dispose();
