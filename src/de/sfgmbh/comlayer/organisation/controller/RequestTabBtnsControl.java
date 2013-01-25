@@ -50,6 +50,10 @@ public class RequestTabBtnsControl implements ActionListener,
 		this.cleanRoomAllocations_ = false;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		AppException exceptionHandler = AppModel.getInstance()
@@ -184,6 +188,10 @@ public class RequestTabBtnsControl implements ActionListener,
 		ctrlRoomAllocation_.denyRoomAllocation(ra);
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see de.sfgmbh.comlayer.core.definitions.IntfComDialogObserver#answered(java.lang.String)
+	 */
 	@Override
 	public void answered(String answer) {
 		if (answer.equals("yes")) {

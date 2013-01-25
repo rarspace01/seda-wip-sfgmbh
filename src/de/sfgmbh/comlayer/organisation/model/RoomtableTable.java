@@ -5,8 +5,8 @@ import javax.swing.table.DefaultTableModel;
 import de.sfgmbh.applayer.core.definitions.IntfAppObserver;
 import de.sfgmbh.comlayer.core.controller.ViewManager;
 /**
+ * Table model for the roomtable tab table
  * 
- * @author hannes
  * @author denis
  *
  */
@@ -19,20 +19,26 @@ public class RoomtableTable extends DefaultTableModel implements IntfAppObserver
 		};
 	private String[] preFillHeader_ = {"Uhrzeit", "Montag", "Dienstag", "Mittwoch", "Donnerstag", "Freitag"};
 	
-	
+	/**
+	 * Create the model
+	 */
 	public RoomtableTable() {
 		this.setDataVector(preFill_, preFillHeader_);
 	}
 	
-	/**
-	 * disables edits on the table cells
-	 * @author denis
+	/*
+	 * (non-Javadoc)
+	 * @see javax.swing.table.DefaultTableModel#isCellEditable(int, int)
 	 */
 	@Override
     public boolean isCellEditable(int row, int column) {
         return false;
     }
 
+	/*
+	 * (non-Javadoc)
+	 * @see de.sfgmbh.applayer.core.definitions.IntfAppObserver#change()
+	 */
 	@Override
 	public void change() {
 		

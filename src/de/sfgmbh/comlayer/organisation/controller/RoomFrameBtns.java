@@ -23,6 +23,9 @@ public class RoomFrameBtns implements ActionListener {
 	protected InfoDialog infoWindow_;
 	protected IntfCtrlRoom ctrlRoom_;
 
+	/**
+	 * Generate the action listener
+	 */
 	public RoomFrameBtns() {
 		this.ctrlAction_ = "default";
 		if (this.ctrlRoom_ == null) {
@@ -30,6 +33,11 @@ public class RoomFrameBtns implements ActionListener {
 		}
 	}
 
+	/**
+	 * Generate the action listener based on an action string<br>
+	 * Supported action strings are "cancle" and "save".
+	 * @param action
+	 */
 	public RoomFrameBtns(String action) {
 		this.ctrlAction_ = action;
 		if (this.ctrlRoom_ == null) {

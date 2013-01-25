@@ -39,7 +39,6 @@ public class RoomFrame extends JDialog {
 	/**
 	 * Create the frame.
 	 */
-	@SuppressWarnings({ })
 	public RoomFrame() {
 		setModal(true);
 		initialize();

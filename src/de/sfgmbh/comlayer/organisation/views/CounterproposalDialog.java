@@ -26,7 +26,7 @@ import de.sfgmbh.comlayer.core.model.CmbboxFilterTime;
 import de.sfgmbh.comlayer.organisation.controller.CounterproposalFrameBtns;
 
 /**
- * Modal Dialog for a counter proposal
+ * Modal dialog for a counter proposal
  * 
  * @author anna
  * @author hannes

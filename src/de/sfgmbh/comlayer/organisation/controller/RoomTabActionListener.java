@@ -23,10 +23,19 @@ public class RoomTabActionListener implements ActionListener, IntfComDialogObser
 
 	private String navAction_;
 
+	/**
+	 * Create the action listener
+	 */
 	public RoomTabActionListener() {
 		this.navAction_ = "default";
 	}
 
+	/**
+	 * Create the action listener based on an action string<br>
+	 * Supported action strings are:<br>
+	 * "add", "del", "edit" and "plan"
+	 * @param action
+	 */
 	public RoomTabActionListener(String action) {
 		this.navAction_ = action;
 	}
@@ -142,6 +151,10 @@ public class RoomTabActionListener implements ActionListener, IntfComDialogObser
 
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see de.sfgmbh.comlayer.core.definitions.IntfComDialogObserver#answered(java.lang.String)
+	 */
 	@Override
 	public void answered(String answer) {
 		if (answer.equals("yes")) {

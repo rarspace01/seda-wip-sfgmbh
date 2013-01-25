@@ -78,6 +78,10 @@ public class ChairTabTable extends DefaultTableModel implements
 		}
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see de.sfgmbh.applayer.core.definitions.IntfAppObserver#change()
+	 */
 	@Override
 	public void change() {
 		this.change("update");

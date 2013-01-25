@@ -65,7 +65,6 @@ public class RequestTab extends JPanel {
 	/**
 	 * Create the frame.
 	 */
-	@SuppressWarnings({ })
 	public RequestTab() {
 		
 		initialize();
