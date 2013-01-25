@@ -2,8 +2,6 @@ package de.sfgmbh.datalayer.core.definitions;
 
 import java.util.List;
 
-import javax.security.auth.login.LoginContext;
-
 import de.sfgmbh.applayer.core.definitions.IntfUser;
 import de.sfgmbh.applayer.core.model.User;
 
