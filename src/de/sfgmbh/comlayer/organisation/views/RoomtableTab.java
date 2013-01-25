@@ -48,7 +48,7 @@ public class RoomtableTab extends JPanel {
 
 	private void initialize() {
 		setAutoscrolls(true);
-		setLayout(new MigLayout("", "[20px:20px,grow][131px][50px][129px][461px][20px:20px,grow][100px:100px:100px,right]", "[][][383px][grow]"));
+		setLayout(new MigLayout("", "[20px:20px,grow][131px][109px][129px][461px][grow][right]", "[][][383px][grow]"));
 				
 				lblRoomplan = new JLabel("<html><h3>Raumplan</h3></html>");
 				add(lblRoomplan, "cell 1 0,aligny bottom");
