@@ -26,7 +26,6 @@ import de.sfgmbh.comlayer.core.model.CmbboxFilterRoomnumber;
 import de.sfgmbh.comlayer.core.model.CmbboxFilterSemester;
 import de.sfgmbh.comlayer.core.model.CmbboxFilterTime;
 import de.sfgmbh.comlayer.lecturer.controller.RoomRequestDialogBtns;
-import de.sfgmbh.comlayer.organisation.controller.UserCreateDialogWin;
 
 /**
  * Modal Dialog for room requests
@@ -172,6 +171,7 @@ public class RoomRequestDialog extends JDialog {
 		contentPane_.setBorder(new EtchedBorder(EtchedBorder.LOWERED, Color.WHITE, Color.LIGHT_GRAY));
 		setContentPane(contentPane_);
 		contentPane_.setLayout(null);
+		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 		
 		JButton btnSenden = new JButton("Senden");
 		btnSenden.setToolTipText("<html>Schicken Sie Ihre Raumanfrage mit dem gewünschten Raum an die Verwaltung</html>");
@@ -210,7 +210,6 @@ public class RoomRequestDialog extends JDialog {
 		contentPane_.add(getLblBoards());
 		contentPane_.add(getLblWhiteboard());
 		
-		addWindowListener(new UserCreateDialogWin(this));
 	}
 	public JTextArea getTxtrUnterbreitenSieDem() {
 		if (txtMessageForCoutnerProposal_ == null) {
