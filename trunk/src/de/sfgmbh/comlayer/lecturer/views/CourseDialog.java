@@ -269,7 +269,7 @@ public class CourseDialog extends JDialog {
 		if (cmbboxLecturer_ == null) {
 			cmbboxLecturer_ = new JComboBox<String>();
 			cmbboxLecturer_.setToolTipText("<html>Wählen Sie den betreffenden <br>Dozenten für die Lehrveranstaltung aus</html>");
-			cmbboxLecturer_.setModel(new CmbboxFilterLecturer(cmbboxLecturer_, "select"));
+			cmbboxLecturer_.setModel(new CmbboxFilterLecturer(cmbboxLecturer_, "select", true));
 			cmbboxLecturer_.setBounds(138, 144, 106, 20);
 		}
 		return cmbboxLecturer_;

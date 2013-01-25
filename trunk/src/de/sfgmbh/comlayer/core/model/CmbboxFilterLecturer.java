@@ -1,6 +1,7 @@
 package de.sfgmbh.comlayer.core.model;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComboBox;
@@ -22,6 +23,7 @@ public class CmbboxFilterLecturer extends DefaultComboBoxModel<String> implement
 	private static final long serialVersionUID = 1L;
 	private JComboBox<String> dependentComboBox_;
 	private String variant_;
+	private boolean isRestricted_;
 	private ArrayList<User> lecturerForModel_ = new ArrayList<User>();
 	
 	/**
@@ -32,6 +34,7 @@ public class CmbboxFilterLecturer extends DefaultComboBoxModel<String> implement
 		AppModel.getInstance().getRepositoryUser().register(this);
 		this.dependentComboBox_ = dependentComboBox;
 		this.variant_ = "default";
+		this.isRestricted_ = false;
 		this.build();
 	}
 	
@@ -44,6 +47,21 @@ public class CmbboxFilterLecturer extends DefaultComboBoxModel<String> implement
 		AppModel.getInstance().getRepositoryUser().register(this);
 		this.dependentComboBox_ = dependentComboBox;
 		this.variant_ = variant;
+		this.isRestricted_ = false;
+		this.build();
+	}
+	
+	/**
+	 * Create the model object based on a variant and allows restriction of items (only lecturer from the same chair get displayed)
+	 * @param dependentCombobox
+	 * @param variant
+	 * @param isRestricted
+	 */
+	public CmbboxFilterLecturer(JComboBox<String> dependentComboBox, String variant, boolean isRestricted) {
+		AppModel.getInstance().getRepositoryUser().register(this);
+		this.dependentComboBox_ = dependentComboBox;
+		this.variant_ = variant;
+		this.isRestricted_ = isRestricted;
 		this.build();
 	}
 
@@ -56,6 +74,7 @@ public class CmbboxFilterLecturer extends DefaultComboBoxModel<String> implement
 	}
 
 	private void build() {
+		IntfUser currentUser = SessionManager.getInstance().getSession();
 		
 		if (this.variant_.equals("select")) {
 			// currently nothing to add here
@@ -67,15 +86,26 @@ public class CmbboxFilterLecturer extends DefaultComboBoxModel<String> implement
 			lecturerForModel_.add(0, null);
 		}
 		
-		for (User user : AppModel.getInstance().getRepositoryUser().getAllLecturer()){
-			this.addElement(user.getlName_());
-			int desiredIndex = this.getSize()-1;
-			lecturerForModel_.add(desiredIndex, user);
+		if (this.isRestricted_ && currentUser != null && currentUser.getChair_() != null) {
+			HashMap<String,String> filter = new HashMap<String,String>();
+			filter.put("chair", currentUser.getChair_().getChairName());
+			
+			for (User user : AppModel.getInstance().getRepositoryUser().getByFilter(filter)){
+				this.addElement(user.getlName_());
+				int desiredIndex = this.getSize()-1;
+				lecturerForModel_.add(desiredIndex, user);
+			}
+			
+		} else {
+			for (User user : AppModel.getInstance().getRepositoryUser().getAllLecturer()){
+				this.addElement(user.getlName_());
+				int desiredIndex = this.getSize()-1;
+				lecturerForModel_.add(desiredIndex, user);
+			}
 		}
 
 		// Set the selected lecturer to the currently logged in lecturer if
 		// there is a lecturer logged in - otherwise set it to "<alle>"
-		IntfUser currentUser = SessionManager.getInstance().getSession();
 		if (currentUser != null) {
 			if (currentUser.getClass_().equals("lecturer")) {
 				this.setSelectedItem(currentUser.getlName_());
