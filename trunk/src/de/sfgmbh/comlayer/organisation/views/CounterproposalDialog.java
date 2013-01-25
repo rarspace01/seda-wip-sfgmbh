@@ -120,13 +120,15 @@ public class CounterproposalDialog extends JDialog {
 		contentPane_.add(lblMsg);
 		
 		JButton btnSenden = new JButton("Senden");
-		btnSenden.setBounds(179, 333, 90, 28);
+		btnSenden.setToolTipText("<html>Klicken Sie hier, um<br> Ihre Eingaben zu speichern</html>");
+		btnSenden.setBounds(179, 333, 90, 23);
 		btnSenden.addActionListener(new CounterproposalFrameBtns(this, "send"));
 		contentPane_.add(btnSenden);
 		
 		JButton btnAbbrechen = new JButton("Abbrechen");
+		btnAbbrechen.setToolTipText("<html>Wenn Sie den Vorgang abbrechen wollen</html>");
 		btnAbbrechen.addActionListener(new CounterproposalFrameBtns(this, "cancel"));
-		btnAbbrechen.setBounds(67, 333, 90, 28);
+		btnAbbrechen.setBounds(67, 333, 90, 23);
 		contentPane_.add(btnAbbrechen);
 		contentPane_.add(getTxtrUnterbreitenSieDem());
 		contentPane_.add(getLblRoom());
@@ -207,6 +209,7 @@ public class CounterproposalDialog extends JDialog {
 	public JComboBox<String> getCmbboxRoom() {
 		if (cmbboxRoom_ == null) {
 			cmbboxRoom_ = new JComboBox<String>();
+			cmbboxRoom_.setToolTipText("<html>Wählen Sie einen Alternativraum</html>");
 			cmbboxRoom_.setModel(new CmbboxFilterRoomnumber(cmbboxRoom_, "select"));
 			cmbboxRoom_.setEditable(true);
 			cmbboxRoom_.addActionListener(new CounterproposalFrameBtns(this, "combo"));
@@ -221,6 +224,7 @@ public class CounterproposalDialog extends JDialog {
 	public JComboBox<String> getCmbboxDay() {
 		if (cmbboxDay_ == null) {
 			cmbboxDay_ = new JComboBox<String>();
+			cmbboxDay_.setToolTipText("<html>Wählen Sie einen Alternativtag</html>");
 			cmbboxDay_.setModel(new CmbboxFilterDay("select"));
 			cmbboxDay_.addActionListener(new CounterproposalFrameBtns(this, "combo"));
 			cmbboxDay_.setBounds(112, 111, 102, 20);
@@ -234,6 +238,7 @@ public class CounterproposalDialog extends JDialog {
 	public JComboBox<String> getCmbboxTime() {
 		if (cmbboxTime_ == null) {
 			cmbboxTime_ = new JComboBox<String>();
+			cmbboxTime_.setToolTipText("<html>Wählen Sie eine Alternativzeit</html>");
 			cmbboxTime_.setModel(new CmbboxFilterTime("select"));
 			cmbboxTime_.addActionListener(new CounterproposalFrameBtns(this, "combo"));
 			cmbboxTime_.setBounds(112, 136, 102, 20);
@@ -345,6 +350,7 @@ public class CounterproposalDialog extends JDialog {
 	public JEditorPane getEditorPane() {
 		if (editorPane_ == null) {
 			editorPane_ = new JEditorPane();
+			editorPane_.setToolTipText("<html>Geben Sie, falls gewünscht<br> einen Nachricht an den Dozenten ein</html>");
 			editorPane_.setBorder(null);
 		}
 		return editorPane_;

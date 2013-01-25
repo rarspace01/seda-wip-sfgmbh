@@ -175,13 +175,14 @@ public class RoomRequestDialog extends JDialog {
 		
 		JButton btnSenden = new JButton("Senden");
 		btnSenden.setToolTipText("<html>Schicken Sie Ihre Raumanfrage mit dem gewünschten Raum an die Verwaltung</html>");
-		btnSenden.setBounds(177, 385, 90, 28);
+		btnSenden.setBounds(177, 385, 90, 23);
 		btnSenden.addActionListener(new RoomRequestDialogBtns(this, "send"));
 		contentPane_.add(btnSenden);
 		
 		JButton btnAbbrechen = new JButton("Abbrechen");
+		btnAbbrechen.setToolTipText("<html>Geben Sie für die Studenten eine Beschreibung der Lehrveranstaltung ein</html>");
 		btnAbbrechen.addActionListener(new RoomRequestDialogBtns(this, "cancel"));
-		btnAbbrechen.setBounds(77, 385, 90, 28);
+		btnAbbrechen.setBounds(77, 385, 90, 23);
 		contentPane_.add(btnAbbrechen);
 		contentPane_.add(getTxtrUnterbreitenSieDem());
 		contentPane_.add(getLblRoom());
@@ -249,7 +250,7 @@ public class RoomRequestDialog extends JDialog {
 	public JComboBox<String> getCmbboxRoom() {
 		if (cmbboxRoom_ == null) {
 			cmbboxRoom_ = new JComboBox<String>();
-			cmbboxRoom_.setToolTipText("Geben Sie einen gewünschten Raum direkt ein");
+			cmbboxRoom_.setToolTipText("<html>Wählen Sie einen Wunschraum</html>");
 			cmbboxRoom_.setModel(new CmbboxFilterRoomnumber(cmbboxRoom_, "select"));
 			cmbboxRoom_.setEditable(true);
 			cmbboxRoom_.addActionListener(new RoomRequestDialogBtns(this, "combo"));
@@ -260,7 +261,7 @@ public class RoomRequestDialog extends JDialog {
 	public JComboBox<String> getCmbboxDay() {
 		if (cmbboxDay_ == null) {
 			cmbboxDay_ = new JComboBox<String>();
-			cmbboxDay_.setToolTipText("Geben Sie den Tag der Lehrveranstaltung ein");
+			cmbboxDay_.setToolTipText("<html>Wählen Sie einen Wunschtag</html>");
 			cmbboxDay_.setModel(new CmbboxFilterDay("select"));
 			cmbboxDay_.addActionListener(new RoomRequestDialogBtns(this, "combo"));
 			cmbboxDay_.setBounds(139, 95, 102, 20);
@@ -270,7 +271,7 @@ public class RoomRequestDialog extends JDialog {
 	public JComboBox<String> getCmbboxTime() {
 		if (cmbboxTime_ == null) {
 			cmbboxTime_ = new JComboBox<String>();
-			cmbboxTime_.setToolTipText("Geben Sie die Uhrzeit der Lehrveranstaltung an");
+			cmbboxTime_.setToolTipText("<html>Wählen Sie einen Wunschzeit</html>");
 			cmbboxTime_.setModel(new CmbboxFilterTime("select"));
 			cmbboxTime_.addActionListener(new RoomRequestDialogBtns(this, "combo"));
 			cmbboxTime_.setBounds(139, 120, 102, 20);
@@ -379,14 +380,14 @@ public class RoomRequestDialog extends JDialog {
 			btnNew_ = new JButton("Vorschlag");
 			btnNew_.setToolTipText("<html>Geben Sie Ihre Wunschgrößen ein <br> und Klicken Sie hier, um sich einen passenden <br>Raum oben anzeigen zu lassen</html>");
 			btnNew_.addActionListener(new RoomRequestDialogBtns(this, "newSuggestion"));
-			btnNew_.setBounds(230, 316, 90, 28);
+			btnNew_.setBounds(230, 316, 90, 23);
 		}
 		return btnNew_;
 	}
 	public JComboBox<String> getCmbboxSemester() {
 		if (cmbboxSemester_ == null) {
 			cmbboxSemester_ = new JComboBox<String>();
-			cmbboxSemester_.setToolTipText("Geben Sie das Semester der Lehrveranstaltung ein");
+			cmbboxSemester_.setToolTipText("<html>Wählen Sie einen Wunschsemester</html>");
 			cmbboxSemester_.setModel(new CmbboxFilterSemester("select"));
 			cmbboxSemester_.addActionListener(new RoomRequestDialogBtns(this, "combo"));
 			cmbboxSemester_.setBounds(139, 71, 102, 20);

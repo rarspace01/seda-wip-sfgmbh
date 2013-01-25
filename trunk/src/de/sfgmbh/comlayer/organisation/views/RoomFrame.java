@@ -60,9 +60,11 @@ public class RoomFrame extends JDialog {
 		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 		
 		JButton btnSave = new JButton("Speichern");
+		btnSave.setToolTipText("<html>Klicken Sie hier, um<br> Ihre Eingaben zu speichern</html>");
 		btnSave.addActionListener(new RoomFrameBtns("save"));
 		
 		JButton btnCancel = new JButton("Abbrechen");
+		btnCancel.setToolTipText("<html>Wenn Sie den Vorgang abbrechen wollen</html>");
 		btnCancel.addActionListener(new RoomFrameBtns("cancle"));
 		
 		JLabel lblLevel = new JLabel("Stockwerk:");
@@ -78,6 +80,7 @@ public class RoomFrame extends JDialog {
 		txtRoomid_=new JTextField("-1");
 		
 		txtLevel_ = new JTextField();
+		txtLevel_.setToolTipText("<html>Geben Sie das Stockwerk<br> des Raumes an</html>");
 		txtLevel_.setFont(new Font("SansSerif", Font.PLAIN, 12));
 		GridBagConstraints gbc_txtLevel = new GridBagConstraints();
 		gbc_txtLevel.fill = GridBagConstraints.BOTH;
@@ -99,6 +102,7 @@ public class RoomFrame extends JDialog {
 		contentPane_.add(lblRoomnumber, gbc_lblRoomnumber);
 		
 		txtRoomNumber_ = new JTextField();
+		txtRoomNumber_.setToolTipText("<html>Geben Sie die Raumnummer<br> des Raumes an</html>");
 		txtRoomNumber_.setFont(new Font("SansSerif", Font.PLAIN, 12));
 		GridBagConstraints gbc_txtRoomName = new GridBagConstraints();
 		gbc_txtRoomName.fill = GridBagConstraints.BOTH;
@@ -119,6 +123,7 @@ public class RoomFrame extends JDialog {
 		contentPane_.add(lblSeats, gbc_lblSeats);
 		
 		txtSeats_ = new JTextField();
+		txtSeats_.setToolTipText("<html>Geben Sie die möglichen<br> Sitz- und Arbeitsplätze<br> des Raumes an</html>");
 		txtSeats_.setText("0");
 		txtSeats_.setFont(new Font("SansSerif", Font.PLAIN, 12));
 		GridBagConstraints gbc_txtSeats = new GridBagConstraints();
@@ -140,6 +145,7 @@ public class RoomFrame extends JDialog {
 		contentPane_.add(lblPcSeats, gbc_lblPcSeats);
 		
 		txtPcSeats_ = new JTextField();
+		txtPcSeats_.setToolTipText("<html>Geben Sie die PC-Plätze<br> des Raumes an</html>");
 		txtPcSeats_.setText("0");
 		txtPcSeats_.setFont(new Font("SansSerif", Font.PLAIN, 12));
 		GridBagConstraints gbc_txtPcSeats = new GridBagConstraints();
@@ -161,6 +167,7 @@ public class RoomFrame extends JDialog {
 		contentPane_.add(lblBeamer, gbc_lblBeamer);
 		
 		txtBeamer_ = new JTextField();
+		txtBeamer_.setToolTipText("<html>Geben Sie die Anzahl der Beamer<br>im Raum an</html>");
 		txtBeamer_.setText("0");
 		txtBeamer_.setFont(new Font("SansSerif", Font.PLAIN, 12));
 		GridBagConstraints gbc_txtBeamer = new GridBagConstraints();
@@ -183,6 +190,7 @@ public class RoomFrame extends JDialog {
 		contentPane_.add(lblVisualizer, gbc_lblVisualizer);
 		
 		txtVisualizer_ = new JTextField();
+		txtVisualizer_.setToolTipText("<html>Geben Sie die Anzahl der Visualizer<br>im Raum an</html>");
 		txtVisualizer_.setText("0");
 		txtVisualizer_.setFont(new Font("SansSerif", Font.PLAIN, 12));
 		GridBagConstraints gbc_txtVisualizer = new GridBagConstraints();
@@ -205,6 +213,7 @@ public class RoomFrame extends JDialog {
 		contentPane_.add(lblOverheads, gbc_lblOverheads);
 		
 		txtOverheads_ = new JTextField();
+		txtOverheads_.setToolTipText("<html>Geben Sie die Anzahl der Overheads<br>im Raum an</html>");
 		txtOverheads_.setText("0");
 		txtOverheads_.setFont(new Font("SansSerif", Font.PLAIN, 12));
 		GridBagConstraints gbc_txtOverheads = new GridBagConstraints();
@@ -227,6 +236,7 @@ public class RoomFrame extends JDialog {
 		contentPane_.add(lblTafeln, gbc_lblTafeln);
 		
 		txtChalkboards_ = new JTextField();
+		txtChalkboards_.setToolTipText("<html>Geben Sie die Anzahl der Tafeln<br>im Raum an</html>");
 		txtChalkboards_.setText("0");
 		txtChalkboards_.setFont(new Font("SansSerif", Font.PLAIN, 12));
 		GridBagConstraints gbc_txtChalkboards = new GridBagConstraints();
@@ -249,6 +259,7 @@ public class RoomFrame extends JDialog {
 		contentPane_.add(lblWhiteboards, gbc_lblWhiteboards);
 		
 		txtWhiteboards_ = new JTextField();
+		txtWhiteboards_.setToolTipText("<html>Geben Sie die Anzahl der Whiteboards<br>im Raum an</html>");
 		txtWhiteboards_.setText("0");
 		txtWhiteboards_.setFont(new Font("SansSerif", Font.PLAIN, 12));
 		GridBagConstraints gbc_txtWhiteboards = new GridBagConstraints();

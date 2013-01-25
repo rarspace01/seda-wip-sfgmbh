@@ -156,6 +156,7 @@ public class ChairCreateDialog extends JDialog {
 	public JButton getBtnCancel() {
 		if (btnCancel_ == null) {
 			btnCancel_ = new JButton("Abbrechen");
+			btnCancel_.setToolTipText("<html>Wenn Sie den Vorgang abbrechen wollen</html>");
 			btnCancel_.addActionListener(new ChairCreateDialogBtns(this, "cancel"));
 			btnCancel_.setBounds(56, 162, 89, 23);
 		}
@@ -164,6 +165,7 @@ public class ChairCreateDialog extends JDialog {
 	public JButton getBtnSave() {
 		if (btnSave_ == null) {
 			btnSave_ = new JButton("Speichern");
+			btnSave_.setToolTipText("<html>Klicken Sie hier, um<br> Ihre Eingaben zu speichern</html>");
 			btnSave_.addActionListener(new ChairCreateDialogBtns(this, "save"));
 			btnSave_.setBounds(155, 162, 89, 23);
 		}
@@ -172,6 +174,7 @@ public class ChairCreateDialog extends JDialog {
 	public JTextField getTxtAcronym() {
 		if (txtAcronym_ == null) {
 			txtAcronym_ = new JTextField();
+			txtAcronym_.setToolTipText("<html>Bitte geben Sie eine <br>Kurzbezeichnung des Lehrstuhls an</html>");
 			txtAcronym_.setBounds(138, 19, 106, 20);
 			txtAcronym_.setColumns(10);
 		}
@@ -180,6 +183,7 @@ public class ChairCreateDialog extends JDialog {
 	public JTextField getTxtName() {
 		if (txtName_ == null) {
 			txtName_ = new JTextField();
+			txtName_.setToolTipText("<html>Geben Sie den Lehrstuhlnamen ausgeschrieben an</hmtl>");
 			txtName_.setBounds(138, 44, 106, 20);
 			txtName_.setColumns(10);
 		}
@@ -188,6 +192,7 @@ public class ChairCreateDialog extends JDialog {
 	public JComboBox<String> getCmbboxLecturer() {
 		if (cmbboxLecturer_ == null) {
 			cmbboxLecturer_ = new JComboBox<String>();
+			cmbboxLecturer_.setToolTipText("<html>Bitte ordnen Sie dem Lehrstuhl<br> einen Nutzer als Inhaber zu</html>");
 			cmbboxLecturer_.setModel(new CmbboxFilterLecturer(cmbboxLecturer_, "create"));
 			cmbboxLecturer_.setBounds(138, 120, 106, 20);
 		}
@@ -206,6 +211,7 @@ public class ChairCreateDialog extends JDialog {
 	public JTextField getTxtLevel() {
 		if (txtLevel_ == null) {
 			txtLevel_ = new JTextField();
+			txtLevel_.setToolTipText("<html>Geben Sie das Hauptstockwerk des Lehrstuhls an</html>");
 			txtLevel_.setBounds(138, 95, 106, 20);
 			txtLevel_.setColumns(10);
 		}
