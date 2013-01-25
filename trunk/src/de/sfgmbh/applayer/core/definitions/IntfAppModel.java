@@ -1,11 +1,6 @@
 package de.sfgmbh.applayer.core.definitions;
 
 import de.sfgmbh.applayer.core.model.AppException;
-import de.sfgmbh.applayer.core.model.RepositoryChair;
-import de.sfgmbh.applayer.core.model.RepositoryCourse;
-import de.sfgmbh.applayer.core.model.RepositoryRoom;
-import de.sfgmbh.applayer.core.model.RepositoryRoomAllocation;
-import de.sfgmbh.applayer.core.model.RepositoryUser;
 
 /**
  * Interfaces for the application model
@@ -25,30 +20,30 @@ public interface IntfAppModel {
 	 * Get the chair repository out of the main model
 	 * @return the repositoryChair
 	 */
-	public abstract RepositoryChair getRepositoryChair();
+	public abstract IntfRepositoryChair getRepositoryChair();
 
 	/**
 	 * Get the user repository out of the main model
 	 * @return the repositoryUser
 	 */
-	public abstract RepositoryUser getRepositoryUser();
+	public abstract IntfRepositoryUser getRepositoryUser();
 
 	/**
 	 * Get the course repository out of the main model
 	 * @return the repositoryCourse
 	 */
-	public abstract RepositoryCourse getRepositoryCourse();
+	public abstract IntfRepositoryCourse getRepositoryCourse();
 
 	/**
 	 * Get the room repository out of the main model
 	 * @return the repositoryRoom
 	 */
-	public abstract RepositoryRoom getRepositoryRoom();
+	public abstract IntfRepositoryRoom getRepositoryRoom();
 
 	/**
 	 * Get the room allocation repository out of the main model
 	 * @return the repositoryRoomAllocation
 	 */
-	public abstract RepositoryRoomAllocation getRepositoryRoomAllocation();
+	public abstract IntfRepositoryRoomAllocation getRepositoryRoomAllocation();
 
 }

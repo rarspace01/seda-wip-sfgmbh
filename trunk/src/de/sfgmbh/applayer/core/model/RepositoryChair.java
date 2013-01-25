@@ -7,6 +7,7 @@ import java.util.List;
 import de.sfgmbh.applayer.core.definitions.IntfAppObservable;
 import de.sfgmbh.applayer.core.definitions.IntfAppObserver;
 import de.sfgmbh.applayer.core.definitions.IntfChair;
+import de.sfgmbh.applayer.core.definitions.IntfRepositoryChair;
 import de.sfgmbh.datalayer.core.definitions.IntfDataObserver;
 import de.sfgmbh.datalayer.core.model.DataModel;
 
@@ -17,7 +18,7 @@ import de.sfgmbh.datalayer.core.model.DataModel;
  * @author hannes
  *
  */
-public class RepositoryChair implements IntfAppObservable, IntfDataObserver {
+public class RepositoryChair implements IntfAppObservable, IntfDataObserver, IntfRepositoryChair {
 	
 	private ArrayList<Object> observer_ = new ArrayList<Object>();
 	
@@ -28,27 +29,25 @@ public class RepositoryChair implements IntfAppObservable, IntfDataObserver {
 		DataModel.getInstance().getDataHandlerChair().register(this);
 	}
 	
-	/**
-	 * Return all chairs
-	 * @return a list of all chairs
+	/* (non-Javadoc)
+	 * @see de.sfgmbh.applayer.core.model.IntfRepositoryChair#getAll()
 	 */
+	@Override
 	public List<IntfChair> getAll() {
 		return DataModel.getInstance().getDataHandlerChair().getAll();
 	}
 	
-	/**
-	 * 
-	 * @param filter
-	 * @return a filtered list of chairs
+	/* (non-Javadoc)
+	 * @see de.sfgmbh.applayer.core.model.IntfRepositoryChair#getByFilter(java.util.HashMap)
 	 */
+	@Override
 	public List<IntfChair> getByFilter(HashMap<String, String> filter) {
 		return DataModel.getInstance().getDataHandlerChair().getByFilter(filter);
 	}
-	/**
-	 * Get the chair based on its acronym
-	 * @param acronym
-	 * @return a chair if the submitted acronym can be associated with one, otherwise returns null
+	/* (non-Javadoc)
+	 * @see de.sfgmbh.applayer.core.model.IntfRepositoryChair#getForAcronym(java.lang.String)
 	 */
+	@Override
 	public IntfChair getForAcronym(String acronym) {
 		return DataModel.getInstance().getDataHandlerChair().getForAcronym(acronym);
 	}
@@ -56,6 +55,9 @@ public class RepositoryChair implements IntfAppObservable, IntfDataObserver {
 	/*
 	 * (non-Javadoc)
 	 * @see de.sfgmbh.datalayer.core.definitions.IntfDataObserver#change()
+	 */
+	/* (non-Javadoc)
+	 * @see de.sfgmbh.applayer.core.model.IntfRepositoryChair#change()
 	 */
 	@Override
 	public void change() {
@@ -65,6 +67,9 @@ public class RepositoryChair implements IntfAppObservable, IntfDataObserver {
 	/*
 	 * (non-Javadoc)
 	 * @see de.sfgmbh.applayer.core.definitions.IntfAppObservable#update()
+	 */
+	/* (non-Javadoc)
+	 * @see de.sfgmbh.applayer.core.model.IntfRepositoryChair#update()
 	 */
 	@Override
 	public void update() {
@@ -84,6 +89,9 @@ public class RepositoryChair implements IntfAppObservable, IntfDataObserver {
 	 * (non-Javadoc)
 	 * @see de.sfgmbh.applayer.core.definitions.IntfAppObservable#register(de.sfgmbh.applayer.core.definitions.IntfAppObserver)
 	 */
+	/* (non-Javadoc)
+	 * @see de.sfgmbh.applayer.core.model.IntfRepositoryChair#register(de.sfgmbh.applayer.core.definitions.IntfAppObserver)
+	 */
 	@Override
 	public void register(IntfAppObserver observer) {
 		if (observer instanceof IntfAppObserver) {
@@ -97,32 +105,33 @@ public class RepositoryChair implements IntfAppObservable, IntfDataObserver {
 	 * (non-Javadoc)
 	 * @see de.sfgmbh.applayer.core.definitions.IntfAppObservable#unregister(de.sfgmbh.applayer.core.definitions.IntfAppObserver)
 	 */
+	/* (non-Javadoc)
+	 * @see de.sfgmbh.applayer.core.model.IntfRepositoryChair#unregister(de.sfgmbh.applayer.core.definitions.IntfAppObserver)
+	 */
 	@Override
 	public void unregister(IntfAppObserver observer) {
 		observer_.remove(observer);
 	}
-	/**
-	 * Get a chair by its id
-	 * @param chairId
-	 * @return the user for the id or null if it doesn't exist
+	/* (non-Javadoc)
+	 * @see de.sfgmbh.applayer.core.model.IntfRepositoryChair#get(int)
 	 */
+	@Override
 	public IntfChair get(int chairId_) {
 		return DataModel.getInstance().getDataHandlerChair().get(chairId_);
 	}
 
-	/**
-	 * Delete a Chair from the model if possible
-	 * @param chairToDelete
-	 * @return true on success
+	/* (non-Javadoc)
+	 * @see de.sfgmbh.applayer.core.model.IntfRepositoryChair#delete(de.sfgmbh.applayer.core.definitions.IntfChair)
 	 */
+	@Override
 	public boolean delete(IntfChair delChair) {
 		return DataModel.getInstance().getDataHandlerChair().delete(delChair);
 	}
 
-	/**
-	 * Save a chair in the DB
-	 * @return true on success
+	/* (non-Javadoc)
+	 * @see de.sfgmbh.applayer.core.model.IntfRepositoryChair#save(de.sfgmbh.applayer.core.definitions.IntfChair)
 	 */
+	@Override
 	public boolean save(IntfChair chair) {
 		return DataModel.getInstance().getDataHandlerChair().save(chair);
 	}
