@@ -273,7 +273,7 @@ public class User implements IntfUser {
 		    return sb.toString();
 		    
 		} catch (NoSuchAlgorithmException e) {
-			e.printStackTrace();
+			
 		}
 		
 		return null;

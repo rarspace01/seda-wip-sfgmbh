@@ -104,7 +104,7 @@ public class BaseBtns implements ActionListener {
 							.switchToNextTab();
 
 				} catch (Exception ex) {
-					ex.printStackTrace();
+					
 					AppModel.getInstance()
 							.getExceptionHandler()
 							.setNewException(

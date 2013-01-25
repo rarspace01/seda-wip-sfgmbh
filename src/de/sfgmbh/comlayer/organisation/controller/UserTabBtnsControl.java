@@ -91,7 +91,7 @@ public class UserTabBtnsControl implements ActionListener, IntfComDialogObserver
 					AppModel.getInstance().getExceptionHandler().setNewException("Ein unerwarteter Fehler ist aufgetreten.<br /><br >" + ex.toString(), "Fehler!");
 				}
 				
-				QuestionDialog dialog = new QuestionDialog("Wollen Sie den gewählten benutzer wirklich löschen?", "Achtung!");
+				QuestionDialog dialog = new QuestionDialog("Wollen Sie den gewählten Benutzer wirklich löschen?", "Achtung!");
 				dialog.register(this);
 				dialog.setVisible(true);
 			}

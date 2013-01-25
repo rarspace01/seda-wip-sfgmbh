@@ -60,7 +60,7 @@ public class Bootstrap {
 						BaseTab frame = ViewManager.getInstance().getCoreBaseTab();
 						frame.setVisible(true);
 					} catch (Exception e) {
-						e.printStackTrace();
+						
 					}
 				}
 			}
@@ -78,13 +78,13 @@ public class Bootstrap {
 			dataManager.dispose();
 		} catch (SQLException e) {
 			DataModel.getInstance().getExceptionsHandler().setNewException(("Keine Verbindung zur Datenbank möglich:<br /><br />" + e.toString()), "Verbindungs-Fehler!");
-			e.printStackTrace();
+			
 		} catch (NullPointerException e){
 			DataModel.getInstance().getExceptionsHandler().setNewException(("Keine Verbindung zur Datenbank möglich:<br /><br />" + e.toString()), "Verbindungs-Fehler!");
-			e.printStackTrace();
+			
 		} catch (Exception e){
 			DataModel.getInstance().getExceptionsHandler().setNewException(("Keine Verbindung zur Datenbank möglich:<br /><br />" + e.toString()), "Verbindungs-Fehler!");
-			e.printStackTrace();
+			
 		}
 		return hasDbConnection;
 	}

@@ -40,10 +40,10 @@ public class DataManagerPdf implements IntfDataManagerPdf {
 					new FileOutputStream(filename_));
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			
 		} catch (DocumentException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			
 		}
 
 		document_.open();
@@ -93,9 +93,9 @@ public class DataManagerPdf implements IntfDataManagerPdf {
 			
 		} catch (DocumentException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			
 		} catch (IOException e) {
-			//e.printStackTrace();
+			//
 		}
 				
 		//g = new PdfGraphics2D(contentByte, component.getWidth(), component.getHeight()

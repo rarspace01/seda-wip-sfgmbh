@@ -92,7 +92,7 @@ public class CtrlGenericTables implements IntfCtrlGenericTables {
 				}
 			}
 		}
-		System.out.println(maxWidth);
+		
 		for(int i=0;i<=5;i++){
 			table.getColumnModel().getColumn(i).setMinWidth(maxWidth);
 			table.getColumnModel().getColumn(i).setPreferredWidth(maxWidth);

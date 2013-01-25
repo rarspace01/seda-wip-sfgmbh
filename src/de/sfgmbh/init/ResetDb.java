@@ -63,7 +63,7 @@ public class ResetDb {
 				}
 			}
 		} catch (IOException e) {
-			//e.printStackTrace();
+			//
 		}
 		try {
 			DataManagerPostgreSql dataManager = new DataManagerPostgreSql();
@@ -79,9 +79,9 @@ public class ResetDb {
 			dataManager.dispose();
 		} catch (BatchUpdateException e) {
 			//ignore errors on resetting
-			//e.printStackTrace();
+			//
 		} catch (SQLException e) {
-			//e.printStackTrace();
+			//
 		}	
 			
 		

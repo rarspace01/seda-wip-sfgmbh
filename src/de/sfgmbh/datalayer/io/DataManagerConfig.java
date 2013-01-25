@@ -42,10 +42,10 @@ public class DataManagerConfig {
 				stream.close();
 			} catch (FileNotFoundException e) {
 				// TODO Auto-generated catch block
-				e.printStackTrace();
+				
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
-				e.printStackTrace();
+				
 			}
 		}else{
 			createConfigFile();
@@ -75,9 +75,9 @@ public class DataManagerConfig {
 		try {
 			this.dbproperties_.store(new FileOutputStream(new File(fileName_)), "UNIVIS 2.0 config file");
 		} catch (FileNotFoundException e) {
-			e.printStackTrace();
+			
 		} catch (IOException e) {
-			e.printStackTrace();
+			
 		}
 	}
 	

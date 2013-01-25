@@ -54,10 +54,10 @@ public class DataHandlerCourse implements IntfDataFilter, IntfDataObservable, In
 			}
 
 		} catch (SQLException e) {
-			e.printStackTrace();
+			
 			DataModel.getInstance().getExceptionsHandler().setNewException(("Es ist ein SQL-Fehler (DataHandlerCourse-02) aufgetreten:<br /><br />" + e.toString()), "Datenbank-Fehler!");
 		} catch (Exception e) {
-			e.printStackTrace();
+			
 			DataModel.getInstance().getExceptionsHandler().setNewException(("Es ist ein unbekannter Fehler (DataHandlerCourse-03) in der Datenhaltung aufgetreten:<br /><br />" + e.toString()), "Fehler!");
 		}
 
@@ -112,10 +112,10 @@ public class DataHandlerCourse implements IntfDataFilter, IntfDataObservable, In
 			
 			filterDm.dispose();
 		} catch (SQLException e) {
-			e.printStackTrace();
+			
 			DataModel.getInstance().getExceptionsHandler().setNewException(("Es ist ein SQL-Fehler (DataHandlerCourse-09) aufgetreten:<br /><br />" + e.toString()), "Datenbank-Fehler!");
 		} catch (Exception e) {
-			e.printStackTrace();
+			
 			DataModel.getInstance().getExceptionsHandler().setNewException(("Es ist ein unbekannter Fehler (DataHandlerCourse-10) in der Datenhaltung aufgetreten:<br /><br />" + e.toString()), "Fehler!");
 		}finally{
 			filterDm.dispose();
@@ -145,10 +145,10 @@ public class DataHandlerCourse implements IntfDataFilter, IntfDataObservable, In
 			}
 			
 		} catch (SQLException e) {
-			e.printStackTrace();
+			
 			DataModel.getInstance().getExceptionsHandler().setNewException(("Es ist ein SQL-Fehler (DataHandlerCourse-07) aufgetreten:<br /><br />" + e.toString()), "Datenbank-Fehler!");
 		} catch (Exception e) {
-			e.printStackTrace();
+			
 			DataModel.getInstance().getExceptionsHandler().setNewException(("Es ist ein unbekannter Fehler (DataHandlerCourse-08) in der Datenhaltung aufgetreten:<br /><br />" + e.toString()), "Fehler!");
 		}finally{
 			dataManager.dispose();
@@ -176,10 +176,10 @@ public class DataHandlerCourse implements IntfDataFilter, IntfDataObservable, In
 			returnCourse.setCourseDescription_(rs.getString("coursedescription"));
 			returnCourse.setLecturerEnabled_(rs.getBoolean("lecturerenabled"));
 		} catch (SQLException e) {
-			e.printStackTrace();
+			
 			DataModel.getInstance().getExceptionsHandler().setNewException(("Es ist ein SQL-Fehler (DataHandlerCourse-04) aufgetreten:<br /><br />" + e.toString()), "Datenbank-Fehler!");
 		} catch (Exception e) {
-			e.printStackTrace();
+			
 			DataModel.getInstance().getExceptionsHandler().setNewException(("Es ist ein unbekannter Fehler (DataHandlerCourse-05) in der Datenhaltung aufgetreten:<br /><br />" + e.toString()), "Fehler!");
 		}
 		
@@ -248,11 +248,11 @@ public class DataHandlerCourse implements IntfDataFilter, IntfDataObservable, In
 					dataManager.executePreparedStatement();
 					this.update();
 				} catch (SQLException e) {
-					e.printStackTrace();
+					
 					DataModel.getInstance().getExceptionsHandler().setNewException(("Es ist ein SQL-Fehler aufgetreten:<br /><br />" + e.toString()), "Datenbank-Fehler!");
 					returnState =  false;
 				} catch (Exception e) {
-					e.printStackTrace();
+					
 					DataModel.getInstance().getExceptionsHandler().setNewException(("Es ist ein unbekannter Fehler in der Datenhaltung aufgetreten:<br /><br />" + e.toString()), "Fehler!");
 					returnState =  false;
 				}finally{
@@ -278,11 +278,11 @@ public class DataHandlerCourse implements IntfDataFilter, IntfDataObservable, In
 				returnState = dataManager.executePreparedStatement();
 				this.update();
 			} catch (SQLException e) {
-				e.printStackTrace();
+				
 				DataModel.getInstance().getExceptionsHandler().setNewException(("Es ist ein SQL-Fehler aufgetreten:<br /><br />" + e.toString()), "Datenbank-Fehler!");
 				returnState = false;
 			} catch (Exception e) {
-				e.printStackTrace();
+				
 				DataModel.getInstance().getExceptionsHandler().setNewException(("Es ist ein unbekannter Fehler (in der Datenhaltung aufgetreten:<br /><br />" + e.toString()), "Fehler!");
 				returnState = false;
 			}finally{
@@ -314,11 +314,11 @@ public class DataHandlerCourse implements IntfDataFilter, IntfDataObservable, In
 				this.update();
 			} catch (SQLException e) {
 				returnState = false;
-				e.printStackTrace();
+				
 				DataModel.getInstance().getExceptionsHandler().setNewException(("Es ist ein SQL-Fehler aufgetreten:<br /><br />" + e.toString()), "Datenbank-Fehler!");
 			} catch (Exception e) {
 				returnState = false;
-				e.printStackTrace();
+				
 				DataModel.getInstance().getExceptionsHandler().setNewException(("Es ist ein unbekannter Fehler in der Datenhaltung aufgetreten:<br /><br />" + e.toString()), "Fehler!");
 			}finally{
 				dataManager.dispose();

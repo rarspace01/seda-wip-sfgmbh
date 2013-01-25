@@ -52,7 +52,7 @@ public class DataHandlerChair implements IntfDataChair, IntfDataFilter,
 			
 			
 		} catch (SQLException e) {
-			e.printStackTrace();
+			
 			DataModel
 					.getInstance()
 					.getExceptionsHandler()
@@ -60,7 +60,7 @@ public class DataHandlerChair implements IntfDataChair, IntfDataFilter,
 							("Es ist ein SQL-Fehler aufgetreten:<br /><br />" + e
 									.toString()), "Datenbank-Fehler!");
 		} catch (Exception e) {
-			e.printStackTrace();
+			
 			DataModel
 					.getInstance()
 					.getExceptionsHandler()
@@ -95,7 +95,7 @@ public class DataHandlerChair implements IntfDataChair, IntfDataFilter,
 			}
 
 		} catch (SQLException e) {
-			e.printStackTrace();
+			
 			DataModel
 					.getInstance()
 					.getExceptionsHandler()
@@ -103,7 +103,7 @@ public class DataHandlerChair implements IntfDataChair, IntfDataFilter,
 							("Es ist ein SQL-Fehler aufgetreten.<br /><br />Fehler DataHandlerUser-15:<br />" + e
 									.toString()), "Datenbank-Fehler!");
 		} catch (Exception e) {
-			e.printStackTrace();
+			
 			DataModel
 					.getInstance()
 					.getExceptionsHandler()
@@ -139,7 +139,7 @@ public class DataHandlerChair implements IntfDataChair, IntfDataFilter,
 			}
 
 		} catch (SQLException e) {
-			e.printStackTrace();
+			
 			DataModel
 					.getInstance()
 					.getExceptionsHandler()
@@ -147,7 +147,7 @@ public class DataHandlerChair implements IntfDataChair, IntfDataFilter,
 							("Es ist ein SQL-Fehler aufgetreten.<br /><br />Fehler DataHandlerChair-06:<br />" + e
 									.toString()), "Datenbank-Fehler!");
 		} catch (Exception e) {
-			e.printStackTrace();
+			
 			DataModel
 					.getInstance()
 					.getExceptionsHandler()
@@ -182,7 +182,7 @@ public class DataHandlerChair implements IntfDataChair, IntfDataFilter,
 			}
 
 		} catch (SQLException e) {
-			e.printStackTrace();
+			
 			DataModel
 					.getInstance()
 					.getExceptionsHandler()
@@ -190,7 +190,7 @@ public class DataHandlerChair implements IntfDataChair, IntfDataFilter,
 							("Es ist ein SQL-Fehler aufgetreten.<br /><br />Fehler DataHandlerChair-08:<br />" + e
 									.toString()), "Datenbank-Fehler!");
 		} catch (Exception e) {
-			e.printStackTrace();
+			
 			DataModel
 					.getInstance()
 					.getExceptionsHandler()
@@ -228,7 +228,7 @@ public class DataHandlerChair implements IntfDataChair, IntfDataFilter,
 					this.update();
 				} catch (SQLException e) {
 					returnState = false;
-					e.printStackTrace();
+					
 					DataModel
 							.getInstance()
 							.getExceptionsHandler()
@@ -237,7 +237,7 @@ public class DataHandlerChair implements IntfDataChair, IntfDataFilter,
 											.toString()), "Datenbank-Fehler!");
 				} catch (Exception e) {
 					returnState = false;
-					e.printStackTrace();
+					
 					DataModel
 							.getInstance()
 							.getExceptionsHandler()
@@ -278,11 +278,11 @@ public class DataHandlerChair implements IntfDataChair, IntfDataFilter,
 					dataManager.executePreparedStatement();
 					this.update();
 				} catch (SQLException e) {
-					e.printStackTrace();
+					
 					DataModel.getInstance().getExceptionsHandler().setNewException(("Es ist ein SQL-Fehler aufgetreten:<br /><br />" + e.toString()), "Datenbank-Fehler!");
 					returnState =  false;
 				} catch (Exception e) {
-					e.printStackTrace();
+					
 					DataModel.getInstance().getExceptionsHandler().setNewException(("Es ist ein unbekannter Fehler in der Datenhaltung aufgetreten:<br /><br />" + e.toString()), "Fehler!");
 					returnState =  false;
 				}
@@ -309,11 +309,11 @@ public class DataHandlerChair implements IntfDataChair, IntfDataFilter,
 				returnState = dataManager.executePreparedStatement();
 				this.update();
 			} catch (SQLException e) {
-				e.printStackTrace();
+				
 				DataModel.getInstance().getExceptionsHandler().setNewException(("Es ist ein SQL-Fehler aufgetreten:<br /><br />" + e.toString()), "Datenbank-Fehler!");
 				returnState = false;
 			} catch (Exception e) {
-				e.printStackTrace();
+				
 				DataModel.getInstance().getExceptionsHandler().setNewException(("Es ist ein unbekannter Fehler (in der Datenhaltung aufgetreten:<br /><br />" + e.toString()), "Fehler!");
 				returnState = false;
 			}
@@ -363,7 +363,7 @@ public class DataHandlerChair implements IntfDataChair, IntfDataFilter,
 
 			filterDm.dispose();
 		} catch (SQLException e) {
-			e.printStackTrace();
+			
 			DataModel
 					.getInstance()
 					.getExceptionsHandler()
@@ -371,7 +371,7 @@ public class DataHandlerChair implements IntfDataChair, IntfDataFilter,
 							("Es ist ein SQL-Fehler aufgetreten:<br /><br />" + e
 									.toString()), "Datenbank-Fehler!");
 		} catch (Exception e) {
-			e.printStackTrace();
+			
 			DataModel
 					.getInstance()
 					.getExceptionsHandler()
@@ -403,7 +403,7 @@ public class DataHandlerChair implements IntfDataChair, IntfDataFilter,
 			returnChair.setFaculty(resultSet.getString("faculty"));
 			returnChair.setAcronym(resultSet.getString("chairacronym"));
 		} catch (SQLException e) {
-			e.printStackTrace();
+			
 			DataModel
 					.getInstance()
 					.getExceptionsHandler()
@@ -411,7 +411,7 @@ public class DataHandlerChair implements IntfDataChair, IntfDataFilter,
 							("Es ist ein SQL-Fehler (DataHandlerChair-04) aufgetreten:<br /><br />" + e
 									.toString()), "Datenbank-Fehler!");
 		} catch (Exception e) {
-			e.printStackTrace();
+			
 			DataModel
 					.getInstance()
 					.getExceptionsHandler()

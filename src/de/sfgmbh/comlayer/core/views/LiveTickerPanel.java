@@ -190,7 +190,7 @@ public class LiveTickerPanel extends JPanel {
 			try {
 				Thread.sleep(3000);
 			} catch (Exception e) {
-				e.printStackTrace();
+				
 			}
 
 			int cycles = 0;
@@ -200,7 +200,7 @@ public class LiveTickerPanel extends JPanel {
 				try {
 					Thread.sleep(110);
 				} catch (Exception e) {
-					e.printStackTrace();
+					
 				}
 				// 545.5 cycles are 60 seconds (with 110ms per cycle)
 				if (cycles < 550) {
