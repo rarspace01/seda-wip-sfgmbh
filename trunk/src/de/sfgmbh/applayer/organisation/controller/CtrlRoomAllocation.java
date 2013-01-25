@@ -48,6 +48,9 @@ public class CtrlRoomAllocation implements IntfCtrlRoomAllocation {
 				}
 				if (allowSave) {
 					currentRoomAllocations.setApproved_("accepted");
+					long currentTime = System.currentTimeMillis() / 1000L;
+					String comment = "accepted_at_" + String.valueOf(currentTime);
+					currentRoomAllocations.setComment_(comment);
 					return currentRoomAllocations.save();
 				} else {
 					AppModel.getInstance().getExceptionHandler().setNewException("Eine andere Raumbelegung auf diesem Zeitslot ist bereits freigegeben oder als Gegenvorschlag eingetragen.", "Fehler!");
@@ -75,6 +78,9 @@ public class CtrlRoomAllocation implements IntfCtrlRoomAllocation {
 		IntfRoomAllocation currentRa = AppModel.getInstance().getRepositoryRoomAllocation().get(ra.getRoomAllocationId_());
 		if (currentRa.getApproved_().equals("accepted") || currentRa.getApproved_().equals("waiting") || currentRa.getApproved_().equals("counter")){
 			currentRa.setApproved_("denied");
+			long currentTime = System.currentTimeMillis() / 1000L;
+			String comment = "denied_at_" + String.valueOf(currentTime);
+			currentRa.setComment_(comment);
 			return currentRa.save();
 		} else if (currentRa.getApproved_().equals("denied")) {
 			AppModel.getInstance().getExceptionHandler().setNewException("Diese Raumbelegung ist bereits abgelehnt!", "Fehler!");
@@ -132,6 +138,9 @@ public class CtrlRoomAllocation implements IntfCtrlRoomAllocation {
 		}
 		
 		roomAllocation.setApproved_("counter");
+		long currentTime = System.currentTimeMillis() / 1000L;
+		String comment = "counter_at_" + String.valueOf(currentTime);
+		roomAllocation.setComment_(comment);
 		
 		// Check if it should be possible to set this room allocation as counter and do so if yes
 		if (!roomAllocation.isConflicting_()){
@@ -165,6 +174,10 @@ public class CtrlRoomAllocation implements IntfCtrlRoomAllocation {
 		return AppModel.getInstance().getRepositoryRoomAllocation().clean();
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see de.sfgmbh.applayer.organisation.definitions.IntfCtrlRoomAllocation#getLectureOnTime(java.util.List, int, int, boolean, boolean)
+	 */
 	@Override
 	public String getLectureOnTime(List<IntfRoomAllocation> roomAllocations,
 			int day, int time, boolean showRoomName, boolean markDuplicates) {

@@ -4,12 +4,16 @@ import java.awt.Cursor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.HashMap;
+import java.util.List;
 
 import de.sfgmbh.applayer.core.controller.CtrlBaseTab;
 import de.sfgmbh.applayer.core.definitions.IntfCtrlBaseTab;
 import de.sfgmbh.applayer.core.definitions.IntfRoomAllocation;
 import de.sfgmbh.applayer.core.definitions.IntfUser;
 import de.sfgmbh.applayer.core.model.AppModel;
+import de.sfgmbh.applayer.lecturer.controller.CtrlStartTab;
+import de.sfgmbh.applayer.lecturer.definitions.IntfCtrlStartTab;
+import de.sfgmbh.comlayer.core.views.BaseTab;
 import de.sfgmbh.comlayer.core.views.QuestionDialog;
 import de.sfgmbh.comlayer.lecturer.views.StartTab;
 
@@ -22,14 +26,14 @@ import de.sfgmbh.comlayer.lecturer.views.StartTab;
  */
 public class BaseLogin implements ActionListener {
 	
-	private IntfCtrlBaseTab ctrlBaseTab;
-	private String version;
+	private IntfCtrlBaseTab ctrlBaseTab_;
+	private String version_;
 	
 	/**
 	 * Creates a default BaseBtnLogin object
 	 */
 	public BaseLogin() {
-		this.ctrlBaseTab = new CtrlBaseTab();
+		this.ctrlBaseTab_ = new CtrlBaseTab();
 	}
 	
 	/**
@@ -38,8 +42,8 @@ public class BaseLogin implements ActionListener {
 	 * @param variant
 	 */
 	public BaseLogin(String variant) {
-		this.version = variant;
-		this.ctrlBaseTab = new CtrlBaseTab();
+		this.version_ = variant;
+		this.ctrlBaseTab_ = new CtrlBaseTab();
 	}
 	
 	/*
@@ -52,13 +56,13 @@ public class BaseLogin implements ActionListener {
 		// Login is pressed
 		// Setting cursor for any Component:
 		ViewManager.getInstance().getCoreBaseTab().setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-		if (this.version == null || this.version.equals("login")) {
+		if (this.version_ == null || this.version_.equals("login")) {
 			try {
 							
 				String pwd = new String(ViewManager.getInstance().getCoreBaseTab().getPwdPasswort().getPassword());
 				String user = ViewManager.getInstance().getCoreBaseTab().getTxtUsername().getText();
 				
-				IntfUser checkUser = ctrlBaseTab.login(user, pwd);
+				IntfUser checkUser = ctrlBaseTab_.login(user, pwd);
 				
 				if (checkUser == null) {
 					// currently here happens nothing
@@ -75,10 +79,13 @@ public class BaseLogin implements ActionListener {
 					ViewManager.getInstance().getCoreBaseTab().getPanelLogin().setVisible(false);
 					ViewManager.getInstance().getCoreBaseTab().getPanelLogout().setVisible(true);
 					
-					// Check if there are counter proposals and display a popup if yes
+					// Check if there are counter or denied proposals and display a popup if yes
 					HashMap<String,String> filter = new HashMap<String,String>();
 					filter.put("login", checkUser.getLogin_());
-					for (IntfRoomAllocation ra : AppModel.getInstance().getRepositoryRoomAllocation().getByFilter(filter)) {
+					List<IntfRoomAllocation> roomAllocationsForLogin = AppModel.getInstance().getRepositoryRoomAllocation().getByFilter(filter);
+					
+					// Check the counter proposals
+					for (IntfRoomAllocation ra : roomAllocationsForLogin) {
 						if (ra.getApproved_().equals("counter")) {
 							String orgaMsg = "";
 							if (ra.getOrgaMessage_().length() > 1) {
@@ -109,6 +116,26 @@ public class BaseLogin implements ActionListener {
 							dialog.setVisible(true);
 						}
 					}
+					
+					// Check the denied allocations
+					IntfCtrlStartTab ctrlStartTab = new CtrlStartTab();
+					boolean hasUnseenDenied = false;
+					String message = "Leider konnte ein oder mehrerer Ihrer gewünschten Veranstaltungstermine nicht genehmigt werden.<br />" +
+							"Dies betrifft folgende Veranstaltung(en):<br /><br />";
+					for (IntfRoomAllocation ra : roomAllocationsForLogin) {
+						if (ra.getApproved_().equals("denied") && ra.getComment_().contains("denied_at_")) {
+							hasUnseenDenied = true;
+							ctrlStartTab.hasBeenSeenAllocation(ra);
+							
+							message = message + ra.getCourse_().getCourseAcronym_() + " in " +
+									ra.getRoom_().getRoomNumber_() + " am " +
+									ViewHelper.getDay(ra.getDay_()) + " von " +
+									ViewHelper.getTime(ra.getTime_()) + "Uhr<br />";
+						}
+					}
+					if (hasUnseenDenied) {
+						AppModel.getInstance().getExceptionHandler().setNewException(message, "Veranstaltungstermine abgelehnt!", "info");
+					}
 				} 
 			} catch (Exception ex) {
 				AppModel.getInstance().getExceptionHandler().setNewException("Leider hat mit dem Login etwas nicht geklappt.<br /><br />Fehler:<br />" + ex.toString(), "Fehler!", "error");
@@ -116,18 +143,19 @@ public class BaseLogin implements ActionListener {
 				ViewManager.getInstance().getCoreBaseTab().setCursor(Cursor.getDefaultCursor());
 			}
 			
-		} else if (this.version.equals("logout")){
+		} else if (this.version_.equals("logout")){
 			try {
 				
-				ctrlBaseTab.logout();
-				ViewManager.getInstance().getCoreBaseTab().getMainTabbedContainerPane().removeAll();
-				ViewManager.getInstance().getCoreBaseTab().getMainTabbedContainerPane().setVisible(false);
-				ViewManager.getInstance().getCoreBaseTab().getContentPane().add(ViewManager.getInstance().getCoreBaseTab().getStartScreenPanel(), "Start");
-				ViewManager.getInstance().getCoreBaseTab().getPwdPasswort().setText("");
-				ViewManager.getInstance().getCoreBaseTab().getTxtUsername().setText("");
-				ViewManager.getInstance().getCoreBaseTab().getStartScreenPanel().setVisible(true);
-				ViewManager.getInstance().getCoreBaseTab().getPanelLogin().setVisible(true);
-				ViewManager.getInstance().getCoreBaseTab().getPanelLogout().setVisible(false);
+				ctrlBaseTab_.logout();
+				BaseTab baseTab = ViewManager.getInstance().getCoreBaseTab();
+				baseTab.getMainTabbedContainerPane().removeAll();
+				baseTab.getMainTabbedContainerPane().setVisible(false);
+				baseTab.getContentPane().add(baseTab.getStartScreenPanel(), "Start");
+				baseTab.getPwdPasswort().setText("");
+				baseTab.getTxtUsername().setText("");
+				baseTab.getStartScreenPanel().setVisible(true);
+				baseTab.getPanelLogin().setVisible(true);
+				baseTab.getPanelLogout().setVisible(false);
 			} catch (Exception ex) {
 				AppModel.getInstance().getExceptionHandler().setNewException("Leider hat mit dem Logout etwas nicht geklappt.<br /><br />Fehler:<br />" + ex.toString(), "Fehler!", "error");
 			} finally {
@@ -142,28 +170,30 @@ public class BaseLogin implements ActionListener {
 	 * Initiates the GUI (tabs, tables, etc.) for the organization 
 	 */
 	public void callOrga() {
-		ViewManager.getInstance().getCoreBaseTab().getMainTabbedContainerPane().setVisible(true);
-		ViewManager.getInstance().getCoreBaseTab().getMainTabbedContainerPane().removeAll();
-		ViewManager.getInstance().getCoreBaseTab().getMainTabbedContainerPane().addTab("Start", null, ViewManager.getInstance().getCoreBaseTab().getStartScreenPanel(), null);
-		ViewManager.getInstance().getCoreBaseTab().getMainTabbedContainerPane().addTab("Raumanfragenverwaltung", null, ViewManager.getInstance().getOrgaRquestTab(), null);
-		ViewManager.getInstance().getCoreBaseTab().getMainTabbedContainerPane().setSelectedIndex(1);
-		ViewManager.getInstance().getCoreBaseTab().getStartScreenPanel().setVisible(false);
-		ViewManager.getInstance().getCoreBaseTab().getMainTabbedContainerPane().addTab("Nutzerverwaltung", null, ViewManager.getInstance().getOrgaUserTab(), null);
-		ViewManager.getInstance().getCoreBaseTab().getMainTabbedContainerPane().addTab("Lehrstuhlverwaltung", null, ViewManager.getInstance().getOrgaChairTab(), null);
-		ViewManager.getInstance().getCoreBaseTab().getMainTabbedContainerPane().addTab("Raumverwaltung", null, ViewManager.getInstance().getOrgaRoomTab(), null);
+		BaseTab baseTab = ViewManager.getInstance().getCoreBaseTab();
+		baseTab.getMainTabbedContainerPane().setVisible(true);
+		baseTab.getMainTabbedContainerPane().removeAll();
+		baseTab.getMainTabbedContainerPane().addTab("Start", null, baseTab.getStartScreenPanel(), null);
+		baseTab.getMainTabbedContainerPane().addTab("Raumanfragenverwaltung", null, ViewManager.getInstance().getOrgaRquestTab(), null);
+		baseTab.getMainTabbedContainerPane().setSelectedIndex(1);
+		baseTab.getStartScreenPanel().setVisible(false);
+		baseTab.getMainTabbedContainerPane().addTab("Nutzerverwaltung", null, ViewManager.getInstance().getOrgaUserTab(), null);
+		baseTab.getMainTabbedContainerPane().addTab("Lehrstuhlverwaltung", null, ViewManager.getInstance().getOrgaChairTab(), null);
+		baseTab.getMainTabbedContainerPane().addTab("Raumverwaltung", null, ViewManager.getInstance().getOrgaRoomTab(), null);
 	}
 	
 	/**
 	 * Initiates the GUI (tabs, tables, etc.) for lecturer
 	 */
 	public void callLecturer() {
-		ViewManager.getInstance().getCoreBaseTab().getMainTabbedContainerPane().setVisible(true);
-		ViewManager.getInstance().getCoreBaseTab().getMainTabbedContainerPane().removeAll();
-		ViewManager.getInstance().getCoreBaseTab().getMainTabbedContainerPane().addTab("Start", null, ViewManager.getInstance().getCoreBaseTab().getStartScreenPanel(), null);
-		ViewManager.getInstance().getCoreBaseTab().getMainTabbedContainerPane().addTab("Dozenten Übersicht", null, ViewManager.getInstance().getLecturerStartTab(), null);
-		ViewManager.getInstance().getCoreBaseTab().getMainTabbedContainerPane().setSelectedIndex(1);
-		ViewManager.getInstance().getCoreBaseTab().getStartScreenPanel().setVisible(false);
-		ViewManager.getInstance().getCoreBaseTab().getMainTabbedContainerPane().addTab("Dozentenstundenplan", null, ViewManager.getInstance().getLecturerTimetableTab(), null);
-		ViewManager.getInstance().getCoreBaseTab().getMainTabbedContainerPane().addTab("Lehrstuhlplan", null, ViewManager.getInstance().getChairTimetableTab(), null);
+		BaseTab baseTab = ViewManager.getInstance().getCoreBaseTab();
+		baseTab.getMainTabbedContainerPane().setVisible(true);
+		baseTab.getMainTabbedContainerPane().removeAll();
+		baseTab.getMainTabbedContainerPane().addTab("Start", null, baseTab.getStartScreenPanel(), null);
+		baseTab.getMainTabbedContainerPane().addTab("Dozenten Übersicht", null, ViewManager.getInstance().getLecturerStartTab(), null);
+		baseTab.getMainTabbedContainerPane().setSelectedIndex(1);
+		baseTab.getStartScreenPanel().setVisible(false);
+		baseTab.getMainTabbedContainerPane().addTab("Dozentenstundenplan", null, ViewManager.getInstance().getLecturerTimetableTab(), null);
+		baseTab.getMainTabbedContainerPane().addTab("Lehrstuhlplan", null, ViewManager.getInstance().getChairTimetableTab(), null);
 	}
 }
